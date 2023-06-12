@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Animal_Information/Animal_General_Information.dart';
 
 class AddSomeDetailsPage extends StatelessWidget {
   void _showImagePicker(BuildContext context) {
@@ -13,6 +14,7 @@ class AddSomeDetailsPage extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
+            Navigator.pop(context);
             // Handle back button press
             // Add your code here
           },
@@ -126,6 +128,11 @@ class AddSomeDetailsPage extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AnimalgenifnoPage()),
+                    );
                     // Add your continue button logic here
                   },
                   style: ElevatedButton.styleFrom(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/signup/Enter_Phone_OTP.dart';
+import 'package:hathera_demo/signup/Signup_With_Email.dart';
 
 class PhnSignupPage extends StatefulWidget {
   @override
@@ -224,7 +226,11 @@ class _PhnSignupPage extends State<PhnSignupPage> {
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       child: ElevatedButton(
                         onPressed: () {
-                          // Add your continue button logic here
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => OTPScreen()),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
@@ -342,6 +348,11 @@ class _PhnSignupPage extends State<PhnSignupPage> {
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       child: ElevatedButton(
                         onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EmailSignupPage()),
+                          );
                           // Add your continue button logic here
                         },
                         style: ElevatedButton.styleFrom(

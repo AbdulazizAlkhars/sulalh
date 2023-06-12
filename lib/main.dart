@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Account_Setup/Add_Personal_Information.dart';
 import 'package:hathera_demo/Account_Setup/Add_Some_Details.dart';
+
 import 'package:hathera_demo/signup/Signup_With_Email.dart';
-import 'package:hathera_demo/Animal_General_Information.dart';
+import 'package:hathera_demo/Animal_Information/Animal_General_Information.dart';
 import 'package:hathera_demo/signup/Create_Password.dart';
 import 'package:hathera_demo/signup/Signup_With_Phone.dart';
-import 'package:hathera_demo/signup/Enter_OTP.dart';
+import 'package:hathera_demo/signup/Enter_Phone_OTP.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Flutter Demo hello',
       theme: ThemeData(
         // This is the theme of your application.
         //

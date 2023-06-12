@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/signup/Create_Password.dart';
 
 class OTPScreen extends StatefulWidget {
   @override
@@ -75,7 +76,7 @@ class _OTPScreenState extends State<OTPScreen> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            // Handle back button press
+            Navigator.pop(context);
           },
         ),
       ),
@@ -138,6 +139,11 @@ class _OTPScreenState extends State<OTPScreen> {
                   child: ElevatedButton(
                     onPressed: isDigitsCompleted
                         ? () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CreatePasswordPage()),
+                            );
                             // Add your continue button logic here
                           }
                         : null,

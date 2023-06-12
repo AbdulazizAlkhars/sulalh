@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Account_Setup/Add_Some_Details.dart';
 
 class AddPersonalInfoPage extends StatelessWidget {
   @override
@@ -8,6 +9,7 @@ class AddPersonalInfoPage extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
+            Navigator.pop(context);
             // Handle back button press
             // Add your code here
           },
@@ -116,6 +118,11 @@ class AddPersonalInfoPage extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AddSomeDetailsPage()),
+                    );
                     // Add your continue button logic here
                   },
                   style: ElevatedButton.styleFrom(

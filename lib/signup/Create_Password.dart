@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Account_Setup/Add_Personal_Information.dart';
 
 class CreatePasswordPage extends StatefulWidget {
   @override
@@ -30,10 +31,9 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back),
           onPressed: () {
-            // Handle back button press
-            // Add your code here
+            Navigator.pop(context);
           },
         ),
       ),
@@ -80,7 +80,15 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
             width: double.infinity,
             margin: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
             child: ElevatedButton(
-              onPressed: _passwordsMatch ? () {} : null,
+              onPressed: _passwordsMatch
+                  ? () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddPersonalInfoPage()),
+                      );
+                    }
+                  : null,
               child: const Text(
                 'Confirm',
                 style: TextStyle(color: Colors.white, fontSize: 20),

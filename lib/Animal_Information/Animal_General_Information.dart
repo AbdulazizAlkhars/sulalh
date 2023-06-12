@@ -41,6 +41,7 @@ class _AnimalgenifnoPage extends State<AnimalgenifnoPage>
                 color: Colors.black,
               ),
               onPressed: () {
+                Navigator.pop(context);
                 // Handle back button press
                 // Add your code here
               },
