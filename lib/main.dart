@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Account_Setup/Add_Personal_Information.dart';
 import 'package:hathera_demo/Account_Setup/Add_Some_Details.dart';
-
 import 'package:hathera_demo/signup/Signup_With_Email.dart';
 import 'package:hathera_demo/Animal_Information/Animal_General_Information.dart';
 import 'package:hathera_demo/signup/Create_Password.dart';

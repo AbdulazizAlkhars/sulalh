@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Widgets/Button.dart';
+import 'package:hathera_demo/Widgets/PhoneNumTextFieldWidget.dart';
 import 'package:hathera_demo/signup/Enter_Phone_OTP.dart';
 import 'package:hathera_demo/signup/Signup_With_Email.dart';
 
@@ -9,78 +11,6 @@ class PhnSignupPage extends StatefulWidget {
 
 class _PhnSignupPage extends State<PhnSignupPage> {
   String selectedCountryCode = '+971'; // Initial selected country code
-
-  void _showCountryCodeSelection() {
-    double sheetHeight = MediaQuery.of(context).size.height * 0.5;
-
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          height: sheetHeight,
-          child: ListView(
-            children: [
-              ListTile(
-                title: Text('+971'),
-                onTap: () {
-                  setState(() {
-                    selectedCountryCode = '+971';
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('+966'),
-                onTap: () {
-                  setState(() {
-                    selectedCountryCode = '+966';
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('+965'),
-                onTap: () {
-                  setState(() {
-                    selectedCountryCode = '+965';
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('+964'),
-                onTap: () {
-                  setState(() {
-                    selectedCountryCode = '+964';
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('+975'),
-                onTap: () {
-                  setState(() {
-                    selectedCountryCode = '+975';
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('+976'),
-                onTap: () {
-                  setState(() {
-                    selectedCountryCode = '+976';
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-              // Add more Middle East country codes as needed
-            ],
-          ),
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -143,112 +73,23 @@ class _PhnSignupPage extends State<PhnSignupPage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 4,
-                              child: GestureDetector(
-                                onTap:
-                                    _showCountryCodeSelection, // Open country code selection
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      bottomLeft: Radius.circular(10),
-                                    ),
-                                    color: Colors.white,
-                                  ),
-                                  child: InputDecorator(
-                                    decoration: const InputDecoration(
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(50),
-                                          bottomLeft: Radius.circular(50),
-                                        ),
-                                      ),
-                                      contentPadding:
-                                          EdgeInsets.fromLTRB(20, 20, 20, 12),
-                                      filled: true,
-                                      fillColor: Colors.white,
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          selectedCountryCode,
-                                          style: TextStyle(fontSize: 17),
-                                        ),
-                                        Icon(Icons.keyboard_arrow_down),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 8,
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(10),
-                                    bottomRight: Radius.circular(0),
-                                  ),
-                                  color: Colors.white,
-                                ),
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    hintText: 'Enter Mobile Number',
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(50),
-                                        bottomRight: Radius.circular(50),
-                                      ),
-                                    ),
-                                    contentPadding:
-                                        EdgeInsets.fromLTRB(20, 20, 20, 12),
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                  ),
-                                  keyboardType: TextInputType.phone,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    Container(
-                      width: double.infinity,
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => OTPScreen()),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(255, 36, 86, 38),
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                        ),
-                        child: const Text(
-                          'Continue',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
                             color: Colors.white,
                           ),
-                        ),
-                      ),
+                          child: PhoneNumberInputWidget()),
+                    ),
+                    const SizedBox(height: 20),
+                    ButtonWidget(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PhoneOTPScreen()),
+                        );
+                        // Add your continue button logic here
+                      },
+                      buttonText: 'Continue',
                     ),
                     const SizedBox(height: 25),
                     Container(

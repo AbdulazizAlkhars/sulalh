@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/signup/Create_Password.dart';
 
-class OTPScreen extends StatefulWidget {
+class PhoneOTPScreen extends StatefulWidget {
   @override
-  _OTPScreenState createState() => _OTPScreenState();
+  _PhoneOTPScreen createState() => _PhoneOTPScreen();
 }
 
-class _OTPScreenState extends State<OTPScreen> {
+class _PhoneOTPScreen extends State<PhoneOTPScreen> {
   List<FocusNode> otpFocusNodes = List.generate(6, (_) => FocusNode());
   List<String> otpDigits = List.generate(6, (_) => '');
 

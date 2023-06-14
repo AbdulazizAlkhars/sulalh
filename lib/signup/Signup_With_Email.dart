@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Widgets/Button.dart';
+import 'package:hathera_demo/Widgets/Textformfield.dart';
 import 'package:hathera_demo/signup/Enter_Email_OTP.dart';
+import 'package:hathera_demo/signup/Enter_Phone_OTP.dart';
 import 'package:hathera_demo/signup/Signup_With_Phone.dart';
 
 class EmailSignupPage extends StatefulWidget {
@@ -73,51 +76,23 @@ class _EmailSignupPageState extends State<EmailSignupPage> {
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white,
                         ),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Enter Email Address',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            contentPadding: EdgeInsets.fromLTRB(20, 20, 20,
-                                12), // Adjust the padding as per your preference
-                            filled: true,
-                            fillColor: Colors.white,
-                          ),
+                        child: CustomTextFormField(
                           keyboardType: TextInputType.emailAddress,
+                          labelText: 'Enter Email',
                         ),
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Container(
-                      width: double.infinity,
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => EmailOTPScreen()),
-                          );
-                          // Add your continue button logic here
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(255, 36, 86, 38),
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                        ),
-                        child: const Text(
-                          'Continue',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
+                    ButtonWidget(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => EmailOTPScreen()),
+                        );
+                        // Add your continue button logic here
+                      },
+                      buttonText: 'Continue',
                     ),
                     const SizedBox(height: 25),
                     Container(
