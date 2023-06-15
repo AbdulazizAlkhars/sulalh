@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';
 import 'package:hathera_demo/signup/Enter_Email_OTP.dart';
-import 'package:hathera_demo/signup/Enter_Phone_OTP.dart';
 import 'package:hathera_demo/signup/Signup_With_Phone.dart';
 
 class EmailSignupPage extends StatefulWidget {

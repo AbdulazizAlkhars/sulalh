@@ -92,7 +92,7 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
+        // color: Colors.white,
       ),
       child: Row(
         children: [
@@ -106,7 +106,7 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
                     topLeft: Radius.circular(10),
                     bottomLeft: Radius.circular(10),
                   ),
-                  color: Colors.white,
+                  // color: Colors.white,
                 ),
                 child: InputDecorator(
                   decoration: InputDecoration(
@@ -117,8 +117,6 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
                       ),
                     ),
                     contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 12),
-                    filled: true,
-                    fillColor: Colors.white,
                   ),
                   child: Row(
                     children: [
@@ -141,7 +139,6 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
                   topRight: Radius.circular(10),
                   bottomRight: Radius.circular(0),
                 ),
-                color: Colors.white,
               ),
               child: TextField(
                 controller: phoneNumberController,
@@ -155,8 +152,6 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
                     ),
                   ),
                   contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 12),
-                  filled: true,
-                  fillColor: Colors.white,
                 ),
               ),
             ),

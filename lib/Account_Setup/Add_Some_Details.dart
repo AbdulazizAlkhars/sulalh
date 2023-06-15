@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Animal_Information/Animal_General_Information.dart';
+import 'package:hathera_demo/BottomNavigationBar/BottomNBScreens.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';
 import 'package:image_picker/image_picker.dart';
@@ -165,7 +166,7 @@ class _AddSomeDetailsPageState extends State<AddSomeDetailsPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => AnimalgenifnoPage()),
+                        builder: (context) => BottomNavigationBarPage()),
                   );
                 },
                 buttonText: 'Continue',
