@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Profile/EditProfileInformation.dart';
-import 'package:hathera_demo/Widgets/Button.dart';
 
 class ProfilePage extends StatefulWidget {
   @override

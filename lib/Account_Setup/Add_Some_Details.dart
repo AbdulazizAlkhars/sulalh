@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Animal_Information/Animal_General_Information.dart';
 import 'package:hathera_demo/BottomNavigationBar/BottomNBScreens.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';

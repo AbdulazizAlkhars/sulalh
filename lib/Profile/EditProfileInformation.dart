@@ -1,9 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Profile/ProfilePage.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
-import 'package:hathera_demo/Widgets/Textformfield.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EditProfileInformation extends StatefulWidget {
