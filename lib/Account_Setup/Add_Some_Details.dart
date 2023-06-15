@@ -2,11 +2,59 @@ import 'package:flutter/material.dart';
 import 'package:hathera_demo/Animal_Information/Animal_General_Information.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
-class AddSomeDetailsPage extends StatelessWidget {
+class AddSomeDetailsPage extends StatefulWidget {
+  @override
+  _AddSomeDetailsPageState createState() => _AddSomeDetailsPageState();
+}
+
+class _AddSomeDetailsPageState extends State<AddSomeDetailsPage> {
+  final ImagePicker _picker = ImagePicker();
+  File? _selectedImage;
+
   void _showImagePicker(BuildContext context) {
-    // Code for showing the modal bottom sheet
-    // ...
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: 150,
+          child: Column(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.camera),
+                title: const Text('Camera'),
+                onTap: () async {
+                  Navigator.pop(context);
+                  final pickedImage =
+                      await _picker.getImage(source: ImageSource.camera);
+                  if (pickedImage != null) {
+                    setState(() {
+                      _selectedImage = File(pickedImage.path);
+                    });
+                  }
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_library),
+                title: const Text('Gallery'),
+                onTap: () async {
+                  Navigator.pop(context);
+                  final pickedImage =
+                      await _picker.getImage(source: ImageSource.gallery);
+                  if (pickedImage != null) {
+                    setState(() {
+                      _selectedImage = File(pickedImage.path);
+                    });
+                  }
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -62,24 +110,26 @@ class AddSomeDetailsPage extends StatelessWidget {
               const SizedBox(height: 45),
               Center(
                 child: GestureDetector(
-                  onTap: () => _showImagePicker(context),
                   child: CircleAvatar(
                     radius: 70,
                     backgroundColor: Colors.grey[100],
-                    child: const Icon(
-                      Icons.camera_alt,
-                      size: 50,
-                      color: Colors.grey,
-                    ),
+                    backgroundImage: _selectedImage != null
+                        ? FileImage(_selectedImage!)
+                        : null,
+                    child: _selectedImage == null
+                        ? const Icon(
+                            Icons.camera_alt,
+                            size: 50,
+                            color: Colors.grey,
+                          )
+                        : null,
                   ),
                 ),
               ),
-
               Center(
                 child: TextButton(
                   onPressed: () {
-                    // Handle "Add Photo" button press
-                    // Add your code here
+                    _showImagePicker(context);
                   },
                   child: const Text(
                     'Add Photo',
@@ -92,7 +142,6 @@ class AddSomeDetailsPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 45),
-
               const Text(
                 "What's your address?",
                 style: TextStyle(
@@ -101,30 +150,26 @@ class AddSomeDetailsPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              CustomTextFormField(
+              const CustomTextFormField(
                 keyboardType: TextInputType.emailAddress,
-                labelText: 'Country',
+                labelText: 'Enter Email',
               ),
-
               const SizedBox(height: 16),
-              CustomTextFormField(
+              const CustomTextFormField(
                 keyboardType: TextInputType.emailAddress,
                 labelText: 'City',
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 80),
               ButtonWidget(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => AddSomeDetailsPage()),
+                        builder: (context) => AnimalgenifnoPage()),
                   );
-                  // Add your continue button logic here
                 },
                 buttonText: 'Continue',
               ),
-
-              // Add your additional widgets here
             ],
           ),
         ),

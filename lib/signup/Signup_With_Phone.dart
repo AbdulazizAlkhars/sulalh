@@ -79,17 +79,20 @@ class _PhnSignupPage extends State<PhnSignupPage> {
                           ),
                           child: PhoneNumberInputWidget()),
                     ),
-                    const SizedBox(height: 20),
-                    ButtonWidget(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PhoneOTPScreen()),
-                        );
-                        // Add your continue button logic here
-                      },
-                      buttonText: 'Continue',
+                    const SizedBox(height: 26),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      child: ButtonWidget(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PhoneOTPScreen()),
+                          );
+                          // Add your continue button logic here
+                        },
+                        buttonText: 'Continue',
+                      ),
                     ),
                     const SizedBox(height: 25),
                     Container(

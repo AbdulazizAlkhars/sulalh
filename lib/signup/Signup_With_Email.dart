@@ -83,16 +83,19 @@ class _EmailSignupPageState extends State<EmailSignupPage> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    ButtonWidget(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => EmailOTPScreen()),
-                        );
-                        // Add your continue button logic here
-                      },
-                      buttonText: 'Continue',
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      child: ButtonWidget(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EmailOTPScreen()),
+                          );
+                          // Add your continue button logic here
+                        },
+                        buttonText: 'Continue',
+                      ),
                     ),
                     const SizedBox(height: 25),
                     Container(
