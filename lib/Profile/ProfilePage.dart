@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/PaymentMethods/PaymentPage.dart';
 import 'package:hathera_demo/Profile/EditProfileInformation.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -208,9 +209,9 @@ class _ProfilePageState extends State<ProfilePage> {
             Container(
               color: Colors.white,
               padding: const EdgeInsets.all(8),
-              child: const Column(
+              child: Column(
                 children: [
-                  ListTile(
+                  const ListTile(
                     leading: Icon(Icons.person_outline),
                     title: Text(
                       'Accounts',
@@ -218,13 +219,19 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   ListTile(
-                    leading: Icon(Icons.payment_outlined),
-                    title: Text(
-                      'Payment Methods',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ),
-                  ListTile(
+                      leading: const Icon(Icons.payment_outlined),
+                      title: const Text(
+                        'Payment Methods',
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PaymentPage()),
+                        );
+                      }),
+                  const ListTile(
                     leading: Icon(Icons.star_outline),
                     title: Text(
                       'Subscriptions',

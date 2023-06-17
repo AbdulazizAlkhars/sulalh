@@ -1,0 +1,117 @@
+import 'package:flutter/material.dart';
+import 'package:hathera_demo/PaymentMethods/AddNewCardPage.dart';
+
+class PaymentPage extends StatefulWidget {
+  @override
+  _PaymentPageState createState() => _PaymentPageState();
+}
+
+class _PaymentPageState extends State<PaymentPage> {
+  List<CardInfo> savedCards = [
+    CardInfo('John Doe', '**** **** **** 1234', '2020', '222'),
+    CardInfo('Jane Smith', '**** **** **** 5678', '2121', '222'),
+  ];
+
+  List<String> otherPaymentMethods = [
+    'PayPal',
+    'Google Pay',
+    'Apple Pay',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Payment Methods',
+                style: TextStyle(
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 40),
+              const Text(
+                'Saved Cards:',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: savedCards.length + 1,
+                itemBuilder: (BuildContext context, int index) {
+                  if (index < savedCards.length) {
+                    return CardWidget(cardInfo: savedCards[index]);
+                  } else {
+                    return ListTile(
+                      leading: const Icon(Icons.add),
+                      title: const Text('Add New Card'),
+                      trailing: const Icon(Icons.arrow_forward),
+                      onTap: () {
+                        _navigateToAddCard();
+                      },
+                    );
+                  }
+                },
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'Other Payment Methods:',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: otherPaymentMethods.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    leading: const Icon(Icons.payment),
+                    title: Text(otherPaymentMethods[index]),
+                    trailing: const Icon(Icons.arrow_forward),
+                    onTap: () {
+                      // Handle tapping on other payment methods
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _navigateToAddCard() async {
+    final newCardInfo = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => AddCardPage()),
+    );
+    if (newCardInfo != null) {
+      setState(() {
+        savedCards.add(newCardInfo);
+      });
+    }
+  }
+}
+
+// 
