@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/NotificationSettings/NotificationsPause.dart';
 import 'package:hathera_demo/PaymentMethods/PaymentPage.dart';
 import 'package:hathera_demo/Profile/EditProfileInformation.dart';
+import 'package:hathera_demo/Subscription/Subscription.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -231,13 +233,19 @@ class _ProfilePageState extends State<ProfilePage> {
                               builder: (context) => PaymentPage()),
                         );
                       }),
-                  const ListTile(
-                    leading: Icon(Icons.star_outline),
-                    title: Text(
-                      'Subscriptions',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ),
+                  ListTile(
+                      leading: Icon(Icons.star_outline),
+                      title: Text(
+                        'Subscriptions',
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SubscriptionPage()),
+                        );
+                      }),
                 ],
               ),
             ),
@@ -245,15 +253,21 @@ class _ProfilePageState extends State<ProfilePage> {
             Container(
               color: Colors.white,
               padding: const EdgeInsets.all(8),
-              child: const Column(
+              child: Column(
                 children: [
                   ListTile(
-                    leading: Icon(Icons.notifications_outlined),
-                    title: Text(
-                      'Notifications',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ),
+                      leading: Icon(Icons.notifications_outlined),
+                      title: Text(
+                        'Notifications',
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => NotificationSettingsPage()),
+                        );
+                      }),
                   ListTile(
                     leading: Icon(Icons.lock_outline),
                     title: Text(

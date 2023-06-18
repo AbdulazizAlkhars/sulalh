@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/PaymentMethods/AddNewCardPage.dart';
+import 'package:hathera_demo/Widgets/Button.dart';
 
 class PaymentPage extends StatefulWidget {
   @override
@@ -16,6 +17,11 @@ class _PaymentPageState extends State<PaymentPage> {
     'PayPal',
     'Google Pay',
     'Apple Pay',
+  ];
+  List<String> paymentMethodIcons = [
+    'assets/PaymentPNGs/PayPal.png',
+    'assets/PaymentPNGs/GPay.png',
+    'assets/PaymentPNGs/ApplePay.png',
   ];
 
   @override
@@ -62,7 +68,12 @@ class _PaymentPageState extends State<PaymentPage> {
                     return ListTile(
                       leading: const Icon(Icons.add),
                       title: const Text('Add New Card'),
-                      trailing: const Icon(Icons.arrow_forward),
+                      trailing: const Text(
+                        '>',
+                        style: TextStyle(
+                          fontSize: 24,
+                        ),
+                      ),
                       onTap: () {
                         _navigateToAddCard();
                       },
@@ -82,17 +93,33 @@ class _PaymentPageState extends State<PaymentPage> {
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: otherPaymentMethods.length,
+                itemCount: otherPaymentMethods.length + 1,
                 itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    leading: const Icon(Icons.payment),
-                    title: Text(otherPaymentMethods[index]),
-                    trailing: const Icon(Icons.arrow_forward),
-                    onTap: () {
-                      // Handle tapping on other payment methods
-                    },
-                  );
+                  if (index < otherPaymentMethods.length) {
+                    return ListTile(
+                      leading: SizedBox(
+                          height: 30,
+                          width: 30,
+                          child: Image.asset(paymentMethodIcons[index])),
+                      title: Text(otherPaymentMethods[index]),
+                      trailing: const Text(
+                        '>',
+                        style: TextStyle(
+                          fontSize: 24,
+                        ),
+                      ),
+                      onTap: () {
+                        // Handle tapping on other payment methods
+                      },
+                    );
+                  } else {
+                    return const SizedBox(height: 30); // Add desired space here
+                  }
                 },
+              ),
+              ButtonWidget(
+                onPressed: () {},
+                buttonText: 'Add New Payment Method',
               ),
             ],
           ),

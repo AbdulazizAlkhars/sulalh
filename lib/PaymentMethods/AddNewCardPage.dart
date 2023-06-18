@@ -228,7 +228,8 @@ class CardWidget extends StatelessWidget {
     return Card(
       elevation: 0,
       child: ListTile(
-        leading: const Icon(Icons.credit_card),
+        leading: Container(
+            height: 30, width: 30, child: Image.asset('assets/pngegg.png')),
         title: Text(maskedCardNumber),
       ),
     );
