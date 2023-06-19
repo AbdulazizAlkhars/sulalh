@@ -63,7 +63,27 @@ class _PaymentPageState extends State<PaymentPage> {
                 itemCount: savedCards.length + 1,
                 itemBuilder: (BuildContext context, int index) {
                   if (index < savedCards.length) {
-                    return CardWidget(cardInfo: savedCards[index]);
+                    return Dismissible(
+                      key: Key(savedCards[index].cardHolderName),
+                      onDismissed: (direction) {
+                        setState(() {
+                          savedCards.removeAt(index);
+                        });
+                      },
+                      background: Container(
+                        color: Colors.red,
+                        alignment: Alignment.centerRight,
+                        padding: const EdgeInsets.only(right: 16),
+                        child: const Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                        ),
+                      ),
+                      child: CardWidget(
+                        cardInfo: savedCards[index],
+                        onSelect: () {},
+                      ),
+                    );
                   } else {
                     return ListTile(
                       leading: const Icon(Icons.add),
@@ -98,9 +118,10 @@ class _PaymentPageState extends State<PaymentPage> {
                   if (index < otherPaymentMethods.length) {
                     return ListTile(
                       leading: SizedBox(
-                          height: 30,
-                          width: 30,
-                          child: Image.asset(paymentMethodIcons[index])),
+                        height: 30,
+                        width: 30,
+                        child: Image.asset(paymentMethodIcons[index]),
+                      ),
                       title: Text(otherPaymentMethods[index]),
                       trailing: const Text(
                         '>',
@@ -140,5 +161,3 @@ class _PaymentPageState extends State<PaymentPage> {
     }
   }
 }
-
-// 

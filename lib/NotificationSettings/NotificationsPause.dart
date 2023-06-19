@@ -7,10 +7,10 @@ class NotificationSettingsPage extends StatefulWidget {
 }
 
 class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
-  bool _notification1 = false;
-  bool _notification2 = false;
-  bool _notification3 = false;
-  bool _notification4 = false;
+  bool _PauseAll = false;
+  bool _SysNotifications = false;
+  bool _AnimalNotifications = false;
+  bool _Collaboration = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,15 +44,15 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
                 'Pause All',
               ),
               trailing: Switch(
-                value: _notification1,
+                value: _PauseAll,
                 onChanged: (value) {
                   setState(() {
-                    _notification1 = value;
+                    _PauseAll = value;
                     if (value) {
                       // Disable other switches and turn them off
-                      _notification2 = false;
-                      _notification3 = false;
-                      _notification4 = false;
+                      _SysNotifications = false;
+                      _AnimalNotifications = false;
+                      _Collaboration = false;
                     }
                   });
                 },
@@ -62,16 +62,16 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
               title: Text(
                 'System Notifications',
                 style: TextStyle(
-                  color: (_notification1) ? Colors.grey : null,
+                  color: (_PauseAll) ? Colors.grey : null,
                 ),
               ),
               trailing: Switch(
-                value: _notification2,
-                onChanged: (_notification1)
+                value: _SysNotifications,
+                onChanged: (_PauseAll)
                     ? null // Disable the switch when "Pause All" is turned on
                     : (value) {
                         setState(() {
-                          _notification2 = value;
+                          _SysNotifications = value;
                         });
                       },
               ),
@@ -80,16 +80,16 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
               title: Text(
                 'Animal Management',
                 style: TextStyle(
-                  color: (_notification1) ? Colors.grey : null,
+                  color: (_PauseAll) ? Colors.grey : null,
                 ),
               ),
               trailing: Switch(
-                value: _notification3,
-                onChanged: (_notification1)
+                value: _AnimalNotifications,
+                onChanged: (_PauseAll)
                     ? null // Disable the switch when "Pause All" is turned on
                     : (value) {
                         setState(() {
-                          _notification3 = value;
+                          _AnimalNotifications = value;
                         });
                       },
               ),
@@ -98,16 +98,16 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
               title: Text(
                 'Collaboration',
                 style: TextStyle(
-                  color: (_notification1) ? Colors.grey : null,
+                  color: (_PauseAll) ? Colors.grey : null,
                 ),
               ),
               trailing: Switch(
-                value: _notification4,
-                onChanged: (_notification1)
+                value: _Collaboration,
+                onChanged: (_PauseAll)
                     ? null // Disable the switch when "Pause All" is turned on
                     : (value) {
                         setState(() {
-                          _notification4 = value;
+                          _Collaboration = value;
                         });
                       },
               ),

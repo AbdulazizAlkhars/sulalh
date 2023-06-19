@@ -218,18 +218,35 @@ class CardInfo {
 class CardWidget extends StatelessWidget {
   final CardInfo cardInfo;
 
-  CardWidget({required this.cardInfo});
+  CardWidget({required this.cardInfo, required Null Function() onSelect});
 
   @override
   Widget build(BuildContext context) {
     final maskedCardNumber =
         maskCardNumber(cardInfo.cardNumber); // Mask card number
 
+    final cardType = detectCCType(cardInfo.cardNumber);
+
+    String cardImagePath = '';
+
+    if (cardType == CreditCardType.visa) {
+      cardImagePath = 'assets/PaymentPNGs/VISA.png';
+    } else if (cardType == CreditCardType.mastercard) {
+      cardImagePath = 'assets/PaymentPNGs/Mastercard.png';
+    } else if (cardType == CreditCardType.americanExpress) {
+      cardImagePath = 'assets/PaymentPNGs/AmericanExpress.png';
+    } else if (cardType == CreditCardType.discover) {
+      cardImagePath = 'assets/PaymentPNGs/Discover.png';
+    }
+
     return Card(
       elevation: 0,
       child: ListTile(
         leading: Container(
-            height: 30, width: 30, child: Image.asset('assets/pngegg.png')),
+          height: 30,
+          width: 30,
+          child: Image.asset(cardImagePath),
+        ),
         title: Text(maskedCardNumber),
       ),
     );
@@ -280,5 +297,28 @@ class _DateInputFormatter extends TextInputFormatter {
       selection: newSelection,
       composing: TextRange.empty,
     );
+  }
+}
+
+enum CreditCardType {
+  visa,
+  mastercard,
+  americanExpress,
+  discover,
+}
+
+CreditCardType detectCCType(String cardNumber) {
+  // Perform your logic to detect the credit card type here
+  // This is just a sample implementation
+  if (cardNumber.startsWith('4')) {
+    return CreditCardType.visa;
+  } else if (cardNumber.startsWith('5')) {
+    return CreditCardType.mastercard;
+  } else if (cardNumber.startsWith('3')) {
+    return CreditCardType.americanExpress;
+  } else if (cardNumber.startsWith('6')) {
+    return CreditCardType.discover;
+  } else {
+    return CreditCardType.visa; // Default to Visa
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/NotificationSettings/NotificationsPause.dart';
 import 'package:hathera_demo/PaymentMethods/PaymentPage.dart';
+import 'package:hathera_demo/PrivacySecurity/PrivacySecurityPage.dart';
 import 'package:hathera_demo/Profile/EditProfileInformation.dart';
 import 'package:hathera_demo/Subscription/Subscription.dart';
 
@@ -269,12 +270,18 @@ class _ProfilePageState extends State<ProfilePage> {
                         );
                       }),
                   ListTile(
-                    leading: Icon(Icons.lock_outline),
-                    title: Text(
-                      'Privacy and Security',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ),
+                      leading: Icon(Icons.lock_outline),
+                      title: Text(
+                        'Privacy and Security',
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PrivacySecurityPage()),
+                        );
+                      }),
                 ],
               ),
             ),
