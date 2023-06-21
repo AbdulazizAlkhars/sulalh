@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/AppSettings/AppSettings.dart';
+import 'package:hathera_demo/AuthorizationMethods/AuthorizationMethodsPage.dart';
 import 'package:hathera_demo/NotificationSettings/NotificationsPause.dart';
 import 'package:hathera_demo/PaymentMethods/PaymentPage.dart';
 import 'package:hathera_demo/PrivacySecurity/PrivacySecurityPage.dart';
@@ -214,13 +216,19 @@ class _ProfilePageState extends State<ProfilePage> {
               padding: const EdgeInsets.all(8),
               child: Column(
                 children: [
-                  const ListTile(
-                    leading: Icon(Icons.person_outline),
-                    title: Text(
-                      'Accounts',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ),
+                  ListTile(
+                      leading: Icon(Icons.person_outline),
+                      title: Text(
+                        'Accounts',
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AuthorizationMethodsPage()),
+                        );
+                      }),
                   ListTile(
                       leading: const Icon(Icons.payment_outlined),
                       title: const Text(
@@ -289,15 +297,21 @@ class _ProfilePageState extends State<ProfilePage> {
             Container(
               color: Colors.white,
               padding: const EdgeInsets.all(8),
-              child: const Column(
+              child: Column(
                 children: [
                   ListTile(
-                    leading: Icon(Icons.settings_outlined),
-                    title: Text(
-                      'App Settings',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ),
+                      leading: Icon(Icons.settings_outlined),
+                      title: Text(
+                        'App Settings',
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AppSettings()),
+                        );
+                      }),
                   ListTile(
                     leading: Icon(Icons.warning_amber_rounded),
                     title: Text(
