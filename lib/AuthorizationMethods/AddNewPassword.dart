@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_flushbar/flutter_flushbar.dart';
+import 'package:hathera_demo/AuthorizationMethods/AuthorizationMethodsPage.dart';
+import 'package:hathera_demo/Widgets/SnackBar.dart';
 
 class AddNewPassword extends StatefulWidget {
   final String emailAddress;
@@ -11,6 +14,7 @@ class AddNewPassword extends StatefulWidget {
 class _AddNewPassword extends State<AddNewPassword> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
+
   bool _passwordsMatch = false;
 
   @override
@@ -23,6 +27,7 @@ class _AddNewPassword extends State<AddNewPassword> {
   void _validatePasswords() {
     final password = _passwordController.text;
     final confirmPassword = _confirmPasswordController.text;
+
     setState(() {
       _passwordsMatch = password.isNotEmpty && password == confirmPassword;
     });
@@ -85,11 +90,13 @@ class _AddNewPassword extends State<AddNewPassword> {
               onPressed: _passwordsMatch
                   ? () {
                       widget.onEmailUpdated(widget.emailAddress);
-                      Navigator.popUntil(
+                      Navigator.push(
                         context,
-                        ModalRoute.withName('/'),
+                        MaterialPageRoute(
+                          builder: (context) => AuthorizationMethodsPage(),
+                        ),
                       );
-                      // Add your continue button logic here
+                      CustomSnackBar.show(context, 'Email Added');
                     }
                   : null,
               child: const Text(

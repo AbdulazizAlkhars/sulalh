@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/signup/Create_Password.dart';
+import 'package:hathera_demo/Account_Setup/Add_Personal_Information.dart';
 
 class PhoneOTPScreen extends StatefulWidget {
   @override
@@ -142,7 +142,7 @@ class _PhoneOTPScreen extends State<PhoneOTPScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => CreatePasswordPage()),
+                                  builder: (context) => AddPersonalInfoPage()),
                             );
                             // Add your continue button logic here
                           }

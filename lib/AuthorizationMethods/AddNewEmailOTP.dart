@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/AuthorizationMethods/AddNewPassword.dart';
 
 class AddNewEmailOTP extends StatefulWidget {
   final String emailAddress;
@@ -10,6 +11,7 @@ class AddNewEmailOTP extends StatefulWidget {
 }
 
 class _AddNewEmailOTP extends State<AddNewEmailOTP> {
+  final TextEditingController _emailAddressController = TextEditingController();
   List<FocusNode> otpFocusNodes = List.generate(6, (_) => FocusNode());
   List<String> otpDigits = List.generate(6, (_) => '');
 
@@ -140,10 +142,16 @@ class _AddNewEmailOTP extends State<AddNewEmailOTP> {
                   child: ElevatedButton(
                     onPressed: isDigitsCompleted
                         ? () {
+                            String emailAddress = _emailAddressController.text;
                             widget.onEmailUpdated(widget.emailAddress);
-                            Navigator.popUntil(
+                            Navigator.push(
                               context,
-                              ModalRoute.withName('/'),
+                              MaterialPageRoute(
+                                builder: (context) => AddNewPassword(
+                                  emailAddress: emailAddress,
+                                  onEmailUpdated: widget.onEmailUpdated,
+                                ),
+                              ),
                             );
                             // Add your continue button logic here
                           }

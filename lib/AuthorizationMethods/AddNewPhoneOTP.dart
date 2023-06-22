@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/AuthorizationMethods/AuthorizationMethodsPage.dart';
+import 'package:hathera_demo/Widgets/SnackBar.dart';
 
 class AddNewPhoneOTP extends StatefulWidget {
   final String phoneNumber;
@@ -150,6 +151,7 @@ class _AddNewPhoneOTP extends State<AddNewPhoneOTP> {
                                     AuthorizationMethodsPage(), // Replace YourDesiredPage with the actual page you want to navigate to
                               ),
                             );
+                            CustomSnackBar.show(context, 'Phone Number Added');
                             // Add your continue button logic here
                           }
                         : null,

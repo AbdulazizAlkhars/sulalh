@@ -179,23 +179,28 @@ class _AppSettings extends State<AppSettings> {
             children: [
               const SizedBox(height: 8),
               ListTile(
-                subtitle: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0),
-                  child: Text(selectedLanguage),
-                ),
-                onTap: _showLanguageSelection,
-                title: Row(
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: Text(
-                        'Language',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
+                    Text(
+                      'Language',
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Icon(Icons.arrow_forward),
+                    const SizedBox(height: 4),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(selectedLanguage),
+                        ),
+                        Icon(Icons.arrow_forward),
+                      ],
+                    ),
                   ],
                 ),
+                onTap: _showLanguageSelection,
               ),
+              Divider()
             ],
           ),
         ),

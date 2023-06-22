@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/AboutApp/AboutApp.dart';
 import 'package:hathera_demo/AppSettings/AppSettings.dart';
 import 'package:hathera_demo/AuthorizationMethods/AuthorizationMethodsPage.dart';
+import 'package:hathera_demo/CustomerSupport/CustomerSupport.dart';
 import 'package:hathera_demo/NotificationSettings/NotificationsPause.dart';
 import 'package:hathera_demo/PaymentMethods/PaymentPage.dart';
 import 'package:hathera_demo/PrivacySecurity/PrivacySecurityPage.dart';
@@ -313,19 +315,30 @@ class _ProfilePageState extends State<ProfilePage> {
                         );
                       }),
                   ListTile(
-                    leading: Icon(Icons.warning_amber_rounded),
-                    title: Text(
-                      'About App',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ),
+                      leading: Icon(Icons.warning_amber_rounded),
+                      title: Text(
+                        'About App',
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => AboutApp()),
+                        );
+                      }),
                   ListTile(
-                    leading: Icon(Icons.contact_support_outlined),
-                    title: Text(
-                      'Customer Support',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ),
+                      leading: Icon(Icons.contact_support_outlined),
+                      title: Text(
+                        'Customer Support',
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CustomerSupport()),
+                        );
+                      }),
                 ],
               ),
             ),
