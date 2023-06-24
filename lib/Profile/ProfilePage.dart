@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hathera_demo/AboutApp/AboutApp.dart';
 import 'package:hathera_demo/AppSettings/AppSettings.dart';
 import 'package:hathera_demo/AuthorizationMethods/AuthorizationMethodsPage.dart';
+import 'package:hathera_demo/Collaboration/ListOfStaff.dart';
 import 'package:hathera_demo/CustomerSupport/CustomerSupport.dart';
 import 'package:hathera_demo/NotificationSettings/NotificationsPause.dart';
 import 'package:hathera_demo/PaymentMethods/PaymentPage.dart';
@@ -88,6 +89,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       child: ElevatedButton(
                         onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListOfStaff()),
+                          );
                           // Add function of the button below
                         },
                         style: ElevatedButton.styleFrom(

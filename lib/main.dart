@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/AboutApp/AboutApp.dart';
-import 'package:hathera_demo/CustomerSupport/CustomerSupport.dart';
-import 'package:hathera_demo/Profile/ProfilePage.dart';
 import 'package:hathera_demo/signup/Signup_With_Phone.dart';
 
 void main() {

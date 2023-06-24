@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/BottomNavigationBar/BottomNBScreens.dart';
-import 'package:hathera_demo/Widgets/Button.dart';
-import 'package:hathera_demo/Widgets/Textformfield.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 
 class AboutApp extends StatefulWidget {
   @override

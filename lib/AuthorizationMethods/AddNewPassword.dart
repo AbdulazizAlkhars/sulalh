@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_flushbar/flutter_flushbar.dart';
 import 'package:hathera_demo/AuthorizationMethods/AuthorizationMethodsPage.dart';
 import 'package:hathera_demo/Widgets/SnackBar.dart';
 

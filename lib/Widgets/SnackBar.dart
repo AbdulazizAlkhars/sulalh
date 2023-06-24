@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 class CustomSnackBar {
   static void show(BuildContext context, String message) {
     final overlay =
-        Overlay.of(context)?.context.findRenderObject() as RenderBox?;
+        Overlay.of(context).context.findRenderObject() as RenderBox?;
 
     if (overlay != null) {
       final box = overlay.paintBounds;
-      final snackBarHeight = 50.0;
       final snackBarWidth = box.size.width * 0.6; // Adjust the width as desired
 
       OverlayEntry entry = OverlayEntry(
@@ -44,7 +43,7 @@ class CustomSnackBar {
         },
       );
 
-      Overlay.of(context)?.insert(entry);
+      Overlay.of(context).insert(entry);
 
       Future.delayed(Duration(seconds: 3)).then((_) {
         entry.remove();
