@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Widgets/Button.dart';
 
-class StaffDetailsPage extends StatelessWidget {
+class StaffDetailsPage extends StatefulWidget {
   final String imagePath;
   final String title;
   final String subtitle;
@@ -16,11 +17,25 @@ class StaffDetailsPage extends StatelessWidget {
   });
 
   @override
+  State<StaffDetailsPage> createState() => _StaffDetailsPageState();
+}
+
+class _StaffDetailsPageState extends State<StaffDetailsPage> {
+  bool isHelperSelected = false;
+  bool isWorkerSelected = false;
+  bool isViewOnlySelected = true;
+  bool isCanEditSelected = false;
+  bool showList = false;
+  bool isGeneralInfoSelected = false;
+  bool isBreedingInfoSelected = false;
+  bool isMedicalInfoSelected = false;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Memeber Of Your Staff',
+        title: const Text(
+          'Member Of Your Staff',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         leading: IconButton(
@@ -39,7 +54,90 @@ class StaffDetailsPage extends StatelessWidget {
                 color: Colors.red,
               ),
               onPressed: () {
-                Navigator.pop(context);
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return Container(
+                      height: 300,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Text(
+                                'Delete Member?',
+                                style: TextStyle(
+                                    fontSize: 25, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Text(
+                                'Delete the member from your staffs?\nThis act can not be undone',
+                                style: TextStyle(fontSize: 14),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 232, 232, 232),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 16),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                                child: const Text(
+                                  'Delete',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 232, 232, 232),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 16),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                                child: const Text(
+                                  'Cancel',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
               },
             ),
           ),
@@ -53,32 +151,32 @@ class StaffDetailsPage extends StatelessWidget {
               child: Center(
                 child: CircleAvatar(
                   radius: 70,
-                  backgroundImage: AssetImage(imagePath),
+                  backgroundImage: AssetImage(widget.imagePath),
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Text(
-                title,
-                style: TextStyle(
+                widget.title,
+                style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
             Text(
-              email,
-              style: TextStyle(fontSize: 18, color: Colors.grey),
+              widget.email,
+              style: const TextStyle(fontSize: 18, color: Colors.grey),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
                     'Member Permissions',
                     style: TextStyle(
@@ -87,19 +185,19 @@ class StaffDetailsPage extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 ListTile(
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'Role',
                       ),
                       Text(
-                        subtitle,
-                        style: TextStyle(
+                        widget.subtitle,
+                        style: const TextStyle(
                           fontSize: 14,
                           color: Colors.black,
                         ),
@@ -107,7 +205,7 @@ class StaffDetailsPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                ListTile(
+                const ListTile(
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -124,11 +222,11 @@ class StaffDetailsPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
                     'Contact Details',
                     style: TextStyle(
@@ -137,21 +235,21 @@ class StaffDetailsPage extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 ListTile(
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'Phone Number',
                       ),
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          phoneNumber,
-                          style: TextStyle(
+                          widget.phoneNumber,
+                          style: const TextStyle(
                             color: Color.fromARGB(255, 36, 86, 38),
                             fontSize: 16,
                             decoration: TextDecoration.underline,
@@ -165,14 +263,14 @@ class StaffDetailsPage extends StatelessWidget {
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'Email Address',
                       ),
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          email,
-                          style: TextStyle(
+                          widget.email,
+                          style: const TextStyle(
                             color: Color.fromARGB(255, 36, 86, 38),
                             fontSize: 16,
                             decoration: TextDecoration.underline,
@@ -182,11 +280,11 @@ class StaffDetailsPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
                     'Address',
                     style: TextStyle(
@@ -195,7 +293,7 @@ class StaffDetailsPage extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
               ],
@@ -209,7 +307,240 @@ class StaffDetailsPage extends StatelessWidget {
           color: Colors.white,
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(20),
+                  ),
+                ),
+                builder: (context) {
+                  return StatefulBuilder(
+                    builder: (BuildContext context, StateSetter setState) {
+                      return Container(
+                        padding: const EdgeInsets.all(16),
+                        width: double.infinity,
+                        height: MediaQuery.of(context).size.height *
+                            0.8, // Adjust the height as needed
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              height: 25,
+                            ),
+                            const Text(
+                              'Manage Permissions',
+                              style: TextStyle(
+                                fontSize: 35,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            const SizedBox(
+                              height: 25,
+                            ),
+                            const Text(
+                              'Role',
+                              style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            const Text(
+                              'When the staff member is given permission to edit, they can add/edit data',
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      isViewOnlySelected = true;
+                                      isCanEditSelected = false;
+                                      isWorkerSelected = false;
+                                      showList = false;
+                                    });
+                                  },
+                                  child: Container(
+                                    width: 120,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: isViewOnlySelected
+                                          ? const Color.fromARGB(
+                                              255, 255, 242, 122)
+                                          : Colors.grey,
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'Viewer',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      isViewOnlySelected = false;
+                                      isCanEditSelected = true;
+                                      isWorkerSelected = false;
+                                      showList = true;
+                                    });
+                                  },
+                                  child: Container(
+                                    width: 120,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: isCanEditSelected
+                                          ? const Color.fromARGB(
+                                              255, 255, 242, 122)
+                                          : Colors.grey,
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'Helper',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      isViewOnlySelected = false;
+                                      isCanEditSelected = false;
+                                      isWorkerSelected = true;
+                                      showList = true;
+                                    });
+                                  },
+                                  child: Container(
+                                    width: 120,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: isWorkerSelected
+                                          ? const Color.fromARGB(
+                                              255, 255, 242, 122)
+                                          : Colors.grey,
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'Worker',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            if (showList) ...[
+                              const SizedBox(height: 35),
+                              const Text(
+                                'What Info Can This Member Edit?',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              ListTile(
+                                title: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text('General Info'),
+                                    Switch(
+                                      value: isGeneralInfoSelected,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          isGeneralInfoSelected = value;
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              ListTile(
+                                title: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text('Breeding Info'),
+                                    Switch(
+                                      value: isBreedingInfoSelected,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          isBreedingInfoSelected = value;
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              ListTile(
+                                title: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text('Medical Info'),
+                                    Switch(
+                                      value: isMedicalInfoSelected,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          isMedicalInfoSelected = value;
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+
+                            const Expanded(
+                              child: SizedBox(),
+                            ), // Added Expanded widget to fill remaining space
+                            Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: ButtonWidget(
+                                onPressed:
+                                    () {}, // Show modal sheet on button press
+                                buttonText: 'Save Changes',
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
+              );
+            },
             style: ElevatedButton.styleFrom(
               elevation: 0,
               backgroundColor: Colors.grey[200],
@@ -218,7 +549,7 @@ class StaffDetailsPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(50),
               ),
             ),
-            child: Text(
+            child: const Text(
               'Manage Permissions',
               style: TextStyle(
                 fontSize: 18,
