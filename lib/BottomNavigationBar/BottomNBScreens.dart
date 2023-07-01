@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:hathera_demo/Animal_Information/Animal_General_Information.dart';
+import 'package:hathera_demo/HomePage/HomeScreen1.dart';
 import 'package:hathera_demo/Profile/ProfilePage.dart';
 
 class BottomNavigationBarPage extends StatefulWidget {
@@ -13,7 +14,7 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
   int _currentIndex = 0;
 
   final List<Widget> pages = [
-    HomePage(),
+    HomeScreen1(),
     AnimalgenifnoPage(),
     ProfilePage(),
   ];
@@ -43,18 +44,6 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
             label: 'Profile',
           ),
         ],
-      ),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Home Page',
-        style: TextStyle(fontSize: 24),
       ),
     );
   }

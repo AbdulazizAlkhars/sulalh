@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Collaboration/ListOfStaff.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
+import 'package:hathera_demo/Widgets/SnackBar.dart';
 
 class StaffDetailsPage extends StatefulWidget {
   final String imagePath;
@@ -86,7 +88,22 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                             Container(
                               width: double.infinity,
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  // Perform delete operation here
+                                  // ...
+
+                                  // Show snack bar after deletion
+
+                                  // Navigate back to the previous page using MaterialPageRoute
+                                  Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          ListOfStaff(), // Replace with the appropriate StaffListPage widget
+                                    ),
+                                  );
+                                  CustomSnackBar.show(
+                                      context, 'Member Is Deleted');
+                                },
                                 style: ElevatedButton.styleFrom(
                                   elevation: 0,
                                   backgroundColor:
@@ -370,6 +387,9 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                                       isCanEditSelected = false;
                                       isWorkerSelected = false;
                                       showList = false;
+                                      isGeneralInfoSelected = false;
+                                      isBreedingInfoSelected = false;
+                                      isMedicalInfoSelected = false;
                                     });
                                   },
                                   child: Container(
@@ -401,6 +421,9 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                                       isCanEditSelected = true;
                                       isWorkerSelected = false;
                                       showList = true;
+                                      isGeneralInfoSelected = false;
+                                      isBreedingInfoSelected = false;
+                                      isMedicalInfoSelected = false;
                                     });
                                   },
                                   child: Container(
@@ -432,6 +455,9 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                                       isCanEditSelected = false;
                                       isWorkerSelected = true;
                                       showList = true;
+                                      isGeneralInfoSelected = false;
+                                      isBreedingInfoSelected = false;
+                                      isMedicalInfoSelected = false;
                                     });
                                   },
                                   child: Container(

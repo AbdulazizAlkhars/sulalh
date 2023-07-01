@@ -12,7 +12,7 @@ class CustomSnackBar {
       OverlayEntry entry = OverlayEntry(
         builder: (BuildContext context) {
           return Positioned(
-            bottom: 150.0, // Adjust the bottom margin as desired
+            bottom: 80.0, // Adjust the bottom margin as desired
             left: (box.size.width - snackBarWidth) / 2.0,
             width: snackBarWidth,
             child: Material(

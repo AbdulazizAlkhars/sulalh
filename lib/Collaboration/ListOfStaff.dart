@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hathera_demo/Collaboration/StaffDetailsPage.dart';
+import 'package:hathera_demo/Widgets/Button.dart';
+import 'package:hathera_demo/Widgets/SnackBar.dart';
 
 class ListOfStaff extends StatefulWidget {
   @override
@@ -79,11 +82,108 @@ class _ListOfStaffState extends State<ListOfStaff> {
           },
         ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.add_circle),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: IconButton(
+              icon: const Icon(
+                Icons.add,
+                size: 30,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return Container(
+                      height: 350,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 8.0, horizontal: 16.0),
+                              child: Text(
+                                'Invite A Member',
+                                style: TextStyle(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 8.0, horizontal: 16.0),
+                              child: Text(
+                                'Share this link that will provide users access to your farm',
+                                style: TextStyle(fontSize: 14),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(16),
+                              child: Stack(
+                                alignment: Alignment.centerRight,
+                                children: [
+                                  TextFormField(
+                                    initialValue:
+                                        'https://example.com', // Replace with your link value from the backend
+                                    readOnly: true,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(50.0),
+                                      ),
+                                      contentPadding: const EdgeInsets.fromLTRB(
+                                          20, 20, 20, 12),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      final link =
+                                          'https://example.com'; // Replace with your link value from the backend
+                                      Clipboard.setData(
+                                          ClipboardData(text: link));
+                                      CustomSnackBar.show(
+                                          context, 'Link Copied To Clipboard');
+
+                                      Navigator.pop(
+                                          context); // Navigate back to the previous screen
+                                    },
+                                    child: const Text(
+                                      'Copy Link',
+                                      style: TextStyle(
+                                        color: Color.fromARGB(255, 36, 86, 38),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(16),
+                              child: ButtonWidget(
+                                onPressed: () {},
+                                buttonText: 'Share Link',
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
           ),
         ],
       ),
