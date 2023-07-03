@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/HomePage/SearchFarms&Animals.dart';
 
 class HomeScreen1 extends StatelessWidget {
   @override
@@ -18,7 +19,10 @@ class HomeScreen1 extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              // Handle search button press
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SearchPage()),
+              );
             },
           ),
           IconButton(
