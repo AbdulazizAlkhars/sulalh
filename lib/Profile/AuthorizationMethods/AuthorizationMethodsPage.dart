@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/AuthorizationMethods/AddNewEmail.dart';
-import 'package:hathera_demo/AuthorizationMethods/AddNewPhoneNumber.dart';
+import 'package:hathera_demo/Profile/AuthorizationMethods/AddNewEmail.dart';
+import 'package:hathera_demo/Profile/AuthorizationMethods/AddNewPhoneNumber.dart';
 import 'package:hathera_demo/Profile/ProfilePage.dart';
 
 class AuthorizationMethodsPage extends StatefulWidget {

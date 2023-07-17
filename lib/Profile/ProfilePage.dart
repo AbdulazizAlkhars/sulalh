@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/AboutApp/AboutApp.dart';
-import 'package:hathera_demo/AppSettings/AppSettings.dart';
-import 'package:hathera_demo/AuthorizationMethods/AuthorizationMethodsPage.dart';
-import 'package:hathera_demo/Collaboration/ListOfStaff.dart';
-import 'package:hathera_demo/CustomerSupport/CustomerSupport.dart';
-import 'package:hathera_demo/NotificationSettings/NotificationsPause.dart';
-import 'package:hathera_demo/PaymentMethods/PaymentPage.dart';
-import 'package:hathera_demo/PrivacySecurity/PrivacySecurityPage.dart';
+import 'package:hathera_demo/Profile/AboutApp/AboutApp.dart';
+import 'package:hathera_demo/Profile/AppSettings/AppSettings.dart';
+import 'package:hathera_demo/Profile/AuthorizationMethods/AuthorizationMethodsPage.dart';
+import 'package:hathera_demo/Profile/Collaboration/ListOfStaff.dart';
+import 'package:hathera_demo/Profile/CustomerSupport/CustomerSupport.dart';
+import 'package:hathera_demo/Profile/NotificationSettings/NotificationsPause.dart';
+import 'package:hathera_demo/Profile/PaymentMethods/PaymentPage.dart';
+import 'package:hathera_demo/Profile/PrivacySecurity/PrivacySecurityPage.dart';
 import 'package:hathera_demo/Profile/EditProfileInformation.dart';
-import 'package:hathera_demo/Subscription/Subscription.dart';
+import 'package:hathera_demo/Profile/Subscription/Subscription.dart';
 
 class ProfilePage extends StatefulWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hathera_demo/Collaboration/StaffDetailsPage.dart';
+import 'package:hathera_demo/Profile/Collaboration/StaffDetailsPage.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/SnackBar.dart';
 

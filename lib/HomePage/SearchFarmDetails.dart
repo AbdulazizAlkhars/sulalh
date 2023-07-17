@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Collaboration/ListOfStaff.dart';
+import 'package:hathera_demo/Profile/Collaboration/ListOfStaff.dart';
+import 'package:hathera_demo/HomePage/FarmAnimals.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/SnackBar.dart';
 
-class SearchDetails extends StatefulWidget {
+class SearchFarmDetails extends StatefulWidget {
   final String imagePath;
   final String title;
   final String subtitle;
   final String email;
   final String phoneNumber;
 
-  SearchDetails({
+  SearchFarmDetails({
     required this.imagePath,
     required this.title,
     required this.subtitle,
@@ -19,10 +20,10 @@ class SearchDetails extends StatefulWidget {
   });
 
   @override
-  State<SearchDetails> createState() => _SearchDetails();
+  State<SearchFarmDetails> createState() => _SearchFarmDetails();
 }
 
-class _SearchDetails extends State<SearchDetails> {
+class _SearchFarmDetails extends State<SearchFarmDetails> {
   bool isHelperSelected = false;
   bool isWorkerSelected = false;
   bool isViewOnlySelected = true;
@@ -290,6 +291,12 @@ class _SearchDetails extends State<SearchDetails> {
                                           Flexible(
                                             child: ElevatedButton(
                                               onPressed: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          HouseFarmPage()),
+                                                );
                                                 // Handle button 2 press
                                               },
                                               style: ElevatedButton.styleFrom(

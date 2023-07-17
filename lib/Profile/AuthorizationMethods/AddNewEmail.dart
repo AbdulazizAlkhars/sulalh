@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-import 'package:hathera_demo/AuthorizationMethods/AddNewPhoneOTP.dart';
+import 'package:hathera_demo/Profile/AuthorizationMethods/AddNewEmailOTP.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 
-class AddNewPhoneNumber extends StatefulWidget {
-  final Function(String) onPhoneNumberUpdated;
+class AddNewEmail extends StatefulWidget {
+  final Function(String) onEmailUpdated;
 
-  AddNewPhoneNumber({required this.onPhoneNumberUpdated});
+  AddNewEmail({required this.onEmailUpdated});
 
   @override
-  State<AddNewPhoneNumber> createState() => _AddNewPhoneNumber();
+  State<AddNewEmail> createState() => _AddNewEmail();
 }
 
-class _AddNewPhoneNumber extends State<AddNewPhoneNumber> {
+class _AddNewEmail extends State<AddNewEmail> {
   String selectedCountryCode = '+971'; // Ini
-  final TextEditingController _phoneNumberController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
   void _showCountryCodeSelection() {
     double sheetHeight = MediaQuery.of(context).size.height * 0.5;
 
@@ -89,7 +89,7 @@ class _AddNewPhoneNumber extends State<AddNewPhoneNumber> {
 
   @override
   void dispose() {
-    _phoneNumberController.dispose();
+    _emailController.dispose();
     super.dispose();
   }
 
@@ -146,76 +146,19 @@ class _AddNewPhoneNumber extends State<AddNewPhoneNumber> {
                         SizedBox(
                           height: 25,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            // color: Colors.white,
-                          ),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 4,
-                                child: GestureDetector(
-                                  onTap: _showCountryCodeSelection,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        bottomLeft: Radius.circular(10),
-                                      ),
-                                      // color: Colors.white,
-                                    ),
-                                    child: InputDecorator(
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(50),
-                                            bottomLeft: Radius.circular(50),
-                                          ),
-                                        ),
-                                        contentPadding:
-                                            EdgeInsets.fromLTRB(20, 20, 20, 12),
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            selectedCountryCode,
-                                            style: TextStyle(fontSize: 17),
-                                          ),
-                                          Icon(Icons.keyboard_arrow_down),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 8,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(10),
-                                      bottomRight: Radius.circular(0),
-                                    ),
-                                  ),
-                                  child: TextField(
-                                    controller: _phoneNumberController,
-                                    keyboardType: TextInputType.phone,
-                                    decoration: InputDecoration(
-                                      hintText: 'Enter Phone Number',
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(50),
-                                          bottomRight: Radius.circular(50),
-                                        ),
-                                      ),
-                                      contentPadding:
-                                          EdgeInsets.fromLTRB(20, 20, 20, 12),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+                        TextFormField(
+                          controller: _emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            labelText: 'Enter Email Address',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50.0),
+                            ),
+                            contentPadding:
+                                const EdgeInsets.fromLTRB(20, 20, 20, 12),
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                            ),
                           ),
                         ),
                         SizedBox(height: 20),
@@ -232,14 +175,13 @@ class _AddNewPhoneNumber extends State<AddNewPhoneNumber> {
               padding: EdgeInsets.all(16),
               child: ButtonWidget(
                 onPressed: () {
-                  String phoneNumber = _phoneNumberController.text;
-
+                  String emailAddress = _emailController.text;
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AddNewPhoneOTP(
-                        phoneNumber: phoneNumber,
-                        onPhoneNumberUpdated: widget.onPhoneNumberUpdated,
+                      builder: (context) => AddNewEmailOTP(
+                        emailAddress: emailAddress,
+                        onEmailUpdated: widget.onEmailUpdated,
                       ),
                     ),
                   );

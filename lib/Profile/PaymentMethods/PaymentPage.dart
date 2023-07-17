@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/PaymentMethods/AddNewCardPage.dart';
+import 'package:hathera_demo/Profile/PaymentMethods/AddNewCardPage.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 
 class PaymentPage extends StatefulWidget {

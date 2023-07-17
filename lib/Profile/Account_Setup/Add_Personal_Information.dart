@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Account_Setup/Add_Some_Details.dart';
+import 'package:hathera_demo/Profile/Account_Setup/Add_Some_Details.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/PhoneNumTextFieldWidget.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';

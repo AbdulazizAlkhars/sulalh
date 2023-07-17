@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/AuthorizationMethods/AddNewPassword.dart';
+import 'package:hathera_demo/Profile/AuthorizationMethods/AddNewPassword.dart';
 
 class AddNewEmailOTP extends StatefulWidget {
   final String emailAddress;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/AuthorizationMethods/AuthorizationMethodsPage.dart';
+import 'package:hathera_demo/Profile/AuthorizationMethods/AuthorizationMethodsPage.dart';
 import 'package:hathera_demo/Widgets/SnackBar.dart';
 
 class AddNewPassword extends StatefulWidget {

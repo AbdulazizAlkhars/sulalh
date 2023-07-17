@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Account_Setup/Add_Personal_Information.dart';
+import 'package:hathera_demo/Profile/Account_Setup/Add_Personal_Information.dart';
 
 class PhoneOTPScreen extends StatefulWidget {
   @override
