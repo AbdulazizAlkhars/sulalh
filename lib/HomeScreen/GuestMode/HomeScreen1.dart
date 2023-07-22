@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/HomePage/SearchFarms&Animals.dart';
+import 'package:hathera_demo/HomeScreen/GuestMode/SearchFarms&Animals.dart';
+import 'package:hathera_demo/HomeScreen/GuestMode/StartUrFarm.dart';
 
 class HomeScreen1 extends StatelessWidget {
   @override
@@ -78,7 +79,12 @@ class HomeScreen1 extends StatelessWidget {
               backgroundColor: Color.fromARGB(
                   255, 36, 86, 38), // Set the background color of the button
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => StartUrFarm()),
+              );
+            },
             child: Text(
               'Join Now',
               style: TextStyle(

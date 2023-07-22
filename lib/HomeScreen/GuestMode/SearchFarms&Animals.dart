@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/HomeScreen/GuestMode/SearchFarmDetails.dart';
 import 'package:hathera_demo/Profile/Collaboration/StaffDetailsPage.dart';
-import 'package:hathera_demo/HomePage/SearchAnimalDetails.dart';
-import 'package:hathera_demo/HomePage/SearchFarmDetails.dart';
+
+import 'SearchAnimalDetails.dart';
 
 class SearchPage extends StatefulWidget {
   @override

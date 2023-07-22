@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/HomePage/AnimalInfo.dart';
+
+import 'package:hathera_demo/HomeScreen/GuestMode/AnimalInfo.dart';
 
 class HouseFarmPage extends StatefulWidget {
   @override

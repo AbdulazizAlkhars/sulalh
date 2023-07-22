@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:hathera_demo/Animal_Information/Animal_General_Information.dart';
-import 'package:hathera_demo/HomePage/HomeScreen1.dart';
+import 'package:hathera_demo/HomeScreen/GuestMode/HomeScreen1.dart';
+
 import 'package:hathera_demo/Profile/ProfilePage.dart';
 
 class BottomNavigationBarPage extends StatefulWidget {

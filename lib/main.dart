@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/HomeScreen/Registered/HomePage.dart';
+import 'package:hathera_demo/Widgets/ModalSheet.dart';
 import 'package:hathera_demo/signup/Signup_With_Phone.dart';
 
 void main() {
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: PhnSignupPage(),
+      home: RegHomePage(),
     );
   }
 }

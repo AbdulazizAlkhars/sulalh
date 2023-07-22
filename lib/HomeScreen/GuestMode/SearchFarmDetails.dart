@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/HomeScreen/GuestMode/FarmAnimals.dart';
 import 'package:hathera_demo/Profile/Collaboration/ListOfStaff.dart';
-import 'package:hathera_demo/HomePage/FarmAnimals.dart';
+
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/SnackBar.dart';
 
