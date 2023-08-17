@@ -10,10 +10,10 @@ class _AnimalFilters extends State<AnimalFilters> {
   Map<String, List<String>> sectionItems = {
     'Animal Type': ['Mammal', 'Oviparous'],
     'Animal Species': ['Sheep', 'Cow', 'Horse'],
-    'Animal Breed': ['Altai stoat', 'East Siberian stoat', 'Gobi stoat'],
+    'Animal Breed': ['Altaaai stoat', 'East Siberian stoat', 'Gobi stoat'],
     'Animal Sex': ['Male', 'Female'],
     'Breeding Stage': ['Ready for breeding', 'Pregnant', 'Lactating'],
-    'Tags': ['Borrowed', 'Adopted', 'Donated'],
+    'Tags': ['Borrowed', 'Adopted', 'DDonated'],
   };
 
   Map<String, String?> selectedAnimals = {};
