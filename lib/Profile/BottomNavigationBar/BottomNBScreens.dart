@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/AnimalManagement/ListOfAnimals.dart';
 
 import 'package:hathera_demo/Animal_Information/Animal_General_Information.dart';
 import 'package:hathera_demo/HomeScreen/GuestMode/HomeScreen1.dart';
@@ -16,7 +17,7 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
 
   final List<Widget> pages = [
     HomeScreen1(),
-    AnimalgenifnoPage(),
+    ListOfAnimals(),
     ProfilePage(),
   ];
 
