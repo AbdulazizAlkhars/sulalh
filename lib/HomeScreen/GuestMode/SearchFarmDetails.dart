@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/HomeScreen/GuestMode/FarmAnimals.dart';
-import 'package:hathera_demo/Profile/Collaboration/ListOfStaff.dart';
-
-import 'package:hathera_demo/Widgets/Button.dart';
-import 'package:hathera_demo/Widgets/SnackBar.dart';
 
 class SearchFarmDetails extends StatefulWidget {
   final String imagePath;
@@ -189,7 +185,7 @@ class _SearchFarmDetails extends State<SearchFarmDetails> {
                                                                       elevation:
                                                                           0,
                                                                       backgroundColor: const Color
-                                                                              .fromARGB(
+                                                                          .fromARGB(
                                                                           255,
                                                                           225,
                                                                           225,
@@ -221,7 +217,7 @@ class _SearchFarmDetails extends State<SearchFarmDetails> {
                                                                       elevation:
                                                                           0,
                                                                       backgroundColor: const Color
-                                                                              .fromARGB(
+                                                                          .fromARGB(
                                                                           255,
                                                                           36,
                                                                           86,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/HomeScreen/GuestMode/SearchFarmDetails.dart';
-import 'package:hathera_demo/Profile/Collaboration/StaffDetailsPage.dart';
 
 import 'SearchAnimalDetails.dart';
 

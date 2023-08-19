@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
-import 'package:hathera_demo/Widgets/CustomSwitchDisabled.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';
 import 'package:hathera_demo/Widgets/datetextfiled.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
 class CompleteInfo extends StatefulWidget {
+  const CompleteInfo({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _CompleteInfo createState() => _CompleteInfo();
 }
 
@@ -23,7 +25,7 @@ class _CompleteInfo extends State<CompleteInfo> {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           height: 150,
           child: Column(
             children: [
@@ -33,7 +35,7 @@ class _CompleteInfo extends State<CompleteInfo> {
                 onTap: () async {
                   Navigator.pop(context);
                   final pickedImage =
-                      await _picker.getImage(source: ImageSource.camera);
+                      await _picker.pickImage(source: ImageSource.camera);
                   if (pickedImage != null) {
                     setState(() {
                       _selectedImage = File(pickedImage.path);
@@ -47,7 +49,7 @@ class _CompleteInfo extends State<CompleteInfo> {
                 onTap: () async {
                   Navigator.pop(context);
                   final pickedImage =
-                      await _picker.getImage(source: ImageSource.gallery);
+                      await _picker.pickImage(source: ImageSource.gallery);
                   if (pickedImage != null) {
                     setState(() {
                       _selectedImage = File(pickedImage.path);
@@ -66,7 +68,7 @@ class _CompleteInfo extends State<CompleteInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Animal'),
+        title: const Text('Create Animal'),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -135,7 +137,7 @@ class _CompleteInfo extends State<CompleteInfo> {
                 labelText: 'Enter Name',
               ),
               const SizedBox(height: 20),
-              Text(
+              const Text(
                 "Family Tree",
                 style: TextStyle(
                   fontSize: 20,
@@ -143,14 +145,14 @@ class _CompleteInfo extends State<CompleteInfo> {
                 ),
               ),
               const SizedBox(height: 10),
-              Text(
+              const Text(
                 "Add Parents If They're In The System",
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
               const SizedBox(height: 10),
               Row(
                 children: [
-                  Expanded(
+                  const Expanded(
                     child: Text(
                       'Add Parents',
                       style: TextStyle(
@@ -171,7 +173,7 @@ class _CompleteInfo extends State<CompleteInfo> {
               const SizedBox(height: 10),
               Row(
                 children: [
-                  Expanded(
+                  const Expanded(
                     child: Text(
                       'Add Children',
                       style: TextStyle(
@@ -190,9 +192,9 @@ class _CompleteInfo extends State<CompleteInfo> {
                 ],
               ),
               const SizedBox(height: 10),
-              Divider(),
+              const Divider(),
               const SizedBox(height: 10),
-              Text(
+              const Text(
                 "Animal Sex",
                 style: TextStyle(
                   fontSize: 20,
@@ -208,7 +210,7 @@ class _CompleteInfo extends State<CompleteInfo> {
                 },
                 child: Row(
                   children: [
-                    Expanded(
+                    const Expanded(
                       child: Text(
                         'Unknown',
                         style: TextStyle(
@@ -241,7 +243,7 @@ class _CompleteInfo extends State<CompleteInfo> {
                 },
                 child: Row(
                   children: [
-                    Expanded(
+                    const Expanded(
                       child: Text(
                         'Male',
                         style: TextStyle(
@@ -274,7 +276,7 @@ class _CompleteInfo extends State<CompleteInfo> {
                 },
                 child: Row(
                   children: [
-                    Expanded(
+                    const Expanded(
                       child: Text(
                         'Female',
                         style: TextStyle(
@@ -299,9 +301,9 @@ class _CompleteInfo extends State<CompleteInfo> {
                 ),
               ),
               const SizedBox(height: 10),
-              Divider(),
+              const Divider(),
               const SizedBox(height: 10),
-              Text(
+              const Text(
                 "Dates",
                 style: TextStyle(
                   fontSize: 20,

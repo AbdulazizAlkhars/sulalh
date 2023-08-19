@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/AnimalManagement/AnimalFilters.dart';
 import 'package:hathera_demo/AnimalManagement/ListOfAnimals.dart';
-import 'package:hathera_demo/HomeScreen/GuestMode/HomeScreen1.dart';
-import 'package:hathera_demo/HomeScreen/Registered/HomePage.dart';
-import 'package:hathera_demo/Widgets/ModalSheet.dart';
-import 'package:hathera_demo/signup/Signup_With_Phone.dart';
-
-import 'AnimalManagement/CreateAnimals.dart/CompleteInfo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,11 +31,13 @@ class MyApp extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Color.fromARGB(255, 36, 86, 38),
+          seedColor: const Color.fromARGB(255, 36, 86, 38),
         ),
         useMaterial3: true,
       ),
-      home: CompleteInfo(),
+      home: list_of_animals(
+        selectedFilters: [],
+      ),
     );
   }
 }

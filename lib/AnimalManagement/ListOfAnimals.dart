@@ -1,70 +1,89 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/AnimalManagement/AnimalFilters.dart';
 import 'package:hathera_demo/HomeScreen/GuestMode/AnimalInfo.dart';
-import 'package:hathera_demo/Widgets/Button.dart';
 
-class ListOfAnimals extends StatefulWidget {
+// ignore: camel_case_types
+class list_of_animals extends StatefulWidget {
+  final List<String> selectedFilters;
+
+  list_of_animals({required this.selectedFilters});
+
   @override
-  State<ListOfAnimals> createState() => _ListOfAnimals();
+  State<list_of_animals> createState() => _list_of_animals();
 }
 
-class _ListOfAnimals extends State<ListOfAnimals> {
+class _list_of_animals extends State<list_of_animals> {
   final List<Map<String, dynamic>> mammals = [
     {
       'name': 'Kenneth',
-      'image': 'assets/images/lion.jpg',
+      'image': 'assets/Staff Images/Screenshot_20200303-215853__01.jpg.webp',
       'subtitle': 'Oviparous',
     },
     {
       'name': 'Beverly',
-      'image': 'assets/images/elephant.jpg',
+      'image': 'assets/Staff Images/Black-Widow-Avengers-Endgame-feature.jpg',
       'subtitle': 'Mammal',
     },
     {
       'name': 'John',
-      'image': 'assets/images/giraffe.jpg',
+      'image':
+          'assets/Staff Images/Wanda-Dr-Strange-Multiverse-Madness-Culture.jpg.webp',
       'subtitle': 'Mammal',
     },
     {
       'name': 'Patrick',
-      'image': 'assets/images/tiger.jpg',
+      'image': 'assets/Staff Images/HD-wallpaper-thor-in-avengers-endgame.jpg',
       'subtitle': 'Oviparous',
     },
     {
       'name': 'Brian',
-      'image': 'assets/images/panda.jpg',
+      'image': 'assets/Staff Images/ed33c7f2a3940fcebf9f0aac54d67895.jpg',
       'subtitle': 'Mammal',
     },
     {
       'name': 'Joyce',
-      'image': 'assets/images/lion.jpg',
+      'image':
+          'assets/Staff Images/Wanda-Dr-Strange-Multiverse-Madness-Culture.jpg.webp',
       'subtitle': 'Mammal',
     },
     {
       'name': 'Billy',
-      'image': 'assets/images/elephant.jpg',
+      'image': 'assets/Staff Images/Screenshot_20200303-215853__01.jpg.webp',
       'subtitle': 'Mammal',
     },
   ];
 
-  String _searchQuery = '';
   List<Map<String, dynamic>> _filteredMammals = [];
 
   @override
   void initState() {
     super.initState();
-    _filteredMammals = mammals;
+    _updateFilteredMammals();
   }
 
   void _filterMammals(String query) {
     setState(() {
-      _searchQuery = query;
-      _filteredMammals = mammals.where((mammal) {
-        final name = mammal['name'].toString().toLowerCase();
-        final subtitle = mammal['subtitle'].toString().toLowerCase();
-        return name.contains(query.toLowerCase()) ||
-            subtitle.contains(query.toLowerCase());
-      }).toList();
+      _updateFilteredMammals(query: query);
+    });
+  }
+
+  void _updateFilteredMammals({String? query}) {
+    _filteredMammals = mammals.where((mammal) {
+      final name = mammal['name'].toString().toLowerCase();
+      final subtitle = mammal['subtitle'].toString().toLowerCase();
+      return (query == null ||
+              query.isEmpty ||
+              name.contains(query.toLowerCase()) ||
+              subtitle.contains(query.toLowerCase())) &&
+          (widget.selectedFilters.isEmpty ||
+              widget.selectedFilters.contains(mammal['subtitle']));
+    }).toList();
+  }
+
+  void _removeSelectedFilter(String filter) {
+    setState(() {
+      widget.selectedFilters.remove(filter);
+      _updateFilteredMammals(); // Update the filtered list after removing a filter
     });
   }
 
@@ -86,7 +105,7 @@ class _ListOfAnimals extends State<ListOfAnimals> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
+        title: const Text(
           'Animals',
           style: TextStyle(
             fontSize: 35,
@@ -96,11 +115,11 @@ class _ListOfAnimals extends State<ListOfAnimals> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             onPressed: () {},
           ),
         ],
@@ -121,9 +140,10 @@ class _ListOfAnimals extends State<ListOfAnimals> {
                     child: TextField(
                       onChanged: _filterMammals,
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.search),
+                        hintText: "Search By Name Or ID",
+                        prefixIcon: const Icon(Icons.search),
                         suffixIcon: IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.filter_alt,
                             size: 30,
                           ),
@@ -141,6 +161,31 @@ class _ListOfAnimals extends State<ListOfAnimals> {
                   ),
                 ),
               ],
+            ),
+          ),
+          Visibility(
+            visible: widget.selectedFilters
+                .isNotEmpty, // Show space if there are selected filters
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Wrap(
+                spacing: 8.0,
+                children: widget.selectedFilters.map((filter) {
+                  return Chip(
+                    label: Text(filter),
+                    backgroundColor: const Color.fromARGB(
+                        255, 228, 228, 228), // Set the background color
+
+                    onDeleted: () {
+                      _removeSelectedFilter(filter);
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          50), // Adjust the radius as needed
+                    ),
+                  );
+                }).toList(),
+              ),
             ),
           ),
           Expanded(
