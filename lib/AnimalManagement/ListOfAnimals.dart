@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/AnimalManagement/AnimalFilters.dart';
+import 'package:hathera_demo/CreateAnimals.dart/CreateAnimal1.dart';
 import 'package:hathera_demo/HomeScreen/GuestMode/AnimalInfo.dart';
 
 // ignore: camel_case_types
@@ -120,7 +121,12 @@ class _list_of_animals extends State<list_of_animals> {
           ),
           IconButton(
             icon: const Icon(Icons.add),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CreateAnimalPage()),
+              );
+            },
           ),
         ],
       ),

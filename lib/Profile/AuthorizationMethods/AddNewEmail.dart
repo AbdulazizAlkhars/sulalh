@@ -6,7 +6,7 @@ import 'package:hathera_demo/Widgets/Button.dart';
 class AddNewEmail extends StatefulWidget {
   final Function(String) onEmailUpdated;
 
-  AddNewEmail({required this.onEmailUpdated});
+  const AddNewEmail({super.key, required this.onEmailUpdated});
 
   @override
   State<AddNewEmail> createState() => _AddNewEmail();
@@ -14,19 +14,19 @@ class AddNewEmail extends StatefulWidget {
 
 class _AddNewEmail extends State<AddNewEmail> {
   String selectedCountryCode = '+971'; // Ini
-  TextEditingController _emailController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   void _showCountryCodeSelection() {
     double sheetHeight = MediaQuery.of(context).size.height * 0.5;
 
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           height: sheetHeight,
           child: ListView(
             children: [
               ListTile(
-                title: Text('+971'),
+                title: const Text('+971'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+971';
@@ -35,7 +35,7 @@ class _AddNewEmail extends State<AddNewEmail> {
                 },
               ),
               ListTile(
-                title: Text('+966'),
+                title: const Text('+966'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+966';
@@ -44,7 +44,7 @@ class _AddNewEmail extends State<AddNewEmail> {
                 },
               ),
               ListTile(
-                title: Text('+965'),
+                title: const Text('+965'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+965';
@@ -53,7 +53,7 @@ class _AddNewEmail extends State<AddNewEmail> {
                 },
               ),
               ListTile(
-                title: Text('+964'),
+                title: const Text('+964'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+964';
@@ -62,7 +62,7 @@ class _AddNewEmail extends State<AddNewEmail> {
                 },
               ),
               ListTile(
-                title: Text('+975'),
+                title: const Text('+975'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+975';
@@ -71,7 +71,7 @@ class _AddNewEmail extends State<AddNewEmail> {
                 },
               ),
               ListTile(
-                title: Text('+976'),
+                title: const Text('+976'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+976';
@@ -98,7 +98,7 @@ class _AddNewEmail extends State<AddNewEmail> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -112,67 +112,65 @@ class _AddNewEmail extends State<AddNewEmail> {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                child: Container(
-                  child: Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Add Phone Number',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Add Phone Number',
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      const Text(
+                        'Please enter your phone number - we will send a verification code to it.',
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      const Text(
+                        'Once you confirm your phone number, you will be able to use it as another way to sign in to your account.',
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      TextFormField(
+                        controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          labelText: 'Enter Email Address',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50.0),
+                          ),
+                          contentPadding:
+                              const EdgeInsets.fromLTRB(20, 20, 20, 12),
+                          suffixIcon: const Padding(
+                            padding: EdgeInsets.all(8.0),
                           ),
                         ),
-                        SizedBox(
-                          height: 25,
-                        ),
-                        Text(
-                          'Please enter your phone number - we will send a verification code to it.',
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 25,
-                        ),
-                        Text(
-                          'Once you confirm your phone number, you will be able to use it as another way to sign in to your account.',
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 25,
-                        ),
-                        TextFormField(
-                          controller: _emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            labelText: 'Enter Email Address',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50.0),
-                            ),
-                            contentPadding:
-                                const EdgeInsets.fromLTRB(20, 20, 20, 12),
-                            suffixIcon: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 20),
-                        AnimatedContainer(
-                          duration: Duration(milliseconds: 300),
-                        ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 20),
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: ButtonWidget(
                 onPressed: () {
                   String emailAddress = _emailController.text;

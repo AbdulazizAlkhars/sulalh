@@ -100,7 +100,7 @@ class _HouseFarmPageState extends State<HouseFarmPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -110,8 +110,8 @@ class _HouseFarmPageState extends State<HouseFarmPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
+          const Padding(
+            padding: EdgeInsets.all(16.0),
             child: Text(
               'House Farm',
               style: TextStyle(
@@ -133,9 +133,9 @@ class _HouseFarmPageState extends State<HouseFarmPage> {
                     child: TextField(
                       onChanged: _filterMammals,
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.search),
+                        prefixIcon: const Icon(Icons.search),
                         suffixIcon: IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.filter_alt,
                             size: 30,
                           ),

@@ -5,14 +5,17 @@ import 'package:hathera_demo/Widgets/SnackBar.dart';
 class AddNewPassword extends StatefulWidget {
   final String emailAddress;
   final Function(String) onEmailUpdated;
-  AddNewPassword({required this.emailAddress, required this.onEmailUpdated});
+  AddNewPassword(
+      {super.key, required this.emailAddress, required this.onEmailUpdated});
   @override
+  // ignore: library_private_types_in_public_api
   _AddNewPassword createState() => _AddNewPassword();
 }
 
 class _AddNewPassword extends State<AddNewPassword> {
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   bool _passwordsMatch = false;
 
@@ -37,7 +40,7 @@ class _AddNewPassword extends State<AddNewPassword> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },

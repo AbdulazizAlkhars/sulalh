@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/FamilyTree.dart';
 import 'package:hathera_demo/HomeScreen/Registered/NotificationList.dart';
 import 'package:hathera_demo/Widgets/Tags.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import '../GuestMode/HomeScreen1.dart';
 
 class RegHomePage extends StatefulWidget {
+  const RegHomePage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _RegHomePage createState() => _RegHomePage();
 }
 
@@ -44,20 +46,20 @@ class _RegHomePage extends State<RegHomePage> {
       context: context,
       isScrollControlled: true, // Set this to true to enable full-width modal
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           width: double.infinity, // Stretch to screen width
           child: FractionallySizedBox(
             heightFactor: 0.62, // Set the height factor as you desire
             child: Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
-                    Text(
+                    const Text(
                       'Tags',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -65,17 +67,17 @@ class _RegHomePage extends State<RegHomePage> {
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 25,
                     ),
-                    Text(
+                    const Text(
                       'Current State',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Row(
@@ -91,7 +93,7 @@ class _RegHomePage extends State<RegHomePage> {
                             status: TagStatus.active,
                           ),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: Tags(
                             text: 'Adopted',
@@ -102,7 +104,7 @@ class _RegHomePage extends State<RegHomePage> {
                             status: TagStatus.notActive,
                           ),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: Tags(
                             text: 'Donated',
@@ -115,7 +117,7 @@ class _RegHomePage extends State<RegHomePage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Row(
@@ -131,7 +133,7 @@ class _RegHomePage extends State<RegHomePage> {
                             status: TagStatus.active,
                           ),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: Tags(
                             text: 'Stolen',
@@ -142,7 +144,7 @@ class _RegHomePage extends State<RegHomePage> {
                             status: TagStatus.notActive,
                           ),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: Tags(
                             text: 'Transferred',
@@ -155,17 +157,17 @@ class _RegHomePage extends State<RegHomePage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 25,
                     ),
-                    Text(
+                    const Text(
                       'Medical State',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Row(
@@ -181,7 +183,7 @@ class _RegHomePage extends State<RegHomePage> {
                             status: TagStatus.active,
                           ),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: Tags(
                             text: 'Sick',
@@ -192,7 +194,7 @@ class _RegHomePage extends State<RegHomePage> {
                             status: TagStatus.notActive,
                           ),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: Tags(
                             text: 'Quarantined',
@@ -205,7 +207,7 @@ class _RegHomePage extends State<RegHomePage> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -219,7 +221,7 @@ class _RegHomePage extends State<RegHomePage> {
                             status: TagStatus.active,
                           ),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: Tags(
                             text: 'Testing',
@@ -232,17 +234,17 @@ class _RegHomePage extends State<RegHomePage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 25,
                     ),
-                    Text(
+                    const Text(
                       'Others',
                       style: TextStyle(
                         fontSize: 16,
-                        color: const Color.fromARGB(255, 42, 41, 41),
+                        color: Color.fromARGB(255, 42, 41, 41),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Row(
@@ -258,7 +260,7 @@ class _RegHomePage extends State<RegHomePage> {
                             status: TagStatus.active,
                           ),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: Tags(
                             text: 'Dead',
@@ -271,7 +273,7 @@ class _RegHomePage extends State<RegHomePage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 35,
                     ),
                     Row(
@@ -298,7 +300,7 @@ class _RegHomePage extends State<RegHomePage> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
@@ -340,7 +342,7 @@ class _RegHomePage extends State<RegHomePage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
+        title: const Text(
           'Overview',
           style: TextStyle(
             fontSize: 40,
@@ -350,16 +352,16 @@ class _RegHomePage extends State<RegHomePage> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AnimalFamilyTree()),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => AnimalFamilyTree()),
+              // );
             },
           ),
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
             onPressed: () {
               Navigator.push(
                 context,
@@ -378,7 +380,7 @@ class _RegHomePage extends State<RegHomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Animals',
                     style: TextStyle(
                       fontSize: 24,
@@ -388,8 +390,8 @@ class _RegHomePage extends State<RegHomePage> {
                   ),
                   InkWell(
                     onTap: _showFilterModalSheet,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Icon(Icons.filter_alt_outlined),
                     ),
                   ),
@@ -407,7 +409,7 @@ class _RegHomePage extends State<RegHomePage> {
                     onPressed: () {
                       _updateChartData(sumOfNextTwoCards, 'ALL');
                     },
-                    color: Color.fromARGB(
+                    color: const Color.fromARGB(
                         235, 255, 248, 214), // Set the color for the first card
                     isSelected: _selectedIndex == -1,
                   ),
@@ -420,7 +422,7 @@ class _RegHomePage extends State<RegHomePage> {
                     onPressed: () {
                       _updateChartData(_chartData[0].quan, 'Mammals');
                     },
-                    color: Color.fromARGB(235, 255, 248, 214),
+                    color: const Color.fromARGB(235, 255, 248, 214),
                     isSelected: _selectedIndex == 0,
                   ),
                 ),
@@ -432,7 +434,7 @@ class _RegHomePage extends State<RegHomePage> {
                     onPressed: () {
                       _updateChartData(_chartData[1].quan, 'Oviparous');
                     },
-                    color: Color.fromARGB(235, 255, 248, 214),
+                    color: const Color.fromARGB(235, 255, 248, 214),
                     isSelected: _selectedIndex == 1,
                   ),
                 ),
@@ -443,7 +445,7 @@ class _RegHomePage extends State<RegHomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 250, // Adjust the width of the chart
                     height: 250, // Adjust the height of the chart
                     child: SfCircularChart(
@@ -457,7 +459,7 @@ class _RegHomePage extends State<RegHomePage> {
                       ],
                     ),
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   Expanded(
                     child: ListView(
                       shrinkWrap: true,
@@ -467,8 +469,8 @@ class _RegHomePage extends State<RegHomePage> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Text(
                 'Upcoming Events',
                 style: TextStyle(
@@ -486,19 +488,19 @@ class _RegHomePage extends State<RegHomePage> {
                 return ListTile(
                   title: Text(
                     eventData.title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 17,
                       color: Colors.black,
                     ),
                   ),
                   subtitle: Text(
                     eventData.subtitle,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                       color: Colors.grey,
                     ),
                   ),
-                  trailing: Icon(Icons.arrow_forward),
+                  trailing: const Icon(Icons.arrow_forward),
                 );
               },
             ),
@@ -512,7 +514,7 @@ class _RegHomePage extends State<RegHomePage> {
                     onPressed: () {
                       // Handle button 1 press
                     },
-                    color: Color.fromARGB(
+                    color: const Color.fromARGB(
                         255, 197, 219, 158), // Set the color for the first card
                   ),
                 ),
@@ -524,7 +526,7 @@ class _RegHomePage extends State<RegHomePage> {
                     onPressed: () {
                       // Handle button 2 press
                     },
-                    color: Color.fromARGB(255, 254, 255,
+                    color: const Color.fromARGB(255, 254, 255,
                         168), // Set the color for the second card
                   ),
                 ),
@@ -541,12 +543,12 @@ class _RegHomePage extends State<RegHomePage> {
       AnimalData(
         'Mammals',
         12,
-        Color.fromARGB(255, 197, 219, 158),
+        const Color.fromARGB(255, 197, 219, 158),
       ),
       AnimalData(
         'Oviparous',
         25,
-        Color.fromARGB(255, 254, 255, 168),
+        const Color.fromARGB(255, 254, 255, 168),
       ),
     ];
     return chartData;
@@ -558,7 +560,7 @@ class _RegHomePage extends State<RegHomePage> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(Icons.circle, color: data.color),
-          SizedBox(width: 4),
+          const SizedBox(width: 4),
           Text('${data.animal}: ${data.quan}'),
         ],
       );
@@ -602,8 +604,6 @@ class SmallCardWidget extends StatefulWidget {
 }
 
 class _SmallCardWidgetState extends State<SmallCardWidget> {
-  bool _isPressed = false;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -622,7 +622,7 @@ class _SmallCardWidgetState extends State<SmallCardWidget> {
           child: Container(
             width: 106,
             height: 148,
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: widget.color, // Set the color of the card
               borderRadius: BorderRadius.circular(8),
@@ -635,19 +635,19 @@ class _SmallCardWidgetState extends State<SmallCardWidget> {
                   size: 40,
                   color: Colors.black, // Set the color of the icon
                 ),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
                 Text(
                   widget.animalData.animal,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 15,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(
                   widget.animalData.quan.toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 17,
                     color: Colors.black,
                   ),
