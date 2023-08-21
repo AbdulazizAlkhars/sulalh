@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AnimalgenifnoPage extends StatefulWidget {
+  const AnimalgenifnoPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _AnimalgenifnoPage createState() => _AnimalgenifnoPage();
 }
 
@@ -183,14 +186,14 @@ class _AnimalgenifnoPage extends State<AnimalgenifnoPage>
                         indicatorColor: Colors.transparent,
                         labelColor: Colors.white,
                         unselectedLabelColor: Colors.grey,
-                        tabs: [
-                          const Tab(
+                        tabs: const [
+                          Tab(
                             text: 'General',
                           ),
-                          const Tab(
+                          Tab(
                             text: 'Breeding',
                           ),
-                          const Tab(
+                          Tab(
                             text: 'Medical',
                           ),
                         ],

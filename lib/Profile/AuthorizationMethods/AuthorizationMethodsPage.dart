@@ -4,7 +4,10 @@ import 'package:hathera_demo/Profile/AuthorizationMethods/AddNewPhoneNumber.dart
 import 'package:hathera_demo/Profile/ProfilePage.dart';
 
 class AuthorizationMethodsPage extends StatefulWidget {
+  const AuthorizationMethodsPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _AuthorizationMethodsPage createState() => _AuthorizationMethodsPage();
 }
 
@@ -42,7 +45,7 @@ class _AuthorizationMethodsPage extends State<AuthorizationMethodsPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.push(
               context,
@@ -54,8 +57,8 @@ class _AuthorizationMethodsPage extends State<AuthorizationMethodsPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(14.0),
+          const Padding(
+            padding: EdgeInsets.all(14.0),
             child: Text(
               'Authorization Methods',
               style: TextStyle(
@@ -70,10 +73,10 @@ class _AuthorizationMethodsPage extends State<AuthorizationMethodsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Row(
                       children: [
-                        Expanded(
+                        const Expanded(
                           flex: 2,
                           child: Text(
                             'Phone Number',
@@ -85,12 +88,12 @@ class _AuthorizationMethodsPage extends State<AuthorizationMethodsPage> {
                         Expanded(
                           flex: 0,
                           child: Text(
-                            _hasPhoneNumber ? '$phoneNumber' : 'Add',
+                            _hasPhoneNumber ? phoneNumber : 'Add',
                             style: TextStyle(
                                 fontSize: 16,
                                 color: _hasPhoneNumber
                                     ? Colors.black
-                                    : Color.fromARGB(255, 36, 86, 38),
+                                    : const Color.fromARGB(255, 36, 86, 38),
                                 fontWeight: _hasPhoneNumber
                                     ? FontWeight.normal
                                     : FontWeight.bold),
@@ -101,7 +104,7 @@ class _AuthorizationMethodsPage extends State<AuthorizationMethodsPage> {
                           child: Expanded(
                             flex: 0,
                             child: IconButton(
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.arrow_right,
                                 color: Color.fromARGB(255, 36, 86, 38),
                                 size: 40,
@@ -123,10 +126,10 @@ class _AuthorizationMethodsPage extends State<AuthorizationMethodsPage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Row(
                       children: [
-                        Expanded(
+                        const Expanded(
                           flex: 2,
                           child: Text(
                             'Email Address',
@@ -138,11 +141,11 @@ class _AuthorizationMethodsPage extends State<AuthorizationMethodsPage> {
                         Expanded(
                           flex: 0,
                           child: Text(
-                            _hasEmailAddress ? '$emailAddress' : 'Add',
+                            _hasEmailAddress ? emailAddress : 'Add',
                             style: TextStyle(
                               color: _hasEmailAddress
                                   ? Colors.black
-                                  : Color.fromARGB(255, 36, 86, 38),
+                                  : const Color.fromARGB(255, 36, 86, 38),
                               fontWeight: _hasEmailAddress
                                   ? FontWeight.normal
                                   : FontWeight.bold,
@@ -153,7 +156,7 @@ class _AuthorizationMethodsPage extends State<AuthorizationMethodsPage> {
                         Visibility(
                           visible: !_hasEmailAddress,
                           child: IconButton(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.arrow_right,
                               color: Color.fromARGB(255, 36, 86, 38),
                               size: 40,
@@ -173,10 +176,10 @@ class _AuthorizationMethodsPage extends State<AuthorizationMethodsPage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Row(
                       children: [
-                        Expanded(
+                        const Expanded(
                           flex: 2,
                           child: Text(
                             'Password',
@@ -188,11 +191,11 @@ class _AuthorizationMethodsPage extends State<AuthorizationMethodsPage> {
                         Expanded(
                           flex: 0,
                           child: Text(
-                            _hasEmailAddress ? '$emailAddress' : '',
+                            _hasEmailAddress ? emailAddress : '',
                             style: TextStyle(
                               color: _hasEmailAddress
                                   ? Colors.black
-                                  : Color.fromARGB(255, 36, 86, 38),
+                                  : const Color.fromARGB(255, 36, 86, 38),
                               fontWeight: _hasEmailAddress
                                   ? FontWeight.normal
                                   : FontWeight.bold,
@@ -203,9 +206,9 @@ class _AuthorizationMethodsPage extends State<AuthorizationMethodsPage> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: const EdgeInsets.all(14.0),
+                  const SizedBox(height: 30),
+                  const Padding(
+                    padding: EdgeInsets.all(14.0),
                     child: Text(
                       'Linked Accounts',
                       style: TextStyle(
@@ -226,7 +229,7 @@ class _AuthorizationMethodsPage extends State<AuthorizationMethodsPage> {
                         ),
                         title: Text(
                           linkedAccounts[index],
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                             color: Colors.black,
                           ),
@@ -240,7 +243,7 @@ class _AuthorizationMethodsPage extends State<AuthorizationMethodsPage> {
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {},
@@ -251,7 +254,7 @@ class _AuthorizationMethodsPage extends State<AuthorizationMethodsPage> {
                     borderRadius: BorderRadius.circular(50),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   'Delete Account',
                   style: TextStyle(
                     fontSize: 18,

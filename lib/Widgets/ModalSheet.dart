@@ -4,16 +4,16 @@ class FilterModalSheet extends StatelessWidget {
   final Widget content;
   final String? heading;
 
-  FilterModalSheet({required this.content, this.heading});
+  const FilterModalSheet({super.key, required this.content, this.heading});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         width: double.infinity,
         child: FractionallySizedBox(
             heightFactor: 0.62,
             child: Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,13 +22,13 @@ class FilterModalSheet extends StatelessWidget {
                     if (heading != null)
                       Text(
                         heading!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
                           color: Colors.black,
                         ),
                       ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     content, // Display the content widget passed as a parameter
                   ],
                 ),
@@ -42,14 +42,14 @@ class ExampleUsePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Example Use'),
+        title: const Text('Example Use'),
       ),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
             _showFilterModalSheet(context);
           },
-          child: Text('Open Modal Sheet'),
+          child: const Text('Open Modal Sheet'),
         ),
       ),
     );
@@ -60,7 +60,7 @@ class ExampleUsePage extends StatelessWidget {
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return FilterModalSheet(
+        return const FilterModalSheet(
           content: Column(
             children: [
               Text('Add Your Widgets Here'),

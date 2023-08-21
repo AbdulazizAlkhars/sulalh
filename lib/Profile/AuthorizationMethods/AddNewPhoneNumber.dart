@@ -6,7 +6,7 @@ import 'package:hathera_demo/Widgets/Button.dart';
 class AddNewPhoneNumber extends StatefulWidget {
   final Function(String) onPhoneNumberUpdated;
 
-  AddNewPhoneNumber({required this.onPhoneNumberUpdated});
+  const AddNewPhoneNumber({super.key, required this.onPhoneNumberUpdated});
 
   @override
   State<AddNewPhoneNumber> createState() => _AddNewPhoneNumber();
@@ -21,12 +21,12 @@ class _AddNewPhoneNumber extends State<AddNewPhoneNumber> {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           height: sheetHeight,
           child: ListView(
             children: [
               ListTile(
-                title: Text('+971'),
+                title: const Text('+971'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+971';
@@ -35,7 +35,7 @@ class _AddNewPhoneNumber extends State<AddNewPhoneNumber> {
                 },
               ),
               ListTile(
-                title: Text('+966'),
+                title: const Text('+966'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+966';
@@ -44,7 +44,7 @@ class _AddNewPhoneNumber extends State<AddNewPhoneNumber> {
                 },
               ),
               ListTile(
-                title: Text('+965'),
+                title: const Text('+965'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+965';
@@ -53,7 +53,7 @@ class _AddNewPhoneNumber extends State<AddNewPhoneNumber> {
                 },
               ),
               ListTile(
-                title: Text('+964'),
+                title: const Text('+964'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+964';
@@ -62,7 +62,7 @@ class _AddNewPhoneNumber extends State<AddNewPhoneNumber> {
                 },
               ),
               ListTile(
-                title: Text('+975'),
+                title: const Text('+975'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+975';
@@ -71,7 +71,7 @@ class _AddNewPhoneNumber extends State<AddNewPhoneNumber> {
                 },
               ),
               ListTile(
-                title: Text('+976'),
+                title: const Text('+976'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+976';
@@ -98,7 +98,7 @@ class _AddNewPhoneNumber extends State<AddNewPhoneNumber> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -112,124 +112,122 @@ class _AddNewPhoneNumber extends State<AddNewPhoneNumber> {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                child: Container(
-                  child: Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Add Phone Number',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                          ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Add Phone Number',
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
                         ),
-                        SizedBox(
-                          height: 25,
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      const Text(
+                        'Please enter your phone number - we will send a verification code to it.',
+                        style: TextStyle(
+                          fontSize: 16,
                         ),
-                        Text(
-                          'Please enter your phone number - we will send a verification code to it.',
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      const Text(
+                        'Once you confirm your phone number, you will be able to use it as another way to sign in to your account.',
+                        style: TextStyle(
+                          fontSize: 16,
                         ),
-                        SizedBox(
-                          height: 25,
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          // color: Colors.white,
                         ),
-                        Text(
-                          'Once you confirm your phone number, you will be able to use it as another way to sign in to your account.',
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 25,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            // color: Colors.white,
-                          ),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 4,
-                                child: GestureDetector(
-                                  onTap: _showCountryCodeSelection,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        bottomLeft: Radius.circular(10),
-                                      ),
-                                      // color: Colors.white,
-                                    ),
-                                    child: InputDecorator(
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(50),
-                                            bottomLeft: Radius.circular(50),
-                                          ),
-                                        ),
-                                        contentPadding:
-                                            EdgeInsets.fromLTRB(20, 20, 20, 12),
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            selectedCountryCode,
-                                            style: TextStyle(fontSize: 17),
-                                          ),
-                                          Icon(Icons.keyboard_arrow_down),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 8,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 4,
+                              child: GestureDetector(
+                                onTap: _showCountryCodeSelection,
                                 child: Container(
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(10),
-                                      bottomRight: Radius.circular(0),
+                                      topLeft: Radius.circular(10),
+                                      bottomLeft: Radius.circular(10),
                                     ),
+                                    // color: Colors.white,
                                   ),
-                                  child: TextField(
-                                    controller: _phoneNumberController,
-                                    keyboardType: TextInputType.phone,
-                                    decoration: InputDecoration(
-                                      hintText: 'Enter Phone Number',
+                                  child: InputDecorator(
+                                    decoration: const InputDecoration(
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(50),
-                                          bottomRight: Radius.circular(50),
+                                          topLeft: Radius.circular(50),
+                                          bottomLeft: Radius.circular(50),
                                         ),
                                       ),
                                       contentPadding:
                                           EdgeInsets.fromLTRB(20, 20, 20, 12),
                                     ),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          selectedCountryCode,
+                                          style: const TextStyle(fontSize: 17),
+                                        ),
+                                        const Icon(Icons.keyboard_arrow_down),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                            Expanded(
+                              flex: 8,
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(10),
+                                    bottomRight: Radius.circular(0),
+                                  ),
+                                ),
+                                child: TextField(
+                                  controller: _phoneNumberController,
+                                  keyboardType: TextInputType.phone,
+                                  decoration: const InputDecoration(
+                                    hintText: 'Enter Phone Number',
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(50),
+                                        bottomRight: Radius.circular(50),
+                                      ),
+                                    ),
+                                    contentPadding:
+                                        EdgeInsets.fromLTRB(20, 20, 20, 12),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        SizedBox(height: 20),
-                        AnimatedContainer(
-                          duration: Duration(milliseconds: 300),
-                        ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 20),
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: ButtonWidget(
                 onPressed: () {
                   String phoneNumber = _phoneNumberController.text;
