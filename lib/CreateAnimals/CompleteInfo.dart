@@ -1,6 +1,5 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
-import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';
 import 'package:hathera_demo/Widgets/datetextfiled.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,6 +14,8 @@ class CompleteInfo extends StatefulWidget {
 }
 
 class _CompleteInfo extends State<CompleteInfo> {
+  final TextEditingController _notesController = TextEditingController();
+  String selectedName = 'Add'; // Initial text for the button
   String selectedGender = '';
   bool _addParents = false;
   bool _addChildren = false;
@@ -100,7 +101,7 @@ class _CompleteInfo extends State<CompleteInfo> {
                         : null,
                     child: _selectedImage == null
                         ? const Icon(
-                            Icons.camera_alt,
+                            Icons.camera_alt_outlined,
                             size: 50,
                             color: Colors.grey,
                           )
@@ -169,6 +170,86 @@ class _CompleteInfo extends State<CompleteInfo> {
                     },
                   ),
                 ],
+              ),
+              Visibility(
+                visible: _addParents,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      children: [
+                        const Expanded(
+                          flex: 4,
+                          child: Text(
+                            'Sire (Father)',
+                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 0,
+                          child: TextButton(
+                            onPressed: () {},
+                            child: const Text(
+                              'Add',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 36, 86, 38),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Expanded(
+                          flex: 0,
+                          child: Text(
+                            ' >',
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 36, 86, 38),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        const Expanded(
+                          flex: 4,
+                          child: Text(
+                            'Dam (Mother)',
+                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 0,
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              selectedName,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 36, 86, 38),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Expanded(
+                          flex: 0,
+                          child: Text(
+                            ' >',
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 36, 86, 38),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 10),
               Row(
@@ -319,20 +400,137 @@ class _CompleteInfo extends State<CompleteInfo> {
                 ),
               ),
               const SizedBox(height: 10),
-              DateTextField(),
-              const SizedBox(height: 80),
-              ButtonWidget(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => BottomNavigationBarPage(),
-                    ),
-                  );
+              const DateTextField(),
+              TextButton(
+                onPressed: () {},
+                child: const Text(
+                  'Add Date +',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 36, 86, 38),
+                  ),
+                ),
+              ),
+              const Divider(),
+              const SizedBox(height: 10),
+              const Text(
+                "Add Tag",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: const Text(
+                  'Add Tags +',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 36, 86, 38),
+                  ),
+                ),
+              ),
+              const Divider(),
+              const SizedBox(height: 10),
+              const Text(
+                "Add Custom Fields",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: const Text(
+                  'Add Custom Field +',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 36, 86, 38),
+                  ),
+                ),
+              ),
+              const Divider(),
+              const SizedBox(height: 10),
+              const Text(
+                "Additional Notes",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
+                maxLines: 6, // Set the maximum number of lines
+                controller: _notesController,
+                decoration: InputDecoration(
+                  hintText:
+                      'Add Additional Information If Needed', // Add your hint text here
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(
+                      vertical: 12.0, horizontal: 16.0),
+                ),
+                textInputAction:
+                    TextInputAction.done, // Change the keyboard action
+              ),
+              const SizedBox(height: 30),
+              GestureDetector(
+                onTap: () {
+                  // Add your logic to open the file manager and select files here
                 },
-                buttonText: 'Continue',
+                child: DottedBorder(
+                  borderType: BorderType.RRect,
+                  radius: const Radius.circular(20),
+                  dashPattern: const [7, 7],
+                  strokeWidth: 1,
+                  color: Colors.grey,
+                  child: SizedBox(
+                    width: double.infinity, // Set the width of the container
+                    height: 150, // Set the height of the container
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          icon: const Icon(
+                            Icons.file_open_outlined,
+                            size: 35,
+                          ),
+                          onPressed: () {
+                            // Handle back button press
+                            // Add your code here
+                          },
+                        ),
+                        const Text(
+                          'Upload File, PDF, Jpeg, PNG',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16),
+        child: ElevatedButton(
+          onPressed: () {
+            // Handle "Continue" button press
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 36, 86, 38),
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50),
+            ),
+          ),
+          child: const Text(
+            'Save',
+            style: TextStyle(color: Colors.white),
           ),
         ),
       ),

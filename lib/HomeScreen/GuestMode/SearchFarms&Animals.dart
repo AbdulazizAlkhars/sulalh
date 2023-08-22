@@ -4,6 +4,8 @@ import 'package:hathera_demo/HomeScreen/GuestMode/SearchFarmDetails.dart';
 import 'SearchAnimalDetails.dart';
 
 class SearchPage extends StatefulWidget {
+  const SearchPage({super.key});
+
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
@@ -146,7 +148,7 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -168,7 +170,7 @@ class _SearchPageState extends State<SearchPage> {
                     child: TextField(
                       controller: _searchController,
                       onChanged: filterOptions,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.search),
                         border: InputBorder.none,
                       ),
@@ -176,7 +178,7 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.close,
                     size: 40,
                   ),
@@ -195,8 +197,8 @@ class _SearchPageState extends State<SearchPage> {
                 itemCount: filteredOptions.length + 1,
                 itemBuilder: (context, index) {
                   if (index == 0) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    return const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Farms',
                         style: TextStyle(fontSize: 20),
@@ -213,10 +215,10 @@ class _SearchPageState extends State<SearchPage> {
                         ),
                         title: Text(
                           option['title'],
-                          style: TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 16),
                         ),
                         subtitle: Text(option['subtitle']),
-                        trailing: Icon(Icons.arrow_forward),
+                        trailing: const Icon(Icons.arrow_forward),
                         onTap: () {
                           navigateToSearchFarmDetailsPage(option);
                         },
@@ -233,8 +235,8 @@ class _SearchPageState extends State<SearchPage> {
                 itemCount: filteredAnimals.length + 1,
                 itemBuilder: (context, index) {
                   if (index == 0) {
-                    return Padding(
-                      padding: const EdgeInsets.fromLTRB(8.0, 10.0, 8.0, 0.0),
+                    return const Padding(
+                      padding: EdgeInsets.fromLTRB(8.0, 10.0, 8.0, 0.0),
                       child: Text(
                         'Animals',
                         style: TextStyle(fontSize: 20),
@@ -251,9 +253,9 @@ class _SearchPageState extends State<SearchPage> {
                         ),
                         title: Text(
                           option['title'],
-                          style: TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 16),
                         ),
-                        trailing: Icon(Icons.arrow_forward),
+                        trailing: const Icon(Icons.arrow_forward),
                         onTap: () {
                           navigateToSearchAnimalDetailsPage(option);
                         },

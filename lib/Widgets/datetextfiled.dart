@@ -2,12 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DateTextField extends StatefulWidget {
+  const DateTextField({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _DateTextFieldState createState() => _DateTextFieldState();
 }
 
 class _DateTextFieldState extends State<DateTextField> {
-  TextEditingController _dateController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
   DateTime? _selectedDate;
 
   @override
@@ -25,16 +28,25 @@ class _DateTextFieldState extends State<DateTextField> {
           controller: _dateController,
           readOnly: true,
           decoration: InputDecoration(
+            hintText: 'DD:MM:YYYY', // Add your hint text here
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50.0),
+              borderRadius:
+                  BorderRadius.circular(50.0), // Adjust border radius as needed
+              borderSide: const BorderSide(
+                color: Colors.grey, // Change the border color here
+                width: 2.0, // Change the border width here
+              ),
             ),
+            contentPadding: const EdgeInsets.symmetric(
+                vertical: 12.0, horizontal: 16.0), // Adjust padding as needed
             suffixIcon: IconButton(
-              icon: Icon(Icons.calendar_today),
+              icon: const Icon(Icons.calendar_today,
+                  color: Color.fromARGB(255, 36, 86, 38)),
               onPressed: () => _openDatePicker(context),
             ),
           ),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
       ],
     );
   }
@@ -45,7 +57,7 @@ class _DateTextFieldState extends State<DateTextField> {
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           height:
               MediaQuery.of(context).size.height * 0.4, // Set a specific height
           child: IntrinsicHeight(

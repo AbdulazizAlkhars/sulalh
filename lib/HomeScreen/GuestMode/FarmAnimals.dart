@@ -1,8 +1,11 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 
 import 'package:hathera_demo/HomeScreen/GuestMode/AnimalInfo.dart';
 
 class HouseFarmPage extends StatefulWidget {
+  const HouseFarmPage({super.key});
+
   @override
   State<HouseFarmPage> createState() => _HouseFarmPageState();
 }

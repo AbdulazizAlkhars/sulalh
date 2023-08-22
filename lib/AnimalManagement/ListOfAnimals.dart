@@ -7,12 +7,13 @@ import 'package:hathera_demo/HomeScreen/GuestMode/AnimalInfo.dart';
 class list_of_animals extends StatefulWidget {
   final List<String> selectedFilters;
 
-  list_of_animals({required this.selectedFilters});
+  const list_of_animals({super.key, required this.selectedFilters});
 
   @override
   State<list_of_animals> createState() => _list_of_animals();
 }
 
+// ignore: camel_case_types
 class _list_of_animals extends State<list_of_animals> {
   final List<Map<String, dynamic>> mammals = [
     {
@@ -158,7 +159,7 @@ class _list_of_animals extends State<list_of_animals> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => AnimalFilters()),
+                                  builder: (context) => const AnimalFilters()),
                             );
                           },
                         ),

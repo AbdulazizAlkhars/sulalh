@@ -5,8 +5,10 @@ import 'package:hathera_demo/Profile/AuthorizationMethods/AddNewPassword.dart';
 class AddNewEmailOTP extends StatefulWidget {
   final String emailAddress;
   final Function(String) onEmailUpdated;
-  AddNewEmailOTP({required this.emailAddress, required this.onEmailUpdated});
+  const AddNewEmailOTP(
+      {super.key, required this.emailAddress, required this.onEmailUpdated});
   @override
+  // ignore: library_private_types_in_public_api
   _AddNewEmailOTP createState() => _AddNewEmailOTP();
 }
 
@@ -36,7 +38,7 @@ class _AddNewEmailOTP extends State<AddNewEmailOTP> {
   }
 
   void startTimer() {
-    timer = Timer.periodic(Duration(seconds: 1), (_) {
+    timer = Timer.periodic(const Duration(seconds: 1), (_) {
       setState(() {
         if (timerCountdown > 0) {
           timerCountdown--;
@@ -77,7 +79,7 @@ class _AddNewEmailOTP extends State<AddNewEmailOTP> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -87,32 +89,32 @@ class _AddNewEmailOTP extends State<AddNewEmailOTP> {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Enter Code',
                     style: TextStyle(
                       fontSize: 44,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 16),
-                  Text(
+                  const SizedBox(height: 16),
+                  const Text(
                     'We sent a verification code to the following ',
                     style: TextStyle(
                       fontSize: 16,
                     ),
                   ),
-                  Text(
+                  const Text(
                     'Email Address: (Entered Email Address) ',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: List.generate(
@@ -125,19 +127,19 @@ class _AddNewEmailOTP extends State<AddNewEmailOTP> {
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
             child: Column(
               children: [
                 Center(
                   child: Text(
                     'Send New Code: ${getFormattedTime()}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
-                Container(
+                const SizedBox(height: 20),
+                SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: isDigitsCompleted
@@ -202,7 +204,7 @@ class _AddNewEmailOTP extends State<AddNewEmailOTP> {
           focusNode: focusNode,
           keyboardType: TextInputType.number,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
@@ -229,7 +231,7 @@ class _AddNewEmailOTP extends State<AddNewEmailOTP> {
           onEditingComplete: () {
             FocusScope.of(context).requestFocus(FocusNode());
           },
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             counterText: '',
             border: InputBorder.none,
           ),

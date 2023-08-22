@@ -5,6 +5,8 @@ import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/SnackBar.dart';
 
 class ListOfStaff extends StatefulWidget {
+  const ListOfStaff({super.key});
+
   @override
   State<ListOfStaff> createState() => _ListOfStaffState();
 }
@@ -20,7 +22,7 @@ class _ListOfStaffState extends State<ListOfStaff> {
 
   Future<void> fetchDataFromBackend() async {
     // Simulate fetching data from the backend
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
 
     // Update the options list with the fetched data
     List<Map<String, dynamic>> newData = [
@@ -94,7 +96,7 @@ class _ListOfStaffState extends State<ListOfStaff> {
                 showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return Container(
+                    return SizedBox(
                       height: 350,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -125,7 +127,7 @@ class _ListOfStaffState extends State<ListOfStaff> {
                               height: 10,
                             ),
                             Padding(
-                              padding: EdgeInsets.all(16),
+                              padding: const EdgeInsets.all(16),
                               child: Stack(
                                 alignment: Alignment.centerRight,
                                 children: [
@@ -144,10 +146,10 @@ class _ListOfStaffState extends State<ListOfStaff> {
                                   ),
                                   TextButton(
                                     onPressed: () {
-                                      final link =
+                                      const link =
                                           'https://example.com'; // Replace with your link value from the backend
                                       Clipboard.setData(
-                                          ClipboardData(text: link));
+                                          const ClipboardData(text: link));
                                       CustomSnackBar.show(
                                           context, 'Link Copied To Clipboard');
 
@@ -170,7 +172,7 @@ class _ListOfStaffState extends State<ListOfStaff> {
                               height: 10,
                             ),
                             Padding(
-                              padding: EdgeInsets.all(16),
+                              padding: const EdgeInsets.all(16),
                               child: ButtonWidget(
                                 onPressed: () {},
                                 buttonText: 'Share Link',
@@ -191,22 +193,22 @@ class _ListOfStaffState extends State<ListOfStaff> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
                 'Your Staff',
                 style: TextStyle(fontSize: 40),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             ListView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: options.length,
               itemBuilder: (context, index) {
                 return ListTile(
@@ -216,10 +218,10 @@ class _ListOfStaffState extends State<ListOfStaff> {
                   ),
                   title: Text(
                     options[index]['title'],
-                    style: TextStyle(fontSize: 20),
+                    style: const TextStyle(fontSize: 20),
                   ),
                   subtitle: Text(options[index]['subtitle']),
-                  trailing: Icon(Icons.arrow_forward),
+                  trailing: const Icon(Icons.arrow_forward),
                   onTap: () {
                     Navigator.push(
                       context,

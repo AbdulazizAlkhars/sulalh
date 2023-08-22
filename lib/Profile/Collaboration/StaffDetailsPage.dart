@@ -10,7 +10,8 @@ class StaffDetailsPage extends StatefulWidget {
   final String email;
   final String phoneNumber;
 
-  StaffDetailsPage({
+  const StaffDetailsPage({
+    super.key,
     required this.imagePath,
     required this.title,
     required this.subtitle,
@@ -59,7 +60,7 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                 showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return Container(
+                    return SizedBox(
                       height: 300,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -85,7 +86,7 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                             const SizedBox(
                               height: 10,
                             ),
-                            Container(
+                            SizedBox(
                               width: double.infinity,
                               child: ElevatedButton(
                                 onPressed: () {
@@ -98,7 +99,7 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                                   Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          ListOfStaff(), // Replace with the appropriate StaffListPage widget
+                                          const ListOfStaff(), // Replace with the appropriate StaffListPage widget
                                     ),
                                   );
                                   CustomSnackBar.show(
@@ -126,7 +127,7 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                             const SizedBox(
                               height: 10,
                             ),
-                            Container(
+                            SizedBox(
                               width: double.infinity,
                               child: ElevatedButton(
                                 onPressed: () {},

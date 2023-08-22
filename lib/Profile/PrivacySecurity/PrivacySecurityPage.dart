@@ -1,7 +1,12 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 class PrivacySecurityPage extends StatefulWidget {
+  const PrivacySecurityPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _PrivacySecurityPage createState() => _PrivacySecurityPage();
 }
 
@@ -18,18 +23,15 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
         ),
-        body: Container(
-            // padding: EdgeInsets.all(8),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Padding(
-            padding: const EdgeInsets.all(14.0),
+        body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const Padding(
+            padding: EdgeInsets.all(14.0),
             child: Text(
               'Privacy & Security',
               style: TextStyle(
@@ -38,9 +40,9 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
               ),
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ListTile(
-            title: Text('Allow Collaboration'),
+            title: const Text('Allow Collaboration'),
             trailing: Switch(
               value: _AllowCollab,
               onChanged: (value) {
@@ -93,14 +95,14 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
                       : null,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(14.0),
+                  const Padding(
+                    padding: EdgeInsets.all(14.0),
                     child: Text(
                       'Contact Information',
                       style: TextStyle(
@@ -109,9 +111,9 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   ListTile(
-                    title: Text('Show Contact Information'),
+                    title: const Text('Show Contact Information'),
                     trailing: Switch(
                       value: _ShowContactInfo,
                       onChanged: (value) {
@@ -131,7 +133,7 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
                     child: Column(
                       children: [
                         ListTile(
-                          title: Text('Phone Number'),
+                          title: const Text('Phone Number'),
                           trailing: Switch(
                             value: _PhoneNumber,
                             onChanged: _ShowContactInfo
@@ -144,7 +146,7 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
                           ),
                         ),
                         ListTile(
-                          title: Text('Email Address'),
+                          title: const Text('Email Address'),
                           trailing: Switch(
                             value: _EmailAddress,
                             onChanged: _ShowContactInfo
@@ -163,6 +165,6 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
               )
             ],
           ),
-        ])));
+        ]));
   }
 }

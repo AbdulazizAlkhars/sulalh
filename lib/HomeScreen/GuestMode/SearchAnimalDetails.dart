@@ -5,10 +5,14 @@ class SearchAnimalDetails extends StatefulWidget {
   final String title;
   final String geninfo;
 
-  SearchAnimalDetails(
-      {required this.imagePath, required this.title, required this.geninfo});
+  const SearchAnimalDetails(
+      {super.key,
+      required this.imagePath,
+      required this.title,
+      required this.geninfo});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SearchAnimalDetails createState() => _SearchAnimalDetails();
 }
 
@@ -97,7 +101,7 @@ class _SearchAnimalDetails extends State<SearchAnimalDetails> {
                   children: [
                     Text(
                       widget.title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
                         color: Colors.black,
@@ -115,27 +119,27 @@ class _SearchAnimalDetails extends State<SearchAnimalDetails> {
                         const SizedBox(width: 8),
                       ],
                     ),
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'General Information',
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 25,
                             ),
                           ),
-                          SizedBox(height: 25),
+                          const SizedBox(height: 25),
                           Text(
                             widget.geninfo,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'The horse is a domesticated, one-toed, hoofed mammal. It belongs to the taxonomic family Equidae and is one of two extant subspecies of Equus ferus. The horse has evolved over the past 45 to 55 million years from a small multi-toed creature, close to Eohippus, into the large, single-toed animal of today. Humans began domesticating horses around 4000 BCE, and their domestication is believed to have been widespread by 3000 BC',
                             style: TextStyle(
                               fontSize: 16,

@@ -11,7 +11,10 @@ import 'package:hathera_demo/Profile/EditProfileInformation.dart';
 import 'package:hathera_demo/Profile/Subscription/Subscription.dart';
 
 class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _ProfilePageState createState() => _ProfilePageState();
 }
 
@@ -40,7 +43,7 @@ class _ProfilePageState extends State<ProfilePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => EditProfileInformation()),
+                    builder: (context) => const EditProfileInformation()),
               );
               // Handle edit button press
             },
@@ -92,7 +95,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ListOfStaff()),
+                                builder: (context) => const ListOfStaff()),
                           );
                           // Add function of the button below
                         },
@@ -225,8 +228,8 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Column(
                 children: [
                   ListTile(
-                      leading: Icon(Icons.person_outline),
-                      title: Text(
+                      leading: const Icon(Icons.person_outline),
+                      title: const Text(
                         'Accounts',
                         style: TextStyle(fontSize: 14),
                       ),
@@ -234,7 +237,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AuthorizationMethodsPage()),
+                              builder: (context) =>
+                                  const AuthorizationMethodsPage()),
                         );
                       }),
                   ListTile(
@@ -247,12 +251,12 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => PaymentPage()),
+                              builder: (context) => const PaymentPage()),
                         );
                       }),
                   ListTile(
-                      leading: Icon(Icons.star_outline),
-                      title: Text(
+                      leading: const Icon(Icons.star_outline),
+                      title: const Text(
                         'Subscriptions',
                         style: TextStyle(fontSize: 14),
                       ),
@@ -273,8 +277,8 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Column(
                 children: [
                   ListTile(
-                      leading: Icon(Icons.notifications_outlined),
-                      title: Text(
+                      leading: const Icon(Icons.notifications_outlined),
+                      title: const Text(
                         'Notifications',
                         style: TextStyle(fontSize: 14),
                       ),
@@ -282,12 +286,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => NotificationSettingsPage()),
+                              builder: (context) =>
+                                  const NotificationSettingsPage()),
                         );
                       }),
                   ListTile(
-                      leading: Icon(Icons.lock_outline),
-                      title: Text(
+                      leading: const Icon(Icons.lock_outline),
+                      title: const Text(
                         'Privacy and Security',
                         style: TextStyle(fontSize: 14),
                       ),
@@ -295,7 +300,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => PrivacySecurityPage()),
+                              builder: (context) =>
+                                  const PrivacySecurityPage()),
                         );
                       }),
                 ],
@@ -308,8 +314,8 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Column(
                 children: [
                   ListTile(
-                      leading: Icon(Icons.settings_outlined),
-                      title: Text(
+                      leading: const Icon(Icons.settings_outlined),
+                      title: const Text(
                         'App Settings',
                         style: TextStyle(fontSize: 14),
                       ),
@@ -317,12 +323,12 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AppSettings()),
+                              builder: (context) => const AppSettings()),
                         );
                       }),
                   ListTile(
-                      leading: Icon(Icons.warning_amber_rounded),
-                      title: Text(
+                      leading: const Icon(Icons.warning_amber_rounded),
+                      title: const Text(
                         'About App',
                         style: TextStyle(fontSize: 14),
                       ),
@@ -333,8 +339,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         );
                       }),
                   ListTile(
-                      leading: Icon(Icons.contact_support_outlined),
-                      title: Text(
+                      leading: const Icon(Icons.contact_support_outlined),
+                      title: const Text(
                         'Customer Support',
                         style: TextStyle(fontSize: 14),
                       ),
@@ -342,7 +348,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => CustomerSupport()),
+                              builder: (context) => const CustomerSupport()),
                         );
                       }),
                 ],
@@ -377,7 +383,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                 ),
                                 const SizedBox(height: 25),
-                                Container(
+                                SizedBox(
                                   width: double.infinity,
                                   child: ElevatedButton(
                                     onPressed: () {},
@@ -401,7 +407,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                 ),
                                 const SizedBox(height: 16),
-                                Container(
+                                SizedBox(
                                   width: double.infinity,
                                   child: ElevatedButton(
                                     onPressed: () {},

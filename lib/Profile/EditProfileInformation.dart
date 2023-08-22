@@ -5,7 +5,10 @@ import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EditProfileInformation extends StatefulWidget {
+  const EditProfileInformation({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _EditProfileInformation createState() => _EditProfileInformation();
 }
 
@@ -50,19 +53,6 @@ class _EditProfileInformation extends State<EditProfileInformation> {
     super.dispose();
   }
 
-  void _saveChanges() {
-    setState(() {
-      firstname = _firstnameController.text;
-      secondname = _secondnameController.text;
-      phonenum = _phonenumController.text;
-      city = _cityController.text;
-      email = _emailController.text;
-      address = _addressController.text;
-      country = _countryController.text;
-    });
-    // Save the changes to the backend or perform any other necessary operations
-  }
-
   final ImagePicker _picker = ImagePicker();
   File? _selectedImage;
 
@@ -70,7 +60,7 @@ class _EditProfileInformation extends State<EditProfileInformation> {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           height: 230,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 30),
@@ -103,7 +93,7 @@ class _EditProfileInformation extends State<EditProfileInformation> {
                   onTap: () async {
                     Navigator.pop(context);
                     final pickedImage =
-                        await _picker.getImage(source: ImageSource.camera);
+                        await _picker.pickImage(source: ImageSource.camera);
                     if (pickedImage != null) {
                       setState(() {
                         _selectedImage = File(pickedImage.path);
@@ -138,7 +128,7 @@ class _EditProfileInformation extends State<EditProfileInformation> {
                   onTap: () async {
                     Navigator.pop(context);
                     final pickedImage =
-                        await _picker.getImage(source: ImageSource.gallery);
+                        await _picker.pickImage(source: ImageSource.gallery);
                     if (pickedImage != null) {
                       setState(() {
                         _selectedImage = File(pickedImage.path);
@@ -173,7 +163,7 @@ class _EditProfileInformation extends State<EditProfileInformation> {
                   onTap: () async {
                     Navigator.pop(context);
                     final pickedImage =
-                        await _picker.getImage(source: ImageSource.gallery);
+                        await _picker.pickImage(source: ImageSource.gallery);
                     if (pickedImage != null) {
                       setState(() {
                         _selectedImage = File(pickedImage.path);

@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:hathera_demo/Profile/Account_Setup/Add_Personal_Information.dart';
 
 class CreatePasswordPage extends StatefulWidget {
+  const CreatePasswordPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _CreatePasswordPageState createState() => _CreatePasswordPageState();
 }
 
 class _CreatePasswordPageState extends State<CreatePasswordPage> {
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   bool _passwordsMatch = false;
 
   @override
@@ -31,7 +35,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -89,18 +93,18 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                       );
                     }
                   : null,
-              child: const Text(
-                'Confirm',
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
               style: ElevatedButton.styleFrom(
-                primary: _passwordsMatch
+                backgroundColor: _passwordsMatch
                     ? const Color.fromARGB(255, 36, 86, 38)
                     : Colors.grey,
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50),
                 ),
+              ),
+              child: const Text(
+                'Confirm',
+                style: TextStyle(color: Colors.white, fontSize: 20),
               ),
             ),
           ),
@@ -116,12 +120,14 @@ class RoundedTextField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
 
   const RoundedTextField({
+    super.key,
     required this.label,
     required this.controller,
     this.onChanged,
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _RoundedTextFieldState createState() => _RoundedTextFieldState();
 }
 

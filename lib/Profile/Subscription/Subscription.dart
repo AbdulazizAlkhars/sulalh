@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SubscriptionPage extends StatefulWidget {
+  const SubscriptionPage({super.key});
+
   @override
   State<SubscriptionPage> createState() => _SubscriptionPageState();
 }
@@ -21,9 +23,9 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: const Text(
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
                 'Your Subscription',
                 style: TextStyle(
                   fontSize: 30,
@@ -95,9 +97,9 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
               ),
             ),
             const SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: const Text(
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
                 'Payment Method',
                 style: TextStyle(
                   fontSize: 30,
@@ -138,7 +140,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
-                    backgroundColor: Color.fromARGB(255, 241, 241, 241),
+                    backgroundColor: const Color.fromARGB(255, 241, 241, 241),
                     padding: const EdgeInsets.symmetric(
                       vertical: 18,
                     ),

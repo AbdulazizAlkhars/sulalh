@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class PhoneNumberInputWidget extends StatefulWidget {
+  const PhoneNumberInputWidget({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _PhoneNumberInputWidgetState createState() => _PhoneNumberInputWidgetState();
 }
 
@@ -15,12 +18,12 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           height: sheetHeight,
           child: ListView(
             children: [
               ListTile(
-                title: Text('+971'),
+                title: const Text('+971'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+971';
@@ -29,7 +32,7 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
                 },
               ),
               ListTile(
-                title: Text('+966'),
+                title: const Text('+966'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+966';
@@ -38,7 +41,7 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
                 },
               ),
               ListTile(
-                title: Text('+965'),
+                title: const Text('+965'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+965';
@@ -47,7 +50,7 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
                 },
               ),
               ListTile(
-                title: Text('+964'),
+                title: const Text('+964'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+964';
@@ -56,7 +59,7 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
                 },
               ),
               ListTile(
-                title: Text('+975'),
+                title: const Text('+975'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+975';
@@ -65,7 +68,7 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
                 },
               ),
               ListTile(
-                title: Text('+976'),
+                title: const Text('+976'),
                 onTap: () {
                   setState(() {
                     selectedCountryCode = '+976';
@@ -101,7 +104,7 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
             child: GestureDetector(
               onTap: _showCountryCodeSelection,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
                     bottomLeft: Radius.circular(10),
@@ -109,7 +112,7 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
                   // color: Colors.white,
                 ),
                 child: InputDecorator(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(50),
@@ -122,9 +125,9 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
                     children: [
                       Text(
                         selectedCountryCode,
-                        style: TextStyle(fontSize: 17),
+                        style: const TextStyle(fontSize: 17),
                       ),
-                      Icon(Icons.keyboard_arrow_down),
+                      const Icon(Icons.keyboard_arrow_down),
                     ],
                   ),
                 ),
@@ -134,7 +137,7 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
           Expanded(
             flex: 8,
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(10),
                   bottomRight: Radius.circular(0),
@@ -143,7 +146,7 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
               child: TextField(
                 controller: phoneNumberController,
                 keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Enter Phone Number',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.only(

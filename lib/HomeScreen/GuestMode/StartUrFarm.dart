@@ -5,7 +5,10 @@ import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';
 
 class StartUrFarm extends StatefulWidget {
+  const StartUrFarm({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _StartUrFarm createState() => _StartUrFarm();
 }
 
@@ -13,7 +16,7 @@ class _StartUrFarm extends State<StartUrFarm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/SignUp/Background-image.png'),
           fit: BoxFit.cover,
@@ -65,7 +68,7 @@ class _StartUrFarm extends State<StartUrFarm> {
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.white,
                           ),
-                          child: CustomTextFormField(
+                          child: const CustomTextFormField(
                             keyboardType: TextInputType.emailAddress,
                             labelText: 'Enter Name',
                           ),

@@ -5,7 +5,10 @@ import 'package:hathera_demo/signup/Enter_Phone_OTP.dart';
 import 'package:hathera_demo/signup/Signup_With_Email.dart';
 
 class PhnSignupPage extends StatefulWidget {
+  const PhnSignupPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _PhnSignupPage createState() => _PhnSignupPage();
 }
 
@@ -15,7 +18,7 @@ class _PhnSignupPage extends State<PhnSignupPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/SignUp/Background-image.png'),
           fit: BoxFit.cover,
@@ -85,7 +88,7 @@ class _PhnSignupPage extends State<PhnSignupPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PhoneOTPScreen()),
+                                  builder: (context) => const PhoneOTPScreen()),
                             );
                             // Add your continue button logic here
                           },
@@ -193,7 +196,8 @@ class _PhnSignupPage extends State<PhnSignupPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => EmailSignupPage()),
+                                  builder: (context) =>
+                                      const EmailSignupPage()),
                             );
                             // Add your continue button logic here
                           },

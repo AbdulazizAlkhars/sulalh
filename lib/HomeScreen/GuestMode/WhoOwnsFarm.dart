@@ -4,7 +4,10 @@ import 'package:hathera_demo/Widgets/Textformfield.dart';
 import 'package:hathera_demo/signup/Signup_With_Phone.dart';
 
 class WhoOwnsFarm extends StatefulWidget {
+  const WhoOwnsFarm({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _WhoOwnsFarm createState() => _WhoOwnsFarm();
 }
 
@@ -12,7 +15,7 @@ class _WhoOwnsFarm extends State<WhoOwnsFarm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/SignUp/Background-image.png'),
           fit: BoxFit.cover,
@@ -64,7 +67,7 @@ class _WhoOwnsFarm extends State<WhoOwnsFarm> {
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.white,
                           ),
-                          child: CustomTextFormField(
+                          child: const CustomTextFormField(
                             keyboardType: TextInputType.emailAddress,
                             labelText: 'Name',
                           ),
@@ -78,7 +81,7 @@ class _WhoOwnsFarm extends State<WhoOwnsFarm> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PhnSignupPage()),
+                                  builder: (context) => const PhnSignupPage()),
                             );
                             // Add your continue button logic here
                           },

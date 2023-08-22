@@ -5,7 +5,7 @@ import 'package:hathera_demo/Widgets/SnackBar.dart';
 class AddNewPassword extends StatefulWidget {
   final String emailAddress;
   final Function(String) onEmailUpdated;
-  AddNewPassword(
+  const AddNewPassword(
       {super.key, required this.emailAddress, required this.onEmailUpdated});
   @override
   // ignore: library_private_types_in_public_api
@@ -95,16 +95,13 @@ class _AddNewPassword extends State<AddNewPassword> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AuthorizationMethodsPage(),
+                          builder: (context) =>
+                              const AuthorizationMethodsPage(),
                         ),
                       );
                       CustomSnackBar.show(context, 'Email Added');
                     }
                   : null,
-              child: const Text(
-                'Confirm',
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
               style: ElevatedButton.styleFrom(
                 primary: _passwordsMatch
                     ? const Color.fromARGB(255, 36, 86, 38)
@@ -113,6 +110,10 @@ class _AddNewPassword extends State<AddNewPassword> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50),
                 ),
+              ),
+              child: const Text(
+                'Confirm',
+                style: TextStyle(color: Colors.white, fontSize: 20),
               ),
             ),
           ),
@@ -128,12 +129,14 @@ class RoundedTextField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
 
   const RoundedTextField({
+    super.key,
     required this.label,
     required this.controller,
     this.onChanged,
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _RoundedTextFieldState createState() => _RoundedTextFieldState();
 }
 

@@ -5,12 +5,14 @@ class AnimalInfo extends StatefulWidget {
   final String name;
   final String subtitle;
 
-  AnimalInfo({
+  const AnimalInfo({
+    super.key,
     required this.image,
     required this.name,
     required this.subtitle,
   });
   @override
+  // ignore: library_private_types_in_public_api
   _AnimalInfo createState() => _AnimalInfo();
 }
 
@@ -114,7 +116,7 @@ class _AnimalInfo extends State<AnimalInfo>
                   children: [
                     Text(
                       widget.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
                         color: Colors.black,
@@ -122,7 +124,7 @@ class _AnimalInfo extends State<AnimalInfo>
                     ),
                     Text(
                       widget.subtitle,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 16,
                       ),
@@ -187,14 +189,14 @@ class _AnimalInfo extends State<AnimalInfo>
                         indicatorColor: Colors.transparent,
                         labelColor: Colors.white,
                         unselectedLabelColor: Colors.grey,
-                        tabs: [
-                          const Tab(
+                        tabs: const [
+                          Tab(
                             text: 'General',
                           ),
-                          const Tab(
+                          Tab(
                             text: 'Breeding',
                           ),
-                          const Tab(
+                          Tab(
                             text: 'Medical',
                           ),
                         ],

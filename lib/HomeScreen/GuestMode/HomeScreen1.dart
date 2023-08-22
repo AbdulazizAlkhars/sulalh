@@ -3,12 +3,14 @@ import 'package:hathera_demo/HomeScreen/GuestMode/SearchFarms&Animals.dart';
 import 'package:hathera_demo/HomeScreen/GuestMode/StartUrFarm.dart';
 
 class HomeScreen1 extends StatelessWidget {
+  const HomeScreen1({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false, // Remove back arrow button
-        title: Text(
+        title: const Text(
           'Welcome',
           style: TextStyle(
             fontSize: 40,
@@ -18,16 +20,16 @@ class HomeScreen1 extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SearchPage()),
+                MaterialPageRoute(builder: (context) => const SearchPage()),
               );
             },
           ),
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
             onPressed: () {
               // Handle notifications button press
             },
@@ -36,7 +38,7 @@ class HomeScreen1 extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
@@ -49,7 +51,7 @@ class HomeScreen1 extends StatelessWidget {
                   onPressed: () {
                     // Handle button 1 press
                   },
-                  color: Color.fromARGB(
+                  color: const Color.fromARGB(
                       255, 197, 219, 158), // Set the color for the first card
                 ),
               ),
@@ -61,43 +63,43 @@ class HomeScreen1 extends StatelessWidget {
                   onPressed: () {
                     // Handle button 2 press
                   },
-                  color: Color.fromARGB(
+                  color: const Color.fromARGB(
                       255, 254, 255, 168), // Set the color for the second card
                 ),
               ),
             ],
           ),
-          SizedBox(height: 120),
-          Text(
+          const SizedBox(height: 120),
+          const Text(
             'Want To Start Your Farm\n Right Now & Join',
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(
+              backgroundColor: const Color.fromARGB(
                   255, 36, 86, 38), // Set the background color of the button
             ),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => StartUrFarm()),
+                MaterialPageRoute(builder: (context) => const StartUrFarm()),
               );
             },
-            child: Text(
+            child: const Text(
               'Join Now',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 16), // Set the text color of the button
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           TextButton(
             onPressed: () {
               // Handle text button press
             },
-            child: Text(
+            child: const Text(
               'Sign In',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
@@ -116,6 +118,7 @@ class CardWidget extends StatelessWidget {
   final Color color;
 
   const CardWidget({
+    super.key,
     required this.icon,
     required this.text,
     required this.buttonText,
@@ -132,7 +135,7 @@ class CardWidget extends StatelessWidget {
         child: Container(
           width: 150,
           height: 220,
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -144,20 +147,20 @@ class CardWidget extends StatelessWidget {
               ),
               Text(
                 text,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 20,
                     color: Colors.black), // Set the color of the text
               ),
               Center(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 36, 86,
+                    backgroundColor: const Color.fromARGB(255, 36, 86,
                         38), // Set the background color of the button
                   ),
                   onPressed: onPressed,
                   child: Text(
                     buttonText,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color:
                             Colors.white), // Set the text color of the button
                   ),

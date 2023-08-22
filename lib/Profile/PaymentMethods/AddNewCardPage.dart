@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 
 class AddCardPage extends StatefulWidget {
+  const AddCardPage({super.key});
+
   @override
   State<AddCardPage> createState() => _AddCardPageState();
 }
@@ -10,13 +12,9 @@ class AddCardPage extends StatefulWidget {
 class _AddCardPageState extends State<AddCardPage> {
   final TextEditingController cardHolderNameController =
       TextEditingController();
-
   final TextEditingController cardTypeController = TextEditingController();
-
   final TextEditingController cardNumberController = TextEditingController();
-
   final TextEditingController expiryDateController = TextEditingController();
-
   final TextEditingController cvcController = TextEditingController();
 
   List<String> cardTypes = [
@@ -218,7 +216,8 @@ class CardInfo {
 class CardWidget extends StatelessWidget {
   final CardInfo cardInfo;
 
-  CardWidget({required this.cardInfo, required Null Function() onSelect});
+  const CardWidget(
+      {super.key, required this.cardInfo, required Null Function() onSelect});
 
   @override
   Widget build(BuildContext context) {
@@ -242,7 +241,7 @@ class CardWidget extends StatelessWidget {
     return Card(
       elevation: 0,
       child: ListTile(
-        leading: Container(
+        leading: SizedBox(
           height: 30,
           width: 30,
           child: Image.asset(cardImagePath),
@@ -253,7 +252,7 @@ class CardWidget extends StatelessWidget {
   }
 
   String maskCardNumber(String cardNumber) {
-    final int visibleDigits = 4;
+    const int visibleDigits = 4;
     final int totalDigits = cardNumber.length;
 
     if (totalDigits <= visibleDigits) {

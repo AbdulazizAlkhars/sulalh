@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 
 class CustomerSupport extends StatefulWidget {
+  const CustomerSupport({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _CustomerSupportState createState() => _CustomerSupportState();
 }
 
@@ -49,7 +52,7 @@ class _CustomerSupportState extends State<CustomerSupport> {
       context: context,
       builder: (BuildContext context) {
         return SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             height: sheetHeight,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -57,8 +60,8 @@ class _CustomerSupportState extends State<CustomerSupport> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
+                  const Padding(
+                    padding: EdgeInsets.all(16.0),
                     child: Text(
                       'Contact Us',
                       style: TextStyle(fontSize: 40),
@@ -70,12 +73,12 @@ class _CustomerSupportState extends State<CustomerSupport> {
                       width: 35, // Adjust the width as needed
                       height: 35, // Adjust the height as needed
                     ),
-                    title: Text(
+                    title: const Text(
                       'WhatsApp',
                       style: TextStyle(fontSize: 20),
                     ),
-                    subtitle: Text('Chat With Support'),
-                    trailing: Icon(Icons.arrow_forward),
+                    subtitle: const Text('Chat With Support'),
+                    trailing: const Icon(Icons.arrow_forward),
                     onTap: () {
                       // Handle option 1 tap
                       Navigator.pop(context);
@@ -87,23 +90,23 @@ class _CustomerSupportState extends State<CustomerSupport> {
                       width: 35, // Adjust the width as needed
                       height: 35, // Adjust the height as needed
                     ),
-                    title: Text(
+                    title: const Text(
                       '+965 96721717',
                       style: TextStyle(fontSize: 20),
                     ),
-                    subtitle: Text('Call Us'),
-                    trailing: Icon(Icons.arrow_forward),
+                    subtitle: const Text('Call Us'),
+                    trailing: const Icon(Icons.arrow_forward),
                     onTap: () {
                       // Handle option 1 tap
                       Navigator.pop(context);
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Container(
+                    child: SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {},
@@ -116,7 +119,7 @@ class _CustomerSupportState extends State<CustomerSupport> {
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
-                        child: Text(
+                        child: const Text(
                           'Cancel',
                           style: TextStyle(
                             fontSize: 18,
@@ -140,7 +143,7 @@ class _CustomerSupportState extends State<CustomerSupport> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -152,7 +155,7 @@ class _CustomerSupportState extends State<CustomerSupport> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'FAQs',
               style: TextStyle(
                 fontSize: 40,
@@ -173,11 +176,11 @@ class _CustomerSupportState extends State<CustomerSupport> {
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Question #1',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    if (_isExpanded1) Text('Subtitle'),
+                    if (_isExpanded1) const Text('Subtitle'),
                   ],
                 ),
                 trailing: IconButton(
@@ -202,11 +205,11 @@ class _CustomerSupportState extends State<CustomerSupport> {
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Question #2',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    if (_isExpanded2) Text('Subtitle'),
+                    if (_isExpanded2) const Text('Subtitle'),
                   ],
                 ),
                 trailing: IconButton(
@@ -231,11 +234,11 @@ class _CustomerSupportState extends State<CustomerSupport> {
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Question #3',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    if (_isExpanded3) Text('Subtitle'),
+                    if (_isExpanded3) const Text('Subtitle'),
                   ],
                 ),
                 trailing: IconButton(
@@ -260,11 +263,11 @@ class _CustomerSupportState extends State<CustomerSupport> {
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Question #4',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    if (_isExpanded4) Text('Subtitle'),
+                    if (_isExpanded4) const Text('Subtitle'),
                   ],
                 ),
                 trailing: IconButton(
@@ -289,11 +292,11 @@ class _CustomerSupportState extends State<CustomerSupport> {
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Question #5',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    if (_isExpanded5) Text('Subtitle'),
+                    if (_isExpanded5) const Text('Subtitle'),
                   ],
                 ),
                 trailing: IconButton(
@@ -305,12 +308,12 @@ class _CustomerSupportState extends State<CustomerSupport> {
                 ),
               ),
             ),
-            Expanded(
+            const Expanded(
               child: SizedBox(),
             ), // Added Expanded widget to fill remaining space
 
             Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: ButtonWidget(
                 onPressed: _showModalSheet, // Show modal sheet on button press
                 buttonText: 'Need Help',

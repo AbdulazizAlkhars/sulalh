@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/CreateAnimals/CompleteInfo.dart';
 
-class SelectedOptionsPage extends StatelessWidget {
+class SelectedOptionsPage extends StatefulWidget {
   final String selectedAnimalType;
   final String selectedAnimalSpecies;
   final String selectedAnimalBreed;
@@ -12,6 +13,11 @@ class SelectedOptionsPage extends StatelessWidget {
     required this.selectedAnimalBreed,
   });
 
+  @override
+  State<SelectedOptionsPage> createState() => _SelectedOptionsPageState();
+}
+
+class _SelectedOptionsPageState extends State<SelectedOptionsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +70,7 @@ class SelectedOptionsPage extends StatelessWidget {
                 Expanded(
                   flex: 0,
                   child: Text(
-                    selectedAnimalType,
+                    widget.selectedAnimalType,
                     style: const TextStyle(
                       fontSize: 15,
                     ),
@@ -97,7 +103,7 @@ class SelectedOptionsPage extends StatelessWidget {
                 Expanded(
                   flex: 0,
                   child: Text(
-                    selectedAnimalSpecies,
+                    widget.selectedAnimalSpecies,
                     style: const TextStyle(
                       fontSize: 16,
                     ),
@@ -130,7 +136,7 @@ class SelectedOptionsPage extends StatelessWidget {
                 Expanded(
                   flex: 0,
                   child: Text(
-                    selectedAnimalBreed,
+                    widget.selectedAnimalBreed,
                     style: const TextStyle(
                       fontSize: 16,
                     ),
@@ -155,7 +161,12 @@ class SelectedOptionsPage extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: ElevatedButton(
           onPressed: () {
-            // Handle "Continue" button press
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CompleteInfo(),
+              ),
+            );
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color.fromARGB(255, 36, 86, 38),

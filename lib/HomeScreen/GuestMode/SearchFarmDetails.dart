@@ -8,7 +8,8 @@ class SearchFarmDetails extends StatefulWidget {
   final String email;
   final String phoneNumber;
 
-  SearchFarmDetails({
+  const SearchFarmDetails({
+    super.key,
     required this.imagePath,
     required this.title,
     required this.subtitle,
@@ -91,7 +92,7 @@ class _SearchFarmDetails extends State<SearchFarmDetails> {
                         showModalBottomSheet(
                           context: context,
                           builder: (BuildContext context) {
-                            return Container(
+                            return SizedBox(
                               height: 400,
                               width: double.infinity,
                               child: Padding(
@@ -132,7 +133,7 @@ class _SearchFarmDetails extends State<SearchFarmDetails> {
                                                   context: context,
                                                   builder:
                                                       (BuildContext context) {
-                                                    return Container(
+                                                    return SizedBox(
                                                       height: 400,
                                                       width: double.infinity,
                                                       child: Padding(
@@ -292,7 +293,7 @@ class _SearchFarmDetails extends State<SearchFarmDetails> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          HouseFarmPage()),
+                                                          const HouseFarmPage()),
                                                 );
                                                 // Handle button 2 press
                                               },

@@ -8,7 +8,7 @@ class NotificationList extends StatelessWidget {
       'title': 'New Update Available!',
       'subtitle': 'Download From AppStore Now',
       'time': DateTime.now()
-          .subtract(Duration(hours: 1)), // Example time (1 hour ago)
+          .subtract(const Duration(hours: 1)), // Example time (1 hour ago)
     },
     {
       'imagePath':
@@ -16,18 +16,20 @@ class NotificationList extends StatelessWidget {
       'title': 'Horse Vaccination',
       'subtitle': '09.01.2023',
       'time': DateTime.now()
-          .subtract(Duration(hours: 2)), // Example time (2 hours ago)
+          .subtract(const Duration(hours: 2)), // Example time (2 hours ago)
     },
     {
       'imagePath':
           'assets/Staff Images/Wanda-Dr-Strange-Multiverse-Madness-Culture.jpg.webp',
       'title': 'Mohammed',
       'subtitle': 'Request',
-      'time': DateTime.now()
-          .subtract(Duration(minutes: 30)), // Example time (30 minutes ago)
+      'time': DateTime.now().subtract(
+          const Duration(minutes: 30)), // Example time (30 minutes ago)
     },
     // Add more data here if needed
   ];
+
+  NotificationList({super.key});
 
   String formatTimeAgo(DateTime time) {
     final now = DateTime.now();
@@ -48,7 +50,7 @@ class NotificationList extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -57,8 +59,8 @@ class NotificationList extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Text(
               'Notifications',
               style: TextStyle(fontSize: 30),
@@ -78,7 +80,8 @@ class NotificationList extends StatelessWidget {
                   ),
                   title: Text(
                     notification['title'] as String,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(notification['subtitle'] as String),
                   trailing: (notification['subtitle'] == 'Request')
@@ -93,10 +96,10 @@ class NotificationList extends StatelessWidget {
                                 elevation: 0,
                                 backgroundColor:
                                     const Color.fromARGB(255, 36, 86, 38),
-                                shape: CircleBorder(),
-                                padding: EdgeInsets.all(12),
+                                shape: const CircleBorder(),
+                                padding: const EdgeInsets.all(12),
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.check,
                                 color: Colors.white,
                               ),
@@ -110,16 +113,16 @@ class NotificationList extends StatelessWidget {
                                 backgroundColor:
                                     const Color.fromARGB(255, 225, 225, 225),
                                 elevation: 0,
-                                shape: CircleBorder(),
-                                padding: EdgeInsets.all(12),
+                                shape: const CircleBorder(),
+                                padding: const EdgeInsets.all(12),
                               ),
-                              child: Icon(Icons.close),
+                              child: const Icon(Icons.close),
                             ),
                           ],
                         )
                       : Text(
                           timeAgo,
-                          style: TextStyle(fontSize: 13),
+                          style: const TextStyle(fontSize: 13),
                         ),
                   onTap: () {
                     // Handle tap on the list item

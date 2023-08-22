@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 
 class AppSettings extends StatefulWidget {
+  const AppSettings({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _AppSettings createState() => _AppSettings();
 }
 
@@ -17,13 +20,13 @@ class _AppSettings extends State<AppSettings> {
       builder: (BuildContext context) {
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
-            return Container(
+            return SizedBox(
               height: sheetHeight,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
+                  const Padding(
+                    padding: EdgeInsets.all(16.0),
                     child: Text(
                       'Language Of The App',
                       style: TextStyle(fontSize: 30),
@@ -34,7 +37,7 @@ class _AppSettings extends State<AppSettings> {
                       child: Column(
                         children: [
                           ListTile(
-                            title: Text('English'),
+                            title: const Text('English'),
                             trailing: selectedLanguageTemp == 'English'
                                 ? Container(
                                     width: 25,
@@ -65,7 +68,7 @@ class _AppSettings extends State<AppSettings> {
                             },
                           ),
                           ListTile(
-                            title: Text('Spanish'),
+                            title: const Text('Spanish'),
                             trailing: selectedLanguageTemp == 'Spanish'
                                 ? Container(
                                     width: 25,
@@ -96,7 +99,7 @@ class _AppSettings extends State<AppSettings> {
                             },
                           ),
                           ListTile(
-                            title: Text('French'),
+                            title: const Text('French'),
                             trailing: selectedLanguageTemp == 'French'
                                 ? Container(
                                     width: 25,
@@ -130,7 +133,7 @@ class _AppSettings extends State<AppSettings> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: ButtonWidget(
@@ -160,12 +163,12 @@ class _AppSettings extends State<AppSettings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'App Settings',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -182,7 +185,7 @@ class _AppSettings extends State<AppSettings> {
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Language',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -193,14 +196,14 @@ class _AppSettings extends State<AppSettings> {
                         Expanded(
                           child: Text(selectedLanguage),
                         ),
-                        Icon(Icons.arrow_forward),
+                        const Icon(Icons.arrow_forward),
                       ],
                     ),
                   ],
                 ),
                 onTap: _showLanguageSelection,
               ),
-              Divider()
+              const Divider()
             ],
           ),
         ),

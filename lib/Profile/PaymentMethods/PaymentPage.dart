@@ -3,7 +3,10 @@ import 'package:hathera_demo/Profile/PaymentMethods/AddNewCardPage.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 
 class PaymentPage extends StatefulWidget {
+  const PaymentPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _PaymentPageState createState() => _PaymentPageState();
 }
 
@@ -152,7 +155,7 @@ class _PaymentPageState extends State<PaymentPage> {
   void _navigateToAddCard() async {
     final newCardInfo = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => AddCardPage()),
+      MaterialPageRoute(builder: (context) => const AddCardPage()),
     );
     if (newCardInfo != null) {
       setState(() {
