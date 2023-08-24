@@ -1,9 +1,12 @@
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';
 import 'package:hathera_demo/Widgets/datetextfiled.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+// ignore: depend_on_referenced_packages
+import 'package:intl/intl.dart';
 
 class CompleteInfo extends StatefulWidget {
   const CompleteInfo({super.key});
@@ -15,7 +18,12 @@ class CompleteInfo extends StatefulWidget {
 
 class _CompleteInfo extends State<CompleteInfo> {
   final TextEditingController _notesController = TextEditingController();
-  String selectedName = 'Add'; // Initial text for the button
+  String selectedSire = 'Add';
+  String selectedDam = 'Add';
+  DateTime? selectedDate;
+  Map<String, DateTime?> selectedDates = {};
+  String selectedDateType = "Date Of Birth"; // Default value
+  // Initial text for the button
   String selectedGender = '';
   bool _addParents = false;
   bool _addChildren = false;
@@ -59,6 +67,307 @@ class _CompleteInfo extends State<CompleteInfo> {
                 },
               ),
             ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _showSireSelectionSheet(BuildContext context) async {
+    final String? newSire = await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        // ignore: non_constant_identifier_names
+        List<Map<String, String>> SireDetails = [
+          {'name': 'Alice', 'nickname': 'Cow'},
+          {'name': 'Bob', 'nickname': 'Sheep'},
+          {'name': 'Charlie', 'nickname': 'Horse'},
+          {'name': 'David', 'nickname': 'Ox'},
+          {'name': 'Emily', 'nickname': 'Rabbit'},
+        ];
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: Container(
+                height: MediaQuery.of(context).size.height *
+                    0.75, // 75% of screen height
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    const Text(
+                      "Add Father",
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50.0),
+                              border: Border.all(),
+                            ),
+                            child: TextField(
+                              onChanged: (value) {
+                                setState(() {
+                                  SireDetails = [
+                                    {'name': 'Alice', 'nickname': 'Cow'},
+                                    {'name': 'Bob', 'nickname': 'Sheep'},
+                                    {'name': 'Charlie', 'nickname': 'Horse'},
+                                    {'name': 'David', 'nickname': 'Ox'},
+                                    {'name': 'Emily', 'nickname': 'Rabbit'},
+                                  ]
+                                      .where((entry) =>
+                                          entry['name']!
+                                              .toLowerCase()
+                                              .contains(value.toLowerCase()) ||
+                                          entry['nickname']!
+                                              .toLowerCase()
+                                              .contains(value.toLowerCase()))
+                                      .toList();
+                                });
+                              },
+                              decoration: const InputDecoration(
+                                hintText: "Search By Name Or ID",
+                                prefixIcon: Icon(Icons.search),
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: SireDetails.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ListTile(
+                            leading: CircleAvatar(
+                              child: Text(SireDetails[index]['name']![0]),
+                            ),
+                            title: Text(SireDetails[index]['name']!),
+                            subtitle: Text(SireDetails[index]['nickname']!),
+                            onTap: () {
+                              Navigator.pop(
+                                  context, SireDetails[index]['name']);
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+    if (newSire != null) {
+      setState(() {
+        selectedSire = newSire;
+      });
+    }
+  }
+
+  void _showDamSelectionSheet(BuildContext context) async {
+    final String? newDam = await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        // ignore: non_constant_identifier_names
+        List<Map<String, String>> DamDetails = [
+          {'name': 'Mantis', 'nickname': 'Alein'},
+          {'name': 'Nebula', 'nickname': 'Robot'},
+          {'name': 'Rocket', 'nickname': 'Racoon'},
+          {'name': 'Groot', 'nickname': 'Tree'},
+          {'name': 'Peter', 'nickname': 'Human'},
+        ];
+
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: Container(
+                height: MediaQuery.of(context).size.height *
+                    0.75, // 75% of screen height
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    const Text(
+                      "Add Mother",
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50.0),
+                              border: Border.all(),
+                            ),
+                            child: TextField(
+                              onChanged: (value) {
+                                setState(() {
+                                  DamDetails = [
+                                    {'name': 'Mantis', 'nickname': 'Alein'},
+                                    {'name': 'Nebula', 'nickname': 'Robot'},
+                                    {'name': 'Rocket', 'nickname': 'Racoon'},
+                                    {'name': 'Groot', 'nickname': 'Tree'},
+                                    {'name': 'Peter', 'nickname': 'Human'},
+                                  ]
+                                      .where((entry) =>
+                                          entry['name']!
+                                              .toLowerCase()
+                                              .contains(value.toLowerCase()) ||
+                                          entry['nickname']!
+                                              .toLowerCase()
+                                              .contains(value.toLowerCase()))
+                                      .toList();
+                                });
+                              },
+                              decoration: const InputDecoration(
+                                hintText: "Search By Name Or ID",
+                                prefixIcon: Icon(Icons.search),
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: DamDetails.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ListTile(
+                            leading: CircleAvatar(
+                              child: Text(DamDetails[index]['name']![0]),
+                            ),
+                            title: Text(DamDetails[index]['name']!),
+                            subtitle: Text(DamDetails[index]['nickname']!),
+                            onTap: () {
+                              Navigator.pop(context, DamDetails[index]['name']);
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+
+    if (newDam != null) {
+      setState(() {
+        selectedDam = newDam;
+      });
+    }
+  }
+
+  void _showDateSelectionSheet(BuildContext context) async {
+    List<String> dateTypes = [
+      'Date Of Weaning',
+      'Date Of Mating',
+      'Date Of Death',
+      'Date Of Sale',
+    ];
+
+    await showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: MediaQuery.of(context).size.height * 0.40,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 10),
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'Add Date ',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: dateTypes.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Column(
+                      children: [
+                        ListTile(
+                          title: Text(dateTypes[index]),
+                          dense: true,
+                          minVerticalPadding: double.minPositive,
+                          trailing: const Icon(Icons.arrow_right_alt_rounded),
+                          onTap: () {
+                            Navigator.pop(context);
+                            _showDatePicker(context, dateTypes[index]);
+                          },
+                        ),
+                        const Divider(),
+                      ],
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _showDatePicker(BuildContext context, String dateType) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext builder) {
+        return SizedBox(
+          height: 200,
+          child: CupertinoDatePicker(
+            initialDateTime: DateTime.now(),
+            minimumYear: 2000,
+            maximumYear: DateTime.now().year,
+            mode: CupertinoDatePickerMode.date,
+            onDateTimeChanged: (DateTime pickedDate) {
+              setState(() {
+                selectedDates[dateType] = pickedDate;
+              });
+            },
           ),
         );
       },
@@ -191,24 +500,16 @@ class _CompleteInfo extends State<CompleteInfo> {
                         Expanded(
                           flex: 0,
                           child: TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              'Add',
-                              style: TextStyle(
+                            onPressed: () {
+                              _showSireSelectionSheet(context);
+                            },
+                            child: Text(
+                              selectedSire,
+                              style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 36, 86, 38),
                               ),
                             ),
-                          ),
-                        ),
-                        const Expanded(
-                          flex: 0,
-                          child: Text(
-                            ' >',
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 36, 86, 38),
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],
@@ -226,24 +527,16 @@ class _CompleteInfo extends State<CompleteInfo> {
                         Expanded(
                           flex: 0,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _showDamSelectionSheet(context);
+                            },
                             child: Text(
-                              selectedName,
+                              selectedDam,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 36, 86, 38),
                               ),
                             ),
-                          ),
-                        ),
-                        const Expanded(
-                          flex: 0,
-                          child: Text(
-                            ' >',
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 36, 86, 38),
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],
@@ -401,8 +694,11 @@ class _CompleteInfo extends State<CompleteInfo> {
               ),
               const SizedBox(height: 10),
               const DateTextField(),
+              _buildDateFields(),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  _showDateSelectionSheet(context);
+                },
                 child: const Text(
                   'Add Date +',
                   style: TextStyle(
@@ -534,6 +830,60 @@ class _CompleteInfo extends State<CompleteInfo> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildDateFields() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: selectedDates.keys.map((dateType) {
+        final DateTime? selectedDate = selectedDates[dateType];
+        return selectedDate != null
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    dateType,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'DD:MM:YYYY', // Add your hint text here
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(
+                            50.0), // Adjust border radius as needed
+                        borderSide: const BorderSide(
+                          color: Colors.grey, // Change the border color here
+                          width: 2.0, // Change the border width here
+                        ),
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 12.0,
+                          horizontal: 16.0), // Adjust padding as needed
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          _showDatePicker(context, dateType);
+                        },
+                        child: const Icon(
+                          Icons.calendar_today,
+                          color: Color.fromARGB(255, 36, 86, 38),
+                        ),
+                      ),
+                    ),
+                    readOnly: true,
+                    controller: TextEditingController(
+                      text: DateFormat('dd-MM-yyyy').format(selectedDate),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                ],
+              )
+            : Container();
+      }).toList(),
     );
   }
 }
