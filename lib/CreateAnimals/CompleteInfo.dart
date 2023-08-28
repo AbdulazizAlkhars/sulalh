@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Widgets/TagChips.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';
 import 'package:hathera_demo/Widgets/datetextfiled.dart';
 import 'package:image_picker/image_picker.dart';
@@ -21,6 +22,7 @@ class _CompleteInfo extends State<CompleteInfo> {
   String selectedSire = 'Add';
   String selectedDam = 'Add';
   DateTime? selectedDate;
+  List<String> selectedChips = [];
   Map<String, DateTime?> selectedDates = {};
   String selectedDateType = "Date Of Birth"; // Default value
   // Initial text for the button
@@ -374,6 +376,319 @@ class _CompleteInfo extends State<CompleteInfo> {
     );
   }
 
+  void _openModalSheet() async {
+    final result = await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.65,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text(
+                        'Current State',
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 25),
+                      const Text(
+                        'Current State',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Wrap(
+                        spacing: 8.0,
+                        runSpacing: 8.0,
+                        children: [
+                          CustomTag(
+                            label: 'Borrowed',
+                            selected: selectedChips.contains('Borrowed'),
+                            onTap: () {
+                              setState(() {
+                                if (selectedChips.contains('Borrowed')) {
+                                  selectedChips.remove('Borrowed');
+                                } else {
+                                  selectedChips.add('Borrowed');
+                                }
+                              });
+                            },
+                          ),
+                          CustomTag(
+                            label: 'Adopted',
+                            selected: selectedChips.contains('Adopted'),
+                            onTap: () {
+                              setState(() {
+                                if (selectedChips.contains('Adopted')) {
+                                  selectedChips.remove('Adopted');
+                                } else {
+                                  selectedChips.add('Adopted');
+                                }
+                              });
+                            },
+                          ),
+                          CustomTag(
+                            label: 'Donated',
+                            selected: selectedChips.contains('Donated'),
+                            onTap: () {
+                              setState(() {
+                                if (selectedChips.contains('Donated')) {
+                                  selectedChips.remove('Donated');
+                                } else {
+                                  selectedChips.add('Donated');
+                                }
+                              });
+                            },
+                          ),
+                          CustomTag(
+                            label: 'Escaped',
+                            selected: selectedChips.contains('Escaped'),
+                            onTap: () {
+                              setState(() {
+                                if (selectedChips.contains('Escaped')) {
+                                  selectedChips.remove('Escaped');
+                                } else {
+                                  selectedChips.add('Escaped');
+                                }
+                              });
+                            },
+                          ),
+                          CustomTag(
+                            label: 'Stolen',
+                            selected: selectedChips.contains('Stolen'),
+                            onTap: () {
+                              setState(() {
+                                if (selectedChips.contains('Stolen')) {
+                                  selectedChips.remove('Stolen');
+                                } else {
+                                  selectedChips.add('Stolen');
+                                }
+                              });
+                            },
+                          ),
+                          CustomTag(
+                            label: 'Trasnferred',
+                            selected: selectedChips.contains('Trasnferred'),
+                            onTap: () {
+                              setState(() {
+                                if (selectedChips.contains('Trasnferred')) {
+                                  selectedChips.remove('Trasnferred');
+                                } else {
+                                  selectedChips.add('Trasnferred');
+                                }
+                              });
+                            },
+                          ),
+
+                          // Add more chips here
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      const Text(
+                        'Medical State',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Wrap(
+                        spacing: 8.0,
+                        runSpacing: 8.0,
+                        children: [
+                          CustomTag(
+                            label: 'Injured',
+                            selected: selectedChips.contains('Injured'),
+                            onTap: () {
+                              setState(() {
+                                if (selectedChips.contains('Injured')) {
+                                  selectedChips.remove('Injured');
+                                } else {
+                                  selectedChips.add('Injured');
+                                }
+                              });
+                            },
+                          ),
+                          CustomTag(
+                            label: 'Sick',
+                            selected: selectedChips.contains('Sick'),
+                            onTap: () {
+                              setState(() {
+                                if (selectedChips.contains('Sick')) {
+                                  selectedChips.remove('Sick');
+                                } else {
+                                  selectedChips.add('Sick');
+                                }
+                              });
+                            },
+                          ),
+                          CustomTag(
+                            label: 'Quarantined',
+                            selected: selectedChips.contains('Quarantined'),
+                            onTap: () {
+                              setState(() {
+                                if (selectedChips.contains('Quarantined')) {
+                                  selectedChips.remove('Quarantined');
+                                } else {
+                                  selectedChips.add('Quarantined');
+                                }
+                              });
+                            },
+                          ),
+                          CustomTag(
+                            label: 'Medication',
+                            selected: selectedChips.contains('Medication'),
+                            onTap: () {
+                              setState(() {
+                                if (selectedChips.contains('Medication')) {
+                                  selectedChips.remove('Medication');
+                                } else {
+                                  selectedChips.add('Medication');
+                                }
+                              });
+                            },
+                          ),
+                          CustomTag(
+                            label: 'Testing',
+                            selected: selectedChips.contains('Testing'),
+                            onTap: () {
+                              setState(() {
+                                if (selectedChips.contains('Testing')) {
+                                  selectedChips.remove('Testing');
+                                } else {
+                                  selectedChips.add('Testing');
+                                }
+                              });
+                            },
+                          ),
+                          CustomTag(
+                            label: 'Pregnant',
+                            selected: selectedChips.contains('Pregnant'),
+                            onTap: () {
+                              setState(() {
+                                if (selectedChips.contains('Pregnant')) {
+                                  selectedChips.remove('Pregnant');
+                                } else {
+                                  selectedChips.add('Pregnant');
+                                }
+                              });
+                            },
+                          ),
+                          CustomTag(
+                            label: 'Lactating',
+                            selected: selectedChips.contains('Lactating'),
+                            onTap: () {
+                              setState(() {
+                                if (selectedChips.contains('Lactating')) {
+                                  selectedChips.remove('Lactating');
+                                } else {
+                                  selectedChips.add('Lactating');
+                                }
+                              });
+                            },
+                          ),
+
+                          // Add more chips here
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      const Text(
+                        'Other',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Wrap(
+                        spacing: 8.0,
+                        runSpacing: 8.0,
+                        children: [
+                          CustomTag(
+                            label: 'Sold',
+                            selected: selectedChips.contains('Sold'),
+                            onTap: () {
+                              setState(() {
+                                if (selectedChips.contains('Sold')) {
+                                  selectedChips.remove('Sold');
+                                } else {
+                                  selectedChips.add('Sold');
+                                }
+                              });
+                            },
+                          ),
+                          CustomTag(
+                            label: 'Dead',
+                            selected: selectedChips.contains('Dead'),
+                            onTap: () {
+                              setState(() {
+                                if (selectedChips.contains('Dead')) {
+                                  selectedChips.remove('Dead');
+                                } else {
+                                  selectedChips.add('Dead');
+                                }
+                              });
+                            },
+                          ),
+                          // Add more chips here
+                        ],
+                      ),
+                      const SizedBox(height: 40.0),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Row(children: [
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                // Handle the button press here
+                                Navigator.of(context)
+                                    .pop(selectedChips); // Close the modal
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color.fromARGB(
+                                    255, 36, 86, 38), // Button color
+                                foregroundColor: Colors.white, // Text color
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                              ),
+                              child: const Text('Save'), // Button text
+                            ),
+                          ),
+                        ]),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+
+    if (result != null) {
+      setState(() {
+        selectedChips = List<String>.from(result);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -716,8 +1031,26 @@ class _CompleteInfo extends State<CompleteInfo> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              const SizedBox(height: 10),
+              Wrap(
+                spacing: 8.0,
+                runSpacing: 8.0,
+                children: selectedChips.map((chip) {
+                  return CustomTag(
+                    label: chip,
+                    selected: true, // Since these are selected chips
+                    onTap: () {
+                      setState(() {
+                        selectedChips.remove(chip); // To deselect the chip
+                      });
+                    },
+                  );
+                }).toList(),
+              ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  _openModalSheet();
+                },
                 child: const Text(
                   'Add Tags +',
                   style: TextStyle(
