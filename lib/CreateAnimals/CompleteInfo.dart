@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/TagChips.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';
 import 'package:hathera_demo/Widgets/datetextfiled.dart';
@@ -23,6 +24,7 @@ class _CompleteInfo extends State<CompleteInfo> {
   String selectedDam = 'Add';
   DateTime? selectedDate;
   List<String> selectedChips = [];
+  List<Widget> customTextFields = [];
   Map<String, DateTime?> selectedDates = {};
   String selectedDateType = "Date Of Birth"; // Default value
   // Initial text for the button
@@ -689,11 +691,227 @@ class _CompleteInfo extends State<CompleteInfo> {
     }
   }
 
+  void _showFieldNameModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      showDragHandle: true,
+      builder: (BuildContext context) {
+        String fieldName = ''; // Store the field name
+
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.35,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Add Custom Field',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 35,
+                ),
+                TextField(
+                  onChanged: (value) {
+                    setState(() {
+                      fieldName = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    labelText:
+                        'Enter Field Name', // Change to your desired placeholder
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50.0),
+                      borderSide: const BorderSide(
+                        color: Colors.grey,
+                        width: 2.0,
+                      ),
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 12.0,
+                      horizontal: 16.0,
+                    ),
+                  ),
+                  controller:
+                      TextEditingController(), // You can initialize with default text if needed
+                ),
+                const SizedBox(
+                  height: 35,
+                ),
+                ButtonWidget(
+                  onPressed: () {
+                    Navigator.pop(context); // Close the modal
+                    _showFieldContentModal(context, fieldName);
+                    // Add your continue button logic here
+                  },
+                  buttonText: 'Confirm',
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(
+                            255, 238, 238, 238), // Button color
+                        foregroundColor: Colors.black, // Text color
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                      child: const Text('Cancel'), // Button text
+                    ),
+                  ),
+                ]),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showFieldContentModal(BuildContext context, String fieldName) {
+    String fieldContent = '';
+
+    showModalBottomSheet(
+      showDragHandle: true,
+      context: context,
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.50,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Add Text Area',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                TextField(
+                  maxLines: 5,
+                  decoration: InputDecoration(
+                    labelText:
+                        'Enter Field Content', // Change to your desired placeholder
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: const BorderSide(
+                        color: Colors.grey,
+                        width: 2.0,
+                      ),
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 12.0,
+                      horizontal: 16.0,
+                    ),
+                  ),
+                  onChanged: (value) {
+                    fieldContent = value;
+                  },
+                ),
+                const SizedBox(
+                  height: 35,
+                ),
+                ButtonWidget(
+                  onPressed: () {
+                    Navigator.pop(context); // Close the modal
+                    _addNewTextField(fieldName, fieldContent);
+                    // Add your continue button logic here
+                  },
+                  buttonText: 'Confirm',
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Handle the button press here
+                        Navigator.pop(context); // Close the modal
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(
+                            255, 238, 238, 238), // Button color
+                        foregroundColor: Colors.black, // Text color
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                      child: const Text('Cancel'), // Button text
+                    ),
+                  ),
+                ]),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _addNewTextField(String name, String content) {
+    setState(() {
+      customTextFields.add(
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 10),
+            Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 10),
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                    width: 2.0,
+                  ),
+                ),
+                contentPadding: const EdgeInsets.symmetric(
+                  vertical: 12.0,
+                  horizontal: 16.0,
+                ),
+              ),
+              controller: TextEditingController(text: content),
+            ),
+            const SizedBox(height: 15), // Add spacing between fields
+          ],
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create Animal'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+            // Handle back button press
+            // Add your code here
+          },
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -1068,8 +1286,13 @@ class _CompleteInfo extends State<CompleteInfo> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              Column(
+                children: customTextFields,
+              ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  _showFieldNameModal(context);
+                },
                 child: const Text(
                   'Add Custom Field +',
                   style: TextStyle(

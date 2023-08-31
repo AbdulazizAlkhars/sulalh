@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/AnimalManagement/ListOfAnimals.dart';
 import 'package:hathera_demo/CreateAnimals/CompleteInfo.dart';
 
 void main() {

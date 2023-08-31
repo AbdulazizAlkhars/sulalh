@@ -21,7 +21,9 @@ class ButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: buttonColor,
+          backgroundColor:
+              const Color.fromARGB(255, 36, 86, 38), // Button color
+          foregroundColor: Colors.white, // Text color
           padding: const EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50),
@@ -30,7 +32,7 @@ class ButtonWidget extends StatelessWidget {
         child: Text(
           buttonText,
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 14,
             color: textColor,
           ),
         ),
