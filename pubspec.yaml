@@ -34,6 +34,7 @@ dependencies:
   permission_handler: ^10.3.0
   flutter_flushbar: ^0.0.2
   dotted_border: ^2.0.0+3
+  file_picker: ^5.5.0
     
 
 
@@ -43,6 +44,7 @@ dependencies:
   showcaseview: ^2.0.3
   syncfusion_flutter_charts: ^22.1.39
   graphview: ^1.2.0
+  
  
   
 

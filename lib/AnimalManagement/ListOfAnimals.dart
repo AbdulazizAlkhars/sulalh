@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/AnimalManagement/AnimalFilters.dart';
 import 'package:hathera_demo/CreateAnimals/CreateAnimal1.dart';
-import 'package:hathera_demo/CreateAnimals/asd.dart';
 
 import 'package:hathera_demo/HomeScreen/GuestMode/AnimalInfo.dart';
 

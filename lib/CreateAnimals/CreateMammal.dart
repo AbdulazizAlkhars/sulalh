@@ -20,19 +20,27 @@ class CreateMammalPage extends StatefulWidget {
 
 class _CreateMammalPage extends State<CreateMammalPage> {
   final TextEditingController _notesController = TextEditingController();
-  String selectedSire = 'Add';
-  String selectedDam = 'Add';
-  DateTime? selectedDate;
-  List<String> selectedChips = [];
-  List<Widget> customTextFields = [];
-  Map<String, DateTime?> selectedDates = {};
+  String selectedMammalSire = 'Add';
+  String selectedMammalDam = 'Add';
+  DateTime? selectedMammalDate;
+  String selectedDate = '';
+
+  void setSelectedDate(String date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
+
+  List<String> selectedMammalChips = [];
+  List<Widget> customMammalTextFields = [];
+  Map<String, DateTime?> selectedMammalDates = {};
   String selectedDateType = "Date Of Birth"; // Default value
   // Initial text for the button
-  String selectedGender = '';
-  bool _addParents = false;
-  bool _addChildren = false;
-  final ImagePicker _picker = ImagePicker();
-  File? _selectedImage;
+  String selectedMammalGender = '';
+  bool _addMammalParents = false;
+  bool _addMammalChildren = false;
+  final ImagePicker _Mammalpicker = ImagePicker();
+  File? _selectedMammalImage;
 
   void _showImagePicker(BuildContext context) {
     showModalBottomSheet(
@@ -47,11 +55,11 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                 title: const Text('Camera'),
                 onTap: () async {
                   Navigator.pop(context);
-                  final pickedImage =
-                      await _picker.pickImage(source: ImageSource.camera);
-                  if (pickedImage != null) {
+                  final pickedMammalImage =
+                      await _Mammalpicker.pickImage(source: ImageSource.camera);
+                  if (pickedMammalImage != null) {
                     setState(() {
-                      _selectedImage = File(pickedImage.path);
+                      _selectedMammalImage = File(pickedMammalImage.path);
                     });
                   }
                 },
@@ -61,11 +69,11 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                 title: const Text('Gallery'),
                 onTap: () async {
                   Navigator.pop(context);
-                  final pickedImage =
-                      await _picker.pickImage(source: ImageSource.gallery);
-                  if (pickedImage != null) {
+                  final pickedMammalImage = await _Mammalpicker.pickImage(
+                      source: ImageSource.gallery);
+                  if (pickedMammalImage != null) {
                     setState(() {
-                      _selectedImage = File(pickedImage.path);
+                      _selectedMammalImage = File(pickedMammalImage.path);
                     });
                   }
                 },
@@ -83,7 +91,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
       isScrollControlled: true,
       builder: (BuildContext context) {
         // ignore: non_constant_identifier_names
-        List<Map<String, String>> SireDetails = [
+        List<Map<String, String>> MammalSireDetails = [
           {'name': 'Alice', 'nickname': 'Cow'},
           {'name': 'Bob', 'nickname': 'Sheep'},
           {'name': 'Charlie', 'nickname': 'Horse'},
@@ -127,7 +135,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                             child: TextField(
                               onChanged: (value) {
                                 setState(() {
-                                  SireDetails = [
+                                  MammalSireDetails = [
                                     {'name': 'Alice', 'nickname': 'Cow'},
                                     {'name': 'Bob', 'nickname': 'Sheep'},
                                     {'name': 'Charlie', 'nickname': 'Horse'},
@@ -156,17 +164,18 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                     ),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: SireDetails.length,
+                        itemCount: MammalSireDetails.length,
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(
                             leading: CircleAvatar(
-                              child: Text(SireDetails[index]['name']![0]),
+                              child: Text(MammalSireDetails[index]['name']![0]),
                             ),
-                            title: Text(SireDetails[index]['name']!),
-                            subtitle: Text(SireDetails[index]['nickname']!),
+                            title: Text(MammalSireDetails[index]['name']!),
+                            subtitle:
+                                Text(MammalSireDetails[index]['nickname']!),
                             onTap: () {
                               Navigator.pop(
-                                  context, SireDetails[index]['name']);
+                                  context, MammalSireDetails[index]['name']);
                             },
                           );
                         },
@@ -182,7 +191,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
     );
     if (newSire != null) {
       setState(() {
-        selectedSire = newSire;
+        selectedMammalSire = newSire;
       });
     }
   }
@@ -193,7 +202,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
       isScrollControlled: true,
       builder: (BuildContext context) {
         // ignore: non_constant_identifier_names
-        List<Map<String, String>> DamDetails = [
+        List<Map<String, String>> MammalDamDetails = [
           {'name': 'Mantis', 'nickname': 'Alein'},
           {'name': 'Nebula', 'nickname': 'Robot'},
           {'name': 'Rocket', 'nickname': 'Racoon'},
@@ -238,7 +247,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                             child: TextField(
                               onChanged: (value) {
                                 setState(() {
-                                  DamDetails = [
+                                  MammalDamDetails = [
                                     {'name': 'Mantis', 'nickname': 'Alein'},
                                     {'name': 'Nebula', 'nickname': 'Robot'},
                                     {'name': 'Rocket', 'nickname': 'Racoon'},
@@ -267,16 +276,18 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                     ),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: DamDetails.length,
+                        itemCount: MammalDamDetails.length,
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(
                             leading: CircleAvatar(
-                              child: Text(DamDetails[index]['name']![0]),
+                              child: Text(MammalDamDetails[index]['name']![0]),
                             ),
-                            title: Text(DamDetails[index]['name']!),
-                            subtitle: Text(DamDetails[index]['nickname']!),
+                            title: Text(MammalDamDetails[index]['name']!),
+                            subtitle:
+                                Text(MammalDamDetails[index]['nickname']!),
                             onTap: () {
-                              Navigator.pop(context, DamDetails[index]['name']);
+                              Navigator.pop(
+                                  context, MammalDamDetails[index]['name']);
                             },
                           );
                         },
@@ -293,13 +304,13 @@ class _CreateMammalPage extends State<CreateMammalPage> {
 
     if (newDam != null) {
       setState(() {
-        selectedDam = newDam;
+        selectedMammalDam = newDam;
       });
     }
   }
 
   void _showDateSelectionSheet(BuildContext context) async {
-    List<String> dateTypes = [
+    List<String> MammaldateTypes = [
       'Date Of Weaning',
       'Date Of Mating',
       'Date Of Death',
@@ -329,18 +340,19 @@ class _CreateMammalPage extends State<CreateMammalPage> {
               Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: dateTypes.length,
+                  itemCount: MammaldateTypes.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Column(
                       children: [
                         ListTile(
-                          title: Text(dateTypes[index]),
+                          title: Text(MammaldateTypes[index]),
                           dense: true,
                           minVerticalPadding: double.minPositive,
                           trailing: const Icon(Icons.arrow_right_alt_rounded),
                           onTap: () {
                             Navigator.pop(context);
-                            _showDatePicker(context, dateTypes[index]);
+                            _showMammalDatePicker(
+                                context, MammaldateTypes[index]);
                           },
                         ),
                         const Divider(),
@@ -356,7 +368,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
     );
   }
 
-  void _showDatePicker(BuildContext context, String dateType) {
+  void _showMammalDatePicker(BuildContext context, String dateType) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext builder) {
@@ -369,7 +381,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
             mode: CupertinoDatePickerMode.date,
             onDateTimeChanged: (DateTime pickedDate) {
               setState(() {
-                selectedDates[dateType] = pickedDate;
+                selectedMammalDates[dateType] = pickedDate;
               });
             },
           ),
@@ -418,78 +430,80 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                         children: [
                           CustomTag(
                             label: 'Borrowed',
-                            selected: selectedChips.contains('Borrowed'),
+                            selected: selectedMammalChips.contains('Borrowed'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Borrowed')) {
-                                  selectedChips.remove('Borrowed');
+                                if (selectedMammalChips.contains('Borrowed')) {
+                                  selectedMammalChips.remove('Borrowed');
                                 } else {
-                                  selectedChips.add('Borrowed');
+                                  selectedMammalChips.add('Borrowed');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Adopted',
-                            selected: selectedChips.contains('Adopted'),
+                            selected: selectedMammalChips.contains('Adopted'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Adopted')) {
-                                  selectedChips.remove('Adopted');
+                                if (selectedMammalChips.contains('Adopted')) {
+                                  selectedMammalChips.remove('Adopted');
                                 } else {
-                                  selectedChips.add('Adopted');
+                                  selectedMammalChips.add('Adopted');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Donated',
-                            selected: selectedChips.contains('Donated'),
+                            selected: selectedMammalChips.contains('Donated'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Donated')) {
-                                  selectedChips.remove('Donated');
+                                if (selectedMammalChips.contains('Donated')) {
+                                  selectedMammalChips.remove('Donated');
                                 } else {
-                                  selectedChips.add('Donated');
+                                  selectedMammalChips.add('Donated');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Escaped',
-                            selected: selectedChips.contains('Escaped'),
+                            selected: selectedMammalChips.contains('Escaped'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Escaped')) {
-                                  selectedChips.remove('Escaped');
+                                if (selectedMammalChips.contains('Escaped')) {
+                                  selectedMammalChips.remove('Escaped');
                                 } else {
-                                  selectedChips.add('Escaped');
+                                  selectedMammalChips.add('Escaped');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Stolen',
-                            selected: selectedChips.contains('Stolen'),
+                            selected: selectedMammalChips.contains('Stolen'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Stolen')) {
-                                  selectedChips.remove('Stolen');
+                                if (selectedMammalChips.contains('Stolen')) {
+                                  selectedMammalChips.remove('Stolen');
                                 } else {
-                                  selectedChips.add('Stolen');
+                                  selectedMammalChips.add('Stolen');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Trasnferred',
-                            selected: selectedChips.contains('Trasnferred'),
+                            selected:
+                                selectedMammalChips.contains('Trasnferred'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Trasnferred')) {
-                                  selectedChips.remove('Trasnferred');
+                                if (selectedMammalChips
+                                    .contains('Trasnferred')) {
+                                  selectedMammalChips.remove('Trasnferred');
                                 } else {
-                                  selectedChips.add('Trasnferred');
+                                  selectedMammalChips.add('Trasnferred');
                                 }
                               });
                             },
@@ -513,91 +527,95 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                         children: [
                           CustomTag(
                             label: 'Injured',
-                            selected: selectedChips.contains('Injured'),
+                            selected: selectedMammalChips.contains('Injured'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Injured')) {
-                                  selectedChips.remove('Injured');
+                                if (selectedMammalChips.contains('Injured')) {
+                                  selectedMammalChips.remove('Injured');
                                 } else {
-                                  selectedChips.add('Injured');
+                                  selectedMammalChips.add('Injured');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Sick',
-                            selected: selectedChips.contains('Sick'),
+                            selected: selectedMammalChips.contains('Sick'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Sick')) {
-                                  selectedChips.remove('Sick');
+                                if (selectedMammalChips.contains('Sick')) {
+                                  selectedMammalChips.remove('Sick');
                                 } else {
-                                  selectedChips.add('Sick');
+                                  selectedMammalChips.add('Sick');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Quarantined',
-                            selected: selectedChips.contains('Quarantined'),
+                            selected:
+                                selectedMammalChips.contains('Quarantined'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Quarantined')) {
-                                  selectedChips.remove('Quarantined');
+                                if (selectedMammalChips
+                                    .contains('Quarantined')) {
+                                  selectedMammalChips.remove('Quarantined');
                                 } else {
-                                  selectedChips.add('Quarantined');
+                                  selectedMammalChips.add('Quarantined');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Medication',
-                            selected: selectedChips.contains('Medication'),
+                            selected:
+                                selectedMammalChips.contains('Medication'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Medication')) {
-                                  selectedChips.remove('Medication');
+                                if (selectedMammalChips
+                                    .contains('Medication')) {
+                                  selectedMammalChips.remove('Medication');
                                 } else {
-                                  selectedChips.add('Medication');
+                                  selectedMammalChips.add('Medication');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Testing',
-                            selected: selectedChips.contains('Testing'),
+                            selected: selectedMammalChips.contains('Testing'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Testing')) {
-                                  selectedChips.remove('Testing');
+                                if (selectedMammalChips.contains('Testing')) {
+                                  selectedMammalChips.remove('Testing');
                                 } else {
-                                  selectedChips.add('Testing');
+                                  selectedMammalChips.add('Testing');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Pregnant',
-                            selected: selectedChips.contains('Pregnant'),
+                            selected: selectedMammalChips.contains('Pregnant'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Pregnant')) {
-                                  selectedChips.remove('Pregnant');
+                                if (selectedMammalChips.contains('Pregnant')) {
+                                  selectedMammalChips.remove('Pregnant');
                                 } else {
-                                  selectedChips.add('Pregnant');
+                                  selectedMammalChips.add('Pregnant');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Lactating',
-                            selected: selectedChips.contains('Lactating'),
+                            selected: selectedMammalChips.contains('Lactating'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Lactating')) {
-                                  selectedChips.remove('Lactating');
+                                if (selectedMammalChips.contains('Lactating')) {
+                                  selectedMammalChips.remove('Lactating');
                                 } else {
-                                  selectedChips.add('Lactating');
+                                  selectedMammalChips.add('Lactating');
                                 }
                               });
                             },
@@ -621,26 +639,26 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                         children: [
                           CustomTag(
                             label: 'Sold',
-                            selected: selectedChips.contains('Sold'),
+                            selected: selectedMammalChips.contains('Sold'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Sold')) {
-                                  selectedChips.remove('Sold');
+                                if (selectedMammalChips.contains('Sold')) {
+                                  selectedMammalChips.remove('Sold');
                                 } else {
-                                  selectedChips.add('Sold');
+                                  selectedMammalChips.add('Sold');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Dead',
-                            selected: selectedChips.contains('Dead'),
+                            selected: selectedMammalChips.contains('Dead'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Dead')) {
-                                  selectedChips.remove('Dead');
+                                if (selectedMammalChips.contains('Dead')) {
+                                  selectedMammalChips.remove('Dead');
                                 } else {
-                                  selectedChips.add('Dead');
+                                  selectedMammalChips.add('Dead');
                                 }
                               });
                             },
@@ -656,8 +674,8 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                             child: ElevatedButton(
                               onPressed: () {
                                 // Handle the button press here
-                                Navigator.of(context)
-                                    .pop(selectedChips); // Close the modal
+                                Navigator.of(context).pop(
+                                    selectedMammalChips); // Close the modal
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color.fromARGB(
@@ -686,7 +704,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
 
     if (result != null) {
       setState(() {
-        selectedChips = List<String>.from(result);
+        selectedMammalChips = List<String>.from(result);
       });
     }
   }
@@ -745,7 +763,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                 ButtonWidget(
                   onPressed: () {
                     Navigator.pop(context); // Close the modal
-                    _showFieldContentModal(context, fieldName);
+                    _showMammalFieldContentModal(context, fieldName);
                     // Add your continue button logic here
                   },
                   buttonText: 'Confirm',
@@ -780,7 +798,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
     );
   }
 
-  void _showFieldContentModal(BuildContext context, String fieldName) {
+  void _showMammalFieldContentModal(BuildContext context, String fieldName) {
     String fieldContent = '';
 
     showModalBottomSheet(
@@ -831,7 +849,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                 ButtonWidget(
                   onPressed: () {
                     Navigator.pop(context); // Close the modal
-                    _addNewTextField(fieldName, fieldContent);
+                    _addMammalNewTextField(fieldName, fieldContent);
                     // Add your continue button logic here
                   },
                   buttonText: 'Confirm',
@@ -867,9 +885,9 @@ class _CreateMammalPage extends State<CreateMammalPage> {
     );
   }
 
-  void _addNewTextField(String name, String content) {
+  void _addMammalNewTextField(String name, String content) {
     setState(() {
-      customTextFields.add(
+      customMammalTextFields.add(
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -938,10 +956,10 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                   child: CircleAvatar(
                     radius: 70,
                     backgroundColor: Colors.grey[100],
-                    backgroundImage: _selectedImage != null
-                        ? FileImage(_selectedImage!)
+                    backgroundImage: _selectedMammalImage != null
+                        ? FileImage(_selectedMammalImage!)
                         : null,
-                    child: _selectedImage == null
+                    child: _selectedMammalImage == null
                         ? const Icon(
                             Icons.camera_alt_outlined,
                             size: 50,
@@ -1004,17 +1022,17 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                     ),
                   ),
                   Switch(
-                    value: _addParents,
+                    value: _addMammalParents,
                     onChanged: (value) {
                       setState(() {
-                        _addParents = value;
+                        _addMammalParents = value;
                       });
                     },
                   ),
                 ],
               ),
               Visibility(
-                visible: _addParents,
+                visible: _addMammalParents,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -1037,7 +1055,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                               _showSireSelectionSheet(context);
                             },
                             child: Text(
-                              selectedSire,
+                              selectedMammalSire,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 36, 86, 38),
@@ -1064,7 +1082,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                               _showDamSelectionSheet(context);
                             },
                             child: Text(
-                              selectedDam,
+                              selectedMammalDam,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 36, 86, 38),
@@ -1089,10 +1107,10 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                     ),
                   ),
                   Switch(
-                    value: _addChildren,
+                    value: _addMammalChildren,
                     onChanged: (value) {
                       setState(() {
-                        _addChildren = value;
+                        _addMammalChildren = value;
                       });
                     },
                   ),
@@ -1112,7 +1130,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    selectedGender = 'Unknown';
+                    selectedMammalGender = 'Unknown';
                   });
                 },
                 child: Row(
@@ -1131,10 +1149,10 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: selectedGender == 'Unknown'
+                          color: selectedMammalGender == 'Unknown'
                               ? Colors.green
                               : Colors.grey,
-                          width: selectedGender == 'Unknown' ? 6.0 : 2.0,
+                          width: selectedMammalGender == 'Unknown' ? 6.0 : 2.0,
                         ),
                       ),
                     ),
@@ -1145,7 +1163,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    selectedGender = 'Male';
+                    selectedMammalGender = 'Male';
                   });
                 },
                 child: Row(
@@ -1164,10 +1182,10 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: selectedGender == 'Male'
+                          color: selectedMammalGender == 'Male'
                               ? Colors.green
                               : Colors.grey,
-                          width: selectedGender == 'Male' ? 6.0 : 2.0,
+                          width: selectedMammalGender == 'Male' ? 6.0 : 2.0,
                         ),
                       ),
                     ),
@@ -1178,7 +1196,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    selectedGender = 'Female';
+                    selectedMammalGender = 'Female';
                   });
                 },
                 child: Row(
@@ -1197,10 +1215,10 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: selectedGender == 'Female'
+                          color: selectedMammalGender == 'Female'
                               ? Colors.green
                               : Colors.grey,
-                          width: selectedGender == 'Female' ? 6.0 : 2.0,
+                          width: selectedMammalGender == 'Female' ? 6.0 : 2.0,
                         ),
                       ),
                     ),
@@ -1226,8 +1244,10 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              const DateTextField(),
-              _buildDateFields(),
+              DateTextField(
+                onDateSelected: setSelectedDate,
+              ),
+              _buildMammalDateFields(),
               TextButton(
                 onPressed: () {
                   _showDateSelectionSheet(context);
@@ -1253,13 +1273,14 @@ class _CreateMammalPage extends State<CreateMammalPage> {
               Wrap(
                 spacing: 8.0,
                 runSpacing: 8.0,
-                children: selectedChips.map((chip) {
+                children: selectedMammalChips.map((chip) {
                   return CustomTag(
                     label: chip,
                     selected: true, // Since these are selected chips
                     onTap: () {
                       setState(() {
-                        selectedChips.remove(chip); // To deselect the chip
+                        selectedMammalChips
+                            .remove(chip); // To deselect the chip
                       });
                     },
                   );
@@ -1287,7 +1308,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                 ),
               ),
               Column(
-                children: customTextFields,
+                children: customMammalTextFields,
               ),
               TextButton(
                 onPressed: () {
@@ -1389,11 +1410,11 @@ class _CreateMammalPage extends State<CreateMammalPage> {
     );
   }
 
-  Widget _buildDateFields() {
+  Widget _buildMammalDateFields() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: selectedDates.keys.map((dateType) {
-        final DateTime? selectedDate = selectedDates[dateType];
+      children: selectedMammalDates.keys.map((dateType) {
+        final DateTime? selectedDate = selectedMammalDates[dateType];
         return selectedDate != null
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1422,7 +1443,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
                           horizontal: 16.0), // Adjust padding as needed
                       suffixIcon: GestureDetector(
                         onTap: () {
-                          _showDatePicker(context, dateType);
+                          _showMammalDatePicker(context, dateType);
                         },
                         child: const Icon(
                           Icons.calendar_today,

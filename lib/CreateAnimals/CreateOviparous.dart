@@ -1,6 +1,8 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:hathera_demo/CreateAnimals/AllVariablesParsed.dart.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/TagChips.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';
@@ -20,19 +22,33 @@ class CreateOviparousPage extends StatefulWidget {
 
 class _CreateOviparousPage extends State<CreateOviparousPage> {
   final TextEditingController _notesController = TextEditingController();
-  String selectedSire = 'Add';
-  String selectedDam = 'Add';
-  DateTime? selectedDate;
-  List<String> selectedChips = [];
-  List<Widget> customTextFields = [];
-  Map<String, DateTime?> selectedDates = {};
-  String selectedDateType = "Date Of Birth"; // Default value
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _frequencyEggsController =
+      TextEditingController();
+  final TextEditingController _numberofEggsController = TextEditingController();
+  String fieldName = '';
+  String fieldContent = '';
+  String selectedOviSire = 'Add';
+  String selectedOviDam = 'Add';
+  String selectedDate = '';
+
+  void setSelectedDate(String date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
+
+  List<String> selectedOviChips = [];
+  List<Widget> customOviTextFields = [];
+  Map<String, DateTime?> selectedOviDates = {};
+  bool showAdditionalFields = false;
+  String selectedOviDateType = "Date Of Birth"; // Default value
   // Initial text for the button
-  String selectedGender = '';
-  bool _addParents = false;
-  bool _addChildren = false;
-  final ImagePicker _picker = ImagePicker();
-  File? _selectedImage;
+  String selectedOviGender = '';
+  bool _addOviParents = false;
+  bool _addOviChildren = false;
+  final ImagePicker _Ovipicker = ImagePicker();
+  File? _selectedOviImage;
 
   void _showImagePicker(BuildContext context) {
     showModalBottomSheet(
@@ -47,11 +63,11 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                 title: const Text('Camera'),
                 onTap: () async {
                   Navigator.pop(context);
-                  final pickedImage =
-                      await _picker.pickImage(source: ImageSource.camera);
-                  if (pickedImage != null) {
+                  final pickedOviImage =
+                      await _Ovipicker.pickImage(source: ImageSource.camera);
+                  if (pickedOviImage != null) {
                     setState(() {
-                      _selectedImage = File(pickedImage.path);
+                      _selectedOviImage = File(pickedOviImage.path);
                     });
                   }
                 },
@@ -61,11 +77,11 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                 title: const Text('Gallery'),
                 onTap: () async {
                   Navigator.pop(context);
-                  final pickedImage =
-                      await _picker.pickImage(source: ImageSource.gallery);
-                  if (pickedImage != null) {
+                  final pickedOviImage =
+                      await _Ovipicker.pickImage(source: ImageSource.gallery);
+                  if (pickedOviImage != null) {
                     setState(() {
-                      _selectedImage = File(pickedImage.path);
+                      _selectedOviImage = File(pickedOviImage.path);
                     });
                   }
                 },
@@ -77,13 +93,13 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
     );
   }
 
-  void _showSireSelectionSheet(BuildContext context) async {
-    final String? newSire = await showModalBottomSheet(
+  void _showOviSireSelectionSheet(BuildContext context) async {
+    final String? newOviSire = await showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
         // ignore: non_constant_identifier_names
-        List<Map<String, String>> SireDetails = [
+        List<Map<String, String>> OviSireDetails = [
           {'name': 'Alice', 'nickname': 'Cow'},
           {'name': 'Bob', 'nickname': 'Sheep'},
           {'name': 'Charlie', 'nickname': 'Horse'},
@@ -127,7 +143,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                             child: TextField(
                               onChanged: (value) {
                                 setState(() {
-                                  SireDetails = [
+                                  OviSireDetails = [
                                     {'name': 'Alice', 'nickname': 'Cow'},
                                     {'name': 'Bob', 'nickname': 'Sheep'},
                                     {'name': 'Charlie', 'nickname': 'Horse'},
@@ -156,17 +172,17 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                     ),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: SireDetails.length,
+                        itemCount: OviSireDetails.length,
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(
                             leading: CircleAvatar(
-                              child: Text(SireDetails[index]['name']![0]),
+                              child: Text(OviSireDetails[index]['name']![0]),
                             ),
-                            title: Text(SireDetails[index]['name']!),
-                            subtitle: Text(SireDetails[index]['nickname']!),
+                            title: Text(OviSireDetails[index]['name']!),
+                            subtitle: Text(OviSireDetails[index]['nickname']!),
                             onTap: () {
                               Navigator.pop(
-                                  context, SireDetails[index]['name']);
+                                  context, OviSireDetails[index]['name']);
                             },
                           );
                         },
@@ -180,20 +196,20 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
         );
       },
     );
-    if (newSire != null) {
+    if (newOviSire != null) {
       setState(() {
-        selectedSire = newSire;
+        selectedOviSire = newOviSire;
       });
     }
   }
 
-  void _showDamSelectionSheet(BuildContext context) async {
-    final String? newDam = await showModalBottomSheet(
+  void _showOviDamSelectionSheet(BuildContext context) async {
+    final String? newOviDam = await showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
         // ignore: non_constant_identifier_names
-        List<Map<String, String>> DamDetails = [
+        List<Map<String, String>> OviDamDetails = [
           {'name': 'Mantis', 'nickname': 'Alein'},
           {'name': 'Nebula', 'nickname': 'Robot'},
           {'name': 'Rocket', 'nickname': 'Racoon'},
@@ -238,7 +254,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                             child: TextField(
                               onChanged: (value) {
                                 setState(() {
-                                  DamDetails = [
+                                  OviDamDetails = [
                                     {'name': 'Mantis', 'nickname': 'Alein'},
                                     {'name': 'Nebula', 'nickname': 'Robot'},
                                     {'name': 'Rocket', 'nickname': 'Racoon'},
@@ -267,16 +283,17 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                     ),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: DamDetails.length,
+                        itemCount: OviDamDetails.length,
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(
                             leading: CircleAvatar(
-                              child: Text(DamDetails[index]['name']![0]),
+                              child: Text(OviDamDetails[index]['name']![0]),
                             ),
-                            title: Text(DamDetails[index]['name']!),
-                            subtitle: Text(DamDetails[index]['nickname']!),
+                            title: Text(OviDamDetails[index]['name']!),
+                            subtitle: Text(OviDamDetails[index]['nickname']!),
                             onTap: () {
-                              Navigator.pop(context, DamDetails[index]['name']);
+                              Navigator.pop(
+                                  context, OviDamDetails[index]['name']);
                             },
                           );
                         },
@@ -291,17 +308,16 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
       },
     );
 
-    if (newDam != null) {
+    if (newOviDam != null) {
       setState(() {
-        selectedDam = newDam;
+        selectedOviDam = newOviDam;
       });
     }
   }
 
   void _showDateSelectionSheet(BuildContext context) async {
-    List<String> dateTypes = [
-      'Date Of Weaning',
-      'Date Of Mating',
+    List<String> OvidateTypes = [
+      'Date Of Hatching',
       'Date Of Death',
       'Date Of Sale',
     ];
@@ -329,18 +345,18 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
               Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: dateTypes.length,
+                  itemCount: OvidateTypes.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Column(
                       children: [
                         ListTile(
-                          title: Text(dateTypes[index]),
+                          title: Text(OvidateTypes[index]),
                           dense: true,
                           minVerticalPadding: double.minPositive,
                           trailing: const Icon(Icons.arrow_right_alt_rounded),
                           onTap: () {
                             Navigator.pop(context);
-                            _showDatePicker(context, dateTypes[index]);
+                            _showOviDatePicker(context, OvidateTypes[index]);
                           },
                         ),
                         const Divider(),
@@ -356,7 +372,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
     );
   }
 
-  void _showDatePicker(BuildContext context, String dateType) {
+  void _showOviDatePicker(BuildContext context, String OvidateType) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext builder) {
@@ -367,9 +383,9 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
             minimumYear: 2000,
             maximumYear: DateTime.now().year,
             mode: CupertinoDatePickerMode.date,
-            onDateTimeChanged: (DateTime pickedDate) {
+            onDateTimeChanged: (DateTime pickedOviDate) {
               setState(() {
-                selectedDates[dateType] = pickedDate;
+                selectedOviDates[OvidateType] = pickedOviDate;
               });
             },
           ),
@@ -378,7 +394,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
     );
   }
 
-  void _openModalSheet() async {
+  void _openOviModalSheet() async {
     final result = await showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -418,78 +434,78 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                         children: [
                           CustomTag(
                             label: 'Borrowed',
-                            selected: selectedChips.contains('Borrowed'),
+                            selected: selectedOviChips.contains('Borrowed'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Borrowed')) {
-                                  selectedChips.remove('Borrowed');
+                                if (selectedOviChips.contains('Borrowed')) {
+                                  selectedOviChips.remove('Borrowed');
                                 } else {
-                                  selectedChips.add('Borrowed');
+                                  selectedOviChips.add('Borrowed');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Adopted',
-                            selected: selectedChips.contains('Adopted'),
+                            selected: selectedOviChips.contains('Adopted'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Adopted')) {
-                                  selectedChips.remove('Adopted');
+                                if (selectedOviChips.contains('Adopted')) {
+                                  selectedOviChips.remove('Adopted');
                                 } else {
-                                  selectedChips.add('Adopted');
+                                  selectedOviChips.add('Adopted');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Donated',
-                            selected: selectedChips.contains('Donated'),
+                            selected: selectedOviChips.contains('Donated'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Donated')) {
-                                  selectedChips.remove('Donated');
+                                if (selectedOviChips.contains('Donated')) {
+                                  selectedOviChips.remove('Donated');
                                 } else {
-                                  selectedChips.add('Donated');
+                                  selectedOviChips.add('Donated');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Escaped',
-                            selected: selectedChips.contains('Escaped'),
+                            selected: selectedOviChips.contains('Escaped'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Escaped')) {
-                                  selectedChips.remove('Escaped');
+                                if (selectedOviChips.contains('Escaped')) {
+                                  selectedOviChips.remove('Escaped');
                                 } else {
-                                  selectedChips.add('Escaped');
+                                  selectedOviChips.add('Escaped');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Stolen',
-                            selected: selectedChips.contains('Stolen'),
+                            selected: selectedOviChips.contains('Stolen'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Stolen')) {
-                                  selectedChips.remove('Stolen');
+                                if (selectedOviChips.contains('Stolen')) {
+                                  selectedOviChips.remove('Stolen');
                                 } else {
-                                  selectedChips.add('Stolen');
+                                  selectedOviChips.add('Stolen');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Trasnferred',
-                            selected: selectedChips.contains('Trasnferred'),
+                            selected: selectedOviChips.contains('Trasnferred'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Trasnferred')) {
-                                  selectedChips.remove('Trasnferred');
+                                if (selectedOviChips.contains('Trasnferred')) {
+                                  selectedOviChips.remove('Trasnferred');
                                 } else {
-                                  selectedChips.add('Trasnferred');
+                                  selectedOviChips.add('Trasnferred');
                                 }
                               });
                             },
@@ -513,91 +529,91 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                         children: [
                           CustomTag(
                             label: 'Injured',
-                            selected: selectedChips.contains('Injured'),
+                            selected: selectedOviChips.contains('Injured'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Injured')) {
-                                  selectedChips.remove('Injured');
+                                if (selectedOviChips.contains('Injured')) {
+                                  selectedOviChips.remove('Injured');
                                 } else {
-                                  selectedChips.add('Injured');
+                                  selectedOviChips.add('Injured');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Sick',
-                            selected: selectedChips.contains('Sick'),
+                            selected: selectedOviChips.contains('Sick'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Sick')) {
-                                  selectedChips.remove('Sick');
+                                if (selectedOviChips.contains('Sick')) {
+                                  selectedOviChips.remove('Sick');
                                 } else {
-                                  selectedChips.add('Sick');
+                                  selectedOviChips.add('Sick');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Quarantined',
-                            selected: selectedChips.contains('Quarantined'),
+                            selected: selectedOviChips.contains('Quarantined'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Quarantined')) {
-                                  selectedChips.remove('Quarantined');
+                                if (selectedOviChips.contains('Quarantined')) {
+                                  selectedOviChips.remove('Quarantined');
                                 } else {
-                                  selectedChips.add('Quarantined');
+                                  selectedOviChips.add('Quarantined');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Medication',
-                            selected: selectedChips.contains('Medication'),
+                            selected: selectedOviChips.contains('Medication'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Medication')) {
-                                  selectedChips.remove('Medication');
+                                if (selectedOviChips.contains('Medication')) {
+                                  selectedOviChips.remove('Medication');
                                 } else {
-                                  selectedChips.add('Medication');
+                                  selectedOviChips.add('Medication');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Testing',
-                            selected: selectedChips.contains('Testing'),
+                            selected: selectedOviChips.contains('Testing'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Testing')) {
-                                  selectedChips.remove('Testing');
+                                if (selectedOviChips.contains('Testing')) {
+                                  selectedOviChips.remove('Testing');
                                 } else {
-                                  selectedChips.add('Testing');
+                                  selectedOviChips.add('Testing');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Pregnant',
-                            selected: selectedChips.contains('Pregnant'),
+                            selected: selectedOviChips.contains('Pregnant'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Pregnant')) {
-                                  selectedChips.remove('Pregnant');
+                                if (selectedOviChips.contains('Pregnant')) {
+                                  selectedOviChips.remove('Pregnant');
                                 } else {
-                                  selectedChips.add('Pregnant');
+                                  selectedOviChips.add('Pregnant');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Lactating',
-                            selected: selectedChips.contains('Lactating'),
+                            selected: selectedOviChips.contains('Lactating'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Lactating')) {
-                                  selectedChips.remove('Lactating');
+                                if (selectedOviChips.contains('Lactating')) {
+                                  selectedOviChips.remove('Lactating');
                                 } else {
-                                  selectedChips.add('Lactating');
+                                  selectedOviChips.add('Lactating');
                                 }
                               });
                             },
@@ -621,26 +637,26 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                         children: [
                           CustomTag(
                             label: 'Sold',
-                            selected: selectedChips.contains('Sold'),
+                            selected: selectedOviChips.contains('Sold'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Sold')) {
-                                  selectedChips.remove('Sold');
+                                if (selectedOviChips.contains('Sold')) {
+                                  selectedOviChips.remove('Sold');
                                 } else {
-                                  selectedChips.add('Sold');
+                                  selectedOviChips.add('Sold');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Dead',
-                            selected: selectedChips.contains('Dead'),
+                            selected: selectedOviChips.contains('Dead'),
                             onTap: () {
                               setState(() {
-                                if (selectedChips.contains('Dead')) {
-                                  selectedChips.remove('Dead');
+                                if (selectedOviChips.contains('Dead')) {
+                                  selectedOviChips.remove('Dead');
                                 } else {
-                                  selectedChips.add('Dead');
+                                  selectedOviChips.add('Dead');
                                 }
                               });
                             },
@@ -657,7 +673,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                               onPressed: () {
                                 // Handle the button press here
                                 Navigator.of(context)
-                                    .pop(selectedChips); // Close the modal
+                                    .pop(selectedOviChips); // Close the modal
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color.fromARGB(
@@ -686,21 +702,19 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
 
     if (result != null) {
       setState(() {
-        selectedChips = List<String>.from(result);
+        selectedOviChips = List<String>.from(result);
       });
     }
   }
 
-  void _showFieldNameModal(BuildContext context) {
+  void _showOviFieldNameModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
       showDragHandle: true,
       builder: (BuildContext context) {
-        String fieldName = ''; // Store the field name
-
         return Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Container(
+          child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.35,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -745,7 +759,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                 ButtonWidget(
                   onPressed: () {
                     Navigator.pop(context); // Close the modal
-                    _showFieldContentModal(context, fieldName);
+                    _showOviFieldContentModal(context, fieldName);
                     // Add your continue button logic here
                   },
                   buttonText: 'Confirm',
@@ -780,9 +794,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
     );
   }
 
-  void _showFieldContentModal(BuildContext context, String fieldName) {
-    String fieldContent = '';
-
+  void _showOviFieldContentModal(BuildContext context, String fieldName) {
     showModalBottomSheet(
       showDragHandle: true,
       context: context,
@@ -831,7 +843,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                 ButtonWidget(
                   onPressed: () {
                     Navigator.pop(context); // Close the modal
-                    _addNewTextField(fieldName, fieldContent);
+                    _addNewOviTextField(fieldName, fieldContent);
                     // Add your continue button logic here
                   },
                   buttonText: 'Confirm',
@@ -867,9 +879,9 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
     );
   }
 
-  void _addNewTextField(String name, String content) {
+  void _addNewOviTextField(String name, String content) {
     setState(() {
-      customTextFields.add(
+      customOviTextFields.add(
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -938,10 +950,10 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                   child: CircleAvatar(
                     radius: 70,
                     backgroundColor: Colors.grey[100],
-                    backgroundImage: _selectedImage != null
-                        ? FileImage(_selectedImage!)
+                    backgroundImage: _selectedOviImage != null
+                        ? FileImage(_selectedOviImage!)
                         : null,
-                    child: _selectedImage == null
+                    child: _selectedOviImage == null
                         ? const Icon(
                             Icons.camera_alt_outlined,
                             size: 50,
@@ -975,9 +987,18 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              const CustomTextFormField(
-                keyboardType: TextInputType.emailAddress,
-                labelText: 'Enter Name',
+              TextFormField(
+                controller: _nameController,
+                decoration: InputDecoration(
+                  hintText: 'Enter Name', // Add your hint text here
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(
+                      vertical: 12.0, horizontal: 16.0),
+                ),
+                textInputAction:
+                    TextInputAction.done, // Change the keyboard action
               ),
               const SizedBox(height: 20),
               const Text(
@@ -1004,17 +1025,17 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                     ),
                   ),
                   Switch(
-                    value: _addParents,
+                    value: _addOviParents,
                     onChanged: (value) {
                       setState(() {
-                        _addParents = value;
+                        _addOviParents = value;
                       });
                     },
                   ),
                 ],
               ),
               Visibility(
-                visible: _addParents,
+                visible: _addOviParents,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -1034,10 +1055,10 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                           flex: 0,
                           child: TextButton(
                             onPressed: () {
-                              _showSireSelectionSheet(context);
+                              _showOviSireSelectionSheet(context);
                             },
                             child: Text(
-                              selectedSire,
+                              selectedOviSire,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 36, 86, 38),
@@ -1061,10 +1082,10 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                           flex: 0,
                           child: TextButton(
                             onPressed: () {
-                              _showDamSelectionSheet(context);
+                              _showOviDamSelectionSheet(context);
                             },
                             child: Text(
-                              selectedDam,
+                              selectedOviDam,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 36, 86, 38),
@@ -1089,10 +1110,10 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                     ),
                   ),
                   Switch(
-                    value: _addChildren,
+                    value: _addOviChildren,
                     onChanged: (value) {
                       setState(() {
-                        _addChildren = value;
+                        _addOviChildren = value;
                       });
                     },
                   ),
@@ -1112,7 +1133,8 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    selectedGender = 'Unknown';
+                    selectedOviGender = 'Unknown';
+                    showAdditionalFields = false;
                   });
                 },
                 child: Row(
@@ -1131,10 +1153,10 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: selectedGender == 'Unknown'
+                          color: selectedOviGender == 'Unknown'
                               ? Colors.green
                               : Colors.grey,
-                          width: selectedGender == 'Unknown' ? 6.0 : 2.0,
+                          width: selectedOviGender == 'Unknown' ? 6.0 : 2.0,
                         ),
                       ),
                     ),
@@ -1145,7 +1167,8 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    selectedGender = 'Male';
+                    selectedOviGender = 'Male';
+                    showAdditionalFields = false;
                   });
                 },
                 child: Row(
@@ -1164,10 +1187,10 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: selectedGender == 'Male'
+                          color: selectedOviGender == 'Male'
                               ? Colors.green
                               : Colors.grey,
-                          width: selectedGender == 'Male' ? 6.0 : 2.0,
+                          width: selectedOviGender == 'Male' ? 6.0 : 2.0,
                         ),
                       ),
                     ),
@@ -1178,12 +1201,14 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    selectedGender = 'Female';
+                    selectedOviGender = 'Female';
+                    showAdditionalFields =
+                        true; // Show additional fields when Female is selected
                   });
                 },
                 child: Row(
                   children: [
-                    const Expanded(
+                    Expanded(
                       child: Text(
                         'Female',
                         style: TextStyle(
@@ -1197,10 +1222,10 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: selectedGender == 'Female'
+                          color: selectedOviGender == 'Female'
                               ? Colors.green
                               : Colors.grey,
-                          width: selectedGender == 'Female' ? 6.0 : 2.0,
+                          width: selectedOviGender == 'Female' ? 6.0 : 2.0,
                         ),
                       ),
                     ),
@@ -1209,6 +1234,58 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
               ),
               const SizedBox(height: 10),
               const Divider(),
+              const SizedBox(height: 10),
+              if (showAdditionalFields) // Show additional fields when Female is selected
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Frequency Of Laying Eggs/Month',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      controller: _frequencyEggsController,
+                      decoration: InputDecoration(
+                        hintText: 'Enter Frequency', // Add your hint text here
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 12.0, horizontal: 16.0),
+                      ),
+                      textInputAction:
+                          TextInputAction.done, // Change the keyboard action
+                    ),
+                    // Your first additional text field widget here
+                    SizedBox(height: 10),
+                    Text(
+                      'Number Of Eggs/Month',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      controller: _numberofEggsController,
+                      decoration: InputDecoration(
+                        hintText: 'Enter The Number', // Add your hint text here
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 12.0, horizontal: 16.0),
+                      ),
+                      textInputAction:
+                          TextInputAction.done, // Change the keyboard action
+                    ),
+                    const SizedBox(height: 15),
+                    const Divider(),
+                    // Your second additional text field widget here
+                  ],
+                ),
               const SizedBox(height: 10),
               const Text(
                 "Dates",
@@ -1226,8 +1303,10 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              const DateTextField(),
-              _buildDateFields(),
+              DateTextField(
+                onDateSelected: setSelectedDate,
+              ),
+              _buildOviDateFields(),
               TextButton(
                 onPressed: () {
                   _showDateSelectionSheet(context);
@@ -1253,13 +1332,13 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
               Wrap(
                 spacing: 8.0,
                 runSpacing: 8.0,
-                children: selectedChips.map((chip) {
+                children: selectedOviChips.map((chip) {
                   return CustomTag(
                     label: chip,
                     selected: true, // Since these are selected chips
                     onTap: () {
                       setState(() {
-                        selectedChips.remove(chip); // To deselect the chip
+                        selectedOviChips.remove(chip); // To deselect the chip
                       });
                     },
                   );
@@ -1267,7 +1346,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
               ),
               TextButton(
                 onPressed: () {
-                  _openModalSheet();
+                  _openOviModalSheet();
                 },
                 child: const Text(
                   'Add Tags +',
@@ -1287,11 +1366,11 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                 ),
               ),
               Column(
-                children: customTextFields,
+                children: customOviTextFields,
               ),
               TextButton(
                 onPressed: () {
-                  _showFieldNameModal(context);
+                  _showOviFieldNameModal(context);
                 },
                 child: const Text(
                   'Add Custom Field +',
@@ -1371,7 +1450,30 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
         padding: const EdgeInsets.all(16),
         child: ElevatedButton(
           onPressed: () {
-            // Handle "Continue" button press
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DisplayPage(
+                  fieldName: fieldName,
+                  fieldContent: fieldContent,
+                  numberofEggsController: _numberofEggsController,
+                  frequencyEggsController: _frequencyEggsController,
+                  nameController: _nameController,
+                  notesController: _notesController,
+                  selectedOviSire: selectedOviSire,
+                  selectedDate: selectedDate,
+                  selectedOviDam: selectedOviDam,
+                  selectedOviChips: selectedOviChips,
+                  selectedOviDates: selectedOviDates,
+                  showAdditionalFields: showAdditionalFields,
+                  selectedOviDateType: selectedOviDateType,
+                  selectedOviGender: selectedOviGender,
+                  addOviParents: _addOviParents,
+                  addOviChildren: _addOviChildren,
+                  selectedOviImage: _selectedOviImage,
+                ),
+              ),
+            );
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color.fromARGB(255, 36, 86, 38),
@@ -1389,11 +1491,11 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
     );
   }
 
-  Widget _buildDateFields() {
+  Widget _buildOviDateFields() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: selectedDates.keys.map((dateType) {
-        final DateTime? selectedDate = selectedDates[dateType];
+      children: selectedOviDates.keys.map((dateType) {
+        final DateTime? selectedDate = selectedOviDates[dateType];
         return selectedDate != null
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1422,7 +1524,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                           horizontal: 16.0), // Adjust padding as needed
                       suffixIcon: GestureDetector(
                         onTap: () {
-                          _showDatePicker(context, dateType);
+                          _showOviDatePicker(context, dateType);
                         },
                         child: const Icon(
                           Icons.calendar_today,

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/CreateAnimals/CreateMammal.dart';
 import 'package:hathera_demo/CreateAnimals/CreateAnimal1.dart';
-import 'package:hathera_demo/CreateAnimals/asd.dart';
-
-import 'package:hathera_demo/signup/Signup_With_Phone.dart';
+import 'package:hathera_demo/CreateAnimals/CreateOviparous.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +21,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: CreateAnimalPage(),
+      home: CreateOviparousPage(),
     );
   }
 }
