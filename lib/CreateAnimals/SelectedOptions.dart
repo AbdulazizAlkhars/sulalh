@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/CreateAnimals/CompleteInfo.dart';
+import 'package:hathera_demo/CreateAnimals/CreateMammal.dart';
+import 'package:hathera_demo/CreateAnimals/CreateOviparous.dart';
 
 class SelectedOptionsPage extends StatefulWidget {
   final String selectedAnimalType;
@@ -161,12 +162,25 @@ class _SelectedOptionsPageState extends State<SelectedOptionsPage> {
         padding: const EdgeInsets.all(16),
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const CompleteInfo(),
-              ),
-            );
+            if (widget.selectedAnimalType == 'Mammal') {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      const CreateMammalPage(), // Replace with your mammal page
+                ),
+              );
+            } else if (widget.selectedAnimalType == 'Oviparous') {
+              // Navigate to the oviparous page
+              // Replace the MaterialPageRoute with the appropriate oviparous page
+              // Example:
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CreateOviparousPage(),
+                ),
+              );
+            }
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color.fromARGB(255, 36, 86, 38),

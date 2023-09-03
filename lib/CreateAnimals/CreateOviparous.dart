@@ -10,15 +10,15 @@ import 'dart:io';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 
-class CompleteInfo extends StatefulWidget {
-  const CompleteInfo({super.key});
+class CreateOviparousPage extends StatefulWidget {
+  const CreateOviparousPage({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _CompleteInfo createState() => _CompleteInfo();
+  _CreateOviparousPage createState() => _CreateOviparousPage();
 }
 
-class _CompleteInfo extends State<CompleteInfo> {
+class _CreateOviparousPage extends State<CreateOviparousPage> {
   final TextEditingController _notesController = TextEditingController();
   String selectedSire = 'Add';
   String selectedDam = 'Add';
@@ -903,7 +903,7 @@ class _CompleteInfo extends State<CompleteInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Animal'),
+        title: const Text('Create Oviparous'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {

@@ -5,7 +5,6 @@ class CreateAnimalPage extends StatefulWidget {
   const CreateAnimalPage({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _CreateAnimalPageState createState() => _CreateAnimalPageState();
 }
 
@@ -21,10 +20,26 @@ class _CreateAnimalPageState extends State<CreateAnimalPage> {
         selectedAnimalBreed.isNotEmpty;
   }
 
-  List<String> animalSpeciesList = ['Sheep', 'Cow', 'Horse'];
-  List<String> modalAnimalSpeciesList = ['Tiger', 'Elephant', 'Giraffe'];
-  List<String> animalBreedsList = ['Bengal', 'African', 'Reticulated'];
-  List<String> modalAnimalBreedsList = ['Bengali', 'Africani', 'Reticulatedii'];
+  List<String> mammalSpeciesList = ['Sheep', 'Cow', 'Horse'];
+  List<String> mammalBreedsList = ['Bengal', 'African', 'Reticulated'];
+
+  List<String> oviparousSpeciesList = ['Tiger', 'Elephant', 'Giraffe'];
+  List<String> oviparousBreedsList = ['Bengali', 'Africani', 'Reticulatedii'];
+
+  // Additional lists for mammal and oviparous species and breeds
+  List<String> additionalMammalSpeciesList = ['Lion', 'Deer', 'Goat'];
+  List<String> additionalMammalBreedsList = ['Lioness', 'Roe', 'Mountain Goat'];
+
+  List<String> additionalOviparousSpeciesList = [
+    'Crocodile',
+    'Turtle',
+    'Snake'
+  ];
+  List<String> additionalOviparousBreedsList = [
+    'Nile Crocodile',
+    'Sea Turtle',
+    'Python'
+  ];
 
   // Define a map to associate animal types with their image asset paths
   final Map<String, String> animalImages = {
@@ -87,13 +102,15 @@ class _CreateAnimalPageState extends State<CreateAnimalPage> {
                       ),
                     ),
                   ),
-                  for (String species in animalSpeciesList)
+                  for (String species in selectedAnimalType == 'Mammal'
+                      ? mammalSpeciesList
+                      : oviparousSpeciesList)
                     _buildAnimalSpeciesOption(species),
 
                   TextButton(
                     onPressed: () {
-                      _showModalSheet(
-                          'species'); // Show modal sheet on button press
+                      _showModalSheet('species',
+                          selectedAnimalType); // Show modal sheet on button press
                     },
                     child: const Text(
                       'Show More >',
@@ -118,12 +135,14 @@ class _CreateAnimalPageState extends State<CreateAnimalPage> {
                     ),
                   ),
                 ),
-                for (String breed in animalBreedsList)
+                for (String breed in selectedAnimalType == 'Mammal'
+                    ? mammalBreedsList
+                    : oviparousBreedsList)
                   _buildAnimalBreedOption(breed),
                 TextButton(
                   onPressed: () {
-                    _showModalSheet(
-                        'breeds'); // Show modal sheet on button press
+                    _showModalSheet('breeds',
+                        selectedAnimalType); // Show modal sheet on button press
                   },
                   child: const Text(
                     'Show More >',
@@ -281,14 +300,18 @@ class _CreateAnimalPageState extends State<CreateAnimalPage> {
     );
   }
 
-  void _showModalSheet(String section) async {
+  void _showModalSheet(String section, String animalType) async {
     String searchText = ''; // Store the search text
     List<String> modalList;
 
     if (section == 'species') {
-      modalList = modalAnimalSpeciesList;
+      modalList = animalType == 'Mammal'
+          ? additionalMammalSpeciesList
+          : additionalOviparousSpeciesList;
     } else if (section == 'breeds') {
-      modalList = modalAnimalBreedsList;
+      modalList = animalType == 'Mammal'
+          ? additionalMammalBreedsList
+          : additionalOviparousBreedsList;
     } else {
       return;
     }
@@ -346,7 +369,24 @@ class _CreateAnimalPageState extends State<CreateAnimalPage> {
                                 .contains(searchText.toLowerCase())) {
                           return const SizedBox.shrink();
                         }
-                        return _buildAdditionalOption(item, section);
+                        return ListTile(
+                          leading: CircleAvatar(
+                            // Add your circle avatar properties here
+                            backgroundColor:
+                                Colors.blue, // Change the background color
+                            // You can also set backgroundImage if needed
+                            // backgroundImage: AssetImage('your_image_asset_path.png'),
+                          ),
+                          title: Text(
+                            item,
+                            style: const TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.pop(context, item);
+                          },
+                        );
                       },
                     ),
                   ),
@@ -361,13 +401,25 @@ class _CreateAnimalPageState extends State<CreateAnimalPage> {
     if (selectedValue != null) {
       setState(() {
         if (section == 'species') {
-          animalSpeciesList.remove(selectedValue);
-          animalSpeciesList.insert(0, selectedValue);
-          selectedAnimalSpecies = selectedValue;
+          if (animalType == 'Mammal') {
+            mammalSpeciesList.remove(selectedValue);
+            mammalSpeciesList.insert(0, selectedValue);
+            selectedAnimalSpecies = selectedValue;
+          } else {
+            oviparousSpeciesList.remove(selectedValue);
+            oviparousSpeciesList.insert(0, selectedValue);
+            selectedAnimalSpecies = selectedValue;
+          }
         } else if (section == 'breeds') {
-          animalBreedsList.remove(selectedValue);
-          animalBreedsList.insert(0, selectedValue);
-          selectedAnimalBreed = selectedValue;
+          if (animalType == 'Mammal') {
+            mammalBreedsList.remove(selectedValue);
+            mammalBreedsList.insert(0, selectedValue);
+            selectedAnimalBreed = selectedValue;
+          } else {
+            oviparousBreedsList.remove(selectedValue);
+            oviparousBreedsList.insert(0, selectedValue);
+            selectedAnimalBreed = selectedValue;
+          }
         }
       });
     }
