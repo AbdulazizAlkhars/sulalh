@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Animal_Information/OviparousGeneralInfo.dart';
 
 import 'package:hathera_demo/CreateAnimals/AllVariablesParsed.dart.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
@@ -13,7 +14,14 @@ import 'dart:io';
 import 'package:intl/intl.dart';
 
 class CreateOviparousPage extends StatefulWidget {
-  const CreateOviparousPage({super.key});
+  final String selectedAnimalType;
+  final String selectedAnimalSpecies;
+  final String selectedAnimalBreed;
+
+  CreateOviparousPage(
+      {required this.selectedAnimalType,
+      required this.selectedAnimalSpecies,
+      required this.selectedAnimalBreed});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -1453,7 +1461,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => DisplayPage(
+                builder: (context) => OvigenifnoPage(
                   fieldName: fieldName,
                   fieldContent: fieldContent,
                   numberofEggsController: _numberofEggsController,
@@ -1471,6 +1479,9 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                   addOviParents: _addOviParents,
                   addOviChildren: _addOviChildren,
                   selectedOviImage: _selectedOviImage,
+                  selectedAnimalType: widget.selectedAnimalType,
+                  selectedAnimalSpecies: widget.selectedAnimalSpecies,
+                  selectedAnimalBreed: widget.selectedAnimalBreed,
                 ),
               ),
             );

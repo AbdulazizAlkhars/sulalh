@@ -11,7 +11,13 @@ import 'dart:io';
 import 'package:intl/intl.dart';
 
 class CreateMammalPage extends StatefulWidget {
-  const CreateMammalPage({super.key});
+  final String selectedAnimalType;
+  final String selectedAnimalSpecies;
+  final String selectedAnimalBreed;
+  const CreateMammalPage(
+      {required this.selectedAnimalType,
+      required this.selectedAnimalSpecies,
+      required this.selectedAnimalBreed});
 
   @override
   // ignore: library_private_types_in_public_api

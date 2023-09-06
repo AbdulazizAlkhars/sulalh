@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/AnimalManagement/ListOfAnimals.dart';
 import 'package:hathera_demo/CreateAnimals/CreateAnimal1.dart';
 import 'package:hathera_demo/CreateAnimals/CreateOviparous.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: CreateOviparousPage(),
+      home: CreateAnimalPage(),
     );
   }
 }

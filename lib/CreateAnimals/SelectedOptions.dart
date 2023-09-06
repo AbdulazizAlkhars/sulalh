@@ -166,18 +166,22 @@ class _SelectedOptionsPageState extends State<SelectedOptionsPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      const CreateMammalPage(), // Replace with your mammal page
+                  builder: (context) => CreateMammalPage(
+                    selectedAnimalType: widget.selectedAnimalType,
+                    selectedAnimalSpecies: widget.selectedAnimalSpecies,
+                    selectedAnimalBreed: widget.selectedAnimalBreed,
+                  ),
                 ),
               );
             } else if (widget.selectedAnimalType == 'Oviparous') {
-              // Navigate to the oviparous page
-              // Replace the MaterialPageRoute with the appropriate oviparous page
-              // Example:
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const CreateOviparousPage(),
+                  builder: (context) => CreateOviparousPage(
+                    selectedAnimalType: widget.selectedAnimalType,
+                    selectedAnimalSpecies: widget.selectedAnimalSpecies,
+                    selectedAnimalBreed: widget.selectedAnimalBreed,
+                  ),
                 ),
               );
             }

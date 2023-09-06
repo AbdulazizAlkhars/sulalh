@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class DisplayPage extends StatelessWidget {
+class DisplayPage extends StatefulWidget {
   final String fieldName;
   final String fieldContent;
   final TextEditingController notesController;
@@ -47,6 +47,11 @@ class DisplayPage extends StatelessWidget {
   });
 
   @override
+  State<DisplayPage> createState() => _DisplayPageState();
+}
+
+class _DisplayPageState extends State<DisplayPage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -57,25 +62,26 @@ class DisplayPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Name: ${nameController.text}'),
-            Text('Frequency Of Eggs/Month: ${frequencyEggsController.text}'),
-            Text('Number Of Eggs/Month: ${numberofEggsController.text}'),
-            Text('Notes: ${notesController.text}'),
-            Text('Sire(Father): $selectedOviSire'),
-            Text('Dam(Mother): $selectedOviDam'),
-            Text('Date Of Birth: ${selectedDate.toString()}'),
-            Text('Tags: ${selectedOviChips.join(', ')}'),
-            Text('Additional Dates: ${selectedOviDates.toString()}'),
-            Text('Show Additional Fields: $showAdditionalFields'),
-            Text('Field Name: $fieldName'),
-            Text('Field Content: $fieldContent'),
-            Text('Selected Ovi Date Type: $selectedOviDateType'),
-            Text('Gender: $selectedOviGender'),
-            Text('Add Ovi Parents: $addOviParents'),
-            Text('Add Ovi Children: $addOviChildren'),
-            if (selectedOviImage != null)
+            Text('Name: ${widget.nameController.text}'),
+            Text(
+                'Frequency Of Eggs/Month: ${widget.frequencyEggsController.text}'),
+            Text('Number Of Eggs/Month: ${widget.numberofEggsController.text}'),
+            Text('Notes: ${widget.notesController.text}'),
+            Text('Sire(Father): ${widget.selectedOviSire}'),
+            Text('Dam(Mother): ${widget.selectedOviDam}'),
+            Text('Date Of Birth: ${widget.selectedDate.toString()}'),
+            Text('Tags: ${widget.selectedOviChips.join(', ')}'),
+            Text('Additional Dates: ${widget.selectedOviDates.toString()}'),
+            Text('Show Additional Fields: ${widget.showAdditionalFields}'),
+            Text('Field Name: ${widget.fieldName}'),
+            Text('Field Content: ${widget.fieldContent}'),
+            Text('Selected Ovi Date Type: ${widget.selectedOviDateType}'),
+            Text('Gender: ${widget.selectedOviGender}'),
+            Text('Add Ovi Parents: ${widget.addOviParents}'),
+            Text('Add Ovi Children: ${widget.addOviChildren}'),
+            if (widget.selectedOviImage != null)
               Image.file(
-                selectedOviImage!,
+                widget.selectedOviImage!,
                 width: 200,
                 height: 200,
               ),
