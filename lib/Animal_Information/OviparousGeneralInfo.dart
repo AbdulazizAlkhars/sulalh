@@ -1,4 +1,5 @@
 import 'dart:io';
+// ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Widgets/TagChips.dart';
@@ -28,6 +29,7 @@ class OvigenifnoPage extends StatefulWidget {
   final String selectedAnimalBreed;
 
   OvigenifnoPage({
+    super.key,
     required this.fieldName,
     required this.fieldContent,
     required this.notesController,
@@ -81,6 +83,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
   @override
   Widget build(BuildContext context) {
     final formattedDate = DateFormat('dd.MM.yyyy').parse(widget.selectedDate);
+
     return Scaffold(
       backgroundColor: Colors.lightGreen,
       appBar: AppBar(
@@ -167,8 +170,8 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                 child: Column(
                   children: [
                     Text(
-                      '${widget.nameController.text}',
-                      style: TextStyle(
+                      widget.nameController.text,
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
                         color: Colors.black,
@@ -289,13 +292,13 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         children: [
                                           Text(
                                             widget.selectedAnimalType,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 14,
                                             ),
                                           ),
-                                          SizedBox(height: 8),
-                                          Text(
+                                          const SizedBox(height: 8),
+                                          const Text(
                                             'Type',
                                             style: TextStyle(
                                               color: Colors.grey,
@@ -308,13 +311,13 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         children: [
                                           Text(
                                             widget.selectedAnimalSpecies,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 14,
                                               color: Colors.black,
                                             ),
                                           ),
-                                          SizedBox(height: 8),
-                                          Text(
+                                          const SizedBox(height: 8),
+                                          const Text(
                                             'Species',
                                             style: TextStyle(
                                               color: Colors.grey,
@@ -327,13 +330,13 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         children: [
                                           Text(
                                             widget.selectedOviGender,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 14,
                                               color: Colors.black,
                                             ),
                                           ),
-                                          SizedBox(height: 8),
-                                          Text(
+                                          const SizedBox(height: 8),
+                                          const Text(
                                             'Sex',
                                             style: TextStyle(
                                               color: Colors.grey,
@@ -360,13 +363,14 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                 ),
                                 const SizedBox(height: 13),
                                 Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 16),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16),
                                   child: Row(
                                     children: [
-                                      Expanded(
+                                      const Expanded(
                                         flex: 2,
                                         child: Text(
-                                          'Date Of Birth',
+                                          'Age',
                                           style: TextStyle(
                                               fontSize: 14,
                                               color: Colors.black),
@@ -375,8 +379,8 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                       Expanded(
                                         flex: 0,
                                         child: Text(
-                                          '${calculateAge(formattedDate)}',
-                                          style: TextStyle(
+                                          calculateAge(formattedDate),
+                                          style: const TextStyle(
                                               fontSize: 14,
                                               color: Colors.black),
                                         ),
@@ -385,11 +389,13 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                   ),
                                 ),
                                 const SizedBox(height: 12),
+
                                 Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 16),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16),
                                   child: Row(
                                     children: [
-                                      Expanded(
+                                      const Expanded(
                                         flex: 2,
                                         child: Text(
                                           'Breed',
@@ -402,7 +408,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         flex: 0,
                                         child: Text(
                                           widget.selectedAnimalBreed,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontSize: 14,
                                               color: Colors.black),
                                         ),
@@ -411,11 +417,57 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                   ),
                                 ),
                                 const SizedBox(height: 12),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 16),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16),
                                   child: Row(
                                     children: [
+                                      const Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          'Date Of Hatching',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.black),
+                                        ),
+                                      ),
                                       Expanded(
+                                        flex: 0,
+                                        child: widget.selectedOviDates.entries
+                                                    .toList()[0]
+                                                    .value !=
+                                                null
+                                            ? Text(
+                                                DateFormat('dd.MM.yyyy').format(
+                                                  widget
+                                                      .selectedOviDates.entries
+                                                      .toList()[0]
+                                                      .value!,
+                                                ),
+                                                style: const TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors.black,
+                                                ),
+                                              )
+                                            : Text(
+                                                'ADD',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors
+                                                      .blue, // You can customize the button's color
+                                                ),
+                                              ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16),
+                                  child: Row(
+                                    children: [
+                                      const Expanded(
                                         flex: 2,
                                         child: Text(
                                           'Date Of Death',
@@ -425,75 +477,92 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         ),
                                       ),
                                       Expanded(
-                                        flex: 3,
-                                        child: Text(
-                                          '',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.black),
-                                        ), // Example date, replace with actual date or empty string
-                                      ),
-                                      Expanded(
                                         flex: 0,
-                                        child: Text(
-                                          'Add >',
-                                          style: TextStyle(
-                                            color:
-                                                Color.fromARGB(255, 36, 86, 38),
-                                            fontSize: 16,
-                                          ),
-                                        ),
+                                        child: widget.selectedOviDates.entries
+                                                    .toList()[1]
+                                                    .value !=
+                                                null
+                                            ? Text(
+                                                DateFormat('dd.MM.yyyy').format(
+                                                  widget
+                                                      .selectedOviDates.entries
+                                                      .toList()[1]
+                                                      .value!,
+                                                ),
+                                                style: const TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors.black,
+                                                ),
+                                              )
+                                            : Text(
+                                                'ADD',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors
+                                                      .blue, // You can customize the button's color
+                                                ),
+                                              ),
                                       ),
                                     ],
                                   ),
                                 ),
-                                const SizedBox(height: 8),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 16),
+                                const SizedBox(height: 12),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16),
                                   child: Row(
                                     children: [
-                                      Expanded(
-                                        flex: 2,
-                                        child: Text(
-                                          'Date Of Mating',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.black),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 3,
-                                        child: Text(
-                                          '',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.black),
-                                        ), // Example date, replace with actual date or empty string
-                                      ),
-                                      Expanded(
-                                        flex: 0,
-                                        child: Text(
-                                          'Add >',
-                                          style: TextStyle(
-                                            color:
-                                                Color.fromARGB(255, 36, 86, 38),
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 16),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
+                                      const Expanded(
                                         flex: 2,
                                         child: Text(
                                           'Date Of Sale',
                                           style: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 0,
+                                        child: widget.selectedOviDates.entries
+                                                    .toList()[2]
+                                                    .value !=
+                                                null
+                                            ? Text(
+                                                DateFormat('dd.MM.yyyy').format(
+                                                  widget
+                                                      .selectedOviDates.entries
+                                                      .toList()[2]
+                                                      .value!,
+                                                ),
+                                                style: const TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors.black,
+                                                ),
+                                              )
+                                            : Text(
+                                                'ADD',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors
+                                                      .blue, // You can customize the button's color
+                                                ),
+                                              ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          widget.fieldName,
+                                          style: const TextStyle(
                                               fontSize: 14,
                                               color: Colors.black),
                                         ),
@@ -501,10 +570,8 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                       Expanded(
                                         flex: 0,
                                         child: Text(
-                                          'Add >',
-                                          style: TextStyle(
-                                            color:
-                                                Color.fromARGB(255, 36, 86, 38),
+                                          widget.fieldContent,
+                                          style: const TextStyle(
                                             fontSize: 16,
                                           ),
                                         ),
@@ -512,128 +579,199 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                     ],
                                   ),
                                 ),
-                                const SizedBox(height: 8),
+                                const SizedBox(height: 25),
                                 const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 16),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        flex: 2,
-                                        child: Text(
-                                          'Date Of Sale',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.black),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 0,
-                                        child: Text(
-                                          'Add >',
-                                          style: TextStyle(
-                                            color:
-                                                Color.fromARGB(255, 36, 86, 38),
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Additonal Notes',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
-                                const SizedBox(height: 8),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 16),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        flex: 2,
-                                        child: Text(
-                                          'Date Of Sale',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.black),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 0,
-                                        child: Text(
-                                          'Add >',
-                                          style: TextStyle(
-                                            color:
-                                                Color.fromARGB(255, 36, 86, 38),
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                const SizedBox(height: 12),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16),
+                                  child: Text(
+                                    widget.notesController.text,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                    ),
                                   ),
                                 ),
-                                const SizedBox(height: 8),
+                                const SizedBox(height: 20),
                                 const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 16),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        flex: 2,
-                                        child: Text(
-                                          'Date Of Sale',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.black),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 0,
-                                        child: Text(
-                                          'Add >',
-                                          style: TextStyle(
-                                            color:
-                                                Color.fromARGB(255, 36, 86, 38),
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 16),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        flex: 2,
-                                        child: Text(
-                                          'Date Of Sale',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.black),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 0,
-                                        child: Text(
-                                          'Add >',
-                                          style: TextStyle(
-                                            color:
-                                                Color.fromARGB(255, 36, 86, 38),
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Uploaded Files To Be Here',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ],
                             ),
-                            Container(
-                              color: Colors
-                                  .green, // Placeholder color for Breeding tab view
+
+                            //Breeding Tabbbar View Starts
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(
+                                    height:
+                                        15), // Add spacing between the boxes
+                                Container(
+                                  width: double.infinity,
+                                  padding: const EdgeInsets.all(8),
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 10),
+                                  decoration: BoxDecoration(
+                                    color: const Color.fromARGB(
+                                        255, 251, 247, 206),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Text(
+                                            widget.selectedOviDates.entries
+                                                        .toList()[0]
+                                                        .value !=
+                                                    null
+                                                ? DateFormat('dd.MM.yyyy')
+                                                    .format(widget
+                                                        .selectedOviDates
+                                                        .entries
+                                                        .toList()[0]
+                                                        .value!)
+                                                : '',
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8),
+                                          const Text(
+                                            'Last Hatching Date',
+                                            style: TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        children: [
+                                          Text(
+                                            widget.frequencyEggsController.text,
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8),
+                                          const Text(
+                                            'Frequency Of Laying Eggs',
+                                            style: TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+
+                                const SizedBox(height: 13),
+                                ListTile(
+                                  leading: const CircleAvatar(
+                                    backgroundColor:
+                                        Color.fromARGB(164, 76, 175, 79),
+                                    child: Icon(Icons.history,
+                                        color: Colors.white),
+                                  ),
+                                  title: const Text('Breeding History'),
+                                  trailing: IconButton(
+                                    icon: const Icon(Icons.arrow_right),
+                                    onPressed: () {
+                                      // Add your onPressed logic here
+                                    },
+                                  ),
+                                ),
+                                ListTile(
+                                  leading: const CircleAvatar(
+                                    backgroundColor:
+                                        Color.fromARGB(164, 76, 175, 79),
+                                    child: Icon(Icons.bedroom_parent,
+                                        color: Colors.white),
+                                  ),
+                                  title: const Text('Parents'),
+                                  trailing: IconButton(
+                                    icon: const Icon(Icons.arrow_right),
+                                    onPressed: () {
+                                      // Add your onPressed logic here
+                                    },
+                                  ),
+                                ),
+                                ListTile(
+                                  leading: const CircleAvatar(
+                                    backgroundColor:
+                                        Color.fromARGB(164, 76, 175, 79),
+                                    child:
+                                        Icon(Icons.route, color: Colors.white),
+                                  ),
+                                  title: const Text('Family Tree'),
+                                  trailing: IconButton(
+                                    icon: const Icon(Icons.arrow_right),
+                                    onPressed: () {
+                                      // Add your onPressed logic here
+                                    },
+                                  ),
+                                ),
+                                ListTile(
+                                  leading: const CircleAvatar(
+                                    backgroundColor:
+                                        Color.fromARGB(164, 76, 175, 79),
+                                    child: Icon(Icons.man_outlined,
+                                        color: Colors.white),
+                                  ),
+                                  title: const Text('Male Mates'),
+                                  trailing: IconButton(
+                                    icon: const Icon(Icons.arrow_right),
+                                    onPressed: () {
+                                      // Add your onPressed logic here
+                                    },
+                                  ),
+                                ),
+                                ListTile(
+                                  leading: const CircleAvatar(
+                                    backgroundColor:
+                                        Color.fromARGB(164, 76, 175, 79),
+                                    child: Icon(Icons.child_friendly,
+                                        color: Colors.white),
+                                  ),
+                                  title: const Text('Children'),
+                                  trailing: IconButton(
+                                    icon: const Icon(Icons.arrow_right),
+                                    onPressed: () {
+                                      // Add your onPressed logic here
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
+                            //Breeding Tabbbar View Ends
                             Container(
-                              color: Colors
-                                  .blue, // Placeholder color for Medical Notes tab view
-                            ),
+                              color: Colors.red,
+                            )
+                            // This is Breeding Tabbar View
                           ],
                         ),
                       ),

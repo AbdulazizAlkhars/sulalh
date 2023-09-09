@@ -20,18 +20,19 @@ class CustomSnackBar {
               color: Colors.white,
               borderRadius: BorderRadius.circular(8.0),
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                 child: Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.check_circle,
                       color: Colors.green,
                     ),
-                    SizedBox(width: 8.0),
+                    const SizedBox(width: 8.0),
                     Expanded(
                       child: Text(
                         message,
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -45,7 +46,7 @@ class CustomSnackBar {
 
       Overlay.of(context).insert(entry);
 
-      Future.delayed(Duration(seconds: 3)).then((_) {
+      Future.delayed(const Duration(seconds: 3)).then((_) {
         entry.remove();
       });
     }

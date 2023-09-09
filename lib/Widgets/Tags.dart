@@ -24,23 +24,19 @@ class _TagsState extends State<Tags> {
   Widget build(BuildContext context) {
     Color backgroundColor;
     Color textColor;
-    Color iconColor;
 
     switch (widget.status) {
       case TagStatus.active:
         backgroundColor = AppColors.secondary30;
         textColor = AppColors.grayscale90;
-        iconColor = AppColors.grayscale90;
         break;
       case TagStatus.notActive:
         backgroundColor = AppColors.grayscale10;
         textColor = AppColors.grayscale90;
-        iconColor = AppColors.grayscale90;
         break;
       case TagStatus.disabled:
         backgroundColor = AppColors.grayscale10;
         textColor = AppColors.grayscale50;
-        iconColor = AppColors.grayscale50;
         break;
     }
 

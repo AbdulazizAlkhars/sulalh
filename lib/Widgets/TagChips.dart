@@ -6,6 +6,7 @@ class CustomTag extends StatelessWidget {
   final VoidCallback onTap;
 
   const CustomTag({
+    super.key,
     required this.label,
     required this.selected,
     required this.onTap,
@@ -18,13 +19,15 @@ class CustomTag extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
-          color: selected ? Colors.yellow : Color.fromARGB(255, 234, 234, 234),
+          color: selected
+              ? Colors.yellow
+              : const Color.fromARGB(255, 234, 234, 234),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
           child: Text(
             label,
-            style: TextStyle(fontSize: 15),
+            style: const TextStyle(fontSize: 15),
           ),
         ),
       ),

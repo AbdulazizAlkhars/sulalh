@@ -2,11 +2,9 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Animal_Information/OviparousGeneralInfo.dart';
-
-import 'package:hathera_demo/CreateAnimals/AllVariablesParsed.dart.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/TagChips.dart';
-import 'package:hathera_demo/Widgets/Textformfield.dart';
+
 import 'package:hathera_demo/Widgets/datetextfiled.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -1506,8 +1504,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: selectedOviDates.keys.map((dateType) {
-        final DateTime? selectedDate = selectedOviDates[dateType];
-        return selectedDate != null
+        return selectedOviDates[dateType] != null
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -1519,34 +1516,51 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  TextField(
-                    decoration: InputDecoration(
-                      hintText: 'DD:MM:YYYY', // Add your hint text here
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                            50.0), // Adjust border radius as needed
-                        borderSide: const BorderSide(
-                          color: Colors.grey, // Change the border color here
-                          width: 2.0, // Change the border width here
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'DD:MM:YYYY',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(50.0),
+                              borderSide: const BorderSide(
+                                color: Colors.grey,
+                                width: 2.0,
+                              ),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 12.0, horizontal: 16.0),
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                _showOviDatePicker(context, dateType);
+                              },
+                              child: const Icon(
+                                Icons.calendar_today,
+                                color: Color.fromARGB(255, 36, 86, 38),
+                              ),
+                            ),
+                          ),
+                          readOnly: true,
+                          controller: TextEditingController(
+                            text: DateFormat('dd-MM-yyyy').format(
+                              selectedOviDates[dateType]!,
+                            ),
+                          ),
                         ),
                       ),
-                      contentPadding: const EdgeInsets.symmetric(
-                          vertical: 12.0,
-                          horizontal: 16.0), // Adjust padding as needed
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          _showOviDatePicker(context, dateType);
+                      IconButton(
+                        icon: Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            selectedOviDates[dateType] = null;
+                          });
                         },
-                        child: const Icon(
-                          Icons.calendar_today,
-                          color: Color.fromARGB(255, 36, 86, 38),
-                        ),
                       ),
-                    ),
-                    readOnly: true,
-                    controller: TextEditingController(
-                      text: DateFormat('dd-MM-yyyy').format(selectedDate),
-                    ),
+                    ],
                   ),
                   const SizedBox(height: 10),
                 ],

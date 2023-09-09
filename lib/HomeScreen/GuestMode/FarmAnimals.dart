@@ -64,7 +64,6 @@ class _HouseFarmPageState extends State<HouseFarmPage> {
     },
   ];
 
-  String _searchQuery = '';
   List<Map<String, dynamic>> _filteredMammals = [];
 
   @override
@@ -75,7 +74,6 @@ class _HouseFarmPageState extends State<HouseFarmPage> {
 
   void _filterMammals(String query) {
     setState(() {
-      _searchQuery = query;
       _filteredMammals = mammals.where((mammal) {
         final name = mammal['name'].toString().toLowerCase();
         final subtitle = mammal['subtitle'].toString().toLowerCase();

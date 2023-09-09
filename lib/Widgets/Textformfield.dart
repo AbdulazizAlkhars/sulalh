@@ -13,11 +13,12 @@ class CustomTextFormField extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _CustomTextFormFieldState createState() => _CustomTextFormFieldState();
 }
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
   bool _showClearIcon = false;
 
   @override
@@ -64,7 +65,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           child: _showClearIcon
               ? GestureDetector(
                   onTap: _clearText,
-                  child: Icon(Icons.clear),
+                  child: const Icon(Icons.clear),
                 )
               : null,
         ),
