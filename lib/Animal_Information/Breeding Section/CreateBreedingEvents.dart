@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Animal_Information/Breeding%20Section/second.dart';
 import 'package:hathera_demo/Widgets/datetextfiled.dart';
 
 // ignore: depend_on_referenced_packages
@@ -20,11 +21,10 @@ class CreateBreedingEvents extends StatefulWidget {
 }
 
 class _CreateBreedingEvents extends State<CreateBreedingEvents> {
-  final TextEditingController _notesController = TextEditingController();
+  final TextEditingController _BreedingnotesController =
+      TextEditingController();
   final TextEditingController _breedingeventnumberController =
       TextEditingController();
-  String fieldName = '';
-  String fieldContent = '';
   String selectedBreedSire = 'Add';
   String selectedBreedDam = 'Add';
   String selectedBreedPartner = 'Add';
@@ -40,17 +40,9 @@ class _CreateBreedingEvents extends State<CreateBreedingEvents> {
 
   void setDeliverySelectedDate(String Deliverydate) {
     setState(() {
-      selectedBreedingDate = Deliverydate;
+      selectedDeliveryDate = Deliverydate;
     });
   }
-
-  List<String> selectedOviChips = [];
-  List<Widget> customOviTextFields = [];
-  Map<String, DateTime?> selectedOviDates = {};
-  bool showAdditionalFields = false;
-  String selectedOviDateType = "Date Of Birth"; // Default value
-  // Initial text for the button
-  String selectedOviGender = '';
 
   void _showBreedSireSelectionSheet(BuildContext context) async {
     final String? newBreedSire = await showModalBottomSheet(
@@ -507,28 +499,6 @@ class _CreateBreedingEvents extends State<CreateBreedingEvents> {
     }
   }
 
-  void _showOviDatePicker(BuildContext context, String OvidateType) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext builder) {
-        return SizedBox(
-          height: 200,
-          child: CupertinoDatePicker(
-            initialDateTime: selectedOviDates[OvidateType] ?? DateTime.now(),
-            minimumYear: 2000,
-            maximumYear: DateTime.now().year,
-            mode: CupertinoDatePickerMode.date,
-            onDateTimeChanged: (DateTime pickedOviDate) {
-              setState(() {
-                selectedOviDates.putIfAbsent(OvidateType, () => pickedOviDate);
-              });
-            },
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -732,9 +702,6 @@ class _CreateBreedingEvents extends State<CreateBreedingEvents> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Column(
-                children: customOviTextFields,
-              ),
               TextButton(
                 onPressed: () {
                   _showBreedChildrenSelectionSheet(context);
@@ -759,7 +726,7 @@ class _CreateBreedingEvents extends State<CreateBreedingEvents> {
               const SizedBox(height: 10),
               TextFormField(
                 maxLines: 6, // Set the maximum number of lines
-                controller: _notesController,
+                controller: _BreedingnotesController,
                 decoration: InputDecoration(
                   hintText:
                       'Add Additional Information If Needed', // Add your hint text here
@@ -781,33 +748,21 @@ class _CreateBreedingEvents extends State<CreateBreedingEvents> {
         padding: const EdgeInsets.all(16),
         child: ElevatedButton(
           onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => OvigenifnoPage(
-            //       fieldName: fieldName,
-            //       fieldContent: fieldContent,
-            //       numberofEggsController: _numberofEggsController,
-            //       frequencyEggsController: _frequencyEggsController,
-            //       _breedingeventnumberController: _breedingeventnumberController,
-            //       notesController: _notesController,
-            //       selectedOviSire: selectedOviSire,
-            //       selectedDate: selectedDate,
-            //       selectedOviDam: selectedOviDam,
-            //       selectedOviChips: selectedOviChips,
-            //       selectedOviDates: selectedOviDates,
-            //       showAdditionalFields: showAdditionalFields,
-            //       selectedOviDateType: selectedOviDateType,
-            //       selectedOviGender: selectedOviGender,
-            //       addOviParents: _addOviParents,
-            //       addOviChildren: _addOviChildren,
-            //       selectedOviImage: _selectedOviImage,
-            //       selectedAnimalType: widget.selectedAnimalType,
-            //       selectedAnimalSpecies: widget.selectedAnimalSpecies,
-            //       selectedAnimalBreed: widget.selectedAnimalBreed,
-            //     ),
-            //   ),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SecondPage(
+                  breedingNotesController: _BreedingnotesController,
+                  breedingEventNumberController: _breedingeventnumberController,
+                  selectedBreedSire: selectedBreedSire,
+                  selectedBreedDam: selectedBreedDam,
+                  selectedBreedPartner: selectedBreedPartner,
+                  selectedBreedChildren: selectedBreedChildren,
+                  selectedBreedingDate: selectedBreedingDate,
+                  selectedDeliveryDate: selectedDeliveryDate,
+                ),
+              ),
+            );
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color.fromARGB(255, 36, 86, 38),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Animal_Information/Breeding%20Section/CreateBreedingEvents.dart';
 import 'package:hathera_demo/CreateAnimals/CreateAnimal1.dart';
 
 void main() {
@@ -20,7 +21,11 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: CreateAnimalPage(),
+      home: CreateBreedingEvents(
+        selectedAnimalType: '',
+        selectedAnimalSpecies: '',
+        selectedAnimalBreed: '',
+      ),
     );
   }
 }
