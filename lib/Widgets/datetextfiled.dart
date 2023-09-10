@@ -56,12 +56,9 @@ class _DateTextFieldState extends State<DateTextField> {
           '${selectedDate.day.toString().padLeft(2, '0')}.${selectedDate.month.toString().padLeft(2, '0')}.${selectedDate.year.toString()}';
       _dateController.text = formattedDate;
       widget.onDateSelected(formattedDate);
+    } else {
+      // Handle the case when no date is selected, e.g., you can clear the text field.
+      _dateController.clear();
     }
-  }
-
-  @override
-  void dispose() {
-    _dateController.dispose();
-    super.dispose();
   }
 }

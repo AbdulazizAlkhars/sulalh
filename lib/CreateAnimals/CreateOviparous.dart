@@ -385,13 +385,13 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
         return SizedBox(
           height: 200,
           child: CupertinoDatePicker(
-            initialDateTime: DateTime.now(),
+            initialDateTime: selectedOviDates[OvidateType] ?? DateTime.now(),
             minimumYear: 2000,
             maximumYear: DateTime.now().year,
             mode: CupertinoDatePickerMode.date,
             onDateTimeChanged: (DateTime pickedOviDate) {
               setState(() {
-                selectedOviDates[OvidateType] = pickedOviDate;
+                selectedOviDates.putIfAbsent(OvidateType, () => pickedOviDate);
               });
             },
           ),
@@ -1504,68 +1504,69 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: selectedOviDates.keys.map((dateType) {
-        return selectedOviDates[dateType] != null
-            ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+        final selectedDate = selectedOviDates[dateType];
+        if (selectedDate != null) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                dateType,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Row(
                 children: [
-                  Text(
-                    dateType,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: 'DD:MM:YYYY',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                          borderSide: const BorderSide(
+                            color: Colors.grey,
+                            width: 2.0,
+                          ),
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 12.0, horizontal: 16.0),
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            _showOviDatePicker(context, dateType);
+                          },
+                          child: const Icon(
+                            Icons.calendar_today,
+                            color: Color.fromARGB(255, 36, 86, 38),
+                          ),
+                        ),
+                      ),
+                      readOnly: true,
+                      controller: TextEditingController(
+                        text: DateFormat('dd-MM-yyyy').format(selectedDate),
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'DD:MM:YYYY',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50.0),
-                              borderSide: const BorderSide(
-                                color: Colors.grey,
-                                width: 2.0,
-                              ),
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                                vertical: 12.0, horizontal: 16.0),
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                _showOviDatePicker(context, dateType);
-                              },
-                              child: const Icon(
-                                Icons.calendar_today,
-                                color: Color.fromARGB(255, 36, 86, 38),
-                              ),
-                            ),
-                          ),
-                          readOnly: true,
-                          controller: TextEditingController(
-                            text: DateFormat('dd-MM-yyyy').format(
-                              selectedOviDates[dateType]!,
-                            ),
-                          ),
-                        ),
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            selectedOviDates[dateType] = null;
-                          });
-                        },
-                      ),
-                    ],
+                  IconButton(
+                    icon: Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        selectedOviDates[dateType] = null;
+                      });
+                    },
                   ),
-                  const SizedBox(height: 10),
                 ],
-              )
-            : Container();
+              ),
+              const SizedBox(height: 10),
+            ],
+          );
+        } else {
+          return Container(); // Return an empty container if selectedDate is null
+        }
       }).toList(),
     );
   }

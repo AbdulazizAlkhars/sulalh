@@ -1,5 +1,6 @@
 import 'dart:io';
 // ignore: depend_on_referenced_packages
+import 'package:hathera_demo/Animal_Information/Breeding%20Section/BreedingHistoryPage.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Widgets/TagChips.dart';
@@ -74,15 +75,32 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
     super.dispose();
   }
 
-  String calculateAge(DateTime selectedDate) {
+  String calculateAge(DateTime? selectedDate) {
+    if (selectedDate == null) {
+      return 'Not Selected'; // Handle the case when the date is not selected
+    }
+
     final currentDate = DateTime.now();
     final ageInYears = currentDate.year - selectedDate.year;
     return '$ageInYears Years';
   }
 
+  DateTime? parseSelectedDate(String? selectedDate) {
+    if (selectedDate == null) {
+      return null; // Return null if the date is not selected
+    }
+
+    try {
+      return DateFormat('dd.MM.yyyy').parse(selectedDate);
+    } catch (e) {
+      print('Error parsing selected date: $e');
+      return null; // Return null if there is an error parsing the date
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final formattedDate = DateFormat('dd.MM.yyyy').parse(widget.selectedDate);
+    final selectedDate = parseSelectedDate(widget.selectedDate);
 
     return Scaffold(
       backgroundColor: Colors.lightGreen,
@@ -372,24 +390,27 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         child: Text(
                                           'Age',
                                           style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.black),
+                                            fontSize: 14,
+                                            color: Colors.black,
+                                          ),
                                         ),
                                       ),
                                       Expanded(
                                         flex: 0,
                                         child: Text(
-                                          calculateAge(formattedDate),
-                                          style: const TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.black),
+                                          calculateAge(selectedDate),
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: selectedDate != null
+                                                ? Colors.black
+                                                : Colors.red,
+                                          ),
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
                                 const SizedBox(height: 12),
-
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 16),
@@ -427,22 +448,23 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         child: Text(
                                           'Date Of Hatching',
                                           style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.black),
+                                            fontSize: 14,
+                                            color: Colors.black,
+                                          ),
                                         ),
                                       ),
                                       Expanded(
                                         flex: 0,
-                                        child: widget.selectedOviDates.entries
-                                                    .toList()[0]
-                                                    .value !=
-                                                null
+                                        child: widget.selectedOviDates
+                                                    .containsKey(
+                                                        'Date Of Hatching') &&
+                                                widget.selectedOviDates[
+                                                        'Date Of Hatching'] !=
+                                                    null
                                             ? Text(
                                                 DateFormat('dd.MM.yyyy').format(
-                                                  widget
-                                                      .selectedOviDates.entries
-                                                      .toList()[0]
-                                                      .value!,
+                                                  widget.selectedOviDates[
+                                                      'Date Of Hatching']!,
                                                 ),
                                                 style: const TextStyle(
                                                   fontSize: 14,
@@ -472,22 +494,23 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         child: Text(
                                           'Date Of Death',
                                           style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.black),
+                                            fontSize: 14,
+                                            color: Colors.black,
+                                          ),
                                         ),
                                       ),
                                       Expanded(
                                         flex: 0,
-                                        child: widget.selectedOviDates.entries
-                                                    .toList()[1]
-                                                    .value !=
-                                                null
+                                        child: widget.selectedOviDates
+                                                    .containsKey(
+                                                        'Date Of Death') &&
+                                                widget.selectedOviDates[
+                                                        'Date Of Death'] !=
+                                                    null
                                             ? Text(
                                                 DateFormat('dd.MM.yyyy').format(
-                                                  widget
-                                                      .selectedOviDates.entries
-                                                      .toList()[1]
-                                                      .value!,
+                                                  widget.selectedOviDates[
+                                                      'Date Of Death']!,
                                                 ),
                                                 style: const TextStyle(
                                                   fontSize: 14,
@@ -524,16 +547,16 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                       ),
                                       Expanded(
                                         flex: 0,
-                                        child: widget.selectedOviDates.entries
-                                                    .toList()[2]
-                                                    .value !=
-                                                null
+                                        child: widget.selectedOviDates
+                                                    .containsKey(
+                                                        'Date Of Sale') &&
+                                                widget.selectedOviDates[
+                                                        'Date Of Sale'] !=
+                                                    null
                                             ? Text(
                                                 DateFormat('dd.MM.yyyy').format(
-                                                  widget
-                                                      .selectedOviDates.entries
-                                                      .toList()[2]
-                                                      .value!,
+                                                  widget.selectedOviDates[
+                                                      'Date Of Sale']!,
                                                 ),
                                                 style: const TextStyle(
                                                   fontSize: 14,
@@ -701,6 +724,11 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                   trailing: IconButton(
                                     icon: const Icon(Icons.arrow_right),
                                     onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  BreedingHistoryPage()));
                                       // Add your onPressed logic here
                                     },
                                   ),
