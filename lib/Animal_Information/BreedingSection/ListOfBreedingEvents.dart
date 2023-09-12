@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Animal_Information/Breeding%20Section/CreateBreedingEvents.dart';
+import 'package:hathera_demo/Animal_Information/BreedingSection/BreedingEventDetails.dart';
+import 'package:hathera_demo/Animal_Information/BreedingSection/CreateBreedingEvents.dart';
 
-class BreedingEvent {
+class BreedingEventVariables {
   final String eventNumber;
   final String sire;
   final String dam;
@@ -10,7 +11,7 @@ class BreedingEvent {
   final String breedingDate;
   final String deliveryDate;
 
-  BreedingEvent({
+  BreedingEventVariables({
     required this.eventNumber,
     required this.sire,
     required this.dam,
@@ -21,9 +22,9 @@ class BreedingEvent {
   });
 }
 
-List<BreedingEvent> breedingEvents = [];
+List<BreedingEventVariables> breedingEvents = [];
 
-class SecondPage extends StatefulWidget {
+class ListOfBreedingEvents extends StatefulWidget {
   final TextEditingController breedingNotesController;
   final TextEditingController breedingEventNumberController;
   final String selectedBreedSire;
@@ -33,7 +34,7 @@ class SecondPage extends StatefulWidget {
   final String selectedBreedingDate;
   final String selectedDeliveryDate;
 
-  SecondPage({
+  ListOfBreedingEvents({
     required this.breedingNotesController,
     required this.breedingEventNumberController,
     required this.selectedBreedSire,
@@ -45,10 +46,10 @@ class SecondPage extends StatefulWidget {
   });
 
   @override
-  _SecondPageState createState() => _SecondPageState();
+  _ListOfBreedingEvents createState() => _ListOfBreedingEvents();
 }
 
-class _SecondPageState extends State<SecondPage> {
+class _ListOfBreedingEvents extends State<ListOfBreedingEvents> {
   @override
   void initState() {
     super.initState();
@@ -59,7 +60,7 @@ class _SecondPageState extends State<SecondPage> {
   }
 
   void addBreedingEvent(String eventNumber) {
-    final breedingEvent = BreedingEvent(
+    final breedingEvent = BreedingEventVariables(
       eventNumber: eventNumber,
       sire: widget.selectedBreedSire,
       dam: widget.selectedBreedDam,
@@ -142,12 +143,12 @@ class _SecondPageState extends State<SecondPage> {
                 return Column(
                   children: <Widget>[
                     ListTile(
-                      title: Text('Event ${breedingEvent.eventNumber}'),
+                      title: Text('${breedingEvent.eventNumber}'),
                       trailing: Icon(Icons.arrow_right),
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => ThirdPage(
+                            builder: (context) => BreedingEventDetails(
                               breedingEvent:
                                   breedingEvent, // Pass the selected event
                             ),
@@ -161,49 +162,6 @@ class _SecondPageState extends State<SecondPage> {
               },
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class ThirdPage extends StatelessWidget {
-  final BreedingEvent breedingEvent; // Event selected in the SecondPage
-
-  ThirdPage({
-    required this.breedingEvent,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Breeding Event Details'),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: const Text(
-              'Breeding Event Details',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          // Display the selected event details separately
-          Text('Selected Event: ${breedingEvent.eventNumber}'),
-          Text('Sire: ${breedingEvent.sire}'),
-          Text('Dam: ${breedingEvent.dam}'),
-          Text('Partner: ${breedingEvent.partner}'),
-          Text('Children: ${breedingEvent.children}'),
-          Text('Breeding Date: ${breedingEvent.breedingDate}'),
-          Text('Delivery Date: ${breedingEvent.deliveryDate}'),
         ],
       ),
     );

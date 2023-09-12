@@ -1,6 +1,6 @@
 import 'dart:io';
 // ignore: depend_on_referenced_packages
-import 'package:hathera_demo/Animal_Information/Breeding%20Section/BreedingHistoryPage.dart';
+import 'package:hathera_demo/Animal_Information/BreedingSection/BreedingHistoryPage.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Animal_Information/Breeding%20Section/second.dart';
+import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfBreedingEvents.dart';
 import 'package:hathera_demo/Widgets/datetextfiled.dart';
 
 // ignore: depend_on_referenced_packages
@@ -28,7 +28,7 @@ class _CreateBreedingEvents extends State<CreateBreedingEvents> {
   String selectedBreedSire = 'Add';
   String selectedBreedDam = 'Add';
   String selectedBreedPartner = 'Add';
-  String selectedBreedChildren = 'Add Children +';
+  String selectedBreedChildren = '';
   String selectedBreedingDate = '';
   String selectedDeliveryDate = '';
 
@@ -270,13 +270,14 @@ class _CreateBreedingEvents extends State<CreateBreedingEvents> {
   }
 
   void _showBreedChildrenSelectionSheet(BuildContext context) async {
-    final String? newBreedChildren = await showModalBottomSheet(
+    List<String> selectedChildren = []; // Initialize an empty list
+
+    await showModalBottomSheet(
       context: context,
       showDragHandle: true,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        // ignore: non_constant_identifier_names
-        List<Map<String, String>> BreedChildrenDetails = [
+        List<Map<String, String>> breedChildrenDetails = [
           {'name': 'Mantis', 'nickname': 'Alein'},
           {'name': 'Nebula', 'nickname': 'Robot'},
           {'name': 'Rocket', 'nickname': 'Racoon'},
@@ -291,8 +292,7 @@ class _CreateBreedingEvents extends State<CreateBreedingEvents> {
                 bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
               child: Container(
-                height: MediaQuery.of(context).size.height *
-                    1, // 75% of screen height
+                height: MediaQuery.of(context).size.height * 1,
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -301,7 +301,7 @@ class _CreateBreedingEvents extends State<CreateBreedingEvents> {
                       height: 25,
                     ),
                     const Text(
-                      "Add Mother",
+                      "Select Children",
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
@@ -321,7 +321,7 @@ class _CreateBreedingEvents extends State<CreateBreedingEvents> {
                             child: TextField(
                               onChanged: (value) {
                                 setState(() {
-                                  BreedChildrenDetails = [
+                                  breedChildrenDetails = [
                                     {'name': 'Mantis', 'nickname': 'Alein'},
                                     {'name': 'Nebula', 'nickname': 'Robot'},
                                     {'name': 'Rocket', 'nickname': 'Racoon'},
@@ -350,23 +350,42 @@ class _CreateBreedingEvents extends State<CreateBreedingEvents> {
                     ),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: BreedChildrenDetails.length,
+                        itemCount: breedChildrenDetails.length,
                         itemBuilder: (BuildContext context, int index) {
+                          final String name =
+                              breedChildrenDetails[index]['name']!;
+                          final String nickname =
+                              breedChildrenDetails[index]['nickname']!;
+                          final bool isSelected =
+                              selectedChildren.contains(name);
+
                           return ListTile(
                             leading: CircleAvatar(
-                              child:
-                                  Text(BreedChildrenDetails[index]['name']![0]),
+                              child: Text(name[0]),
                             ),
-                            title: Text(BreedChildrenDetails[index]['name']!),
-                            subtitle:
-                                Text(BreedChildrenDetails[index]['nickname']!),
+                            title: Text(name),
+                            subtitle: Text(nickname),
                             onTap: () {
-                              Navigator.pop(
-                                  context, BreedChildrenDetails[index]['name']);
+                              setState(() {
+                                if (isSelected) {
+                                  selectedChildren.remove(name);
+                                } else {
+                                  selectedChildren.add(name);
+                                }
+                              });
                             },
+                            tileColor: isSelected
+                                ? Colors.blue.withOpacity(0.5)
+                                : null,
                           );
                         },
                       ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context, selectedChildren);
+                      },
+                      child: const Text("Done"),
                     ),
                   ],
                 ),
@@ -377,9 +396,11 @@ class _CreateBreedingEvents extends State<CreateBreedingEvents> {
       },
     );
 
-    if (newBreedChildren != null) {
+    if (selectedChildren.isNotEmpty) {
       setState(() {
-        selectedBreedChildren = newBreedChildren;
+        // Assuming you have a List<String> selectedBreedChildren
+        selectedBreedChildren =
+            selectedChildren.join(", "); // Join selected children into a string
       });
     }
   }
@@ -696,10 +717,19 @@ class _CreateBreedingEvents extends State<CreateBreedingEvents> {
               ),
               const SizedBox(height: 25),
               const Text(
-                "Children",
+                "Add Children +",
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                selectedBreedChildren,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: Color.fromARGB(255, 36, 86, 38),
                 ),
               ),
               TextButton(
@@ -707,13 +737,14 @@ class _CreateBreedingEvents extends State<CreateBreedingEvents> {
                   _showBreedChildrenSelectionSheet(context);
                 },
                 child: Text(
-                  selectedBreedChildren,
-                  style: const TextStyle(
+                  "Add Children +",
+                  style: TextStyle(
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 36, 86, 38),
                   ),
                 ),
               ),
+              const SizedBox(height: 10),
               const Divider(),
               const SizedBox(height: 10),
               const Text(
@@ -751,7 +782,7 @@ class _CreateBreedingEvents extends State<CreateBreedingEvents> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => SecondPage(
+                builder: (context) => ListOfBreedingEvents(
                   breedingNotesController: _BreedingnotesController,
                   breedingEventNumberController: _breedingeventnumberController,
                   selectedBreedSire: selectedBreedSire,
