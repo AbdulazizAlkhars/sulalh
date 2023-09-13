@@ -1,6 +1,7 @@
 import 'dart:io';
 // ignore: depend_on_referenced_packages
 import 'package:hathera_demo/Animal_Information/BreedingSection/BreedingHistoryPage.dart';
+import 'package:hathera_demo/Animal_Information/Parents/ListOfParents.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
@@ -745,6 +746,20 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                   trailing: IconButton(
                                     icon: const Icon(Icons.arrow_right),
                                     onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => ListOfParents(
+                                            selectedOviSire:
+                                                widget.selectedOviSire,
+                                            selectedOviDam:
+                                                widget.selectedOviDam,
+
+                                            // Convert DateTime to String
+                                          ),
+                                        ),
+                                      );
+
                                       // Add your onPressed logic here
                                     },
                                   ),
