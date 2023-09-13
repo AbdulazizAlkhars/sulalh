@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/CreateBreedingEvents.dart';
-import 'package:hathera_demo/Animal_Information/Parents/ListOfParents.dart';
+import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfPartners.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,19 +13,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Sulalh Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 36, 86, 38),
+        debugShowCheckedModeBanner: false,
+        title: 'Sulalh Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 36, 86, 38),
+          ),
+          useMaterial3: true,
         ),
-        useMaterial3: true,
-      ),
-      home: CreateBreedingEvents(
-        selectedAnimalType: '',
-        selectedAnimalSpecies: '',
-        selectedAnimalBreed: '',
-      ),
-    );
+        home: ListOfPartners());
   }
 }

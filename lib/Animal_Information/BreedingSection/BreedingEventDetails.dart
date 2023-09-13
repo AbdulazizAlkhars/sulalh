@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfBreedingEvents.dart';
 
@@ -5,7 +7,8 @@ class BreedingEventDetails extends StatefulWidget {
   final BreedingEventVariables
       breedingEvent; // Event selected in the SecondPage
 
-  BreedingEventDetails({
+  const BreedingEventDetails({
+    super.key,
     required this.breedingEvent,
   });
 
@@ -56,7 +59,7 @@ class _BreedingEventDetailsState extends State<BreedingEventDetails> {
               height: 25,
             ),
             Row(
-              children: [
+              children: const [
                 Expanded(
                   child: Text(
                     'Breeding ID',
