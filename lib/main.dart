@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/CreateBreedingEvents.dart';
+import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfChildren.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfPartners.dart';
 
 void main() {
@@ -21,6 +22,6 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: ListOfPartners());
+        home: ListOfChildren());
   }
 }

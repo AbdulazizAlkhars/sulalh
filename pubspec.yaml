@@ -35,6 +35,7 @@ dependencies:
   flutter_flushbar: ^0.0.2
   dotted_border: ^2.0.0+3
   file_picker: ^5.5.0
+  riverpod: ^2.4.0
     
 
 

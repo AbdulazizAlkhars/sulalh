@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
 
-class ListOfPartners extends StatefulWidget {
+class ListOfChildren extends StatefulWidget {
   @override
-  State<ListOfPartners> createState() => _ListOfPartnersState();
+  State<ListOfChildren> createState() => _ListOfChildrenState();
 }
 
-class _ListOfPartnersState extends State<ListOfPartners> {
-  final List<Map<String, dynamic>> partners = [
+class _ListOfChildrenState extends State<ListOfChildren> {
+  final List<Map<String, dynamic>> children = [
     {
       'heading': 'Breeding Event 1',
       'date': '02.09.2023',
-      'title': 'Loyce',
-      'subtitle': 'Male, 1 Year',
+      'title': 'Willie',
+      'subtitle': 'Male, 0.5 Year',
       'trailing': 'ID #13542',
       'avatarImage': 'assets/avatar1.png',
     },
     {
       'heading': 'Breeding Event 2',
       'date': '02.09.2023',
-      'title': 'Joyce',
-      'subtitle': 'Male, 3 Years',
+      'title': 'Nancy',
+      'subtitle': 'Female, 1 Years',
       'trailing': 'ID #13542',
       'avatarImage': 'assets/avatar2.png',
     },
     {
       'heading': 'Breeding Event 3',
       'date': '02.09.2023',
-      'title': 'Angel',
-      'subtitle': 'Male, 3.5 Years',
+      'title': 'Shirley',
+      'subtitle': 'Male, 0.5 Years',
       'trailing': 'ID #13542',
       'avatarImage': 'assets/avatar3.png',
     },
@@ -59,7 +59,7 @@ class _ListOfPartnersState extends State<ListOfPartners> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Text(
-              'List Of Mates',
+              'List Of Children',
               style: TextStyle(
                 fontSize: 35,
                 fontWeight: FontWeight.bold,
@@ -67,7 +67,7 @@ class _ListOfPartnersState extends State<ListOfPartners> {
             ),
           ),
           // Add a heading above each list tile
-          for (var item in partners)
+          for (var item in children)
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
