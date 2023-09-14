@@ -10,6 +10,7 @@ class BreedingEventVariables {
   final String children;
   final String breedingDate;
   final String deliveryDate;
+  final String notes;
 
   BreedingEventVariables({
     required this.eventNumber,
@@ -19,6 +20,7 @@ class BreedingEventVariables {
     required this.children,
     required this.breedingDate,
     required this.deliveryDate,
+    required this.notes,
   });
 }
 
@@ -68,6 +70,7 @@ class _ListOfBreedingEvents extends State<ListOfBreedingEvents> {
       children: widget.selectedBreedChildren,
       breedingDate: widget.selectedBreedingDate,
       deliveryDate: widget.selectedDeliveryDate,
+      notes: widget.breedingNotesController.text,
     );
 
     setState(() {

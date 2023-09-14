@@ -264,8 +264,8 @@ class _BreedingEventDetailsState extends State<BreedingEventDetails> {
                 SizedBox(
                   height: 15,
                 ),
-                const Text(
-                  "Notes should be parsed",
+                Text(
+                  ('${widget.breedingEvent.notes}'),
                   style: TextStyle(
                     fontSize: 20,
                   ),
@@ -274,14 +274,6 @@ class _BreedingEventDetailsState extends State<BreedingEventDetails> {
             ),
 
             // Display the selected event details separately
-
-            Text('Selected Event: ${widget.breedingEvent.eventNumber}'),
-            Text('Sire: ${widget.breedingEvent.sire}'),
-            Text('Dam: ${widget.breedingEvent.dam}'),
-            Text('Partner: ${widget.breedingEvent.partner}'),
-            Text('Children: ${widget.breedingEvent.children}'),
-            Text('Breeding Date: ${widget.breedingEvent.breedingDate}'),
-            Text('Delivery Date: ${widget.breedingEvent.deliveryDate}'),
           ],
         ),
       ),

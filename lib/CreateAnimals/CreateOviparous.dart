@@ -378,26 +378,19 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
     );
   }
 
-  void _showOviDatePicker(BuildContext context, String OvidateType) {
-    showModalBottomSheet(
+  void _showOviDatePicker(BuildContext context, String dateType) async {
+    final DateTime? selectedDate = await showDatePicker(
       context: context,
-      builder: (BuildContext builder) {
-        return SizedBox(
-          height: 200,
-          child: CupertinoDatePicker(
-            initialDateTime: selectedOviDates[OvidateType] ?? DateTime.now(),
-            minimumYear: 2000,
-            maximumYear: DateTime.now().year,
-            mode: CupertinoDatePickerMode.date,
-            onDateTimeChanged: (DateTime pickedOviDate) {
-              setState(() {
-                selectedOviDates.putIfAbsent(OvidateType, () => pickedOviDate);
-              });
-            },
-          ),
-        );
-      },
+      initialDate: selectedOviDates[dateType] ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
     );
+
+    if (selectedDate != null) {
+      setState(() {
+        selectedOviDates[dateType] = selectedDate;
+      });
+    }
   }
 
   void _openOviModalSheet() async {

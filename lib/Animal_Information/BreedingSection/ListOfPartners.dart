@@ -31,6 +31,7 @@ class _ListOfPartnersState extends State<ListOfPartners> {
       'trailing': 'ID #13542',
       'avatarImage': 'assets/avatar3.png',
     },
+    // Your list of partners data goes here
   ];
 
   @override
@@ -46,6 +47,18 @@ class _ListOfPartnersState extends State<ListOfPartners> {
             color: Colors.black,
           ),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              icon: const Icon(Icons.add),
+              onPressed: () {
+                // Handle back button press
+                // Add your code here
+              },
+            ),
+          ),
+        ],
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -66,50 +79,105 @@ class _ListOfPartnersState extends State<ListOfPartners> {
               ),
             ),
           ),
-          // Add a heading above each list tile
-          for (var item in partners)
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Text(
-                          item['heading'],
+          Expanded(
+            child: partners.isEmpty
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 50,
+                        ),
+                        Text(
+                          'No Mates ',
                           style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "This Animal Hasn't Been Mated Yet",
+                        ),
+                        SizedBox(
+                          height: 150,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            backgroundColor:
+                                const Color.fromARGB(255, 36, 86, 38),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
+                          onPressed: () {
+                            // Implement the logic to add children here
+                          },
+                          child: Text(
+                            'Add Mates',
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 0,
-                        child: Text(
-                          item['date'],
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  ListTile(
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 0.5, vertical: 0.5),
-                    leading: CircleAvatar(
-                      backgroundImage: AssetImage(item['avatarImage']),
+                      ],
                     ),
-                    title: Text(item['title']),
-                    subtitle: Text(item['subtitle']),
-                    trailing: Text(item['trailing']),
+                  )
+                : ListView.builder(
+                    itemCount: partners.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final partner = partners[index];
+
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    partner['heading'],
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 0,
+                                  child: Text(
+                                    partner['date'],
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: ListTile(
+                              contentPadding: EdgeInsets.symmetric(
+                                horizontal: 0.5,
+                                vertical: 0.5,
+                              ),
+                              leading: CircleAvatar(
+                                backgroundImage:
+                                    AssetImage(partner['avatarImage']),
+                              ),
+                              title: Text(partner['title']),
+                              subtitle: Text(partner['subtitle']),
+                              trailing: Text(partner['trailing']),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
                   ),
-                ],
-              ),
-            ),
+          ),
         ],
       ),
     );
