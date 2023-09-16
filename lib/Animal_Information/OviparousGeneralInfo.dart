@@ -5,6 +5,8 @@ import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfBreedingEv
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfChildren.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfParents.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfPartners.dart';
+import 'package:hathera_demo/Animal_Information/MedicalSection/AddVaccine.dart';
+import 'package:hathera_demo/Widgets/Button.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
@@ -68,6 +70,17 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
     with SingleTickerProviderStateMixin {
   TextEditingController _medicalNeedsController = TextEditingController();
   bool _isEditMode = false;
+  String newpregnantStatus = '';
+  String pregnantStatuses = '';
+  String newmatingdate = 'ADD';
+  String newsonardate = 'ADD';
+  String newexpdeliverydate = 'ADD';
+  DateTime? selectedmatingDate;
+  DateTime? selectedsonarDate;
+  DateTime? selectedexpdeliveryDate;
+  List<String> vaccineNames = ["Vaccine 1", "Vaccine 2", "Vaccine 3"];
+  List<String> checkUpNames = ["Check Up 1", "Check Up 2", "Check Up 3"];
+  List<String> surgeryNames = ["Surgery 1", "Surgery 2", "Surgery 3"];
 
   Widget _buildDisplayMode() {
     return Padding(
@@ -95,6 +108,172 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
         ],
       ),
     );
+  }
+
+  void _showmatingDatePickerModalSheet() async {
+    final DateTime? matingDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    if (matingDate != null && matingDate != selectedmatingDate) {
+      setState(() {
+        selectedmatingDate = matingDate;
+        newmatingdate = DateFormat.yMMMd().format(matingDate);
+      });
+    }
+  }
+
+  void _showsonarDatePickerModalSheet() async {
+    final DateTime? sonarDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    if (sonarDate != null && sonarDate != selectedsonarDate) {
+      setState(() {
+        selectedsonarDate = sonarDate;
+        newsonardate = DateFormat.yMMMd().format(sonarDate);
+      });
+    }
+  }
+
+  void _showexpdeliveryDatePickerModalSheet() async {
+    final DateTime? expdeliveryDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    if (expdeliveryDate != null && expdeliveryDate != selectedexpdeliveryDate) {
+      setState(() {
+        selectedexpdeliveryDate = expdeliveryDate;
+        newexpdeliverydate = DateFormat.yMMMd().format(expdeliveryDate);
+      });
+    }
+  }
+
+  void _showPregnantStatusSelection() {
+    double sheetHeight = MediaQuery.of(context).size.height * 0.35;
+    showModalBottomSheet(
+      context: context,
+      showDragHandle: true,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return SizedBox(
+              height: sheetHeight,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(
+                      'Pregnancy Status',
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Flexible(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          ListTile(
+                            title: const Text('Not Pregnant'),
+                            trailing: pregnantStatuses == 'Not Pregnant'
+                                ? Container(
+                                    width: 25,
+                                    height: 25,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: Colors.green,
+                                        width: 6.0,
+                                      ),
+                                    ),
+                                  )
+                                : Container(
+                                    width: 25,
+                                    height: 25,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                        width: 2.0,
+                                      ),
+                                    ),
+                                  ),
+                            onTap: () {
+                              setState(() {
+                                pregnantStatuses = 'Not Pregnant';
+                              });
+                            },
+                          ),
+                          ListTile(
+                            title: const Text('Pregnant'),
+                            trailing: pregnantStatuses == 'Pregnant'
+                                ? Container(
+                                    width: 25,
+                                    height: 25,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: Colors.green,
+                                        width: 6.0,
+                                      ),
+                                    ),
+                                  )
+                                : Container(
+                                    width: 25,
+                                    height: 25,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                        width: 2.0,
+                                      ),
+                                    ),
+                                  ),
+                            onTap: () {
+                              setState(() {
+                                pregnantStatuses = 'Pregnant';
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: ButtonWidget(
+                      onPressed: () {
+                        setState(() {
+                          newpregnantStatus = pregnantStatuses;
+                        });
+                        Navigator.pop(context);
+                      },
+                      buttonText: 'Confirm',
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    ).then((_) {
+      setState(() {
+        newpregnantStatus = pregnantStatuses;
+      });
+    });
   }
 
   Widget _buildEditMode() {
@@ -1238,18 +1417,22 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                                 ),
                                               ),
                                               Expanded(
-                                                flex: 0,
-                                                child: Text(
-                                                  'Not Pregnant >',
-                                                  style: const TextStyle(
-                                                      fontSize: 14,
-                                                      color: Colors.black),
-                                                ),
-                                              ),
+                                                  flex: 0,
+                                                  child: TextButton(
+                                                    onPressed:
+                                                        _showPregnantStatusSelection,
+                                                    child: Text(
+                                                      '$newpregnantStatus >',
+                                                      style: const TextStyle(
+                                                          fontSize: 14,
+                                                          color: const Color
+                                                              .fromARGB(
+                                                              255, 36, 86, 38)),
+                                                    ),
+                                                  )),
                                             ],
                                           ),
                                         ),
-                                        const SizedBox(height: 12),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 16),
@@ -1267,36 +1450,21 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                               ),
                                               Expanded(
                                                 flex: 0,
-                                                child: widget.selectedOviDates
-                                                            .containsKey(
-                                                                'Date Of Hatching') &&
-                                                        widget.selectedOviDates[
-                                                                'Date Of Hatching'] !=
-                                                            null
-                                                    ? Text(
-                                                        DateFormat('dd.MM.yyyy')
-                                                            .format(
-                                                          widget.selectedOviDates[
-                                                              'Date Of Hatching']!,
-                                                        ),
-                                                        style: const TextStyle(
-                                                          fontSize: 14,
-                                                          color: Colors.black,
-                                                        ),
-                                                      )
-                                                    : const Text(
-                                                        'ADD',
-                                                        style: TextStyle(
-                                                          fontSize: 14,
-                                                          color: Colors
-                                                              .blue, // You can customize the button's color
-                                                        ),
-                                                      ),
+                                                child: TextButton(
+                                                  onPressed:
+                                                      _showmatingDatePickerModalSheet,
+                                                  child: Text(
+                                                    '$newmatingdate >',
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        color: const Color(
+                                                            0xFF245626)),
+                                                  ),
+                                                ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                        const SizedBox(height: 12),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 16),
@@ -1314,36 +1482,21 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                               ),
                                               Expanded(
                                                 flex: 0,
-                                                child: widget.selectedOviDates
-                                                            .containsKey(
-                                                                'Date Of Death') &&
-                                                        widget.selectedOviDates[
-                                                                'Date Of Death'] !=
-                                                            null
-                                                    ? Text(
-                                                        DateFormat('dd.MM.yyyy')
-                                                            .format(
-                                                          widget.selectedOviDates[
-                                                              'Date Of Death']!,
-                                                        ),
-                                                        style: const TextStyle(
-                                                          fontSize: 14,
-                                                          color: Colors.black,
-                                                        ),
-                                                      )
-                                                    : const Text(
-                                                        'ADD',
-                                                        style: TextStyle(
-                                                          fontSize: 14,
-                                                          color: Colors
-                                                              .blue, // You can customize the button's color
-                                                        ),
-                                                      ),
+                                                child: TextButton(
+                                                  onPressed:
+                                                      _showsonarDatePickerModalSheet,
+                                                  child: Text(
+                                                    '$newsonardate >',
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        color: const Color(
+                                                            0xFF245626)),
+                                                  ),
+                                                ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                        const SizedBox(height: 12),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 16),
@@ -1361,31 +1514,17 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                               ),
                                               Expanded(
                                                 flex: 0,
-                                                child: widget.selectedOviDates
-                                                            .containsKey(
-                                                                'Date Of Sale') &&
-                                                        widget.selectedOviDates[
-                                                                'Date Of Sale'] !=
-                                                            null
-                                                    ? Text(
-                                                        DateFormat('dd.MM.yyyy')
-                                                            .format(
-                                                          widget.selectedOviDates[
-                                                              'Date Of Sale']!,
-                                                        ),
-                                                        style: const TextStyle(
-                                                          fontSize: 14,
-                                                          color: Colors.black,
-                                                        ),
-                                                      )
-                                                    : const Text(
-                                                        'ADD',
-                                                        style: TextStyle(
-                                                          fontSize: 14,
-                                                          color: Colors
-                                                              .blue, // You can customize the button's color
-                                                        ),
-                                                      ),
+                                                child: TextButton(
+                                                  onPressed:
+                                                      _showexpdeliveryDatePickerModalSheet,
+                                                  child: Text(
+                                                    '$newexpdeliverydate >',
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        color: const Color(
+                                                            0xFF245626)),
+                                                  ),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -1402,63 +1541,300 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         Expanded(
                                           flex: 2,
                                           child: Text(
-                                            widget.fieldName,
-                                            style: const TextStyle(
-                                                fontSize: 14,
-                                                color: Colors.black),
+                                            'Vaccination',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                         Expanded(
                                           flex: 0,
-                                          child: Text(
-                                            widget.fieldContent,
-                                            style: const TextStyle(
-                                              fontSize: 16,
+                                          child: TextButton(
+                                            onPressed:
+                                                _showexpdeliveryDatePickerModalSheet,
+                                            child: Text(
+                                              'View More ',
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  color:
+                                                      const Color(0xFF245626)),
                                             ),
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                  const SizedBox(height: 25),
-                                  const Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(
-                                      'Additonal Notes',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      ListView.builder(
+                                        itemCount: vaccineNames
+                                            .length, // Use the length of the vaccineNames list
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          final vaccineName =
+                                              vaccineNames[index];
+                                          return ListTile(
+                                            title: Text(vaccineName),
+                                            subtitle: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text("09.09.2023"),
+                                              ],
+                                            ),
+                                            trailing: Icon(Icons
+                                                .edit), // Add an edit icon as trailing
+                                            onTap: () {
+                                              // Handle the edit action here
+                                            },
+                                          );
+                                        },
+                                        padding: EdgeInsets.all(8),
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  VaccineEntryPage(
+                                                vaccineNames: vaccineNames,
+                                                firstDoseDates: [],
+                                                secondDoseDates: [],
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        child: Text(
+                                          "Add Vaccination +",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  const SizedBox(height: 12),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 16),
-                                    child: Text(
-                                      widget.notesController.text,
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.black,
-                                      ),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          flex: 2,
+                                          child: Text(
+                                            'Medical Checkup',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 0,
+                                          child: TextButton(
+                                            onPressed:
+                                                _showexpdeliveryDatePickerModalSheet,
+                                            child: Text(
+                                              'View More ',
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  color:
+                                                      const Color(0xFF245626)),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      ListView.builder(
+                                        itemCount: checkUpNames
+                                            .length, // Use the length of the vaccineNames list
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          final checkUpName =
+                                              checkUpNames[index];
+                                          return ListTile(
+                                            title: Text(checkUpName),
+                                            subtitle: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text("09.09.2023"),
+                                              ],
+                                            ),
+                                            trailing: Icon(Icons
+                                                .edit), // Add an edit icon as trailing
+                                            onTap: () {
+                                              // Handle the edit action here
+                                            },
+                                          );
+                                        },
+                                        padding: EdgeInsets.all(8),
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  VaccineEntryPage(
+                                                vaccineNames: vaccineNames,
+                                                firstDoseDates: [],
+                                                secondDoseDates: [],
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        child: Text(
+                                          "Add Examination Results +",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          flex: 2,
+                                          child: Text(
+                                            'Surgery Records',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 0,
+                                          child: TextButton(
+                                            onPressed:
+                                                _showexpdeliveryDatePickerModalSheet,
+                                            child: Text(
+                                              'View More ',
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  color:
+                                                      const Color(0xFF245626)),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      ListView.builder(
+                                        itemCount: surgeryNames
+                                            .length, // Use the length of the vaccineNames list
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          final surgeryName =
+                                              surgeryNames[index];
+                                          return ListTile(
+                                            title: Text(surgeryName),
+                                            subtitle: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text("09.09.2023"),
+                                              ],
+                                            ),
+                                            trailing: Icon(Icons
+                                                .edit), // Add an edit icon as trailing
+                                            onTap: () {
+                                              // Handle the edit action here
+                                            },
+                                          );
+                                        },
+                                        padding: EdgeInsets.all(8),
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  VaccineEntryPage(
+                                                vaccineNames: vaccineNames,
+                                                firstDoseDates: [],
+                                                secondDoseDates: [],
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        child: Text(
+                                          "Add Surgery Results +",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
                             ),
-                            // Medical Tabbar View Ends
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                'Additonal Notes',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: Text(
+                                widget.notesController.text,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                      Container()
+                      // Medical Tabbar View Ends
                     ],
                   ),
                 ),
-
-                // Tab Bar
+                Container()
               ],
             ),
           ),
+
+          // Tab Bar
         ),
       ),
     );

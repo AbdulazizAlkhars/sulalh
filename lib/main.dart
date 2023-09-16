@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Animal_Information/BreedingSection/CreateBreedingEvents.dart';
-import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfChildren.dart';
-import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfPartners.dart';
-import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfParents.dart';
-import 'package:hathera_demo/Animal_Information/BreedingSection/sda.dart';
+
 import 'package:hathera_demo/CreateAnimals/CreateOviparous.dart';
 
 void main() {
