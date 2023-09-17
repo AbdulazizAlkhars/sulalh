@@ -4,7 +4,7 @@ class ListOfParents extends StatefulWidget {
   final String selectedOviSire;
   final String selectedOviDam;
 
-  ListOfParents({
+  const ListOfParents({
     super.key,
     required this.selectedOviSire,
     required this.selectedOviDam,
@@ -73,23 +73,23 @@ class _ListOfParentsState extends State<ListOfParents> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
-                  Text(
+                  const Text(
                     'No Parents ',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Text(
+                  const Text(
                     "This Animal Doesn't Have Parents.",
                   ),
-                  Text(
+                  const Text(
                     "Add Parent By Pressing The Button Below.",
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 150,
                   ),
                   ElevatedButton(
@@ -103,7 +103,7 @@ class _ListOfParentsState extends State<ListOfParents> {
                     onPressed: () {
                       // Implement the logic to add children here
                     },
-                    child: Text(
+                    child: const Text(
                       'Add Parents',
                       style: TextStyle(color: Colors.white),
                     ),
@@ -116,14 +116,14 @@ class _ListOfParentsState extends State<ListOfParents> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Parents',
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   Row(
@@ -131,7 +131,7 @@ class _ListOfParentsState extends State<ListOfParents> {
                     children: [
                       Column(
                         children: [
-                          CircleAvatar(
+                          const CircleAvatar(
                             radius: 70,
                             backgroundColor: Colors.blue,
                             child: Icon(
@@ -140,15 +140,15 @@ class _ListOfParentsState extends State<ListOfParents> {
                               color: Colors.white,
                             ),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Text(
                             'Sire: ${widget.selectedOviSire}',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Details for John Doe',
                             style: TextStyle(
                               fontSize: 14,
@@ -157,10 +157,10 @@ class _ListOfParentsState extends State<ListOfParents> {
                           ),
                         ],
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       Column(
                         children: [
-                          CircleAvatar(
+                          const CircleAvatar(
                             radius: 70,
                             backgroundColor: Colors.green,
                             child: Icon(
@@ -169,15 +169,15 @@ class _ListOfParentsState extends State<ListOfParents> {
                               color: Colors.white,
                             ),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Text(
                             'Dam: ${widget.selectedOviDam}',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Details for Jane Smith',
                             style: TextStyle(
                               fontSize: 14,

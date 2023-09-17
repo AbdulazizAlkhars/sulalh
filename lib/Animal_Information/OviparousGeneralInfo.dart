@@ -5,7 +5,6 @@ import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfBreedingEv
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfChildren.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfParents.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfPartners.dart';
-import 'package:hathera_demo/Animal_Information/MedicalSection/AddVaccine.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
@@ -81,6 +80,9 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
   List<String> vaccineNames = ["Vaccine 1", "Vaccine 2", "Vaccine 3"];
   List<String> checkUpNames = ["Check Up 1", "Check Up 2", "Check Up 3"];
   List<String> surgeryNames = ["Surgery 1", "Surgery 2", "Surgery 3"];
+  List<VaccineDetails> vaccineDetailsList = [];
+  List<MedicalCheckupDetails> medicalCheckupDetailsList = [];
+  List<SurgeryDetails> surgeryDetailsList = [];
 
   Widget _buildDisplayMode() {
     return Padding(
@@ -90,15 +92,15 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
         children: [
           Text(
             _medicalNeedsController.text,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
               color: Colors.black,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Text(
+          const Text(
             'Picked File To Be Here',
             style: TextStyle(
               fontSize: 14,
@@ -302,7 +304,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                 top: 0,
                 right: 0,
                 child: IconButton(
-                  icon: Icon(Icons.clear),
+                  icon: const Icon(Icons.clear),
                   onPressed: () {
                     // Clear the text field
                     _medicalNeedsController.clear();
@@ -311,7 +313,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           GestureDetector(
@@ -967,7 +969,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                             255, 251, 247, 206),
                                         borderRadius: BorderRadius.circular(10),
                                       ),
-                                      child: Row(
+                                      child: const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceAround,
                                         children: [
@@ -975,13 +977,13 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                             children: [
                                               Text(
                                                 'Pregnant',
-                                                style: const TextStyle(
+                                                style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 14,
                                                 ),
                                               ),
-                                              const SizedBox(height: 8),
-                                              const Text(
+                                              SizedBox(height: 8),
+                                              Text(
                                                 'Current Status',
                                                 style: TextStyle(
                                                   color: Colors.grey,
@@ -1032,7 +1034,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                               widget.selectedOviGender == 'Male'
                                                   ? 'Date Of Mating'
                                                   : 'Last Hatching Date',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 14,
                                               ),
@@ -1063,7 +1065,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                               widget.selectedOviGender == 'Male'
                                                   ? 'Next Date Of Mating'
                                                   : 'Frequency Of Laying Eggs',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 14,
                                               ),
@@ -1213,7 +1215,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                           255, 251, 247, 206),
                                       borderRadius: BorderRadius.circular(10),
                                     ),
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
                                       children: [
@@ -1221,13 +1223,13 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                           children: [
                                             Text(
                                               '01.01.2023',
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 14,
                                               ),
                                             ),
-                                            const SizedBox(height: 8),
-                                            const Text(
+                                            SizedBox(height: 8),
+                                            Text(
                                               'Next Vaccination',
                                               style: TextStyle(
                                                 color: Colors.grey,
@@ -1249,7 +1251,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                           255, 251, 247, 206),
                                       borderRadius: BorderRadius.circular(10),
                                     ),
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
                                       children: [
@@ -1257,13 +1259,13 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                           children: [
                                             Text(
                                               '12.02.2023',
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 14,
                                               ),
                                             ),
-                                            const SizedBox(height: 8),
-                                            const Text(
+                                            SizedBox(height: 8),
+                                            Text(
                                               'Last Check Up',
                                               style: TextStyle(
                                                 color: Colors.grey,
@@ -1276,13 +1278,13 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                           children: [
                                             Text(
                                               '02.08.2023',
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 fontSize: 14,
                                                 color: Colors.black,
                                               ),
                                             ),
-                                            const SizedBox(height: 8),
-                                            const Text(
+                                            SizedBox(height: 8),
+                                            Text(
                                               'Next Check Up',
                                               style: TextStyle(
                                                 color: Colors.grey,
@@ -1294,17 +1296,17 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                       ],
                                     ),
                                   ),
-                                  SizedBox(height: 20),
+                                  const SizedBox(height: 20),
                                   Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 16),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
+                                        const Text(
                                           'Medical Needs',
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 25,
                                           ),
@@ -1323,7 +1325,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                                     _isEditMode = false;
                                                   });
                                                 },
-                                                child: Text(
+                                                child: const Text(
                                                   'Save',
                                                   style: TextStyle(
                                                       fontWeight:
@@ -1333,7 +1335,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                             : IconButton(
                                                 icon: const Icon(
                                                   Icons.edit_square,
-                                                  color: const Color.fromARGB(
+                                                  color: Color.fromARGB(
                                                       255, 36, 86, 38),
                                                 ),
                                                 onPressed: () {
@@ -1346,7 +1348,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                       ],
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   _isEditMode
@@ -1374,12 +1376,12 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                           ),
                                         ),
                                         const SizedBox(height: 13),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
+                                        const Padding(
+                                          padding: EdgeInsets.symmetric(
                                               horizontal: 16),
                                           child: Row(
                                             children: [
-                                              const Expanded(
+                                              Expanded(
                                                 flex: 2,
                                                 child: Text(
                                                   'Count On Pregnancies',
@@ -1425,8 +1427,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                                       '$newpregnantStatus >',
                                                       style: const TextStyle(
                                                           fontSize: 14,
-                                                          color: const Color
-                                                              .fromARGB(
+                                                          color: Color.fromARGB(
                                                               255, 36, 86, 38)),
                                                     ),
                                                   )),
@@ -1455,10 +1456,10 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                                       _showmatingDatePickerModalSheet,
                                                   child: Text(
                                                     '$newmatingdate >',
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         fontSize: 14,
-                                                        color: const Color(
-                                                            0xFF245626)),
+                                                        color:
+                                                            Color(0xFF245626)),
                                                   ),
                                                 ),
                                               ),
@@ -1487,10 +1488,10 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                                       _showsonarDatePickerModalSheet,
                                                   child: Text(
                                                     '$newsonardate >',
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         fontSize: 14,
-                                                        color: const Color(
-                                                            0xFF245626)),
+                                                        color:
+                                                            Color(0xFF245626)),
                                                   ),
                                                 ),
                                               ),
@@ -1519,10 +1520,10 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                                       _showexpdeliveryDatePickerModalSheet,
                                                   child: Text(
                                                     '$newexpdeliverydate >',
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         fontSize: 14,
-                                                        color: const Color(
-                                                            0xFF245626)),
+                                                        color:
+                                                            Color(0xFF245626)),
                                                   ),
                                                 ),
                                               ),
@@ -1538,7 +1539,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         horizontal: 16),
                                     child: Row(
                                       children: [
-                                        Expanded(
+                                        const Expanded(
                                           flex: 2,
                                           child: Text(
                                             'Vaccination',
@@ -1553,12 +1554,11 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                           child: TextButton(
                                             onPressed:
                                                 _showexpdeliveryDatePickerModalSheet,
-                                            child: Text(
+                                            child: const Text(
                                               'View More ',
                                               style: TextStyle(
                                                   fontSize: 14,
-                                                  color:
-                                                      const Color(0xFF245626)),
+                                                  color: Color(0xFF245626)),
                                             ),
                                           ),
                                         ),
@@ -1569,55 +1569,76 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      ListView.builder(
-                                        itemCount: vaccineNames
-                                            .length, // Use the length of the vaccineNames list
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
-                                          final vaccineName =
-                                              vaccineNames[index];
-                                          return ListTile(
-                                            title: Text(vaccineName),
-                                            subtitle: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text("09.09.2023"),
-                                              ],
-                                            ),
-                                            trailing: Icon(Icons
-                                                .edit), // Add an edit icon as trailing
-                                            onTap: () {
-                                              // Handle the edit action here
+                                      const SizedBox(height: 10),
+                                      SingleChildScrollView(
+                                        child: ListView.builder(
+                                          itemCount: vaccineDetailsList.length,
+                                          shrinkWrap:
+                                              true, // This allows the ListView to take only necessary space
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return ListTile(
+                                              title: Text(
+                                                  vaccineDetailsList[index]
+                                                      .vaccineName),
+                                              trailing: const Icon(Icons
+                                                  .edit), // Add an edit icon as trailing
+                                              onTap: () {
+                                                // Handle the edit action here
+                                              },
+                                              subtitle: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    DateFormat('yyyy-MM-dd')
+                                                        .format(
+                                                            vaccineDetailsList[
+                                                                    index]
+                                                                .firstDoseDate!),
+                                                  ),
+                                                  Text(
+                                                    DateFormat('yyyy-MM-dd')
+                                                        .format(
+                                                            vaccineDetailsList[
+                                                                    index]
+                                                                .secondDoseDate!),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          // Show the VaccineEntryPage as a modal sheet
+                                          showModalBottomSheet(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return VaccineEntryPage(
+                                                onSave: (vaccineName,
+                                                    firstDoseDate,
+                                                    secondDoseDate) {
+                                                  // Save vaccine details to the list
+                                                  setState(() {
+                                                    vaccineDetailsList.add(
+                                                      VaccineDetails(
+                                                        vaccineName:
+                                                            vaccineName,
+                                                        firstDoseDate:
+                                                            firstDoseDate,
+                                                        secondDoseDate:
+                                                            secondDoseDate,
+                                                      ),
+                                                    );
+                                                  });
+                                                },
+                                              );
                                             },
                                           );
                                         },
-                                        padding: EdgeInsets.all(8),
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  VaccineEntryPage(
-                                                vaccineNames: vaccineNames,
-                                                firstDoseDates: [],
-                                                secondDoseDates: [],
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                        child: Text(
-                                          "Add Vaccination +",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
+                                        child: const Text('Add Vaccination +'),
                                       ),
                                     ],
                                   ),
@@ -1626,7 +1647,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         horizontal: 16),
                                     child: Row(
                                       children: [
-                                        Expanded(
+                                        const Expanded(
                                           flex: 2,
                                           child: Text(
                                             'Medical Checkup',
@@ -1641,12 +1662,11 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                           child: TextButton(
                                             onPressed:
                                                 _showexpdeliveryDatePickerModalSheet,
-                                            child: Text(
+                                            child: const Text(
                                               'View More ',
                                               style: TextStyle(
                                                   fontSize: 14,
-                                                  color:
-                                                      const Color(0xFF245626)),
+                                                  color: Color(0xFF245626)),
                                             ),
                                           ),
                                         ),
@@ -1657,55 +1677,62 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      ListView.builder(
-                                        itemCount: checkUpNames
-                                            .length, // Use the length of the vaccineNames list
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
-                                          final checkUpName =
-                                              checkUpNames[index];
-                                          return ListTile(
-                                            title: Text(checkUpName),
-                                            subtitle: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text("09.09.2023"),
-                                              ],
-                                            ),
-                                            trailing: Icon(Icons
-                                                .edit), // Add an edit icon as trailing
-                                            onTap: () {
-                                              // Handle the edit action here
+                                      const SizedBox(height: 10),
+                                      SingleChildScrollView(
+                                        child: ListView.builder(
+                                          itemCount:
+                                              medicalCheckupDetailsList.length,
+                                          shrinkWrap:
+                                              true, // This allows the ListView to take only necessary space
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return ListTile(
+                                              title: Text(
+                                                  medicalCheckupDetailsList[
+                                                          index]
+                                                      .checkupName),
+                                              trailing: const Icon(Icons
+                                                  .edit), // Add an edit icon as trailing
+                                              onTap: () {
+                                                // Handle the edit action here
+                                              },
+                                              subtitle: Text(
+                                                '${DateFormat('yyyy-MM-dd').format(medicalCheckupDetailsList[index].checkupDate!)} ',
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          // Show the VaccineEntryPage as a modal sheet
+                                          showModalBottomSheet(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return MedicalCheckupEntryPage(
+                                                onSave: (
+                                                  checkupName,
+                                                  checkupDate,
+                                                ) {
+                                                  // Save vaccine details to the list
+                                                  setState(() {
+                                                    medicalCheckupDetailsList
+                                                        .add(
+                                                      MedicalCheckupDetails(
+                                                        checkupName:
+                                                            checkupName,
+                                                        checkupDate:
+                                                            checkupDate,
+                                                      ),
+                                                    );
+                                                  });
+                                                },
+                                              );
                                             },
                                           );
                                         },
-                                        padding: EdgeInsets.all(8),
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  VaccineEntryPage(
-                                                vaccineNames: vaccineNames,
-                                                firstDoseDates: [],
-                                                secondDoseDates: [],
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                        child: Text(
-                                          "Add Examination Results +",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
+                                        child: const Text(
+                                            'Add Examination Results +'),
                                       ),
                                     ],
                                   ),
@@ -1714,7 +1741,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         horizontal: 16),
                                     child: Row(
                                       children: [
-                                        Expanded(
+                                        const Expanded(
                                           flex: 2,
                                           child: Text(
                                             'Surgery Records',
@@ -1729,12 +1756,11 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                           child: TextButton(
                                             onPressed:
                                                 _showexpdeliveryDatePickerModalSheet,
-                                            child: Text(
+                                            child: const Text(
                                               'View More ',
                                               style: TextStyle(
                                                   fontSize: 14,
-                                                  color:
-                                                      const Color(0xFF245626)),
+                                                  color: Color(0xFF245626)),
                                             ),
                                           ),
                                         ),
@@ -1745,54 +1771,58 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      ListView.builder(
-                                        itemCount: surgeryNames
-                                            .length, // Use the length of the vaccineNames list
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
-                                          final surgeryName =
-                                              surgeryNames[index];
-                                          return ListTile(
-                                            title: Text(surgeryName),
-                                            subtitle: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text("09.09.2023"),
-                                              ],
-                                            ),
-                                            trailing: Icon(Icons
-                                                .edit), // Add an edit icon as trailing
-                                            onTap: () {
-                                              // Handle the edit action here
+                                      SingleChildScrollView(
+                                        child: ListView.builder(
+                                          itemCount: surgeryDetailsList.length,
+                                          shrinkWrap:
+                                              true, // This allows the ListView to take only necessary space
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return ListTile(
+                                              title: Text(
+                                                  surgeryDetailsList[index]
+                                                      .surgeryName),
+                                              trailing: const Icon(Icons
+                                                  .edit), // Add an edit icon as trailing
+                                              onTap: () {
+                                                // Handle the edit action here
+                                              },
+                                              subtitle: Text(
+                                                '${DateFormat('yyyy-MM-dd').format(surgeryDetailsList[index].surgeryDate!)} ',
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          // Show the VaccineEntryPage as a modal sheet
+                                          showModalBottomSheet(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return SurgeryEntryPage(
+                                                onSave: (
+                                                  surgeryName,
+                                                  surgeryDate,
+                                                ) {
+                                                  // Save vaccine details to the list
+                                                  setState(() {
+                                                    surgeryDetailsList.add(
+                                                      SurgeryDetails(
+                                                        surgeryName:
+                                                            surgeryName,
+                                                        surgeryDate:
+                                                            surgeryDate,
+                                                      ),
+                                                    );
+                                                  });
+                                                },
+                                              );
                                             },
                                           );
                                         },
-                                        padding: EdgeInsets.all(8),
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  VaccineEntryPage(
-                                                vaccineNames: vaccineNames,
-                                                firstDoseDates: [],
-                                                secondDoseDates: [],
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                        child: Text(
+                                        child: const Text(
                                           "Add Surgery Results +",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
                                         ),
                                       ),
                                     ],
@@ -1841,21 +1871,578 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
   }
 }
 
-Widget _buildInfoBox(String label) {
-  return Container(
-    width: 100,
-    height: 40,
-    decoration: BoxDecoration(
-      color: const Color.fromARGB(255, 255, 242, 122),
-      borderRadius: BorderRadius.circular(50),
-    ),
-    child: Center(
-      child: Text(
-        label,
-        style: const TextStyle(
-          fontSize: 14,
+class VaccineEntryPage extends StatefulWidget {
+  final Function(String, DateTime?, DateTime?) onSave;
+
+  const VaccineEntryPage({super.key, required this.onSave});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _VaccineEntryPageState createState() => _VaccineEntryPageState();
+}
+
+class _VaccineEntryPageState extends State<VaccineEntryPage> {
+  TextEditingController vaccineNameController = TextEditingController();
+  DateTime? firstDoseDate;
+  DateTime? secondDoseDate;
+
+  @override
+  void dispose() {
+    vaccineNameController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _selectDate(BuildContext context, bool isFirstDose) async {
+    final selectedDate = await showDatePicker(
+      context: context,
+      initialDate: isFirstDose
+          ? firstDoseDate ?? DateTime.now()
+          : secondDoseDate ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    if (selectedDate != null) {
+      setState(() {
+        if (isFirstDose) {
+          firstDoseDate = selectedDate;
+        } else {
+          secondDoseDate = selectedDate;
+        }
+      });
+    }
+  }
+
+  void _saveDataAndNavigateBack() {
+    String newVaccineName = vaccineNameController.text;
+    widget.onSave(newVaccineName, firstDoseDate, secondDoseDate);
+
+    // Close the modal sheet and return to MyPage
+    Navigator.pop(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const Text(
+              "Add Vaccination",
+              style: TextStyle(
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            const Text(
+              "Vaccine",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
+            TextFormField(
+              controller: vaccineNameController,
+              decoration: InputDecoration(
+                labelText: 'Vaccine Name',
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: () {
+                    setState(() {
+                      vaccineNameController.clear();
+                    });
+                  },
+                ),
+                hintText: 'Enter Vaccine Name',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                contentPadding: const EdgeInsets.symmetric(
+                  vertical: 12.0,
+                  horizontal: 16.0,
+                ),
+              ),
+              textInputAction: TextInputAction.done,
+            ),
+            const SizedBox(height: 20),
+            const Text('Add Date Of Vaccination:'),
+            const SizedBox(height: 8),
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.calendar_today,
+                      color: Color(0xFF245626)),
+                  onPressed: () {
+                    _selectDate(context, true);
+                  },
+                ),
+              ),
+              readOnly: true,
+              controller: TextEditingController(
+                text: firstDoseDate == null
+                    ? 'Date Of Vaccination'
+                    : '${firstDoseDate?.toLocal()}'.split(' ')[0],
+              ),
+            ),
+            const SizedBox(height: 20),
+            const Text('Add Next Date Of Vaccination:'),
+            const SizedBox(height: 8),
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.calendar_today,
+                      color: Color(0xFF245626)),
+                  onPressed: () {
+                    _selectDate(context, false);
+                  },
+                ),
+              ),
+              readOnly: true,
+              controller: TextEditingController(
+                text: secondDoseDate == null
+                    ? 'Next Date Of Vaccination'
+                    : '${secondDoseDate?.toLocal()}'.split(' ')[0],
+              ),
+            ),
+            const SizedBox(height: 20),
+            GestureDetector(
+              onTap: () {
+                // Handle file upload logic here
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                width: double.infinity,
+                height: 150,
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.file_open_outlined,
+                      size: 35,
+                    ),
+                    Text(
+                      'Upload File, PDF, Jpeg, PNG',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Container(
+              width: double
+                  .infinity, // Make the button expand to full screen width
+              padding: const EdgeInsets.all(16),
+              child: ElevatedButton(
+                onPressed: () {
+                  // Save data and navigate back to MyPage
+                  _saveDataAndNavigateBack();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 36, 86, 38),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                ),
+                child: const Text(
+                  'Save',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            )
+          ],
         ),
       ),
-    ),
-  );
+    );
+  }
+}
+
+class MedicalCheckupEntryPage extends StatefulWidget {
+  final Function(String, DateTime?) onSave;
+
+  const MedicalCheckupEntryPage({super.key, required this.onSave});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _MedicalCheckupEntryPageState createState() =>
+      _MedicalCheckupEntryPageState();
+}
+
+class _MedicalCheckupEntryPageState extends State<MedicalCheckupEntryPage> {
+  TextEditingController checkupNameController = TextEditingController();
+  DateTime? checkupDate;
+
+  @override
+  void dispose() {
+    checkupNameController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final selectedDate = await showDatePicker(
+      context: context,
+      initialDate: checkupDate ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    if (selectedDate != null) {
+      setState(() {
+        checkupDate = selectedDate;
+      });
+    }
+  }
+
+  void _saveDataAndNavigateBack() {
+    String newCheckupName = checkupNameController.text;
+    widget.onSave(newCheckupName, checkupDate);
+
+    // Close the modal sheet and return to MyPage
+    Navigator.pop(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const Text(
+              "Add Medical Checkup",
+              style: TextStyle(
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            const Text(
+              "Checkup",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
+            TextFormField(
+              controller: checkupNameController,
+              decoration: InputDecoration(
+                labelText: 'Checkup Name',
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: () {
+                    setState(() {
+                      checkupNameController.clear();
+                    });
+                  },
+                ),
+                hintText: 'Enter Checkup Name',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                contentPadding: const EdgeInsets.symmetric(
+                  vertical: 12.0,
+                  horizontal: 16.0,
+                ),
+              ),
+              textInputAction: TextInputAction.done,
+            ),
+            const SizedBox(height: 20),
+            const Text('Add Checkup Date:'),
+            const SizedBox(height: 8),
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.calendar_today,
+                      color: Color(0xFF245626)),
+                  onPressed: () {
+                    _selectDate(context);
+                  },
+                ),
+              ),
+              readOnly: true,
+              controller: TextEditingController(
+                text: checkupDate == null
+                    ? 'Checkup Date'
+                    : DateFormat('yyyy-MM-dd').format(checkupDate!),
+              ),
+            ),
+            const SizedBox(height: 20),
+            GestureDetector(
+              onTap: () {
+                // Handle file upload logic here
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                width: double.infinity,
+                height: 150,
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.file_open_outlined,
+                      size: 35,
+                    ),
+                    Text(
+                      'Upload File, PDF, Jpeg, PNG',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: _saveDataAndNavigateBack,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 36, 86, 38),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                ),
+                child: const Text(
+                  'Save',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SurgeryEntryPage extends StatefulWidget {
+  final Function(String, DateTime?) onSave;
+
+  const SurgeryEntryPage({super.key, required this.onSave});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _SurgeryEntryPageState createState() => _SurgeryEntryPageState();
+}
+
+class _SurgeryEntryPageState extends State<SurgeryEntryPage> {
+  TextEditingController surgeryNameController = TextEditingController();
+  DateTime? surgeryDate;
+
+  @override
+  void dispose() {
+    surgeryNameController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final selectedDate = await showDatePicker(
+      context: context,
+      initialDate: surgeryDate ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    if (selectedDate != null) {
+      setState(() {
+        surgeryDate = selectedDate;
+      });
+    }
+  }
+
+  void _saveDataAndNavigateBack() {
+    String newSurgeryName = surgeryNameController.text;
+    widget.onSave(newSurgeryName, surgeryDate);
+
+    // Close the modal sheet and return to MyPage
+    Navigator.pop(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const Text(
+              "Add Surgery",
+              style: TextStyle(
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            const Text(
+              "Surgery",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
+            TextFormField(
+              controller: surgeryNameController,
+              decoration: InputDecoration(
+                labelText: 'Surgery Name',
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: () {
+                    setState(() {
+                      surgeryNameController.clear();
+                    });
+                  },
+                ),
+                hintText: 'Enter Surgery Name',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                contentPadding: const EdgeInsets.symmetric(
+                  vertical: 12.0,
+                  horizontal: 16.0,
+                ),
+              ),
+              textInputAction: TextInputAction.done,
+            ),
+            const SizedBox(height: 20),
+            const Text('Add Surgery Date:'),
+            const SizedBox(height: 8),
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.calendar_today,
+                      color: Color(0xFF245626)),
+                  onPressed: () {
+                    _selectDate(context);
+                  },
+                ),
+              ),
+              readOnly: true,
+              controller: TextEditingController(
+                text: surgeryDate == null
+                    ? 'Surgery Date'
+                    : DateFormat('yyyy-MM-dd').format(surgeryDate!),
+              ),
+            ),
+            const SizedBox(height: 20),
+            GestureDetector(
+              onTap: () {
+                // Handle file upload logic here
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                width: double.infinity,
+                height: 150,
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.file_open_outlined,
+                      size: 35,
+                    ),
+                    Text(
+                      'Upload File, PDF, Jpeg, PNG',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: _saveDataAndNavigateBack,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 36, 86, 38),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                ),
+                child: const Text(
+                  'Save',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class VaccineDetails {
+  final String vaccineName;
+  final DateTime? firstDoseDate;
+  final DateTime? secondDoseDate;
+
+  VaccineDetails({
+    required this.vaccineName,
+    this.firstDoseDate,
+    this.secondDoseDate,
+  });
+}
+
+class MedicalCheckupDetails {
+  final String checkupName;
+  final DateTime? checkupDate;
+
+  MedicalCheckupDetails({
+    required this.checkupName,
+    this.checkupDate,
+  });
+}
+
+class SurgeryDetails {
+  final String surgeryName;
+  final DateTime? surgeryDate;
+
+  SurgeryDetails({
+    required this.surgeryName,
+    this.surgeryDate,
+  });
 }

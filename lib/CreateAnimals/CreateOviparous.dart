@@ -1,5 +1,4 @@
 import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Animal_Information/OviparousGeneralInfo.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
@@ -16,8 +15,9 @@ class CreateOviparousPage extends StatefulWidget {
   final String selectedAnimalSpecies;
   final String selectedAnimalBreed;
 
-  CreateOviparousPage(
-      {required this.selectedAnimalType,
+  const CreateOviparousPage(
+      {super.key,
+      required this.selectedAnimalType,
       required this.selectedAnimalSpecies,
       required this.selectedAnimalBreed});
 
@@ -53,6 +53,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
   String selectedOviGender = '';
   bool _addOviParents = false;
   bool _addOviChildren = false;
+  // ignore: non_constant_identifier_names
   final ImagePicker _Ovipicker = ImagePicker();
   File? _selectedOviImage;
 
@@ -1207,7 +1208,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                 },
                 child: Row(
                   children: [
-                    Expanded(
+                    const Expanded(
                       child: Text(
                         'Female',
                         style: TextStyle(
@@ -1238,7 +1239,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Frequency Of Laying Eggs/Month',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -1259,8 +1260,8 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                           TextInputAction.done, // Change the keyboard action
                     ),
                     // Your first additional text field widget here
-                    SizedBox(height: 10),
-                    Text(
+                    const SizedBox(height: 10),
+                    const Text(
                       'Number Of Eggs/Month',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -1542,7 +1543,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                     ),
                   ),
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.delete,
                       color: Colors.red,
                     ),
