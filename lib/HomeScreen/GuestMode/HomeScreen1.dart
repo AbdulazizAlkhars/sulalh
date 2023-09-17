@@ -1,9 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/HomeScreen/GuestMode/SearchFarms&Animals.dart';
 import 'package:hathera_demo/HomeScreen/GuestMode/StartUrFarm.dart';
+import 'package:showcaseview/showcaseview.dart';
 
-class HomeScreen1 extends StatelessWidget {
+class HomeScreen1 extends StatefulWidget {
   const HomeScreen1({super.key});
+
+  @override
+  State<HomeScreen1> createState() => _HomeScreen1State();
+}
+
+class _HomeScreen1State extends State<HomeScreen1> {
+  final GlobalKey _one = GlobalKey();
+
+  final GlobalKey _two = GlobalKey();
+
+  final GlobalKey _three = GlobalKey();
+  final GlobalKey _four = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) =>
+        ShowCaseWidget.of(context).startShowCase([_one, _two, _three, _four]));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,27 +64,43 @@ class HomeScreen1 extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: CardWidget(
-                  icon: Icons.book,
-                  text: 'Searching For Animals',
-                  buttonText: 'Find Animals',
-                  onPressed: () {
-                    // Handle button 1 press
-                  },
-                  color: const Color.fromARGB(
-                      255, 197, 219, 158), // Set the color for the first card
+                child: Showcase(
+                  targetBorderRadius: const BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                  key: _one,
+                  description:
+                      'Here You Can Find Information About Animals & Breeds',
+                  child: CardWidget(
+                    icon: Icons.book,
+                    text: 'Searching For Animals',
+                    buttonText: 'Find Animals',
+                    onPressed: () {
+                      // Handle button 1 press
+                    },
+                    color: const Color.fromARGB(
+                        255, 197, 219, 158), // Set the color for the first card
+                  ),
                 ),
               ),
               Expanded(
-                child: CardWidget(
-                  icon: Icons.music_note,
-                  text: 'Search For\nFarms',
-                  buttonText: 'Find Farms',
-                  onPressed: () {
-                    // Handle button 2 press
-                  },
-                  color: const Color.fromARGB(
-                      255, 254, 255, 168), // Set the color for the second card
+                child: Showcase(
+                  targetBorderRadius: const BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                  key: _two,
+                  description:
+                      "Here You Can Find Another Person's Farm, View Information About It & Join It After Registration.",
+                  child: CardWidget(
+                    icon: Icons.music_note,
+                    text: 'Search For\nFarms',
+                    buttonText: 'Find Farms',
+                    onPressed: () {
+                      // Handle button 2 press
+                    },
+                    color: const Color.fromARGB(255, 254, 255,
+                        168), // Set the color for the second card
+                  ),
                 ),
               ),
             ],
@@ -76,32 +112,43 @@ class HomeScreen1 extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(
-                  255, 36, 86, 38), // Set the background color of the button
+          Showcase(
+            key: _three,
+            description: 'Join The Farms',
+            targetBorderRadius: const BorderRadius.all(
+              Radius.circular(50),
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const StartUrFarm()),
-              );
-            },
-            child: const Text(
-              'Join Now',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16), // Set the text color of the button
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(
+                    255, 36, 86, 38), // Set the background color of the button
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const StartUrFarm()),
+                );
+              },
+              child: const Text(
+                'Join Now',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16), // Set the text color of the button
+              ),
             ),
           ),
           const SizedBox(height: 20),
-          TextButton(
-            onPressed: () {
-              // Handle text button press
-            },
-            child: const Text(
-              'Sign In',
-              style: TextStyle(fontWeight: FontWeight.bold),
+          Showcase(
+            key: _four,
+            description: 'Sign In By Clicking This',
+            child: TextButton(
+              onPressed: () {
+                // Handle text button press
+              },
+              child: const Text(
+                'Sign In',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ],

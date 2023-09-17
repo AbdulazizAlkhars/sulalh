@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/CreateAnimals/CreateOviparous.dart';
+import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,10 +21,17 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: CreateOviparousPage(
-          selectedAnimalType: '',
-          selectedAnimalSpecies: '',
-          selectedAnimalBreed: '',
-        ));
+        home: StartWidget());
+  }
+}
+
+class StartWidget extends StatelessWidget {
+  const StartWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ShowCaseWidget(builder: Builder(builder: (context) {
+      return BottomNavigationBarPage();
+    }));
   }
 }
