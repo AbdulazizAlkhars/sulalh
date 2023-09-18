@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
+import 'package:hathera_demo/Tutorials/GuestHomeScreen.dart';
+
 import 'package:showcaseview/showcaseview.dart';
 
 void main() {
@@ -21,17 +22,9 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: StartWidget());
-  }
-}
-
-class StartWidget extends StatelessWidget {
-  const StartWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ShowCaseWidget(builder: Builder(builder: (context) {
-      return BottomNavigationBarPage();
-    }));
+        home: ShowCaseWidget(
+            builder: Builder(
+          builder: (context) => GuestHomeScreenTutorial(),
+        )));
   }
 }
