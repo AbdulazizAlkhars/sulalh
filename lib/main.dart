@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Tutorials/GuestHomeScreen.dart';
-
-import 'package:showcaseview/showcaseview.dart';
+import 'package:hathera_demo/SplashScreen/SplashScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,17 +12,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Sulalh Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 36, 86, 38),
-          ),
-          useMaterial3: true,
+      debugShowCheckedModeBanner: false,
+      title: 'Sulalh Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 36, 86, 38),
         ),
-        home: ShowCaseWidget(
-            builder: Builder(
-          builder: (context) => GuestHomeScreenTutorial(),
-        )));
+        useMaterial3: true,
+      ),
+      home: SplashScreen(), // Display the splash screen initially
+    );
   }
 }

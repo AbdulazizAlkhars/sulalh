@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/HomeScreen/Registered/HomePage.dart';
+import 'package:hathera_demo/Tutorials/AnimalInfoTutorialPage.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import '../HomeScreen/GuestMode/HomeScreen1.dart';
@@ -265,25 +267,39 @@ class _RegHomeScreenTutorial extends State<RegHomeScreenTutorial> {
                 fontSize: 18,
                 color: Color.fromARGB(255, 36, 86, 38),
                 fontWeight: FontWeight.bold),
-            onTargetClick: () {},
+            onTargetClick: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) =>
+                      AnimalInfoTutorialPage(), // Replace with your desired page.
+                ),
+              );
+            },
             disposeOnTap: true,
             child: Container(
-              height: 100,
+              height: 70,
               width: 100,
               child: FloatingActionButton(
-                onPressed: () {},
-                backgroundColor: const Color.fromARGB(255, 36, 86, 38),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          AnimalInfoTutorialPage(), // Replace with your desired page.
+                    ),
+                  );
+                },
+                backgroundColor: Colors.white,
                 elevation: 10,
                 shape: const CircleBorder(),
                 child: const Icon(
                   Icons.arrow_right_alt,
-                  size: 44,
-                  color: Colors.white,
+                  size: 54,
+                  color: Colors.black,
                 ),
               ),
             ),
           ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+          // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         );
       }),
     ));
@@ -319,91 +335,91 @@ class _RegHomeScreenTutorial extends State<RegHomeScreenTutorial> {
   }
 }
 
-class AnimalData {
-  AnimalData(this.animal, this.quan, this.color);
-  final String animal;
-  final int quan;
-  final Color color;
-}
+// class AnimalData {
+//   AnimalData(this.animal, this.quan, this.color);
+//   final String animal;
+//   final int quan;
+//   final Color color;
+// }
 
-class EventData {
-  final String title;
-  final String subtitle;
+// class EventData {
+//   final String title;
+//   final String subtitle;
 
-  EventData({required this.title, required this.subtitle});
-}
+//   EventData({required this.title, required this.subtitle});
+// }
 
-class SmallCardWidget extends StatefulWidget {
-  final IconData icon;
-  final AnimalData animalData;
-  final String quan;
-  final VoidCallback onPressed;
-  final Color color;
-  final bool isSelected; // Added new isSelected property
+// class SmallCardWidget extends StatefulWidget {
+//   final IconData icon;
+//   final AnimalData animalData;
+//   final String quan;
+//   final VoidCallback onPressed;
+//   final Color color;
+//   final bool isSelected; // Added new isSelected property
 
-  const SmallCardWidget({
-    required this.icon,
-    required this.animalData,
-    required this.quan,
-    required this.onPressed,
-    required this.color,
-    this.isSelected = false,
-  });
+//   const SmallCardWidget({
+//     required this.icon,
+//     required this.animalData,
+//     required this.quan,
+//     required this.onPressed,
+//     required this.color,
+//     this.isSelected = false,
+//   });
 
-  @override
-  _SmallCardWidgetState createState() => _SmallCardWidgetState();
-}
+//   @override
+//   _SmallCardWidgetState createState() => _SmallCardWidgetState();
+// }
 
-class _SmallCardWidgetState extends State<SmallCardWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Material(
-        elevation:
-            widget.isSelected ? 10 : 0, // Set elevation based on isSelected
-        borderRadius: BorderRadius.circular(8),
-        child: InkWell(
-          onTap: () {},
-          borderRadius: BorderRadius.circular(8),
-          child: Container(
-            width: 106,
-            height: 148,
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: widget.color, // Set the color of the card
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
-                  widget.icon,
-                  size: 40,
-                  color: Colors.black, // Set the color of the icon
-                ),
-                const SizedBox(height: 25),
-                Text(
-                  widget.animalData.animal,
-                  style: const TextStyle(
-                    fontSize: 15,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  widget.animalData.quan.toString(),
-                  style: const TextStyle(
-                    fontSize: 17,
-                    color: Colors.black,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+// class _SmallCardWidgetState extends State<SmallCardWidget> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.all(8.0),
+//       child: Material(
+//         elevation:
+//             widget.isSelected ? 10 : 0, // Set elevation based on isSelected
+//         borderRadius: BorderRadius.circular(8),
+//         child: InkWell(
+//           onTap: () {},
+//           borderRadius: BorderRadius.circular(8),
+//           child: Container(
+//             width: 106,
+//             height: 148,
+//             padding: const EdgeInsets.all(16),
+//             decoration: BoxDecoration(
+//               color: widget.color, // Set the color of the card
+//               borderRadius: BorderRadius.circular(8),
+//             ),
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 Icon(
+//                   widget.icon,
+//                   size: 40,
+//                   color: Colors.black, // Set the color of the icon
+//                 ),
+//                 const SizedBox(height: 25),
+//                 Text(
+//                   widget.animalData.animal,
+//                   style: const TextStyle(
+//                     fontSize: 15,
+//                     color: Colors.black,
+//                     fontWeight: FontWeight.bold,
+//                   ),
+//                 ),
+//                 const SizedBox(height: 5),
+//                 Text(
+//                   widget.animalData.quan.toString(),
+//                   style: const TextStyle(
+//                     fontSize: 17,
+//                     color: Colors.black,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

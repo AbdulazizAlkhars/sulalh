@@ -188,7 +188,7 @@ class _GuestHomeScreenTutorial extends State<GuestHomeScreenTutorial> {
         },
         disposeOnTap: true,
         child: Container(
-          height: 100,
+          height: 70,
           width: 100,
           child: FloatingActionButton(
             onPressed: () {
@@ -199,18 +199,17 @@ class _GuestHomeScreenTutorial extends State<GuestHomeScreenTutorial> {
                 ),
               );
             },
-            backgroundColor: const Color.fromARGB(255, 36, 86, 38),
+            backgroundColor: Colors.white,
             elevation: 10,
             shape: const CircleBorder(),
             child: const Icon(
               Icons.arrow_right_alt,
-              size: 44,
-              color: Colors.white,
+              size: 54,
             ),
           ),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
