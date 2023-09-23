@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/AnimalManagement/ListOfAnimals.dart';
 import 'package:hathera_demo/HomeScreen/GuestMode/HomeScreen1.dart';
 import 'package:hathera_demo/Profile/ProfilePage.dart';
@@ -31,18 +32,18 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
             _currentIndex = index;
           });
         },
-        items: const [
+        items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
-            label: 'Home',
+            label: 'Home'.tr,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.pets),
-            label: 'Animals',
+            label: 'Animals'.tr,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profile',
+            label: 'Profile'.tr,
           ),
         ],
       ),

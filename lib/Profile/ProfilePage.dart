@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Profile/AboutApp/AboutApp.dart';
 import 'package:hathera_demo/Profile/AppSettings/AppSettings.dart';
 import 'package:hathera_demo/Profile/AuthorizationMethods/AuthorizationMethodsPage.dart';
@@ -25,10 +26,10 @@ class _ProfilePageState extends State<ProfilePage> {
       backgroundColor: const Color.fromARGB(255, 245, 245, 245),
       appBar: AppBar(
         elevation: 0,
-        title: const Row(
+        title: Row(
           children: [
             Text(
-              'Profile',
+              'Profile'.tr,
               style: TextStyle(
                 fontSize: 35,
                 fontWeight: FontWeight.bold,
@@ -64,15 +65,16 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     const CircleAvatar(
                       radius: 70,
-                      // backgroundImage: AssetImage('assets/avatar.png'),
+                      backgroundImage: AssetImage(
+                          'assets/Staff Images/Black-Widow-Avengers-Endgame-feature.jpg'),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    const Column(
+                    Column(
                       children: [
                         Text(
-                          'John Smith',
+                          'John Smith'.tr,
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -80,7 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         SizedBox(height: 8),
                         Text(
-                          '123-456-7890',
+                          '123-456-7890'.tr,
                           style: TextStyle(
                             fontSize: 16,
                           ),
@@ -107,11 +109,11 @@ class _ProfilePageState extends State<ProfilePage> {
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Collaboration',
+                              'Collaboration'.tr,
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.white,
@@ -139,7 +141,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         color: const Color.fromARGB(255, 251, 248, 214),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Column(
@@ -156,7 +158,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 height: 5,
                               ),
                               Text(
-                                'Animals',
+                                'Animals'.tr,
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 14,
@@ -181,7 +183,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 height: 5,
                               ),
                               Text(
-                                'Farm',
+                                'Farm'.tr,
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 14,
@@ -206,7 +208,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 height: 5,
                               ),
                               Text(
-                                'Collaborations',
+                                'Collaborations'.tr,
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 14,
@@ -229,8 +231,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   ListTile(
                       leading: const Icon(Icons.person_outline),
-                      title: const Text(
-                        'Accounts',
+                      title: Text(
+                        'Accounts'.tr,
                         style: TextStyle(fontSize: 14),
                       ),
                       onTap: () {
@@ -243,8 +245,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       }),
                   ListTile(
                       leading: const Icon(Icons.payment_outlined),
-                      title: const Text(
-                        'Payment Methods',
+                      title: Text(
+                        'Payment Methods'.tr,
                         style: TextStyle(fontSize: 14),
                       ),
                       onTap: () {
@@ -256,8 +258,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       }),
                   ListTile(
                       leading: const Icon(Icons.star_outline),
-                      title: const Text(
-                        'Subscriptions',
+                      title: Text(
+                        'Subscriptions'.tr,
                         style: TextStyle(fontSize: 14),
                       ),
                       onTap: () {
@@ -278,8 +280,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   ListTile(
                       leading: const Icon(Icons.notifications_outlined),
-                      title: const Text(
-                        'Notifications',
+                      title: Text(
+                        'Notifications'.tr,
                         style: TextStyle(fontSize: 14),
                       ),
                       onTap: () {
@@ -292,8 +294,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       }),
                   ListTile(
                       leading: const Icon(Icons.lock_outline),
-                      title: const Text(
-                        'Privacy and Security',
+                      title: Text(
+                        'Privacy and Security'.tr,
                         style: TextStyle(fontSize: 14),
                       ),
                       onTap: () {
@@ -315,8 +317,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   ListTile(
                       leading: const Icon(Icons.settings_outlined),
-                      title: const Text(
-                        'App Settings',
+                      title: Text(
+                        'App Settings'.tr,
                         style: TextStyle(fontSize: 14),
                       ),
                       onTap: () {
@@ -328,8 +330,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       }),
                   ListTile(
                       leading: const Icon(Icons.warning_amber_rounded),
-                      title: const Text(
-                        'About App',
+                      title: Text(
+                        'About App'.tr,
                         style: TextStyle(fontSize: 14),
                       ),
                       onTap: () {
@@ -340,8 +342,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       }),
                   ListTile(
                       leading: const Icon(Icons.contact_support_outlined),
-                      title: const Text(
-                        'Customer Support',
+                      title: Text(
+                        'Customer Support'.tr,
                         style: TextStyle(fontSize: 14),
                       ),
                       onTap: () {
@@ -362,8 +364,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   ListTile(
                     leading: const Icon(Icons.logout_outlined),
-                    title: const Text(
-                      'Sign Out',
+                    title: Text(
+                      'Sign Out'.tr,
                       style: TextStyle(fontSize: 14, color: Colors.red),
                     ),
                     onTap: () {
@@ -375,8 +377,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Text(
-                                  'Sign Out?',
+                                Text(
+                                  'Sign Out?'.tr,
                                   style: TextStyle(
                                     fontSize: 35,
                                     fontWeight: FontWeight.bold,
@@ -397,8 +399,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                         borderRadius: BorderRadius.circular(50),
                                       ),
                                     ),
-                                    child: const Text(
-                                      'Yes',
+                                    child: Text(
+                                      'Yes'.tr,
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Colors.red,
@@ -421,8 +423,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                         borderRadius: BorderRadius.circular(50),
                                       ),
                                     ),
-                                    child: const Text(
-                                      'Cancel',
+                                    child: Text(
+                                      'Cancel'.tr,
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Colors.black,

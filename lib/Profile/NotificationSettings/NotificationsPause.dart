@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NotificationSettingsPage extends StatefulWidget {
   const NotificationSettingsPage({super.key});
@@ -31,10 +32,10 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(14.0),
             child: Text(
-              'Notifications',
+              'Notifications'.tr,
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -43,8 +44,8 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
           ),
           const SizedBox(height: 16),
           ListTile(
-            title: const Text(
-              'Pause All',
+            title: Text(
+              'Pause All'.tr,
             ),
             trailing: Switch(
               value: _PauseAll,
@@ -63,7 +64,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
           ),
           ListTile(
             title: Text(
-              'System Notifications',
+              'System Notifications'.tr,
               style: TextStyle(
                 color: (_PauseAll) ? Colors.grey : null,
               ),
@@ -81,7 +82,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
           ),
           ListTile(
             title: Text(
-              'Animal Management',
+              'Animal Management'.tr,
               style: TextStyle(
                 color: (_PauseAll) ? Colors.grey : null,
               ),
@@ -99,7 +100,7 @@ class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
           ),
           ListTile(
             title: Text(
-              'Collaboration',
+              'Collaboration'.tr,
               style: TextStyle(
                 color: (_PauseAll) ? Colors.grey : null,
               ),

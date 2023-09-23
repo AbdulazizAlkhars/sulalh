@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PrivacySecurityPage extends StatefulWidget {
   const PrivacySecurityPage({super.key});
@@ -30,10 +31,10 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
           ),
         ),
         body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(14.0),
             child: Text(
-              'Privacy & Security',
+              'Privacy & Security'.tr,
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -42,7 +43,7 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
           ),
           const SizedBox(height: 16),
           ListTile(
-            title: const Text('Allow Collaboration'),
+            title: Text('Allow Collaboration'.tr),
             trailing: Switch(
               value: _AllowCollab,
               onChanged: (value) {
@@ -61,7 +62,7 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
             children: [
               ListTile(
                 title: Text(
-                  'Show List Of Animals',
+                  'Show List Of Animals'.tr,
                   style: TextStyle(
                     color: (_AllowCollab) ? null : Colors.grey,
                   ),
@@ -79,7 +80,7 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
               ),
               ListTile(
                 title: Text(
-                  'Show Family Tree',
+                  'Show Family Tree'.tr,
                   style: TextStyle(
                     color: (_AllowCollab) ? null : Colors.grey,
                   ),
@@ -101,10 +102,10 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(14.0),
                     child: Text(
-                      'Contact Information',
+                      'Contact Information'.tr,
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
@@ -113,7 +114,7 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
                   ),
                   const SizedBox(height: 16),
                   ListTile(
-                    title: const Text('Show Contact Information'),
+                    title: Text('Show Contact Information'.tr),
                     trailing: Switch(
                       value: _ShowContactInfo,
                       onChanged: (value) {
@@ -133,7 +134,7 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
                     child: Column(
                       children: [
                         ListTile(
-                          title: const Text('Phone Number'),
+                          title: Text('Phone Number'.tr),
                           trailing: Switch(
                             value: _PhoneNumber,
                             onChanged: _ShowContactInfo
@@ -146,7 +147,7 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
                           ),
                         ),
                         ListTile(
-                          title: const Text('Email Address'),
+                          title: Text('Email Address'.tr),
                           trailing: Switch(
                             value: _EmailAddress,
                             onChanged: _ShowContactInfo

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 
 class CustomerSupport extends StatefulWidget {
@@ -60,10 +61,10 @@ class _CustomerSupportState extends State<CustomerSupport> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      'Contact Us',
+                      'Contact Us'.tr,
                       style: TextStyle(fontSize: 40),
                     ),
                   ),
@@ -73,11 +74,11 @@ class _CustomerSupportState extends State<CustomerSupport> {
                       width: 35, // Adjust the width as needed
                       height: 35, // Adjust the height as needed
                     ),
-                    title: const Text(
-                      'WhatsApp',
+                    title: Text(
+                      'WhatsApp'.tr,
                       style: TextStyle(fontSize: 20),
                     ),
-                    subtitle: const Text('Chat With Support'),
+                    subtitle: Text('Chat With Support'.tr),
                     trailing: const Icon(Icons.arrow_forward),
                     onTap: () {
                       // Handle option 1 tap
@@ -94,7 +95,7 @@ class _CustomerSupportState extends State<CustomerSupport> {
                       '+965 96721717',
                       style: TextStyle(fontSize: 20),
                     ),
-                    subtitle: const Text('Call Us'),
+                    subtitle: Text('Call Us'.tr),
                     trailing: const Icon(Icons.arrow_forward),
                     onTap: () {
                       // Handle option 1 tap
@@ -119,8 +120,8 @@ class _CustomerSupportState extends State<CustomerSupport> {
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
-                        child: const Text(
-                          'Cancel',
+                        child: Text(
+                          'Cancel'.tr,
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.black,
@@ -155,8 +156,8 @@ class _CustomerSupportState extends State<CustomerSupport> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'FAQs',
+            Text(
+              'FAQs'.tr,
               style: TextStyle(
                 fontSize: 40,
                 fontWeight: FontWeight.bold,
@@ -176,11 +177,11 @@ class _CustomerSupportState extends State<CustomerSupport> {
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Question #1',
+                    Text(
+                      'Question #1'.tr,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    if (_isExpanded1) const Text('Subtitle'),
+                    if (_isExpanded1) Text('Subtitle'.tr),
                   ],
                 ),
                 trailing: IconButton(
@@ -205,11 +206,11 @@ class _CustomerSupportState extends State<CustomerSupport> {
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Question #2',
+                    Text(
+                      'Question #2'.tr,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    if (_isExpanded2) const Text('Subtitle'),
+                    if (_isExpanded2) Text('Subtitle'.tr),
                   ],
                 ),
                 trailing: IconButton(
@@ -234,11 +235,11 @@ class _CustomerSupportState extends State<CustomerSupport> {
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Question #3',
+                    Text(
+                      'Question #3'.tr,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    if (_isExpanded3) const Text('Subtitle'),
+                    if (_isExpanded3) Text('Subtitle'.tr),
                   ],
                 ),
                 trailing: IconButton(
@@ -263,11 +264,11 @@ class _CustomerSupportState extends State<CustomerSupport> {
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Question #4',
+                    Text(
+                      'Question #4'.tr,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    if (_isExpanded4) const Text('Subtitle'),
+                    if (_isExpanded4) Text('Subtitle'.tr),
                   ],
                 ),
                 trailing: IconButton(
@@ -292,11 +293,11 @@ class _CustomerSupportState extends State<CustomerSupport> {
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Question #5',
+                    Text(
+                      'Question #5'.tr,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    if (_isExpanded5) const Text('Subtitle'),
+                    if (_isExpanded5) Text('Subtitle'.tr),
                   ],
                 ),
                 trailing: IconButton(
@@ -311,12 +312,11 @@ class _CustomerSupportState extends State<CustomerSupport> {
             const Expanded(
               child: SizedBox(),
             ), // Added Expanded widget to fill remaining space
-
             Padding(
               padding: const EdgeInsets.all(16),
               child: ButtonWidget(
                 onPressed: _showModalSheet, // Show modal sheet on button press
-                buttonText: 'Need Help',
+                buttonText: 'Need Help'.tr,
               ),
             ),
           ],

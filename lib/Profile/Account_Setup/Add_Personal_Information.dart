@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Profile/Account_Setup/Add_Some_Details.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/PhoneNumTextFieldWidget.dart';
@@ -24,16 +25,16 @@ class AddPersonalInfoPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Add Personal Information',
+              Text(
+                'Add Personal Information'.tr,
                 style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 40),
-              const Text(
-                "What's your name?",
+              Text(
+                "What's your name?".tr,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -42,31 +43,32 @@ class AddPersonalInfoPage extends StatelessWidget {
               const SizedBox(height: 16),
               CustomTextFormField(
                 keyboardType: TextInputType.name,
-                labelText: 'Enter First Name',
+                labelText: 'Enter First Name'.tr,
               ),
               const SizedBox(height: 16),
               CustomTextFormField(
                 keyboardType: TextInputType.name,
-                labelText: 'Enter Last Name',
+                labelText: 'Enter Last Name'.tr,
               ),
               const SizedBox(height: 40),
-              const Text(
-                'Contacts',
+              Text(
+                'Contacts'.tr,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 8),
-              const Text(
-                'Add contact details to help other people contact you for collaboration',
+              Text(
+                'Add contact details to help other people contact you for collaboration'
+                    .tr,
                 style: TextStyle(
                   fontSize: 14,
                 ),
               ),
               const SizedBox(height: 35),
-              const Text(
-                'Phone number',
+              Text(
+                'Phone Number'.tr,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -75,8 +77,8 @@ class AddPersonalInfoPage extends StatelessWidget {
               const SizedBox(height: 8),
               PhoneNumberInputWidget(),
               const SizedBox(height: 16),
-              const Text(
-                'Email',
+              Text(
+                'Email'.tr,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -85,9 +87,9 @@ class AddPersonalInfoPage extends StatelessWidget {
               const SizedBox(height: 8),
               CustomTextFormField(
                 keyboardType: TextInputType.emailAddress,
-                labelText: 'Enter Email',
+                labelText: 'Enter Email'.tr,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 25),
               ButtonWidget(
                 onPressed: () {
                   Navigator.push(
@@ -97,7 +99,7 @@ class AddPersonalInfoPage extends StatelessWidget {
                   );
                   // Add your continue button logic here
                 },
-                buttonText: 'Continue',
+                buttonText: 'Continue'.tr,
               ),
             ],
           ),

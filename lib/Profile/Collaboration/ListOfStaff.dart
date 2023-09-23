@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Profile/Collaboration/StaffDetailsPage.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/SnackBar.dart';
@@ -29,39 +30,39 @@ class _ListOfStaffState extends State<ListOfStaff> {
       {
         'imagePath':
             'assets/Staff Images/Screenshot_20200303-215853__01.jpg.webp',
-        'title': 'Paul Rivera',
-        'subtitle': 'Viewer',
+        'title': 'Paul Rivera'.tr,
+        'subtitle': 'Viewer'.tr,
         'email': 'paul@example.com',
         'phoneNumber': '+1 234 567 890',
       },
       {
         'imagePath':
             'assets/Staff Images/Black-Widow-Avengers-Endgame-feature.jpg',
-        'title': 'Rebecca Wilson',
-        'subtitle': 'Helper',
+        'title': 'Rebecca Wilson'.tr,
+        'subtitle': 'Helper'.tr,
         'email': 'paul@example.com',
         'phoneNumber': '+1 234 567 890',
       },
       {
         'imagePath':
             'assets/Staff Images/Wanda-Dr-Strange-Multiverse-Madness-Culture.jpg.webp',
-        'title': 'Patricia Williams',
-        'subtitle': 'Helper',
+        'title': 'Patricia Williams'.tr,
+        'subtitle': 'Helper'.tr,
         'email': 'paul@example.com',
         'phoneNumber': '+1 234 567 890',
       },
       {
         'imagePath':
             'assets/Staff Images/HD-wallpaper-thor-in-avengers-endgame.jpg',
-        'title': 'Scott Simmons',
-        'subtitle': 'Worker',
+        'title': 'Scott Simmons'.tr,
+        'subtitle': 'Worker'.tr,
         'email': 'paul@example.com',
         'phoneNumber': '+1 234 567 890',
       },
       {
         'imagePath': 'assets/Staff Images/ed33c7f2a3940fcebf9f0aac54d67895.jpg',
-        'title': 'Lee Hall',
-        'subtitle': 'Worker',
+        'title': 'Lee Hall'.tr,
+        'subtitle': 'Worker'.tr,
         'email': 'paul@example.com',
         'phoneNumber': '+1 234 567 890',
       },
@@ -104,22 +105,23 @@ class _ListOfStaffState extends State<ListOfStaff> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical: 8.0, horizontal: 16.0),
                               child: Text(
-                                'Invite A Member',
+                                'Invite A Member'.tr,
                                 style: TextStyle(
                                   fontSize: 32,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical: 8.0, horizontal: 16.0),
                               child: Text(
-                                'Share this link that will provide users access to your farm',
+                                'Share this link that will provide users access to your farm'
+                                    .tr,
                                 style: TextStyle(fontSize: 14),
                               ),
                             ),
@@ -149,14 +151,14 @@ class _ListOfStaffState extends State<ListOfStaff> {
                                       const link =
                                           'https://example.com'; // Replace with your link value from the backend
                                       Clipboard.setData(
-                                          const ClipboardData(text: link));
+                                          ClipboardData(text: link));
                                       CustomSnackBar.show(
                                           context, 'Link Copied To Clipboard');
 
                                       Navigator.pop(
                                           context); // Navigate back to the previous screen
                                     },
-                                    child: const Text(
+                                    child: Text(
                                       'Copy Link',
                                       style: TextStyle(
                                         color: Color.fromARGB(255, 36, 86, 38),
@@ -175,7 +177,7 @@ class _ListOfStaffState extends State<ListOfStaff> {
                               padding: const EdgeInsets.all(16),
                               child: ButtonWidget(
                                 onPressed: () {},
-                                buttonText: 'Share Link',
+                                buttonText: 'Share Link'.tr,
                               ),
                             ),
                           ],
@@ -196,10 +198,10 @@ class _ListOfStaffState extends State<ListOfStaff> {
             const SizedBox(
               height: 10,
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                'Your Staff',
+                'Your Staff'.tr,
                 style: TextStyle(fontSize: 40),
               ),
             ),

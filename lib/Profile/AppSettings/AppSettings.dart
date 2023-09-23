@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 
 class AppSettings extends StatefulWidget {
@@ -25,10 +26,10 @@ class _AppSettings extends State<AppSettings> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      'Language Of The App',
+                      'Language Of The App'.tr,
                       style: TextStyle(fontSize: 30),
                     ),
                   ),
@@ -37,8 +38,8 @@ class _AppSettings extends State<AppSettings> {
                       child: Column(
                         children: [
                           ListTile(
-                            title: const Text('English'),
-                            trailing: selectedLanguageTemp == 'English'
+                            title: Text('English'.tr),
+                            trailing: selectedLanguageTemp == 'English'.tr
                                 ? Container(
                                     width: 25,
                                     height: 25,
@@ -63,13 +64,13 @@ class _AppSettings extends State<AppSettings> {
                                   ),
                             onTap: () {
                               setState(() {
-                                selectedLanguageTemp = 'English';
+                                selectedLanguageTemp = 'English'.tr;
                               });
                             },
                           ),
                           ListTile(
-                            title: const Text('Spanish'),
-                            trailing: selectedLanguageTemp == 'Spanish'
+                            title: Text('Arabic'.tr),
+                            trailing: selectedLanguageTemp == 'Arabic'.tr
                                 ? Container(
                                     width: 25,
                                     height: 25,
@@ -94,13 +95,13 @@ class _AppSettings extends State<AppSettings> {
                                   ),
                             onTap: () {
                               setState(() {
-                                selectedLanguageTemp = 'Spanish';
+                                selectedLanguageTemp = 'Arabic'.tr;
                               });
                             },
                           ),
                           ListTile(
-                            title: const Text('French'),
-                            trailing: selectedLanguageTemp == 'French'
+                            title: Text('French'.tr),
+                            trailing: selectedLanguageTemp == 'French'.tr
                                 ? Container(
                                     width: 25,
                                     height: 25,
@@ -125,7 +126,7 @@ class _AppSettings extends State<AppSettings> {
                                   ),
                             onTap: () {
                               setState(() {
-                                selectedLanguageTemp = 'French';
+                                selectedLanguageTemp = 'French'.tr;
                               });
                             },
                           ),
@@ -143,7 +144,7 @@ class _AppSettings extends State<AppSettings> {
                         });
                         Navigator.pop(context);
                       },
-                      buttonText: 'Save',
+                      buttonText: 'Save'.tr,
                     ),
                   ),
                 ],
@@ -163,8 +164,8 @@ class _AppSettings extends State<AppSettings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'App Settings',
+        title: Text(
+          'App Settings'.tr,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
@@ -185,8 +186,8 @@ class _AppSettings extends State<AppSettings> {
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Language',
+                    Text(
+                      'Language'.tr,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 4),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Profile/Collaboration/ListOfStaff.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/SnackBar.dart';
@@ -37,8 +38,8 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Member Of Your Staff',
+        title: Text(
+          'Member Of Your Staff'.tr,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         leading: IconButton(
@@ -59,32 +60,31 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
               onPressed: () {
                 showModalBottomSheet(
                   context: context,
+                  showDragHandle: true,
                   builder: (context) {
                     return SizedBox(
                       height: 300,
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
+                          // mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Padding(
-                              padding: EdgeInsets.all(16.0),
-                              child: Text(
-                                'Delete Member?',
-                                style: TextStyle(
-                                    fontSize: 25, fontWeight: FontWeight.bold),
-                              ),
+                            Text(
+                              'Delete Member?'.tr,
+                              style: TextStyle(
+                                  fontSize: 25, fontWeight: FontWeight.bold),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.all(16.0),
-                              child: Text(
-                                'Delete the member from your staffs?\nThis act can not be undone',
-                                style: TextStyle(fontSize: 14),
-                              ),
+                            Text(
+                              'Delete the member from your staffs?'.tr,
+                              style: TextStyle(fontSize: 14),
+                            ),
+                            Text(
+                              'This act can not be undone'.tr,
+                              style: TextStyle(fontSize: 14),
                             ),
                             const SizedBox(
-                              height: 10,
+                              height: 25,
                             ),
                             SizedBox(
                               width: double.infinity,
@@ -103,7 +103,7 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                                     ),
                                   );
                                   CustomSnackBar.show(
-                                      context, 'Member Is Deleted');
+                                      context, 'Member Is Deleted'.tr);
                                 },
                                 style: ElevatedButton.styleFrom(
                                   elevation: 0,
@@ -115,8 +115,8 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
-                                child: const Text(
-                                  'Delete',
+                                child: Text(
+                                  'Delete'.tr,
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.red,
@@ -141,8 +141,8 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                 ),
-                                child: const Text(
-                                  'Cancel',
+                                child: Text(
+                                  'Cancel'.tr,
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.black,
@@ -193,10 +193,10 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                 const SizedBox(
                   height: 25,
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
-                    'Member Permissions',
+                    'Member Permissions'.tr,
                     style: TextStyle(
                         fontSize: 24,
                         color: Colors.black,
@@ -210,8 +210,8 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        'Role',
+                      Text(
+                        'Role'.tr,
                       ),
                       Text(
                         widget.subtitle,
@@ -223,15 +223,15 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                     ],
                   ),
                 ),
-                const ListTile(
+                ListTile(
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Access Level',
+                        'Access Level'.tr,
                       ),
                       Text(
-                        'View Only',
+                        'View Only'.tr,
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.black,
@@ -243,10 +243,10 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                 const SizedBox(
                   height: 25,
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
-                    'Contact Details',
+                    'Contact Details'.tr,
                     style: TextStyle(
                         fontSize: 24,
                         color: Colors.black,
@@ -260,8 +260,8 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        'Phone Number',
+                      Text(
+                        'Phone Number'.tr,
                       ),
                       TextButton(
                         onPressed: () {},
@@ -281,8 +281,8 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        'Email Address',
+                      Text(
+                        'Email Address'.tr,
                       ),
                       TextButton(
                         onPressed: () {},
@@ -301,10 +301,10 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                 const SizedBox(
                   height: 25,
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
-                    'Address',
+                    'Address'.tr,
                     style: TextStyle(
                         fontSize: 24,
                         color: Colors.black,
@@ -348,8 +348,8 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                             const SizedBox(
                               height: 25,
                             ),
-                            const Text(
-                              'Manage Permissions',
+                            Text(
+                              'Manage Permissions'.tr,
                               style: TextStyle(
                                 fontSize: 35,
                                 fontWeight: FontWeight.bold,
@@ -361,8 +361,8 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                             const SizedBox(
                               height: 25,
                             ),
-                            const Text(
-                              'Role',
+                            Text(
+                              'Role'.tr,
                               style: TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
@@ -371,8 +371,9 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                             const SizedBox(
                               height: 15,
                             ),
-                            const Text(
-                              'When the staff member is given permission to edit, they can add/edit data',
+                            Text(
+                              'When the staff member is given permission to edit, they can add/edit data'
+                                  .tr,
                               style: TextStyle(
                                 fontSize: 16,
                               ),
@@ -403,9 +404,9 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                                           : Colors.grey,
                                       borderRadius: BorderRadius.circular(50),
                                     ),
-                                    child: const Center(
+                                    child: Center(
                                       child: Text(
-                                        'Viewer',
+                                        'Viewer'.tr,
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: Colors.black,
@@ -437,9 +438,9 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                                           : Colors.grey,
                                       borderRadius: BorderRadius.circular(50),
                                     ),
-                                    child: const Center(
+                                    child: Center(
                                       child: Text(
-                                        'Helper',
+                                        'Helper'.tr,
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: Colors.black,
@@ -471,9 +472,9 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                                           : Colors.grey,
                                       borderRadius: BorderRadius.circular(50),
                                     ),
-                                    child: const Center(
+                                    child: Center(
                                       child: Text(
-                                        'Worker',
+                                        'Worker'.tr,
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: Colors.black,
@@ -486,8 +487,8 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                             ),
                             if (showList) ...[
                               const SizedBox(height: 35),
-                              const Text(
-                                'What Info Can This Member Edit?',
+                              Text(
+                                'What Info Can This Member Edit?'.tr,
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -501,7 +502,7 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Text('General Info'),
+                                    Text('General Info'.tr),
                                     Switch(
                                       value: isGeneralInfoSelected,
                                       onChanged: (value) {
@@ -518,7 +519,7 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Text('Breeding Info'),
+                                    Text('Breeding Info'.tr),
                                     Switch(
                                       value: isBreedingInfoSelected,
                                       onChanged: (value) {
@@ -535,7 +536,7 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Text('Medical Info'),
+                                    Text('Medical Info'.tr),
                                     Switch(
                                       value: isMedicalInfoSelected,
                                       onChanged: (value) {
@@ -557,7 +558,7 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                               child: ButtonWidget(
                                 onPressed:
                                     () {}, // Show modal sheet on button press
-                                buttonText: 'Save Changes',
+                                buttonText: 'Save Changes'.tr,
                               ),
                             ),
                           ],
@@ -576,8 +577,8 @@ class _StaffDetailsPageState extends State<StaffDetailsPage> {
                 borderRadius: BorderRadius.circular(50),
               ),
             ),
-            child: const Text(
-              'Manage Permissions',
+            child: Text(
+              'Manage Permissions'.tr,
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.black,

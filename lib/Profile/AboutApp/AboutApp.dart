@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AboutApp extends StatefulWidget {
   @override
@@ -43,9 +44,9 @@ class _AboutApp extends State<AboutApp> {
                 ),
               ),
               const SizedBox(height: 15),
-              const Center(
+              Center(
                 child: Text(
-                  'Version Of The App: 0.1.12',
+                  'Version Of The App: 0.1.12'.tr,
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.black,
@@ -65,12 +66,12 @@ class _AboutApp extends State<AboutApp> {
                     ),
                   ),
                 ),
-                child: const ListTile(
+                child: ListTile(
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Terms Of Use',
+                        'Terms Of Use'.tr,
                       ),
                       Icon(
                         Icons.arrow_forward,
@@ -80,12 +81,12 @@ class _AboutApp extends State<AboutApp> {
                   ),
                 ),
               ),
-              const ListTile(
+              ListTile(
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Privacy Policy',
+                      'Privacy Policy'.tr,
                     ),
                     Icon(
                       Icons.arrow_forward,

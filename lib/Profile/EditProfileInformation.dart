@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Profile/ProfilePage.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:image_picker/image_picker.dart';
@@ -13,7 +14,7 @@ class EditProfileInformation extends StatefulWidget {
 }
 
 class _EditProfileInformation extends State<EditProfileInformation> {
-  String firstname = 'John';
+  String firstname = 'John'.tr;
   String secondname = 'Smith';
   String phonenum = '+12-345678';
   String city = 'New York';
@@ -68,11 +69,11 @@ class _EditProfileInformation extends State<EditProfileInformation> {
               children: [
                 ListTile(
                   leading: const Icon(Icons.camera),
-                  title: const Row(
+                  title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Camera',
+                        'Camera'.tr,
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.black,
@@ -103,11 +104,11 @@ class _EditProfileInformation extends State<EditProfileInformation> {
                 ),
                 ListTile(
                   leading: const Icon(Icons.photo_library),
-                  title: const Row(
+                  title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Gallery',
+                        'Gallery'.tr,
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.black,
@@ -138,11 +139,11 @@ class _EditProfileInformation extends State<EditProfileInformation> {
                 ),
                 ListTile(
                   leading: const Icon(Icons.photo_library),
-                  title: const Row(
+                  title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Delete Avatar',
+                        'Delete Avatar'.tr,
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.red,
@@ -191,8 +192,8 @@ class _EditProfileInformation extends State<EditProfileInformation> {
             // Add your code here
           },
         ),
-        title: const Text(
-          'Edit Personal Information',
+        title: Text(
+          'Edit Personal Information'.tr,
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
@@ -227,8 +228,8 @@ class _EditProfileInformation extends State<EditProfileInformation> {
                   onPressed: () {
                     _showImagePicker(context);
                   },
-                  child: const Text(
-                    'Change Photo',
+                  child: Text(
+                    'Change Photo'.tr,
                     style: TextStyle(
                       fontSize: 14,
                       color: Color.fromARGB(255, 36, 86, 38),
@@ -238,16 +239,16 @@ class _EditProfileInformation extends State<EditProfileInformation> {
                 ),
               ),
               const SizedBox(height: 45),
-              const Text(
-                "General Info",
+              Text(
+                "General Info".tr,
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 32),
-              const Text(
-                "First Name",
+              Text(
+                "First Name".tr,
                 style: TextStyle(
                   fontSize: 14,
                 ),
@@ -269,8 +270,8 @@ class _EditProfileInformation extends State<EditProfileInformation> {
                 ),
               ),
               const SizedBox(height: 16),
-              const Text(
-                "Second Name",
+              Text(
+                "Second Name".tr,
                 style: TextStyle(
                   fontSize: 14,
                 ),
@@ -292,16 +293,16 @@ class _EditProfileInformation extends State<EditProfileInformation> {
                 ),
               ),
               const SizedBox(height: 32),
-              const Text(
-                "Contact Details",
+              Text(
+                "Contact Details".tr,
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 32),
-              const Text(
-                "Phone Number",
+              Text(
+                "Phone Number".tr,
                 style: TextStyle(
                   fontSize: 14,
                 ),
@@ -323,8 +324,8 @@ class _EditProfileInformation extends State<EditProfileInformation> {
                 ),
               ),
               const SizedBox(height: 16),
-              const Text(
-                "Email Address",
+              Text(
+                "Email Address".tr,
                 style: TextStyle(
                   fontSize: 14,
                 ),
@@ -346,8 +347,8 @@ class _EditProfileInformation extends State<EditProfileInformation> {
                 ),
               ),
               const SizedBox(height: 32),
-              const Text(
-                "Address",
+              Text(
+                "Address".tr,
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -409,7 +410,7 @@ class _EditProfileInformation extends State<EditProfileInformation> {
                     MaterialPageRoute(builder: (context) => ProfilePage()),
                   );
                 },
-                buttonText: 'Save Changes',
+                buttonText: 'Save Changes'.tr,
               ),
               const SizedBox(height: 32),
             ],

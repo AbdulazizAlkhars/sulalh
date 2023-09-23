@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hathera_demo/HomeScreen/GuestMode/HomeScreen1.dart';
-import 'package:hathera_demo/HomeScreen/Registered/HomePage.dart';
-import 'package:hathera_demo/SplashScreen/SplashScreen.dart';
-import 'package:hathera_demo/localization/HomeScreen1.dart';
 import 'package:hathera_demo/localization/localestrings.dart';
-import 'package:hathera_demo/signup/Create_Password.dart';
-import 'package:hathera_demo/signup/Enter_Email_OTP.dart';
-import 'package:hathera_demo/signup/Enter_Phone_OTP.dart';
-import 'package:hathera_demo/signup/Signup_With_Email.dart';
 import 'package:hathera_demo/signup/Signup_With_Phone.dart';
 
 void main() {
@@ -32,7 +24,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: CreatePasswordPage(), // Display the splash screen initially
+      home: PhnSignupPage(), // Display the splash screen initially
     );
   }
 }

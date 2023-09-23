@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
+import 'package:get/get.dart';
+import 'package:hathera_demo/Profile/ProfilePage.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';
 import 'package:image_picker/image_picker.dart';
@@ -24,7 +25,7 @@ class _AddSomeDetailsPageState extends State<AddSomeDetailsPage> {
             children: [
               ListTile(
                 leading: const Icon(Icons.camera),
-                title: const Text('Camera'),
+                title: Text('Camera'.tr),
                 onTap: () async {
                   Navigator.pop(context);
                   final pickedImage =
@@ -38,7 +39,7 @@ class _AddSomeDetailsPageState extends State<AddSomeDetailsPage> {
               ),
               ListTile(
                 leading: const Icon(Icons.photo_library),
-                title: const Text('Gallery'),
+                title: Text('Gallery'.tr),
                 onTap: () async {
                   Navigator.pop(context);
                   final pickedImage =
@@ -75,8 +76,8 @@ class _AddSomeDetailsPageState extends State<AddSomeDetailsPage> {
               // Handle "Skip For Now" button press
               // Add your code here
             },
-            child: const Text(
-              'Skip For Now',
+            child: Text(
+              'Skip For Now'.tr,
               style: TextStyle(
                 color: Color.fromARGB(255, 36, 86, 38),
                 fontSize: 14,
@@ -92,16 +93,16 @@ class _AddSomeDetailsPageState extends State<AddSomeDetailsPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Add Some Details',
+              Text(
+                'Add Some Details'.tr,
                 style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 45),
-              const Text(
-                'Add Profile Photo',
+              Text(
+                'Add Profile Photo'.tr,
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -131,8 +132,8 @@ class _AddSomeDetailsPageState extends State<AddSomeDetailsPage> {
                   onPressed: () {
                     _showImagePicker(context);
                   },
-                  child: const Text(
-                    'Add Photo',
+                  child: Text(
+                    'Add Photo'.tr,
                     style: TextStyle(
                       fontSize: 14,
                       color: Color.fromARGB(255, 36, 86, 38),
@@ -142,33 +143,32 @@ class _AddSomeDetailsPageState extends State<AddSomeDetailsPage> {
                 ),
               ),
               const SizedBox(height: 45),
-              const Text(
-                "What's your address?",
+              Text(
+                "What's your address?".tr,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 32),
-              const CustomTextFormField(
+              CustomTextFormField(
                 keyboardType: TextInputType.emailAddress,
-                labelText: 'Enter Email',
+                labelText: 'Enter Email'.tr,
               ),
               const SizedBox(height: 16),
-              const CustomTextFormField(
+              CustomTextFormField(
                 keyboardType: TextInputType.emailAddress,
-                labelText: 'City',
+                labelText: 'City'.tr,
               ),
               const SizedBox(height: 80),
               ButtonWidget(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => BottomNavigationBarPage()),
+                    MaterialPageRoute(builder: (context) => ProfilePage()),
                   );
                 },
-                buttonText: 'Continue',
+                buttonText: 'Continue'.tr,
               ),
             ],
           ),
