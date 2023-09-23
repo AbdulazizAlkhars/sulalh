@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/HomeScreen/Registered/NotificationList.dart';
 import 'package:hathera_demo/Widgets/Tags.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -509,7 +510,7 @@ class _RegHomePage extends State<RegHomePage> {
                 Expanded(
                   child: CardWidget(
                     icon: Icons.book,
-                    text: 'Searching For Animals',
+                    text: 'Searching For Animals'.tr,
                     buttonText: 'Find Animals',
                     onPressed: () {
                       // Handle button 1 press

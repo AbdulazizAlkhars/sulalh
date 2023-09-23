@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/PhoneNumTextFieldWidget.dart';
 import 'package:hathera_demo/signup/Enter_Phone_OTP.dart';
@@ -43,7 +44,7 @@ class _PhnSignupPage extends State<PhnSignupPage> {
                   child: Column(
                     children: [
                       const SizedBox(height: 20),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.all(14.0),
                         child: Align(
                           alignment: Alignment.topLeft,
@@ -51,7 +52,7 @@ class _PhnSignupPage extends State<PhnSignupPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Welcome To',
+                                'Welcome To'.tr,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 40,
@@ -59,7 +60,7 @@ class _PhnSignupPage extends State<PhnSignupPage> {
                                 ),
                               ),
                               Text(
-                                'Hathera!',
+                                'Hathera!'.tr,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
@@ -78,7 +79,7 @@ class _PhnSignupPage extends State<PhnSignupPage> {
                               borderRadius: BorderRadius.circular(10),
                               color: Colors.white,
                             ),
-                            child: PhoneNumberInputWidget()),
+                            child: const PhoneNumberInputWidget()),
                       ),
                       const SizedBox(height: 26),
                       Container(
@@ -92,7 +93,7 @@ class _PhnSignupPage extends State<PhnSignupPage> {
                             );
                             // Add your continue button logic here
                           },
-                          buttonText: 'Continue',
+                          buttonText: 'Continue'.tr,
                         ),
                       ),
                       const SizedBox(height: 25),
@@ -124,7 +125,7 @@ class _PhnSignupPage extends State<PhnSignupPage> {
                               borderRadius: BorderRadius.circular(50),
                             ),
                           ),
-                          child: const Row(
+                          child: Row(
                             children: [
                               Padding(
                                 padding: EdgeInsets.fromLTRB(14, 0, 0, 0),
@@ -135,7 +136,7 @@ class _PhnSignupPage extends State<PhnSignupPage> {
                               ),
                               SizedBox(width: 90),
                               Text(
-                                'Continue With Apple',
+                                'Continue With Apple'.tr,
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -164,7 +165,7 @@ class _PhnSignupPage extends State<PhnSignupPage> {
                               borderRadius: BorderRadius.circular(50),
                             ),
                           ),
-                          child: const Row(
+                          child: Row(
                             children: [
                               Padding(
                                 padding: EdgeInsets.fromLTRB(14, 0, 0, 0),
@@ -175,7 +176,7 @@ class _PhnSignupPage extends State<PhnSignupPage> {
                               ),
                               SizedBox(width: 90),
                               Text(
-                                'Continue With Google',
+                                'Continue With Google'.tr,
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -210,14 +211,14 @@ class _PhnSignupPage extends State<PhnSignupPage> {
                               borderRadius: BorderRadius.circular(50),
                             ),
                           ),
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SizedBox(
                                 width: 20,
                               ),
                               Text(
-                                'Use Email Address',
+                                'Use Email Address'.tr,
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Color.fromARGB(255, 36, 86, 38),

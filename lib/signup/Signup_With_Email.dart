@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';
 import 'package:hathera_demo/signup/Enter_Email_OTP.dart';
@@ -41,15 +42,15 @@ class _EmailSignupPageState extends State<EmailSignupPage> {
                   child: Column(
                     children: [
                       const SizedBox(height: 20),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.all(14.0),
                         child: Align(
-                          alignment: Alignment.topLeft,
+                          // alignment: Alignment.topLeft,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Welcome To',
+                                'Welcome To'.tr,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 40,
@@ -57,7 +58,7 @@ class _EmailSignupPageState extends State<EmailSignupPage> {
                                 ),
                               ),
                               Text(
-                                'Hathera!',
+                                'Hathera!'.tr,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
@@ -76,9 +77,9 @@ class _EmailSignupPageState extends State<EmailSignupPage> {
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.white,
                           ),
-                          child: const CustomTextFormField(
+                          child: CustomTextFormField(
                             keyboardType: TextInputType.emailAddress,
-                            labelText: 'Enter Email',
+                            labelText: 'Enter Email'.tr,
                           ),
                         ),
                       ),
@@ -94,7 +95,7 @@ class _EmailSignupPageState extends State<EmailSignupPage> {
                             );
                             // Add your continue button logic here
                           },
-                          buttonText: 'Continue',
+                          buttonText: 'Continue'.tr,
                         ),
                       ),
                       const SizedBox(height: 25),
@@ -126,7 +127,7 @@ class _EmailSignupPageState extends State<EmailSignupPage> {
                               borderRadius: BorderRadius.circular(50),
                             ),
                           ),
-                          child: const Row(
+                          child: Row(
                             children: [
                               Padding(
                                 padding: EdgeInsets.fromLTRB(14, 0, 0, 0),
@@ -137,7 +138,7 @@ class _EmailSignupPageState extends State<EmailSignupPage> {
                               ),
                               SizedBox(width: 90),
                               Text(
-                                'Continue With Apple',
+                                'Continue With Apple'.tr,
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -166,7 +167,7 @@ class _EmailSignupPageState extends State<EmailSignupPage> {
                               borderRadius: BorderRadius.circular(50),
                             ),
                           ),
-                          child: const Row(
+                          child: Row(
                             children: [
                               Padding(
                                 padding: EdgeInsets.fromLTRB(14, 0, 0, 0),
@@ -177,7 +178,7 @@ class _EmailSignupPageState extends State<EmailSignupPage> {
                               ),
                               SizedBox(width: 90),
                               Text(
-                                'Continue With Google',
+                                'Continue With Google'.tr,
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -211,14 +212,14 @@ class _EmailSignupPageState extends State<EmailSignupPage> {
                               borderRadius: BorderRadius.circular(50),
                             ),
                           ),
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SizedBox(
                                 width: 20,
                               ),
                               Text(
-                                'Use Phone Number',
+                                'Use Phone Number'.tr,
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Color.fromARGB(255, 36, 86, 38),

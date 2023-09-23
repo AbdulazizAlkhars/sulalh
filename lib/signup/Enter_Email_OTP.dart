@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/signup/Create_Password.dart';
 
 class EmailOTPScreen extends StatefulWidget {
@@ -91,22 +92,22 @@ class _EmailOTPScreen extends State<EmailOTPScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Enter Code',
+                  Text(
+                    'Enter Code'.tr,
                     style: TextStyle(
                       fontSize: 44,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    'We sent a verification code to the following ',
+                  Text(
+                    'We sent a verification code to the following'.tr,
                     style: TextStyle(
                       fontSize: 16,
                     ),
                   ),
-                  const Text(
-                    'Email ID: (Entered Email ID) ',
+                  Text(
+                    'Email ID:'.tr,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -128,13 +129,22 @@ class _EmailOTPScreen extends State<EmailOTPScreen> {
             padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
             child: Column(
               children: [
-                Center(
-                  child: Text(
-                    'Send New Code: ${getFormattedTime()}',
-                    style: const TextStyle(
-                      fontSize: 16,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Send New Code:'.tr,
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
+                    Text(
+                      getFormattedTime(),
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 20),
                 SizedBox(

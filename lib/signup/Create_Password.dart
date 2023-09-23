@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Profile/Account_Setup/Add_Personal_Information.dart';
 
 class CreatePasswordPage extends StatefulWidget {
@@ -49,8 +50,8 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Create Password',
+                Text(
+                  'Create Password'.tr,
                   style: TextStyle(
                     fontSize: 45,
                     fontWeight: FontWeight.bold,
@@ -58,22 +59,22 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                 ),
                 const SizedBox(height: 38),
                 RoundedTextField(
-                  label: 'Password',
+                  label: 'Password'.tr,
                   controller: _passwordController,
                 ),
                 const SizedBox(height: 20),
                 RoundedTextField(
-                  label: 'Confirm Password',
+                  label: 'Confirm Password'.tr,
                   controller: _confirmPasswordController,
                   onChanged: (_) => _validatePasswords(),
                 ),
                 if (_passwordController.text.isNotEmpty &&
                     _confirmPasswordController.text.isNotEmpty &&
                     !_passwordsMatch)
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(top: 8.0),
                     child: Text(
-                      'Passwords don\'t match',
+                      "Passwords don't match".tr,
                       style: TextStyle(color: Colors.red),
                     ),
                   ),
@@ -102,8 +103,8 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                   borderRadius: BorderRadius.circular(50),
                 ),
               ),
-              child: const Text(
-                'Confirm',
+              child: Text(
+                'Confirm'.tr,
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
             ),

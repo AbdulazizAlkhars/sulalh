@@ -45,6 +45,7 @@ dependencies:
   showcaseview: ^2.0.3
   syncfusion_flutter_charts: ^22.1.39
   graphview: ^1.2.0
+  get: ^4.6.6
 
   
  
