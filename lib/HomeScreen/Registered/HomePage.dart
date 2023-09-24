@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hathera_demo/HomeScreen/GuestMode/SearchFarms&Animals.dart';
 import 'package:hathera_demo/HomeScreen/Registered/NotificationList.dart';
 import 'package:hathera_demo/Widgets/Tags.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -355,10 +356,10 @@ class _RegHomePage extends State<RegHomePage> {
           IconButton(
             icon: const Icon(Icons.search),
             onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => AnimalFamilyTree()),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SearchPage()),
+              );
             },
           ),
           IconButton(

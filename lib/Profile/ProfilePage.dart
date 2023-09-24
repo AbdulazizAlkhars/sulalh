@@ -325,7 +325,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const AppSettings()),
+                              builder: (context) => AppSettings()),
                         );
                       }),
                   ListTile(

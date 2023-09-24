@@ -12,47 +12,47 @@ import 'package:flutter/material.dart';
 import 'package:hathera_demo/Widgets/TagChips.dart';
 
 // ignore: must_be_immutable
-class OvigenifnoPage extends StatefulWidget {
-  final String fieldName;
-  final String fieldContent;
-  final TextEditingController notesController;
-  final String selectedOviSire;
-  final String selectedDate;
-  final String selectedOviDam;
-  TextEditingController nameController;
+class MammalGenInfo extends StatefulWidget {
+  final String mammalfieldName;
+  final String mammalfieldContent;
+  final TextEditingController mammalnotesController;
+  final String selectedMammalSire;
+  final String selectedMammalDate;
+  final String selectedMammalDam;
+  TextEditingController mammalnameController;
   TextEditingController frequencyEggsController;
   TextEditingController numberofEggsController;
   // final DateTime? selectedOviDate;
-  final List<String> selectedOviChips;
-  final Map<String, DateTime?> selectedOviDates;
-  final bool showAdditionalFields;
-  final String selectedOviDateType;
-  final String selectedOviGender;
-  final bool addOviParents;
-  final bool addOviChildren;
-  final File? selectedOviImage;
+  final List<String> selectedMammalChips;
+  final Map<String, DateTime?> selectedMammalDates;
+  final bool showMammalAdditionalFields;
+  final String selectedMammalDateType;
+  final String selectedMammalGender;
+  final bool addMammalParents;
+  final bool addMammalChildren;
+  final File? selectedMammalImage;
   final String selectedAnimalType;
   final String selectedAnimalSpecies;
   final String selectedAnimalBreed;
 
-  OvigenifnoPage({
+  MammalGenInfo({
     super.key,
-    required this.fieldName,
-    required this.fieldContent,
-    required this.notesController,
-    required this.selectedOviSire,
-    required this.selectedOviDam,
+    required this.mammalfieldName,
+    required this.mammalfieldContent,
+    required this.mammalnotesController,
+    required this.selectedMammalSire,
+    required this.selectedMammalDam,
     // required this.selectedOviDate,
-    required this.selectedOviChips,
-    required this.selectedOviDates,
-    required this.showAdditionalFields,
-    required this.selectedOviDateType,
-    required this.selectedOviGender,
-    required this.addOviParents,
-    required this.addOviChildren,
-    required this.selectedOviImage,
-    required this.nameController,
-    required this.selectedDate,
+    required this.selectedMammalChips,
+    required this.selectedMammalDates,
+    required this.showMammalAdditionalFields,
+    required this.selectedMammalDateType,
+    required this.selectedMammalGender,
+    required this.addMammalParents,
+    required this.addMammalChildren,
+    required this.selectedMammalImage,
+    required this.mammalnameController,
+    required this.selectedMammalDate,
     required this.frequencyEggsController,
     required this.numberofEggsController,
     required this.selectedAnimalType,
@@ -62,27 +62,27 @@ class OvigenifnoPage extends StatefulWidget {
 
   @override
   // ignore: library_private_types_in_public_api
-  _OvigenifnoPage createState() => _OvigenifnoPage();
+  _MammalGenInfo createState() => _MammalGenInfo();
 }
 
-class _OvigenifnoPage extends State<OvigenifnoPage>
+class _MammalGenInfo extends State<MammalGenInfo>
     with SingleTickerProviderStateMixin {
-  TextEditingController _medicalNeedsController = TextEditingController();
-  bool _isEditMode = false;
-  String newpregnantStatus = '';
-  String pregnantStatuses = '';
-  String newmatingdate = 'ADD';
-  String newsonardate = 'ADD';
-  String newexpdeliverydate = 'ADD';
-  DateTime? selectedmatingDate;
-  DateTime? selectedsonarDate;
-  DateTime? selectedexpdeliveryDate;
-  List<String> vaccineNames = ["Vaccine 1", "Vaccine 2", "Vaccine 3"];
-  List<String> checkUpNames = ["Check Up 1", "Check Up 2", "Check Up 3"];
-  List<String> surgeryNames = ["Surgery 1", "Surgery 2", "Surgery 3"];
-  List<VaccineDetails> vaccineDetailsList = [];
-  List<MedicalCheckupDetails> medicalCheckupDetailsList = [];
-  List<SurgeryDetails> surgeryDetailsList = [];
+  TextEditingController _MammalmedicalNeedsController = TextEditingController();
+  bool _isMammalEditMode = false;
+  String newMammalpregnantStatus = '';
+  String mammalpregnantStatuses = '';
+  String newmammalmatingdate = 'ADD';
+  String newmammalsonardate = 'ADD';
+  String newmammalexpdeliverydate = 'ADD';
+  DateTime? selectedmammalmatingDate;
+  DateTime? selectedmammalsonarDate;
+  DateTime? selectedmammalexpdeliveryDate;
+  List<String> mammalvaccineNames = ["Vaccine 1", "Vaccine 2", "Vaccine 3"];
+  List<String> mammalcheckUpNames = ["Check Up 1", "Check Up 2", "Check Up 3"];
+  List<String> mammalsurgeryNames = ["Surgery 1", "Surgery 2", "Surgery 3"];
+  List<VaccineDetails> mammalvaccineDetailsList = [];
+  List<MedicalCheckupDetails> mammalmedicalCheckupDetailsList = [];
+  List<SurgeryDetails> mammalsurgeryDetailsList = [];
 
   Widget _buildDisplayMode() {
     return Padding(
@@ -91,7 +91,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            _medicalNeedsController.text,
+            _MammalmedicalNeedsController.text,
             style: const TextStyle(
               fontSize: 14,
               color: Colors.black,
@@ -120,10 +120,10 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
       lastDate: DateTime(2101),
     );
 
-    if (matingDate != null && matingDate != selectedmatingDate) {
+    if (matingDate != null && matingDate != selectedmammalmatingDate) {
       setState(() {
-        selectedmatingDate = matingDate;
-        newmatingdate = DateFormat.yMMMd().format(matingDate);
+        selectedmammalmatingDate = matingDate;
+        newmammalmatingdate = DateFormat.yMMMd().format(matingDate);
       });
     }
   }
@@ -136,10 +136,10 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
       lastDate: DateTime(2101),
     );
 
-    if (sonarDate != null && sonarDate != selectedsonarDate) {
+    if (sonarDate != null && sonarDate != selectedmammalsonarDate) {
       setState(() {
-        selectedsonarDate = sonarDate;
-        newsonardate = DateFormat.yMMMd().format(sonarDate);
+        selectedmammalsonarDate = sonarDate;
+        newmammalsonardate = DateFormat.yMMMd().format(sonarDate);
       });
     }
   }
@@ -152,10 +152,11 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
       lastDate: DateTime(2101),
     );
 
-    if (expdeliveryDate != null && expdeliveryDate != selectedexpdeliveryDate) {
+    if (expdeliveryDate != null &&
+        expdeliveryDate != selectedmammalexpdeliveryDate) {
       setState(() {
-        selectedexpdeliveryDate = expdeliveryDate;
-        newexpdeliverydate = DateFormat.yMMMd().format(expdeliveryDate);
+        selectedmammalexpdeliveryDate = expdeliveryDate;
+        newmammalexpdeliverydate = DateFormat.yMMMd().format(expdeliveryDate);
       });
     }
   }
@@ -188,7 +189,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                         children: [
                           ListTile(
                             title: const Text('Not Pregnant'),
-                            trailing: pregnantStatuses == 'Not Pregnant'
+                            trailing: mammalpregnantStatuses == 'Not Pregnant'
                                 ? Container(
                                     width: 25,
                                     height: 25,
@@ -213,13 +214,13 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                   ),
                             onTap: () {
                               setState(() {
-                                pregnantStatuses = 'Not Pregnant';
+                                mammalpregnantStatuses = 'Not Pregnant';
                               });
                             },
                           ),
                           ListTile(
                             title: const Text('Pregnant'),
-                            trailing: pregnantStatuses == 'Pregnant'
+                            trailing: mammalpregnantStatuses == 'Pregnant'
                                 ? Container(
                                     width: 25,
                                     height: 25,
@@ -244,7 +245,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                   ),
                             onTap: () {
                               setState(() {
-                                pregnantStatuses = 'Pregnant';
+                                mammalpregnantStatuses = 'Pregnant';
                               });
                             },
                           ),
@@ -258,7 +259,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                     child: ButtonWidget(
                       onPressed: () {
                         setState(() {
-                          newpregnantStatus = pregnantStatuses;
+                          newMammalpregnantStatus = mammalpregnantStatuses;
                         });
                         Navigator.pop(context);
                       },
@@ -273,7 +274,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
       },
     ).then((_) {
       setState(() {
-        newpregnantStatus = pregnantStatuses;
+        newMammalpregnantStatus = mammalpregnantStatuses;
       });
     });
   }
@@ -287,7 +288,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
             children: [
               TextFormField(
                 maxLines: 6, // Set the maximum number of lines
-                controller: _medicalNeedsController,
+                controller: _MammalmedicalNeedsController,
                 decoration: InputDecoration(
                   hintText:
                       'Add Additional Information If Needed', // Add your hint text here
@@ -307,7 +308,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                   icon: const Icon(Icons.clear),
                   onPressed: () {
                     // Clear the text field
-                    _medicalNeedsController.clear();
+                    _MammalmedicalNeedsController.clear();
                   },
                 ),
               ),
@@ -363,13 +364,13 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-    _medicalNeedsController.text = "";
+    _MammalmedicalNeedsController.text = "";
   }
 
   @override
   void dispose() {
     _tabController.dispose();
-    _medicalNeedsController.dispose();
+    _MammalmedicalNeedsController.dispose();
     super.dispose();
   }
 
@@ -397,7 +398,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
 
   @override
   Widget build(BuildContext context) {
-    final selectedDate = parseSelectedDate(widget.selectedDate);
+    final selectedDate = parseSelectedDate(widget.selectedMammalDate);
 
     return Container(
       decoration: const BoxDecoration(
@@ -492,7 +493,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                   child: Column(
                     children: [
                       Text(
-                        widget.nameController.text,
+                        widget.mammalnameController.text,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 25,
@@ -512,7 +513,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                       Wrap(
                         spacing: 8.0,
                         runSpacing: 8.0,
-                        children: widget.selectedOviChips.map((chip) {
+                        children: widget.selectedMammalChips.map((chip) {
                           return CustomTag(
                             label: chip,
                             selected: true, // Since these are selected chips
@@ -652,7 +653,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         Column(
                                           children: [
                                             Text(
-                                              widget.selectedOviGender,
+                                              widget.selectedMammalGender,
                                               style: const TextStyle(
                                                 fontSize: 14,
                                                 color: Colors.black,
@@ -760,16 +761,16 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         ),
                                         Expanded(
                                           flex: 0,
-                                          child: widget.selectedOviDates
+                                          child: widget.selectedMammalDates
                                                       .containsKey(
                                                           'Date Of Hatching') &&
-                                                  widget.selectedOviDates[
+                                                  widget.selectedMammalDates[
                                                           'Date Of Hatching'] !=
                                                       null
                                               ? Text(
                                                   DateFormat('dd.MM.yyyy')
                                                       .format(
-                                                    widget.selectedOviDates[
+                                                    widget.selectedMammalDates[
                                                         'Date Of Hatching']!,
                                                   ),
                                                   style: const TextStyle(
@@ -807,16 +808,16 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         ),
                                         Expanded(
                                           flex: 0,
-                                          child: widget.selectedOviDates
+                                          child: widget.selectedMammalDates
                                                       .containsKey(
                                                           'Date Of Death') &&
-                                                  widget.selectedOviDates[
+                                                  widget.selectedMammalDates[
                                                           'Date Of Death'] !=
                                                       null
                                               ? Text(
                                                   DateFormat('dd.MM.yyyy')
                                                       .format(
-                                                    widget.selectedOviDates[
+                                                    widget.selectedMammalDates[
                                                         'Date Of Death']!,
                                                   ),
                                                   style: const TextStyle(
@@ -854,16 +855,16 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         ),
                                         Expanded(
                                           flex: 0,
-                                          child: widget.selectedOviDates
+                                          child: widget.selectedMammalDates
                                                       .containsKey(
                                                           'Date Of Sale') &&
-                                                  widget.selectedOviDates[
+                                                  widget.selectedMammalDates[
                                                           'Date Of Sale'] !=
                                                       null
                                               ? Text(
                                                   DateFormat('dd.MM.yyyy')
                                                       .format(
-                                                    widget.selectedOviDates[
+                                                    widget.selectedMammalDates[
                                                         'Date Of Sale']!,
                                                   ),
                                                   style: const TextStyle(
@@ -892,7 +893,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         Expanded(
                                           flex: 2,
                                           child: Text(
-                                            widget.fieldName,
+                                            widget.mammalfieldName,
                                             style: const TextStyle(
                                                 fontSize: 14,
                                                 color: Colors.black),
@@ -901,7 +902,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         Expanded(
                                           flex: 0,
                                           child: Text(
-                                            widget.fieldContent,
+                                            widget.mammalfieldContent,
                                             style: const TextStyle(
                                               fontSize: 16,
                                             ),
@@ -927,7 +928,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 16),
                                     child: Text(
-                                      widget.notesController.text,
+                                      widget.mammalnotesController.text,
                                       style: const TextStyle(
                                         fontSize: 14,
                                         color: Colors.black,
@@ -958,7 +959,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                   // Add spacing between the boxes
                                   Visibility(
                                     visible:
-                                        widget.selectedOviGender == 'Female',
+                                        widget.selectedMammalGender == 'Female',
                                     child: Container(
                                       width: double.infinity,
                                       padding: const EdgeInsets.all(8),
@@ -1013,13 +1014,13 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         Column(
                                           children: [
                                             Text(
-                                              widget.selectedOviDates.entries
+                                              widget.selectedMammalDates.entries
                                                           .toList()[0]
                                                           .value !=
                                                       null
                                                   ? DateFormat('dd.MM.yyyy')
                                                       .format(widget
-                                                          .selectedOviDates
+                                                          .selectedMammalDates
                                                           .entries
                                                           .toList()[0]
                                                           .value!)
@@ -1031,7 +1032,8 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                             ),
                                             const SizedBox(height: 8),
                                             Text(
-                                              widget.selectedOviGender == 'Male'
+                                              widget.selectedMammalGender ==
+                                                      'Male'
                                                   ? 'Date Of Mating'
                                                   : 'Last Hatching Date',
                                               style: const TextStyle(
@@ -1044,13 +1046,13 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         Column(
                                           children: [
                                             Text(
-                                              widget.selectedOviDates.entries
+                                              widget.selectedMammalDates.entries
                                                           .toList()[0]
                                                           .value !=
                                                       null
                                                   ? DateFormat('dd.MM.yyyy')
                                                       .format(widget
-                                                          .selectedOviDates
+                                                          .selectedMammalDates
                                                           .entries
                                                           .toList()[0]
                                                           .value!)
@@ -1062,7 +1064,8 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                             ),
                                             const SizedBox(height: 8),
                                             Text(
-                                              widget.selectedOviGender == 'Male'
+                                              widget.selectedMammalGender ==
+                                                      'Male'
                                                   ? 'Next Date Of Mating'
                                                   : 'Frequency Of Laying Eggs',
                                               style: const TextStyle(
@@ -1125,12 +1128,12 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) => ListOfParents(
-                                              selectedOviSire:
-                                                  widget.selectedOviSire,
-                                              selectedOviDam:
-                                                  widget.selectedOviDam,
-                                              selectedMammalSire: '',
-                                              selectedMammalDam: '',
+                                              selectedMammalSire:
+                                                  widget.selectedMammalSire,
+                                              selectedMammalDam:
+                                                  widget.selectedMammalDam,
+                                              selectedOviSire: '',
+                                              selectedOviDam: '',
 
                                               // Convert DateTime to String
                                             ),
@@ -1313,7 +1316,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                             fontSize: 25,
                                           ),
                                         ),
-                                        _isEditMode
+                                        _isMammalEditMode
                                             ? ElevatedButton(
                                                 style: ElevatedButton.styleFrom(
                                                   elevation: 0,
@@ -1324,7 +1327,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                                   // Handle save button press
                                                   // Add your code here to save the edited text
                                                   setState(() {
-                                                    _isEditMode = false;
+                                                    _isMammalEditMode = false;
                                                   });
                                                 },
                                                 child: const Text(
@@ -1343,7 +1346,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                                 onPressed: () {
                                                   // Enter edit mode
                                                   setState(() {
-                                                    _isEditMode = true;
+                                                    _isMammalEditMode = true;
                                                   });
                                                 },
                                               ),
@@ -1353,7 +1356,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  _isEditMode
+                                  _isMammalEditMode
                                       ? _buildEditMode()
                                       : _buildDisplayMode(),
                                   const SizedBox(
@@ -1361,7 +1364,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                   ),
                                   Visibility(
                                     visible:
-                                        widget.selectedOviGender == 'Female',
+                                        widget.selectedMammalGender == 'Female',
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -1426,7 +1429,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                                     onPressed:
                                                         _showPregnantStatusSelection,
                                                     child: Text(
-                                                      '$newpregnantStatus >',
+                                                      '$newMammalpregnantStatus >',
                                                       style: const TextStyle(
                                                           fontSize: 14,
                                                           color: Color.fromARGB(
@@ -1457,7 +1460,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                                   onPressed:
                                                       _showmatingDatePickerModalSheet,
                                                   child: Text(
-                                                    '$newmatingdate >',
+                                                    '$newmammalmatingdate >',
                                                     style: const TextStyle(
                                                         fontSize: 14,
                                                         color:
@@ -1489,7 +1492,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                                   onPressed:
                                                       _showsonarDatePickerModalSheet,
                                                   child: Text(
-                                                    '$newsonardate >',
+                                                    '$newmammalsonardate >',
                                                     style: const TextStyle(
                                                         fontSize: 14,
                                                         color:
@@ -1521,7 +1524,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                                   onPressed:
                                                       _showexpdeliveryDatePickerModalSheet,
                                                   child: Text(
-                                                    '$newexpdeliverydate >',
+                                                    '$newmammalexpdeliverydate >',
                                                     style: const TextStyle(
                                                         fontSize: 14,
                                                         color:
@@ -1574,15 +1577,17 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                       const SizedBox(height: 10),
                                       SingleChildScrollView(
                                         child: ListView.builder(
-                                          itemCount: vaccineDetailsList.length,
+                                          itemCount:
+                                              mammalvaccineDetailsList.length,
                                           shrinkWrap:
                                               true, // This allows the ListView to take only necessary space
                                           itemBuilder: (BuildContext context,
                                               int index) {
                                             return ListTile(
                                               title: Text(
-                                                  vaccineDetailsList[index]
-                                                      .vaccineName),
+                                                  mammalvaccineDetailsList[
+                                                          index]
+                                                      .mammalvaccineName),
                                               trailing: const Icon(Icons
                                                   .edit), // Add an edit icon as trailing
                                               onTap: () {
@@ -1593,18 +1598,16 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    DateFormat('yyyy-MM-dd')
-                                                        .format(
-                                                            vaccineDetailsList[
-                                                                    index]
-                                                                .firstDoseDate!),
+                                                    DateFormat('yyyy-MM-dd').format(
+                                                        mammalvaccineDetailsList[
+                                                                index]
+                                                            .firstDoseDate!),
                                                   ),
                                                   Text(
-                                                    DateFormat('yyyy-MM-dd')
-                                                        .format(
-                                                            vaccineDetailsList[
-                                                                    index]
-                                                                .secondDoseDate!),
+                                                    DateFormat('yyyy-MM-dd').format(
+                                                        mammalvaccineDetailsList[
+                                                                index]
+                                                            .secondDoseDate!),
                                                   ),
                                                 ],
                                               ),
@@ -1624,9 +1627,10 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                                     secondDoseDate) {
                                                   // Save vaccine details to the list
                                                   setState(() {
-                                                    vaccineDetailsList.add(
+                                                    mammalvaccineDetailsList
+                                                        .add(
                                                       VaccineDetails(
-                                                        vaccineName:
+                                                        mammalvaccineName:
                                                             vaccineName,
                                                         firstDoseDate:
                                                             firstDoseDate,
@@ -1683,23 +1687,24 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                       SingleChildScrollView(
                                         child: ListView.builder(
                                           itemCount:
-                                              medicalCheckupDetailsList.length,
+                                              mammalmedicalCheckupDetailsList
+                                                  .length,
                                           shrinkWrap:
                                               true, // This allows the ListView to take only necessary space
                                           itemBuilder: (BuildContext context,
                                               int index) {
                                             return ListTile(
                                               title: Text(
-                                                  medicalCheckupDetailsList[
+                                                  mammalmedicalCheckupDetailsList[
                                                           index]
-                                                      .checkupName),
+                                                      .mammalcheckupName),
                                               trailing: const Icon(Icons
                                                   .edit), // Add an edit icon as trailing
                                               onTap: () {
                                                 // Handle the edit action here
                                               },
                                               subtitle: Text(
-                                                '${DateFormat('yyyy-MM-dd').format(medicalCheckupDetailsList[index].checkupDate!)} ',
+                                                '${DateFormat('yyyy-MM-dd').format(mammalmedicalCheckupDetailsList[index].mammalcheckupDate!)} ',
                                               ),
                                             );
                                           },
@@ -1718,12 +1723,12 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                                 ) {
                                                   // Save vaccine details to the list
                                                   setState(() {
-                                                    medicalCheckupDetailsList
+                                                    mammalmedicalCheckupDetailsList
                                                         .add(
                                                       MedicalCheckupDetails(
-                                                        checkupName:
+                                                        mammalcheckupName:
                                                             checkupName,
-                                                        checkupDate:
+                                                        mammalcheckupDate:
                                                             checkupDate,
                                                       ),
                                                     );
@@ -1775,22 +1780,24 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                     children: [
                                       SingleChildScrollView(
                                         child: ListView.builder(
-                                          itemCount: surgeryDetailsList.length,
+                                          itemCount:
+                                              mammalsurgeryDetailsList.length,
                                           shrinkWrap:
                                               true, // This allows the ListView to take only necessary space
                                           itemBuilder: (BuildContext context,
                                               int index) {
                                             return ListTile(
                                               title: Text(
-                                                  surgeryDetailsList[index]
-                                                      .surgeryName),
+                                                  mammalsurgeryDetailsList[
+                                                          index]
+                                                      .mammalsurgeryName),
                                               trailing: const Icon(Icons
                                                   .edit), // Add an edit icon as trailing
                                               onTap: () {
                                                 // Handle the edit action here
                                               },
                                               subtitle: Text(
-                                                '${DateFormat('yyyy-MM-dd').format(surgeryDetailsList[index].surgeryDate!)} ',
+                                                '${DateFormat('yyyy-MM-dd').format(mammalsurgeryDetailsList[index].mammalsurgeryDate!)} ',
                                               ),
                                             );
                                           },
@@ -1809,11 +1816,12 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                                 ) {
                                                   // Save vaccine details to the list
                                                   setState(() {
-                                                    surgeryDetailsList.add(
+                                                    mammalsurgeryDetailsList
+                                                        .add(
                                                       SurgeryDetails(
-                                                        surgeryName:
+                                                        mammalsurgeryName:
                                                             surgeryName,
-                                                        surgeryDate:
+                                                        mammalsurgeryDate:
                                                             surgeryDate,
                                                       ),
                                                     );
@@ -1847,7 +1855,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 16),
                               child: Text(
-                                widget.notesController.text,
+                                widget.mammalnotesController.text,
                                 style: const TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
@@ -2418,33 +2426,33 @@ class _SurgeryEntryPageState extends State<SurgeryEntryPage> {
 }
 
 class VaccineDetails {
-  final String vaccineName;
+  final String mammalvaccineName;
   final DateTime? firstDoseDate;
   final DateTime? secondDoseDate;
 
   VaccineDetails({
-    required this.vaccineName,
+    required this.mammalvaccineName,
     this.firstDoseDate,
     this.secondDoseDate,
   });
 }
 
 class MedicalCheckupDetails {
-  final String checkupName;
-  final DateTime? checkupDate;
+  final String mammalcheckupName;
+  final DateTime? mammalcheckupDate;
 
   MedicalCheckupDetails({
-    required this.checkupName,
-    this.checkupDate,
+    required this.mammalcheckupName,
+    this.mammalcheckupDate,
   });
 }
 
 class SurgeryDetails {
-  final String surgeryName;
-  final DateTime? surgeryDate;
+  final String mammalsurgeryName;
+  final DateTime? mammalsurgeryDate;
 
   SurgeryDetails({
-    required this.surgeryName,
-    this.surgeryDate,
+    required this.mammalsurgeryName,
+    this.mammalsurgeryDate,
   });
 }

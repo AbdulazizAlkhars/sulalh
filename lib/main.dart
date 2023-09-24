@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hathera_demo/SplashScreen/SplashScreen.dart';
 import 'package:hathera_demo/localization/localestrings.dart';
-import 'package:hathera_demo/signup/Signup_With_Phone.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,14 +17,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Sulalh Demo',
       translations: LocalStrings(),
-      locale: Locale('ar', 'SA'),
+      locale: Locale('en', 'US'),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(255, 36, 86, 38),
         ),
         useMaterial3: true,
       ),
-      home: PhnSignupPage(), // Display the splash screen initially
+      home: SplashScreen(), // Display the splash screen initially
     );
   }
 }

@@ -6,12 +6,17 @@ class AppSettings extends StatefulWidget {
   const AppSettings({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _AppSettings createState() => _AppSettings();
 }
 
 class _AppSettings extends State<AppSettings> {
-  String selectedLanguage = '';
+  final List<Map<String, dynamic>> locales = [
+    {'name': 'English', 'locale': Locale('en', 'US')},
+    {'name': 'Hindi', 'locale': Locale('hi', 'IN')},
+    {'name': 'Arabic', 'locale': Locale('ar', 'SA')},
+  ];
+
+  String selectedLanguage = ''; // Default language
   String selectedLanguageTemp = '';
 
   void _showLanguageSelection() {
@@ -36,10 +41,10 @@ class _AppSettings extends State<AppSettings> {
                   Flexible(
                     child: SingleChildScrollView(
                       child: Column(
-                        children: [
-                          ListTile(
-                            title: Text('English'.tr),
-                            trailing: selectedLanguageTemp == 'English'.tr
+                        children: locales.map((locale) {
+                          return ListTile(
+                            title: Text(locale['name']),
+                            trailing: selectedLanguageTemp == locale['name']
                                 ? Container(
                                     width: 25,
                                     height: 25,
@@ -64,73 +69,11 @@ class _AppSettings extends State<AppSettings> {
                                   ),
                             onTap: () {
                               setState(() {
-                                selectedLanguageTemp = 'English'.tr;
+                                selectedLanguageTemp = locale['name'];
                               });
                             },
-                          ),
-                          ListTile(
-                            title: Text('Arabic'.tr),
-                            trailing: selectedLanguageTemp == 'Arabic'.tr
-                                ? Container(
-                                    width: 25,
-                                    height: 25,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                        color: Colors.green,
-                                        width: 6.0,
-                                      ),
-                                    ),
-                                  )
-                                : Container(
-                                    width: 25,
-                                    height: 25,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                        color: Colors.grey,
-                                        width: 2.0,
-                                      ),
-                                    ),
-                                  ),
-                            onTap: () {
-                              setState(() {
-                                selectedLanguageTemp = 'Arabic'.tr;
-                              });
-                            },
-                          ),
-                          ListTile(
-                            title: Text('French'.tr),
-                            trailing: selectedLanguageTemp == 'French'.tr
-                                ? Container(
-                                    width: 25,
-                                    height: 25,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                        color: Colors.green,
-                                        width: 6.0,
-                                      ),
-                                    ),
-                                  )
-                                : Container(
-                                    width: 25,
-                                    height: 25,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                        color: Colors.grey,
-                                        width: 2.0,
-                                      ),
-                                    ),
-                                  ),
-                            onTap: () {
-                              setState(() {
-                                selectedLanguageTemp = 'French'.tr;
-                              });
-                            },
-                          ),
-                        ],
+                          );
+                        }).toList(),
                       ),
                     ),
                   ),
@@ -142,6 +85,17 @@ class _AppSettings extends State<AppSettings> {
                         setState(() {
                           selectedLanguage = selectedLanguageTemp;
                         });
+                        Get.updateLocale(Locale.fromSubtags(
+                            languageCode: locales
+                                .firstWhere((locale) =>
+                                    locale['name'] ==
+                                    selectedLanguage)['locale']
+                                .languageCode,
+                            countryCode: locales
+                                .firstWhere((locale) =>
+                                    locale['name'] ==
+                                    selectedLanguage)['locale']
+                                .countryCode));
                         Navigator.pop(context);
                       },
                       buttonText: 'Save'.tr,
@@ -153,11 +107,7 @@ class _AppSettings extends State<AppSettings> {
           },
         );
       },
-    ).then((_) {
-      setState(() {
-        selectedLanguage = selectedLanguageTemp;
-      });
-    });
+    );
   }
 
   @override

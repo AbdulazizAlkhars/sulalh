@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/utils.dart';
 import 'package:get/get.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final List locale = [
     {'name': 'English', 'locale': Locale('en', 'US')},
     {'name': 'Hindi', 'locale': Locale('hi', 'IN')},

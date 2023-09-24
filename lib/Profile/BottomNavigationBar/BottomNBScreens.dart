@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/AnimalManagement/ListOfAnimals.dart';
-import 'package:hathera_demo/HomeScreen/GuestMode/HomeScreen1.dart';
+import 'package:hathera_demo/HomeScreen/Registered/HomePage.dart';
 import 'package:hathera_demo/Profile/ProfilePage.dart';
 
 class BottomNavigationBarPage extends StatefulWidget {
@@ -14,7 +14,7 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
   int _currentIndex = 0;
 
   final List<Widget> pages = [
-    HomeScreen1(),
+    RegHomePage(),
     list_of_animals(
       selectedFilters: const [],
     ),

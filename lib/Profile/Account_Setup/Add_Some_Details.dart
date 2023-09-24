@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hathera_demo/Profile/ProfilePage.dart';
+import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';
 import 'package:image_picker/image_picker.dart';
@@ -165,7 +165,8 @@ class _AddSomeDetailsPageState extends State<AddSomeDetailsPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ProfilePage()),
+                    MaterialPageRoute(
+                        builder: (context) => BottomNavigationBarPage()),
                   );
                 },
                 buttonText: 'Continue'.tr,

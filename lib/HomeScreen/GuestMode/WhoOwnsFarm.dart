@@ -23,9 +23,19 @@ class _WhoOwnsFarm extends State<WhoOwnsFarm> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
         body: SingleChildScrollView(
+          physics: NeverScrollableScrollPhysics(),
           child: Container(
-            margin: const EdgeInsets.only(top: 270),
+            margin: const EdgeInsets.only(top: 180),
             child: Column(
               children: [
                 const SizedBox(height: 20),

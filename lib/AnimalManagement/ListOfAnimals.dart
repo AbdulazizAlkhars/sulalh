@@ -74,6 +74,7 @@ class _list_of_animals extends State<list_of_animals> {
     _filteredMammals = mammals.where((mammal) {
       final name = mammal['name'].toString().toLowerCase();
       final subtitle = mammal['subtitle'].toString().toLowerCase();
+
       return (query == null ||
               query.isEmpty ||
               name.contains(query.toLowerCase()) ||
@@ -108,6 +109,7 @@ class _list_of_animals extends State<list_of_animals> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        centerTitle: false,
         title: const Text(
           'Animals',
           style: TextStyle(
@@ -117,10 +119,6 @@ class _list_of_animals extends State<list_of_animals> {
           ),
         ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {},
-          ),
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {

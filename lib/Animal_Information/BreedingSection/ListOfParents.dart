@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 
 class ListOfParents extends StatefulWidget {
   final String selectedOviSire;
+  final String selectedMammalSire;
   final String selectedOviDam;
+  final String selectedMammalDam;
 
   const ListOfParents({
     super.key,
     required this.selectedOviSire,
+    required this.selectedMammalSire,
     required this.selectedOviDam,
+    required this.selectedMammalDam,
   });
   @override
   State<ListOfParents> createState() => _ListOfParentsState();
