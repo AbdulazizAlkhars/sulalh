@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hathera_demo/HomeScreen/GuestMode/GuestHomePage.dart';
 import 'package:hathera_demo/HomeScreen/GuestMode/SearchFarms&Animals.dart';
 import 'package:hathera_demo/HomeScreen/Registered/NotificationList.dart';
 import 'package:hathera_demo/Widgets/Tags.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import '../GuestMode/HomeScreen1.dart';
 
 class RegHomePage extends StatefulWidget {
   const RegHomePage({super.key});
