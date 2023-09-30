@@ -1,6 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Animal_Information/OviparousGeneralInfo.dart';
+import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/TagChips.dart';
 
@@ -1450,10 +1450,9 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
         padding: const EdgeInsets.all(16),
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(
-              context,
+            Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => OvigenifnoPage(
+                builder: (context) => ListOfAnimals(
                   fieldName: fieldName,
                   fieldContent: fieldContent,
                   numberofEggsController: _numberofEggsController,
@@ -1474,6 +1473,8 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                   selectedAnimalType: widget.selectedAnimalType,
                   selectedAnimalSpecies: widget.selectedAnimalSpecies,
                   selectedAnimalBreed: widget.selectedAnimalBreed,
+                  selectedFilters: [],
+                  shouldAddAnimal: true,
                 ),
               ),
             );

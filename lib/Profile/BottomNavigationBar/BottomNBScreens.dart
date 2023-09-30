@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hathera_demo/AnimalManagement/ListOfAnimals.dart';
+import 'package:hathera_demo/CreateAnimals/CreateAnimal1.dart';
 import 'package:hathera_demo/HomeScreen/Registered/HomePage.dart';
 import 'package:hathera_demo/Profile/ProfilePage.dart';
 
 class BottomNavigationBarPage extends StatefulWidget {
+  const BottomNavigationBarPage({super.key});
+
   @override
   _BottomNavigationBarPageState createState() =>
       _BottomNavigationBarPageState();
@@ -14,11 +16,9 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
   int _currentIndex = 0;
 
   final List<Widget> pages = [
-    RegHomePage(),
-    list_of_animals(
-      selectedFilters: const [],
-    ),
-    ProfilePage(),
+    const RegHomePage(),
+    const CreateAnimalPage(),
+    const ProfilePage(),
   ];
 
   @override
@@ -34,15 +34,15 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
+            icon: const Icon(Icons.home_outlined),
             label: 'Home'.tr,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.pets),
+            icon: const Icon(Icons.pets),
             label: 'Animals'.tr,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: const Icon(Icons.person),
             label: 'Profile'.tr,
           ),
         ],

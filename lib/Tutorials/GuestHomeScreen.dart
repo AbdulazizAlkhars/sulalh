@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/HomeScreen/GuestMode/HomeScreen1.dart';
+import 'package:hathera_demo/HomeScreen/GuestMode/GuestHomePage.dart';
+
 import 'package:hathera_demo/Tutorials/RegHomeScreenTutorial.dart';
 
 import 'package:showcaseview/showcaseview.dart';

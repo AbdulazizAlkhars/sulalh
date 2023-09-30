@@ -1001,7 +1001,7 @@ class _AnimalInfoTutorialPage extends State<AnimalInfoTutorialPage>
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) =>
-                            BottomNavigationBarPage(), // Replace with your desired page.
+                            const BottomNavigationBarPage(), // Replace with your desired page.
                       ),
                     );
                   },

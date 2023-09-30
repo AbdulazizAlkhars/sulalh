@@ -1,10 +1,10 @@
-import 'dart:io';
 // ignore: depend_on_referenced_packages
 import 'package:dotted_border/dotted_border.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfBreedingEvents.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfChildren.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfParents.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfPartners.dart';
+import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
@@ -13,51 +13,11 @@ import 'package:hathera_demo/Widgets/TagChips.dart';
 
 // ignore: must_be_immutable
 class OvigenifnoPage extends StatefulWidget {
-  final String fieldName;
-  final String fieldContent;
-  final TextEditingController notesController;
-  final String selectedOviSire;
-  final String selectedDate;
-  final String selectedOviDam;
-  TextEditingController nameController;
-  TextEditingController frequencyEggsController;
-  TextEditingController numberofEggsController;
-  // final DateTime? selectedOviDate;
-  final List<String> selectedOviChips;
-  final Map<String, DateTime?> selectedOviDates;
-  final bool showAdditionalFields;
-  final String selectedOviDateType;
-  final String selectedOviGender;
-  final bool addOviParents;
-  final bool addOviChildren;
-  final File? selectedOviImage;
-  final String selectedAnimalType;
-  final String selectedAnimalSpecies;
-  final String selectedAnimalBreed;
+  final OviVariables OviDetails;
 
   OvigenifnoPage({
+    required this.OviDetails,
     super.key,
-    required this.fieldName,
-    required this.fieldContent,
-    required this.notesController,
-    required this.selectedOviSire,
-    required this.selectedOviDam,
-    // required this.selectedOviDate,
-    required this.selectedOviChips,
-    required this.selectedOviDates,
-    required this.showAdditionalFields,
-    required this.selectedOviDateType,
-    required this.selectedOviGender,
-    required this.addOviParents,
-    required this.addOviChildren,
-    required this.selectedOviImage,
-    required this.nameController,
-    required this.selectedDate,
-    required this.frequencyEggsController,
-    required this.numberofEggsController,
-    required this.selectedAnimalType,
-    required this.selectedAnimalSpecies,
-    required this.selectedAnimalBreed,
   });
 
   @override
@@ -397,7 +357,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
 
   @override
   Widget build(BuildContext context) {
-    final selectedDate = parseSelectedDate(widget.selectedDate);
+    final selectedDate = parseSelectedDate(widget.OviDetails.selectedDate);
 
     return Container(
       decoration: const BoxDecoration(
@@ -492,7 +452,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                   child: Column(
                     children: [
                       Text(
-                        widget.nameController.text,
+                        widget.OviDetails.eventNumber,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 25,
@@ -512,7 +472,8 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                       Wrap(
                         spacing: 8.0,
                         runSpacing: 8.0,
-                        children: widget.selectedOviChips.map((chip) {
+                        children:
+                            widget.OviDetails.selectedOviChips.map((chip) {
                           return CustomTag(
                             label: chip,
                             selected: true, // Since these are selected chips
@@ -614,7 +575,8 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         Column(
                                           children: [
                                             Text(
-                                              widget.selectedAnimalType,
+                                              widget.OviDetails
+                                                  .selectedAnimalType,
                                               style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 14,
@@ -633,7 +595,8 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         Column(
                                           children: [
                                             Text(
-                                              widget.selectedAnimalSpecies,
+                                              widget.OviDetails
+                                                  .selectedAnimalSpecies,
                                               style: const TextStyle(
                                                 fontSize: 14,
                                                 color: Colors.black,
@@ -652,7 +615,8 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         Column(
                                           children: [
                                             Text(
-                                              widget.selectedOviGender,
+                                              widget
+                                                  .OviDetails.selectedOviGender,
                                               style: const TextStyle(
                                                 fontSize: 14,
                                                 color: Colors.black,
@@ -733,7 +697,8 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         Expanded(
                                           flex: 0,
                                           child: Text(
-                                            widget.selectedAnimalBreed,
+                                            widget
+                                                .OviDetails.selectedAnimalBreed,
                                             style: const TextStyle(
                                                 fontSize: 14,
                                                 color: Colors.black),
@@ -760,16 +725,19 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         ),
                                         Expanded(
                                           flex: 0,
-                                          child: widget.selectedOviDates
+                                          child: widget.OviDetails
+                                                      .selectedOviDates
                                                       .containsKey(
                                                           'Date Of Hatching') &&
-                                                  widget.selectedOviDates[
+                                                  widget.OviDetails
+                                                              .selectedOviDates[
                                                           'Date Of Hatching'] !=
                                                       null
                                               ? Text(
                                                   DateFormat('dd.MM.yyyy')
                                                       .format(
-                                                    widget.selectedOviDates[
+                                                    widget.OviDetails
+                                                            .selectedOviDates[
                                                         'Date Of Hatching']!,
                                                   ),
                                                   style: const TextStyle(
@@ -807,16 +775,19 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         ),
                                         Expanded(
                                           flex: 0,
-                                          child: widget.selectedOviDates
+                                          child: widget.OviDetails
+                                                      .selectedOviDates
                                                       .containsKey(
                                                           'Date Of Death') &&
-                                                  widget.selectedOviDates[
+                                                  widget.OviDetails
+                                                              .selectedOviDates[
                                                           'Date Of Death'] !=
                                                       null
                                               ? Text(
                                                   DateFormat('dd.MM.yyyy')
                                                       .format(
-                                                    widget.selectedOviDates[
+                                                    widget.OviDetails
+                                                            .selectedOviDates[
                                                         'Date Of Death']!,
                                                   ),
                                                   style: const TextStyle(
@@ -854,16 +825,19 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         ),
                                         Expanded(
                                           flex: 0,
-                                          child: widget.selectedOviDates
+                                          child: widget.OviDetails
+                                                      .selectedOviDates
                                                       .containsKey(
                                                           'Date Of Sale') &&
-                                                  widget.selectedOviDates[
+                                                  widget.OviDetails
+                                                              .selectedOviDates[
                                                           'Date Of Sale'] !=
                                                       null
                                               ? Text(
                                                   DateFormat('dd.MM.yyyy')
                                                       .format(
-                                                    widget.selectedOviDates[
+                                                    widget.OviDetails
+                                                            .selectedOviDates[
                                                         'Date Of Sale']!,
                                                   ),
                                                   style: const TextStyle(
@@ -892,7 +866,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         Expanded(
                                           flex: 2,
                                           child: Text(
-                                            widget.fieldName,
+                                            widget.OviDetails.fieldName,
                                             style: const TextStyle(
                                                 fontSize: 14,
                                                 color: Colors.black),
@@ -901,7 +875,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         Expanded(
                                           flex: 0,
                                           child: Text(
-                                            widget.fieldContent,
+                                            widget.OviDetails.fieldContent,
                                             style: const TextStyle(
                                               fontSize: 16,
                                             ),
@@ -927,7 +901,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 16),
                                     child: Text(
-                                      widget.notesController.text,
+                                      widget.OviDetails.notes,
                                       style: const TextStyle(
                                         fontSize: 14,
                                         color: Colors.black,
@@ -958,7 +932,8 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                   // Add spacing between the boxes
                                   Visibility(
                                     visible:
-                                        widget.selectedOviGender == 'Female',
+                                        widget.OviDetails.selectedOviGender ==
+                                            'Female',
                                     child: Container(
                                       width: double.infinity,
                                       padding: const EdgeInsets.all(8),
@@ -1013,12 +988,14 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         Column(
                                           children: [
                                             Text(
-                                              widget.selectedOviDates.entries
+                                              widget.OviDetails.selectedOviDates
+                                                          .entries
                                                           .toList()[0]
                                                           .value !=
                                                       null
                                                   ? DateFormat('dd.MM.yyyy')
                                                       .format(widget
+                                                          .OviDetails
                                                           .selectedOviDates
                                                           .entries
                                                           .toList()[0]
@@ -1031,7 +1008,9 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                             ),
                                             const SizedBox(height: 8),
                                             Text(
-                                              widget.selectedOviGender == 'Male'
+                                              widget.OviDetails
+                                                          .selectedOviGender ==
+                                                      'Male'
                                                   ? 'Date Of Mating'
                                                   : 'Last Hatching Date',
                                               style: const TextStyle(
@@ -1044,12 +1023,14 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                         Column(
                                           children: [
                                             Text(
-                                              widget.selectedOviDates.entries
+                                              widget.OviDetails.selectedOviDates
+                                                          .entries
                                                           .toList()[0]
                                                           .value !=
                                                       null
                                                   ? DateFormat('dd.MM.yyyy')
                                                       .format(widget
+                                                          .OviDetails
                                                           .selectedOviDates
                                                           .entries
                                                           .toList()[0]
@@ -1062,7 +1043,9 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                             ),
                                             const SizedBox(height: 8),
                                             Text(
-                                              widget.selectedOviGender == 'Male'
+                                              widget.OviDetails
+                                                          .selectedOviGender ==
+                                                      'Male'
                                                   ? 'Next Date Of Mating'
                                                   : 'Frequency Of Laying Eggs',
                                               style: const TextStyle(
@@ -1125,10 +1108,10 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) => ListOfParents(
-                                              selectedOviSire:
-                                                  widget.selectedOviSire,
-                                              selectedOviDam:
-                                                  widget.selectedOviDam,
+                                              selectedOviSire: widget
+                                                  .OviDetails.selectedOviSire,
+                                              selectedOviDam: widget
+                                                  .OviDetails.selectedOviDam,
                                               selectedMammalSire: '',
                                               selectedMammalDam: '',
 
@@ -1361,7 +1344,8 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                   ),
                                   Visibility(
                                     visible:
-                                        widget.selectedOviGender == 'Female',
+                                        widget.OviDetails.selectedOviGender ==
+                                            'Female',
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -1847,7 +1831,7 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 16),
                               child: Text(
-                                widget.notesController.text,
+                                widget.OviDetails.notes,
                                 style: const TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,

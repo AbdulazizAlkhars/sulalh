@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/HomeScreen/GuestMode/GuestHomePage.dart';
 import 'package:hathera_demo/HomeScreen/Registered/HomePage.dart';
 import 'package:hathera_demo/Tutorials/AnimalInfoTutorialPage.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import '../HomeScreen/GuestMode/HomeScreen1.dart';
 
 class RegHomeScreenTutorial extends StatefulWidget {
   const RegHomeScreenTutorial({super.key});
