@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hathera_demo/SplashScreen/SplashScreen.dart';
+import 'package:hathera_demo/CreateAnimals/CreateOviparous.dart';
 import 'package:hathera_demo/localization/localestrings.dart';
 
 void main() {
@@ -24,7 +24,11 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: SplashScreen(), // Display the splash screen initially
+      home: CreateOviparousPage(
+        selectedAnimalType: '',
+        selectedAnimalSpecies: '',
+        selectedAnimalBreed: '',
+      ), // Display the splash screen initially
     );
   }
 }

@@ -1,5 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:dotted_border/dotted_border.dart';
+import 'package:hathera_demo/Animal_Information/BreedingSection/FamilyTree.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfBreedingEvents.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfChildren.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfParents.dart';
@@ -435,12 +436,18 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                         translation: const Offset(0.0, -0.6),
                         child: CircleAvatar(
                           radius: 70,
-                          backgroundColor: Colors.grey[200],
-                          child: const Icon(
-                            Icons.photo_library_outlined,
-                            size: 50,
-                            color: Colors.grey,
-                          ),
+                          backgroundColor: Colors.grey[100],
+                          backgroundImage: widget.OviDetails.selectedOviImage !=
+                                  null
+                              ? FileImage(widget.OviDetails.selectedOviImage!)
+                              : null,
+                          child: widget.OviDetails.selectedOviImage == null
+                              ? const Icon(
+                                  Icons.camera_alt_outlined,
+                                  size: 50,
+                                  color: Colors.grey,
+                                )
+                              : null,
                         ),
                       ),
                     ],
@@ -1135,7 +1142,15 @@ class _OvigenifnoPage extends State<OvigenifnoPage>
                                     trailing: IconButton(
                                       icon: const Icon(Icons.arrow_right),
                                       onPressed: () {
-                                        // Add your onPressed logic here
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => FamilyTree(
+
+                                                // Convert DateTime to String
+                                                ),
+                                          ),
+                                        );
                                       },
                                     ),
                                   ),

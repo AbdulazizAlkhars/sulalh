@@ -1,6 +1,7 @@
 import 'dart:io';
 // ignore: depend_on_referenced_packages
 import 'package:dotted_border/dotted_border.dart';
+import 'package:hathera_demo/Animal_Information/BreedingSection/FamilyTree.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfBreedingEvents.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfChildren.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfParents.dart';
@@ -1155,7 +1156,15 @@ class _MammalGenInfo extends State<MammalGenInfo>
                                     trailing: IconButton(
                                       icon: const Icon(Icons.arrow_right),
                                       onPressed: () {
-                                        // Add your onPressed logic here
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => FamilyTree(
+
+                                                // Convert DateTime to String
+                                                ),
+                                          ),
+                                        );
                                       },
                                     ),
                                   ),

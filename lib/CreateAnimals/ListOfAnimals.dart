@@ -4,7 +4,6 @@ import 'package:hathera_demo/AnimalManagement/AnimalFilters.dart';
 import 'package:hathera_demo/Animal_Information/OviparousGeneralInfo.dart';
 import 'package:hathera_demo/CreateAnimals/CreateAnimal1.dart';
 
-
 class OviVariables {
   final List<String> selectedFilters;
   final String eventNumber;
@@ -145,7 +144,7 @@ class _ListOfAnimals extends State<ListOfAnimals> {
       selectedAnimalSpecies: widget.selectedAnimalSpecies,
       selectedAnimalType: widget.selectedAnimalType,
       selectedOviChips: widget.selectedOviChips,
-      selectedOviImage: widget.selectedOviImage,
+      selectedOviImage: widget.selectedOviImage!,
       selectedFilters: widget.selectedFilters,
     );
 
@@ -164,8 +163,7 @@ class _ListOfAnimals extends State<ListOfAnimals> {
     });
   }
 
-  void _updateFilteredOviAnimals({String? query}) {
-  }
+  void _updateFilteredOviAnimals({String? query}) {}
 
   void _removeSelectedFilter(String filter) {
     setState(() {
@@ -319,8 +317,17 @@ class _ListOfAnimals extends State<ListOfAnimals> {
                 return ListTile(
                   leading: CircleAvatar(
                     radius: 25,
-                    backgroundImage:
-                        AssetImage(OviDetails.selectedOviImage?.path ?? ''),
+                    backgroundColor: Colors.grey[100],
+                    backgroundImage: OviDetails.selectedOviImage != null
+                        ? FileImage(OviDetails.selectedOviImage!)
+                        : null,
+                    child: OviDetails.selectedOviImage == null
+                        ? const Icon(
+                            Icons.camera_alt_outlined,
+                            size: 50,
+                            color: Colors.grey,
+                          )
+                        : null,
                   ),
                   title: Text('${OviDetails.eventNumber}'),
                   subtitle: Text('${widget.selectedAnimalType}'),

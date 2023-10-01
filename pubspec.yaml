@@ -36,6 +36,9 @@ dependencies:
   dotted_border: ^2.0.0+3
   file_picker: ^5.5.0
   riverpod: ^2.4.0
+  flutter_treeview: ^1.0.7+1
+  flutter_custom_clippers: ^2.1.0
+  photo_view: ^0.14.0
 
     
 
