@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hathera_demo/CreateAnimals/CreateOviparous.dart';
+import 'package:hathera_demo/Animal_Information/BreedingSection/FamilyTree.dart';
+import 'package:hathera_demo/demofamilytree.dart';
 import 'package:hathera_demo/localization/localestrings.dart';
+import 'package:hathera_demo/sadas.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,11 +26,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: CreateOviparousPage(
-        selectedAnimalType: '',
-        selectedAnimalSpecies: '',
-        selectedAnimalBreed: '',
-      ), // Display the splash screen initially
+      home: DemoFamilyTree(),
     );
   }
 }

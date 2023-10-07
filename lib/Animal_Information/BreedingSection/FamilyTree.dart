@@ -142,24 +142,14 @@ class AnimalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      color: Color.fromARGB(255, 248, 243, 208),
-      child: IntrinsicWidth(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                name,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ],
+    return CircleAvatar(
+      radius: 30, // Adjust the radius as needed
+      backgroundColor: Color.fromARGB(255, 248, 243, 208),
+      child: Text(
+        name,
+        style: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
