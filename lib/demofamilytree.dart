@@ -1,193 +1,351 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
+// import 'package:hathera_demo/demolines.dart';
+// import 'package:hathera_demo/sadas.dart';
 
-class DemoFamilyTree extends StatefulWidget {
-  @override
-  _DemoFamilyTreeState createState() => _DemoFamilyTreeState();
-}
+// class DemoFamilyTree extends StatefulWidget {
+//   @override
+//   _DemoFamilyTreeState createState() => _DemoFamilyTreeState();
+// }
 
-class _DemoFamilyTreeState extends State<DemoFamilyTree> {
-  List<Widget> fatherParents = [
-    AnimalCard(name: 'F1'),
-    AnimalCard(name: 'F2'),
-  ];
+// class _DemoFamilyTreeState extends State<DemoFamilyTree> {
+//   List<Widget> fatherParents = [
+//     Column(
+//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//       children: [
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//           children: [
+//             AnimalCard(name: 'F1'),
+//             SizedBox(width: 30),
+//             AnimalCard(name: 'F2'),
+//           ],
+//         ),
+//         LineDrawer(
+//           lineConfigs: [
+//             LineConfig(
+//               60,
+//               0,
+//               drawArrow: false,
+//               drawDot: false,
+//             ),
+//             LineConfig(
+//               60,
+//               -90,
+//               drawArrow: true,
+//               drawDot: false,
+//             ),
+//             LineConfig(60, 180, drawArrow: false, drawDot: false),
+//             LineConfig(60, 90, drawArrow: false, drawDot: false),
+//             LineConfig(60, -90, drawArrow: false, drawDot: true),
+//             LineConfig(60, 180, drawArrow: false, drawDot: false),
+//             LineConfig(60, -90, drawArrow: false, drawDot: false),
+//             LineConfig(60, 90, drawArrow: true, drawDot: false),
+//           ],
+//           width: 200, // Adjust the size as needed
+//           height: 200,
+//         ),
+//       ],
+//     ),
+//   ];
 
-  List<Widget> motherParents = [
-    AnimalCard(name: 'M1'),
-    AnimalCard(name: 'M2'),
-  ];
+//   List<Widget> motherParents = [
+//     Column(
+//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//       children: [
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//           children: [
+//             AnimalCard(name: 'M1'),
+//             SizedBox(width: 30),
+//             AnimalCard(name: 'M2'),
+//           ],
+//         ),
+//         LineDrawer(
+//           lineConfigs: [
+//             LineConfig(
+//               60,
+//               0,
+//               drawArrow: false,
+//               drawDot: false,
+//             ),
+//             LineConfig(
+//               60,
+//               -90,
+//               drawArrow: true,
+//               drawDot: false,
+//             ),
+//             LineConfig(60, 180, drawArrow: false, drawDot: false),
+//             LineConfig(60, 90, drawArrow: false, drawDot: false),
+//             LineConfig(60, -90, drawArrow: false, drawDot: true),
+//             LineConfig(60, 180, drawArrow: false, drawDot: false),
+//             LineConfig(60, -90, drawArrow: false, drawDot: false),
+//             LineConfig(60, 90, drawArrow: true, drawDot: false),
+//           ],
+//           width: 200, // Adjust the size as needed
+//           height: 200,
+//         ),
+//       ],
+//     ),
+//   ];
+//   List<Widget> parentList = [];
 
-  List<Widget> parentList = [
-    Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            AnimalCard(name: 'Father'),
-            SizedBox(width: 80),
-            AnimalCard(name: 'Mother'),
-          ],
-        ),
-      ],
-    ),
-  ];
+// // Define variables to control visibility
+//   bool showFatherParents = false;
+//   bool showMotherParents = false;
 
-  List<Widget> animalList = [
-    AnimalCard(name: 'Animal'),
-  ];
+//   @override
+//   void initState() {
+//     super.initState();
+//     // Initialize the fatherParents list with the initial visibility settings
+//     parentList = [
+//       Column(
+//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//         children: [
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: [
+//               GestureDetector(
+//                   onTap: () {
+//                     setState(() {
+//                       showFatherParents = !showFatherParents;
+//                     });
+//                   },
+//                   child: AnimalCard(name: 'Father')),
+//               SizedBox(width: 135),
+//               GestureDetector(
+//                   onTap: () {
+//                     setState(() {
+//                       showMotherParents = !showMotherParents;
+//                     });
+//                   },
+//                   child: AnimalCard(name: 'Mother')),
+//             ],
+//           ),
+//           LineDrawer(
+//             lineConfigs: [
+//               LineConfig(
+//                 120,
+//                 0,
+//                 drawArrow: false,
+//                 drawDot: false,
+//               ),
+//               LineConfig(
+//                 60,
+//                 -90,
+//                 drawArrow: true,
+//                 drawDot: false,
+//               ),
+//               LineConfig(60, 180, drawArrow: false, drawDot: false),
+//               LineConfig(120, 90, drawArrow: false, drawDot: false),
+//               LineConfig(60, -90, drawArrow: false, drawDot: true),
+//               LineConfig(60, 180, drawArrow: false, drawDot: false),
+//               LineConfig(120, -90, drawArrow: false, drawDot: false),
+//               LineConfig(60, 90, drawArrow: true, drawDot: false),
+//             ],
+//             width: 200, // Adjust the size as needed
+//             height: 200,
+//           ),
+//         ],
+//       ),
+//     ];
+//   }
 
-  List<Widget> childrenList = [
-    AnimalCard(name: 'Child 1'),
-  ];
+//   List<Widget> animalList = [
+//     AnimalCard(name: 'Animal'),
+//     LineDrawer(
+//       lineConfigs: [
+//         LineConfig(
+//           20,
+//           -90,
+//           drawArrow: false,
+//           drawDot: true,
+//         ),
+//         LineConfig(
+//           50,
+//           180,
+//           drawArrow: true,
+//           drawDot: false,
+//         ),
+//       ],
+//       width: 100, // Adjust the size as needed
+//       height: 100,
+//     ),
+//   ];
 
-  // Line configurations
-  List<LineConfig> lineConfigs = [
-    LineConfig(80, 0, drawArrow: false, drawDot: false),
-  ];
+//   List<Widget> childrenList = [
+//     AnimalCard(name: 'Child 1'),
+//   ];
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: InteractiveViewer(
-        minScale: 0.5,
-        maxScale: 2.0,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: FittedBox(
-              fit: BoxFit.cover,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: parentList,
-                  ),
-                  ...animalList,
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        for (var i = 0; i < childrenList.length; i++) ...[
-                          if (i > 0) CustomConnectorLine(lineConfigs[i - 1]),
-                          childrenList[i],
-                        ],
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add a new child when the button is pressed
-          setState(() {
-            final newChildIndex = childrenList.length + 1;
-            childrenList.add(AnimalCard(name: 'Child $newChildIndex'));
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Harry's Family Tree"),
+//         centerTitle: true,
+//         leading: IconButton(
+//           icon: const Icon(Icons.arrow_back),
+//           onPressed: () {
+//             Navigator.pop(context);
+//             // Handle back button press
+//             // Add your code here
+//           },
+//         ),
+//       ),
+//       body: InteractiveViewer(
+//         boundaryMargin: EdgeInsets.all(double.infinity),
+//         minScale: 0.5,
+//         maxScale: 10.0,
+//         child: Padding(
+//           padding: const EdgeInsets.all(8.0),
+//           child: Center(
+//             child: FittedBox(
+//               fit: BoxFit.contain,
+//               child: Column(
+//                 children: [
+//                   Row(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+//                       if (showFatherParents)
+//                         Row(
+//                           children: fatherParents,
+//                         )
+//                       else if (showMotherParents)
+//                         Container(
+//                           width: 230,
+//                           height: 230,
+//                         ), // Empty container if showMotherParents is true
+//                       SizedBox(
+//                         width: 20,
+//                       ),
+//                       if (showMotherParents)
+//                         Row(
+//                           children: motherParents,
+//                         )
+//                       else if (showFatherParents)
+//                         Container(
+//                           width: 230,
+//                           height: 230,
+//                         ), // Empty container if showFatherParents is true
+//                     ],
+//                   ),
+//                   Row(
+//                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                     children: parentList,
+//                   ),
+//                   ...animalList,
+//                   SingleChildScrollView(
+//                     scrollDirection: Axis.horizontal,
+//                     child: Row(
+//                       children: [
+//                         for (var i = 0; i < childrenList.length; i++) ...[
+//                           if (i > 0) CustomConnectorLine(),
+//                           childrenList[i],
+//                           if (i < childrenList.length - 1)
+//                             CustomConnectorLine(),
+//                         ],
+//                       ],
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//       floatingActionButton: FloatingActionButton(
+//         backgroundColor: Colors.grey[350],
+//         onPressed: () {
+//           // Add a new child when the button is pressed
+//           setState(() {
+//             childrenList
+//                 .add(AnimalCard(name: 'Child ${childrenList.length + 1}'));
+//           });
+//         },
+//         child: Icon(Icons.add),
+//       ),
+//     );
+//   }
+// }
 
-            // Update line configurations
-            if (newChildIndex > 1) {
-              final angleIncrement = 180 / (newChildIndex - 1);
-              final length = 50.0;
+// class AnimalCard extends StatelessWidget {
+//   final String name;
 
-              for (var i = 1; i < newChildIndex; i++) {
-                final newAngle = 90 + angleIncrement * (i - 1);
-                lineConfigs.add(
-                  LineConfig(length, newAngle,
-                      drawArrow: false, drawDot: false),
-                );
-              }
+//   AnimalCard({required this.name});
 
-              // Add lines with arrows at center and sides
-              lineConfigs.addAll([
-                LineConfig(length, 0,
-                    drawArrow: true, drawDot: false), // Center line
-                LineConfig(length, 90,
-                    drawArrow: true, drawDot: false), // Right side line
-                LineConfig(length, -90,
-                    drawArrow: true, drawDot: false), // Left side line
-              ]);
-            }
-          });
-        },
-        child: Icon(Icons.add),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return CircleAvatar(
+//       radius: 50, // Adjust the radius as needed
+//       backgroundColor: Colors.grey[350],
+//       child: Text(
+//         name,
+//         style: TextStyle(
+//           fontSize: 15,
+//           fontWeight: FontWeight.bold,
+//         ),
+//       ),
+//     );
+//   }
+// }
 
-class AnimalCard extends StatelessWidget {
-  final String name;
+// class CustomConnectorLine extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return CustomPaint(
+//       size: Size(30, 2), // Adjust the size as needed
+//       painter: CustomLinePainter(),
+//     );
+//   }
+// }
 
-  AnimalCard({required this.name});
+// class CustomLinePainter extends CustomPainter {
+//   @override
+//   void paint(Canvas canvas, Size size) {
+//     final paint = Paint()
+//       ..color = const Color.fromARGB(255, 43, 93, 45)
+//       ..strokeCap = StrokeCap.round
+//       ..strokeWidth = 2.0;
 
-  @override
-  Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: 50,
-      backgroundColor: Color.fromARGB(255, 248, 243, 208),
-      child: Text(
-        name,
-        style: TextStyle(
-          fontSize: 15,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-}
+//     final startPoint = Offset(0, size.height / 2);
+//     final endPoint = Offset(size.width, size.height / 2);
 
-class CustomConnectorLine extends StatelessWidget {
-  final LineConfig config;
+//     // Draw the horizontal line
+//     canvas.drawLine(startPoint, endPoint, paint);
+//   }
 
-  CustomConnectorLine(this.config);
+//   @override
+//   bool shouldRepaint(CustomPainter oldDelegate) {
+//     return false;
+//   }
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return CustomPaint(
-      size: Size(30, 2),
-      painter: CustomLinePainter(config),
-    );
-  }
-}
+// class VerticalConnector extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return CustomPaint(
+//       size: Size(2, 30), // Adjust the size as needed
+//       painter: VerticalLinePainter(),
+//     );
+//   }
+// }
 
-class CustomLinePainter extends CustomPainter {
-  final LineConfig config;
+// class VerticalLinePainter extends CustomPainter {
+//   @override
+//   void paint(Canvas canvas, Size size) {
+//     final paint = Paint()
+//       ..color = Colors.black
+//       ..strokeCap = StrokeCap.round
+//       ..strokeWidth = 2.0;
 
-  CustomLinePainter(this.config);
+//     final startPoint = Offset(size.width / 2, 0);
+//     final endPoint = Offset(size.width / 2, size.height * 3);
 
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = const Color.fromARGB(255, 43, 93, 45)
-      ..strokeCap = StrokeCap.round
-      ..strokeWidth = 2.0;
+//     // Draw the vertical line
+//     canvas.drawLine(startPoint, endPoint, paint);
+//   }
 
-    final startPoint = Offset(0, size.height / 2);
-    final endPoint = Offset(size.width, size.height / 2);
-
-    canvas.drawLine(startPoint, endPoint, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
-  }
-}
-
-class LineConfig {
-  final double length;
-  final double angle;
-  final bool drawArrow;
-  final bool drawDot;
-
-  LineConfig(this.length, this.angle,
-      {this.drawArrow = false, this.drawDot = false});
-}
-
-void main() {
-  runApp(MaterialApp(home: DemoFamilyTree()));
-}
+//   @override
+//   bool shouldRepaint(CustomPainter oldDelegate) {
+//     return false;
+//   }
+// }

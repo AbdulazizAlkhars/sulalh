@@ -1,56 +1,174 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Widgets/ConnectorLines.dart';
 
 class FamilyTree extends StatefulWidget {
   @override
-  _FamilyTree createState() => _FamilyTree();
+  _FamilyTreeState createState() => _FamilyTreeState();
 }
 
-class _FamilyTree extends State<FamilyTree> {
+class _FamilyTreeState extends State<FamilyTree> {
   List<Widget> fatherParents = [
-    AnimalCard(name: 'F1'),
     Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SizedBox(
-          height: 20,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            AnimalCard(name: 'F1'),
+            SizedBox(width: 30),
+            AnimalCard(name: 'F2'),
+          ],
         ),
-        CustomConnectorLine(),
-        VerticalConnector(),
+        LineDrawer(
+          lineConfigs: [
+            LineConfig(
+              60,
+              0,
+              drawArrow: false,
+              drawDot: false,
+            ),
+            LineConfig(
+              60,
+              -90,
+              drawArrow: true,
+              drawDot: false,
+            ),
+            LineConfig(60, 180, drawArrow: false, drawDot: false),
+            LineConfig(60, 90, drawArrow: false, drawDot: false),
+            LineConfig(60, -90, drawArrow: false, drawDot: true),
+            LineConfig(60, 180, drawArrow: false, drawDot: false),
+            LineConfig(60, -90, drawArrow: false, drawDot: false),
+            LineConfig(60, 90, drawArrow: true, drawDot: false),
+          ],
+          width: 200, // Adjust the size as needed
+          height: 200,
+        ),
       ],
-    ), // Custom connector line
-    AnimalCard(name: 'F2'),
+    ),
   ];
 
   List<Widget> motherParents = [
-    AnimalCard(name: 'M1'),
     Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SizedBox(
-          height: 20,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            AnimalCard(name: 'M1'),
+            SizedBox(width: 30),
+            AnimalCard(name: 'M2'),
+          ],
         ),
-        CustomConnectorLine(),
-        VerticalConnector(),
+        LineDrawer(
+          lineConfigs: [
+            LineConfig(
+              60,
+              0,
+              drawArrow: false,
+              drawDot: false,
+            ),
+            LineConfig(
+              60,
+              -90,
+              drawArrow: true,
+              drawDot: false,
+            ),
+            LineConfig(60, 180, drawArrow: false, drawDot: false),
+            LineConfig(60, 90, drawArrow: false, drawDot: false),
+            LineConfig(60, -90, drawArrow: false, drawDot: true),
+            LineConfig(60, 180, drawArrow: false, drawDot: false),
+            LineConfig(60, -90, drawArrow: false, drawDot: false),
+            LineConfig(60, 90, drawArrow: true, drawDot: false),
+          ],
+          width: 200, // Adjust the size as needed
+          height: 200,
+        ),
       ],
-    ), // Custom connector line
-    AnimalCard(name: 'M2'),
+    ),
   ];
+  List<Widget> parentList = [];
 
-  List<Widget> parentList = [
-    AnimalCard(name: 'Father'),
-    Column(
-      children: [
-        SizedBox(
-          height: 20,
-        ),
-        CustomConnectorLine(),
-        VerticalConnector(),
-      ],
-    ), // Custom connector line
-    AnimalCard(name: 'Mother'),
-  ];
+// Define variables to control visibility
+  bool showFatherParents = false;
+  bool showMotherParents = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the fatherParents list with the initial visibility settings
+    parentList = [
+      Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      showFatherParents = !showFatherParents;
+                    });
+                  },
+                  child: AnimalCard(name: 'Father')),
+              SizedBox(width: 135),
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      showMotherParents = !showMotherParents;
+                    });
+                  },
+                  child: AnimalCard(name: 'Mother')),
+            ],
+          ),
+          LineDrawer(
+            lineConfigs: [
+              LineConfig(
+                120,
+                0,
+                drawArrow: false,
+                drawDot: false,
+              ),
+              LineConfig(
+                60,
+                -90,
+                drawArrow: true,
+                drawDot: false,
+              ),
+              LineConfig(60, 180, drawArrow: false, drawDot: false),
+              LineConfig(120, 90, drawArrow: false, drawDot: false),
+              LineConfig(60, -90, drawArrow: false, drawDot: true),
+              LineConfig(60, 180, drawArrow: false, drawDot: false),
+              LineConfig(120, -90, drawArrow: false, drawDot: false),
+              LineConfig(60, 90, drawArrow: true, drawDot: false),
+            ],
+            width: 200, // Adjust the size as needed
+            height: 200,
+          ),
+        ],
+      ),
+    ];
+  }
 
   List<Widget> animalList = [
     AnimalCard(name: 'Animal'),
-    VerticalConnector(),
+    LineDrawer(
+      lineConfigs: [
+        LineConfig(
+          20,
+          -90,
+          drawArrow: false,
+          drawDot: true,
+        ),
+        LineConfig(
+          50,
+          180,
+          drawArrow: true,
+          drawDot: false,
+        ),
+      ],
+      width: 100, // Adjust the size as needed
+      height: 100,
+    ),
   ];
 
   List<Widget> childrenList = [
@@ -60,48 +178,60 @@ class _FamilyTree extends State<FamilyTree> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Harry's Family Tree"),
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+            // Handle back button press
+            // Add your code here
+          },
+        ),
+      ),
       body: InteractiveViewer(
         boundaryMargin: EdgeInsets.all(double.infinity),
         minScale: 0.5,
-        maxScale: 2.0,
+        maxScale: 10.0,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(
             child: FittedBox(
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Father's Parents
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: fatherParents,
+                      if (showFatherParents)
+                        Row(
+                          children: fatherParents,
+                        )
+                      else if (showMotherParents)
+                        Container(
+                          width: 230,
+                          height: 230,
+                        ), // Empty container if showMotherParents is true
+                      SizedBox(
+                        width: 20,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: motherParents,
-                      ),
+                      if (showMotherParents)
+                        Row(
+                          children: motherParents,
+                        )
+                      else if (showFatherParents)
+                        Container(
+                          width: 230,
+                          height: 230,
+                        ), // Empty container if showFatherParents is true
                     ],
                   ),
-                  SizedBox(
-                      height: 50), // Space between Father's Parents and Father
-                  // Parents: Father and Mother
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: parentList,
                   ),
-                  SizedBox(
-                      height: 50), // Space between parents and "The Animal"
-                  // The Animal
                   ...animalList,
-                  SizedBox(
-                      height: 50), // Space between "The Animal" and children
-                  // Mother's Parents
-
-                  // The Children in a Row
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -122,6 +252,7 @@ class _FamilyTree extends State<FamilyTree> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.grey[350],
         onPressed: () {
           // Add a new child when the button is pressed
           setState(() {
@@ -143,8 +274,8 @@ class AnimalCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: 30, // Adjust the radius as needed
-      backgroundColor: Color.fromARGB(255, 248, 243, 208),
+      radius: 50, // Adjust the radius as needed
+      backgroundColor: Colors.grey[350],
       child: Text(
         name,
         style: TextStyle(
@@ -170,7 +301,7 @@ class CustomLinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.black
+      ..color = const Color.fromARGB(255, 43, 93, 45)
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 2.0;
 
@@ -217,5 +348,3 @@ class VerticalLinePainter extends CustomPainter {
     return false;
   }
 }
-
-// the custom connector lines for children will only be shown if there is a child both to the left and right of it.
