@@ -106,23 +106,23 @@ class _ListOfStaffState extends State<ListOfStaff> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   vertical: 8.0, horizontal: 16.0),
                               child: Text(
                                 'Invite A Member'.tr,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 32,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   vertical: 8.0, horizontal: 16.0),
                               child: Text(
                                 'Share this link that will provide users access to your farm'
                                     .tr,
-                                style: TextStyle(fontSize: 14),
+                                style: const TextStyle(fontSize: 14),
                               ),
                             ),
                             const SizedBox(
@@ -151,14 +151,14 @@ class _ListOfStaffState extends State<ListOfStaff> {
                                       const link =
                                           'https://example.com'; // Replace with your link value from the backend
                                       Clipboard.setData(
-                                          ClipboardData(text: link));
+                                          const ClipboardData(text: link));
                                       CustomSnackBar.show(
                                           context, 'Link Copied To Clipboard');
 
                                       Navigator.pop(
                                           context); // Navigate back to the previous screen
                                     },
-                                    child: Text(
+                                    child: const Text(
                                       'Copy Link',
                                       style: TextStyle(
                                         color: Color.fromARGB(255, 36, 86, 38),
@@ -199,10 +199,10 @@ class _ListOfStaffState extends State<ListOfStaff> {
               height: 10,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
                 'Your Staff'.tr,
-                style: TextStyle(fontSize: 40),
+                style: const TextStyle(fontSize: 40),
               ),
             ),
             const SizedBox(

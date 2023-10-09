@@ -1,15 +1,18 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
 import 'package:hathera_demo/Widgets/ConnectorLines.dart';
 
-class FamilyTree extends StatefulWidget {
-  const FamilyTree({
+class DemoFamilyTree extends StatefulWidget {
+  const DemoFamilyTree({
     super.key,
   });
   @override
-  _FamilyTree createState() => _FamilyTree();
+  _DemoFamilyTree createState() => _DemoFamilyTree();
 }
 
-class _FamilyTree extends State<FamilyTree> {
+class _DemoFamilyTree extends State<DemoFamilyTree> {
   List<Widget> fatherParents = [
     Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -18,7 +21,7 @@ class _FamilyTree extends State<FamilyTree> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             AnimalCard(name: 'F1'),
-            const SizedBox(width: 30),
+            SizedBox(width: 30),
             AnimalCard(name: 'F2'),
           ],
         ),
@@ -58,7 +61,7 @@ class _FamilyTree extends State<FamilyTree> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             AnimalCard(name: 'M1'),
-            const SizedBox(width: 30),
+            SizedBox(width: 30),
             AnimalCard(name: 'M2'),
           ],
         ),
@@ -113,7 +116,7 @@ class _FamilyTree extends State<FamilyTree> {
                     });
                   },
                   child: AnimalCard(name: 'Father')),
-              const SizedBox(width: 135),
+              SizedBox(width: 135),
               GestureDetector(
                   onDoubleTap: () {
                     setState(() {
@@ -184,7 +187,7 @@ class _FamilyTree extends State<FamilyTree> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Harry's Family Tree"),
+        title: Text("Harry's Family Tree"),
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -196,7 +199,7 @@ class _FamilyTree extends State<FamilyTree> {
         ),
       ),
       body: InteractiveViewer(
-        boundaryMargin: const EdgeInsets.all(double.infinity),
+        boundaryMargin: EdgeInsets.all(double.infinity),
         minScale: 0.5,
         maxScale: 10.0,
         child: Padding(
@@ -214,11 +217,11 @@ class _FamilyTree extends State<FamilyTree> {
                           children: fatherParents,
                         )
                       else if (showMotherParents)
-                        const SizedBox(
+                        Container(
                           width: 230,
                           height: 230,
                         ), // Empty container if showMotherParents is true
-                      const SizedBox(
+                      SizedBox(
                         width: 20,
                       ),
                       if (showMotherParents)
@@ -226,7 +229,7 @@ class _FamilyTree extends State<FamilyTree> {
                           children: motherParents,
                         )
                       else if (showFatherParents)
-                        const SizedBox(
+                        Container(
                           width: 230,
                           height: 230,
                         ), // Empty container if showFatherParents is true
@@ -265,7 +268,7 @@ class _FamilyTree extends State<FamilyTree> {
                 .add(AnimalCard(name: 'Child ${childrenList.length + 1}'));
           });
         },
-        child: const Icon(Icons.add),
+        child: Icon(Icons.add),
       ),
     );
   }
@@ -288,7 +291,7 @@ class _MainAnimalCardState extends State<MainAnimalCard> {
     return Column(
       children: [
         Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
@@ -300,24 +303,31 @@ class _MainAnimalCardState extends State<MainAnimalCard> {
           child: CircleAvatar(
             radius: 50,
             backgroundColor: Colors.grey[350],
-            backgroundImage: const AssetImage(
+            backgroundImage: AssetImage(
                 'assets/Staff Images/Black-Widow-Avengers-Endgame-feature.jpg'),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [],
+              children: [
+                if (AssetImage == null)
+                  Text(
+                    widget.mainanimalname,
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+              ],
             ),
           ),
         ),
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-          widget.mainanimalname,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+        if (AssetImage != null)
+          Text(
+            widget.mainanimalname,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
       ],
     );
   }
@@ -415,7 +425,7 @@ class _AnimalCardState extends State<AnimalCard> {
                 if (selectedAnimalImage == null)
                   Text(
                     widget.name,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
@@ -424,13 +434,10 @@ class _AnimalCardState extends State<AnimalCard> {
             ),
           ),
         ),
-        SizedBox(
-          height: 10,
-        ),
         if (selectedAnimalName != null)
           Text(
             selectedAnimalName!,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
@@ -444,7 +451,7 @@ class CustomConnectorLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: const Size(30, 2), // Adjust the size as needed
+      size: Size(30, 2), // Adjust the size as needed
       painter: CustomLinePainter(),
     );
   }
@@ -475,7 +482,7 @@ class VerticalConnector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: const Size(2, 30), // Adjust the size as needed
+      size: Size(2, 30), // Adjust the size as needed
       painter: VerticalLinePainter(),
     );
   }

@@ -477,12 +477,17 @@ class _MammalGenInfo extends State<MammalGenInfo>
                         translation: const Offset(0.0, -0.6),
                         child: CircleAvatar(
                           radius: 70,
-                          backgroundColor: Colors.grey[200],
-                          child: const Icon(
-                            Icons.photo_library_outlined,
-                            size: 50,
-                            color: Colors.grey,
-                          ),
+                          backgroundColor: Colors.grey[100],
+                          backgroundImage: widget.selectedMammalImage != null
+                              ? FileImage(widget.selectedMammalImage!)
+                              : null,
+                          child: widget.selectedMammalImage == null
+                              ? const Icon(
+                                  Icons.camera_alt_outlined,
+                                  size: 50,
+                                  color: Colors.grey,
+                                )
+                              : null,
                         ),
                       ),
                     ],
