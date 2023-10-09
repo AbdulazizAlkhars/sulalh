@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
+
 import 'package:hathera_demo/Widgets/ConnectorLines.dart';
+import 'package:hathera_demo/parentsgrandparentswidget.dart';
 
 class DemoFamilyTree extends StatefulWidget {
   const DemoFamilyTree({
@@ -20,8 +19,8 @@ class _DemoFamilyTree extends State<DemoFamilyTree> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            AnimalCard(name: 'F1'),
-            SizedBox(width: 30),
+            GestureDetector(child: AnimalCard(name: 'F1')),
+            const SizedBox(width: 30),
             AnimalCard(name: 'F2'),
           ],
         ),
@@ -60,8 +59,9 @@ class _DemoFamilyTree extends State<DemoFamilyTree> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            AnimalCard(name: 'M1'),
-            SizedBox(width: 30),
+            GestureDetector(
+                onDoubleTap: () {}, child: ParentAnimalCard(Parentname: 'M1')),
+            const SizedBox(width: 30),
             AnimalCard(name: 'M2'),
           ],
         ),
@@ -116,7 +116,7 @@ class _DemoFamilyTree extends State<DemoFamilyTree> {
                     });
                   },
                   child: AnimalCard(name: 'Father')),
-              SizedBox(width: 135),
+              const SizedBox(width: 135),
               GestureDetector(
                   onDoubleTap: () {
                     setState(() {
@@ -187,7 +187,7 @@ class _DemoFamilyTree extends State<DemoFamilyTree> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Harry's Family Tree"),
+        title: const Text("Harry's Family Tree"),
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -199,7 +199,7 @@ class _DemoFamilyTree extends State<DemoFamilyTree> {
         ),
       ),
       body: InteractiveViewer(
-        boundaryMargin: EdgeInsets.all(double.infinity),
+        boundaryMargin: const EdgeInsets.all(double.infinity),
         minScale: 0.5,
         maxScale: 10.0,
         child: Padding(
@@ -220,8 +220,10 @@ class _DemoFamilyTree extends State<DemoFamilyTree> {
                         Container(
                           width: 230,
                           height: 230,
-                        ), // Empty container if showMotherParents is true
-                      SizedBox(
+                        ),
+
+                      // Empty container if showMotherParents is true
+                      const SizedBox(
                         width: 20,
                       ),
                       if (showMotherParents)
@@ -245,7 +247,10 @@ class _DemoFamilyTree extends State<DemoFamilyTree> {
                     child: Row(
                       children: [
                         for (var i = 0; i < childrenList.length; i++) ...[
-                          if (i > 0) CustomConnectorLine(),
+                          if (i > 0)
+                            SizedBox(
+                              height: 10,
+                            ),
                           childrenList[i],
                           if (i < childrenList.length - 1)
                             CustomConnectorLine(),
@@ -268,7 +273,7 @@ class _DemoFamilyTree extends State<DemoFamilyTree> {
                 .add(AnimalCard(name: 'Child ${childrenList.length + 1}'));
           });
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -291,19 +296,19 @@ class _MainAnimalCardState extends State<MainAnimalCard> {
     return Column(
       children: [
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: Colors.yellow, // Shadow color
-                blurRadius: 20, // Spread of the shadow
+                color: Color.fromARGB(255, 255, 237, 74), // Shadow color
+                blurRadius: 10, // Spread of the shadow
               ),
             ],
           ),
           child: CircleAvatar(
             radius: 50,
             backgroundColor: Colors.grey[350],
-            backgroundImage: AssetImage(
+            backgroundImage: const AssetImage(
                 'assets/Staff Images/Black-Widow-Avengers-Endgame-feature.jpg'),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -311,7 +316,7 @@ class _MainAnimalCardState extends State<MainAnimalCard> {
                 if (AssetImage == null)
                   Text(
                     widget.mainanimalname,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
@@ -323,7 +328,7 @@ class _MainAnimalCardState extends State<MainAnimalCard> {
         if (AssetImage != null)
           Text(
             widget.mainanimalname,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
@@ -375,30 +380,50 @@ class _AnimalCardState extends State<AnimalCard> {
       context: context,
       showDragHandle: true,
       builder: (BuildContext context) {
-        return Container(
-          height: 400,
-          child: ListView.builder(
-            itemCount: animals.length,
-            itemBuilder: (BuildContext context, int index) {
-              final animalData = animals[index];
-              final animalName = animalData['name'];
-              final animalImage = animalData['image'];
-
-              return ListTile(
-                leading: CircleAvatar(
-                  radius: 25,
-                  backgroundImage: AssetImage(animalImage),
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  'List Of Animals',
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                title: Text(animalName),
-                onTap: () {
-                  setState(() {
-                    selectedAnimalImage = animalImage;
-                    selectedAnimalName = animalName;
-                  });
-                  Navigator.of(context).pop(); // Close the modal sheet
-                },
-              );
-            },
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Container(
+                height: 400,
+                child: ListView.builder(
+                  itemCount: animals.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final animalData = animals[index];
+                    final animalName = animalData['name'];
+                    final animalImage = animalData['image'];
+
+                    return ListTile(
+                      leading: CircleAvatar(
+                        radius: 25,
+                        backgroundImage: AssetImage(animalImage),
+                      ),
+                      title: Text(animalName),
+                      onTap: () {
+                        setState(() {
+                          selectedAnimalImage = animalImage;
+                          selectedAnimalName = animalName;
+                        });
+                        Navigator.of(context).pop(); // Close the modal sheet
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         );
       },
@@ -425,7 +450,7 @@ class _AnimalCardState extends State<AnimalCard> {
                 if (selectedAnimalImage == null)
                   Text(
                     widget.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
@@ -437,7 +462,141 @@ class _AnimalCardState extends State<AnimalCard> {
         if (selectedAnimalName != null)
           Text(
             selectedAnimalName!,
-            style: TextStyle(
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class ParentAnimalCard extends StatefulWidget {
+  final String Parentname;
+
+  ParentAnimalCard({required this.Parentname});
+
+  @override
+  _ParentAnimalCard createState() => _ParentAnimalCard();
+}
+
+class _ParentAnimalCard extends State<ParentAnimalCard> {
+  String? selectedAnimalImage;
+  String? selectedAnimalName;
+
+  final List<Map<String, dynamic>> animals = [
+    {
+      'name': 'Lion',
+      'image':
+          'assets/Staff Images/Black-Widow-Avengers-Endgame-feature.jpg', // Replace with the actual image URL
+    },
+    {
+      'name': 'Tiger',
+      'image':
+          'assets/Staff Images/ed33c7f2a3940fcebf9f0aac54d67895.jpg', // Replace with the actual image URL
+    },
+    {
+      'name': 'Elephant',
+      'image':
+          'assets/Staff Images/HD-wallpaper-thor-in-avengers-endgame.jpg', // Replace with the actual image URL
+    },
+    {
+      'name': 'Giraffe',
+      'image':
+          'assets/Staff Images/pexels-arsham-haghani-3445218.jpg', // Replace with the actual image URL
+    },
+    // Add more animal data as needed
+  ];
+
+  void _showAnimalListModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      showDragHandle: true,
+      builder: (BuildContext context) {
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  'List Of Animals',
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Container(
+                height: 400,
+                child: ListView.builder(
+                  itemCount: animals.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final animalData = animals[index];
+                    final animalName = animalData['name'];
+                    final animalImage = animalData['image'];
+
+                    return ListTile(
+                      leading: CircleAvatar(
+                        radius: 25,
+                        backgroundImage: AssetImage(animalImage),
+                      ),
+                      title: Text(animalName),
+                      onTap: () {
+                        setState(() {
+                          selectedAnimalImage = animalImage;
+                          selectedAnimalName = animalName;
+                        });
+                        Navigator.of(context).pop(); // Close the modal sheet
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            _showAnimalListModal(context);
+          },
+          child: CircleAvatar(
+            radius: 50,
+            backgroundColor: Colors.grey[350],
+            backgroundImage: selectedAnimalImage != null
+                ? AssetImage(selectedAnimalImage!)
+                : null,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (selectedAnimalImage == null)
+                  Text(
+                    widget.Parentname,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ),
+        if (selectedAnimalName != null)
+          Text(
+            selectedAnimalName!,
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
@@ -451,7 +610,7 @@ class CustomConnectorLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: Size(30, 2), // Adjust the size as needed
+      size: const Size(30, 2), // Adjust the size as needed
       painter: CustomLinePainter(),
     );
   }
@@ -482,7 +641,7 @@ class VerticalConnector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: Size(2, 30), // Adjust the size as needed
+      size: const Size(2, 30), // Adjust the size as needed
       painter: VerticalLinePainter(),
     );
   }

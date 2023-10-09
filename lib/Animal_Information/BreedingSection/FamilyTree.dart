@@ -17,7 +17,7 @@ class _FamilyTree extends State<FamilyTree> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            AnimalCard(name: 'F1'),
+            GestureDetector(child: AnimalCard(name: 'F1')),
             const SizedBox(width: 30),
             AnimalCard(name: 'F2'),
           ],
@@ -57,7 +57,8 @@ class _FamilyTree extends State<FamilyTree> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            AnimalCard(name: 'M1'),
+            GestureDetector(
+                onDoubleTap: () {}, child: ParentAnimalCard(Parentname: 'M1')),
             const SizedBox(width: 30),
             AnimalCard(name: 'M2'),
           ],
@@ -214,10 +215,12 @@ class _FamilyTree extends State<FamilyTree> {
                           children: fatherParents,
                         )
                       else if (showMotherParents)
-                        const SizedBox(
+                        Container(
                           width: 230,
                           height: 230,
-                        ), // Empty container if showMotherParents is true
+                        ),
+
+                      // Empty container if showMotherParents is true
                       const SizedBox(
                         width: 20,
                       ),
@@ -226,7 +229,7 @@ class _FamilyTree extends State<FamilyTree> {
                           children: motherParents,
                         )
                       else if (showFatherParents)
-                        const SizedBox(
+                        Container(
                           width: 230,
                           height: 230,
                         ), // Empty container if showFatherParents is true
@@ -242,7 +245,10 @@ class _FamilyTree extends State<FamilyTree> {
                     child: Row(
                       children: [
                         for (var i = 0; i < childrenList.length; i++) ...[
-                          if (i > 0) CustomConnectorLine(),
+                          if (i > 0)
+                            const SizedBox(
+                              height: 10,
+                            ),
                           childrenList[i],
                           if (i < childrenList.length - 1)
                             CustomConnectorLine(),
@@ -292,8 +298,8 @@ class _MainAnimalCardState extends State<MainAnimalCard> {
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: Colors.yellow, // Shadow color
-                blurRadius: 20, // Spread of the shadow
+                color: Color.fromARGB(255, 255, 237, 74), // Shadow color
+                blurRadius: 10, // Spread of the shadow
               ),
             ],
           ),
@@ -302,14 +308,11 @@ class _MainAnimalCardState extends State<MainAnimalCard> {
             backgroundColor: Colors.grey[350],
             backgroundImage: const AssetImage(
                 'assets/Staff Images/Black-Widow-Avengers-Endgame-feature.jpg'),
-            child: Column(
+            child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [],
             ),
           ),
-        ),
-        SizedBox(
-          height: 10,
         ),
         Text(
           widget.mainanimalname,
@@ -365,30 +368,50 @@ class _AnimalCardState extends State<AnimalCard> {
       context: context,
       showDragHandle: true,
       builder: (BuildContext context) {
-        return Container(
-          height: 400,
-          child: ListView.builder(
-            itemCount: animals.length,
-            itemBuilder: (BuildContext context, int index) {
-              final animalData = animals[index];
-              final animalName = animalData['name'];
-              final animalImage = animalData['image'];
-
-              return ListTile(
-                leading: CircleAvatar(
-                  radius: 25,
-                  backgroundImage: AssetImage(animalImage),
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  'List Of Animals',
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                title: Text(animalName),
-                onTap: () {
-                  setState(() {
-                    selectedAnimalImage = animalImage;
-                    selectedAnimalName = animalName;
-                  });
-                  Navigator.of(context).pop(); // Close the modal sheet
-                },
-              );
-            },
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Container(
+                height: 400,
+                child: ListView.builder(
+                  itemCount: animals.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final animalData = animals[index];
+                    final animalName = animalData['name'];
+                    final animalImage = animalData['image'];
+
+                    return ListTile(
+                      leading: CircleAvatar(
+                        radius: 25,
+                        backgroundImage: AssetImage(animalImage),
+                      ),
+                      title: Text(animalName),
+                      onTap: () {
+                        setState(() {
+                          selectedAnimalImage = animalImage;
+                          selectedAnimalName = animalName;
+                        });
+                        Navigator.of(context).pop(); // Close the modal sheet
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         );
       },
@@ -424,8 +447,139 @@ class _AnimalCardState extends State<AnimalCard> {
             ),
           ),
         ),
-        SizedBox(
-          height: 10,
+        if (selectedAnimalName != null)
+          Text(
+            selectedAnimalName!,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class ParentAnimalCard extends StatefulWidget {
+  final String Parentname;
+
+  ParentAnimalCard({required this.Parentname});
+
+  @override
+  _ParentAnimalCard createState() => _ParentAnimalCard();
+}
+
+class _ParentAnimalCard extends State<ParentAnimalCard> {
+  String? selectedAnimalImage;
+  String? selectedAnimalName;
+
+  final List<Map<String, dynamic>> animals = [
+    {
+      'name': 'Lion',
+      'image':
+          'assets/Staff Images/Black-Widow-Avengers-Endgame-feature.jpg', // Replace with the actual image URL
+    },
+    {
+      'name': 'Tiger',
+      'image':
+          'assets/Staff Images/ed33c7f2a3940fcebf9f0aac54d67895.jpg', // Replace with the actual image URL
+    },
+    {
+      'name': 'Elephant',
+      'image':
+          'assets/Staff Images/HD-wallpaper-thor-in-avengers-endgame.jpg', // Replace with the actual image URL
+    },
+    {
+      'name': 'Giraffe',
+      'image':
+          'assets/Staff Images/pexels-arsham-haghani-3445218.jpg', // Replace with the actual image URL
+    },
+    // Add more animal data as needed
+  ];
+
+  void _showAnimalListModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      showDragHandle: true,
+      builder: (BuildContext context) {
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  'List Of Animals',
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Container(
+                height: 400,
+                child: ListView.builder(
+                  itemCount: animals.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final animalData = animals[index];
+                    final animalName = animalData['name'];
+                    final animalImage = animalData['image'];
+
+                    return ListTile(
+                      leading: CircleAvatar(
+                        radius: 25,
+                        backgroundImage: AssetImage(animalImage),
+                      ),
+                      title: Text(animalName),
+                      onTap: () {
+                        setState(() {
+                          selectedAnimalImage = animalImage;
+                          selectedAnimalName = animalName;
+                        });
+                        Navigator.of(context).pop(); // Close the modal sheet
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            _showAnimalListModal(context);
+          },
+          child: CircleAvatar(
+            radius: 50,
+            backgroundColor: Colors.grey[350],
+            backgroundImage: selectedAnimalImage != null
+                ? AssetImage(selectedAnimalImage!)
+                : null,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (selectedAnimalImage == null)
+                  Text(
+                    widget.Parentname,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+              ],
+            ),
+          ),
         ),
         if (selectedAnimalName != null)
           Text(
