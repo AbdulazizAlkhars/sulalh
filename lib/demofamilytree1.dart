@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:hathera_demo/Widgets/ConnectorLines.dart';
-import 'package:hathera_demo/parentsgrandparentswidget.dart';
 
 class DemoFamilyTree extends StatefulWidget {
   const DemoFamilyTree({
@@ -217,7 +216,7 @@ class _DemoFamilyTree extends State<DemoFamilyTree> {
                           children: fatherParents,
                         )
                       else if (showMotherParents)
-                        Container(
+                        const SizedBox(
                           width: 230,
                           height: 230,
                         ),
@@ -231,7 +230,7 @@ class _DemoFamilyTree extends State<DemoFamilyTree> {
                           children: motherParents,
                         )
                       else if (showFatherParents)
-                        Container(
+                        const SizedBox(
                           width: 230,
                           height: 230,
                         ), // Empty container if showFatherParents is true
@@ -248,7 +247,7 @@ class _DemoFamilyTree extends State<DemoFamilyTree> {
                       children: [
                         for (var i = 0; i < childrenList.length; i++) ...[
                           if (i > 0)
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                           childrenList[i],
@@ -312,27 +311,17 @@ class _MainAnimalCardState extends State<MainAnimalCard> {
                 'assets/Staff Images/Black-Widow-Avengers-Endgame-feature.jpg'),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (AssetImage == null)
-                  Text(
-                    widget.mainanimalname,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-              ],
+              children: [],
             ),
           ),
         ),
-        if (AssetImage != null)
-          Text(
-            widget.mainanimalname,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+        Text(
+          widget.mainanimalname,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
           ),
+        ),
       ],
     );
   }
@@ -397,7 +386,7 @@ class _AnimalCardState extends State<AnimalCard> {
               const SizedBox(
                 height: 15,
               ),
-              Container(
+              SizedBox(
                 height: 400,
                 child: ListView.builder(
                   itemCount: animals.length,
@@ -531,7 +520,7 @@ class _ParentAnimalCard extends State<ParentAnimalCard> {
               const SizedBox(
                 height: 15,
               ),
-              Container(
+              SizedBox(
                 height: 400,
                 child: ListView.builder(
                   itemCount: animals.length,

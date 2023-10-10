@@ -1,7 +1,9 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 
 class PrivacySecurityPage extends StatefulWidget {
   const PrivacySecurityPage({super.key});
@@ -146,18 +148,47 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
                                 : null,
                           ),
                         ),
-                        ListTile(
-                          title: Text('Email Address'.tr),
-                          trailing: Switch(
-                            value: _EmailAddress,
-                            onChanged: _ShowContactInfo
-                                ? (value) {
-                                    setState(() {
-                                      _EmailAddress = value;
-                                    });
-                                  }
-                                : null,
-                          ),
+                        Consumer(
+                          builder: (context, ref, child) {
+                            final phoneNumberVisibility =
+                                ref.watch(phoneNumeberVisibilityProvider);
+
+                            return ListTile(
+                              title: Text('Email Address'.tr),
+                              trailing: Switch(
+                                value: phoneNumberVisibility,
+                                onChanged: _ShowContactInfo
+                                    ? (value) {
+                                        ref
+                                            .read(phoneNumeberVisibilityProvider
+                                                .notifier)
+                                            .update((state) => value);
+                                      }
+                                    : null,
+                              ),
+                            );
+                          },
+                        ),
+                        Consumer(
+                          builder: (context, ref, child) {
+                            final emailAddressVisibility =
+                                ref.watch(emailAddressVisibilityProvider);
+
+                            return ListTile(
+                              title: Text('Email Address'.tr),
+                              trailing: Switch(
+                                value: emailAddressVisibility,
+                                onChanged: _ShowContactInfo
+                                    ? (value) {
+                                        ref
+                                            .read(emailAddressVisibilityProvider
+                                                .notifier)
+                                            .update((state) => value);
+                                      }
+                                    : null,
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),

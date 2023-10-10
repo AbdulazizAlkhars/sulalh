@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 
-class PhoneNumberInputWidget extends StatefulWidget {
+class PhoneNumberInputWidget extends ConsumerStatefulWidget {
   const PhoneNumberInputWidget({super.key});
 
   @override
   _PhoneNumberInputWidgetState createState() => _PhoneNumberInputWidgetState();
 }
 
-class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
+class _PhoneNumberInputWidgetState
+    extends ConsumerState<PhoneNumberInputWidget> {
   String selectedCountryCode = '+971'.tr; // Initial selected country code
   TextEditingController phoneNumberController = TextEditingController();
 
@@ -152,6 +155,11 @@ class _PhoneNumberInputWidgetState extends State<PhoneNumberInputWidget> {
                 ),
               ),
               child: TextField(
+                onChanged: (value) {
+                  ref
+                      .read(phoneNumberProvider.notifier)
+                      .update((state) => value);
+                },
                 controller: phoneNumberController,
                 keyboardType: TextInputType.phone,
                 textDirection: TextDirection.ltr, // Set text direction to LTR

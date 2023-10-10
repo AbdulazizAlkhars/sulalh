@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/Profile/AboutApp/AboutApp.dart';
 import 'package:hathera_demo/Profile/AppSettings/AppSettings.dart';
@@ -10,8 +11,9 @@ import 'package:hathera_demo/Profile/PaymentMethods/PaymentPage.dart';
 import 'package:hathera_demo/Profile/PrivacySecurity/PrivacySecurityPage.dart';
 import 'package:hathera_demo/Profile/EditProfileInformation.dart';
 import 'package:hathera_demo/Profile/Subscription/Subscription.dart';
+import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 
-class ProfilePage extends StatefulWidget {
+class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({super.key});
 
   @override
@@ -19,9 +21,17 @@ class ProfilePage extends StatefulWidget {
   _ProfilePageState createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _ProfilePageState extends ConsumerState<ProfilePage> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
+    final firstName = ref.watch(firstNameProvider);
+    final lastName = ref.watch(lastNameProvider);
+    final email = ref.watch(emailProvider);
+    final phoneNumber = ref.watch(phoneNumberProvider);
+    final emailAddressVisibility = ref.watch(emailAddressVisibilityProvider);
+    final phoneNumberVisibility = ref.watch(phoneNumeberVisibilityProvider);
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 245, 245, 245),
       appBar: AppBar(
@@ -30,7 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
           children: [
             Text(
               'Profile'.tr,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 35,
                 fontWeight: FontWeight.bold,
               ),
@@ -72,19 +82,49 @@ class _ProfilePageState extends State<ProfilePage> {
                       height: 20,
                     ),
                     Column(
-                      children: [
-                        Text(
-                          'John Smith'.tr,
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              firstName.tr,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              lastName.tr,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Text(
                           '123-456-7890'.tr,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              if (emailAddressVisibility) // Check if email visibility is true
+                                Text(
+                                  email,
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                              if (phoneNumberVisibility) // Check if email visibility is true
+                                Text(
+                                  phoneNumber,
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                            ],
                           ),
                         ),
                       ],
@@ -114,15 +154,15 @@ class _ProfilePageState extends State<ProfilePage> {
                           children: [
                             Text(
                               'Collaboration'.tr,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 16,
                                 color: Colors.white,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
-                            Icon(
+                            const Icon(
                               Icons.arrow_forward,
                               color: Colors.white,
                             ),
@@ -147,69 +187,69 @@ class _ProfilePageState extends State<ProfilePage> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
+                              const Text(
                                 '24',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Text(
                                 'Animals'.tr,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.grey,
                                   fontSize: 14,
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
+                              const Text(
                                 '1',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Text(
                                 'Farm'.tr,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.grey,
                                   fontSize: 14,
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
+                              const Text(
                                 '4',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Text(
                                 'Collaborations'.tr,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.grey,
                                   fontSize: 14,
                                 ),
@@ -233,7 +273,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       leading: const Icon(Icons.person_outline),
                       title: Text(
                         'Accounts'.tr,
-                        style: TextStyle(fontSize: 14),
+                        style: const TextStyle(fontSize: 14),
                       ),
                       onTap: () {
                         Navigator.push(
@@ -247,7 +287,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       leading: const Icon(Icons.payment_outlined),
                       title: Text(
                         'Payment Methods'.tr,
-                        style: TextStyle(fontSize: 14),
+                        style: const TextStyle(fontSize: 14),
                       ),
                       onTap: () {
                         Navigator.push(
@@ -260,13 +300,13 @@ class _ProfilePageState extends State<ProfilePage> {
                       leading: const Icon(Icons.star_outline),
                       title: Text(
                         'Subscriptions'.tr,
-                        style: TextStyle(fontSize: 14),
+                        style: const TextStyle(fontSize: 14),
                       ),
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SubscriptionPage()),
+                              builder: (context) => const SubscriptionPage()),
                         );
                       }),
                 ],
@@ -282,7 +322,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       leading: const Icon(Icons.notifications_outlined),
                       title: Text(
                         'Notifications'.tr,
-                        style: TextStyle(fontSize: 14),
+                        style: const TextStyle(fontSize: 14),
                       ),
                       onTap: () {
                         Navigator.push(
@@ -296,7 +336,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       leading: const Icon(Icons.lock_outline),
                       title: Text(
                         'Privacy and Security'.tr,
-                        style: TextStyle(fontSize: 14),
+                        style: const TextStyle(fontSize: 14),
                       ),
                       onTap: () {
                         Navigator.push(
@@ -319,20 +359,20 @@ class _ProfilePageState extends State<ProfilePage> {
                       leading: const Icon(Icons.settings_outlined),
                       title: Text(
                         'App Settings'.tr,
-                        style: TextStyle(fontSize: 14),
+                        style: const TextStyle(fontSize: 14),
                       ),
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AppSettings()),
+                              builder: (context) => const AppSettings()),
                         );
                       }),
                   ListTile(
                       leading: const Icon(Icons.warning_amber_rounded),
                       title: Text(
                         'About App'.tr,
-                        style: TextStyle(fontSize: 14),
+                        style: const TextStyle(fontSize: 14),
                       ),
                       onTap: () {
                         Navigator.push(
@@ -344,7 +384,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       leading: const Icon(Icons.contact_support_outlined),
                       title: Text(
                         'Customer Support'.tr,
-                        style: TextStyle(fontSize: 14),
+                        style: const TextStyle(fontSize: 14),
                       ),
                       onTap: () {
                         Navigator.push(
@@ -366,7 +406,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     leading: const Icon(Icons.logout_outlined),
                     title: Text(
                       'Sign Out'.tr,
-                      style: TextStyle(fontSize: 14, color: Colors.red),
+                      style: const TextStyle(fontSize: 14, color: Colors.red),
                     ),
                     onTap: () {
                       showModalBottomSheet<void>(
@@ -379,7 +419,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               children: [
                                 Text(
                                   'Sign Out?'.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 35,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -401,7 +441,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ),
                                     child: Text(
                                       'Yes'.tr,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 14,
                                         color: Colors.red,
                                       ),
@@ -425,7 +465,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ),
                                     child: Text(
                                       'Cancel'.tr,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 14,
                                         color: Colors.black,
                                       ),

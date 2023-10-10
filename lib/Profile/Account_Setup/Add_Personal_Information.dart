@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/Profile/Account_Setup/Add_Some_Details.dart';
+import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/PhoneNumTextFieldWidget.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';
 
-class AddPersonalInfoPage extends StatelessWidget {
+class AddPersonalInfoPage extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -44,11 +46,17 @@ class AddPersonalInfoPage extends StatelessWidget {
               CustomTextFormField(
                 keyboardType: TextInputType.name,
                 labelText: 'Enter First Name'.tr,
+                onChanged: (value) {
+                  ref.read(firstNameProvider.notifier).update((state) => value);
+                },
               ),
               const SizedBox(height: 16),
               CustomTextFormField(
                 keyboardType: TextInputType.name,
                 labelText: 'Enter Last Name'.tr,
+                onChanged: (value) {
+                  ref.read(lastNameProvider.notifier).update((state) => value);
+                },
               ),
               const SizedBox(height: 40),
               Text(
@@ -88,6 +96,9 @@ class AddPersonalInfoPage extends StatelessWidget {
               CustomTextFormField(
                 keyboardType: TextInputType.emailAddress,
                 labelText: 'Enter Email'.tr,
+                onChanged: (value) {
+                  ref.read(emailProvider.notifier).update((state) => value);
+                },
               ),
               const SizedBox(height: 25),
               ButtonWidget(

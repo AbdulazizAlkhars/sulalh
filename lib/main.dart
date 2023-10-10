@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
-import 'package:hathera_demo/Animal_Information/BreedingSection/FamilyTree.dart';
+import 'package:hathera_demo/demofamilytree1.dart';
 import 'package:hathera_demo/localization/localestrings.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -24,6 +25,6 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: FamilyTree());
+        home: DemoFamilyTree());
   }
 }
