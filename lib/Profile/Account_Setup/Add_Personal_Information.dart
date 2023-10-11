@@ -29,7 +29,7 @@ class AddPersonalInfoPage extends ConsumerWidget {
             children: [
               Text(
                 'Add Personal Information'.tr,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
                 ),
@@ -37,7 +37,7 @@ class AddPersonalInfoPage extends ConsumerWidget {
               const SizedBox(height: 40),
               Text(
                 "What's your name?".tr,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -46,8 +46,10 @@ class AddPersonalInfoPage extends ConsumerWidget {
               CustomTextFormField(
                 keyboardType: TextInputType.name,
                 labelText: 'Enter First Name'.tr,
-                onChanged: (value) {
-                  ref.read(firstNameProvider.notifier).update((state) => value);
+                onChanged: (firstName) {
+                  ref
+                      .read(firstNameProvider.notifier)
+                      .update((state) => firstName);
                 },
               ),
               const SizedBox(height: 16),
@@ -61,7 +63,7 @@ class AddPersonalInfoPage extends ConsumerWidget {
               const SizedBox(height: 40),
               Text(
                 'Contacts'.tr,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -70,24 +72,24 @@ class AddPersonalInfoPage extends ConsumerWidget {
               Text(
                 'Add contact details to help other people contact you for collaboration'
                     .tr,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14,
                 ),
               ),
               const SizedBox(height: 35),
               Text(
                 'Phone Number'.tr,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 8),
-              PhoneNumberInputWidget(),
+              const PhoneNumberInputWidget(),
               const SizedBox(height: 16),
               Text(
                 'Email'.tr,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),

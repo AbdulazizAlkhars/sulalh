@@ -18,8 +18,6 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
   bool _ShowListOfAnimals = false;
   bool _ShowFamilyTree = false;
   bool _ShowContactInfo = false;
-  bool _PhoneNumber = false;
-  bool _EmailAddress = false;
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +32,10 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
         ),
         body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
-            padding: EdgeInsets.all(14.0),
+            padding: const EdgeInsets.all(14.0),
             child: Text(
               'Privacy & Security'.tr,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
@@ -105,10 +103,10 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(14.0),
+                    padding: const EdgeInsets.all(14.0),
                     child: Text(
                       'Contact Information'.tr,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                       ),
@@ -124,8 +122,6 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
                           _ShowContactInfo = value;
                           if (!value) {
                             // Reset the values of Phone Number and Email Address switches
-                            _PhoneNumber = false;
-                            _EmailAddress = false;
                           }
                         });
                       },
@@ -135,32 +131,19 @@ class _PrivacySecurityPage extends State<PrivacySecurityPage> {
                     visible: _ShowContactInfo,
                     child: Column(
                       children: [
-                        ListTile(
-                          title: Text('Phone Number'.tr),
-                          trailing: Switch(
-                            value: _PhoneNumber,
-                            onChanged: _ShowContactInfo
-                                ? (value) {
-                                    setState(() {
-                                      _PhoneNumber = value;
-                                    });
-                                  }
-                                : null,
-                          ),
-                        ),
                         Consumer(
                           builder: (context, ref, child) {
                             final phoneNumberVisibility =
-                                ref.watch(phoneNumeberVisibilityProvider);
+                                ref.watch(phoneNumberVisibilityProvider);
 
                             return ListTile(
-                              title: Text('Email Address'.tr),
+                              title: Text('Phone Number'.tr),
                               trailing: Switch(
                                 value: phoneNumberVisibility,
                                 onChanged: _ShowContactInfo
                                     ? (value) {
                                         ref
-                                            .read(phoneNumeberVisibilityProvider
+                                            .read(phoneNumberVisibilityProvider
                                                 .notifier)
                                             .update((state) => value);
                                       }

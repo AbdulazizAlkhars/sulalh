@@ -30,8 +30,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     final lastName = ref.watch(lastNameProvider);
     final email = ref.watch(emailProvider);
     final phoneNumber = ref.watch(phoneNumberProvider);
+    final selectedCountryCode = ref.watch(selectedCountryCodeProvider);
     final emailAddressVisibility = ref.watch(emailAddressVisibilityProvider);
-    final phoneNumberVisibility = ref.watch(phoneNumeberVisibilityProvider);
+    final phoneNumberVisibility = ref.watch(phoneNumberVisibilityProvider);
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 245, 245, 245),
       appBar: AppBar(
@@ -93,6 +94,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
+                            const SizedBox(
+                              width: 5,
+                            ),
                             Text(
                               lastName.tr,
                               style: const TextStyle(
@@ -109,6 +113,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                             fontSize: 16,
                           ),
                         ),
+                        const SizedBox(
+                          height: 8,
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Row(
@@ -119,17 +126,29 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                   email,
                                   style: const TextStyle(fontSize: 16),
                                 ),
-                              if (phoneNumberVisibility) // Check if email visibility is true
-                                Text(
-                                  phoneNumber,
-                                  style: const TextStyle(fontSize: 16),
-                                ),
+                              if (phoneNumberVisibility)
+                                Row(
+                                  children: [
+                                    Text(
+                                      selectedCountryCode,
+                                      style: const TextStyle(fontSize: 16),
+                                    ),
+                                    const Text(
+                                      '-',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    Text(
+                                      phoneNumber,
+                                      style: const TextStyle(fontSize: 16),
+                                    ),
+                                  ],
+                                ), // Check if email visibility is true
                             ],
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 25),
+                    const SizedBox(height: 20),
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       child: ElevatedButton(

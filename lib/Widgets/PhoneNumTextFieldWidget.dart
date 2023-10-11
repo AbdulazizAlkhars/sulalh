@@ -28,54 +28,54 @@ class _PhoneNumberInputWidgetState
               ListTile(
                 title: Text('+971'.tr),
                 onTap: () {
-                  setState(() {
-                    selectedCountryCode = '+971'.tr;
-                  });
+                  ref
+                      .read(selectedCountryCodeProvider.notifier)
+                      .update((state) => '+971'.tr);
                   Navigator.pop(context);
                 },
               ),
               ListTile(
                 title: Text('+966'.tr),
                 onTap: () {
-                  setState(() {
-                    selectedCountryCode = '+966'.tr;
-                  });
+                  ref
+                      .read(selectedCountryCodeProvider.notifier)
+                      .update((state) => '+966'.tr);
                   Navigator.pop(context);
                 },
               ),
               ListTile(
                 title: Text('+965'.tr),
                 onTap: () {
-                  setState(() {
-                    selectedCountryCode = '+965'.tr;
-                  });
+                  ref
+                      .read(selectedCountryCodeProvider.notifier)
+                      .update((state) => '+965'.tr);
                   Navigator.pop(context);
                 },
               ),
               ListTile(
                 title: Text('+964'.tr),
                 onTap: () {
-                  setState(() {
-                    selectedCountryCode = '+964'.tr;
-                  });
+                  ref
+                      .read(selectedCountryCodeProvider.notifier)
+                      .update((state) => '+964'.tr);
                   Navigator.pop(context);
                 },
               ),
               ListTile(
                 title: Text('+975'.tr),
                 onTap: () {
-                  setState(() {
-                    selectedCountryCode = '+975'.tr;
-                  });
+                  ref
+                      .read(selectedCountryCodeProvider.notifier)
+                      .update((state) => '+975'.tr);
                   Navigator.pop(context);
                 },
               ),
               ListTile(
                 title: Text('+976'.tr),
                 onTap: () {
-                  setState(() {
-                    selectedCountryCode = '+976'.tr;
-                  });
+                  ref
+                      .read(selectedCountryCodeProvider.notifier)
+                      .update((state) => '+976'.tr);
                   Navigator.pop(context);
                 },
               ),
@@ -95,6 +95,7 @@ class _PhoneNumberInputWidgetState
 
   @override
   Widget build(BuildContext context) {
+    final selectedCountryCode = ref.watch(selectedCountryCodeProvider);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -135,10 +136,10 @@ class _PhoneNumberInputWidgetState
                       ),
                       Text(
                         selectedCountryCode,
-                        style: const TextStyle(fontSize: 17),
-                        textDirection:
-                            TextDirection.ltr, // Adjust text direction
-                      ),
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      )
                     ],
                   ),
                 ),
