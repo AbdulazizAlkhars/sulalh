@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hathera_demo/HomeScreen/GuestMode/SearchFarmDetails.dart';
+import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 
 import 'SearchAnimalDetails.dart';
 
-class SearchPage extends StatefulWidget {
+class SearchPage extends ConsumerStatefulWidget {
   const SearchPage({super.key});
 
   @override
-  State<SearchPage> createState() => _SearchPageState();
+  ConsumerState<SearchPage> createState() => _SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _SearchPageState extends ConsumerState<SearchPage> {
   List<Map<String, dynamic>> farms = [
     {
       'imagePath':
@@ -115,30 +117,27 @@ class _SearchPageState extends State<SearchPage> {
     });
   }
 
-  void navigateToSearchFarmDetailsPage(Map<String, dynamic> option) {
+  void navigateToSearchFarmDetailsPage(Map<String, dynamic> selectedFarm) {
+    ref
+        .read(selectedSearchFarmProvider.notifier)
+        .update((state) => selectedFarm);
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => SearchFarmDetails(
-          imagePath: option['imagePath'],
-          title: option['title'],
-          subtitle: option['subtitle'],
-          email: option['email'],
-          phoneNumber: option['phoneNumber'],
-        ),
+        builder: (context) => SearchFarmDetails(),
       ),
     );
   }
 
-  void navigateToSearchAnimalDetailsPage(Map<String, dynamic> option) {
+  void navigateToSearchAnimalDetailsPage(
+      Map<String, dynamic> selectedSearchAnimal) {
+    ref
+        .read(selectedSearchAnimalProvider.notifier)
+        .update((state) => selectedSearchAnimal);
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => SearchAnimalDetails(
-          imagePath: option['imagePath'],
-          title: option['title'],
-          geninfo: option['geninfo'],
-        ),
+        builder: (context) => SearchAnimalDetails(),
       ),
     );
   }

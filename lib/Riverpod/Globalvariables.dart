@@ -7,3 +7,7 @@ final emailProvider = StateProvider<String>((ref) => '');
 final emailAddressVisibilityProvider = StateProvider<bool>((ref) => false);
 final phoneNumberVisibilityProvider = StateProvider<bool>((ref) => false);
 final selectedCountryCodeProvider = StateProvider<String>((ref) => '+971');
+final selectedSearchFarmProvider =
+    StateProvider<Map<String, dynamic>?>(((ref) => null));
+final selectedSearchAnimalProvider =
+    StateProvider<Map<String, dynamic>?>(((ref) => null));

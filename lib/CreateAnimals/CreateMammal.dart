@@ -35,6 +35,7 @@ class _CreateMammalPage extends State<CreateMammalPage> {
   final TextEditingController _numberofEggsController = TextEditingController();
   String mammalfieldName = '';
   String mammalfieldContent = '';
+  String selectedBreedingStage = '';
   String selectedMammalSire = 'Add';
   String selectedMammalDam = 'Add';
   String selectedMammalDate = '';
@@ -52,6 +53,8 @@ class _CreateMammalPage extends State<CreateMammalPage> {
   String selectedMammalDateType = "Date Of Birth"; // Default value
   // Initial text for the button
   String selectedMammalGender = '';
+  String readyforbreeding = '';
+  String pregnantStatus = '';
   bool _addMammalParents = false;
   bool _addMammalChildren = false;
   // ignore: non_constant_identifier_names
@@ -1246,53 +1249,127 @@ class _CreateMammalPage extends State<CreateMammalPage> {
               const SizedBox(height: 10),
               const Divider(),
               const SizedBox(height: 10),
-              if (showMammalAdditionalFields) // Show additional fields when Female is selected
+              if (showMammalAdditionalFields)
+                // Show additional fields when Female is selected
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Frequency Of Laying Eggs/Month',
+                      "Breeding Stage",
                       style: TextStyle(
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 10),
-                    TextFormField(
-                      controller: _frequencyEggsController,
-                      decoration: InputDecoration(
-                        hintText: 'Enter Frequency', // Add your hint text here
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 12.0, horizontal: 16.0),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedBreedingStage = 'Ready For Breeding';
+                        });
+                      },
+                      child: Row(
+                        children: [
+                          const Expanded(
+                            child: Text(
+                              'Ready For Breeding',
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 30,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: selectedBreedingStage ==
+                                        'Ready For Breeding'
+                                    ? Colors.green
+                                    : Colors.grey,
+                                width: selectedBreedingStage ==
+                                        'Ready For Breeding'
+                                    ? 6.0
+                                    : 2.0,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      textInputAction:
-                          TextInputAction.done, // Change the keyboard action
                     ),
-                    // Your first additional text field widget here
                     const SizedBox(height: 10),
-                    const Text(
-                      'Number Of Eggs/Month',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedBreedingStage = 'Pregnant';
+                        });
+                      },
+                      child: Row(
+                        children: [
+                          const Expanded(
+                            child: Text(
+                              'Pregnant',
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 30,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: selectedBreedingStage == 'Pregnant'
+                                    ? Colors.green
+                                    : Colors.grey,
+                                width: selectedBreedingStage == 'Pregnant'
+                                    ? 6.0
+                                    : 2.0,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     const SizedBox(height: 10),
-                    TextFormField(
-                      controller: _numberofEggsController,
-                      decoration: InputDecoration(
-                        hintText: 'Enter The Number', // Add your hint text here
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 12.0, horizontal: 16.0),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedBreedingStage = 'Lactating';
+                        });
+                      },
+                      child: Row(
+                        children: [
+                          const Expanded(
+                            child: Text(
+                              'Lactating',
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 30,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: selectedBreedingStage == 'Lactating'
+                                    ? Colors.green
+                                    : Colors.grey,
+                                width: selectedBreedingStage == 'Lactating'
+                                    ? 6.0
+                                    : 2.0,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      textInputAction:
-                          TextInputAction.done, // Change the keyboard action
                     ),
                     const SizedBox(height: 15),
+
                     const Divider(),
                     // Your second additional text field widget here
                   ],

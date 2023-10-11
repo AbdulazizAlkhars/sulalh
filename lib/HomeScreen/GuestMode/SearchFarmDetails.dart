@@ -1,27 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hathera_demo/HomeScreen/GuestMode/FarmAnimals.dart';
+import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 
-class SearchFarmDetails extends StatefulWidget {
-  final String imagePath;
-  final String title;
-  final String subtitle;
-  final String email;
-  final String phoneNumber;
-
-  const SearchFarmDetails({
-    super.key,
-    required this.imagePath,
-    required this.title,
-    required this.subtitle,
-    required this.email,
-    required this.phoneNumber,
-  });
-
+class SearchFarmDetails extends ConsumerStatefulWidget {
   @override
-  State<SearchFarmDetails> createState() => _SearchFarmDetails();
+  ConsumerState<SearchFarmDetails> createState() => _SearchFarmDetails();
 }
 
-class _SearchFarmDetails extends State<SearchFarmDetails> {
+class _SearchFarmDetails extends ConsumerState<SearchFarmDetails> {
   bool isHelperSelected = false;
   bool isWorkerSelected = false;
   bool isViewOnlySelected = true;
@@ -33,6 +20,7 @@ class _SearchFarmDetails extends State<SearchFarmDetails> {
 
   @override
   Widget build(BuildContext context) {
+    final selectedFarm = ref.watch(selectedSearchFarmProvider);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -50,14 +38,14 @@ class _SearchFarmDetails extends State<SearchFarmDetails> {
               child: Center(
                 child: CircleAvatar(
                   radius: 70,
-                  backgroundImage: AssetImage(widget.imagePath),
+                  backgroundImage: AssetImage(selectedFarm!['imagePath']),
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Text(
-                widget.title,
+                selectedFarm['title'],
                 style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -65,7 +53,7 @@ class _SearchFarmDetails extends State<SearchFarmDetails> {
               ),
             ),
             Text(
-              widget.email,
+              selectedFarm['email'],
               style: const TextStyle(fontSize: 18, color: Colors.grey),
             ),
             const SizedBox(
@@ -489,7 +477,7 @@ class _SearchFarmDetails extends State<SearchFarmDetails> {
                           TextButton(
                             onPressed: () {},
                             child: Text(
-                              widget.phoneNumber,
+                              selectedFarm['phoneNumber'],
                               style: const TextStyle(
                                 color: Color.fromARGB(255, 36, 86, 38),
                                 fontSize: 16,
@@ -518,7 +506,7 @@ class _SearchFarmDetails extends State<SearchFarmDetails> {
                           TextButton(
                             onPressed: () {},
                             child: Text(
-                              widget.email,
+                              selectedFarm['email'],
                               style: const TextStyle(
                                 color: Color.fromARGB(255, 36, 86, 38),
                                 fontSize: 16,

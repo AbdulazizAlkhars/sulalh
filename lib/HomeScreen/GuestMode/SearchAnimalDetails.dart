@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 
-class SearchAnimalDetails extends StatefulWidget {
-  final String imagePath;
-  final String title;
-  final String geninfo;
-
-  const SearchAnimalDetails(
-      {super.key,
-      required this.imagePath,
-      required this.title,
-      required this.geninfo});
-
+class SearchAnimalDetails extends ConsumerStatefulWidget {
   @override
   // ignore: library_private_types_in_public_api
   _SearchAnimalDetails createState() => _SearchAnimalDetails();
 }
 
-class _SearchAnimalDetails extends State<SearchAnimalDetails> {
+class _SearchAnimalDetails extends ConsumerState<SearchAnimalDetails> {
   @override
   Widget build(BuildContext context) {
+    final selectedSearchAnimal = ref.watch(selectedSearchAnimalProvider);
     return Scaffold(
       backgroundColor: Colors.lightGreen,
       appBar: AppBar(
@@ -88,7 +81,8 @@ class _SearchAnimalDetails extends State<SearchAnimalDetails> {
                       translation: const Offset(0.0, -0.6),
                       child: CircleAvatar(
                         radius: 70,
-                        backgroundImage: AssetImage(widget.imagePath),
+                        backgroundImage:
+                            AssetImage(selectedSearchAnimal!['imagePath']),
                       ),
                     ),
                   ],
@@ -100,7 +94,7 @@ class _SearchAnimalDetails extends State<SearchAnimalDetails> {
                 child: Column(
                   children: [
                     Text(
-                      widget.title,
+                      selectedSearchAnimal['title'],
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
@@ -134,7 +128,7 @@ class _SearchAnimalDetails extends State<SearchAnimalDetails> {
                           ),
                           const SizedBox(height: 25),
                           Text(
-                            widget.geninfo,
+                            selectedSearchAnimal['geninfo'],
                             style: const TextStyle(
                               fontSize: 16,
                             ),
