@@ -1,8 +1,11 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hathera_demo/AnimalManagement/AnimalFilters.dart';
 import 'package:hathera_demo/Animal_Information/OviparousGeneralInfo.dart';
 import 'package:hathera_demo/CreateAnimals/CreateAnimal1.dart';
+import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 
 class OviVariables {
   final List<String> selectedFilters;
@@ -55,7 +58,7 @@ class OviVariables {
 List<OviVariables> OviAnimals = [];
 
 // ignore: must_be_immutable
-class ListOfAnimals extends StatefulWidget {
+class ListOfAnimals extends ConsumerStatefulWidget {
   final List<String> selectedFilters;
   final bool shouldAddAnimal;
   // Define the variables to hold the data
@@ -110,17 +113,19 @@ class ListOfAnimals extends StatefulWidget {
   });
 
   @override
-  State<ListOfAnimals> createState() => _ListOfAnimals();
+  ConsumerState<ListOfAnimals> createState() => _ListOfAnimals();
 }
 
-class _ListOfAnimals extends State<ListOfAnimals> {
+class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
   String filterQuery = '';
   bool shouldAddAnimal = false;
 
   @override
   void initState() {
+    // final animalName = ref.watch(animalNameProvider);
     super.initState();
     _updateFilteredOviAnimals();
+
     // Add the initial breeding event to the list only if shouldAddAnimal is true
     if (widget.nameController.text.isNotEmpty && widget.shouldAddAnimal) {
       addOviAnimal(widget.nameController.text);
@@ -128,6 +133,7 @@ class _ListOfAnimals extends State<ListOfAnimals> {
   }
 
   void addOviAnimal(String eventNumber) {
+    // final selectedAnimalImage = ref.watch(selectedAnimalImageProvider);
     // ignore: non_constant_identifier_names
     final OviDetails = OviVariables(
       eventNumber: eventNumber,
@@ -144,7 +150,7 @@ class _ListOfAnimals extends State<ListOfAnimals> {
       selectedAnimalSpecies: widget.selectedAnimalSpecies,
       selectedAnimalType: widget.selectedAnimalType,
       selectedOviChips: widget.selectedOviChips,
-      selectedOviImage: widget.selectedOviImage!,
+      selectedOviImage: widget.selectedOviImage,
       selectedFilters: widget.selectedFilters,
     );
 
@@ -173,7 +179,9 @@ class _ListOfAnimals extends State<ListOfAnimals> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     // Filter the OviAnimals list based on the filterQuery
     final filteredOviAnimals = OviAnimals.where((animal) {
       final eventNumber = animal.eventNumber.toLowerCase();
@@ -185,6 +193,9 @@ class _ListOfAnimals extends State<ListOfAnimals> {
           type.contains(filterQuery.toLowerCase()) ||
           species.contains(filterQuery.toLowerCase());
     }).toList();
+    final animalName = ref.watch(animalNameProvider);
+    final selectedAnimalImage = ref.watch(selectedAnimalImageProvider);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -270,6 +281,7 @@ class _ListOfAnimals extends State<ListOfAnimals> {
                                       widget.selectedAnimalSpecies,
                                   selectedAnimalBreed:
                                       widget.selectedAnimalBreed,
+                                  selectedOviDate: null,
                                 ),
                               ),
                             );
@@ -318,10 +330,10 @@ class _ListOfAnimals extends State<ListOfAnimals> {
                   leading: CircleAvatar(
                     radius: 25,
                     backgroundColor: Colors.grey[100],
-                    backgroundImage: OviDetails.selectedOviImage != null
-                        ? FileImage(OviDetails.selectedOviImage!)
+                    backgroundImage: selectedAnimalImage != null
+                        ? FileImage(selectedAnimalImage!)
                         : null,
-                    child: OviDetails.selectedOviImage == null
+                    child: selectedAnimalImage == null
                         ? const Icon(
                             Icons.camera_alt_outlined,
                             size: 50,

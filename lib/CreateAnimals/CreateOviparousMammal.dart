@@ -1,6 +1,8 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
+import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/TagChips.dart';
 
@@ -10,23 +12,13 @@ import 'dart:io';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 
-class CreateOviparousPage extends StatefulWidget {
-  final String selectedAnimalType;
-  final String selectedAnimalSpecies;
-  final String selectedAnimalBreed;
-
-  const CreateOviparousPage(
-      {super.key,
-      required this.selectedAnimalType,
-      required this.selectedAnimalSpecies,
-      required this.selectedAnimalBreed});
-
+class CreateOviCumMammal extends ConsumerStatefulWidget {
   @override
   // ignore: library_private_types_in_public_api
-  _CreateOviparousPage createState() => _CreateOviparousPage();
+  _CreateOviCumMammal createState() => _CreateOviCumMammal();
 }
 
-class _CreateOviparousPage extends State<CreateOviparousPage> {
+class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
   final TextEditingController _notesController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _frequencyEggsController =
@@ -37,6 +29,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
   String selectedOviSire = 'Add';
   String selectedOviDam = 'Add';
   String selectedDate = '';
+  String selectedBreedingStage = '';
 
   void setSelectedDate(String date) {
     setState(() {
@@ -44,6 +37,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
     });
   }
 
+  Map<String, DateTime?> selectedMammalDates = {};
   List<String> selectedOviChips = [];
   List<Widget> customOviTextFields = [];
   Map<String, DateTime?> selectedOviDates = {};
@@ -51,10 +45,10 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
   String selectedOviDateType = "Date Of Birth"; // Default value
   // Initial text for the button
   String selectedOviGender = '';
-  bool _addOviParents = false;
+  bool _addAnimalParents = false;
   bool _addOviChildren = false;
   // ignore: non_constant_identifier_names
-  final ImagePicker _Ovipicker = ImagePicker();
+  final ImagePicker _Animalpicker = ImagePicker();
   File? _selectedOviImage;
 
   void _showImagePicker(BuildContext context) {
@@ -70,12 +64,15 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                 title: const Text('Camera'),
                 onTap: () async {
                   Navigator.pop(context);
-                  final pickedOviImage =
-                      await _Ovipicker.pickImage(source: ImageSource.camera);
-                  if (pickedOviImage != null) {
-                    setState(() {
-                      _selectedOviImage = File(pickedOviImage.path);
-                    });
+                  final pickedAnimalImage =
+                      await _Animalpicker.pickImage(source: ImageSource.camera);
+                  if (pickedAnimalImage != null) {
+                    ref
+                        .read(selectedAnimalImageProvider.notifier)
+                        .update((state) => File(pickedAnimalImage.path));
+                    // setState(() {
+                    //   _selectedOviImage = File(pickedAnimalImage.path);
+                    // });
                   }
                 },
               ),
@@ -84,12 +81,12 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                 title: const Text('Gallery'),
                 onTap: () async {
                   Navigator.pop(context);
-                  final pickedOviImage =
-                      await _Ovipicker.pickImage(source: ImageSource.gallery);
-                  if (pickedOviImage != null) {
-                    setState(() {
-                      _selectedOviImage = File(pickedOviImage.path);
-                    });
+                  final pickedAnimalImage = await _Animalpicker.pickImage(
+                      source: ImageSource.gallery);
+                  if (pickedAnimalImage != null) {
+                    ref
+                        .read(selectedAnimalImageProvider.notifier)
+                        .update((state) => File(pickedAnimalImage.path));
                   }
                 },
               ),
@@ -100,231 +97,278 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
     );
   }
 
-  void _showOviSireSelectionSheet(BuildContext context) async {
-    final String? newOviSire = await showModalBottomSheet(
+  void _showAnimalSireSelectionSheet() {
+    double sheetHeight = MediaQuery.of(context).size.height * 0.5;
+
+    TextEditingController searchController = TextEditingController();
+    List<Map<String, String>> filteredanimalSires = List.from(animalSires);
+
+    showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        // ignore: non_constant_identifier_names
-        List<Map<String, String>> OviSireDetails = [
-          {'name': 'Alice', 'nickname': 'Cow'},
-          {'name': 'Bob', 'nickname': 'Sheep'},
-          {'name': 'Charlie', 'nickname': 'Horse'},
-          {'name': 'David', 'nickname': 'Ox'},
-          {'name': 'Emily', 'nickname': 'Rabbit'},
-        ];
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
-            return Padding(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
-              child: Container(
-                height: MediaQuery.of(context).size.height *
-                    0.75, // 75% of screen height
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    const Text(
-                      "Add Father",
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
+            return SizedBox(
+              height: sheetHeight,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextField(
+                      controller: searchController,
+                      onChanged: (value) {
+                        setState(() {
+                          filteredanimalSires = animalSires
+                              .where((sire) => sire['name']!
+                                  .toLowerCase()
+                                  .contains(value.toLowerCase()))
+                              .toList();
+                        });
+                      },
+                      decoration: const InputDecoration(
+                        hintText: "Search Country",
+                        prefixIcon: Icon(Icons.search),
                       ),
                     ),
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50.0),
-                              border: Border.all(),
-                            ),
-                            child: TextField(
-                              onChanged: (value) {
-                                setState(() {
-                                  OviSireDetails = [
-                                    {'name': 'Alice', 'nickname': 'Cow'},
-                                    {'name': 'Bob', 'nickname': 'Sheep'},
-                                    {'name': 'Charlie', 'nickname': 'Horse'},
-                                    {'name': 'David', 'nickname': 'Ox'},
-                                    {'name': 'Emily', 'nickname': 'Rabbit'},
-                                  ]
-                                      .where((entry) =>
-                                          entry['name']!
-                                              .toLowerCase()
-                                              .contains(value.toLowerCase()) ||
-                                          entry['nickname']!
-                                              .toLowerCase()
-                                              .contains(value.toLowerCase()))
-                                      .toList();
-                                });
-                              },
-                              decoration: const InputDecoration(
-                                hintText: "Search By Name Or ID",
-                                prefixIcon: Icon(Icons.search),
-                                border: InputBorder.none,
-                              ),
-                            ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: filteredanimalSires.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.green,
                           ),
-                        ),
-                      ],
+                          title: Text(filteredanimalSires[index]['name']!),
+                          onTap: () {
+                            final selectedSire =
+                                filteredanimalSires[index]['name']!;
+                            ref
+                                .read(animalSireDetailsProvider.notifier)
+                                .update((state) => selectedSire);
+                            Navigator.pop(context);
+                          },
+                        );
+                      },
                     ),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: OviSireDetails.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return ListTile(
-                            leading: CircleAvatar(
-                              child: Text(OviSireDetails[index]['name']![0]),
-                            ),
-                            title: Text(OviSireDetails[index]['name']!),
-                            subtitle: Text(OviSireDetails[index]['nickname']!),
-                            onTap: () {
-                              Navigator.pop(
-                                  context, OviSireDetails[index]['name']);
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             );
           },
         );
       },
     );
-    if (newOviSire != null) {
-      setState(() {
-        selectedOviSire = newOviSire;
-      });
-    }
   }
 
-  void _showOviDamSelectionSheet(BuildContext context) async {
-    final String? newOviDam = await showModalBottomSheet(
+  final List<Map<String, String>> animalSires = [
+    {'name': 'Alice'},
+    {'name': 'John'},
+    {'name': 'Jack'},
+    {'name': 'Kiran'},
+    {'name': 'Mantic'},
+    {'name': 'Mongolia'},
+    // Add more country codes and names as needed
+  ];
+
+  void _showAnimalDamSelectionSheet() {
+    double sheetHeight = MediaQuery.of(context).size.height * 0.5;
+
+    TextEditingController searchController = TextEditingController();
+    List<Map<String, String>> filteredAnimalDam = List.from(animalDams);
+
+    showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        // ignore: non_constant_identifier_names
-        List<Map<String, String>> OviDamDetails = [
-          {'name': 'Mantis', 'nickname': 'Alein'},
-          {'name': 'Nebula', 'nickname': 'Robot'},
-          {'name': 'Rocket', 'nickname': 'Racoon'},
-          {'name': 'Groot', 'nickname': 'Tree'},
-          {'name': 'Peter', 'nickname': 'Human'},
-        ];
-
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
-            return Padding(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
-              child: Container(
-                height: MediaQuery.of(context).size.height *
-                    0.75, // 75% of screen height
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    const Text(
-                      "Add Mother",
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
+            return SizedBox(
+              height: sheetHeight,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextField(
+                      controller: searchController,
+                      onChanged: (value) {
+                        setState(() {
+                          filteredAnimalDam = animalDams
+                              .where((country) => country['name']!
+                                  .toLowerCase()
+                                  .contains(value.toLowerCase()))
+                              .toList();
+                        });
+                      },
+                      decoration: const InputDecoration(
+                        hintText: "Search Country",
+                        prefixIcon: Icon(Icons.search),
                       ),
                     ),
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50.0),
-                              border: Border.all(),
-                            ),
-                            child: TextField(
-                              onChanged: (value) {
-                                setState(() {
-                                  OviDamDetails = [
-                                    {'name': 'Mantis', 'nickname': 'Alein'},
-                                    {'name': 'Nebula', 'nickname': 'Robot'},
-                                    {'name': 'Rocket', 'nickname': 'Racoon'},
-                                    {'name': 'Groot', 'nickname': 'Tree'},
-                                    {'name': 'Peter', 'nickname': 'Human'},
-                                  ]
-                                      .where((entry) =>
-                                          entry['name']!
-                                              .toLowerCase()
-                                              .contains(value.toLowerCase()) ||
-                                          entry['nickname']!
-                                              .toLowerCase()
-                                              .contains(value.toLowerCase()))
-                                      .toList();
-                                });
-                              },
-                              decoration: const InputDecoration(
-                                hintText: "Search By Name Or ID",
-                                prefixIcon: Icon(Icons.search),
-                                border: InputBorder.none,
-                              ),
-                            ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: filteredAnimalDam.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.green,
                           ),
-                        ),
-                      ],
+                          title: Text(filteredAnimalDam[index]['name']!),
+                          onTap: () {
+                            final selectedDam =
+                                filteredAnimalDam[index]['name']!;
+                            ref
+                                .read(animalDamDetailsProvider.notifier)
+                                .update((state) => selectedDam);
+                            Navigator.pop(context);
+                          },
+                        );
+                      },
                     ),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: OviDamDetails.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return ListTile(
-                            leading: CircleAvatar(
-                              child: Text(OviDamDetails[index]['name']![0]),
-                            ),
-                            title: Text(OviDamDetails[index]['name']!),
-                            subtitle: Text(OviDamDetails[index]['nickname']!),
-                            onTap: () {
-                              Navigator.pop(
-                                  context, OviDamDetails[index]['name']);
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             );
           },
         );
       },
     );
-
-    if (newOviDam != null) {
-      setState(() {
-        selectedOviDam = newOviDam;
-      });
-    }
   }
+
+  final List<Map<String, String>> animalDams = [
+    {'name': 'Alice'},
+    {'name': 'John'},
+    {'name': 'Jack'},
+    {'name': 'Kiran'},
+    {'name': 'Mantic'},
+    {'name': 'Mongolia'},
+    // Add more country codes and names as needed
+  ];
+
+  // void _showOviDamSelectionSheet(BuildContext context) async {
+  //   final String? newOviDam = await showModalBottomSheet(
+  //     context: context,
+  //     isScrollControlled: true,
+  //     builder: (BuildContext context) {
+  //       // ignore: non_constant_identifier_names
+  //       List<Map<String, String>> OviDamDetails = [
+  //         {'name': 'Mantis', 'nickname': 'Alein'},
+  //         {'name': 'Nebula', 'nickname': 'Robot'},
+  //         {'name': 'Rocket', 'nickname': 'Racoon'},
+  //         {'name': 'Groot', 'nickname': 'Tree'},
+  //         {'name': 'Peter', 'nickname': 'Human'},
+  //       ];
+
+  //       return StatefulBuilder(
+  //         builder: (BuildContext context, StateSetter setState) {
+  //           return Padding(
+  //             padding: EdgeInsets.only(
+  //               bottom: MediaQuery.of(context).viewInsets.bottom,
+  //             ),
+  //             child: Container(
+  //               height: MediaQuery.of(context).size.height *
+  //                   0.75, // 75% of screen height
+  //               padding: const EdgeInsets.all(16.0),
+  //               child: Column(
+  //                 crossAxisAlignment: CrossAxisAlignment.stretch,
+  //                 children: [
+  //                   const SizedBox(
+  //                     height: 25,
+  //                   ),
+  //                   const Text(
+  //                     "Add Mother",
+  //                     style: TextStyle(
+  //                       fontSize: 30,
+  //                       fontWeight: FontWeight.bold,
+  //                     ),
+  //                   ),
+  //                   const SizedBox(
+  //                     height: 25,
+  //                   ),
+  //                   Row(
+  //                     children: [
+  //                       Expanded(
+  //                         child: Container(
+  //                           decoration: BoxDecoration(
+  //                             borderRadius: BorderRadius.circular(50.0),
+  //                             border: Border.all(),
+  //                           ),
+  //                           child: TextField(
+  //                             onChanged: (value) {
+  //                               setState(() {
+  //                                 OviDamDetails = [
+  //                                   {'name': 'Mantis', 'nickname': 'Alein'},
+  //                                   {'name': 'Nebula', 'nickname': 'Robot'},
+  //                                   {'name': 'Rocket', 'nickname': 'Racoon'},
+  //                                   {'name': 'Groot', 'nickname': 'Tree'},
+  //                                   {'name': 'Peter', 'nickname': 'Human'},
+  //                                 ]
+  //                                     .where((entry) =>
+  //                                         entry['name']!
+  //                                             .toLowerCase()
+  //                                             .contains(value.toLowerCase()) ||
+  //                                         entry['nickname']!
+  //                                             .toLowerCase()
+  //                                             .contains(value.toLowerCase()))
+  //                                     .toList();
+  //                               });
+  //                             },
+  //                             decoration: const InputDecoration(
+  //                               hintText: "Search By Name Or ID",
+  //                               prefixIcon: Icon(Icons.search),
+  //                               border: InputBorder.none,
+  //                             ),
+  //                           ),
+  //                         ),
+  //                       ),
+  //                     ],
+  //                   ),
+  //                   Expanded(
+  //                     child: ListView.builder(
+  //                       itemCount: OviDamDetails.length,
+  //                       itemBuilder: (BuildContext context, int index) {
+  //                         return ListTile(
+  //                           leading: CircleAvatar(
+  //                             child: Text(OviDamDetails[index]['name']![0]),
+  //                           ),
+  //                           title: Text(OviDamDetails[index]['name']!),
+  //                           subtitle: Text(OviDamDetails[index]['nickname']!),
+  //                           onTap: () {
+  //                             Navigator.pop(
+  //                                 context, OviDamDetails[index]['name']);
+  //                           },
+  //                         );
+  //                       },
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //             ),
+  //           );
+  //         },
+  //       );
+  //     },
+  //   );
+
+  //   if (newOviDam != null) {
+  //     setState(() {
+  //       selectedOviDam = newOviDam;
+  //     });
+  //   }
+  // }
 
   void _showDateSelectionSheet(BuildContext context) async {
+    final selectedAnimalType = ref.watch(selectedAnimalTypeProvider);
     List<String> OvidateTypes = [
       'Date Of Hatching',
+      'Date Of Death',
+      'Date Of Sale',
+    ];
+    List<String> MammaldateTypes = [
+      'Date Of Weaning',
+      'Date Of Mating',
       'Date Of Death',
       'Date Of Sale',
     ];
@@ -349,29 +393,55 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: OvidateTypes.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Column(
-                      children: [
-                        ListTile(
-                          title: Text(OvidateTypes[index]),
-                          dense: true,
-                          minVerticalPadding: double.minPositive,
-                          trailing: const Icon(Icons.arrow_right_alt_rounded),
-                          onTap: () {
-                            Navigator.pop(context);
-                            _showOviDatePicker(context, OvidateTypes[index]);
-                          },
-                        ),
-                        const Divider(),
-                      ],
-                    );
-                  },
+              if (selectedAnimalType == "Oviparous")
+                Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: OvidateTypes.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        children: [
+                          ListTile(
+                            title: Text(OvidateTypes[index]),
+                            dense: true,
+                            minVerticalPadding: double.minPositive,
+                            trailing: const Icon(Icons.arrow_right_alt_rounded),
+                            onTap: () {
+                              Navigator.pop(context);
+                              _showOviDatePicker(context, OvidateTypes[index]);
+                            },
+                          ),
+                          const Divider(),
+                        ],
+                      );
+                    },
+                  ),
                 ),
-              ),
+              if (selectedAnimalType == "Mammal")
+                Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: MammaldateTypes.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        children: [
+                          ListTile(
+                            title: Text(MammaldateTypes[index]),
+                            dense: true,
+                            minVerticalPadding: double.minPositive,
+                            trailing: const Icon(Icons.arrow_right_alt_rounded),
+                            onTap: () {
+                              Navigator.pop(context);
+                              _showOviDatePicker(
+                                  context, MammaldateTypes[index]);
+                            },
+                          ),
+                          const Divider(),
+                        ],
+                      );
+                    },
+                  ),
+                ),
             ],
           ),
         );
@@ -911,11 +981,93 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
     });
   }
 
+  void _showMammalDateSelectionSheet(BuildContext context) async {
+    List<String> MammaldateTypes = [
+      'Date Of Weaning',
+      'Date Of Mating',
+      'Date Of Death',
+      'Date Of Sale',
+    ];
+
+    await showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: MediaQuery.of(context).size.height * 0.40,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 10),
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'Add Date ',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: MammaldateTypes.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Column(
+                      children: [
+                        ListTile(
+                          title: Text(MammaldateTypes[index]),
+                          dense: true,
+                          minVerticalPadding: double.minPositive,
+                          trailing: const Icon(Icons.arrow_right_alt_rounded),
+                          onTap: () {
+                            Navigator.pop(context);
+                            _showMammalDatePicker(
+                                context, MammaldateTypes[index]);
+                          },
+                        ),
+                        const Divider(),
+                      ],
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _showMammalDatePicker(BuildContext context, String dateType) async {
+    final DateTime? selectedDate = await showDatePicker(
+      context: context,
+      initialDate: selectedMammalDates[dateType] ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    if (selectedDate != null) {
+      setState(() {
+        selectedMammalDates[dateType] = selectedDate;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final selectedAnimalType = ref.watch(selectedAnimalTypeProvider);
+    final selectedAnimalImage = ref.watch(selectedAnimalImageProvider);
+    final animalDam = ref.watch(animalDamDetailsProvider);
+    final animalSire = ref.watch(animalSireDetailsProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Oviparous'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [const Text('Create '), Text(selectedAnimalType)],
+        ),
+        centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -950,10 +1102,10 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                   child: CircleAvatar(
                     radius: 70,
                     backgroundColor: Colors.grey[100],
-                    backgroundImage: _selectedOviImage != null
-                        ? FileImage(_selectedOviImage!)
+                    backgroundImage: selectedAnimalImage != null
+                        ? FileImage(selectedAnimalImage)
                         : null,
-                    child: _selectedOviImage == null
+                    child: selectedAnimalImage == null
                         ? const Icon(
                             Icons.camera_alt_outlined,
                             size: 50,
@@ -979,15 +1131,23 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                 ),
               ),
               const SizedBox(height: 45),
-              const Text(
-                "Name",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 1),
+                child: Text(
+                  'Name',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
               TextFormField(
+                onChanged: (value) {
+                  ref
+                      .read(animalNameProvider.notifier)
+                      .update((state) => value);
+                },
                 controller: _nameController,
                 decoration: InputDecoration(
                   hintText: 'Enter Name', // Add your hint text here
@@ -1011,7 +1171,7 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
               const SizedBox(height: 10),
               const Text(
                 "Add Parents If They're In The System",
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+                style: TextStyle(fontSize: 16, color: Colors.black),
               ),
               const SizedBox(height: 10),
               Row(
@@ -1025,17 +1185,17 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                     ),
                   ),
                   Switch(
-                    value: _addOviParents,
+                    value: _addAnimalParents,
                     onChanged: (value) {
                       setState(() {
-                        _addOviParents = value;
+                        _addAnimalParents = value;
                       });
                     },
                   ),
                 ],
               ),
               Visibility(
-                visible: _addOviParents,
+                visible: _addAnimalParents,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -1055,10 +1215,10 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                           flex: 0,
                           child: TextButton(
                             onPressed: () {
-                              _showOviSireSelectionSheet(context);
+                              _showAnimalSireSelectionSheet();
                             },
                             child: Text(
-                              selectedOviSire,
+                              animalSire,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 36, 86, 38),
@@ -1082,10 +1242,10 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                           flex: 0,
                           child: TextButton(
                             onPressed: () {
-                              _showOviDamSelectionSheet(context);
+                              _showAnimalDamSelectionSheet();
                             },
                             child: Text(
-                              selectedOviDam,
+                              animalDam,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 36, 86, 38),
@@ -1202,8 +1362,8 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                 onTap: () {
                   setState(() {
                     selectedOviGender = 'Female';
-                    showAdditionalFields =
-                        true; // Show additional fields when Female is selected
+                    showAdditionalFields = true;
+                    // Show additional fields when Female is selected
                   });
                 },
                 child: Row(
@@ -1236,57 +1396,188 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
               const Divider(),
               const SizedBox(height: 10),
               if (showAdditionalFields) // Show additional fields when Female is selected
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Frequency Of Laying Eggs/Month',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    TextFormField(
-                      controller: _frequencyEggsController,
-                      decoration: InputDecoration(
-                        hintText: 'Enter Frequency', // Add your hint text here
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50.0),
+                Visibility(
+                  visible: selectedAnimalType == 'Oviparous',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Frequency Of Laying Eggs/Month',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 12.0, horizontal: 16.0),
                       ),
-                      textInputAction:
-                          TextInputAction.done, // Change the keyboard action
-                    ),
-                    // Your first additional text field widget here
-                    const SizedBox(height: 10),
-                    const Text(
-                      'Number Of Eggs/Month',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    TextFormField(
-                      controller: _numberofEggsController,
-                      decoration: InputDecoration(
-                        hintText: 'Enter The Number', // Add your hint text here
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50.0),
+                      const SizedBox(height: 10),
+                      TextFormField(
+                        controller: _frequencyEggsController,
+                        decoration: InputDecoration(
+                          hintText:
+                              'Enter Frequency', // Add your hint text here
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50.0),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 12.0, horizontal: 16.0),
                         ),
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 12.0, horizontal: 16.0),
+                        textInputAction:
+                            TextInputAction.done, // Change the keyboard action
                       ),
-                      textInputAction:
-                          TextInputAction.done, // Change the keyboard action
-                    ),
-                    const SizedBox(height: 15),
-                    const Divider(),
-                    // Your second additional text field widget here
-                  ],
+                      // Your first additional text field widget here
+                      const SizedBox(height: 10),
+                      const Text(
+                        'Number Of Eggs/Month',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      TextFormField(
+                        controller: _numberofEggsController,
+                        decoration: InputDecoration(
+                          hintText:
+                              'Enter The Number', // Add your hint text here
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50.0),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 12.0, horizontal: 16.0),
+                        ),
+                        textInputAction:
+                            TextInputAction.done, // Change the keyboard action
+                      ),
+                      const SizedBox(height: 15),
+                      const Divider(),
+                      // Your second additional text field widget here
+                    ],
+                  ),
                 ),
-              const SizedBox(height: 10),
+              if (showAdditionalFields) // Show additional fields when Female is selected
+                Visibility(
+                  visible: selectedAnimalType == 'Mammal',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Breeding Stage",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedBreedingStage = 'Ready For Breeding';
+                          });
+                        },
+                        child: Row(
+                          children: [
+                            const Expanded(
+                              child: Text(
+                                'Ready For Breeding',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 30,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: selectedBreedingStage ==
+                                          'Ready For Breeding'
+                                      ? Colors.green
+                                      : Colors.grey,
+                                  width: selectedBreedingStage ==
+                                          'Ready For Breeding'
+                                      ? 6.0
+                                      : 2.0,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedBreedingStage = 'Pregnant';
+                          });
+                        },
+                        child: Row(
+                          children: [
+                            const Expanded(
+                              child: Text(
+                                'Pregnant',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 30,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: selectedBreedingStage == 'Pregnant'
+                                      ? Colors.green
+                                      : Colors.grey,
+                                  width: selectedBreedingStage == 'Pregnant'
+                                      ? 6.0
+                                      : 2.0,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedBreedingStage = 'Lactating';
+                          });
+                        },
+                        child: Row(
+                          children: [
+                            const Expanded(
+                              child: Text(
+                                'Lactating',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 30,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: selectedBreedingStage == 'Lactating'
+                                      ? Colors.green
+                                      : Colors.grey,
+                                  width: selectedBreedingStage == 'Lactating'
+                                      ? 6.0
+                                      : 2.0,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+
+                      const Divider(),
+                      // Your second additional text field widget here
+                    ],
+                  ),
+                ),
               const Text(
                 "Dates",
                 style: TextStyle(
@@ -1309,7 +1600,11 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
               _buildOviDateFields(),
               TextButton(
                 onPressed: () {
-                  _showDateSelectionSheet(context);
+                  if (selectedAnimalType == 'Mammal') {
+                    _showDateSelectionSheet(context);
+                  } else if (selectedAnimalType == 'Oviparous') {
+                    _showMammalDateSelectionSheet(context);
+                  }
                 },
                 child: const Text(
                   'Add Date +',
@@ -1467,14 +1762,14 @@ class _CreateOviparousPage extends State<CreateOviparousPage> {
                   showAdditionalFields: showAdditionalFields,
                   selectedOviDateType: selectedOviDateType,
                   selectedOviGender: selectedOviGender,
-                  addOviParents: _addOviParents,
+                  addOviParents: _addAnimalParents,
                   addOviChildren: _addOviChildren,
                   selectedOviImage: _selectedOviImage,
-                  selectedAnimalType: widget.selectedAnimalType,
-                  selectedAnimalSpecies: widget.selectedAnimalSpecies,
-                  selectedAnimalBreed: widget.selectedAnimalBreed,
                   selectedFilters: [],
                   shouldAddAnimal: true,
+                  selectedAnimalType: '',
+                  selectedAnimalSpecies: '',
+                  selectedAnimalBreed: '',
                 ),
               ),
             );

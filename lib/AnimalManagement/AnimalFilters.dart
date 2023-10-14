@@ -50,6 +50,7 @@ class AnimalFilters extends StatefulWidget {
     required this.selectedAnimalType,
     required this.selectedAnimalSpecies,
     required this.selectedAnimalBreed,
+    required selectedOviDate,
   });
 
   @override

@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hathera_demo/CreateAnimals/SelectedOptions.dart';
+import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 
-class CreateAnimalPage extends StatefulWidget {
+class CreateAnimalPage extends ConsumerStatefulWidget {
   const CreateAnimalPage({Key? key}) : super(key: key);
 
   @override
   _CreateAnimalPageState createState() => _CreateAnimalPageState();
 }
 
-class _CreateAnimalPageState extends State<CreateAnimalPage> {
+class _CreateAnimalPageState extends ConsumerState<CreateAnimalPage> {
   String selectedAnimalType = '';
   String selectedAnimalSpecies = '';
   String selectedAnimalBreed = '';
   bool showAnimalSpeciesSection = false;
   bool showAnimalBreedsSection = false;
   bool areAllOptionsSelected() {
+    final selectedAnimalType = ref.watch(selectedAnimalTypeProvider);
     return selectedAnimalType.isNotEmpty &&
         selectedAnimalSpecies.isNotEmpty &&
         selectedAnimalBreed.isNotEmpty;
@@ -50,6 +53,10 @@ class _CreateAnimalPageState extends State<CreateAnimalPage> {
 
   @override
   Widget build(BuildContext context) {
+    final selectedAnimalType = ref.watch(selectedAnimalTypeProvider);
+    final selectedAnimalSpecies = ref.watch(selectedAnimalSpeciesProvider);
+    final selectedAnimalBreed = ref.watch(selectedAnimalBreedsProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create Animal'),
@@ -202,7 +209,8 @@ class _CreateAnimalPageState extends State<CreateAnimalPage> {
 
   Widget _buildAnimalTypeOption(String animalType) {
     final imageAsset = animalImages[animalType]!;
-    final isSelected = selectedAnimalType == animalType;
+    final isSelected =
+        ref.read(selectedAnimalTypeProvider.notifier).state == animalType;
 
     return ListTile(
       leading: CircleAvatar(
@@ -230,7 +238,9 @@ class _CreateAnimalPageState extends State<CreateAnimalPage> {
       ),
       onTap: () {
         setState(() {
-          selectedAnimalType = animalType;
+          ref
+              .read(selectedAnimalTypeProvider.notifier)
+              .update((state) => animalType);
         });
       },
     );
@@ -261,7 +271,13 @@ class _CreateAnimalPageState extends State<CreateAnimalPage> {
         ),
       ),
       onTap: () {
+        // setState(() {
+        //   selectedAnimalSpecies = isSelected ? '' : optionText;
+        // });
         setState(() {
+          ref
+              .read(selectedAnimalSpeciesProvider.notifier)
+              .update((state) => optionText);
           selectedAnimalSpecies = isSelected ? '' : optionText;
         });
       },
@@ -294,6 +310,9 @@ class _CreateAnimalPageState extends State<CreateAnimalPage> {
       ),
       onTap: () {
         setState(() {
+          ref
+              .read(selectedAnimalBreedsProvider.notifier)
+              .update((state) => optionText);
           selectedAnimalBreed = isSelected ? '' : optionText;
         });
       },
@@ -370,23 +389,34 @@ class _CreateAnimalPageState extends State<CreateAnimalPage> {
                           return const SizedBox.shrink();
                         }
                         return ListTile(
-                          leading: CircleAvatar(
-                            // Add your circle avatar properties here
-                            backgroundColor:
-                                Colors.blue, // Change the background color
-                            // You can also set backgroundImage if needed
-                            // backgroundImage: AssetImage('your_image_asset_path.png'),
-                          ),
-                          title: Text(
-                            item,
-                            style: const TextStyle(
-                              fontSize: 16,
+                            leading: CircleAvatar(
+                              // Add your circle avatar properties here
+                              backgroundColor:
+                                  Colors.blue, // Change the background color
+                              // You can also set backgroundImage if needed
+                              // backgroundImage: AssetImage('your_image_asset_path.png'),
                             ),
-                          ),
-                          onTap: () {
-                            Navigator.pop(context, item);
-                          },
-                        );
+                            title: Text(
+                              item,
+                              style: const TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                            onTap: () {
+                              if (section == 'species') {
+                                ref
+                                    .read(
+                                        selectedAnimalSpeciesProvider.notifier)
+                                    .update((state) => item);
+                                selectedAnimalSpecies = item;
+                              } else if (section == 'breeds') {
+                                ref
+                                    .read(selectedAnimalBreedsProvider.notifier)
+                                    .update((state) => item);
+                                selectedAnimalBreed = item;
+                              }
+                              Navigator.pop(context, item);
+                            });
                       },
                     ),
                   ),

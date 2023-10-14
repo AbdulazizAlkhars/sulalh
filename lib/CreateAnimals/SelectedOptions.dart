@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hathera_demo/CreateAnimals/CreateMammal.dart';
 import 'package:hathera_demo/CreateAnimals/CreateOviparous.dart';
+import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 
-class SelectedOptionsPage extends StatefulWidget {
+class SelectedOptionsPage extends ConsumerStatefulWidget {
   final String selectedAnimalType;
   final String selectedAnimalSpecies;
   final String selectedAnimalBreed;
@@ -15,12 +17,16 @@ class SelectedOptionsPage extends StatefulWidget {
   });
 
   @override
-  State<SelectedOptionsPage> createState() => _SelectedOptionsPageState();
+  ConsumerState<SelectedOptionsPage> createState() =>
+      _SelectedOptionsPageState();
 }
 
-class _SelectedOptionsPageState extends State<SelectedOptionsPage> {
+class _SelectedOptionsPageState extends ConsumerState<SelectedOptionsPage> {
   @override
   Widget build(BuildContext context) {
+    final selectedAnimalType = ref.watch(selectedAnimalTypeProvider);
+    final selectedAnimalSpecies = ref.watch(selectedAnimalSpeciesProvider);
+    final selectedAnimalBreeds = ref.watch(selectedAnimalBreedsProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create Animal'),
@@ -71,7 +77,7 @@ class _SelectedOptionsPageState extends State<SelectedOptionsPage> {
                 Expanded(
                   flex: 0,
                   child: Text(
-                    widget.selectedAnimalType,
+                    selectedAnimalType,
                     style: const TextStyle(
                       fontSize: 15,
                     ),
@@ -104,7 +110,7 @@ class _SelectedOptionsPageState extends State<SelectedOptionsPage> {
                 Expanded(
                   flex: 0,
                   child: Text(
-                    widget.selectedAnimalSpecies,
+                    selectedAnimalSpecies,
                     style: const TextStyle(
                       fontSize: 16,
                     ),
@@ -137,7 +143,7 @@ class _SelectedOptionsPageState extends State<SelectedOptionsPage> {
                 Expanded(
                   flex: 0,
                   child: Text(
-                    widget.selectedAnimalBreed,
+                    selectedAnimalBreeds,
                     style: const TextStyle(
                       fontSize: 16,
                     ),
@@ -166,22 +172,14 @@ class _SelectedOptionsPageState extends State<SelectedOptionsPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CreateMammalPage(
-                    selectedAnimalType: widget.selectedAnimalType,
-                    selectedAnimalSpecies: widget.selectedAnimalSpecies,
-                    selectedAnimalBreed: widget.selectedAnimalBreed,
-                  ),
+                  builder: (context) => CreateOviCumMammal(),
                 ),
               );
             } else if (widget.selectedAnimalType == 'Oviparous') {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CreateOviparousPage(
-                    selectedAnimalType: widget.selectedAnimalType,
-                    selectedAnimalSpecies: widget.selectedAnimalSpecies,
-                    selectedAnimalBreed: widget.selectedAnimalBreed,
-                  ),
+                  builder: (context) => CreateOviCumMammal(),
                 ),
               );
             }
