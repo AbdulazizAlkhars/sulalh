@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hathera_demo/CreateAnimals/CreateMammal.dart';
-import 'package:hathera_demo/CreateAnimals/CreateOviparous.dart';
+import 'package:hathera_demo/CreateAnimals/CreateOviparousMammal.dart';
 import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 
 class SelectedOptionsPage extends ConsumerStatefulWidget {

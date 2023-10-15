@@ -1,11 +1,13 @@
 // ignore: depend_on_referenced_packages
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/FamilyTree.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfBreedingEvents.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfChildren.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfParents.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfPartners.dart';
 import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
+
 import 'package:hathera_demo/Widgets/Button.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
@@ -13,7 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:hathera_demo/Widgets/TagChips.dart';
 
 // ignore: must_be_immutable
-class OvigenifnoPage extends StatefulWidget {
+class OvigenifnoPage extends ConsumerStatefulWidget {
   final OviVariables OviDetails;
 
   OvigenifnoPage({
@@ -26,7 +28,7 @@ class OvigenifnoPage extends StatefulWidget {
   _OvigenifnoPage createState() => _OvigenifnoPage();
 }
 
-class _OvigenifnoPage extends State<OvigenifnoPage>
+class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
     with SingleTickerProviderStateMixin {
   TextEditingController _medicalNeedsController = TextEditingController();
   bool _isEditMode = false;

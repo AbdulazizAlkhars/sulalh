@@ -33,7 +33,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
 
   void setSelectedDate(String date) {
     setState(() {
-      selectedDate = date;
+      ref.read(dateOfBirthProvider.notifier).update((state) => date);
     });
   }
 
@@ -137,7 +137,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                       itemCount: filteredanimalSires.length,
                       itemBuilder: (context, index) {
                         return ListTile(
-                          leading: CircleAvatar(
+                          leading: const CircleAvatar(
                             backgroundColor: Colors.green,
                           ),
                           title: Text(filteredanimalSires[index]['name']!),
@@ -212,7 +212,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                       itemCount: filteredAnimalDam.length,
                       itemBuilder: (context, index) {
                         return ListTile(
-                          leading: CircleAvatar(
+                          leading: const CircleAvatar(
                             backgroundColor: Colors.green,
                           ),
                           title: Text(filteredAnimalDam[index]['name']!),
@@ -246,118 +246,6 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
     {'name': 'Mongolia'},
     // Add more country codes and names as needed
   ];
-
-  // void _showOviDamSelectionSheet(BuildContext context) async {
-  //   final String? newOviDam = await showModalBottomSheet(
-  //     context: context,
-  //     isScrollControlled: true,
-  //     builder: (BuildContext context) {
-  //       // ignore: non_constant_identifier_names
-  //       List<Map<String, String>> OviDamDetails = [
-  //         {'name': 'Mantis', 'nickname': 'Alein'},
-  //         {'name': 'Nebula', 'nickname': 'Robot'},
-  //         {'name': 'Rocket', 'nickname': 'Racoon'},
-  //         {'name': 'Groot', 'nickname': 'Tree'},
-  //         {'name': 'Peter', 'nickname': 'Human'},
-  //       ];
-
-  //       return StatefulBuilder(
-  //         builder: (BuildContext context, StateSetter setState) {
-  //           return Padding(
-  //             padding: EdgeInsets.only(
-  //               bottom: MediaQuery.of(context).viewInsets.bottom,
-  //             ),
-  //             child: Container(
-  //               height: MediaQuery.of(context).size.height *
-  //                   0.75, // 75% of screen height
-  //               padding: const EdgeInsets.all(16.0),
-  //               child: Column(
-  //                 crossAxisAlignment: CrossAxisAlignment.stretch,
-  //                 children: [
-  //                   const SizedBox(
-  //                     height: 25,
-  //                   ),
-  //                   const Text(
-  //                     "Add Mother",
-  //                     style: TextStyle(
-  //                       fontSize: 30,
-  //                       fontWeight: FontWeight.bold,
-  //                     ),
-  //                   ),
-  //                   const SizedBox(
-  //                     height: 25,
-  //                   ),
-  //                   Row(
-  //                     children: [
-  //                       Expanded(
-  //                         child: Container(
-  //                           decoration: BoxDecoration(
-  //                             borderRadius: BorderRadius.circular(50.0),
-  //                             border: Border.all(),
-  //                           ),
-  //                           child: TextField(
-  //                             onChanged: (value) {
-  //                               setState(() {
-  //                                 OviDamDetails = [
-  //                                   {'name': 'Mantis', 'nickname': 'Alein'},
-  //                                   {'name': 'Nebula', 'nickname': 'Robot'},
-  //                                   {'name': 'Rocket', 'nickname': 'Racoon'},
-  //                                   {'name': 'Groot', 'nickname': 'Tree'},
-  //                                   {'name': 'Peter', 'nickname': 'Human'},
-  //                                 ]
-  //                                     .where((entry) =>
-  //                                         entry['name']!
-  //                                             .toLowerCase()
-  //                                             .contains(value.toLowerCase()) ||
-  //                                         entry['nickname']!
-  //                                             .toLowerCase()
-  //                                             .contains(value.toLowerCase()))
-  //                                     .toList();
-  //                               });
-  //                             },
-  //                             decoration: const InputDecoration(
-  //                               hintText: "Search By Name Or ID",
-  //                               prefixIcon: Icon(Icons.search),
-  //                               border: InputBorder.none,
-  //                             ),
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ],
-  //                   ),
-  //                   Expanded(
-  //                     child: ListView.builder(
-  //                       itemCount: OviDamDetails.length,
-  //                       itemBuilder: (BuildContext context, int index) {
-  //                         return ListTile(
-  //                           leading: CircleAvatar(
-  //                             child: Text(OviDamDetails[index]['name']![0]),
-  //                           ),
-  //                           title: Text(OviDamDetails[index]['name']!),
-  //                           subtitle: Text(OviDamDetails[index]['nickname']!),
-  //                           onTap: () {
-  //                             Navigator.pop(
-  //                                 context, OviDamDetails[index]['name']);
-  //                           },
-  //                         );
-  //                       },
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //           );
-  //         },
-  //       );
-  //     },
-  //   );
-
-  //   if (newOviDam != null) {
-  //     setState(() {
-  //       selectedOviDam = newOviDam;
-  //     });
-  //   }
-  // }
 
   void _showDateSelectionSheet(BuildContext context) async {
     final selectedAnimalType = ref.watch(selectedAnimalTypeProvider);
@@ -458,9 +346,10 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
     );
 
     if (selectedDate != null) {
-      setState(() {
-        selectedOviDates[dateType] = selectedDate;
-      });
+      ref.read(selectedOviDatesProvider.notifier).state = {
+        ...ref.read(selectedOviDatesProvider),
+        dateType: selectedDate,
+      };
     }
   }
 
@@ -504,78 +393,126 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                         children: [
                           CustomTag(
                             label: 'Borrowed',
-                            selected: selectedOviChips.contains('Borrowed'),
+                            selected: ref
+                                .read(selectedOviChipsProvider)
+                                .contains('Borrowed'),
                             onTap: () {
                               setState(() {
-                                if (selectedOviChips.contains('Borrowed')) {
-                                  selectedOviChips.remove('Borrowed');
+                                if (ref
+                                    .read(selectedOviChipsProvider)
+                                    .contains('Borrowed')) {
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .remove('Borrowed');
                                 } else {
-                                  selectedOviChips.add('Borrowed');
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .add('Borrowed');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Adopted',
-                            selected: selectedOviChips.contains('Adopted'),
+                            selected: ref
+                                .read(selectedOviChipsProvider)
+                                .contains('Adopted'),
                             onTap: () {
                               setState(() {
-                                if (selectedOviChips.contains('Adopted')) {
-                                  selectedOviChips.remove('Adopted');
+                                if (ref
+                                    .read(selectedOviChipsProvider)
+                                    .contains('Adopted')) {
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .remove('Adopted');
                                 } else {
-                                  selectedOviChips.add('Adopted');
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .add('Adopted');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Donated',
-                            selected: selectedOviChips.contains('Donated'),
+                            selected: ref
+                                .read(selectedOviChipsProvider)
+                                .contains('Donated'),
                             onTap: () {
                               setState(() {
-                                if (selectedOviChips.contains('Donated')) {
-                                  selectedOviChips.remove('Donated');
+                                if (ref
+                                    .read(selectedOviChipsProvider)
+                                    .contains('Donated')) {
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .remove('Donated');
                                 } else {
-                                  selectedOviChips.add('Donated');
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .add('Donated');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Escaped',
-                            selected: selectedOviChips.contains('Escaped'),
+                            selected: ref
+                                .read(selectedOviChipsProvider)
+                                .contains('Escaped'),
                             onTap: () {
                               setState(() {
-                                if (selectedOviChips.contains('Escaped')) {
-                                  selectedOviChips.remove('Escaped');
+                                if (ref
+                                    .read(selectedOviChipsProvider)
+                                    .contains('Escaped')) {
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .remove('Escaped');
                                 } else {
-                                  selectedOviChips.add('Escaped');
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .add('Escaped');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Stolen',
-                            selected: selectedOviChips.contains('Stolen'),
+                            selected: ref
+                                .read(selectedOviChipsProvider)
+                                .contains('Stolen'),
                             onTap: () {
                               setState(() {
-                                if (selectedOviChips.contains('Stolen')) {
-                                  selectedOviChips.remove('Stolen');
+                                if (ref
+                                    .read(selectedOviChipsProvider)
+                                    .contains('Stolen')) {
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .remove('Stolen');
                                 } else {
-                                  selectedOviChips.add('Stolen');
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .add('Stolen');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Trasnferred',
-                            selected: selectedOviChips.contains('Trasnferred'),
+                            selected: ref
+                                .read(selectedOviChipsProvider)
+                                .contains('Trasnferred'),
                             onTap: () {
                               setState(() {
-                                if (selectedOviChips.contains('Trasnferred')) {
-                                  selectedOviChips.remove('Trasnferred');
+                                if (ref
+                                    .read(selectedOviChipsProvider)
+                                    .contains('Trasnferred')) {
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .remove('Trasnferred');
                                 } else {
-                                  selectedOviChips.add('Trasnferred');
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .add('Trasnferred');
                                 }
                               });
                             },
@@ -599,91 +536,147 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                         children: [
                           CustomTag(
                             label: 'Injured',
-                            selected: selectedOviChips.contains('Injured'),
+                            selected: ref
+                                .read(selectedOviChipsProvider)
+                                .contains('Injured'),
                             onTap: () {
                               setState(() {
-                                if (selectedOviChips.contains('Injured')) {
-                                  selectedOviChips.remove('Injured');
+                                if (ref
+                                    .read(selectedOviChipsProvider)
+                                    .contains('Injured')) {
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .remove('Injured');
                                 } else {
-                                  selectedOviChips.add('Injured');
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .add('Injured');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Sick',
-                            selected: selectedOviChips.contains('Sick'),
+                            selected: ref
+                                .read(selectedOviChipsProvider)
+                                .contains('Sick'),
                             onTap: () {
                               setState(() {
-                                if (selectedOviChips.contains('Sick')) {
-                                  selectedOviChips.remove('Sick');
+                                if (ref
+                                    .read(selectedOviChipsProvider)
+                                    .contains('Sick')) {
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .remove('Sick');
                                 } else {
-                                  selectedOviChips.add('Sick');
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .add('Sick');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Quarantined',
-                            selected: selectedOviChips.contains('Quarantined'),
+                            selected: ref
+                                .read(selectedOviChipsProvider)
+                                .contains('Quarantined'),
                             onTap: () {
                               setState(() {
-                                if (selectedOviChips.contains('Quarantined')) {
-                                  selectedOviChips.remove('Quarantined');
+                                if (ref
+                                    .read(selectedOviChipsProvider)
+                                    .contains('Quarantined')) {
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .remove('Quarantined');
                                 } else {
-                                  selectedOviChips.add('Quarantined');
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .add('Quarantined');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Medication',
-                            selected: selectedOviChips.contains('Medication'),
+                            selected: ref
+                                .read(selectedOviChipsProvider)
+                                .contains('Medication'),
                             onTap: () {
                               setState(() {
-                                if (selectedOviChips.contains('Medication')) {
-                                  selectedOviChips.remove('Medication');
+                                if (ref
+                                    .read(selectedOviChipsProvider)
+                                    .contains('Medication')) {
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .remove('Medication');
                                 } else {
-                                  selectedOviChips.add('Medication');
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .add('Medication');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Testing',
-                            selected: selectedOviChips.contains('Testing'),
+                            selected: ref
+                                .read(selectedOviChipsProvider)
+                                .contains('Testing'),
                             onTap: () {
                               setState(() {
-                                if (selectedOviChips.contains('Testing')) {
-                                  selectedOviChips.remove('Testing');
+                                if (ref
+                                    .read(selectedOviChipsProvider)
+                                    .contains('Testing')) {
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .remove('Testing');
                                 } else {
-                                  selectedOviChips.add('Testing');
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .add('Testing');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Pregnant',
-                            selected: selectedOviChips.contains('Pregnant'),
+                            selected: ref
+                                .read(selectedOviChipsProvider)
+                                .contains('Pregnant'),
                             onTap: () {
                               setState(() {
-                                if (selectedOviChips.contains('Pregnant')) {
-                                  selectedOviChips.remove('Pregnant');
+                                if (ref
+                                    .read(selectedOviChipsProvider)
+                                    .contains('Pregnant')) {
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .remove('Pregnant');
                                 } else {
-                                  selectedOviChips.add('Pregnant');
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .add('Pregnant');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Lactating',
-                            selected: selectedOviChips.contains('Lactating'),
+                            selected: ref
+                                .read(selectedOviChipsProvider)
+                                .contains('Lactating'),
                             onTap: () {
                               setState(() {
-                                if (selectedOviChips.contains('Lactating')) {
-                                  selectedOviChips.remove('Lactating');
+                                if (ref
+                                    .read(selectedOviChipsProvider)
+                                    .contains('Lactating')) {
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .remove('Lactating');
                                 } else {
-                                  selectedOviChips.add('Lactating');
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .add('Lactating');
                                 }
                               });
                             },
@@ -707,26 +700,42 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                         children: [
                           CustomTag(
                             label: 'Sold',
-                            selected: selectedOviChips.contains('Sold'),
+                            selected: ref
+                                .read(selectedOviChipsProvider)
+                                .contains('Sold'),
                             onTap: () {
                               setState(() {
-                                if (selectedOviChips.contains('Sold')) {
-                                  selectedOviChips.remove('Sold');
+                                if (ref
+                                    .read(selectedOviChipsProvider)
+                                    .contains('Sold')) {
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .remove('Sold');
                                 } else {
-                                  selectedOviChips.add('Sold');
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .add('Sold');
                                 }
                               });
                             },
                           ),
                           CustomTag(
                             label: 'Dead',
-                            selected: selectedOviChips.contains('Dead'),
+                            selected: ref
+                                .read(selectedOviChipsProvider)
+                                .contains('Dead'),
                             onTap: () {
                               setState(() {
-                                if (selectedOviChips.contains('Dead')) {
-                                  selectedOviChips.remove('Dead');
+                                if (ref
+                                    .read(selectedOviChipsProvider)
+                                    .contains('Dead')) {
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .remove('Dead');
                                 } else {
-                                  selectedOviChips.add('Dead');
+                                  ref
+                                      .read(selectedOviChipsProvider)
+                                      .add('Dead');
                                 }
                               });
                             },
@@ -742,8 +751,8 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                             child: ElevatedButton(
                               onPressed: () {
                                 // Handle the button press here
-                                Navigator.of(context)
-                                    .pop(selectedOviChips); // Close the modal
+                                Navigator.of(context).pop(ref.read(
+                                    selectedOviChipsProvider)); // Close the modal
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color.fromARGB(
@@ -801,13 +810,12 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                 ),
                 TextField(
                   onChanged: (value) {
-                    setState(() {
-                      fieldName = value;
-                    });
+                    ref
+                        .read(fieldNameProvider.notifier)
+                        .update((state) => value);
                   },
                   decoration: InputDecoration(
-                    labelText:
-                        'Enter Field Name', // Change to your desired placeholder
+                    labelText: 'Enter Field Name',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(50.0),
                       borderSide: const BorderSide(
@@ -820,42 +828,41 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                       horizontal: 16.0,
                     ),
                   ),
-                  controller:
-                      TextEditingController(), // You can initialize with default text if needed
                 ),
                 const SizedBox(
                   height: 35,
                 ),
                 ButtonWidget(
                   onPressed: () {
-                    Navigator.pop(context); // Close the modal
-                    _showOviFieldContentModal(context, fieldName);
-                    // Add your continue button logic here
+                    Navigator.pop(context);
+                    _showOviFieldContentModal(context);
                   },
                   buttonText: 'Confirm',
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                Row(children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(
-                            255, 238, 238, 238), // Button color
-                        foregroundColor: Colors.black, // Text color
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromARGB(255, 238, 238, 238),
+                          foregroundColor: Colors.black,
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
                         ),
+                        child: const Text('Cancel'),
                       ),
-                      child: const Text('Cancel'), // Button text
                     ),
-                  ),
-                ]),
+                  ],
+                ),
               ],
             ),
           ),
@@ -864,7 +871,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
     );
   }
 
-  void _showOviFieldContentModal(BuildContext context, String fieldName) {
+  void _showOviFieldContentModal(BuildContext context) {
     showModalBottomSheet(
       showDragHandle: true,
       context: context,
@@ -889,8 +896,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                 TextField(
                   maxLines: 5,
                   decoration: InputDecoration(
-                    labelText:
-                        'Enter Field Content', // Change to your desired placeholder
+                    labelText: 'Enter Field Content',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                       borderSide: const BorderSide(
@@ -904,7 +910,9 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                     ),
                   ),
                   onChanged: (value) {
-                    fieldContent = value;
+                    ref
+                        .read(fieldContentProvider.notifier)
+                        .update((state) => value);
                   },
                 ),
                 const SizedBox(
@@ -912,35 +920,35 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                 ),
                 ButtonWidget(
                   onPressed: () {
-                    Navigator.pop(context); // Close the modal
-                    _addNewOviTextField(fieldName, fieldContent);
-                    // Add your continue button logic here
+                    Navigator.pop(context);
+                    _addNewOviTextField(context);
                   },
                   buttonText: 'Confirm',
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                Row(children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Handle the button press here
-                        Navigator.pop(context); // Close the modal
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(
-                            255, 238, 238, 238), // Button color
-                        foregroundColor: Colors.black, // Text color
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromARGB(255, 238, 238, 238),
+                          foregroundColor: Colors.black,
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
                         ),
+                        child: const Text('Cancel'),
                       ),
-                      child: const Text('Cancel'), // Button text
                     ),
-                  ),
-                ]),
+                  ],
+                ),
               ],
             ),
           ),
@@ -949,36 +957,38 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
     );
   }
 
-  void _addNewOviTextField(String name, String content) {
-    setState(() {
-      customOviTextFields.add(
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 10),
-            Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
-            const SizedBox(height: 10),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50.0),
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                    width: 2.0,
+  void _addNewOviTextField(BuildContext context) {
+    final fieldName = ref.read(fieldNameProvider);
+    final fieldContent = ref.read(fieldContentProvider);
+
+    ref.read(customOviTextFieldsProvider).add(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 10),
+              Text(fieldName,
+                  style: const TextStyle(fontWeight: FontWeight.bold)),
+              const SizedBox(height: 10),
+              TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                    borderSide: const BorderSide(
+                      color: Colors.grey,
+                      width: 2.0,
+                    ),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(
+                    vertical: 12.0,
+                    horizontal: 16.0,
                   ),
                 ),
-                contentPadding: const EdgeInsets.symmetric(
-                  vertical: 12.0,
-                  horizontal: 16.0,
-                ),
+                controller: TextEditingController(text: fieldContent),
               ),
-              controller: TextEditingController(text: content),
-            ),
-            const SizedBox(height: 15), // Add spacing between fields
-          ],
-        ),
-      );
-    });
+              const SizedBox(height: 15),
+            ],
+          ),
+        );
   }
 
   void _showMammalDateSelectionSheet(BuildContext context) async {
@@ -1061,6 +1071,10 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
     final selectedAnimalImage = ref.watch(selectedAnimalImageProvider);
     final animalDam = ref.watch(animalDamDetailsProvider);
     final animalSire = ref.watch(animalSireDetailsProvider);
+
+    final chips = ref.watch(selectedOviChipsProvider);
+    final customFields = ref.watch(customOviTextFieldsProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -1131,8 +1145,8 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                 ),
               ),
               const SizedBox(height: 45),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 1),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 1),
                 child: Text(
                   'Name',
                   style: TextStyle(
@@ -1293,7 +1307,10 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    selectedOviGender = 'Unknown';
+                    ref
+                        .read(selectedOviGenderProvider.notifier)
+                        .update((state) => 'Unknown');
+                    // selectedOviGender = 'Unknown';
                     showAdditionalFields = false;
                   });
                 },
@@ -1313,10 +1330,14 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: selectedOviGender == 'Unknown'
-                              ? Colors.green
-                              : Colors.grey,
-                          width: selectedOviGender == 'Unknown' ? 6.0 : 2.0,
+                          color:
+                              ref.read(selectedOviGenderProvider) == 'Unknown'
+                                  ? Colors.green
+                                  : Colors.grey,
+                          width:
+                              ref.read(selectedOviGenderProvider) == 'Unknown'
+                                  ? 6.0
+                                  : 2.0,
                         ),
                       ),
                     ),
@@ -1327,7 +1348,9 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    selectedOviGender = 'Male';
+                    ref
+                        .read(selectedOviGenderProvider.notifier)
+                        .update((state) => 'Male');
                     showAdditionalFields = false;
                   });
                 },
@@ -1347,10 +1370,12 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: selectedOviGender == 'Male'
+                          color: ref.read(selectedOviGenderProvider) == 'Male'
                               ? Colors.green
                               : Colors.grey,
-                          width: selectedOviGender == 'Male' ? 6.0 : 2.0,
+                          width: ref.read(selectedOviGenderProvider) == 'Male'
+                              ? 6.0
+                              : 2.0,
                         ),
                       ),
                     ),
@@ -1361,7 +1386,9 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    selectedOviGender = 'Female';
+                    ref
+                        .read(selectedOviGenderProvider.notifier)
+                        .update((state) => 'Female');
                     showAdditionalFields = true;
                     // Show additional fields when Female is selected
                   });
@@ -1382,10 +1409,12 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: selectedOviGender == 'Female'
+                          color: ref.read(selectedOviGenderProvider) == 'Female'
                               ? Colors.green
                               : Colors.grey,
-                          width: selectedOviGender == 'Female' ? 6.0 : 2.0,
+                          width: ref.read(selectedOviGenderProvider) == 'Female'
+                              ? 6.0
+                              : 2.0,
                         ),
                       ),
                     ),
@@ -1409,6 +1438,11 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                       ),
                       const SizedBox(height: 10),
                       TextFormField(
+                        onChanged: (value) {
+                          ref
+                              .read(layingFrequencyProvider.notifier)
+                              .update((state) => value);
+                        },
                         controller: _frequencyEggsController,
                         decoration: InputDecoration(
                           hintText:
@@ -1432,6 +1466,11 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                       ),
                       const SizedBox(height: 10),
                       TextFormField(
+                        onChanged: (value) {
+                          ref
+                              .read(eggsPerMonthProvider.notifier)
+                              .update((state) => value);
+                        },
                         controller: _numberofEggsController,
                         decoration: InputDecoration(
                           hintText:
@@ -1467,6 +1506,9 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                       const SizedBox(height: 10),
                       GestureDetector(
                         onTap: () {
+                          ref
+                              .read(selectedBreedingStageProvider.notifier)
+                              .update((state) => 'Ready For Breeding');
                           setState(() {
                             selectedBreedingStage = 'Ready For Breeding';
                           });
@@ -1487,14 +1529,16 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  color: selectedBreedingStage ==
-                                          'Ready For Breeding'
-                                      ? Colors.green
-                                      : Colors.grey,
-                                  width: selectedBreedingStage ==
-                                          'Ready For Breeding'
-                                      ? 6.0
-                                      : 2.0,
+                                  color:
+                                      ref.read(selectedBreedingStageProvider) ==
+                                              'Ready For Breeding'
+                                          ? Colors.green
+                                          : Colors.grey,
+                                  width:
+                                      ref.read(selectedBreedingStageProvider) ==
+                                              'Ready For Breeding'
+                                          ? 6.0
+                                          : 2.0,
                                 ),
                               ),
                             ),
@@ -1504,6 +1548,9 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                       const SizedBox(height: 10),
                       GestureDetector(
                         onTap: () {
+                          ref
+                              .read(selectedBreedingStageProvider.notifier)
+                              .update((state) => 'Pregnant');
                           setState(() {
                             selectedBreedingStage = 'Pregnant';
                           });
@@ -1524,12 +1571,16 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  color: selectedBreedingStage == 'Pregnant'
-                                      ? Colors.green
-                                      : Colors.grey,
-                                  width: selectedBreedingStage == 'Pregnant'
-                                      ? 6.0
-                                      : 2.0,
+                                  color:
+                                      ref.read(selectedBreedingStageProvider) ==
+                                              'Pregnant'
+                                          ? Colors.green
+                                          : Colors.grey,
+                                  width:
+                                      ref.read(selectedBreedingStageProvider) ==
+                                              'Pregnant'
+                                          ? 6.0
+                                          : 2.0,
                                 ),
                               ),
                             ),
@@ -1539,6 +1590,9 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                       const SizedBox(height: 10),
                       GestureDetector(
                         onTap: () {
+                          ref
+                              .read(selectedBreedingStageProvider.notifier)
+                              .update((state) => 'Lactating');
                           setState(() {
                             selectedBreedingStage = 'Lactating';
                           });
@@ -1559,12 +1613,16 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  color: selectedBreedingStage == 'Lactating'
-                                      ? Colors.green
-                                      : Colors.grey,
-                                  width: selectedBreedingStage == 'Lactating'
-                                      ? 6.0
-                                      : 2.0,
+                                  color:
+                                      ref.read(selectedBreedingStageProvider) ==
+                                              'Lactating'
+                                          ? Colors.green
+                                          : Colors.grey,
+                                  width:
+                                      ref.read(selectedBreedingStageProvider) ==
+                                              'Lactating'
+                                          ? 6.0
+                                          : 2.0,
                                 ),
                               ),
                             ),
@@ -1597,12 +1655,13 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               DateTextField(
                 onDateSelected: setSelectedDate,
               ),
+              const SizedBox(height: 10),
               _buildOviDateFields(),
               TextButton(
                 onPressed: () {
-                  if (selectedAnimalType == 'Mammal') {
+                  if (selectedAnimalType == 'Oviparous') {
                     _showDateSelectionSheet(context);
-                  } else if (selectedAnimalType == 'Oviparous') {
+                  } else if (selectedAnimalType == 'Mammal') {
                     _showMammalDateSelectionSheet(context);
                   }
                 },
@@ -1627,13 +1686,13 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               Wrap(
                 spacing: 8.0,
                 runSpacing: 8.0,
-                children: selectedOviChips.map((chip) {
+                children: chips.map((chip) {
                   return CustomTag(
                     label: chip,
                     selected: true, // Since these are selected chips
                     onTap: () {
                       setState(() {
-                        selectedOviChips.remove(chip); // To deselect the chip
+                        chips.remove(chip); // To deselect the chip
                       });
                     },
                   );
@@ -1661,7 +1720,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                 ),
               ),
               Column(
-                children: customOviTextFields,
+                children: customFields,
               ),
               TextButton(
                 onPressed: () {
@@ -1678,7 +1737,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               const Divider(),
               const SizedBox(height: 10),
               const Text(
-                "Additional Notes",
+                'Additional Notes',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -1686,6 +1745,11 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               ),
               const SizedBox(height: 10),
               TextFormField(
+                onChanged: (value) {
+                  ref
+                      .read(additionalnotesProvider.notifier)
+                      .update((state) => value);
+                },
                 maxLines: 6, // Set the maximum number of lines
                 controller: _notesController,
                 decoration: InputDecoration(
@@ -1793,8 +1857,13 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
   Widget _buildOviDateFields() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: selectedOviDates.keys.map((dateType) {
-        final selectedDate = selectedOviDates[dateType];
+      children: ref
+          .read(selectedOviDatesProvider.notifier)
+          .state
+          .keys
+          .map((dateType) {
+        final selectedDate =
+            ref.read(selectedOviDatesProvider.notifier).state[dateType];
         if (selectedDate != null) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1845,7 +1914,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                     ),
                     onPressed: () {
                       setState(() {
-                        selectedOviDates[dateType] = null;
+                        ref.read(selectedOviDatesProvider)[dateType] = null;
                       });
                     },
                   ),

@@ -133,12 +133,16 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
   }
 
   void addOviAnimal(String eventNumber) {
+    final container = ProviderContainer();
+    final animalSire = container.read(animalSireDetailsProvider);
+    final animalDam = container.read(animalDamDetailsProvider);
+    // ... (read other providers similarly)
     // final selectedAnimalImage = ref.watch(selectedAnimalImageProvider);
     // ignore: non_constant_identifier_names
     final OviDetails = OviVariables(
       eventNumber: eventNumber,
-      selectedOviSire: widget.selectedOviSire,
-      selectedOviDam: widget.selectedOviDam,
+      selectedOviSire: animalSire,
+      selectedOviDam: animalDam,
       species: widget.selectedAnimalSpecies,
       selectedDate: widget.selectedDate,
       fieldName: widget.fieldName,
@@ -193,8 +197,37 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
           type.contains(filterQuery.toLowerCase()) ||
           species.contains(filterQuery.toLowerCase());
     }).toList();
-    final animalName = ref.watch(animalNameProvider);
+
     final selectedAnimalImage = ref.watch(selectedAnimalImageProvider);
+
+    void addOviAnimal(String eventNumber) {
+      final OviDetails = OviVariables(
+        eventNumber: eventNumber,
+        selectedOviSire: widget.selectedOviSire,
+        selectedOviDam: widget.selectedOviDam,
+        species: widget.selectedAnimalSpecies,
+        selectedDate: widget.selectedDate,
+        fieldName: widget.fieldName,
+        fieldContent: widget.fieldContent,
+        notes: widget.notesController.text,
+        selectedOviGender: widget.selectedOviGender,
+        selectedOviDates: widget.selectedOviDates,
+        selectedAnimalBreed: widget.selectedAnimalBreed,
+        selectedAnimalSpecies: widget.selectedAnimalSpecies,
+        selectedAnimalType: widget.selectedAnimalType,
+        selectedOviChips: widget.selectedOviChips,
+        selectedOviImage: widget.selectedOviImage,
+        selectedFilters: widget.selectedFilters,
+      );
+
+      setState(() {
+        if (OviAnimals.isEmpty) {
+          OviAnimals.add(OviDetails);
+        } else {
+          OviAnimals.insert(0, OviDetails);
+        }
+      });
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -331,7 +364,7 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                     radius: 25,
                     backgroundColor: Colors.grey[100],
                     backgroundImage: selectedAnimalImage != null
-                        ? FileImage(selectedAnimalImage!)
+                        ? FileImage(selectedAnimalImage)
                         : null,
                     child: selectedAnimalImage == null
                         ? const Icon(
