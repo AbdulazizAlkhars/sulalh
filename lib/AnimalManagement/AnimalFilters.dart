@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/Tags.dart';
 
@@ -422,41 +421,41 @@ class _AnimalFilters extends State<AnimalFilters> {
         padding: const EdgeInsets.all(16),
         child: ButtonWidget(
           onPressed: () {
-            List<String> selectedFiltersList = [];
-            selectedAnimals.forEach((key, value) {
-              if (value != null) {
-                selectedFiltersList.add(value);
-              }
-            });
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ListOfAnimals(
-                  selectedFilters: selectedFiltersList,
-                  fieldName: widget.fieldName,
-                  fieldContent: widget.fieldContent,
-                  notesController: widget.notesController,
-                  selectedOviSire: widget.selectedOviSire,
-                  selectedOviDam: widget.selectedOviDam,
-                  selectedOviChips: widget.selectedOviChips,
-                  selectedOviDates: widget.selectedOviDates,
-                  showAdditionalFields: widget.showAdditionalFields,
-                  selectedOviDateType: widget.selectedOviDateType,
-                  selectedOviGender: widget.selectedOviGender,
-                  addOviParents: widget.addOviParents,
-                  addOviChildren: widget.addOviChildren,
-                  selectedOviImage: widget.selectedOviImage,
-                  nameController: widget.nameController,
-                  selectedDate: widget.selectedDate,
-                  frequencyEggsController: widget.frequencyEggsController,
-                  numberofEggsController: widget.numberofEggsController,
-                  selectedAnimalType: widget.selectedAnimalType,
-                  selectedAnimalSpecies: widget.selectedAnimalSpecies,
-                  selectedAnimalBreed: widget.selectedAnimalBreed,
-                  shouldAddAnimal: false,
-                ),
-              ),
-            );
+            // List<String> selectedFiltersList = [];
+            // selectedAnimals.forEach((key, value) {
+            //   if (value != null) {
+            //     selectedFiltersList.add(value);
+            //   }
+            // });
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => ListOfAnimals(
+            //       selectedFilters: selectedFiltersList,
+            //       fieldName: widget.fieldName,
+            //       fieldContent: widget.fieldContent,
+            //       notesController: widget.notesController,
+            //       selectedOviSire: widget.selectedOviSire,
+            //       selectedOviDam: widget.selectedOviDam,
+            //       selectedOviChips: widget.selectedOviChips,
+            //       selectedOviDates: widget.selectedOviDates,
+            //       showAdditionalFields: widget.showAdditionalFields,
+            //       selectedOviDateType: widget.selectedOviDateType,
+            //       selectedOviGender: widget.selectedOviGender,
+            //       addOviParents: widget.addOviParents,
+            //       addOviChildren: widget.addOviChildren,
+            //       selectedOviImage: widget.selectedOviImage,
+            //       nameController: widget.nameController,
+            //       selectedDate: widget.selectedDate,
+            //       frequencyEggsController: widget.frequencyEggsController,
+            //       numberofEggsController: widget.numberofEggsController,
+            //       selectedAnimalType: widget.selectedAnimalType,
+            //       selectedAnimalSpecies: widget.selectedAnimalSpecies,
+            //       selectedAnimalBreed: widget.selectedAnimalBreed,
+            //       shouldAddAnimal: false,
+            //     ),
+            //   ),
+            // );
           },
           buttonText: 'Continue',
         ),

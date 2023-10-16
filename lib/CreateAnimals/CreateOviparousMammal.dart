@@ -28,12 +28,12 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
   String fieldContent = '';
   String selectedOviSire = 'Add';
   String selectedOviDam = 'Add';
-  String selectedDate = '';
+  // String selectedDate = '';
   String selectedBreedingStage = '';
 
-  void setSelectedDate(String date) {
+  void dateOfBirth(String DateOfBirth) {
     setState(() {
-      ref.read(dateOfBirthProvider.notifier).update((state) => date);
+      ref.read(dateOfBirthProvider.notifier).update((state) => DateOfBirth);
     });
   }
 
@@ -1653,17 +1653,13 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               ),
               const SizedBox(height: 10),
               DateTextField(
-                onDateSelected: setSelectedDate,
+                onDateSelected: dateOfBirth,
               ),
               const SizedBox(height: 10),
               _buildOviDateFields(),
               TextButton(
                 onPressed: () {
-                  if (selectedAnimalType == 'Oviparous') {
-                    _showDateSelectionSheet(context);
-                  } else if (selectedAnimalType == 'Mammal') {
-                    _showMammalDateSelectionSheet(context);
-                  }
+                  _showDateSelectionSheet(context);
                 },
                 child: const Text(
                   'Add Date +',
@@ -1811,30 +1807,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => ListOfAnimals(
-                  fieldName: fieldName,
-                  fieldContent: fieldContent,
-                  numberofEggsController: _numberofEggsController,
-                  frequencyEggsController: _frequencyEggsController,
-                  nameController: _nameController,
-                  notesController: _notesController,
-                  selectedOviSire: selectedOviSire,
-                  selectedDate: selectedDate,
-                  selectedOviDam: selectedOviDam,
-                  selectedOviChips: selectedOviChips,
-                  selectedOviDates: selectedOviDates,
-                  showAdditionalFields: showAdditionalFields,
-                  selectedOviDateType: selectedOviDateType,
-                  selectedOviGender: selectedOviGender,
-                  addOviParents: _addAnimalParents,
-                  addOviChildren: _addOviChildren,
-                  selectedOviImage: _selectedOviImage,
-                  selectedFilters: [],
-                  shouldAddAnimal: true,
-                  selectedAnimalType: '',
-                  selectedAnimalSpecies: '',
-                  selectedAnimalBreed: '',
-                ),
+                builder: (context) => ListOfAnimals(),
               ),
             );
           },

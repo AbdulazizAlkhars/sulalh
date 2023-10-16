@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hathera_demo/AnimalManagement/AnimalFilters.dart';
 import 'package:hathera_demo/Animal_Information/OviparousGeneralInfo.dart';
 import 'package:hathera_demo/CreateAnimals/CreateAnimal1.dart';
 import 'package:hathera_demo/Riverpod/Globalvariables.dart';
@@ -12,7 +10,7 @@ class OviVariables {
   final String eventNumber;
   final String selectedOviSire;
   final String selectedOviDam;
-  final String selectedDate;
+  final String dateOfBirth;
   final String fieldName;
   final String fieldContent;
   final String notes;
@@ -23,19 +21,17 @@ class OviVariables {
   final String selectedAnimalType;
   final List<String> selectedOviChips;
   final File? selectedOviImage;
-
-  // final String children;
-  // final String breedingDate;
-  // final String deliveryDate;
-  // final String notes;
-  final String species;
+  final String layingFrequency;
+  final String eggsPerMonth;
+  final String selectedBreedingStage;
+  final bool shouldAddAnimal;
 
   OviVariables({
     required this.selectedFilters,
     required this.eventNumber,
     required this.selectedOviSire,
     required this.selectedOviDam,
-    required this.selectedDate,
+    required this.dateOfBirth,
     required this.selectedOviGender,
     required this.fieldName,
     required this.fieldContent,
@@ -46,12 +42,10 @@ class OviVariables {
     required this.selectedAnimalType,
     required this.selectedOviChips,
     required this.selectedOviImage,
-
-    // required this.children,
-    // required this.breedingDate,
-    // required this.deliveryDate,
-    // required this.notes,
-    required this.species,
+    required this.layingFrequency,
+    required this.eggsPerMonth,
+    required this.selectedBreedingStage,
+    required this.shouldAddAnimal,
   });
 }
 
@@ -59,57 +53,8 @@ List<OviVariables> OviAnimals = [];
 
 // ignore: must_be_immutable
 class ListOfAnimals extends ConsumerStatefulWidget {
-  final List<String> selectedFilters;
-  final bool shouldAddAnimal;
-  // Define the variables to hold the data
-  final String fieldName;
-  final String fieldContent;
-  final TextEditingController notesController;
-  final String selectedOviSire;
-  final String selectedDate;
-  final String selectedOviDam;
-  TextEditingController nameController;
-  TextEditingController frequencyEggsController;
-  TextEditingController numberofEggsController;
-  // final DateTime? selectedOviDate;
-  final List<String> selectedOviChips;
-  final Map<String, DateTime?> selectedOviDates;
-  final bool showAdditionalFields;
-  final String selectedOviDateType;
-  final String selectedOviGender;
-  final bool addOviParents;
-  final bool addOviChildren;
-  final File? selectedOviImage;
-  final String selectedAnimalType;
-  final String selectedAnimalSpecies;
-  final String selectedAnimalBreed;
-
-  // Constructor to receive the data
   ListOfAnimals({
     super.key,
-    required this.shouldAddAnimal,
-    required this.selectedFilters,
-    required this.fieldName,
-    required this.fieldContent,
-    required this.notesController,
-    required this.selectedOviSire,
-    required this.selectedOviDam,
-    // required this.selectedOviDate,
-    required this.selectedOviChips,
-    required this.selectedOviDates,
-    required this.showAdditionalFields,
-    required this.selectedOviDateType,
-    required this.selectedOviGender,
-    required this.addOviParents,
-    required this.addOviChildren,
-    required this.selectedOviImage,
-    required this.nameController,
-    required this.selectedDate,
-    required this.frequencyEggsController,
-    required this.numberofEggsController,
-    required this.selectedAnimalType,
-    required this.selectedAnimalSpecies,
-    required this.selectedAnimalBreed,
   });
 
   @override
@@ -127,35 +72,33 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
     _updateFilteredOviAnimals();
 
     // Add the initial breeding event to the list only if shouldAddAnimal is true
-    if (widget.nameController.text.isNotEmpty && widget.shouldAddAnimal) {
-      addOviAnimal(widget.nameController.text);
+    if (ref.read(animalNameProvider).isNotEmpty &&
+        ref.read(shoudlAddAnimalProvider)) {
+      addOviAnimal(ref.read(animalNameProvider));
     }
   }
 
   void addOviAnimal(String eventNumber) {
-    final container = ProviderContainer();
-    final animalSire = container.read(animalSireDetailsProvider);
-    final animalDam = container.read(animalDamDetailsProvider);
-    // ... (read other providers similarly)
-    // final selectedAnimalImage = ref.watch(selectedAnimalImageProvider);
-    // ignore: non_constant_identifier_names
     final OviDetails = OviVariables(
       eventNumber: eventNumber,
-      selectedOviSire: animalSire,
-      selectedOviDam: animalDam,
-      species: widget.selectedAnimalSpecies,
-      selectedDate: widget.selectedDate,
-      fieldName: widget.fieldName,
-      fieldContent: widget.fieldContent,
-      notes: widget.notesController.text,
-      selectedOviGender: widget.selectedOviGender,
-      selectedOviDates: widget.selectedOviDates,
-      selectedAnimalBreed: widget.selectedAnimalBreed,
-      selectedAnimalSpecies: widget.selectedAnimalSpecies,
-      selectedAnimalType: widget.selectedAnimalType,
-      selectedOviChips: widget.selectedOviChips,
-      selectedOviImage: widget.selectedOviImage,
-      selectedFilters: widget.selectedFilters,
+      shouldAddAnimal: ref.read(shoudlAddAnimalProvider),
+      selectedBreedingStage: ref.read(selectedBreedingStageProvider),
+      layingFrequency: ref.read(layingFrequencyProvider),
+      eggsPerMonth: ref.read(eggsPerMonthProvider),
+      selectedOviSire: ref.read(animalSireDetailsProvider),
+      selectedOviDam: ref.read(animalDamDetailsProvider),
+      dateOfBirth: ref.read(dateOfBirthProvider),
+      fieldName: ref.read(fieldNameProvider),
+      fieldContent: ref.read(fieldContentProvider),
+      notes: ref.read(additionalnotesProvider),
+      selectedOviGender: ref.read(selectedOviGenderProvider),
+      selectedOviDates: ref.read(selectedOviDatesProvider),
+      selectedAnimalBreed: ref.read(selectedAnimalBreedsProvider),
+      selectedAnimalSpecies: ref.read(selectedAnimalSpeciesProvider),
+      selectedAnimalType: ref.read(selectedAnimalTypeProvider),
+      selectedOviChips: ref.read(selectedOviChipsProvider),
+      selectedOviImage: ref.read(selectedAnimalImageProvider),
+      selectedFilters: ref.read(selectedFiltersProvider),
     );
 
     setState(() {
@@ -177,7 +120,7 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
 
   void _removeSelectedFilter(String filter) {
     setState(() {
-      widget.selectedFilters.remove(filter);
+      ref.read(selectedFiltersProvider).remove(filter);
       _updateFilteredOviAnimals(); // Update the filtered list after removing a filter
     });
   }
@@ -197,37 +140,6 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
           type.contains(filterQuery.toLowerCase()) ||
           species.contains(filterQuery.toLowerCase());
     }).toList();
-
-    final selectedAnimalImage = ref.watch(selectedAnimalImageProvider);
-
-    void addOviAnimal(String eventNumber) {
-      final OviDetails = OviVariables(
-        eventNumber: eventNumber,
-        selectedOviSire: widget.selectedOviSire,
-        selectedOviDam: widget.selectedOviDam,
-        species: widget.selectedAnimalSpecies,
-        selectedDate: widget.selectedDate,
-        fieldName: widget.fieldName,
-        fieldContent: widget.fieldContent,
-        notes: widget.notesController.text,
-        selectedOviGender: widget.selectedOviGender,
-        selectedOviDates: widget.selectedOviDates,
-        selectedAnimalBreed: widget.selectedAnimalBreed,
-        selectedAnimalSpecies: widget.selectedAnimalSpecies,
-        selectedAnimalType: widget.selectedAnimalType,
-        selectedOviChips: widget.selectedOviChips,
-        selectedOviImage: widget.selectedOviImage,
-        selectedFilters: widget.selectedFilters,
-      );
-
-      setState(() {
-        if (OviAnimals.isEmpty) {
-          OviAnimals.add(OviDetails);
-        } else {
-          OviAnimals.insert(0, OviDetails);
-        }
-      });
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -252,8 +164,8 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                 ),
               ).then((_) {
                 // When returning from CreateBreedingEvents, add the new event
-                if (widget.nameController.text.isNotEmpty) {
-                  addOviAnimal(widget.nameController.text);
+                if (ref.read(animalNameProvider).isNotEmpty) {
+                  addOviAnimal(ref.read(animalNameProvider));
                 }
               });
             }, // Call the addAnimal function when the button is pressed
@@ -284,40 +196,40 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                             size: 30,
                           ),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => AnimalFilters(
-                                  fieldName: widget.fieldName,
-                                  fieldContent: widget.fieldContent,
-                                  notesController: widget.notesController,
-                                  selectedOviSire: widget.selectedOviSire,
-                                  selectedOviDam: widget.selectedOviDam,
-                                  selectedOviChips: widget.selectedOviChips,
-                                  selectedOviDates: widget.selectedOviDates,
-                                  showAdditionalFields:
-                                      widget.showAdditionalFields,
-                                  selectedOviDateType:
-                                      widget.selectedOviDateType,
-                                  selectedOviGender: widget.selectedOviGender,
-                                  addOviParents: widget.addOviParents,
-                                  addOviChildren: widget.addOviChildren,
-                                  selectedOviImage: widget.selectedOviImage,
-                                  nameController: widget.nameController,
-                                  selectedDate: widget.selectedDate,
-                                  frequencyEggsController:
-                                      widget.frequencyEggsController,
-                                  numberofEggsController:
-                                      widget.numberofEggsController,
-                                  selectedAnimalType: widget.selectedAnimalType,
-                                  selectedAnimalSpecies:
-                                      widget.selectedAnimalSpecies,
-                                  selectedAnimalBreed:
-                                      widget.selectedAnimalBreed,
-                                  selectedOviDate: null,
-                                ),
-                              ),
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => AnimalFilters(
+                            //       fieldName: widget.fieldName,
+                            //       fieldContent: widget.fieldContent,
+                            //       notesController: widget.notesController,
+                            //       selectedOviSire: widget.selectedOviSire,
+                            //       selectedOviDam: widget.selectedOviDam,
+                            //       selectedOviChips: widget.selectedOviChips,
+                            //       selectedOviDates: widget.selectedOviDates,
+                            //       showAdditionalFields:
+                            //           widget.showAdditionalFields,
+                            //       selectedOviDateType:
+                            //           widget.selectedOviDateType,
+                            //       selectedOviGender: widget.selectedOviGender,
+                            //       addOviParents: widget.addOviParents,
+                            //       addOviChildren: widget.addOviChildren,
+                            //       selectedOviImage: widget.selectedOviImage,
+                            //       nameController: widget.nameController,
+                            //       selectedDate: widget.selectedDate,
+                            //       frequencyEggsController:
+                            //           widget.frequencyEggsController,
+                            //       numberofEggsController:
+                            //           widget.numberofEggsController,
+                            //       selectedAnimalType: widget.selectedAnimalType,
+                            //       selectedAnimalSpecies:
+                            //           widget.selectedAnimalSpecies,
+                            //       selectedAnimalBreed:
+                            //           widget.selectedAnimalBreed,
+                            //       selectedOviDate: null,
+                            //     ),
+                            //   ),
+                            // );
                           },
                         ),
                         border: InputBorder.none,
@@ -329,13 +241,14 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
             ),
           ),
           Visibility(
-            visible: widget.selectedFilters
+            visible: ref
+                .read(selectedFiltersProvider)
                 .isNotEmpty, // Show space if there are selected filters
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Wrap(
                 spacing: 8.0,
-                children: widget.selectedFilters.map((filter) {
+                children: ref.read(selectedFiltersProvider).map((filter) {
                   return Chip(
                     label: Text(filter),
                     backgroundColor: const Color.fromARGB(
@@ -363,10 +276,10 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                   leading: CircleAvatar(
                     radius: 25,
                     backgroundColor: Colors.grey[100],
-                    backgroundImage: selectedAnimalImage != null
-                        ? FileImage(selectedAnimalImage)
+                    backgroundImage: OviDetails.selectedOviImage != null
+                        ? FileImage(OviDetails.selectedOviImage!)
                         : null,
-                    child: selectedAnimalImage == null
+                    child: OviDetails.selectedOviImage == null
                         ? const Icon(
                             Icons.camera_alt_outlined,
                             size: 50,
@@ -375,7 +288,7 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                         : null,
                   ),
                   title: Text('${OviDetails.eventNumber}'),
-                  subtitle: Text('${widget.selectedAnimalType}'),
+                  subtitle: Text('${OviDetails.selectedAnimalType}'),
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(

@@ -360,7 +360,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
 
   @override
   Widget build(BuildContext context) {
-    final selectedDate = parseSelectedDate(widget.OviDetails.selectedDate);
+    final selectedDate = parseSelectedDate(widget.OviDetails.dateOfBirth);
 
     return Container(
       decoration: const BoxDecoration(
@@ -1018,8 +1018,11 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                             const SizedBox(height: 8),
                                             Text(
                                               widget.OviDetails
-                                                          .selectedOviGender ==
-                                                      'Male'
+                                                              .selectedOviGender ==
+                                                          'Male' &&
+                                                      widget.OviDetails
+                                                              .selectedAnimalType ==
+                                                          'Mammal'
                                                   ? 'Date Of Mating'
                                                   : 'Last Hatching Date',
                                               style: const TextStyle(
@@ -1032,19 +1035,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                         Column(
                                           children: [
                                             Text(
-                                              widget.OviDetails.selectedOviDates
-                                                          .entries
-                                                          .toList()[0]
-                                                          .value !=
-                                                      null
-                                                  ? DateFormat('dd.MM.yyyy')
-                                                      .format(widget
-                                                          .OviDetails
-                                                          .selectedOviDates
-                                                          .entries
-                                                          .toList()[0]
-                                                          .value!)
-                                                  : '',
+                                              widget.OviDetails.layingFrequency,
                                               style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 14,
@@ -1053,8 +1044,11 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                             const SizedBox(height: 8),
                                             Text(
                                               widget.OviDetails
-                                                          .selectedOviGender ==
-                                                      'Male'
+                                                              .selectedOviGender ==
+                                                          'Male' &&
+                                                      widget.OviDetails
+                                                              .selectedAnimalType ==
+                                                          'Mammal'
                                                   ? 'Next Date Of Mating'
                                                   : 'Frequency Of Laying Eggs',
                                               style: const TextStyle(
