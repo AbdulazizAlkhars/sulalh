@@ -36,3 +36,8 @@ final selectedOviChipsProvider = StateProvider<List<String>>((ref) => []);
 final customOviTextFieldsProvider = StateProvider<List<Widget>>((ref) => []);
 final selectedFiltersProvider = StateProvider<List<String>>((ref) => []);
 final dateOfBirthProvider = StateProvider<String>((ref) => '');
+final breedingEventNumberProvider = StateProvider<String>((ref) => '');
+final breedingSireDetailsProvider = StateProvider<String>((ref) => 'Add');
+final breedingDamDetailsProvider = StateProvider<String>((ref) => 'Add');
+final breedingPartnerDetailsProvider = StateProvider<String>((ref) => 'Add');
+final breedingDateProvider = StateProvider<String>((ref) => '');

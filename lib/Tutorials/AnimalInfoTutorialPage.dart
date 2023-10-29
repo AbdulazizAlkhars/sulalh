@@ -1,7 +1,8 @@
-import 'package:hathera_demo/HomeScreen/Registered/HomePage.dart';
+import 'package:hathera_demo/HomeScreen/GuestMode/GuestHomePage.dart';
+
 // ignore: depend_on_referenced_packages
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
+
 import 'package:showcaseview/showcaseview.dart';
 
 // ignore: must_be_immutable
@@ -988,7 +989,7 @@ class _AnimalInfoTutorialPage extends State<AnimalInfoTutorialPage>
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) =>
-                        const RegHomePage(), // Replace with your desired page.
+                        const HomeScreen1(), // Replace with your desired page.
                   ),
                 );
               },
@@ -1001,7 +1002,7 @@ class _AnimalInfoTutorialPage extends State<AnimalInfoTutorialPage>
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) =>
-                            const BottomNavigationBarPage(), // Replace with your desired page.
+                            const HomeScreen1(), // Replace with your desired page.
                       ),
                     );
                   },

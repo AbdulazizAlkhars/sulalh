@@ -55,7 +55,11 @@ class _HomeScreen1State extends State<HomeScreen1> {
                   text: 'Searching For Animals',
                   buttonText: 'Find Animals',
                   onPressed: () {
-                    // Handle button 1 press
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SearchPage()),
+                    );
                   },
                   color: const Color.fromARGB(
                       255, 197, 219, 158), // Set the color for the first card
@@ -67,7 +71,11 @@ class _HomeScreen1State extends State<HomeScreen1> {
                   text: 'Search For\nFarms',
                   buttonText: 'Find Farms',
                   onPressed: () {
-                    // Handle button 2 press
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SearchPage()),
+                    );
                   },
                   color: const Color.fromARGB(
                       255, 254, 255, 168), // Set the color for the second card

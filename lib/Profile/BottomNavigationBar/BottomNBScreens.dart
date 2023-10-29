@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hathera_demo/CreateAnimals/CreateAnimal1.dart';
+
+import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
 import 'package:hathera_demo/HomeScreen/Registered/HomePage.dart';
 import 'package:hathera_demo/Profile/ProfilePage.dart';
 
-class BottomNavigationBarPage extends StatefulWidget {
-  const BottomNavigationBarPage({super.key});
+class bottomNavigationBarPage extends StatefulWidget {
+  const bottomNavigationBarPage({super.key});
 
   @override
-  _BottomNavigationBarPageState createState() =>
-      _BottomNavigationBarPageState();
+  // ignore: library_private_types_in_public_api
+  bottomNavigationBarPageState createState() => bottomNavigationBarPageState();
 }
 
-class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
+class bottomNavigationBarPageState extends State<bottomNavigationBarPage> {
   int _currentIndex = 0;
 
   final List<Widget> pages = [
     const RegHomePage(),
-    const CreateAnimalPage(),
+    ListOfAnimals(),
     const ProfilePage(),
   ];
 

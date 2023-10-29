@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
+
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/Textformfield.dart';
 import 'package:image_picker/image_picker.dart';
@@ -29,7 +30,7 @@ class _AddSomeDetailsPageState extends State<AddSomeDetailsPage> {
                 onTap: () async {
                   Navigator.pop(context);
                   final pickedImage =
-                      await _picker.getImage(source: ImageSource.camera);
+                      await _picker.pickImage(source: ImageSource.camera);
                   if (pickedImage != null) {
                     setState(() {
                       _selectedImage = File(pickedImage.path);
@@ -43,7 +44,7 @@ class _AddSomeDetailsPageState extends State<AddSomeDetailsPage> {
                 onTap: () async {
                   Navigator.pop(context);
                   final pickedImage =
-                      await _picker.getImage(source: ImageSource.gallery);
+                      await _picker.pickImage(source: ImageSource.gallery);
                   if (pickedImage != null) {
                     setState(() {
                       _selectedImage = File(pickedImage.path);
@@ -166,7 +167,7 @@ class _AddSomeDetailsPageState extends State<AddSomeDetailsPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => BottomNavigationBarPage()),
+                        builder: (context) => bottomNavigationBarPage()),
                   );
                 },
                 buttonText: 'Continue'.tr,

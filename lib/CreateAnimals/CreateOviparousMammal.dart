@@ -49,7 +49,6 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
   bool _addOviChildren = false;
   // ignore: non_constant_identifier_names
   final ImagePicker _Animalpicker = ImagePicker();
-  File? _selectedOviImage;
 
   void _showImagePicker(BuildContext context) {
     showModalBottomSheet(
