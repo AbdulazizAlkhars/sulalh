@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
 
 final firstNameProvider = StateProvider<String>((ref) => '');
 final lastNameProvider = StateProvider<String>((ref) => '');
@@ -41,3 +42,4 @@ final breedingSireDetailsProvider = StateProvider<String>((ref) => 'Add');
 final breedingDamDetailsProvider = StateProvider<String>((ref) => 'Add');
 final breedingPartnerDetailsProvider = StateProvider<String>((ref) => 'Add');
 final breedingDateProvider = StateProvider<String>((ref) => '');
+final ovianimalsProvider = StateProvider<List<OviVariables>>((ref) => []);

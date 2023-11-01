@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:hathera_demo/Profile/Account_Setup/Add_Some_Details.dart';
 
 import 'package:hathera_demo/SplashScreen/SplashScreen.dart';
 
@@ -27,6 +28,6 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: SplashScreen());
+        home: AddSomeDetailsPage());
   }
 }

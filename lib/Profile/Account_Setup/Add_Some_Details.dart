@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
 
@@ -7,12 +8,12 @@ import 'package:hathera_demo/Widgets/Textformfield.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-class AddSomeDetailsPage extends StatefulWidget {
+class AddSomeDetailsPage extends ConsumerStatefulWidget {
   @override
   _AddSomeDetailsPageState createState() => _AddSomeDetailsPageState();
 }
 
-class _AddSomeDetailsPageState extends State<AddSomeDetailsPage> {
+class _AddSomeDetailsPageState extends ConsumerState<AddSomeDetailsPage> {
   final ImagePicker _picker = ImagePicker();
   File? _selectedImage;
 

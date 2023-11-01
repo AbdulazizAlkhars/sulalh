@@ -49,8 +49,6 @@ class OviVariables {
   });
 }
 
-List<OviVariables> OviAnimals = [];
-
 // ignore: must_be_immutable
 class ListOfAnimals extends ConsumerStatefulWidget {
   ListOfAnimals({
@@ -102,10 +100,10 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
     );
 
     setState(() {
-      if (OviAnimals.isEmpty) {
-        OviAnimals.add(OviDetails);
+      if (ref.read(ovianimalsProvider).isEmpty) {
+        ref.read(ovianimalsProvider).add(OviDetails);
       } else {
-        OviAnimals.insert(0, OviDetails);
+        ref.read(ovianimalsProvider).insert(0, OviDetails);
       }
     });
   }
@@ -130,7 +128,7 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
     BuildContext context,
   ) {
     // Filter the OviAnimals list based on the filterQuery
-    final filteredOviAnimals = OviAnimals.where((animal) {
+    final filteredOviAnimals = ref.read(ovianimalsProvider).where((animal) {
       final eventNumber = animal.eventNumber.toLowerCase();
       final type = animal.selectedAnimalType.toLowerCase();
       final species = animal.selectedAnimalSpecies.toLowerCase();

@@ -531,9 +531,9 @@ class _SearchFarmDetails extends ConsumerState<SearchFarmDetails> {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(32.0),
+        padding: const EdgeInsets.all(8.0),
         child: Container(
-          color: Colors.white,
+          color: Colors.transparent,
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () {},

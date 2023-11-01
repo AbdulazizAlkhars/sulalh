@@ -352,7 +352,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
     }
   }
 
-  void _openOviModalSheet() async {
+  void _animalTagsModalSheet() async {
     final result = await showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -1695,7 +1695,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               ),
               TextButton(
                 onPressed: () {
-                  _openOviModalSheet();
+                  _animalTagsModalSheet();
                 },
                 child: const Text(
                   'Add Tags +',
