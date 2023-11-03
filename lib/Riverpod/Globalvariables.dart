@@ -27,6 +27,7 @@ final layingFrequencyProvider = StateProvider<String>((ref) => '');
 final eggsPerMonthProvider = StateProvider<String>((ref) => '');
 final selectedBreedingStageProvider = StateProvider<String>((ref) => '');
 final selectedDateProvider = StateProvider<String>((ref) => '');
+final medicalNeedsProvider = StateProvider<String>((ref) => '');
 final fieldNameProvider = StateProvider<String>((ref) => '');
 final fieldContentProvider = StateProvider<String>((ref) => '');
 final additionalnotesProvider = StateProvider<String>((ref) => '');

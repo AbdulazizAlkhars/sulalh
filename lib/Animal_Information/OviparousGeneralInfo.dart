@@ -7,14 +7,14 @@ import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfChildren.d
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfParents.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfPartners.dart';
 import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
-
+import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Widgets/TagChips.dart';
 
-// ignore: must_be_immutable
+// ignore: table
 class OvigenifnoPage extends ConsumerStatefulWidget {
   final OviVariables OviDetails;
 
@@ -46,6 +46,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
   List<VaccineDetails> vaccineDetailsList = [];
   List<MedicalCheckupDetails> medicalCheckupDetailsList = [];
   List<SurgeryDetails> surgeryDetailsList = [];
+  String medicalNeeds = '';
 
   Widget _buildDisplayMode() {
     return Padding(
@@ -53,11 +54,14 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            _medicalNeedsController.text,
-            style: const TextStyle(
-              fontSize: 14,
-              color: Colors.black,
+          TextButton(
+            onPressed: () {},
+            child: Text(
+              widget.OviDetails.medicalNeeds,
+              style: const TextStyle(
+                fontSize: 14,
+                color: Colors.black,
+              ),
             ),
           ),
           const SizedBox(
@@ -249,6 +253,11 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
           Stack(
             children: [
               TextFormField(
+                onChanged: (value) {
+                  ref
+                      .read(medicalNeedsProvider.notifier)
+                      .update((state) => value);
+                },
                 maxLines: 6, // Set the maximum number of lines
                 controller: _medicalNeedsController,
                 decoration: InputDecoration(
@@ -326,13 +335,12 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-    _medicalNeedsController.text = "";
   }
 
   @override
   void dispose() {
     _tabController.dispose();
-    _medicalNeedsController.dispose();
+    // _medicalNeedsController.dispose();
     super.dispose();
   }
 
@@ -468,10 +476,10 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                           color: Colors.black,
                         ),
                       ),
-                      const Text(
-                        'ID# 12345',
+                      Text(
+                        '#1234',
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: Colors.black,
                           fontSize: 16,
                         ),
                       ),
@@ -675,13 +683,16 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                         ),
                                         Expanded(
                                           flex: 0,
-                                          child: Text(
-                                            calculateAge(selectedDate),
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              color: selectedDate != null
-                                                  ? Colors.black
-                                                  : Colors.red,
+                                          child: GestureDetector(
+                                            onTap: () {},
+                                            child: Text(
+                                              calculateAge(selectedDate),
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                color: selectedDate != null
+                                                    ? Colors.black
+                                                    : Colors.red,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -1300,7 +1311,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        const Text(
+                                        Text(
                                           'Medical Needs',
                                           style: TextStyle(
                                             color: Colors.black,
@@ -1315,13 +1326,18 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                                       Colors.transparent,
                                                 ),
                                                 onPressed: () {
-                                                  // Handle save button press
-                                                  // Add your code here to save the edited text
+                                                  // ref
+                                                  //     .read(medicalNeedsProvider
+                                                  //         .notifier)
+                                                  //     .update((state) =>
+                                                  //         _medicalNeedsController
+                                                  //             .text);
+
                                                   setState(() {
                                                     _isEditMode = false;
                                                   });
                                                 },
-                                                child: const Text(
+                                                child: Text(
                                                   'Save',
                                                   style: TextStyle(
                                                       fontWeight:

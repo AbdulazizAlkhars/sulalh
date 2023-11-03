@@ -20,6 +20,7 @@ class CreateOviCumMammal extends ConsumerStatefulWidget {
 
 class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
   final TextEditingController _notesController = TextEditingController();
+  final TextEditingController _medicalController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _frequencyEggsController =
       TextEditingController();
@@ -1795,6 +1796,37 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                     ),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Medical Needs Notes',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
+                onChanged: (value) {
+                  ref
+                      .read(medicalNeedsProvider.notifier)
+                      .update((state) => value);
+                },
+                maxLines: 6, // Set the maximum number of lines
+                controller: _medicalController,
+                decoration: InputDecoration(
+                  hintText:
+                      'Add Medical Notes If Needed', // Add your hint text here
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(
+                      vertical: 12.0, horizontal: 16.0),
+                ),
+                textInputAction:
+                    TextInputAction.done, // Change the keyboard action
               ),
             ],
           ),

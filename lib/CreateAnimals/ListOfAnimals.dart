@@ -4,10 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hathera_demo/Animal_Information/OviparousGeneralInfo.dart';
 import 'package:hathera_demo/CreateAnimals/CreateAnimal1.dart';
 import 'package:hathera_demo/Riverpod/Globalvariables.dart';
+import 'package:hathera_demo/sadas.dart';
 
 class OviVariables {
   final List<String> selectedFilters;
-  final String eventNumber;
+  late final String eventNumber;
   final String selectedOviSire;
   final String selectedOviDam;
   final String dateOfBirth;
@@ -24,6 +25,8 @@ class OviVariables {
   final String layingFrequency;
   final String eggsPerMonth;
   final String selectedBreedingStage;
+  final String medicalNeeds;
+
   final bool shouldAddAnimal;
 
   OviVariables({
@@ -46,7 +49,55 @@ class OviVariables {
     required this.eggsPerMonth,
     required this.selectedBreedingStage,
     required this.shouldAddAnimal,
+    required this.medicalNeeds,
   });
+  OviVariables copyWith({
+    List<String>? selectedFilters,
+    String? eventNumber,
+    String? selectedOviSire,
+    String? selectedOviDam,
+    String? dateOfBirth,
+    String? fieldName,
+    String? fieldContent,
+    String? notes,
+    String? selectedOviGender,
+    Map<String, DateTime?>? selectedOviDates,
+    String? selectedAnimalBreed,
+    String? selectedAnimalSpecies,
+    String? selectedAnimalType,
+    List<String>? selectedOviChips,
+    File? selectedOviImage,
+    String? layingFrequency,
+    String? eggsPerMonth,
+    String? selectedBreedingStage,
+    String? medicalNeeds,
+    bool? shouldAddAnimal,
+  }) {
+    return OviVariables(
+      selectedFilters: selectedFilters ?? this.selectedFilters,
+      eventNumber: eventNumber ?? this.eventNumber,
+      selectedOviSire: selectedOviSire ?? this.selectedOviSire,
+      selectedOviDam: selectedOviDam ?? this.selectedOviDam,
+      dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+      fieldName: fieldName ?? this.fieldName,
+      fieldContent: fieldContent ?? this.fieldContent,
+      notes: notes ?? this.notes,
+      selectedOviGender: selectedOviGender ?? this.selectedOviGender,
+      selectedOviDates: selectedOviDates ?? this.selectedOviDates,
+      selectedAnimalBreed: selectedAnimalBreed ?? this.selectedAnimalBreed,
+      selectedAnimalSpecies:
+          selectedAnimalSpecies ?? this.selectedAnimalSpecies,
+      selectedAnimalType: selectedAnimalType ?? this.selectedAnimalType,
+      selectedOviChips: selectedOviChips ?? this.selectedOviChips,
+      selectedOviImage: selectedOviImage ?? this.selectedOviImage,
+      layingFrequency: layingFrequency ?? this.layingFrequency,
+      eggsPerMonth: eggsPerMonth ?? this.eggsPerMonth,
+      selectedBreedingStage:
+          selectedBreedingStage ?? this.selectedBreedingStage,
+      medicalNeeds: medicalNeeds ?? this.medicalNeeds,
+      shouldAddAnimal: shouldAddAnimal ?? this.shouldAddAnimal,
+    );
+  }
 }
 
 // ignore: must_be_immutable
@@ -79,6 +130,7 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
   void addOviAnimal(String eventNumber) {
     final OviDetails = OviVariables(
       eventNumber: eventNumber,
+      medicalNeeds: ref.read(medicalNeedsProvider),
       shouldAddAnimal: ref.read(shoudlAddAnimalProvider),
       selectedBreedingStage: ref.read(selectedBreedingStageProvider),
       layingFrequency: ref.read(layingFrequencyProvider),
@@ -285,8 +337,23 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                           )
                         : null,
                   ),
-                  title: Text('${OviDetails.eventNumber}'),
-                  subtitle: Text('${OviDetails.selectedAnimalType}'),
+                  title: Text(OviDetails.eventNumber),
+                  subtitle: Text(OviDetails.selectedAnimalType),
+                  trailing: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              editAnimalGenInfo(oviDetails: OviDetails),
+                        ),
+                      );
+                    },
+                    child: Icon(
+                      Icons.edit,
+                      size: 20,
+                      color: const Color.fromARGB(255, 60, 39, 39),
+                    ),
+                  ),
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
