@@ -1,56 +1,57 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 import 'package:hathera_demo/Widgets/Tags.dart';
 
 // ignore: must_be_immutable
 class AnimalFilters extends StatefulWidget {
-  final String fieldName;
-  final String fieldContent;
-  final TextEditingController notesController;
-  final String selectedOviSire;
-  final String selectedDate;
-  final String selectedOviDam;
-  TextEditingController nameController;
-  TextEditingController frequencyEggsController;
-  TextEditingController numberofEggsController;
-  // final DateTime? selectedOviDate;
-  final List<String> selectedOviChips;
-  final Map<String, DateTime?> selectedOviDates;
-  final bool showAdditionalFields;
-  final String selectedOviDateType;
-  final String selectedOviGender;
-  final bool addOviParents;
-  final bool addOviChildren;
-  final File? selectedOviImage;
-  final String selectedAnimalType;
-  final String selectedAnimalSpecies;
-  final String selectedAnimalBreed;
-  AnimalFilters({
-    super.key,
-    required this.fieldName,
-    required this.fieldContent,
-    required this.notesController,
-    required this.selectedOviSire,
-    required this.selectedOviDam,
-    // required this.selectedOviDate,
-    required this.selectedOviChips,
-    required this.selectedOviDates,
-    required this.showAdditionalFields,
-    required this.selectedOviDateType,
-    required this.selectedOviGender,
-    required this.addOviParents,
-    required this.addOviChildren,
-    required this.selectedOviImage,
-    required this.nameController,
-    required this.selectedDate,
-    required this.frequencyEggsController,
-    required this.numberofEggsController,
-    required this.selectedAnimalType,
-    required this.selectedAnimalSpecies,
-    required this.selectedAnimalBreed,
-    required selectedOviDate,
-  });
+  // final String fieldName;
+  // final String fieldContent;
+  // final TextEditingController notesController;
+  // final String selectedOviSire;
+  // final String selectedDate;
+  // final String selectedOviDam;
+  // TextEditingController nameController;
+  // TextEditingController frequencyEggsController;
+  // TextEditingController numberofEggsController;
+  // // final DateTime? selectedOviDate;
+  // final List<String> selectedOviChips;
+  // final Map<String, DateTime?> selectedOviDates;
+  // final bool showAdditionalFields;
+  // final String selectedOviDateType;
+  // final String selectedOviGender;
+  // final bool addOviParents;
+  // final bool addOviChildren;
+  // final File? selectedOviImage;
+  // final String selectedAnimalType;
+  // final String selectedAnimalSpecies;
+  // final String selectedAnimalBreed;
+  // AnimalFilters({
+  //   super.key,
+  //   required this.fieldName,
+  //   required this.fieldContent,
+  //   required this.notesController,
+  //   required this.selectedOviSire,
+  //   required this.selectedOviDam,
+  //   // required this.selectedOviDate,
+  //   required this.selectedOviChips,
+  //   required this.selectedOviDates,
+  //   required this.showAdditionalFields,
+  //   required this.selectedOviDateType,
+  //   required this.selectedOviGender,
+  //   required this.addOviParents,
+  //   required this.addOviChildren,
+  //   required this.selectedOviImage,
+  //   required this.nameController,
+  //   required this.selectedDate,
+  //   required this.frequencyEggsController,
+  //   required this.numberofEggsController,
+  //   required this.selectedAnimalType,
+  //   required this.selectedAnimalSpecies,
+  //   required this.selectedAnimalBreed,
+  //   required selectedOviDate,
+  // });
 
   @override
   _AnimalFilters createState() => _AnimalFilters();
@@ -421,41 +422,18 @@ class _AnimalFilters extends State<AnimalFilters> {
         padding: const EdgeInsets.all(16),
         child: ButtonWidget(
           onPressed: () {
-            // List<String> selectedFiltersList = [];
-            // selectedAnimals.forEach((key, value) {
-            //   if (value != null) {
-            //     selectedFiltersList.add(value);
-            //   }
-            // });
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => ListOfAnimals(
-            //       selectedFilters: selectedFiltersList,
-            //       fieldName: widget.fieldName,
-            //       fieldContent: widget.fieldContent,
-            //       notesController: widget.notesController,
-            //       selectedOviSire: widget.selectedOviSire,
-            //       selectedOviDam: widget.selectedOviDam,
-            //       selectedOviChips: widget.selectedOviChips,
-            //       selectedOviDates: widget.selectedOviDates,
-            //       showAdditionalFields: widget.showAdditionalFields,
-            //       selectedOviDateType: widget.selectedOviDateType,
-            //       selectedOviGender: widget.selectedOviGender,
-            //       addOviParents: widget.addOviParents,
-            //       addOviChildren: widget.addOviChildren,
-            //       selectedOviImage: widget.selectedOviImage,
-            //       nameController: widget.nameController,
-            //       selectedDate: widget.selectedDate,
-            //       frequencyEggsController: widget.frequencyEggsController,
-            //       numberofEggsController: widget.numberofEggsController,
-            //       selectedAnimalType: widget.selectedAnimalType,
-            //       selectedAnimalSpecies: widget.selectedAnimalSpecies,
-            //       selectedAnimalBreed: widget.selectedAnimalBreed,
-            //       shouldAddAnimal: false,
-            //     ),
-            //   ),
-            // );
+            List<String> selectedFiltersList = [];
+            selectedAnimals.forEach((key, value) {
+              if (value != null) {
+                selectedFiltersList.add(value);
+              }
+            });
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ListOfAnimals(),
+              ),
+            );
           },
           buttonText: 'Continue',
         ),

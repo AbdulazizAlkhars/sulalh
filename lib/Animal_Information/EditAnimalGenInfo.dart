@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
@@ -22,21 +22,101 @@ class editAnimalGenInfo extends ConsumerWidget {
     final TextEditingController eggsPerMonthController =
         TextEditingController();
     final TextEditingController dateOfBirthController = TextEditingController();
+    final TextEditingController fieldNameController = TextEditingController();
+    final TextEditingController fieldContentController =
+        TextEditingController();
+    final TextEditingController notesController = TextEditingController();
+    final TextEditingController selectedOviGenderController =
+        TextEditingController();
+    final TextEditingController selectedAnimalBreedController =
+        TextEditingController();
+    final TextEditingController selectedAnimalSpeciesController =
+        TextEditingController();
+    final TextEditingController selectedAnimalTypeController =
+        TextEditingController();
+    final TextEditingController selectedBreedingStageController =
+        TextEditingController();
     final TextEditingController imageUrlController = TextEditingController();
+    Map<String, DateTime?> selectedOviDates = {}; // Add date fields here
 
     eventNumberController.text = oviDetails.eventNumber;
     medicalNeedsController.text = oviDetails.medicalNeeds;
     layingFrequencyController.text = oviDetails.layingFrequency;
     eggsPerMonthController.text = oviDetails.eggsPerMonth;
     dateOfBirthController.text = oviDetails.dateOfBirth;
+    fieldNameController.text = oviDetails.fieldName;
+    fieldContentController.text = oviDetails.fieldContent;
+    notesController.text = oviDetails.notes;
+    selectedOviGenderController.text = oviDetails.selectedOviGender;
+    selectedAnimalBreedController.text = oviDetails.selectedAnimalBreed;
+    selectedAnimalSpeciesController.text = oviDetails.selectedAnimalSpecies;
+    selectedAnimalTypeController.text = oviDetails.selectedAnimalType;
     imageUrlController.text = oviDetails.selectedOviImage?.path ?? '';
+    selectedOviDates = oviDetails.selectedOviDates;
+    selectedBreedingStageController.text = oviDetails.selectedBreedingStage;
 
     Future<void> _pickImage(ImageSource source) async {
-      final pickedFile = await ImagePicker().getImage(source: source);
+      final pickedFile = await ImagePicker().pickImage(source: source);
 
       if (pickedFile != null) {
-        imageUrlController.text = pickedFile.path;
+        final selectedImage = File(pickedFile.path);
+
+        // Update the selectedOviImage
+        ref
+            .read(selectedAnimalImageProvider.notifier)
+            .update((state) => selectedImage);
+
+        // Update the image URL in the text field
+        imageUrlController.text = selectedImage.path;
       }
+    }
+
+    void _showDatePicker(BuildContext context, String fieldName) async {
+      final pickedDate = await showDatePicker(
+        context: context,
+        initialDate: selectedOviDates[fieldName] ?? DateTime.now(),
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2101),
+      );
+
+      if (pickedDate != null) {
+        ref.read(selectedOviDatesProvider.notifier).state = {
+          ...ref.read(selectedOviDatesProvider),
+          fieldName: pickedDate,
+        };
+      }
+    }
+
+    Column _buildDateFields() {
+      final dateFields = <Widget>[];
+      final selectedOviDates = ref.read(selectedOviDatesProvider);
+
+      final dateFormatter =
+          DateFormat('yyyy-MM-dd'); // Define your desired date format
+
+      selectedOviDates.forEach((fieldName, selectedDate) {
+        dateFields.add(
+          Row(
+            children: [
+              Text(fieldName),
+              TextButton(
+                onPressed: () {
+                  _showDatePicker(context, fieldName);
+                },
+                child: Text(
+                  selectedDate != null
+                      ? dateFormatter.format(selectedDate)
+                      : "Select Date",
+                ),
+              ),
+            ],
+          ),
+        );
+      });
+
+      return Column(
+        children: dateFields,
+      );
     }
 
     void _animalTagsModalSheet() async {
@@ -482,10 +562,10 @@ class editAnimalGenInfo extends ConsumerWidget {
               CircleAvatar(
                 radius: 50,
                 backgroundColor: Colors.grey[100],
-                backgroundImage: oviDetails.selectedOviImage != null
-                    ? FileImage(oviDetails.selectedOviImage!)
+                backgroundImage: ref.watch(selectedAnimalImageProvider) != null
+                    ? FileImage(ref.watch(selectedAnimalImageProvider)!)
                     : null,
-                child: oviDetails.selectedOviImage == null
+                child: ref.watch(selectedAnimalImageProvider) == null
                     ? Icon(
                         Icons.camera_alt_outlined,
                         size: 50,
@@ -510,24 +590,37 @@ class editAnimalGenInfo extends ConsumerWidget {
                 decoration: InputDecoration(labelText: 'New Event Number'),
               ),
               TextField(
-                controller: medicalNeedsController,
-                decoration: InputDecoration(labelText: 'Medical Needs'),
+                controller: notesController,
+                decoration: InputDecoration(labelText: 'New Additional Notes'),
               ),
               TextField(
+                controller: medicalNeedsController,
+                decoration: InputDecoration(labelText: 'New Medical Needs'),
+              ),
+              _buildDateFields(),
+              TextField(
                 controller: layingFrequencyController,
-                decoration: InputDecoration(labelText: 'Laying Frequency'),
+                decoration: InputDecoration(labelText: 'New Laying Frequency'),
               ),
               TextField(
                 controller: eggsPerMonthController,
-                decoration: InputDecoration(labelText: 'Eggs Per Month'),
+                decoration: InputDecoration(labelText: 'New Eggs Per Month'),
               ),
               TextField(
                 controller: dateOfBirthController,
-                decoration: InputDecoration(labelText: 'Date of Birth'),
+                decoration: InputDecoration(labelText: 'New Date of Birth'),
+              ),
+              TextField(
+                controller: fieldContentController,
+                decoration:
+                    InputDecoration(labelText: fieldNameController.text),
               ),
               TextField(
                 controller: imageUrlController,
                 decoration: InputDecoration(labelText: 'Image URL'),
+              ),
+              SizedBox(
+                height: 15,
               ),
               Wrap(
                 spacing: 8.0,
@@ -552,28 +645,43 @@ class editAnimalGenInfo extends ConsumerWidget {
                   ),
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  final updatedOviDetails = oviDetails.copyWith(
-                    eventNumber: eventNumberController.text,
-                    medicalNeeds: medicalNeedsController.text,
-                    layingFrequency: layingFrequencyController.text,
-                    eggsPerMonth: eggsPerMonthController.text,
-                    dateOfBirth: dateOfBirthController.text,
-                    selectedOviImage: File(imageUrlController.text),
-                  );
-
-                  final oviAnimals = ref.read(ovianimalsProvider);
-                  final index = oviAnimals.indexOf(oviDetails);
-                  if (index >= 0) {
-                    oviAnimals[index] = updatedOviDetails;
-                  }
-
-                  Navigator.of(context).pop();
-                },
-                child: Text('Save'),
-              ),
             ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16),
+        child: ElevatedButton(
+          onPressed: () {
+            final updatedOviDetails = oviDetails.copyWith(
+              eventNumber: eventNumberController.text,
+              notes: notesController.text,
+              medicalNeeds: medicalNeedsController.text,
+              layingFrequency: layingFrequencyController.text,
+              eggsPerMonth: eggsPerMonthController.text,
+              dateOfBirth: dateOfBirthController.text,
+              selectedOviImage: ref.read(selectedAnimalImageProvider),
+              selectedOviDates: ref.read(selectedOviDatesProvider),
+            );
+
+            final oviAnimals = ref.read(ovianimalsProvider);
+            final index = oviAnimals.indexOf(oviDetails);
+            if (index >= 0) {
+              oviAnimals[index] = updatedOviDetails;
+            }
+
+            Navigator.of(context).pop();
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 36, 86, 38),
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50),
+            ),
+          ),
+          child: const Text(
+            'Save',
+            style: TextStyle(color: Colors.white),
           ),
         ),
       ),

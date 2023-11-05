@@ -1,10 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hathera_demo/AnimalManagement/AnimalFilters.dart';
+import 'package:hathera_demo/Animal_Information/EditAnimalGenInfo.dart';
 import 'package:hathera_demo/Animal_Information/OviparousGeneralInfo.dart';
 import 'package:hathera_demo/CreateAnimals/CreateAnimal1.dart';
 import 'package:hathera_demo/Riverpod/Globalvariables.dart';
-import 'package:hathera_demo/sadas.dart';
 
 class OviVariables {
   final List<String> selectedFilters;
@@ -246,40 +247,40 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                             size: 30,
                           ),
                           onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => AnimalFilters(
-                            //       fieldName: widget.fieldName,
-                            //       fieldContent: widget.fieldContent,
-                            //       notesController: widget.notesController,
-                            //       selectedOviSire: widget.selectedOviSire,
-                            //       selectedOviDam: widget.selectedOviDam,
-                            //       selectedOviChips: widget.selectedOviChips,
-                            //       selectedOviDates: widget.selectedOviDates,
-                            //       showAdditionalFields:
-                            //           widget.showAdditionalFields,
-                            //       selectedOviDateType:
-                            //           widget.selectedOviDateType,
-                            //       selectedOviGender: widget.selectedOviGender,
-                            //       addOviParents: widget.addOviParents,
-                            //       addOviChildren: widget.addOviChildren,
-                            //       selectedOviImage: widget.selectedOviImage,
-                            //       nameController: widget.nameController,
-                            //       selectedDate: widget.selectedDate,
-                            //       frequencyEggsController:
-                            //           widget.frequencyEggsController,
-                            //       numberofEggsController:
-                            //           widget.numberofEggsController,
-                            //       selectedAnimalType: widget.selectedAnimalType,
-                            //       selectedAnimalSpecies:
-                            //           widget.selectedAnimalSpecies,
-                            //       selectedAnimalBreed:
-                            //           widget.selectedAnimalBreed,
-                            //       selectedOviDate: null,
-                            //     ),
-                            //   ),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AnimalFilters(
+                                    // fieldName: widget.fieldName,
+                                    // fieldContent: widget.fieldContent,
+                                    // notesController: widget.notesController,
+                                    // selectedOviSire: widget.selectedOviSire,
+                                    // selectedOviDam: widget.selectedOviDam,
+                                    // selectedOviChips: widget.selectedOviChips,
+                                    // selectedOviDates: widget.selectedOviDates,
+                                    // showAdditionalFields:
+                                    //     widget.showAdditionalFields,
+                                    // selectedOviDateType:
+                                    //     widget.selectedOviDateType,
+                                    // selectedOviGender: widget.selectedOviGender,
+                                    // addOviParents: widget.addOviParents,
+                                    // addOviChildren: widget.addOviChildren,
+                                    // selectedOviImage: widget.selectedOviImage,
+                                    // nameController: widget.nameController,
+                                    // selectedDate: widget.selectedDate,
+                                    // frequencyEggsController:
+                                    //     widget.frequencyEggsController,
+                                    // numberofEggsController:
+                                    //     widget.numberofEggsController,
+                                    // selectedAnimalType: widget.selectedAnimalType,
+                                    // selectedAnimalSpecies:
+                                    //     widget.selectedAnimalSpecies,
+                                    // selectedAnimalBreed:
+                                    //     widget.selectedAnimalBreed,
+                                    // selectedOviDate: null,
+                                    ),
+                              ),
+                            );
                           },
                         ),
                         border: InputBorder.none,
