@@ -18,7 +18,9 @@ class bottomNavigationBarPageState extends State<bottomNavigationBarPage> {
 
   final List<Widget> pages = [
     const RegHomePage(),
-    ListOfAnimals(),
+    ListOfAnimals(
+      shouldAddAnimal: false,
+    ),
     const ProfilePage(),
   ];
 

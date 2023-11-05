@@ -22,7 +22,7 @@ final selectedAnimalImageProvider = StateProvider<File?>((ref) => null);
 final animalNameProvider = StateProvider<String>((ref) => '');
 final animalSireDetailsProvider = StateProvider<String>((ref) => 'Add');
 final animalDamDetailsProvider = StateProvider<String>((ref) => 'Add');
-final shoudlAddAnimalProvider = StateProvider<bool>((ref) => true);
+final shoudlAddAnimalProvider = StateProvider<bool>((ref) => false);
 final layingFrequencyProvider = StateProvider<String>((ref) => '');
 final eggsPerMonthProvider = StateProvider<String>((ref) => '');
 final selectedBreedingStageProvider = StateProvider<String>((ref) => '');

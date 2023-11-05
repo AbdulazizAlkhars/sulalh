@@ -1838,7 +1838,9 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => ListOfAnimals(),
+                builder: (context) => ListOfAnimals(
+                  shouldAddAnimal: true,
+                ),
               ),
             );
           },

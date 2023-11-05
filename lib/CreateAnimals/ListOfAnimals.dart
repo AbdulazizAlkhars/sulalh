@@ -103,8 +103,11 @@ class OviVariables {
 
 // ignore: must_be_immutable
 class ListOfAnimals extends ConsumerStatefulWidget {
+  final bool shouldAddAnimal;
+
   ListOfAnimals({
     super.key,
+    required this.shouldAddAnimal,
   });
 
   @override
@@ -113,17 +116,15 @@ class ListOfAnimals extends ConsumerStatefulWidget {
 
 class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
   String filterQuery = '';
-  bool shouldAddAnimal = false;
+  final TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
-    // final animalName = ref.watch(animalNameProvider);
     super.initState();
     _updateFilteredOviAnimals();
 
     // Add the initial breeding event to the list only if shouldAddAnimal is true
-    if (ref.read(animalNameProvider).isNotEmpty &&
-        ref.read(shoudlAddAnimalProvider)) {
+    if (widget.shouldAddAnimal) {
       addOviAnimal(ref.read(animalNameProvider));
     }
   }
@@ -163,6 +164,7 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
 
   void _filterMammals(String query) {
     setState(() {
+      filterQuery = query;
       _updateFilteredOviAnimals(query: query);
     });
   }
@@ -181,8 +183,10 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
     BuildContext context,
   ) {
     // Filter the OviAnimals list based on the filterQuery
+    final selectedFilters = ref.read(selectedFiltersProvider);
     final filteredOviAnimals = ref.read(ovianimalsProvider).where((animal) {
       final eventNumber = animal.eventNumber.toLowerCase();
+
       final type = animal.selectedAnimalType.toLowerCase();
       final species = animal.selectedAnimalSpecies.toLowerCase();
 
@@ -237,7 +241,7 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                       border: Border.all(),
                     ),
                     child: TextField(
-                      // onChanged: _filterMammals,
+                      onChanged: _filterMammals,
                       decoration: InputDecoration(
                         hintText: "Search By Name Or ID",
                         prefixIcon: const Icon(Icons.search),
@@ -250,35 +254,7 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => AnimalFilters(
-                                    // fieldName: widget.fieldName,
-                                    // fieldContent: widget.fieldContent,
-                                    // notesController: widget.notesController,
-                                    // selectedOviSire: widget.selectedOviSire,
-                                    // selectedOviDam: widget.selectedOviDam,
-                                    // selectedOviChips: widget.selectedOviChips,
-                                    // selectedOviDates: widget.selectedOviDates,
-                                    // showAdditionalFields:
-                                    //     widget.showAdditionalFields,
-                                    // selectedOviDateType:
-                                    //     widget.selectedOviDateType,
-                                    // selectedOviGender: widget.selectedOviGender,
-                                    // addOviParents: widget.addOviParents,
-                                    // addOviChildren: widget.addOviChildren,
-                                    // selectedOviImage: widget.selectedOviImage,
-                                    // nameController: widget.nameController,
-                                    // selectedDate: widget.selectedDate,
-                                    // frequencyEggsController:
-                                    //     widget.frequencyEggsController,
-                                    // numberofEggsController:
-                                    //     widget.numberofEggsController,
-                                    // selectedAnimalType: widget.selectedAnimalType,
-                                    // selectedAnimalSpecies:
-                                    //     widget.selectedAnimalSpecies,
-                                    // selectedAnimalBreed:
-                                    //     widget.selectedAnimalBreed,
-                                    // selectedOviDate: null,
-                                    ),
+                                builder: (context) => AnimalFilters(),
                               ),
                             );
                           },
