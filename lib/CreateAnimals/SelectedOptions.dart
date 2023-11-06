@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hathera_demo/CreateAnimals/CreateOviparousMammal.dart';
 import 'package:hathera_demo/Riverpod/Globalvariables.dart';
+import 'package:hathera_demo/Theme/Colors.dart';
+import 'package:hathera_demo/Theme/Fonts.dart';
 
 class SelectedOptionsPage extends ConsumerStatefulWidget {
   final String selectedAnimalType;
@@ -28,10 +30,41 @@ class _SelectedOptionsPageState extends ConsumerState<SelectedOptionsPage> {
     final selectedAnimalBreeds = ref.watch(selectedAnimalBreedsProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Animal'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          'Create Animal',
+          style: AppFonts.headline3(color: AppColors.grayscale90),
+        ),
+        leading: IconButton(
+          padding: EdgeInsets.zero,
+          icon: Container(
+            width: MediaQuery.of(context).size.width * 0.1,
+            height: MediaQuery.of(context).size.width * 0.1,
+            decoration: BoxDecoration(
+              color: AppColors.grayscale10,
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: const Icon(Icons.arrow_back, color: Colors.black),
+          ),
+          onPressed: () {
+            // Handle close button press
+            Navigator.pop(context);
+          },
+        ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.close),
+            padding: EdgeInsets.zero,
+            icon: Container(
+              width: MediaQuery.of(context).size.width * 0.1,
+              height: MediaQuery.of(context).size.width * 0.1,
+              decoration: BoxDecoration(
+                color: AppColors.grayscale10,
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child: const Icon(Icons.close_rounded, color: Colors.black),
+            ),
             onPressed: () {
               // Handle close button press
               Navigator.pop(context);
@@ -40,124 +73,88 @@ class _SelectedOptionsPageState extends ConsumerState<SelectedOptionsPage> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.only(
+            left: MediaQuery.of(context).size.width * 0.042,
+            right: MediaQuery.of(context).size.width * 0.042),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 25,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.029,
             ),
-            const Text(
-              'Chosen Options',
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              ),
+            Text('Chosen Options',
+                style: AppFonts.headline2(color: AppColors.grayscale90)),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.009,
             ),
-            const SizedBox(
-              height: 10,
+            Text(
+              'You can apply any changes',
+              style: AppFonts.body2(color: AppColors.grayscale60),
             ),
-            const Text(
-              'You Can Apply Changes',
-              style: TextStyle(fontSize: 18, color: Colors.grey),
-            ),
-            const SizedBox(
-              height: 25,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.029,
             ),
             Row(
               children: [
-                const Expanded(
-                  flex: 4,
-                  child: Text(
-                    'Animal Type',
-                    style: TextStyle(fontSize: 16, color: Colors.black),
-                  ),
+                Text(
+                  'Animal Type',
+                  style: AppFonts.body2(color: AppColors.grayscale70),
                 ),
-                Expanded(
-                  flex: 0,
-                  child: Text(
-                    selectedAnimalType,
-                    style: const TextStyle(
-                      fontSize: 15,
-                    ),
-                  ),
+                const Spacer(),
+                Text(
+                  widget.selectedAnimalType,
+                  style: AppFonts.body2(color: AppColors.grayscale90),
                 ),
-                const Expanded(
-                  flex: 0,
-                  child: Text(
-                    ' >',
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 36, 86, 38),
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
-                  ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.02,
                 ),
+                Icon(Icons.arrow_forward_ios_rounded,
+                    color: AppColors.primary40,
+                    size: MediaQuery.of(context).size.width * 0.034),
               ],
             ),
-            const SizedBox(height: 5),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
             const Divider(),
-            const SizedBox(height: 5),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
             Row(
               children: [
-                const Expanded(
-                  flex: 4,
-                  child: Text(
-                    'Animal Species',
-                    style: TextStyle(fontSize: 16, color: Colors.black),
-                  ),
+                Text(
+                  'Animal Species',
+                  style: AppFonts.body2(color: AppColors.grayscale70),
                 ),
-                Expanded(
-                  flex: 0,
-                  child: Text(
-                    selectedAnimalSpecies,
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
+                const Spacer(),
+                Text(
+                  widget.selectedAnimalSpecies,
+                  style: AppFonts.body2(color: AppColors.grayscale90),
                 ),
-                const Expanded(
-                  flex: 0,
-                  child: Text(
-                    ' >',
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 36, 86, 38),
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
-                  ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.02,
                 ),
+                Icon(Icons.arrow_forward_ios_rounded,
+                    color: AppColors.primary40,
+                    size: MediaQuery.of(context).size.width * 0.034),
               ],
             ),
-            const SizedBox(height: 5),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
             const Divider(),
-            const SizedBox(height: 5),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
             Row(
               children: [
-                const Expanded(
-                  flex: 4,
-                  child: Text(
-                    'Animal Breed',
-                    style: TextStyle(fontSize: 16, color: Colors.black),
-                  ),
+                Text(
+                  'Animal Breed',
+                  style: AppFonts.body2(color: AppColors.grayscale70),
                 ),
-                Expanded(
-                  flex: 0,
-                  child: Text(
-                    selectedAnimalBreeds,
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
+                const Spacer(),
+                Text(
+                  widget.selectedAnimalBreed,
+                  style: AppFonts.body2(color: AppColors.grayscale90),
                 ),
-                const Expanded(
-                  flex: 0,
-                  child: Text(
-                    ' >',
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 36, 86, 38),
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
-                  ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.02,
                 ),
+                Icon(Icons.arrow_forward_ios_rounded,
+                    color: AppColors.primary40,
+                    size: MediaQuery.of(context).size.width * 0.034),
               ],
             ),
           ],

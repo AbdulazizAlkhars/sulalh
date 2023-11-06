@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hathera_demo/CreateAnimals/SelectedOptions.dart';
 import 'package:hathera_demo/Riverpod/Globalvariables.dart';
+import 'package:hathera_demo/Theme/Colors.dart';
+import 'package:hathera_demo/Theme/Fonts.dart';
 
 class CreateAnimalPage extends ConsumerStatefulWidget {
   const CreateAnimalPage({Key? key}) : super(key: key);
@@ -46,8 +48,8 @@ class _CreateAnimalPageState extends ConsumerState<CreateAnimalPage> {
 
   // Define a map to associate animal types with their image asset paths
   final Map<String, String> animalImages = {
-    'Mammal': 'assets/Staff Images/Black-Widow-Avengers-Endgame-feature.jpg',
-    'Oviparous': 'assets/Staff Images/ed33c7f2a3940fcebf9f0aac54d67895.jpg',
+    'Mammal': 'assets/avatars/120px/Horse_avatar.png',
+    'Oviparous': 'assets/avatars/120px/Duck.png',
     // Add more entries for other animal types and their images
   };
 
@@ -59,64 +61,123 @@ class _CreateAnimalPageState extends ConsumerState<CreateAnimalPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Animal'),
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        title: Text(
+          'Create Animal',
+          style: AppFonts.headline3(color: AppColors.grayscale90),
+        ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.close),
+            padding: EdgeInsets.zero,
+            icon: Container(
+                width: MediaQuery.of(context).size.width * 0.1,
+                height: MediaQuery.of(context).size.width * 0.1,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.grayscale10,
+                ),
+                child: const Icon(
+                  Icons.close_rounded,
+                  color: AppColors.grayscale90,
+                )),
             onPressed: () {
-              // Handle close button press
               Navigator.pop(context);
             },
           ),
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text(
-                'Animal Type',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+        child: Padding(
+          padding: EdgeInsets.only(
+              left: MediaQuery.of(context).size.width * 0.042,
+              right: MediaQuery.of(context).size.width * 0.042),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
               ),
-            ),
-            Column(
-              children: [
-                _buildAnimalTypeOption('Mammal'),
-                _buildAnimalTypeOption('Oviparous'),
-                // Add more animal type options here
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Divider(),
-            if (showAnimalSpeciesSection) // Conditionally show if selected
+              Text(
+                'Animal Type',
+                style: AppFonts.headline2(color: AppColors.grayscale90),
+              ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Text(
-                      'Animal Species',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                  _buildAnimalTypeOption('Mammal'),
+                  _buildAnimalTypeOption('Oviparous'),
+                  // Add more animal type options here
+                ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
+
+              if (showAnimalSpeciesSection) // Conditionally show if selected
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Container(
+                        height: 1,
+                        width: MediaQuery.of(context).size.width * 0.912,
+                        color: AppColors.grayscale20,
                       ),
                     ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.02,
+                    ),
+                    Text(
+                      'Animal Species',
+                      style: AppFonts.headline2(color: AppColors.grayscale90),
+                    ),
+                    for (String species in selectedAnimalType == 'Mammal'
+                        ? mammalSpeciesList
+                        : oviparousSpeciesList)
+                      _buildAnimalSpeciesOption(species),
+                    TextButton(
+                      onPressed: () {
+                        _showModalSheet('species',
+                            selectedAnimalType); // Show modal sheet on button press
+                      },
+                      child: const Text(
+                        'Show More >',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 36, 86, 38),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              if (showAnimalBreedsSection) // Conditionally show if selected
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.007,
                   ),
-                  for (String species in selectedAnimalType == 'Mammal'
-                      ? mammalSpeciesList
-                      : oviparousSpeciesList)
-                    _buildAnimalSpeciesOption(species),
-
+                  Center(
+                    child: Container(
+                      height: 1,
+                      width: MediaQuery.of(context).size.width * 0.912,
+                      color: AppColors.grayscale20,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  Text(
+                    'Animal Breeds',
+                    style: AppFonts.headline2(color: AppColors.grayscale90),
+                  ),
+                  for (String breed in selectedAnimalType == 'Mammal'
+                      ? mammalBreedsList
+                      : oviparousBreedsList)
+                    _buildAnimalBreedOption(breed),
                   TextButton(
                     onPressed: () {
-                      _showModalSheet('species',
+                      _showModalSheet('breeds',
                           selectedAnimalType); // Show modal sheet on button press
                     },
                     child: const Text(
@@ -127,46 +188,15 @@ class _CreateAnimalPageState extends ConsumerState<CreateAnimalPage> {
                       ),
                     ),
                   ),
-                  const Divider(), // Divider between species and breeds
-                ],
-              ),
-            if (showAnimalBreedsSection) // Conditionally show if selected
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text(
-                    'Animal Breeds',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                for (String breed in selectedAnimalType == 'Mammal'
-                    ? mammalBreedsList
-                    : oviparousBreedsList)
-                  _buildAnimalBreedOption(breed),
-                TextButton(
-                  onPressed: () {
-                    _showModalSheet('breeds',
-                        selectedAnimalType); // Show modal sheet on button press
-                  },
-                  child: const Text(
-                    'Show More >',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 36, 86, 38),
-                    ),
-                  ),
-                ),
-                const Divider(),
-              ]),
-            // Add more customization options here
-            const SizedBox(height: 20),
+                  const Divider(),
+                ]),
+              // Add more customization options here
+              const SizedBox(height: 20),
 
-            // Add more customization options here
-            // Add more sections as needed
-          ],
+              // Add more customization options here
+              // Add more sections as needed
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(
@@ -213,26 +243,20 @@ class _CreateAnimalPageState extends ConsumerState<CreateAnimalPage> {
         ref.read(selectedAnimalTypeProvider.notifier).state == animalType;
 
     return ListTile(
+      contentPadding: EdgeInsets.zero,
       leading: CircleAvatar(
         backgroundImage: AssetImage(imageAsset),
         backgroundColor: Colors.transparent,
       ),
-      title: Text(
-        animalType,
-        style: const TextStyle(
-          fontSize: 16,
-        ),
-      ),
+      title:
+          Text(animalType, style: AppFonts.body2(color: AppColors.grayscale90)),
       trailing: Container(
-        width: 25,
-        height: 25,
+        width: MediaQuery.of(context).size.width * 0.064,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            color: isSelected
-                ? const Color.fromARGB(255, 36, 86, 38)
-                : Colors.grey,
-            width: isSelected ? 6.0 : 2.0,
+            color: isSelected ? AppColors.primary20 : AppColors.grayscale30,
+            width: isSelected ? 6.0 : 1.0,
           ),
         ),
       ),
@@ -250,23 +274,16 @@ class _CreateAnimalPageState extends ConsumerState<CreateAnimalPage> {
     final isSelected = selectedAnimalSpecies == optionText;
 
     return ListTile(
-      title: Text(
-        optionText,
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-        ),
-      ),
+      contentPadding: EdgeInsets.zero,
+      title:
+          Text(optionText, style: AppFonts.body2(color: AppColors.grayscale90)),
       trailing: Container(
-        width: 25,
-        height: 25,
+        width: MediaQuery.of(context).size.width * 0.064,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            color: isSelected
-                ? const Color.fromARGB(255, 36, 86, 38)
-                : Colors.grey,
-            width: isSelected ? 6.0 : 2.0,
+            color: isSelected ? AppColors.primary20 : AppColors.grayscale30,
+            width: isSelected ? 6.0 : 1.0,
           ),
         ),
       ),
@@ -288,23 +305,18 @@ class _CreateAnimalPageState extends ConsumerState<CreateAnimalPage> {
     final isSelected = selectedAnimalBreed == optionText;
 
     return ListTile(
+      contentPadding: EdgeInsets.zero,
       title: Text(
         optionText,
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-        ),
+        style: AppFonts.body2(color: AppColors.grayscale90),
       ),
       trailing: Container(
-        width: 25,
-        height: 25,
+        width: MediaQuery.of(context).size.width * 0.064,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            color: isSelected
-                ? const Color.fromARGB(255, 36, 86, 38)
-                : Colors.grey,
-            width: isSelected ? 6.0 : 2.0,
+            color: isSelected ? AppColors.primary20 : AppColors.grayscale30,
+            width: isSelected ? 6.0 : 1.0,
           ),
         ),
       ),

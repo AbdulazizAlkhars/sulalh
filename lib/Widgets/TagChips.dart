@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Theme/Colors.dart';
 
 class CustomTag extends StatelessWidget {
   final String label;
@@ -20,7 +21,7 @@ class CustomTag extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
           color: selected
-              ? Colors.yellow
+              ? AppColors.secondary40
               : const Color.fromARGB(255, 234, 234, 234),
         ),
         child: Padding(
