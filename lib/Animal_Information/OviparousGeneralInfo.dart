@@ -1547,45 +1547,110 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                       children: [
                                         const SizedBox(height: 10),
                                         SingleChildScrollView(
-                                          child: ListView.builder(
-                                            itemCount:
-                                                vaccineDetailsList.length,
-                                            shrinkWrap:
-                                                true, // This allows the ListView to take only necessary space
-                                            itemBuilder: (BuildContext context,
-                                                int index) {
-                                              return ListTile(
-                                                title: Text(
-                                                    vaccineDetailsList[index]
-                                                        .vaccineName),
-                                                trailing: const Icon(Icons
-                                                    .edit), // Add an edit icon as trailing
-                                                onTap: () {
-                                                  // Handle the edit action here
-                                                },
-                                                subtitle: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      DateFormat('yyyy-MM-dd')
-                                                          .format(
-                                                              vaccineDetailsList[
-                                                                      index]
-                                                                  .firstDoseDate!),
-                                                    ),
-                                                    Text(
-                                                      DateFormat('yyyy-MM-dd')
-                                                          .format(vaccineDetailsList[
-                                                                  index]
-                                                              .secondDoseDate!),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
+                                            child: vaccineDetailsList.isNotEmpty
+                                                ? ListView.builder(
+                                                    itemCount:
+                                                        vaccineDetailsList
+                                                            .length,
+                                                    shrinkWrap:
+                                                        true, // This allows the ListView to take only necessary space
+                                                    itemBuilder:
+                                                        (BuildContext context,
+                                                            int index) {
+                                                      return ListTile(
+                                                        title: Text(
+                                                            vaccineDetailsList[
+                                                                    index]
+                                                                .vaccineName),
+                                                        trailing: const Icon(Icons
+                                                            .edit), // Add an edit icon as trailing
+                                                        onTap: () {
+                                                          // Handle the edit action here
+                                                        },
+                                                        subtitle: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              DateFormat(
+                                                                      'yyyy-MM-dd')
+                                                                  .format(vaccineDetailsList[
+                                                                          index]
+                                                                      .firstDoseDate!),
+                                                            ),
+                                                            Text(
+                                                              DateFormat(
+                                                                      'yyyy-MM-dd')
+                                                                  .format(vaccineDetailsList[
+                                                                          index]
+                                                                      .secondDoseDate!),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      );
+                                                    },
+                                                  )
+                                                : ListView.builder(
+                                                    physics:
+                                                        const NeverScrollableScrollPhysics(),
+                                                    padding: EdgeInsets.zero,
+                                                    itemCount: 2,
+                                                    shrinkWrap:
+                                                        true, // This allows the ListView to take only necessary space
+                                                    itemBuilder:
+                                                        (BuildContext context,
+                                                            int index) {
+                                                      return ListTile(
+                                                        contentPadding:
+                                                            EdgeInsets.fromLTRB(
+                                                                0,
+                                                                10 *
+                                                                    heightMediaQuery,
+                                                                0,
+                                                                10 *
+                                                                    heightMediaQuery),
+                                                        leading: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                "Vaccine 1",
+                                                                style: AppFonts
+                                                                    .headline3(
+                                                                        color: AppColors
+                                                                            .grayscale90),
+                                                              ),
+                                                              Text(
+                                                                '15.01.2022',
+                                                                style: AppFonts.body2(
+                                                                    color: AppColors
+                                                                        .grayscale70),
+                                                              ),
+                                                            ]),
+                                                        trailing: const Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          children: [
+                                                            Icon(
+                                                              Icons
+                                                                  .file_copy_outlined,
+                                                              color: AppColors
+                                                                  .primary40,
+                                                            ),
+                                                            Icon(
+                                                              Icons
+                                                                  .chevron_right_rounded,
+                                                              color: AppColors
+                                                                  .primary40,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        onTap: () {},
+                                                      );
+                                                    },
+                                                  )),
                                         TextButton(
                                           onPressed: () {
                                             // Show the VaccineEntryPage as a modal sheet
@@ -1619,36 +1684,30 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                         ),
                                       ],
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 16),
-                                      child: Row(
-                                        children: [
-                                          const Expanded(
-                                            flex: 2,
-                                            child: Text(
-                                              'Medical Checkup',
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
+                                    Row(
+                                      children: [
+                                        const Expanded(
+                                          flex: 2,
+                                          child: Text(
+                                            'Medical Checkup',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
                                           ),
-                                          Expanded(
-                                            flex: 0,
-                                            child: TextButton(
-                                              onPressed:
-                                                  _showexpdeliveryDatePickerModalSheet,
-                                              child: const Text(
-                                                'View More ',
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    color: Color(0xFF245626)),
-                                              ),
-                                            ),
+                                        ),
+                                        Spacer(),
+                                        TextButton(
+                                          onPressed:
+                                              _showexpdeliveryDatePickerModalSheet,
+                                          child: const Text(
+                                            'View More ',
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Color(0xFF245626)),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                     Column(
                                       crossAxisAlignment:
@@ -1656,29 +1715,92 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                       children: [
                                         const SizedBox(height: 10),
                                         SingleChildScrollView(
-                                          child: ListView.builder(
-                                            itemCount: medicalCheckupDetailsList
-                                                .length,
-                                            shrinkWrap:
-                                                true, // This allows the ListView to take only necessary space
-                                            itemBuilder: (BuildContext context,
-                                                int index) {
-                                              return ListTile(
-                                                title: Text(
-                                                    medicalCheckupDetailsList[
-                                                            index]
-                                                        .checkupName),
-                                                trailing: const Icon(Icons
-                                                    .edit), // Add an edit icon as trailing
-                                                onTap: () {
-                                                  // Handle the edit action here
-                                                },
-                                                subtitle: Text(
-                                                  '${DateFormat('yyyy-MM-dd').format(medicalCheckupDetailsList[index].checkupDate!)} ',
+                                          child: medicalCheckupDetailsList
+                                                  .isNotEmpty
+                                              ? ListView.builder(
+                                                  itemCount:
+                                                      medicalCheckupDetailsList
+                                                          .length,
+                                                  shrinkWrap:
+                                                      true, // This allows the ListView to take only necessary space
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int index) {
+                                                    return ListTile(
+                                                      title: Text(
+                                                          medicalCheckupDetailsList[
+                                                                  index]
+                                                              .checkupName),
+                                                      trailing: const Icon(Icons
+                                                          .edit), // Add an edit icon as trailing
+                                                      onTap: () {
+                                                        // Handle the edit action here
+                                                      },
+                                                      subtitle: Text(
+                                                        '${DateFormat('yyyy-MM-dd').format(medicalCheckupDetailsList[index].checkupDate!)} ',
+                                                      ),
+                                                    );
+                                                  },
+                                                )
+                                              : ListView.builder(
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  padding: EdgeInsets.zero,
+                                                  itemCount: 3,
+                                                  shrinkWrap:
+                                                      true, // This allows the ListView to take only necessary space
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int index) {
+                                                    return ListTile(
+                                                      contentPadding:
+                                                          EdgeInsets.fromLTRB(
+                                                              0,
+                                                              10 *
+                                                                  heightMediaQuery,
+                                                              0,
+                                                              10 *
+                                                                  heightMediaQuery),
+                                                      leading: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              "Check-Up 1",
+                                                              style: AppFonts.headline3(
+                                                                  color: AppColors
+                                                                      .grayscale90),
+                                                            ),
+                                                            Text(
+                                                              '15.01.2022',
+                                                              style: AppFonts.body2(
+                                                                  color: AppColors
+                                                                      .grayscale70),
+                                                            ),
+                                                          ]),
+                                                      trailing: const Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Icon(
+                                                            Icons
+                                                                .file_copy_outlined,
+                                                            color: AppColors
+                                                                .primary40,
+                                                          ),
+                                                          Icon(
+                                                            Icons
+                                                                .chevron_right_rounded,
+                                                            color: AppColors
+                                                                .primary40,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      onTap: () {},
+                                                    );
+                                                  },
                                                 ),
-                                              );
-                                            },
-                                          ),
                                         ),
                                         TextButton(
                                           onPressed: () {
@@ -1713,64 +1835,117 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                         ),
                                       ],
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 16),
-                                      child: Row(
-                                        children: [
-                                          const Expanded(
-                                            flex: 2,
-                                            child: Text(
-                                              'Surgery Records',
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Surgery Records',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Spacer(),
+                                        TextButton(
+                                          onPressed:
+                                              _showexpdeliveryDatePickerModalSheet,
+                                          child: const Text(
+                                            'View More ',
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Color(0xFF245626)),
                                           ),
-                                          Expanded(
-                                            flex: 0,
-                                            child: TextButton(
-                                              onPressed:
-                                                  _showexpdeliveryDatePickerModalSheet,
-                                              child: const Text(
-                                                'View More ',
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    color: Color(0xFF245626)),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         SingleChildScrollView(
-                                          child: ListView.builder(
-                                            itemCount:
-                                                surgeryDetailsList.length,
-                                            shrinkWrap:
-                                                true, // This allows the ListView to take only necessary space
-                                            itemBuilder: (BuildContext context,
-                                                int index) {
-                                              return ListTile(
-                                                title: Text(
-                                                    surgeryDetailsList[index]
-                                                        .surgeryName),
-                                                trailing: const Icon(Icons
-                                                    .edit), // Add an edit icon as trailing
-                                                onTap: () {
-                                                  // Handle the edit action here
-                                                },
-                                                subtitle: Text(
-                                                  '${DateFormat('yyyy-MM-dd').format(surgeryDetailsList[index].surgeryDate!)} ',
+                                          child: surgeryDetailsList.isNotEmpty
+                                              ? ListView.builder(
+                                                  itemCount:
+                                                      surgeryDetailsList.length,
+                                                  shrinkWrap:
+                                                      true, // This allows the ListView to take only necessary space
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int index) {
+                                                    return ListTile(
+                                                      title: Text(
+                                                          surgeryDetailsList[
+                                                                  index]
+                                                              .surgeryName),
+                                                      trailing: const Icon(Icons
+                                                          .edit), // Add an edit icon as trailing
+                                                      onTap: () {
+                                                        // Handle the edit action here
+                                                      },
+                                                      subtitle: Text(
+                                                        '${DateFormat('yyyy-MM-dd').format(surgeryDetailsList[index].surgeryDate!)} ',
+                                                      ),
+                                                    );
+                                                  },
+                                                )
+                                              : ListView.builder(
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  padding: EdgeInsets.zero,
+                                                  itemCount: 3,
+                                                  shrinkWrap:
+                                                      true, // This allows the ListView to take only necessary space
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int index) {
+                                                    return ListTile(
+                                                      contentPadding:
+                                                          EdgeInsets.fromLTRB(
+                                                              0,
+                                                              10 *
+                                                                  heightMediaQuery,
+                                                              0,
+                                                              10 *
+                                                                  heightMediaQuery),
+                                                      leading: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              "Surgeries 1",
+                                                              style: AppFonts.headline3(
+                                                                  color: AppColors
+                                                                      .grayscale90),
+                                                            ),
+                                                            Text(
+                                                              '15.01.2022',
+                                                              style: AppFonts.body2(
+                                                                  color: AppColors
+                                                                      .grayscale70),
+                                                            ),
+                                                          ]),
+                                                      trailing: const Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Icon(
+                                                            Icons
+                                                                .file_copy_outlined,
+                                                            color: AppColors
+                                                                .primary40,
+                                                          ),
+                                                          Icon(
+                                                            Icons
+                                                                .chevron_right_rounded,
+                                                            color: AppColors
+                                                                .primary40,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      onTap: () {},
+                                                    );
+                                                  },
                                                 ),
-                                              );
-                                            },
-                                          ),
                                         ),
                                         TextButton(
                                           onPressed: () {
