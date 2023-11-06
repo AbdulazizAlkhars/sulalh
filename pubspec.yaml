@@ -39,6 +39,7 @@ dependencies:
   flutter_treeview: ^1.0.7+1
   flutter_custom_clippers: ^2.1.0
   photo_view: ^0.14.0
+  google_fonts: ^5.1.0
   
 
     
@@ -82,11 +83,24 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-      - assets/PaymentPNGs/
-      - assets/AccountProfile/
-      - assets/FAQs/
-      - assets/Staff Images/
-      - assets/SignUp/
+    - assets/PaymentPNGs/
+    - assets/AccountProfile/
+    - assets/FAQs/
+    - assets/Staff Images/
+    - assets/SignUp/
+    - assets/icons/flags/
+    - assets/icons/frame/16px/
+    - assets/icons/frame/20px/
+    - assets/icons/frame/24px/
+    - assets/icons/logotype/
+    - assets/icons/may_need_later/
+    - assets/icons/payment_methods/
+    - assets/illustrations/
+    - assets/avatars/48px/
+    - assets/avatars/80px/
+    - assets/avatars/120px/
+    - assets/graphic/
+    - assets/icons/frame/24px/20_Clear_form.png
       
   #   - images/a_dot_ham.jpeg
 

@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/Profile/Account_Setup/Add_Personal_Information.dart';
+import 'package:hathera_demo/Theme/Colors.dart';
+import 'package:hathera_demo/Theme/Fonts.dart';
 
 class PhoneOTPScreen extends StatefulWidget {
   const PhoneOTPScreen({super.key});
@@ -87,33 +89,31 @@ class _PhoneOTPScreen extends State<PhoneOTPScreen> {
       body: Column(
         children: [
           Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(20),
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: MediaQuery.of(context).size.width * 0.05,
+                right: MediaQuery.of(context).size.width * 0.05,
+                top: MediaQuery.of(context).size.height * 0.05,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'Enter Code'.tr,
-                    style: TextStyle(
-                      fontSize: 44,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: AppFonts.title2(color: AppColors.grayscale90),
                   ),
                   const SizedBox(height: 16),
                   Text(
                     'We sent a verification code to the following'.tr,
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
+                    style: AppFonts.body2(color: AppColors.grayscale70),
                   ),
                   Text(
                     'Phone Number:'.tr,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: AppFonts.body2(color: AppColors.grayscale70),
                   ),
-                  const SizedBox(height: 40),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: List.generate(

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/Riverpod/Globalvariables.dart';
+import 'package:hathera_demo/Widgets/CountriesWidget.dart';
+import 'package:hathera_demo/data/countryDetails.dart';
 
 class PhoneNumberInputWidget extends ConsumerStatefulWidget {
   const PhoneNumberInputWidget({super.key});
@@ -15,76 +17,36 @@ class _PhoneNumberInputWidgetState
   String selectedCountryCode = '+971'.tr; // Initial selected country code
   TextEditingController phoneNumberController = TextEditingController();
 
-  void _showCountryCodeSelection() {
-    double sheetHeight = MediaQuery.of(context).size.height * 0.5;
-
-    showModalBottomSheet(
+  String countryFlag = "assets/icons/flags/Country=SA.png";
+  void _showCountryCodeSelection() async {
+    final selectedCountryInfo = await showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
         return SizedBox(
-          height: sheetHeight,
-          child: ListView(
-            children: [
-              ListTile(
-                title: Text('+971'.tr),
-                onTap: () {
-                  ref
-                      .read(selectedCountryCodeProvider.notifier)
-                      .update((state) => '+971'.tr);
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('+966'.tr),
-                onTap: () {
-                  ref
-                      .read(selectedCountryCodeProvider.notifier)
-                      .update((state) => '+966'.tr);
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('+965'.tr),
-                onTap: () {
-                  ref
-                      .read(selectedCountryCodeProvider.notifier)
-                      .update((state) => '+965'.tr);
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('+964'.tr),
-                onTap: () {
-                  ref
-                      .read(selectedCountryCodeProvider.notifier)
-                      .update((state) => '+964'.tr);
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('+975'.tr),
-                onTap: () {
-                  ref
-                      .read(selectedCountryCodeProvider.notifier)
-                      .update((state) => '+975'.tr);
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('+976'.tr),
-                onTap: () {
-                  ref
-                      .read(selectedCountryCodeProvider.notifier)
-                      .update((state) => '+976'.tr);
-                  Navigator.pop(context);
-                },
-              ),
-              // Add more Middle East country codes as needed
-            ],
+          height: MediaQuery.of(context).size.height * 0.95,
+          child: CountriesWidget(
+            onCountrySelected: (CountryInfo countryInfo) {
+              Navigator.pop(
+                context,
+                countryInfo,
+              ); // Pass the selected country info back
+            },
           ),
         );
       },
     );
+
+    if (selectedCountryInfo != null) {
+      // Update the selected country code
+      ref
+          .read(selectedCountryCodeProvider.notifier)
+          .update((state) => selectedCountryInfo.countryCode);
+
+      // Update the country flag
+      setState(() {
+        countryFlag = selectedCountryInfo.flagImagePath;
+      });
+    }
   }
 
   @override
@@ -110,9 +72,9 @@ class _PhoneNumberInputWidgetState
               onTap: _showCountryCodeSelection,
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(24.0),
+                    bottomLeft: Radius.circular(24.0),
                   ),
                 ),
                 child: InputDecorator(
@@ -123,22 +85,30 @@ class _PhoneNumberInputWidgetState
                         bottomLeft: Radius.circular(50),
                       ),
                     ),
-                    contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 12),
                   ),
                   child: Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween, // Adjust alignment
                     children: [
                       Icon(
                         Icons.keyboard_arrow_down,
                         textDirection:
                             TextDirection.rtl, // Adjust icon direction
                       ),
-                      Text(
-                        selectedCountryCode,
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.025),
+                          Image.asset(
+                            countryFlag,
+                            width: 24,
+                          ),
+                          Text(
+                            selectedCountryCode,
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
                       )
                     ],
                   ),
@@ -172,7 +142,6 @@ class _PhoneNumberInputWidgetState
                       bottomRight: Radius.circular(50),
                     ),
                   ),
-                  contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 12),
                 ),
               ),
             ),

@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:hathera_demo/HomeScreen/GuestMode/GuestHomePage.dart';
 import 'package:hathera_demo/HomeScreen/GuestMode/SearchFarms&Animals.dart';
 import 'package:hathera_demo/HomeScreen/Registered/NotificationList.dart';
+import 'package:hathera_demo/Theme/Colors.dart';
+import 'package:hathera_demo/Theme/Fonts.dart';
 import 'package:hathera_demo/Widgets/Tags.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -15,6 +17,25 @@ class RegHomePage extends StatefulWidget {
 }
 
 class _RegHomePage extends State<RegHomePage> {
+  Future<void> _refreshData() async {
+    // Implement your data fetching or refreshing logic here
+    // For example, you can fetch new data and update the chart, events, etc.
+    setState(() {
+      _chartData = getChartData();
+      sumOfNextTwoCards = _chartData[0].quan + _chartData[1].quan;
+      // Update other data and state variables
+    });
+
+    // Wait for a short duration to simulate a refresh
+    await Future.delayed(const Duration(seconds: 1));
+
+    // // Navigate back to the same page to simulate a page reload
+    // Navigator.pushReplacement(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => const RegHomePage()),
+    // );
+  }
+
   late List<AnimalData> _chartData;
   int sumOfNextTwoCards = 0;
   List<EventData> events = [
@@ -343,198 +364,219 @@ class _RegHomePage extends State<RegHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         automaticallyImplyLeading: false,
-        title: const Text(
-          'Overview',
-          style: TextStyle(
-            fontSize: 40,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
+        title: Row(
+          children: [
+            Text(
+              'Overview',
+              style: AppFonts.title3(color: AppColors.grayscale100),
+            ),
+          ],
         ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SearchPage()),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.notifications),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NotificationList()),
-              );
-            },
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Animals',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  InkWell(
-                    onTap: _showFilterModalSheet,
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Icon(Icons.filter_alt_outlined),
-                    ),
-                  ),
-                ],
-              ),
+          Container(
+            padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.016),
+            decoration: BoxDecoration(
+              color: AppColors.grayscale10,
+              borderRadius: BorderRadius.circular(50),
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: SmallCardWidget(
-                    icon: Icons.book,
-                    animalData: AnimalData(
-                        'ALL', sumOfNextTwoCards, _chartData[0].color),
-                    quan: sumOfNextTwoCards.toString(),
-                    onPressed: () {
-                      _updateChartData(sumOfNextTwoCards, 'ALL');
-                    },
-                    color: const Color.fromARGB(
-                        235, 255, 248, 214), // Set the color for the first card
-                    isSelected: _selectedIndex == -1,
-                  ),
-                ),
-                Expanded(
-                  child: SmallCardWidget(
-                    icon: Icons.music_note,
-                    animalData: _chartData[0],
-                    quan: _chartData[0].quan.toString(),
-                    onPressed: () {
-                      _updateChartData(_chartData[0].quan, 'Mammals');
-                    },
-                    color: const Color.fromARGB(235, 255, 248, 214),
-                    isSelected: _selectedIndex == 0,
-                  ),
-                ),
-                Expanded(
-                  child: SmallCardWidget(
-                    icon: Icons.music_note,
-                    animalData: _chartData[1],
-                    quan: _chartData[1].quan.toString(),
-                    onPressed: () {
-                      _updateChartData(_chartData[1].quan, 'Oviparous');
-                    },
-                    color: const Color.fromARGB(235, 255, 248, 214),
-                    isSelected: _selectedIndex == 1,
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    width: 250, // Adjust the width of the chart
-                    height: 250, // Adjust the height of the chart
-                    child: SfCircularChart(
-                      series: <CircularSeries>[
-                        DoughnutSeries<AnimalData, String>(
-                          dataSource: _chartData,
-                          xValueMapper: (AnimalData data, _) => data.animal,
-                          yValueMapper: (AnimalData data, _) => data.quan,
-                          pointColorMapper: (AnimalData data, _) => data.color,
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: ListView(
-                      shrinkWrap: true,
-                      children: _buildLegendItems(),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                'Upcoming Events',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: events.length,
-              itemBuilder: (context, index) {
-                EventData eventData = events[index];
-                return ListTile(
-                  title: Text(
-                    eventData.title,
-                    style: const TextStyle(
-                      fontSize: 17,
-                      color: Colors.black,
-                    ),
-                  ),
-                  subtitle: Text(
-                    eventData.subtitle,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  trailing: const Icon(Icons.arrow_forward),
+            child: IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SearchPage()),
                 );
               },
             ),
-            Row(
+          ),
+          SizedBox(width: MediaQuery.of(context).size.width * 0.0097),
+          Container(
+            padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.016),
+            decoration: BoxDecoration(
+              color: AppColors.grayscale10,
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NotificationList()),
+                );
+              },
+              child: Image(
+                image: AssetImage('assets/icons/frame/24px/Icon-button1.png'),
+              ),
+            ),
+          ),
+        ],
+      ),
+      body: RefreshIndicator(
+        color: AppColors.primary40,
+        onRefresh: _refreshData,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(
+                left: MediaQuery.of(context).size.width * 0.042,
+                right: MediaQuery.of(context).size.width * 0.042,
+                top: MediaQuery.of(context).size.height * 0.02),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: CardWidget(
-                    icon: Icons.book,
-                    text: 'Searching For Animals'.tr,
-                    buttonText: 'Find Animals',
-                    onPressed: () {
-                      // Handle button 1 press
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Animals',
+                        style: AppFonts.title4(color: AppColors.grayscale90)),
+                    InkWell(
+                      onTap: _showFilterModalSheet,
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Image(
+                          image:
+                              AssetImage('assets/icons/frame/24px/filter1.png'),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.014),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.192,
+                      width: MediaQuery.of(context).size.width * 0.282,
+                      child: SmallCardWidget(
+                        imageAsset: "assets/icons/frame/24px/cow_chicken.png",
+                        animalData: AnimalData(
+                            'ALL', sumOfNextTwoCards, _chartData[0].color),
+                        quan: sumOfNextTwoCards.toString(),
+                        onPressed: () {
+                          _updateChartData(sumOfNextTwoCards, 'ALL');
+                        },
+                        color: const Color.fromARGB(235, 255, 248,
+                            214), // Set the color for the first card
+                        isSelected: _selectedIndex == -1,
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.182,
+                      width: MediaQuery.of(context).size.width * 0.282,
+                      child: SmallCardWidget(
+                        imageAsset: "assets/icons/frame/24px/cow_framed.png",
+                        animalData: _chartData[0],
+                        quan: _chartData[0].quan.toString(),
+                        onPressed: () {
+                          _updateChartData(_chartData[0].quan, 'Mammals');
+                        },
+                        color: const Color.fromARGB(235, 255, 248, 214),
+                        isSelected: _selectedIndex == 0,
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.182,
+                      width: MediaQuery.of(context).size.width * 0.282,
+                      child: SmallCardWidget(
+                        imageAsset:
+                            "assets/icons/frame/24px/chicken_framed.png",
+                        animalData: _chartData[1],
+                        quan: _chartData[1].quan.toString(),
+                        onPressed: () {
+                          _updateChartData(_chartData[1].quan, 'Oviparous');
+                        },
+                        color: const Color.fromARGB(235, 255, 248, 214),
+                        isSelected: _selectedIndex == 1,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.019),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.576,
+                      height: MediaQuery.of(context).size.height * 0.27,
+                      child: SfCircularChart(
+                        series: <CircularSeries>[
+                          DoughnutSeries<AnimalData, String>(
+                            dataSource: _chartData,
+                            xValueMapper: (AnimalData data, _) => data.animal,
+                            yValueMapper: (AnimalData data, _) => data.quan,
+                            pointColorMapper: (AnimalData data, _) =>
+                                data.color,
+                          )
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView(
+                        shrinkWrap: true,
+                        children: _buildLegendItems(),
+                      ),
+                    ),
+                  ],
+                ),
+                Text(
+                  'Upcoming Events',
+                  style: AppFonts.title4(color: AppColors.grayscale90),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.16,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: events.length,
+                    itemBuilder: (context, index) {
+                      EventData eventData = events[index];
+                      return ListTile(
+                        title: Text(eventData.title,
+                            style:
+                                AppFonts.body1(color: AppColors.grayscale90)),
+                        subtitle: Text(
+                          eventData.subtitle,
+                          style: AppFonts.body2(color: AppColors.grayscale60),
+                        ),
+                        trailing: Icon(Icons.arrow_forward_ios_rounded,
+                            color: AppColors.primary40,
+                            size: MediaQuery.of(context).size.width * 0.034),
+                      );
                     },
-                    color: const Color.fromARGB(
-                        255, 197, 219, 158), // Set the color for the first card
                   ),
                 ),
-                Expanded(
-                  child: CardWidget(
-                    icon: Icons.music_note,
-                    text: 'Search For\nFarms',
-                    buttonText: 'Find Farms',
-                    onPressed: () {
-                      // Handle button 2 press
-                    },
-                    color: const Color.fromARGB(255, 254, 255,
-                        168), // Set the color for the second card
-                  ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.039),
+                Row(
+                  children: [
+                    Expanded(
+                      child: CardWidget(
+                        imagePath: 'assets/icons/frame/24px/Cow_Icon.png',
+                        text: 'Searching For Animals'.tr,
+                        buttonText: 'Find Animals',
+                        onPressed: () {
+                          // Handle button 1 press
+                        },
+                        color: const Color.fromRGBO(225, 236, 185, 1),
+                      ),
+                    ),
+                    Expanded(
+                      child: CardWidget(
+                        imagePath: 'assets/icons/frame/24px/Farm_house.png',
+                        text: 'Search For\nFarms',
+                        buttonText: 'Find Farms',
+                        onPressed: () {
+                          // Handle button 2 press
+                        },
+                        color: const Color.fromARGB(255, 254, 255,
+                            168), // Set the color for the second card
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -585,7 +627,7 @@ class EventData {
 }
 
 class SmallCardWidget extends StatefulWidget {
-  final IconData icon;
+  final String imageAsset; // Use an image asset path instead of an icon
   final AnimalData animalData;
   final String quan;
   final VoidCallback onPressed;
@@ -593,7 +635,7 @@ class SmallCardWidget extends StatefulWidget {
   final bool isSelected; // Added new isSelected property
 
   const SmallCardWidget({
-    required this.icon,
+    required this.imageAsset, // Pass an image asset path
     required this.animalData,
     required this.quan,
     required this.onPressed,
@@ -608,57 +650,67 @@ class SmallCardWidget extends StatefulWidget {
 class _SmallCardWidgetState extends State<SmallCardWidget> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Material(
-        elevation:
-            widget.isSelected ? 10 : 0, // Set elevation based on isSelected
-        borderRadius: BorderRadius.circular(8),
-        child: InkWell(
-          onTap: () {
-            setState(() {
-              widget.onPressed();
-            });
-          },
-          borderRadius: BorderRadius.circular(8),
-          child: Container(
-            width: 106,
-            height: 148,
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: widget.color, // Set the color of the card
-              borderRadius: BorderRadius.circular(8),
+    return Stack(
+      fit: StackFit.passthrough,
+      children: [
+        if (widget
+            .isSelected) // Show the back card only when isSelected is true
+          Positioned.fill(
+            child: Material(
+              type: MaterialType.card,
+              color: const Color.fromRGBO(
+                  225, 219, 190, 1), // Change the color for the back card
+              borderRadius: BorderRadius.circular(
+                  MediaQuery.of(context).size.width * 0.037),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
-                  widget.icon,
-                  size: 40,
-                  color: Colors.black, // Set the color of the icon
+          ),
+        Padding(
+          padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).size.height * 0.0073),
+          child: Material(
+            type: MaterialType.card,
+            elevation:
+                widget.isSelected ? 10 : 0, // Set elevation based on isSelected
+            borderRadius: BorderRadius.circular(
+                MediaQuery.of(context).size.width * 0.037),
+            color: const Color.fromRGBO(249, 245, 236, 1),
+            child: InkWell(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () {
+                setState(() {
+                  widget.onPressed();
+                });
+              },
+              borderRadius: BorderRadius.circular(
+                  MediaQuery.of(context).size.width * 0.037),
+              child: Padding(
+                padding:
+                    EdgeInsets.all(MediaQuery.of(context).size.width * 0.042),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      widget.imageAsset, // Use the provided image asset path
+                      width: 50,
+                      height: 50,
+                    ),
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.014),
+                    Text(widget.animalData.animal,
+                        style: AppFonts.body2(color: AppColors.grayscale100)),
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.0034),
+                    Text(widget.animalData.quan.toString(),
+                        style:
+                            AppFonts.headline4(color: AppColors.grayscale100)),
+                  ],
                 ),
-                const SizedBox(height: 25),
-                Text(
-                  widget.animalData.animal,
-                  style: const TextStyle(
-                    fontSize: 15,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  widget.animalData.quan.toString(),
-                  style: const TextStyle(
-                    fontSize: 17,
-                    color: Colors.black,
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

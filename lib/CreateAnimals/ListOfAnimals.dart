@@ -183,7 +183,6 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
     BuildContext context,
   ) {
     // Filter the OviAnimals list based on the filterQuery
-    final selectedFilters = ref.read(selectedFiltersProvider);
     final filteredOviAnimals = ref.read(ovianimalsProvider).where((animal) {
       final eventNumber = animal.eventNumber.toLowerCase();
 

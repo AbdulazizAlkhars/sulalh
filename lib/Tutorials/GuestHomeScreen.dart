@@ -75,7 +75,7 @@ class _GuestHomeScreenTutorial extends State<GuestHomeScreenTutorial> {
                   description:
                       'Here You Can Find Information About Animals & Breeds',
                   child: CardWidget(
-                    icon: Icons.book,
+                    imagePath: 'assets/icons/frame/24px/Cow_Icon.png',
                     text: 'Searching For Animals',
                     buttonText: 'Find Animals',
                     onPressed: () {
@@ -101,7 +101,7 @@ class _GuestHomeScreenTutorial extends State<GuestHomeScreenTutorial> {
                       color: Colors.black,
                       fontWeight: FontWeight.bold),
                   child: CardWidget(
-                    icon: Icons.music_note,
+                    imagePath: 'assets/icons/frame/24px/Farm_house.png',
                     text: 'Search For\nFarms',
                     buttonText: 'Find Farms',
                     onPressed: () {

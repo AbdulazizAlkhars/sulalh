@@ -51,7 +51,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
             children: [
               Expanded(
                 child: CardWidget(
-                  icon: Icons.book,
+                  imagePath: 'assets/icons/frame/24px/Cow_Icon.png',
                   text: 'Searching For Animals',
                   buttonText: 'Find Animals',
                   onPressed: () {
@@ -67,7 +67,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
               ),
               Expanded(
                 child: CardWidget(
-                  icon: Icons.music_note,
+                  imagePath: 'assets/icons/frame/24px/Farm_house.png',
                   text: 'Search For\nFarms',
                   buttonText: 'Find Farms',
                   onPressed: () {
@@ -128,7 +128,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
 }
 
 class CardWidget extends StatelessWidget {
-  final IconData icon;
+  final String imagePath; // Image path for Image.asset
   final String text;
   final String buttonText;
   final VoidCallback onPressed;
@@ -136,7 +136,7 @@ class CardWidget extends StatelessWidget {
 
   const CardWidget({
     super.key,
-    required this.icon,
+    required this.imagePath,
     required this.text,
     required this.buttonText,
     required this.onPressed,
@@ -157,10 +157,10 @@ class CardWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(
-                icon,
-                size: 40,
-                color: Colors.black, // Set the color of the icon
+              Image.asset(
+                imagePath, // Use Image.asset with the specified image path
+                width: 40, // Set the width of the image
+                height: 40, // Set the height of the image
               ),
               Text(
                 text,

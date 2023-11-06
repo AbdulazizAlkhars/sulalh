@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Theme/Colors.dart';
 
 class ButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
@@ -21,12 +22,12 @@ class ButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor:
-              const Color.fromARGB(255, 36, 86, 38), // Button color
+          backgroundColor: AppColors.primary50,
           foregroundColor: Colors.white, // Text color
           padding: const EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50),
+            borderRadius:
+                BorderRadius.circular(MediaQuery.of(context).size.width * 0.08),
           ),
         ),
         child: Text(

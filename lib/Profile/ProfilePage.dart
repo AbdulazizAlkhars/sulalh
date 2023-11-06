@@ -12,6 +12,8 @@ import 'package:hathera_demo/Profile/PrivacySecurity/PrivacySecurityPage.dart';
 import 'package:hathera_demo/Profile/EditProfileInformation.dart';
 import 'package:hathera_demo/Profile/Subscription/Subscription.dart';
 import 'package:hathera_demo/Riverpod/Globalvariables.dart';
+import 'package:hathera_demo/Theme/Colors.dart';
+import 'package:hathera_demo/Theme/Fonts.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({super.key});
@@ -22,6 +24,23 @@ class ProfilePage extends ConsumerStatefulWidget {
 }
 
 class _ProfilePageState extends ConsumerState<ProfilePage> {
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDataFromBackend();
+  }
+
+  Future<void> fetchDataFromBackend() async {
+    // Simulate fetching data from the backend
+    await Future.delayed(const Duration(seconds: 3));
+
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(
     BuildContext context,
@@ -31,34 +50,42 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     final email = ref.watch(emailProvider);
     final phoneNumber = ref.watch(phoneNumberProvider);
     final selectedCountryCode = ref.watch(selectedCountryCodeProvider);
+    final profilePicture = ref.watch(proflePictureProvider);
     final emailAddressVisibility = ref.watch(emailAddressVisibilityProvider);
     final phoneNumberVisibility = ref.watch(phoneNumberVisibilityProvider);
+    double heightMediaQuery = MediaQuery.of(context).size.height / 812;
+    double widthMediaQuery = MediaQuery.of(context).size.width / 375;
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 245, 245, 245),
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Row(
-          children: [
-            Text(
-              'Profile'.tr,
-              style: const TextStyle(
-                fontSize: 35,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
+        title: Text(
+          'Profile',
+          style: AppFonts.title3(color: AppColors.grayscale90),
         ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.edit),
-            onPressed: () {
+          InkWell(
+            onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const EditProfileInformation()),
+                  builder: (context) => const EditProfileInformation(),
+                ),
               );
-              // Handle edit button press
             },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+                child: const Image(
+                  image: AssetImage(
+                      'assets/icons/frame/24px/edit_icon_button.png'),
+                ),
+              ),
+            ),
           ),
         ],
       ),
@@ -67,20 +94,29 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           children: [
             Container(
               color: Colors.white,
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.only(
+                  left: 16 * widthMediaQuery, right: 16 * widthMediaQuery),
               child: Center(
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 25,
+                    SizedBox(height: 40 * heightMediaQuery),
+                    CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      radius: 60 * widthMediaQuery,
+                      backgroundImage: profilePicture != null
+                          ? FileImage(profilePicture)
+                          : null,
+                      child: profilePicture == null
+                          ? Image.asset(
+                              'assets/avatars/120px/Staff1.png', // Replace with the path to your image asset
+                              width: 50,
+                              height: 50,
+                              color: Colors.grey,
+                            )
+                          : null,
                     ),
-                    const CircleAvatar(
-                      radius: 70,
-                      backgroundImage: AssetImage(
-                          'assets/Staff Images/Black-Widow-Avengers-Endgame-feature.jpg'),
-                    ),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: 16 * heightMediaQuery,
                     ),
                     Column(
                       children: <Widget>[
@@ -89,33 +125,25 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                           children: [
                             Text(
                               firstName.tr,
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style:
+                                  AppFonts.title4(color: AppColors.grayscale90),
                             ),
                             const SizedBox(
                               width: 5,
                             ),
                             Text(
                               lastName.tr,
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style:
+                                  AppFonts.title4(color: AppColors.grayscale90),
                             ),
                           ],
                         ),
                         const SizedBox(height: 8),
                         Text(
                           '123-456-7890'.tr,
-                          style: const TextStyle(
-                            fontSize: 16,
-                          ),
+                          style: AppFonts.body2(color: AppColors.grayscale70),
                         ),
-                        const SizedBox(
-                          height: 8,
-                        ),
+                        SizedBox(height: 16 * heightMediaQuery),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Row(
@@ -148,7 +176,11 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    Text(
+                      'Head of Farm',
+                      style: AppFonts.body2(color: AppColors.grayscale70),
+                    ),
+                    SizedBox(height: 32 * heightMediaQuery),
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       child: ElevatedButton(
@@ -181,10 +213,6 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                             const SizedBox(
                               width: 5,
                             ),
-                            const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                            ),
                           ],
                         ),
                       ),
@@ -193,37 +221,33 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                     Container(
                       height: 70,
                       width: double.infinity,
-                      padding: const EdgeInsets.all(8),
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 16),
                       decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 251, 248, 214),
-                        borderRadius: BorderRadius.circular(10),
+                        color: const Color(0xFFF9F5EC),
+                        borderRadius: BorderRadius.circular(14),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                '24',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '24',
+                                  style: AppFonts.body2(
+                                      color: AppColors.grayscale90),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                'Animals'.tr,
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 14,
+                                const SizedBox(
+                                  height: 5,
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  'Animals'.tr,
+                                  style: AppFonts.caption2(
+                                      color: AppColors.grayscale70),
+                                ),
+                              ],
+                            ),
                           ),
                           const SizedBox(
                             width: 5,
@@ -231,22 +255,18 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text(
+                              Text(
                                 '1',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.black,
-                                ),
+                                style: AppFonts.body2(
+                                    color: AppColors.grayscale90),
                               ),
                               const SizedBox(
                                 height: 5,
                               ),
                               Text(
                                 'Farm'.tr,
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 14,
-                                ),
+                                style: AppFonts.caption2(
+                                    color: AppColors.grayscale70),
                               ),
                             ],
                           ),
@@ -256,12 +276,10 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text(
+                              Text(
                                 '4',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.black,
-                                ),
+                                style: AppFonts.body2(
+                                    color: AppColors.grayscale90),
                               ),
                               const SizedBox(
                                 height: 5,
@@ -286,13 +304,24 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
             Container(
               color: Colors.white,
               padding: const EdgeInsets.all(8),
+              width: double.infinity,
               child: Column(
                 children: [
                   ListTile(
-                      leading: const Icon(Icons.person_outline),
+                      leading: Container(
+                        padding: EdgeInsets.all(6 * widthMediaQuery),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.grayscale0,
+                        ),
+                        child: const Icon(
+                          Icons.person_outline_rounded,
+                          color: AppColors.primary30,
+                        ),
+                      ),
                       title: Text(
-                        'Accounts'.tr,
-                        style: const TextStyle(fontSize: 14),
+                        'Accounts',
+                        style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {
                         Navigator.push(
@@ -303,10 +332,20 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         );
                       }),
                   ListTile(
-                      leading: const Icon(Icons.payment_outlined),
+                      leading: Container(
+                        padding: EdgeInsets.all(6 * widthMediaQuery),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.grayscale0,
+                        ),
+                        child: const Icon(
+                          Icons.payment_rounded,
+                          color: AppColors.primary30,
+                        ),
+                      ),
                       title: Text(
-                        'Payment Methods'.tr,
-                        style: const TextStyle(fontSize: 14),
+                        'Payment Methods',
+                        style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {
                         Navigator.push(
@@ -316,10 +355,20 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         );
                       }),
                   ListTile(
-                      leading: const Icon(Icons.star_outline),
+                      leading: Container(
+                        padding: EdgeInsets.all(6 * widthMediaQuery),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.grayscale0,
+                        ),
+                        child: const Icon(
+                          Icons.star_outline_rounded,
+                          color: AppColors.primary30,
+                        ),
+                      ),
                       title: Text(
-                        'Subscriptions'.tr,
-                        style: const TextStyle(fontSize: 14),
+                        'Subscriptions',
+                        style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {
                         Navigator.push(
@@ -335,13 +384,24 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
             Container(
               color: Colors.white,
               padding: const EdgeInsets.all(8),
+              width: double.infinity,
               child: Column(
                 children: [
                   ListTile(
-                      leading: const Icon(Icons.notifications_outlined),
+                      leading: Container(
+                        padding: EdgeInsets.all(6 * widthMediaQuery),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.grayscale0,
+                        ),
+                        child: const Icon(
+                          Icons.notifications_outlined,
+                          color: AppColors.primary30,
+                        ),
+                      ),
                       title: Text(
-                        'Notifications'.tr,
-                        style: const TextStyle(fontSize: 14),
+                        'Notifications',
+                        style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {
                         Navigator.push(
@@ -352,10 +412,20 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         );
                       }),
                   ListTile(
-                      leading: const Icon(Icons.lock_outline),
+                      leading: Container(
+                        padding: EdgeInsets.all(6 * widthMediaQuery),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.grayscale0,
+                        ),
+                        child: const Icon(
+                          Icons.lock_outline,
+                          color: AppColors.primary30,
+                        ),
+                      ),
                       title: Text(
-                        'Privacy and Security'.tr,
-                        style: const TextStyle(fontSize: 14),
+                        'Privacy and Security',
+                        style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {
                         Navigator.push(
@@ -372,13 +442,24 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
             Container(
               color: Colors.white,
               padding: const EdgeInsets.all(8),
+              width: double.infinity,
               child: Column(
                 children: [
                   ListTile(
-                      leading: const Icon(Icons.settings_outlined),
+                      leading: Container(
+                        padding: EdgeInsets.all(6 * widthMediaQuery),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.grayscale0,
+                        ),
+                        child: const Icon(
+                          Icons.settings_outlined,
+                          color: AppColors.primary30,
+                        ),
+                      ),
                       title: Text(
-                        'App Settings'.tr,
-                        style: const TextStyle(fontSize: 14),
+                        'App Settings',
+                        style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {
                         Navigator.push(
@@ -388,10 +469,20 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         );
                       }),
                   ListTile(
-                      leading: const Icon(Icons.warning_amber_rounded),
+                      leading: Container(
+                        padding: EdgeInsets.all(6 * widthMediaQuery),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.grayscale0,
+                        ),
+                        child: const Icon(
+                          Icons.warning_amber_rounded,
+                          color: AppColors.primary30,
+                        ),
+                      ),
                       title: Text(
-                        'About App'.tr,
-                        style: const TextStyle(fontSize: 14),
+                        'About App',
+                        style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {
                         Navigator.push(
@@ -400,10 +491,17 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         );
                       }),
                   ListTile(
-                      leading: const Icon(Icons.contact_support_outlined),
+                      leading: Container(
+                          padding: EdgeInsets.all(6 * widthMediaQuery),
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.grayscale0,
+                          ),
+                          child: const Icon(Icons.contact_support_outlined,
+                              color: AppColors.primary30)),
                       title: Text(
-                        'Customer Support'.tr,
-                        style: const TextStyle(fontSize: 14),
+                        'Customer Support',
+                        style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {
                         Navigator.push(
@@ -419,17 +517,29 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
             Container(
               color: Colors.white,
               padding: const EdgeInsets.all(8),
+              width: double.infinity,
               child: Column(
                 children: [
                   ListTile(
-                    leading: const Icon(Icons.logout_outlined),
+                    leading: Container(
+                      padding: EdgeInsets.all(6 * widthMediaQuery),
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.grayscale0,
+                      ),
+                      child: const Icon(Icons.logout_rounded,
+                          color: AppColors.grayscale90),
+                    ),
                     title: Text(
-                      'Sign Out'.tr,
-                      style: const TextStyle(fontSize: 14, color: Colors.red),
+                      'Sign Out',
+                      style: AppFonts.body2(color: AppColors.error100),
                     ),
                     onTap: () {
                       showModalBottomSheet<void>(
+                        showDragHandle: true,
                         context: context,
+                        isScrollControlled: true,
+                        isDismissible: true,
                         builder: (BuildContext context) {
                           return Container(
                             padding: const EdgeInsets.all(30),
@@ -438,13 +548,12 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                               children: [
                                 Text(
                                   'Sign Out?'.tr,
-                                  style: const TextStyle(
-                                    fontSize: 35,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: AppFonts.title3(
+                                      color: AppColors.grayscale90),
                                 ),
-                                const SizedBox(height: 25),
+                                SizedBox(height: 32 * heightMediaQuery),
                                 SizedBox(
+                                  height: 52 * heightMediaQuery,
                                   width: double.infinity,
                                   child: ElevatedButton(
                                     onPressed: () {},
@@ -469,6 +578,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                 ),
                                 const SizedBox(height: 16),
                                 SizedBox(
+                                  height: 52 * heightMediaQuery,
                                   width: double.infinity,
                                   child: ElevatedButton(
                                     onPressed: () {},

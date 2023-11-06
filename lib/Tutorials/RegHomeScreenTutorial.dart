@@ -114,21 +114,27 @@ class _RegHomeScreenTutorial extends State<RegHomeScreenTutorial> {
                   descTextStyle: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                        child: SmallCardWidget(
-                          icon: Icons.book,
-                          animalData: AnimalData(
-                              'ALL', sumOfNextTwoCards, _chartData[0].color),
-                          quan: sumOfNextTwoCards.toString(),
-                          onPressed: () {},
-                          color: const Color.fromARGB(235, 255, 248,
-                              214), // Set the color for the first card
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.192,
+                          width: MediaQuery.of(context).size.width * 0.282,
+                          child: SmallCardWidget(
+                            imageAsset:
+                                "assets/icons/frame/24px/cow_chicken.png",
+                            animalData: AnimalData(
+                                'ALL', sumOfNextTwoCards, _chartData[0].color),
+                            quan: sumOfNextTwoCards.toString(),
+                            onPressed: () {},
+                            color: const Color.fromARGB(235, 255, 248,
+                                214), // Set the color for the first card
+                          ),
                         ),
                       ),
                       Expanded(
                         child: SmallCardWidget(
-                          icon: Icons.music_note,
+                          imageAsset: "assets/icons/frame/24px/cow_framed.png",
                           animalData: _chartData[0],
                           quan: _chartData[0].quan.toString(),
                           onPressed: () {},
@@ -137,7 +143,8 @@ class _RegHomeScreenTutorial extends State<RegHomeScreenTutorial> {
                       ),
                       Expanded(
                         child: SmallCardWidget(
-                          icon: Icons.music_note,
+                          imageAsset:
+                              "assets/icons/frame/24px/chicken_framed.png",
                           animalData: _chartData[1],
                           quan: _chartData[1].quan.toString(),
                           onPressed: () {},
@@ -229,7 +236,7 @@ class _RegHomeScreenTutorial extends State<RegHomeScreenTutorial> {
                   children: [
                     Expanded(
                       child: CardWidget(
-                        icon: Icons.book,
+                        imagePath: 'assets/icons/frame/24px/Cow_Icon.png',
                         text: 'Searching For Animals',
                         buttonText: 'Find Animals',
                         onPressed: () {
@@ -241,7 +248,7 @@ class _RegHomeScreenTutorial extends State<RegHomeScreenTutorial> {
                     ),
                     Expanded(
                       child: CardWidget(
-                        icon: Icons.music_note,
+                        imagePath: 'assets/icons/frame/24px/Farm_house.png',
                         text: 'Search For\nFarms',
                         buttonText: 'Find Farms',
                         onPressed: () {
@@ -334,92 +341,3 @@ class _RegHomeScreenTutorial extends State<RegHomeScreenTutorial> {
     }).toList();
   }
 }
-
-// class AnimalData {
-//   AnimalData(this.animal, this.quan, this.color);
-//   final String animal;
-//   final int quan;
-//   final Color color;
-// }
-
-// class EventData {
-//   final String title;
-//   final String subtitle;
-
-//   EventData({required this.title, required this.subtitle});
-// }
-
-// class SmallCardWidget extends StatefulWidget {
-//   final IconData icon;
-//   final AnimalData animalData;
-//   final String quan;
-//   final VoidCallback onPressed;
-//   final Color color;
-//   final bool isSelected; // Added new isSelected property
-
-//   const SmallCardWidget({
-//     required this.icon,
-//     required this.animalData,
-//     required this.quan,
-//     required this.onPressed,
-//     required this.color,
-//     this.isSelected = false,
-//   });
-
-//   @override
-//   _SmallCardWidgetState createState() => _SmallCardWidgetState();
-// }
-
-// class _SmallCardWidgetState extends State<SmallCardWidget> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.all(8.0),
-//       child: Material(
-//         elevation:
-//             widget.isSelected ? 10 : 0, // Set elevation based on isSelected
-//         borderRadius: BorderRadius.circular(8),
-//         child: InkWell(
-//           onTap: () {},
-//           borderRadius: BorderRadius.circular(8),
-//           child: Container(
-//             width: 106,
-//             height: 148,
-//             padding: const EdgeInsets.all(16),
-//             decoration: BoxDecoration(
-//               color: widget.color, // Set the color of the card
-//               borderRadius: BorderRadius.circular(8),
-//             ),
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 Icon(
-//                   widget.icon,
-//                   size: 40,
-//                   color: Colors.black, // Set the color of the icon
-//                 ),
-//                 const SizedBox(height: 25),
-//                 Text(
-//                   widget.animalData.animal,
-//                   style: const TextStyle(
-//                     fontSize: 15,
-//                     color: Colors.black,
-//                     fontWeight: FontWeight.bold,
-//                   ),
-//                 ),
-//                 const SizedBox(height: 5),
-//                 Text(
-//                   widget.animalData.quan.toString(),
-//                   style: const TextStyle(
-//                     fontSize: 17,
-//                     color: Colors.black,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
