@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
 import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
@@ -1088,11 +1089,11 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Create ',
+              'Create '.tr,
               style: AppFonts.headline3(color: AppColors.grayscale90),
             ),
             Text(
-              selectedAnimalType,
+              selectedAnimalType.tr,
               style: AppFonts.headline3(color: AppColors.grayscale90),
             ),
           ],
@@ -1163,8 +1164,8 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                   onPressed: () {
                     _showImagePicker(context);
                   },
-                  child: const Text(
-                    'Add Photo',
+                  child: Text(
+                    'Add Photo'.tr,
                     style: TextStyle(
                       fontSize: 14,
                       color: AppColors.primary40,
@@ -1174,10 +1175,10 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.029),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 1),
                 child: Text(
-                  'Name',
+                  'Name'.tr,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -1195,7 +1196,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                 },
                 controller: _nameController,
                 decoration: InputDecoration(
-                  hintText: 'Enter Name', // Add your hint text here
+                  hintText: 'Enter Name'.tr, // Add your hint text here
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(50.0),
                   ),
@@ -1207,12 +1208,12 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.029),
               Text(
-                "Family Tree",
+                "Family Tree".tr,
                 style: AppFonts.headline2(color: AppColors.grayscale90),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.009),
               Text(
-                "Add Parents If They're In The System",
+                "Add Parents If They're In The System".tr,
                 style: AppFonts.body2(color: AppColors.grayscale60),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.019),
@@ -1224,7 +1225,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                   children: [
                     Expanded(
                       child: Text(
-                        'Add Parents',
+                        'Add Parents'.tr,
                         style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                     ),
@@ -1250,7 +1251,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                       Row(
                         children: [
                           Text(
-                            'Sire (Father)',
+                            'Sire (Father)'.tr,
                             style: AppFonts.body2(color: AppColors.grayscale70),
                           ),
                           const Spacer(),
@@ -1273,7 +1274,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                       Row(
                         children: [
                           Text(
-                            'Dam (Mother)',
+                            'Dam (Mother)'.tr,
                             style: AppFonts.body2(color: AppColors.grayscale70),
                           ),
                           const Spacer(),
@@ -1302,7 +1303,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                 child: Row(
                   children: [
                     Text(
-                      'Add Children',
+                      'Add Children'.tr,
                       style: AppFonts.body2(color: AppColors.grayscale90),
                     ),
                     const Spacer(),
@@ -1354,7 +1355,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               const Divider(),
               SizedBox(height: MediaQuery.of(context).size.height * 0.019),
               Text(
-                "Animal Sex",
+                "Animal Sex".tr,
                 style: AppFonts.headline2(color: AppColors.grayscale90),
               ),
               Padding(
@@ -1366,7 +1367,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                     setState(() {
                       ref
                           .read(selectedOviGenderProvider.notifier)
-                          .update((state) => 'Unknown');
+                          .update((state) => 'Unknown'.tr);
 
                       showAdditionalFields = false;
                     });
@@ -1375,7 +1376,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                     children: [
                       Expanded(
                         child: Text(
-                          'Unknown',
+                          'Unknown'.tr,
                           style: AppFonts.body2(color: AppColors.grayscale90),
                         ),
                       ),
@@ -1385,52 +1386,12 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color:
-                                ref.read(selectedOviGenderProvider) == 'Unknown'
-                                    ? AppColors.primary20
-                                    : AppColors.grayscale30,
-                            width:
-                                ref.read(selectedOviGenderProvider) == 'Unknown'
-                                    ? 6.0
-                                    : 1.0,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.01,
-                    bottom: MediaQuery.of(context).size.height * 0.01),
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      ref
-                          .read(selectedOviGenderProvider.notifier)
-                          .update((state) => 'Male');
-                      showAdditionalFields = false;
-                    });
-                  },
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'Male',
-                          style: AppFonts.body2(color: AppColors.grayscale90),
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.064,
-                        height: MediaQuery.of(context).size.width * 0.064,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: ref.read(selectedOviGenderProvider) == 'Male'
+                            color: ref.read(selectedOviGenderProvider) ==
+                                    'Unknown'.tr
                                 ? AppColors.primary20
                                 : AppColors.grayscale30,
-                            width: ref.read(selectedOviGenderProvider) == 'Male'
+                            width: ref.read(selectedOviGenderProvider) ==
+                                    'Unknown'.tr
                                 ? 6.0
                                 : 1.0,
                           ),
@@ -1449,16 +1410,15 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                     setState(() {
                       ref
                           .read(selectedOviGenderProvider.notifier)
-                          .update((state) => 'Female');
-                      showAdditionalFields = true;
-                      // Show additional fields when Female is selected
+                          .update((state) => 'Male'.tr);
+                      showAdditionalFields = false;
                     });
                   },
                   child: Row(
                     children: [
                       Expanded(
                         child: Text(
-                          'Female',
+                          'Male'.tr,
                           style: AppFonts.body2(color: AppColors.grayscale90),
                         ),
                       ),
@@ -1469,13 +1429,56 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                           shape: BoxShape.circle,
                           border: Border.all(
                             color:
-                                ref.read(selectedOviGenderProvider) == 'Female'
+                                ref.read(selectedOviGenderProvider) == 'Male'.tr
                                     ? AppColors.primary20
                                     : AppColors.grayscale30,
                             width:
-                                ref.read(selectedOviGenderProvider) == 'Female'
+                                ref.read(selectedOviGenderProvider) == 'Male'.tr
                                     ? 6.0
                                     : 1.0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.01,
+                    bottom: MediaQuery.of(context).size.height * 0.01),
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      ref
+                          .read(selectedOviGenderProvider.notifier)
+                          .update((state) => 'Female'.tr);
+                      showAdditionalFields = true;
+                      // Show additional fields when Female is selected
+                    });
+                  },
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Female'.tr,
+                          style: AppFonts.body2(color: AppColors.grayscale90),
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.064,
+                        height: MediaQuery.of(context).size.width * 0.064,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: ref.read(selectedOviGenderProvider) ==
+                                    'Female'.tr
+                                ? AppColors.primary20
+                                : AppColors.grayscale30,
+                            width: ref.read(selectedOviGenderProvider) ==
+                                    'Female'.tr
+                                ? 6.0
+                                : 1.0,
                           ),
                         ),
                       ),
@@ -1488,7 +1491,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.01),
               if (showAdditionalFields) // Show additional fields when Female is selected
                 Visibility(
-                  visible: selectedAnimalType == 'Oviparous',
+                  visible: selectedAnimalType == 'Oviparous'.tr,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1713,12 +1716,12 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                 ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.019),
               Text(
-                "Dates",
+                "Dates".tr,
                 style: AppFonts.headline2(color: AppColors.grayscale90),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.029),
-              const Text(
-                "Date Of Birth",
+              Text(
+                "Date Of Birth".tr,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -1734,8 +1737,8 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                 onPressed: () {
                   _showDateSelectionSheet(context);
                 },
-                child: const Text(
-                  'Add Date +',
+                child: Text(
+                  'Add Date +'.tr,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 36, 86, 38),
@@ -1745,7 +1748,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               const Divider(),
               SizedBox(height: MediaQuery.of(context).size.height * 0.019),
               Text(
-                "Add Tag",
+                "Add Tag".tr,
                 style: AppFonts.headline2(color: AppColors.grayscale90),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.019),
@@ -1768,8 +1771,8 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                 onPressed: () {
                   _animalTagsModalSheet();
                 },
-                child: const Text(
-                  'Add Tags +',
+                child: Text(
+                  'Add Tags +'.tr,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 36, 86, 38),
@@ -1779,7 +1782,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               const Divider(),
               SizedBox(height: MediaQuery.of(context).size.height * 0.019),
               Text(
-                "Add Custom Fields",
+                "Add Custom Fields".tr,
                 style: AppFonts.headline2(color: AppColors.grayscale90),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.019),
@@ -1790,8 +1793,8 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                 onPressed: () {
                   _showOviFieldNameModal(context);
                 },
-                child: const Text(
-                  'Add Custom Field +',
+                child: Text(
+                  'Add Custom Field +'.tr,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 36, 86, 38),
@@ -1801,7 +1804,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               const Divider(),
               SizedBox(height: MediaQuery.of(context).size.height * 0.019),
               Text(
-                'Additional Notes',
+                'Additional Notes'.tr,
                 style: AppFonts.headline2(color: AppColors.grayscale90),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
@@ -1814,8 +1817,8 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
                 maxLines: 6, // Set the maximum number of lines
                 controller: _notesController,
                 decoration: InputDecoration(
-                  hintText:
-                      'Add Additional Information If Needed', // Add your hint text here
+                  hintText: 'Add Additional Information If Needed'
+                      .tr, // Add your hint text here
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),
@@ -1839,7 +1842,7 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               //   height: 20,
               // ),
               Text(
-                'Medical Needs Notes',
+                'Medical Needs Notes'.tr,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -1889,8 +1892,8 @@ class _CreateOviCumMammal extends ConsumerState<CreateOviCumMammal> {
               borderRadius: BorderRadius.circular(50),
             ),
           ),
-          child: const Text(
-            'Save',
+          child: Text(
+            'Save'.tr,
             style: TextStyle(color: Colors.white),
           ),
         ),

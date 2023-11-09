@@ -18,22 +18,11 @@ class RegHomePage extends StatefulWidget {
 
 class _RegHomePage extends State<RegHomePage> {
   Future<void> _refreshData() async {
-    // Implement your data fetching or refreshing logic here
-    // For example, you can fetch new data and update the chart, events, etc.
     setState(() {
       _chartData = getChartData();
       sumOfNextTwoCards = _chartData[0].quan + _chartData[1].quan;
-      // Update other data and state variables
     });
-
-    // Wait for a short duration to simulate a refresh
     await Future.delayed(const Duration(seconds: 1));
-
-    // // Navigate back to the same page to simulate a page reload
-    // Navigator.pushReplacement(
-    //   context,
-    //   MaterialPageRoute(builder: (context) => const RegHomePage()),
-    // );
   }
 
   late List<AnimalData> _chartData;

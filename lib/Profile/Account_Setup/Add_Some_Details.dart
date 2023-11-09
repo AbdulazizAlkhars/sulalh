@@ -18,7 +18,7 @@ class AddSomeDetailsPage extends ConsumerStatefulWidget {
 
 class _AddSomeDetailsPageState extends ConsumerState<AddSomeDetailsPage> {
   final ImagePicker _picker = ImagePicker();
-
+  final TextEditingController _addressController = TextEditingController();
   void _showImagePicker(BuildContext context) {
     showModalBottomSheet(
       showDragHandle: true,
@@ -176,16 +176,39 @@ class _AddSomeDetailsPageState extends ConsumerState<AddSomeDetailsPage> {
                 style: AppFonts.headline3(color: AppColors.grayscale90),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.029),
-              CustomTextFormField(
-                keyboardType: TextInputType.emailAddress,
-                labelText: 'Enter Email'.tr,
+              TextFormField(
+                onChanged: (value) {
+                  ref.read(addressProvider.notifier).update((state) => value);
+                },
+                maxLines: 3, // Set the maximum number of lines
+                controller: _addressController,
+                decoration: InputDecoration(
+                  hintText: 'Add Your Address', // Add your hint text here
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(
+                      vertical: 12.0, horizontal: 16.0),
+                ),
+                textInputAction:
+                    TextInputAction.done, // Change the keyboard action
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.019),
               CustomTextFormField(
+                onChanged: (value) {
+                  ref.read(cityProvider.notifier).update((state) => value);
+                },
                 keyboardType: TextInputType.emailAddress,
                 labelText: 'City'.tr,
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.15),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.019),
+              CustomTextFormField(
+                onChanged: (value) {
+                  ref.read(countryProvider.notifier).update((state) => value);
+                },
+                keyboardType: TextInputType.emailAddress,
+                labelText: 'Country'.tr,
+              ),
             ],
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/CreateAnimals/SelectedOptions.dart';
 import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
@@ -66,7 +67,7 @@ class _CreateAnimalPageState extends ConsumerState<CreateAnimalPage> {
         elevation: 0,
         automaticallyImplyLeading: false,
         title: Text(
-          'Create Animal',
+          'Create Animal'.tr,
           style: AppFonts.headline3(color: AppColors.grayscale90),
         ),
         actions: [
@@ -101,7 +102,7 @@ class _CreateAnimalPageState extends ConsumerState<CreateAnimalPage> {
                 height: MediaQuery.of(context).size.height * 0.02,
               ),
               Text(
-                'Animal Type',
+                'Animal Type'.tr,
                 style: AppFonts.headline2(color: AppColors.grayscale90),
               ),
               Column(
@@ -130,7 +131,7 @@ class _CreateAnimalPageState extends ConsumerState<CreateAnimalPage> {
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
                     Text(
-                      'Animal Species',
+                      'Animal Species'.tr,
                       style: AppFonts.headline2(color: AppColors.grayscale90),
                     ),
                     for (String species in selectedAnimalType == 'Mammal'
@@ -142,8 +143,8 @@ class _CreateAnimalPageState extends ConsumerState<CreateAnimalPage> {
                         _showModalSheet('species',
                             selectedAnimalType); // Show modal sheet on button press
                       },
-                      child: const Text(
-                        'Show More >',
+                      child: Text(
+                        'Show More >'.tr,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 36, 86, 38),
@@ -168,7 +169,7 @@ class _CreateAnimalPageState extends ConsumerState<CreateAnimalPage> {
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
                   Text(
-                    'Animal Breeds',
+                    'Animal Breeds'.tr,
                     style: AppFonts.headline2(color: AppColors.grayscale90),
                   ),
                   for (String breed in selectedAnimalType == 'Mammal'
@@ -180,8 +181,8 @@ class _CreateAnimalPageState extends ConsumerState<CreateAnimalPage> {
                       _showModalSheet('breeds',
                           selectedAnimalType); // Show modal sheet on button press
                     },
-                    child: const Text(
-                      'Show More >',
+                    child: Text(
+                      'Show More >'.tr,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Color.fromARGB(255, 36, 86, 38),
@@ -228,8 +229,8 @@ class _CreateAnimalPageState extends ConsumerState<CreateAnimalPage> {
               borderRadius: BorderRadius.circular(50),
             ),
           ),
-          child: const Text(
-            'Continue',
+          child: Text(
+            'Continue'.tr,
             style: TextStyle(color: Colors.white),
           ),
         ),

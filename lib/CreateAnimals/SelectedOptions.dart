@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/CreateAnimals/CreateOviparousMammal.dart';
 import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
@@ -34,7 +35,7 @@ class _SelectedOptionsPageState extends ConsumerState<SelectedOptionsPage> {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          'Create Animal',
+          'Create Animal'.tr,
           style: AppFonts.headline3(color: AppColors.grayscale90),
         ),
         leading: IconButton(
@@ -82,13 +83,13 @@ class _SelectedOptionsPageState extends ConsumerState<SelectedOptionsPage> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.029,
             ),
-            Text('Chosen Options',
+            Text('Chosen Options'.tr,
                 style: AppFonts.headline2(color: AppColors.grayscale90)),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.009,
             ),
             Text(
-              'You can apply any changes',
+              'You can apply any changes'.tr,
               style: AppFonts.body2(color: AppColors.grayscale60),
             ),
             SizedBox(
@@ -97,7 +98,7 @@ class _SelectedOptionsPageState extends ConsumerState<SelectedOptionsPage> {
             Row(
               children: [
                 Text(
-                  'Animal Type',
+                  'Animal Type'.tr,
                   style: AppFonts.body2(color: AppColors.grayscale70),
                 ),
                 const Spacer(),
@@ -119,7 +120,7 @@ class _SelectedOptionsPageState extends ConsumerState<SelectedOptionsPage> {
             Row(
               children: [
                 Text(
-                  'Animal Species',
+                  'Animal Species'.tr,
                   style: AppFonts.body2(color: AppColors.grayscale70),
                 ),
                 const Spacer(),
@@ -141,7 +142,7 @@ class _SelectedOptionsPageState extends ConsumerState<SelectedOptionsPage> {
             Row(
               children: [
                 Text(
-                  'Animal Breed',
+                  'Animal Breeds'.tr,
                   style: AppFonts.body2(color: AppColors.grayscale70),
                 ),
                 const Spacer(),
@@ -187,8 +188,8 @@ class _SelectedOptionsPageState extends ConsumerState<SelectedOptionsPage> {
               borderRadius: BorderRadius.circular(50),
             ),
           ),
-          child: const Text(
-            'Create Animal',
+          child: Text(
+            'Create Animal'.tr,
             style: TextStyle(color: Colors.white),
           ),
         ),

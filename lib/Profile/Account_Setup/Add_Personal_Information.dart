@@ -91,14 +91,22 @@ class AddPersonalInfoPage extends ConsumerWidget {
               SizedBox(height: MediaQuery.of(context).size.height * 0.05),
               Text("What is the name of your farm?",
                   style: AppFonts.headline3(color: AppColors.grayscale90)),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.019),
               CustomTextFormField(
+                onChanged: (value) {
+                  ref.read(farmNameProvider.notifier).update((state) => value);
+                },
                 keyboardType: TextInputType.name,
                 labelText: 'Enter Farm Name'.tr,
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.019),
               Text("Who owns the farm?",
                   style: AppFonts.headline3(color: AppColors.grayscale90)),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.019),
               CustomTextFormField(
+                onChanged: (value) {
+                  ref.read(farmownerProvider.notifier).update((state) => value);
+                },
                 keyboardType: TextInputType.name,
                 labelText: 'Enter Owner Name'.tr,
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:hathera_demo/Animal_Information/EnlargedAnimalPic.dart';
 import 'package:hathera_demo/Profile/AboutApp/AboutApp.dart';
 import 'package:hathera_demo/Profile/AppSettings/AppSettings.dart';
 import 'package:hathera_demo/Profile/AuthorizationMethods/AuthorizationMethodsPage.dart';
@@ -51,6 +52,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     final phoneNumber = ref.watch(phoneNumberProvider);
     final selectedCountryCode = ref.watch(selectedCountryCodeProvider);
     final profilePicture = ref.watch(proflePictureProvider);
+    final farmOwner = ref.watch(farmownerProvider);
+    final farmName = ref.watch(farmNameProvider);
     final emailAddressVisibility = ref.watch(emailAddressVisibilityProvider);
     final phoneNumberVisibility = ref.watch(phoneNumberVisibilityProvider);
     double heightMediaQuery = MediaQuery.of(context).size.height / 812;
@@ -100,19 +103,30 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 child: Column(
                   children: [
                     SizedBox(height: 40 * heightMediaQuery),
-                    CircleAvatar(
-                      backgroundColor: AppColors.grayscale10,
-                      radius: 60 * widthMediaQuery,
-                      backgroundImage: profilePicture != null
-                          ? FileImage(profilePicture)
-                          : null,
-                      child: profilePicture == null
-                          ? Icon(
-                              Icons.camera_alt_outlined,
-                              size: 40,
-                              color: AppColors.grayscale90,
-                            )
-                          : null,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EnlargedAnimalImageScreen(
+                                image: profilePicture),
+                          ),
+                        );
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: AppColors.grayscale10,
+                        radius: 60 * widthMediaQuery,
+                        backgroundImage: profilePicture != null
+                            ? FileImage(profilePicture)
+                            : null,
+                        child: profilePicture == null
+                            ? Icon(
+                                Icons.camera_alt_outlined,
+                                size: 40,
+                                color: AppColors.grayscale90,
+                              )
+                            : null,
+                      ),
                     ),
                     SizedBox(
                       height: 16 * heightMediaQuery,
@@ -138,46 +152,58 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                           ],
                         ),
                         const SizedBox(height: 8),
+                        Center(
+                          child: Text(
+                            'Head Of Farm'.tr,
+                            style:
+                                AppFonts.title5(color: AppColors.grayscale90),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
                         Text(
                           '123-456-7890'.tr,
                           style: AppFonts.body2(color: AppColors.grayscale70),
                         ),
                         SizedBox(height: 16 * heightMediaQuery),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              if (emailAddressVisibility) // Check if email visibility is true
-                                Text(
-                                  email,
-                                  style: const TextStyle(fontSize: 16),
-                                ),
-                              if (phoneNumberVisibility)
-                                Row(
-                                  children: [
-                                    Text(
-                                      selectedCountryCode.tr,
-                                      style: const TextStyle(fontSize: 16),
-                                    ),
-                                    const Text(
-                                      '-',
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                    Text(
-                                      phoneNumber.tr,
-                                      style: const TextStyle(fontSize: 16),
-                                    ),
-                                  ],
-                                ), // Check if email visibility is true
-                            ],
-                          ),
+                        Text(
+                          farmName,
+                          style: AppFonts.title5(color: AppColors.grayscale90),
+                        ),
+                        const SizedBox(height: 8),
+                        Column(
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            if (emailAddressVisibility) // Check if email visibility is true
+                              Text(
+                                email,
+                                style: AppFonts.body2(
+                                    color: AppColors.grayscale70),
+                              ),
+                            if (phoneNumberVisibility)
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    selectedCountryCode.tr,
+                                    style: AppFonts.body2(
+                                        color: AppColors.grayscale70),
+                                  ),
+                                  Text(
+                                    '-',
+                                    style: AppFonts.body2(
+                                        color: AppColors.grayscale70),
+                                  ),
+                                  Text(
+                                    phoneNumber.tr,
+                                    style: AppFonts.body2(
+                                        color: AppColors.grayscale70),
+                                  ),
+                                ],
+                              ),
+                          ],
                         ),
                       ],
-                    ),
-                    Text(
-                      'Head of Farm'.tr,
-                      style: AppFonts.body2(color: AppColors.grayscale70),
                     ),
                     SizedBox(height: 32 * heightMediaQuery),
                     Container(
@@ -319,7 +345,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         ),
                       ),
                       title: Text(
-                        'Accounts',
+                        'Accounts'.tr,
                         style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {
@@ -343,7 +369,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         ),
                       ),
                       title: Text(
-                        'Payment Methods',
+                        'Payment Methods'.tr,
                         style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {
@@ -366,7 +392,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         ),
                       ),
                       title: Text(
-                        'Subscriptions',
+                        'Subscriptions'.tr,
                         style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {
@@ -399,7 +425,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         ),
                       ),
                       title: Text(
-                        'Notifications',
+                        'Notifications'.tr,
                         style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {
@@ -423,7 +449,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         ),
                       ),
                       title: Text(
-                        'Privacy and Security',
+                        'Privacy and Security'.tr,
                         style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {
@@ -457,7 +483,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         ),
                       ),
                       title: Text(
-                        'App Settings',
+                        'App Settings'.tr,
                         style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {
@@ -480,7 +506,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         ),
                       ),
                       title: Text(
-                        'About App',
+                        'About App'.tr,
                         style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {
@@ -499,7 +525,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                           child: const Icon(Icons.contact_support_outlined,
                               color: AppColors.primary30)),
                       title: Text(
-                        'Customer Support',
+                        'Customer Support'.tr,
                         style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {
@@ -530,7 +556,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                           color: AppColors.grayscale90),
                     ),
                     title: Text(
-                      'Sign Out',
+                      'Sign Out'.tr,
                       style: AppFonts.body2(color: AppColors.error100),
                     ),
                     onTap: () {

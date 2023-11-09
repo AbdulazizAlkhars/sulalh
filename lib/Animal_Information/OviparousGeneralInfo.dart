@@ -1,11 +1,13 @@
 // ignore: depend_on_referenced_packages
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/FamilyTree.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfBreedingEvents.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfChildren.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfParents.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfPartners.dart';
+import 'package:hathera_demo/Animal_Information/EnlargedAnimalPic.dart';
 import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
 import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
@@ -56,10 +58,12 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
       TextButton(
         onPressed: () {},
         child: Text(
-          widget.OviDetails.medicalNeeds,
+          widget.OviDetails.medicalNeeds.isNotEmpty
+              ? widget.OviDetails.medicalNeeds
+              : 'Be sure to include joint support medicine, antibiotics, anti-inflammatory medication, and topical antiseptics when packing your first-aid kit for your horses. If you have the essentials, you can keep your four-legged friends in the best condition possible.',
           // _medicalNeedsController.text.isNotEmpty
           //     ? _medicalNeedsController.text
-          //     : 'Be sure to include joint support medicine, antibiotics, anti-inflammatory medication, and topical antiseptics when packing your first-aid kit for your horses. If you have the essentials, you can keep your four-legged friends in the best condition possible.',
+          //     :
           style: AppFonts.body2(color: AppColors.grayscale70),
         ),
       ),
@@ -437,21 +441,34 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                       children: [
                         FractionalTranslation(
                           translation: const Offset(0.0, -0.6),
-                          child: CircleAvatar(
-                            radius: MediaQuery.of(context).size.width * 0.16,
-                            backgroundColor: Colors.grey[100],
-                            backgroundImage: widget
-                                        .OviDetails.selectedOviImage !=
-                                    null
-                                ? FileImage(widget.OviDetails.selectedOviImage!)
-                                : null,
-                            child: widget.OviDetails.selectedOviImage == null
-                                ? const Icon(
-                                    Icons.camera_alt_outlined,
-                                    size: 50,
-                                    color: Colors.grey,
-                                  )
-                                : null,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      EnlargedAnimalImageScreen(
+                                    image: widget.OviDetails.selectedOviImage,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: CircleAvatar(
+                              radius: MediaQuery.of(context).size.width * 0.16,
+                              backgroundColor: Colors.grey[100],
+                              backgroundImage:
+                                  widget.OviDetails.selectedOviImage != null
+                                      ? FileImage(
+                                          widget.OviDetails.selectedOviImage!)
+                                      : null,
+                              child: widget.OviDetails.selectedOviImage == null
+                                  ? const Icon(
+                                      Icons.camera_alt_outlined,
+                                      size: 50,
+                                      color: Colors.grey,
+                                    )
+                                  : null,
+                            ),
                           ),
                         ),
                       ],
@@ -535,15 +552,15 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                             unselectedLabelColor: AppColors.grayscale60,
                             labelStyle:
                                 AppFonts.body2(color: AppColors.grayscale0),
-                            tabs: const [
+                            tabs: [
                               Tab(
-                                text: 'General',
+                                text: 'General'.tr,
                               ),
                               Tab(
-                                text: 'Breeding',
+                                text: 'Breeding'.tr,
                               ),
                               Tab(
-                                text: 'Medical',
+                                text: 'Medical'.tr,
                               ),
                             ],
                           ),
@@ -589,7 +606,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                                 ),
                                                 const SizedBox(height: 8),
                                                 Text(
-                                                  'Type',
+                                                  'Type'.tr,
                                                   style: AppFonts.body2(
                                                       color: AppColors
                                                           .grayscale90),
@@ -610,7 +627,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                                 ),
                                                 const SizedBox(height: 8),
                                                 Text(
-                                                  'Species',
+                                                  'Species'.tr,
                                                   style: AppFonts.body2(
                                                       color: AppColors
                                                           .grayscale90),
@@ -631,7 +648,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                                 ),
                                                 const SizedBox(height: 8),
                                                 Text(
-                                                  'Sex',
+                                                  'Sex'.tr,
                                                   style: AppFonts.body2(
                                                       color: AppColors
                                                           .grayscale90),
@@ -648,7 +665,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                               0.03,
                                     ),
                                     Text(
-                                      'General Information',
+                                      'General Information'.tr,
                                       style: AppFonts.title5(
                                           color: AppColors.grayscale90),
                                     ),
@@ -660,7 +677,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                     Row(
                                       children: [
                                         Text(
-                                          'Age',
+                                          'Age'.tr,
                                           style: AppFonts.body2(
                                             color: AppColors.grayscale70,
                                           ),
@@ -688,7 +705,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                     Row(
                                       children: [
                                         Text(
-                                          'Breed',
+                                          'Breed'.tr,
                                           style: AppFonts.body2(
                                             color: AppColors.grayscale70,
                                           ),
@@ -710,7 +727,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                     Row(
                                       children: [
                                         Text(
-                                          'Date Of Hatching',
+                                          'Date Of Hatching'.tr,
                                           style: AppFonts.body2(
                                             color: AppColors.grayscale70,
                                           ),
@@ -718,16 +735,18 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                         const Spacer(),
                                         widget.OviDetails.selectedOviDates
                                                     .containsKey(
-                                                        'Date Of Hatching') &&
+                                                        'Date Of Hatching'
+                                                            .tr) &&
                                                 widget.OviDetails
                                                             .selectedOviDates[
-                                                        'Date Of Hatching'] !=
+                                                        'Date Of Hatching'
+                                                            .tr] !=
                                                     null
                                             ? Text(
                                                 DateFormat('dd.MM.yyyy').format(
                                                   widget.OviDetails
                                                           .selectedOviDates[
-                                                      'Date Of Hatching']!,
+                                                      'Date Of Hatching'.tr]!,
                                                 ),
                                                 style: const TextStyle(
                                                   fontSize: 14,
@@ -752,7 +771,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                     Row(
                                       children: [
                                         Text(
-                                          'Date Of Death',
+                                          'Date Of Death'.tr,
                                           style: AppFonts.body2(
                                             color: AppColors.grayscale70,
                                           ),
@@ -760,16 +779,16 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                         const Spacer(),
                                         widget.OviDetails.selectedOviDates
                                                     .containsKey(
-                                                        'Date Of Death') &&
+                                                        'Date Of Death'.tr) &&
                                                 widget.OviDetails
                                                             .selectedOviDates[
-                                                        'Date Of Death'] !=
+                                                        'Date Of Death'.tr] !=
                                                     null
                                             ? Text(
                                                 DateFormat('dd.MM.yyyy').format(
                                                   widget.OviDetails
                                                           .selectedOviDates[
-                                                      'Date Of Death']!,
+                                                      'Date Of Death'.tr]!,
                                                 ),
                                                 style: const TextStyle(
                                                   fontSize: 14,
@@ -794,7 +813,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                     Row(
                                       children: [
                                         Text(
-                                          'Date Of Sale',
+                                          'Date Of Sale'.tr,
                                           style: AppFonts.body2(
                                             color: AppColors.grayscale70,
                                           ),
@@ -802,16 +821,16 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                         const Spacer(),
                                         widget.OviDetails.selectedOviDates
                                                     .containsKey(
-                                                        'Date Of Sale') &&
+                                                        'Date Of Sale'.tr) &&
                                                 widget.OviDetails
                                                             .selectedOviDates[
-                                                        'Date Of Sale'] !=
+                                                        'Date Of Sale'.tr] !=
                                                     null
                                             ? Text(
                                                 DateFormat('dd.MM.yyyy').format(
                                                   widget.OviDetails
                                                           .selectedOviDates[
-                                                      'Date Of Sale']!,
+                                                      'Date Of Sale'.tr]!,
                                                 ),
                                                 style: const TextStyle(
                                                   fontSize: 14,
@@ -856,7 +875,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                               0.02,
                                     ),
                                     Text(
-                                      'Additonal Notes',
+                                      'Additonal Notes'.tr,
                                       style: AppFonts.title5(
                                           color: AppColors.grayscale90),
                                     ),
@@ -1331,9 +1350,6 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                                 },
                                               ),
                                       ],
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
                                     ),
                                     _isEditMode
                                         ? _buildEditMode()

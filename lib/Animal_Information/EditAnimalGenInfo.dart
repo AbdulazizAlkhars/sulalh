@@ -51,7 +51,7 @@ class _EditAnimalGenInfoState extends ConsumerState<EditAnimalGenInfo> {
     super.initState();
     // Initialize text controllers with widget values
     eventNumberController.text = widget.OviDetails.eventNumber;
-    // medicalNeedsController.text = widget.OviDetails.medicalNeeds;
+    medicalNeedsController.text = widget.OviDetails.medicalNeeds;
     animalSireController.text = widget.OviDetails.selectedOviSire;
     animalDamController.text = widget.OviDetails.selectedOviDam;
     animalTypeController.text = widget.OviDetails.selectedAnimalType;
@@ -639,6 +639,7 @@ class _EditAnimalGenInfoState extends ConsumerState<EditAnimalGenInfo> {
                       )
                     : null,
               ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.020),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -673,85 +674,170 @@ class _EditAnimalGenInfoState extends ConsumerState<EditAnimalGenInfo> {
                 children: [
                   TextField(
                     controller: eventNumberController,
-                    decoration: InputDecoration(labelText: 'New Event Number'),
+                    decoration: InputDecoration(
+                      labelText: 'New Event Number',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
                   TextField(
                     controller: animalTypeController,
-                    decoration: InputDecoration(labelText: 'New Animal Type'),
+                    decoration: InputDecoration(
+                      labelText: 'New Animal Type',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
                   TextField(
                     controller: animalSpeciesController,
-                    decoration:
-                        InputDecoration(labelText: 'New Animal Species'),
+                    decoration: InputDecoration(
+                      labelText: 'New Animal Species',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
                   TextField(
                     controller: animalBreedController,
-                    decoration: InputDecoration(labelText: 'New Animal Breed'),
+                    decoration: InputDecoration(
+                      labelText: 'New Animal Breed',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
                   TextField(
                     controller: selectedOviGenderController,
-                    decoration: InputDecoration(labelText: 'New Gender'),
+                    decoration: InputDecoration(
+                      labelText: 'New Gender',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
                   TextField(
                     controller: animalSireController,
-                    decoration: InputDecoration(labelText: 'New Animal Sire'),
+                    decoration: InputDecoration(
+                      labelText: 'New Animal Sire',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
                   TextField(
                     controller: animalDamController,
-                    decoration: InputDecoration(labelText: 'New Animal Dam'),
+                    decoration: InputDecoration(
+                      labelText: 'New Animal Dam',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
                   TextField(
                     controller: selectedBreedingStageController,
-                    decoration:
-                        InputDecoration(labelText: 'New Breeding Stage'),
+                    decoration: InputDecoration(
+                      labelText: 'New Breeding Stage',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
                   TextField(
+                    maxLines: 4,
                     controller: notesController,
-                    decoration:
-                        InputDecoration(labelText: 'New Additional Notes'),
+                    decoration: InputDecoration(
+                      labelText: 'New Additional Notes',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
                   TextField(
+                    maxLines: 3,
                     controller: medicalNeedsController,
-                    decoration: InputDecoration(labelText: 'New Medical Needs'),
+                    decoration: InputDecoration(
+                      labelText: 'New Medical Needs',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
                   _buildDateFields(),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
                   TextField(
                     controller: layingFrequencyController,
-                    decoration:
-                        InputDecoration(labelText: 'New Laying Frequency'),
+                    decoration: InputDecoration(
+                      labelText: 'New Laying Frequency',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
                   TextField(
                     controller: eggsPerMonthController,
-                    decoration:
-                        InputDecoration(labelText: 'New Eggs Per Month'),
+                    decoration: InputDecoration(
+                      labelText: 'New Eggs Per Month',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
                   TextField(
                     controller: dateOfBirthController,
-                    decoration: InputDecoration(labelText: 'New Date of Birth'),
+                    decoration: InputDecoration(
+                      labelText: 'New Date of Birth',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
                   TextField(
+                    controller: fieldNameController,
+                    decoration: InputDecoration(
+                      labelText: fieldNameController.text.isNotEmpty
+                          ? fieldNameController.text
+                          : 'Custom Field Name',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.015),
+                  TextField(
                     controller: fieldContentController,
-                    decoration:
-                        InputDecoration(labelText: fieldNameController.text),
+                    decoration: InputDecoration(
+                      labelText: fieldContentController.text.isNotEmpty
+                          ? fieldContentController.text
+                          : 'Custom Field Content',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
                   TextField(
                     controller: imageUrlController,
-                    decoration: InputDecoration(labelText: 'Image URL'),
+                    decoration: InputDecoration(
+                      labelText: 'Image URL',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                    ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.029),
@@ -799,6 +885,8 @@ class _EditAnimalGenInfoState extends ConsumerState<EditAnimalGenInfo> {
               selectedOviSire: animalSireController.text,
               selectedOviDam: animalDamController.text,
               selectedBreedingStage: selectedBreedingStageController.text,
+              fieldName: fieldNameController.text,
+              fieldContent: fieldContentController.text,
               layingFrequency: layingFrequencyController.text,
               eggsPerMonth: eggsPerMonthController.text,
               dateOfBirth: dateOfBirthController.text,

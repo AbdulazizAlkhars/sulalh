@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/CreateAnimals/CreateAnimal1.dart';
+import 'package:hathera_demo/Profile/Account_Setup/Add_Personal_Information.dart';
 import 'package:hathera_demo/Profile/Account_Setup/Add_Some_Details.dart';
+import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
 import 'package:hathera_demo/SplashScreen/SplashScreen.dart';
 import 'package:hathera_demo/localization/localestrings.dart';
 
@@ -27,6 +29,6 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: CreateAnimalPage());
+        home: SplashScreen());
   }
 }
