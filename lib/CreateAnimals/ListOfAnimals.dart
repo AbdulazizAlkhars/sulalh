@@ -324,10 +324,10 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                                   .endToStart, // Enable swipe from right to left
                               background: Container(
                                 alignment: Alignment.centerRight,
-                                padding: EdgeInsets.only(right: 20),
+                                padding: const EdgeInsets.only(right: 20),
                                 color: Colors
                                     .red, // Background color for delete action
-                                child: Icon(
+                                child: const Icon(
                                   Icons.delete,
                                   color: Colors.white,
                                 ),
@@ -344,6 +344,7 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                                 });
                               },
                               child: ListTile(
+                                contentPadding: EdgeInsets.all(7),
                                 leading: CircleAvatar(
                                   radius:
                                       MediaQuery.of(context).size.width * 0.064,
@@ -363,20 +364,19 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                                 ),
                                 title: Text(OviDetails.eventNumber),
                                 subtitle: Text(OviDetails.selectedAnimalType),
-                                trailing: GestureDetector(
-                                  onTap: () {
+                                trailing: IconButton(
+                                  onPressed: () {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
-                                        builder: (context) => editAnimalGenInfo(
-                                            oviDetails: OviDetails),
+                                        builder: (context) => EditAnimalGenInfo(
+                                            OviDetails: OviDetails),
                                       ),
                                     );
                                   },
-                                  child: Icon(
-                                    Icons.edit,
-                                    size: 20,
-                                    color:
-                                        const Color.fromARGB(255, 60, 39, 39),
+                                  icon: const Icon(
+                                    Icons.edit_note_outlined,
+                                    size: 30,
+                                    color: AppColors.primary40,
                                   ),
                                 ),
                                 onTap: () {

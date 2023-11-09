@@ -89,6 +89,7 @@ class LocalStrings extends Translations {
           'Collaboration': 'التعاون',
           'Animals': 'الحيوانات',
           'Farm': 'المزرعة',
+          'Head of Farm': 'رئيس المزرعة',
           'Collaborations': 'التعاون',
           'Accounts': 'الحسابات',
           'Payment Methods': 'طرق الدفع',

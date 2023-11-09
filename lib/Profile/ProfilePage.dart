@@ -60,7 +60,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          'Profile',
+          'Profile'.tr,
           style: AppFonts.title3(color: AppColors.grayscale90),
         ),
         actions: [
@@ -101,17 +101,16 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                   children: [
                     SizedBox(height: 40 * heightMediaQuery),
                     CircleAvatar(
-                      backgroundColor: Colors.transparent,
+                      backgroundColor: AppColors.grayscale10,
                       radius: 60 * widthMediaQuery,
                       backgroundImage: profilePicture != null
                           ? FileImage(profilePicture)
                           : null,
                       child: profilePicture == null
-                          ? Image.asset(
-                              'assets/avatars/120px/Staff1.png', // Replace with the path to your image asset
-                              width: 50,
-                              height: 50,
-                              color: Colors.grey,
+                          ? Icon(
+                              Icons.camera_alt_outlined,
+                              size: 40,
+                              color: AppColors.grayscale90,
                             )
                           : null,
                     ),
@@ -158,7 +157,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                 Row(
                                   children: [
                                     Text(
-                                      selectedCountryCode,
+                                      selectedCountryCode.tr,
                                       style: const TextStyle(fontSize: 16),
                                     ),
                                     const Text(
@@ -166,7 +165,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                       style: TextStyle(fontSize: 16),
                                     ),
                                     Text(
-                                      phoneNumber,
+                                      phoneNumber.tr,
                                       style: const TextStyle(fontSize: 16),
                                     ),
                                   ],
@@ -177,7 +176,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                       ],
                     ),
                     Text(
-                      'Head of Farm',
+                      'Head of Farm'.tr,
                       style: AppFonts.body2(color: AppColors.grayscale70),
                     ),
                     SizedBox(height: 32 * heightMediaQuery),
