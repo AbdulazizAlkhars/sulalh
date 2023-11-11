@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
-import 'package:hathera_demo/Animal_Information/EnlargedAnimalPic.dart';
+
 import 'package:hathera_demo/Profile/AboutApp/AboutApp.dart';
 import 'package:hathera_demo/Profile/AppSettings/AppSettings.dart';
 import 'package:hathera_demo/Profile/AuthorizationMethods/AuthorizationMethodsPage.dart';

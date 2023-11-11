@@ -134,14 +134,15 @@ class _EditAnimalGenInfoState extends ConsumerState<EditAnimalGenInfo> {
   void _showDatePicker(BuildContext context, String fieldName) async {
     final pickedDate = await showDatePicker(
       context: context,
-      initialDate: selectedOviDates[fieldName] ?? DateTime.now(),
+      initialDate:
+          widget.OviDetails.selectedOviDates[fieldName] ?? DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2101),
     );
 
     if (pickedDate != null) {
       ref.read(selectedOviDatesProvider.notifier).state = {
-        ...ref.read(selectedOviDatesProvider),
+        ...widget.OviDetails.selectedOviDates,
         fieldName: pickedDate,
       };
     }
@@ -149,7 +150,7 @@ class _EditAnimalGenInfoState extends ConsumerState<EditAnimalGenInfo> {
 
   Column _buildDateFields() {
     final dateFields = <Widget>[];
-    final selectedOviDates = ref.read(selectedOviDatesProvider);
+    final selectedOviDates = widget.OviDetails.selectedOviDates;
 
     final dateFormatter =
         DateFormat('yyyy-MM-dd'); // Define your desired date format
@@ -916,24 +917,23 @@ class _EditAnimalGenInfoState extends ConsumerState<EditAnimalGenInfo> {
         child: ElevatedButton(
           onPressed: () {
             final updatedOviDetails = widget.OviDetails.copyWith(
-              eventNumber: eventNumberController.text,
-              notes: notesController.text,
-              // medicalNeeds: medicalNeedsController.text,
-              selectedAnimalType: animalTypeController.text,
-              selectedAnimalSpecies: animalSpeciesController.text,
-              selectedAnimalBreed: animalBreedController.text,
-              selectedOviGender: selectedOviGenderController.text,
-              selectedOviSire: animalSireController.text,
-              selectedOviDam: animalDamController.text,
-              selectedBreedingStage: selectedBreedingStageController.text,
-              fieldName: fieldNameController.text,
-              fieldContent: fieldContentController.text,
-              layingFrequency: layingFrequencyController.text,
-              eggsPerMonth: eggsPerMonthController.text,
-              dateOfBirth: dateOfBirthController.text,
-              selectedOviImage: ref.read(selectedAnimalImageProvider),
-              selectedOviDates: ref.read(selectedOviDatesProvider),
-            );
+                eventNumber: eventNumberController.text,
+                notes: notesController.text,
+                // medicalNeeds: medicalNeedsController.text,
+                selectedAnimalType: animalTypeController.text,
+                selectedAnimalSpecies: animalSpeciesController.text,
+                selectedAnimalBreed: animalBreedController.text,
+                selectedOviGender: selectedOviGenderController.text,
+                selectedOviSire: animalSireController.text,
+                selectedOviDam: animalDamController.text,
+                selectedBreedingStage: selectedBreedingStageController.text,
+                fieldName: fieldNameController.text,
+                fieldContent: fieldContentController.text,
+                layingFrequency: layingFrequencyController.text,
+                eggsPerMonth: eggsPerMonthController.text,
+                dateOfBirth: dateOfBirthController.text,
+                selectedOviImage: ref.read(selectedAnimalImageProvider),
+                selectedOviDates: selectedOviDates);
 
             final oviAnimals = ref.read(ovianimalsProvider);
             final index = oviAnimals.indexOf(widget.OviDetails);

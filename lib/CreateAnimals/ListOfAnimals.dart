@@ -210,8 +210,6 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
           type.contains(filterQuery.toLowerCase()) ||
           species.contains(filterQuery.toLowerCase());
     }).toList();
-    final int mammalCount = ref.refresh(mammalCountProvider);
-    final int oviparousCount = ref.refresh(oviparousCountProvider);
     return RefreshIndicator(
       onRefresh: _refreshOviAnimals,
       color: AppColors.primary40,
@@ -239,6 +237,15 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                       color: Colors.white,
                     )),
                 onPressed: () {
+                  ref
+                      .read(selectedAnimalTypeProvider.notifier)
+                      .update((state) => '');
+                  ref
+                      .read(selectedAnimalSpeciesProvider.notifier)
+                      .update((state) => '');
+                  ref
+                      .read(selectedAnimalBreedsProvider.notifier)
+                      .update((state) => '');
                   Navigator.push(
                     context,
                     MaterialPageRoute(

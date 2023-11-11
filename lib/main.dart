@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
-import 'package:hathera_demo/CreateAnimals/CreateAnimal1.dart';
+
 import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
 import 'package:hathera_demo/localization/localestrings.dart';
 

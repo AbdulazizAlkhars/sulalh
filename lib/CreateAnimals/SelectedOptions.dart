@@ -154,6 +154,28 @@ class _SelectedOptionsPageState extends ConsumerState<SelectedOptionsPage> {
         padding: const EdgeInsets.all(16),
         child: ElevatedButton(
           onPressed: () {
+            ref
+                .read(selectedAnimalImageProvider.notifier)
+                .update((state) => null);
+            ref.read(animalNameProvider.notifier).update((state) => '');
+            ref
+                .read(animalSireDetailsProvider.notifier)
+                .update((state) => 'ADD');
+            ref
+                .read(animalDamDetailsProvider.notifier)
+                .update((state) => 'ADD');
+            ref.read(selectedOviGenderProvider.notifier).update((state) => '');
+            ref.read(layingFrequencyProvider.notifier).update((state) => '');
+            ref.read(eggsPerMonthProvider.notifier).update((state) => '');
+            ref
+                .read(selectedBreedingStageProvider.notifier)
+                .update((state) => '');
+            ref.read(dateOfBirthProvider.notifier).update((state) => '');
+            ref.read(selectedOviDatesProvider.notifier).update((state) => {});
+            ref.read(selectedOviChipsProvider.notifier).update((state) => []);
+            ref.read(fieldNameProvider.notifier).update((state) => '');
+            ref.read(fieldContentProvider.notifier).update((state) => '');
+            ref.read(additionalnotesProvider.notifier).update((state) => '');
             if (selectedAnimalType == 'Mammal') {
               Navigator.push(
                 context,
