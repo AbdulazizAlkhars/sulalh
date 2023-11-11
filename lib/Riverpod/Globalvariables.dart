@@ -51,3 +51,16 @@ final breedingDamDetailsProvider = StateProvider<String>((ref) => 'Add');
 final breedingPartnerDetailsProvider = StateProvider<String>((ref) => 'Add');
 final breedingDateProvider = StateProvider<String>((ref) => '');
 final ovianimalsProvider = StateProvider<List<OviVariables>>((ref) => []);
+final mammalCountProvider = Provider<int>((ref) {
+  return ref
+      .watch(ovianimalsProvider)
+      .where((animal) => animal.selectedAnimalType.toLowerCase() == 'mammal')
+      .length;
+});
+
+final oviparousCountProvider = Provider<int>((ref) {
+  return ref
+      .watch(ovianimalsProvider)
+      .where((animal) => animal.selectedAnimalType.toLowerCase() == 'oviparous')
+      .length;
+});

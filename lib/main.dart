@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/CreateAnimals/CreateAnimal1.dart';
-import 'package:hathera_demo/Profile/Account_Setup/Add_Personal_Information.dart';
-import 'package:hathera_demo/Profile/Account_Setup/Add_Some_Details.dart';
 import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
-import 'package:hathera_demo/SplashScreen/SplashScreen.dart';
 import 'package:hathera_demo/localization/localestrings.dart';
 
 void main() {
-  runApp(ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -22,13 +19,13 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Sulalh Demo',
         translations: LocalStrings(),
-        locale: Locale('en', 'US'),
+        locale: const Locale('en', 'US'),
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
             seedColor: const Color.fromARGB(255, 36, 86, 38),
           ),
           useMaterial3: true,
         ),
-        home: SplashScreen());
+        home: bottomNavigationBarPage());
   }
 }

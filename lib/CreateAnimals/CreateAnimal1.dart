@@ -212,11 +212,7 @@ class _CreateAnimalPageState extends ConsumerState<CreateAnimalPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SelectedOptionsPage(
-                    selectedAnimalType: selectedAnimalType,
-                    selectedAnimalSpecies: selectedAnimalSpecies,
-                    selectedAnimalBreed: selectedAnimalBreed,
-                  ),
+                  builder: (context) => SelectedOptionsPage(),
                 ),
               );
             }

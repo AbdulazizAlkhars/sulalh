@@ -7,17 +7,6 @@ import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
 class SelectedOptionsPage extends ConsumerStatefulWidget {
-  final String selectedAnimalType;
-  final String selectedAnimalSpecies;
-  final String selectedAnimalBreed;
-
-  const SelectedOptionsPage({
-    super.key,
-    required this.selectedAnimalType,
-    required this.selectedAnimalSpecies,
-    required this.selectedAnimalBreed,
-  });
-
   @override
   ConsumerState<SelectedOptionsPage> createState() =>
       _SelectedOptionsPageState();
@@ -103,7 +92,7 @@ class _SelectedOptionsPageState extends ConsumerState<SelectedOptionsPage> {
                 ),
                 const Spacer(),
                 Text(
-                  widget.selectedAnimalType,
+                  selectedAnimalType,
                   style: AppFonts.body2(color: AppColors.grayscale90),
                 ),
                 SizedBox(
@@ -125,7 +114,7 @@ class _SelectedOptionsPageState extends ConsumerState<SelectedOptionsPage> {
                 ),
                 const Spacer(),
                 Text(
-                  widget.selectedAnimalSpecies,
+                  selectedAnimalSpecies,
                   style: AppFonts.body2(color: AppColors.grayscale90),
                 ),
                 SizedBox(
@@ -147,7 +136,7 @@ class _SelectedOptionsPageState extends ConsumerState<SelectedOptionsPage> {
                 ),
                 const Spacer(),
                 Text(
-                  widget.selectedAnimalBreed,
+                  selectedAnimalBreeds,
                   style: AppFonts.body2(color: AppColors.grayscale90),
                 ),
                 SizedBox(
@@ -165,14 +154,14 @@ class _SelectedOptionsPageState extends ConsumerState<SelectedOptionsPage> {
         padding: const EdgeInsets.all(16),
         child: ElevatedButton(
           onPressed: () {
-            if (widget.selectedAnimalType == 'Mammal') {
+            if (selectedAnimalType == 'Mammal') {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => CreateOviCumMammal(),
                 ),
               );
-            } else if (widget.selectedAnimalType == 'Oviparous') {
+            } else if (selectedAnimalType == 'Oviparous') {
               Navigator.push(
                 context,
                 MaterialPageRoute(

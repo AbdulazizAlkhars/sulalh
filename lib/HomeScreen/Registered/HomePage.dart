@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/HomeScreen/GuestMode/GuestHomePage.dart';
 import 'package:hathera_demo/HomeScreen/GuestMode/SearchFarms&Animals.dart';
 import 'package:hathera_demo/HomeScreen/Registered/NotificationList.dart';
+import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 import 'package:hathera_demo/Widgets/Tags.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-class RegHomePage extends StatefulWidget {
+class RegHomePage extends ConsumerStatefulWidget {
   const RegHomePage({super.key});
 
   @override
@@ -16,7 +18,7 @@ class RegHomePage extends StatefulWidget {
   _RegHomePage createState() => _RegHomePage();
 }
 
-class _RegHomePage extends State<RegHomePage> {
+class _RegHomePage extends ConsumerState<RegHomePage> {
   Future<void> _refreshData() async {
     setState(() {
       _chartData = getChartData();
@@ -395,7 +397,7 @@ class _RegHomePage extends State<RegHomePage> {
                   MaterialPageRoute(builder: (context) => NotificationList()),
                 );
               },
-              child: Image(
+              child: const Image(
                 image: AssetImage('assets/icons/frame/24px/Icon-button1.png'),
               ),
             ),
@@ -572,15 +574,17 @@ class _RegHomePage extends State<RegHomePage> {
   }
 
   List<AnimalData> getChartData() {
+    final int mammalCount = ref.refresh(mammalCountProvider);
+    final int oviparousCount = ref.refresh(oviparousCountProvider);
     final List<AnimalData> chartData = [
       AnimalData(
         'Mammals',
-        12,
+        mammalCount,
         const Color.fromARGB(255, 197, 219, 158),
       ),
       AnimalData(
         'Oviparous',
-        25,
+        oviparousCount,
         const Color.fromARGB(255, 254, 255, 168),
       ),
     ];

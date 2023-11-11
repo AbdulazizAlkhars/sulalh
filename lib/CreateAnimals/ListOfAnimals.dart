@@ -170,6 +170,8 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
       } else {
         ref.read(ovianimalsProvider).insert(0, OviDetails);
       }
+      ref.refresh(mammalCountProvider);
+      ref.refresh(oviparousCountProvider);
     });
   }
 
@@ -205,7 +207,8 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
           type.contains(filterQuery.toLowerCase()) ||
           species.contains(filterQuery.toLowerCase());
     }).toList();
-
+    final int mammalCount = ref.refresh(mammalCountProvider);
+    final int oviparousCount = ref.refresh(oviparousCountProvider);
     return RefreshIndicator(
       onRefresh: _refreshOviAnimals,
       color: AppColors.primary40,
@@ -295,6 +298,8 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                         ],
                       ),
                     ),
+                    Text('Mammals Count: $mammalCount'),
+                    Text('Oviparous Count: $oviparousCount'),
                     Visibility(
                       visible: ref.read(selectedFiltersProvider).isNotEmpty,
                       child: Padding(
