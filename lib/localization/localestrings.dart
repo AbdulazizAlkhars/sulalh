@@ -260,7 +260,29 @@ class LocalStrings extends Translations {
           'Create ': 'يخلق ',
           'Add Date +': "إضافة تاريخ +",
           "Add Custom Fields": "إضافة حقول مخصصة",
-          'Add Custom Field +': "إضافة حقل مخصص +"
+          'Add Custom Field +': "إضافة حقل مخصص +",
+          //  Create Animal Ends
+// Registered HomePage Starts
+          'Current State': 'الوضع الحالي',
+          'Borrowed': 'استعار',
+          'Adopted': 'مُتَبنى',
+          'Donated': "تم التبرع",
+          'Escaped': "هرب",
+          'Stolen': 'مسروق',
+          'Transferred': 'نقل',
+          'Medical State': "الحالة الطبية",
+          'Injured': 'مصاب',
+          'Sick': 'مريض',
+          'Quarantined': "معزول",
+          'Medication': 'دواء',
+          'Testing': 'اختبارات',
+          'Others': 'آحرون',
+          'Sold': 'مُباع',
+          'Dead': 'ميت',
+          'Clear All': 'امسح الكل',
+          'Apply': 'يتقدم',
+          'Overview': 'ملخص',
+          'Upcoming Events': 'الأحداث القادمة',
         },
       };
 }

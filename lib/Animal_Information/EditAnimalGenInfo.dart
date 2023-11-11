@@ -50,6 +50,17 @@ class _EditAnimalGenInfoState extends ConsumerState<EditAnimalGenInfo> {
   void initState() {
     super.initState();
     // Initialize text controllers with widget values
+    _updateControllers();
+  }
+
+  @override
+  void didUpdateWidget(covariant EditAnimalGenInfo oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Update text controllers when widget changes
+    _updateControllers();
+  }
+
+  void _updateControllers() {
     eventNumberController.text = widget.OviDetails.eventNumber;
     medicalNeedsController.text = widget.OviDetails.medicalNeeds;
     animalSireController.text = widget.OviDetails.selectedOviSire;
@@ -72,7 +83,37 @@ class _EditAnimalGenInfoState extends ConsumerState<EditAnimalGenInfo> {
     selectedOviDates = widget.OviDetails.selectedOviDates;
     selectedBreedingStageController.text =
         widget.OviDetails.selectedBreedingStage;
+    // ... update other controllers similarly ...
   }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+
+  //   // Initialize text controllers with widget values
+  //   eventNumberController.text = widget.OviDetails.eventNumber;
+  //   medicalNeedsController.text = widget.OviDetails.medicalNeeds;
+  //   animalSireController.text = widget.OviDetails.selectedOviSire;
+  //   animalDamController.text = widget.OviDetails.selectedOviDam;
+  //   animalTypeController.text = widget.OviDetails.selectedAnimalType;
+  //   animalSpeciesController.text = widget.OviDetails.selectedAnimalSpecies;
+  //   animalBreedController.text = widget.OviDetails.selectedAnimalBreed;
+  //   layingFrequencyController.text = widget.OviDetails.layingFrequency;
+  //   eggsPerMonthController.text = widget.OviDetails.eggsPerMonth;
+  //   dateOfBirthController.text = widget.OviDetails.dateOfBirth;
+  //   fieldNameController.text = widget.OviDetails.fieldName;
+  //   fieldContentController.text = widget.OviDetails.fieldContent;
+  //   notesController.text = widget.OviDetails.notes;
+  //   selectedOviGenderController.text = widget.OviDetails.selectedOviGender;
+  //   selectedAnimalBreedController.text = widget.OviDetails.selectedAnimalBreed;
+  //   selectedAnimalSpeciesController.text =
+  //       widget.OviDetails.selectedAnimalSpecies;
+  //   selectedAnimalTypeController.text = widget.OviDetails.selectedAnimalType;
+  //   imageUrlController.text = widget.OviDetails.selectedOviImage?.path ?? '';
+  //   selectedOviDates = widget.OviDetails.selectedOviDates;
+  //   selectedBreedingStageController.text =
+  //       widget.OviDetails.selectedBreedingStage;
+  // }
 
   Future<void> _pickImage(ImageSource source) async {
     final pickedFile = await ImagePicker().pickImage(source: source);
@@ -900,7 +941,14 @@ class _EditAnimalGenInfoState extends ConsumerState<EditAnimalGenInfo> {
               oviAnimals[index] = updatedOviDetails;
             }
 
-            Navigator.of(context).pop();
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ListOfAnimals(
+                  shouldAddAnimal: false,
+                ),
+              ),
+            );
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color.fromARGB(255, 36, 86, 38),

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/AnimalManagement/AnimalFilters.dart';
 import 'package:hathera_demo/Animal_Information/EditAnimalGenInfo.dart';
+import 'package:hathera_demo/Animal_Information/EnlargedAnimalPic.dart';
 import 'package:hathera_demo/Animal_Information/OviparousGeneralInfo.dart';
 import 'package:hathera_demo/CreateAnimals/CreateAnimal1.dart';
 import 'package:hathera_demo/Riverpod/Globalvariables.dart';
@@ -170,7 +171,9 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
       } else {
         ref.read(ovianimalsProvider).insert(0, OviDetails);
       }
+      // ignore: unused_result
       ref.refresh(mammalCountProvider);
+      // ignore: unused_result
       ref.refresh(oviparousCountProvider);
     });
   }
@@ -298,8 +301,6 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                         ],
                       ),
                     ),
-                    Text('Mammals Count: $mammalCount'),
-                    Text('Oviparous Count: $oviparousCount'),
                     Visibility(
                       visible: ref.read(selectedFiltersProvider).isNotEmpty,
                       child: Padding(
@@ -335,6 +336,7 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                               shrinkWrap: true,
                               itemCount: filteredOviAnimals.length,
                               itemBuilder: (context, index) {
+                                // ignore: non_constant_identifier_names
                                 final OviDetails = filteredOviAnimals[index];
                                 return Dismissible(
                                     key:
@@ -364,25 +366,40 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                                     },
                                     child: ListTile(
                                       contentPadding: EdgeInsets.all(7),
-                                      leading: CircleAvatar(
-                                        radius:
-                                            MediaQuery.of(context).size.width *
-                                                0.064,
-                                        backgroundColor: Colors.grey[100],
-                                        backgroundImage: OviDetails
-                                                    .selectedOviImage !=
-                                                null
-                                            ? FileImage(
-                                                OviDetails.selectedOviImage!)
-                                            : null,
-                                        child:
-                                            OviDetails.selectedOviImage == null
-                                                ? const Icon(
-                                                    Icons.camera_alt_outlined,
-                                                    size: 50,
-                                                    color: Colors.grey,
-                                                  )
-                                                : null,
+                                      leading: GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  EnlargedAnimalImageScreen(
+                                                image:
+                                                    OviDetails.selectedOviImage,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        child: CircleAvatar(
+                                          radius: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.064,
+                                          backgroundColor: Colors.grey[100],
+                                          backgroundImage: OviDetails
+                                                      .selectedOviImage !=
+                                                  null
+                                              ? FileImage(
+                                                  OviDetails.selectedOviImage!)
+                                              : null,
+                                          child: OviDetails.selectedOviImage ==
+                                                  null
+                                              ? const Icon(
+                                                  Icons.camera_alt_outlined,
+                                                  size: 50,
+                                                  color: Colors.grey,
+                                                )
+                                              : null,
+                                        ),
                                       ),
                                       title: Text(OviDetails.eventNumber),
                                       subtitle:

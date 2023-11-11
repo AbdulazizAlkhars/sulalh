@@ -73,8 +73,8 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                   children: [
                     const SizedBox(height: 16),
 
-                    const Text(
-                      'Tags',
+                    Text(
+                      'Tags'.tr,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 40,
@@ -84,8 +84,8 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                     const SizedBox(
                       height: 25,
                     ),
-                    const Text(
-                      'Current State',
+                    Text(
+                      'Current State'.tr,
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
@@ -99,7 +99,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                       children: [
                         Expanded(
                           child: Tags(
-                            text: 'Borrowed',
+                            text: 'Borrowed'.tr,
                             icon: Icons.ac_unit,
                             onPress: () {
                               // Handle tag click
@@ -110,7 +110,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Tags(
-                            text: 'Adopted',
+                            text: 'Adopted'.tr,
                             icon: Icons.ac_unit,
                             onPress: () {
                               // Handle tag click
@@ -121,7 +121,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Tags(
-                            text: 'Donated',
+                            text: 'Donated'.tr,
                             icon: Icons.ac_unit,
                             onPress: () {
                               // Handle tag click
@@ -139,7 +139,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                       children: [
                         Expanded(
                           child: Tags(
-                            text: 'Escaped',
+                            text: 'Escaped'.tr,
                             icon: Icons.ac_unit,
                             onPress: () {
                               // Handle tag click
@@ -150,7 +150,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Tags(
-                            text: 'Stolen',
+                            text: 'Stolen'.tr,
                             icon: Icons.ac_unit,
                             onPress: () {
                               // Handle tag click
@@ -161,7 +161,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Tags(
-                            text: 'Transferred',
+                            text: 'Transferred'.tr,
                             icon: Icons.ac_unit,
                             onPress: () {
                               // Handle tag click
@@ -174,8 +174,8 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                     const SizedBox(
                       height: 25,
                     ),
-                    const Text(
-                      'Medical State',
+                    Text(
+                      'Medical State'.tr,
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
@@ -189,7 +189,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                       children: [
                         Expanded(
                           child: Tags(
-                            text: 'Injured',
+                            text: 'Injured'.tr,
                             icon: Icons.ac_unit,
                             onPress: () {
                               // Handle tag click
@@ -200,7 +200,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Tags(
-                            text: 'Sick',
+                            text: 'Sick'.tr,
                             icon: Icons.ac_unit,
                             onPress: () {
                               // Handle tag click
@@ -211,7 +211,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Tags(
-                            text: 'Quarantined',
+                            text: 'Quarantined'.tr,
                             icon: Icons.ac_unit,
                             onPress: () {
                               // Handle tag click
@@ -227,7 +227,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                       children: [
                         Expanded(
                           child: Tags(
-                            text: 'Medication',
+                            text: 'Medication'.tr,
                             icon: Icons.ac_unit,
                             onPress: () {
                               // Handle tag click
@@ -238,7 +238,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Tags(
-                            text: 'Testing',
+                            text: 'Testing'.tr,
                             icon: Icons.ac_unit,
                             onPress: () {
                               // Handle tag click
@@ -251,8 +251,8 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                     const SizedBox(
                       height: 25,
                     ),
-                    const Text(
-                      'Others',
+                    Text(
+                      'Others'.tr,
                       style: TextStyle(
                         fontSize: 16,
                         color: Color.fromARGB(255, 42, 41, 41),
@@ -266,7 +266,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                       children: [
                         Expanded(
                           child: Tags(
-                            text: 'Sold',
+                            text: 'Sold'.tr,
                             icon: Icons.ac_unit,
                             onPress: () {
                               // Handle tag click
@@ -277,7 +277,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Tags(
-                            text: 'Dead',
+                            text: 'Dead'.tr,
                             icon: Icons.ac_unit,
                             onPress: () {
                               // Handle tag click
@@ -307,9 +307,9 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                               // Handle cancel button press
                               Navigator.pop(context); // Close the modal sheet
                             },
-                            child: const Padding(
+                            child: Padding(
                               padding: EdgeInsets.symmetric(vertical: 16),
-                              child: Text('Clear All',
+                              child: Text('Clear All'.tr,
                                   style: TextStyle(color: Colors.black)),
                             ),
                           ),
@@ -329,10 +329,10 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                               // Handle join farm button press
                               Navigator.pop(context); // Close the modal sheet
                             },
-                            child: const Padding(
+                            child: Padding(
                               padding: EdgeInsets.symmetric(vertical: 16),
                               child: Text(
-                                'Apply',
+                                'Apply'.tr,
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
@@ -361,7 +361,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
         title: Row(
           children: [
             Text(
-              'Overview',
+              'Overview'.tr,
               style: AppFonts.title3(color: AppColors.grayscale100),
             ),
           ],
@@ -419,7 +419,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Animals',
+                    Text('Animals'.tr,
                         style: AppFonts.title4(color: AppColors.grayscale90)),
                     InkWell(
                       onTap: _showFilterModalSheet,
@@ -443,7 +443,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                       child: SmallCardWidget(
                         imageAsset: "assets/icons/frame/24px/cow_chicken.png",
                         animalData: AnimalData(
-                            'ALL', sumOfNextTwoCards, _chartData[0].color),
+                            'ALL'.tr, sumOfNextTwoCards, _chartData[0].color),
                         quan: sumOfNextTwoCards.toString(),
                         onPressed: () {
                           _updateChartData(sumOfNextTwoCards, 'ALL');
@@ -461,7 +461,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                         animalData: _chartData[0],
                         quan: _chartData[0].quan.toString(),
                         onPressed: () {
-                          _updateChartData(_chartData[0].quan, 'Mammals');
+                          _updateChartData(_chartData[0].quan, 'Mammals'.tr);
                         },
                         color: const Color.fromARGB(235, 255, 248, 214),
                         isSelected: _selectedIndex == 0,
@@ -476,7 +476,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                         animalData: _chartData[1],
                         quan: _chartData[1].quan.toString(),
                         onPressed: () {
-                          _updateChartData(_chartData[1].quan, 'Oviparous');
+                          _updateChartData(_chartData[1].quan, 'Oviparous'.tr);
                         },
                         color: const Color.fromARGB(235, 255, 248, 214),
                         isSelected: _selectedIndex == 1,
@@ -512,7 +512,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                   ],
                 ),
                 Text(
-                  'Upcoming Events',
+                  'Upcoming Events'.tr,
                   style: AppFonts.title4(color: AppColors.grayscale90),
                 ),
                 SizedBox(
@@ -544,7 +544,7 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                       child: CardWidget(
                         imagePath: 'assets/icons/frame/24px/Cow_Icon.png',
                         text: 'Searching For Animals'.tr,
-                        buttonText: 'Find Animals',
+                        buttonText: 'Find Animals'.tr,
                         onPressed: () {
                           // Handle button 1 press
                         },
@@ -554,8 +554,8 @@ class _RegHomePage extends ConsumerState<RegHomePage> {
                     Expanded(
                       child: CardWidget(
                         imagePath: 'assets/icons/frame/24px/Farm_house.png',
-                        text: 'Search For\nFarms',
-                        buttonText: 'Find Farms',
+                        text: 'Search For\nFarms'.tr,
+                        buttonText: 'Find Farms'.tr,
                         onPressed: () {
                           // Handle button 2 press
                         },

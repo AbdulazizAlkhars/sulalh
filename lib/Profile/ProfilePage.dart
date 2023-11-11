@@ -7,6 +7,7 @@ import 'package:hathera_demo/Profile/AppSettings/AppSettings.dart';
 import 'package:hathera_demo/Profile/AuthorizationMethods/AuthorizationMethodsPage.dart';
 import 'package:hathera_demo/Profile/Collaboration/ListOfStaff.dart';
 import 'package:hathera_demo/Profile/CustomerSupport/CustomerSupport.dart';
+import 'package:hathera_demo/Profile/EnlargesProfilePic.dart';
 import 'package:hathera_demo/Profile/NotificationSettings/NotificationsPause.dart';
 import 'package:hathera_demo/Profile/PaymentMethods/PaymentPage.dart';
 import 'package:hathera_demo/Profile/PrivacySecurity/PrivacySecurityPage.dart';
@@ -108,8 +109,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => EnlargedAnimalImageScreen(
-                                image: profilePicture),
+                            builder: (context) =>
+                                EnlargedProfilePicScreen(image: profilePicture),
                           ),
                         );
                       },
