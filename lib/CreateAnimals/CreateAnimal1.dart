@@ -58,7 +58,6 @@ class _CreateAnimalPageState extends ConsumerState<CreateAnimalPage> {
   Widget build(BuildContext context) {
     final selectedAnimalType = ref.watch(selectedAnimalTypeProvider);
     final selectedAnimalSpecies = ref.watch(selectedAnimalSpeciesProvider);
-    final selectedAnimalBreed = ref.watch(selectedAnimalBreedsProvider);
 
     return Scaffold(
       appBar: AppBar(

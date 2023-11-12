@@ -2,20 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfBreedingEvents.dart';
+import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
 import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 import 'package:hathera_demo/Widgets/datetextfiled.dart';
 
 // ignore: depend_on_referenced_packages
 
 class CreateBreedingEvents extends ConsumerStatefulWidget {
-  final String selectedAnimalType;
-  final String selectedAnimalSpecies;
-  final String selectedAnimalBreed;
+  final OviVariables OviDetails;
 
-  CreateBreedingEvents(
-      {required this.selectedAnimalType,
-      required this.selectedAnimalSpecies,
-      required this.selectedAnimalBreed});
+  CreateBreedingEvents({super.key, required this.OviDetails});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -188,10 +184,10 @@ class _CreateBreedingEvents extends ConsumerState<CreateBreedingEvents> {
                           final OviDetails = ovianimals[index];
 
                           final bool isSelected =
-                              selectedbreedingDam == OviDetails.eventNumber;
+                              selectedbreedingDam == OviDetails.animalName;
 
                           // Apply the filter here
-                          if (!OviDetails.eventNumber
+                          if (!OviDetails.animalName
                                   .toLowerCase()
                                   .contains(searchQuery) &&
                               !OviDetails.selectedAnimalType
@@ -224,14 +220,14 @@ class _CreateBreedingEvents extends ConsumerState<CreateBreedingEvents> {
                                     )
                                   : null,
                             ),
-                            title: Text(OviDetails.eventNumber),
+                            title: Text(OviDetails.animalName),
                             subtitle: Text(OviDetails.selectedAnimalType),
                             onTap: () {
                               setState(() {
                                 if (isSelected) {
                                   selectedbreedingDam = ''; // Deselect the item
                                 } else {
-                                  selectedbreedingDam = OviDetails.eventNumber;
+                                  selectedbreedingDam = OviDetails.animalName;
                                 }
                               });
                             },
@@ -335,10 +331,10 @@ class _CreateBreedingEvents extends ConsumerState<CreateBreedingEvents> {
                           final OviDetails = ovianimals[index];
 
                           final bool isSelected =
-                              selectedChildren.contains(OviDetails.eventNumber);
+                              selectedChildren.contains(OviDetails.animalName);
 
                           // Apply the filter here
-                          if (!OviDetails.eventNumber
+                          if (!OviDetails.animalName
                                   .toLowerCase()
                                   .contains(searchQuery) &&
                               !OviDetails.selectedAnimalType
@@ -371,15 +367,15 @@ class _CreateBreedingEvents extends ConsumerState<CreateBreedingEvents> {
                                     )
                                   : null,
                             ),
-                            title: Text(OviDetails.eventNumber),
+                            title: Text(OviDetails.animalName),
                             subtitle: Text(OviDetails.selectedAnimalType),
                             onTap: () {
                               setState(() {
                                 if (isSelected) {
                                   selectedChildren
-                                      .remove(OviDetails.eventNumber);
+                                      .remove(OviDetails.animalName);
                                 } else {
-                                  selectedChildren.add(OviDetails.eventNumber);
+                                  selectedChildren.add(OviDetails.animalName);
                                 }
                               });
                             },
@@ -459,7 +455,7 @@ class _CreateBreedingEvents extends ConsumerState<CreateBreedingEvents> {
                             final selectedPartner =
                                 filteredbreedPartner[index]['name']!;
                             ref
-                                .read(breedingDamDetailsProvider.notifier)
+                                .read(breedingPartnerDetailsProvider.notifier)
                                 .update((state) => selectedPartner);
                             Navigator.pop(context);
                           },
@@ -494,7 +490,7 @@ class _CreateBreedingEvents extends ConsumerState<CreateBreedingEvents> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Harry'),
+        title: Text(widget.OviDetails.animalName),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -754,10 +750,19 @@ class _CreateBreedingEvents extends ConsumerState<CreateBreedingEvents> {
         padding: const EdgeInsets.all(16),
         child: ElevatedButton(
           onPressed: () {
+            final updatedOviDetails =
+                widget.OviDetails.copyWith(breedingEvents: breedingEvents);
+
+            final oviAnimals = ref.read(ovianimalsProvider);
+            final index = oviAnimals.indexOf(widget.OviDetails);
+            if (index >= 0) {
+              oviAnimals[index] = updatedOviDetails;
+            }
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => ListOfBreedingEvents(
+                  OviDetails: widget.OviDetails,
                   breedingNotesController: _BreedingnotesController,
                   breedingEventNumberController: _breedingeventnumberController,
                   selectedBreedSire: selectedBreedSire,

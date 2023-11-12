@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/BreedingEventDetails.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/CreateBreedingEvents.dart';
+import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
+import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 
 class BreedingEventVariables {
   final String eventNumber;
@@ -26,7 +29,7 @@ class BreedingEventVariables {
 
 List<BreedingEventVariables> breedingEvents = [];
 
-class ListOfBreedingEvents extends StatefulWidget {
+class ListOfBreedingEvents extends ConsumerStatefulWidget {
   final TextEditingController breedingNotesController;
   final TextEditingController breedingEventNumberController;
   final String selectedBreedSire;
@@ -35,6 +38,7 @@ class ListOfBreedingEvents extends StatefulWidget {
   final String selectedBreedChildren;
   final String selectedBreedingDate;
   final String selectedDeliveryDate;
+  final OviVariables OviDetails;
 
   ListOfBreedingEvents({
     required this.breedingNotesController,
@@ -45,13 +49,14 @@ class ListOfBreedingEvents extends StatefulWidget {
     required this.selectedBreedChildren,
     required this.selectedBreedingDate,
     required this.selectedDeliveryDate,
+    required this.OviDetails,
   });
 
   @override
   _ListOfBreedingEvents createState() => _ListOfBreedingEvents();
 }
 
-class _ListOfBreedingEvents extends State<ListOfBreedingEvents> {
+class _ListOfBreedingEvents extends ConsumerState<ListOfBreedingEvents> {
   @override
   void initState() {
     super.initState();
@@ -83,8 +88,8 @@ class _ListOfBreedingEvents extends State<ListOfBreedingEvents> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text(
-          'Harry',
+        title: Text(
+          widget.OviDetails.animalName,
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.bold,
@@ -105,9 +110,7 @@ class _ListOfBreedingEvents extends State<ListOfBreedingEvents> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => CreateBreedingEvents(
-                    selectedAnimalType: '',
-                    selectedAnimalSpecies: '',
-                    selectedAnimalBreed: '',
+                    OviDetails: widget.OviDetails,
                   ),
                 ),
               ).then((_) {
@@ -146,7 +149,7 @@ class _ListOfBreedingEvents extends State<ListOfBreedingEvents> {
                 return Column(
                   children: <Widget>[
                     ListTile(
-                      title: Text('${breedingEvent.eventNumber}'),
+                      title: Text(breedingEvent.eventNumber),
                       trailing: Icon(Icons.arrow_right),
                       onTap: () {
                         Navigator.of(context).push(

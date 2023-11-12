@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/AnimalManagement/AnimalFilters.dart';
+import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfBreedingEvents.dart';
 import 'package:hathera_demo/Animal_Information/EditAnimalGenInfo.dart';
 import 'package:hathera_demo/Animal_Information/EnlargedAnimalPic.dart';
 import 'package:hathera_demo/Animal_Information/OviparousGeneralInfo.dart';
@@ -13,7 +14,7 @@ import 'package:hathera_demo/Theme/Fonts.dart';
 
 class OviVariables {
   final List<String> selectedFilters;
-  late final String eventNumber;
+  late final String animalName;
   final String selectedOviSire;
   final String selectedOviDam;
   final String dateOfBirth;
@@ -31,12 +32,12 @@ class OviVariables {
   final String eggsPerMonth;
   final String selectedBreedingStage;
   final String medicalNeeds;
-
   final bool shouldAddAnimal;
+  final List<BreedingEventVariables> breedingEvents;
 
   OviVariables({
     required this.selectedFilters,
-    required this.eventNumber,
+    required this.animalName,
     required this.selectedOviSire,
     required this.selectedOviDam,
     required this.dateOfBirth,
@@ -55,10 +56,11 @@ class OviVariables {
     required this.selectedBreedingStage,
     required this.shouldAddAnimal,
     required this.medicalNeeds,
+    required this.breedingEvents,
   });
   OviVariables copyWith({
     List<String>? selectedFilters,
-    String? eventNumber,
+    String? animalName,
     String? selectedOviSire,
     String? selectedOviDam,
     String? dateOfBirth,
@@ -77,10 +79,11 @@ class OviVariables {
     String? selectedBreedingStage,
     String? medicalNeeds,
     bool? shouldAddAnimal,
+    List<BreedingEventVariables>? breedingEvents,
   }) {
     return OviVariables(
       selectedFilters: selectedFilters ?? this.selectedFilters,
-      eventNumber: eventNumber ?? this.eventNumber,
+      animalName: animalName ?? this.animalName,
       selectedOviSire: selectedOviSire ?? this.selectedOviSire,
       selectedOviDam: selectedOviDam ?? this.selectedOviDam,
       dateOfBirth: dateOfBirth ?? this.dateOfBirth,
@@ -101,6 +104,7 @@ class OviVariables {
           selectedBreedingStage ?? this.selectedBreedingStage,
       medicalNeeds: medicalNeeds ?? this.medicalNeeds,
       shouldAddAnimal: shouldAddAnimal ?? this.shouldAddAnimal,
+      breedingEvents: breedingEvents ?? this.breedingEvents,
     );
   }
 }
@@ -141,9 +145,9 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
     }
   }
 
-  void addOviAnimal(String eventNumber) {
+  void addOviAnimal(String animalName) {
     final OviDetails = OviVariables(
-      eventNumber: eventNumber,
+      animalName: animalName,
       medicalNeeds: ref.read(medicalNeedsProvider),
       shouldAddAnimal: ref.read(shoudlAddAnimalProvider),
       selectedBreedingStage: ref.read(selectedBreedingStageProvider),
@@ -163,6 +167,7 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
       selectedOviChips: ref.read(selectedOviChipsProvider),
       selectedOviImage: ref.read(selectedAnimalImageProvider),
       selectedFilters: ref.read(selectedFiltersProvider),
+      breedingEvents: ref.read(breedingEventsProvider),
     );
 
     setState(() {
@@ -200,7 +205,7 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
   ) {
     // Filter the OviAnimals list based on the filterQuery
     final filteredOviAnimals = ref.read(ovianimalsProvider).where((animal) {
-      final eventNumber = animal.eventNumber.toLowerCase();
+      final eventNumber = animal.animalName.toLowerCase();
 
       final type = animal.selectedAnimalType.toLowerCase();
       final species = animal.selectedAnimalSpecies.toLowerCase();
@@ -408,7 +413,7 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                                               : null,
                                         ),
                                       ),
-                                      title: Text(OviDetails.eventNumber),
+                                      title: Text(OviDetails.animalName),
                                       subtitle:
                                           Text(OviDetails.selectedAnimalType),
                                       trailing: IconButton(

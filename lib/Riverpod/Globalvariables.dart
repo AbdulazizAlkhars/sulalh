@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfBreedingEvents.dart';
 
 import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
 
@@ -51,6 +52,8 @@ final breedingDamDetailsProvider = StateProvider<String>((ref) => 'Add');
 final breedingPartnerDetailsProvider = StateProvider<String>((ref) => 'Add');
 final breedingDateProvider = StateProvider<String>((ref) => '');
 final ovianimalsProvider = StateProvider<List<OviVariables>>((ref) => []);
+final breedingEventsProvider =
+    StateProvider<List<BreedingEventVariables>>((ref) => []);
 final mammalCountProvider = Provider<int>((ref) {
   return ref
       .watch(ovianimalsProvider)

@@ -1,5 +1,5 @@
 // ignore: depend_on_referenced_packages
-import 'package:dotted_border/dotted_border.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/FamilyTree.dart';
@@ -479,7 +479,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                         0.0, -60.0), // Adjust the Y offset to move the text up
                     child: Column(
                       children: [
-                        Text(widget.OviDetails.eventNumber,
+                        Text(widget.OviDetails.animalName,
                             style:
                                 AppFonts.title4(color: AppColors.grayscale90)),
                         Text(
@@ -1068,6 +1068,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                               MaterialPageRoute(
                                                 builder: (context) =>
                                                     ListOfBreedingEvents(
+                                                  OviDetails: widget.OviDetails,
                                                   // Pass any required parameters here
                                                   breedingNotesController:
                                                       TextEditingController(),

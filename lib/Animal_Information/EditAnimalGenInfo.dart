@@ -61,7 +61,7 @@ class _EditAnimalGenInfoState extends ConsumerState<EditAnimalGenInfo> {
   }
 
   void _updateControllers() {
-    eventNumberController.text = widget.OviDetails.eventNumber;
+    eventNumberController.text = widget.OviDetails.animalName;
     medicalNeedsController.text = widget.OviDetails.medicalNeeds;
     animalSireController.text = widget.OviDetails.selectedOviSire;
     animalDamController.text = widget.OviDetails.selectedOviDam;
@@ -917,9 +917,8 @@ class _EditAnimalGenInfoState extends ConsumerState<EditAnimalGenInfo> {
         child: ElevatedButton(
           onPressed: () {
             final updatedOviDetails = widget.OviDetails.copyWith(
-                eventNumber: eventNumberController.text,
+                animalName: eventNumberController.text,
                 notes: notesController.text,
-                // medicalNeeds: medicalNeedsController.text,
                 selectedAnimalType: animalTypeController.text,
                 selectedAnimalSpecies: animalSpeciesController.text,
                 selectedAnimalBreed: animalBreedController.text,
