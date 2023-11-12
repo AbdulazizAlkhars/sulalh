@@ -665,7 +665,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                               0.03,
                                     ),
                                     Text(
-                                      'General Information'.tr,
+                                      'General Information',
                                       style: AppFonts.title5(
                                           color: AppColors.grayscale90),
                                     ),
@@ -1069,17 +1069,18 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                                 builder: (context) =>
                                                     ListOfBreedingEvents(
                                                   OviDetails: widget.OviDetails,
+                                                  shouldAddBreedEvent: false,
                                                   // Pass any required parameters here
-                                                  breedingNotesController:
-                                                      TextEditingController(),
-                                                  breedingEventNumberController:
-                                                      TextEditingController(),
-                                                  selectedBreedSire: '',
-                                                  selectedBreedDam: '',
-                                                  selectedBreedPartner: '',
-                                                  selectedBreedChildren: '',
-                                                  selectedBreedingDate: '',
-                                                  selectedDeliveryDate: '',
+                                                  // breedingNotesController:
+                                                  //     TextEditingController(),
+                                                  // breedingEventNumberController:
+                                                  //     TextEditingController(),
+                                                  // selectedBreedSire: '',
+                                                  // selectedBreedDam: '',
+                                                  // selectedBreedPartner: '',
+                                                  // selectedBreedChildren: '',
+                                                  // selectedBreedingDate: '',
+                                                  // selectedDeliveryDate: '',
                                                 ),
                                               ));
                                           // Add your onPressed logic here

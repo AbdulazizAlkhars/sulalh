@@ -38,7 +38,7 @@ class _CreateBreedingEvents extends ConsumerState<CreateBreedingEvents> {
 
   void setDeliverySelectedDate(String Deliverydate) {
     setState(() {
-      selectedDeliveryDate = Deliverydate;
+      ref.read(deliveryDateProvider.notifier).update((state) => Deliverydate);
     });
   }
 
@@ -385,6 +385,10 @@ class _CreateBreedingEvents extends ConsumerState<CreateBreedingEvents> {
                     ),
                     ElevatedButton(
                       onPressed: () {
+                        ref
+                            .read(breedingChildrenDetailsProvider.notifier)
+                            .update((state) => selectedBreedChildren);
+
                         Navigator.pop(context, selectedChildren);
                       },
                       child: const Text("Done"),
@@ -727,6 +731,11 @@ class _CreateBreedingEvents extends ConsumerState<CreateBreedingEvents> {
               ),
               const SizedBox(height: 10),
               TextFormField(
+                onChanged: (value) {
+                  ref
+                      .read(breedingnotesProvider.notifier)
+                      .update((state) => value);
+                },
                 maxLines: 6, // Set the maximum number of lines
                 controller: _BreedingnotesController,
                 decoration: InputDecoration(
@@ -750,27 +759,19 @@ class _CreateBreedingEvents extends ConsumerState<CreateBreedingEvents> {
         padding: const EdgeInsets.all(16),
         child: ElevatedButton(
           onPressed: () {
-            final updatedOviDetails =
-                widget.OviDetails.copyWith(breedingEvents: breedingEvents);
-
-            final oviAnimals = ref.read(ovianimalsProvider);
-            final index = oviAnimals.indexOf(widget.OviDetails);
-            if (index >= 0) {
-              oviAnimals[index] = updatedOviDetails;
-            }
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => ListOfBreedingEvents(
-                  OviDetails: widget.OviDetails,
-                  breedingNotesController: _BreedingnotesController,
-                  breedingEventNumberController: _breedingeventnumberController,
-                  selectedBreedSire: selectedBreedSire,
-                  selectedBreedDam: selectedBreedDam,
-                  selectedBreedPartner: selectedBreedPartner,
-                  selectedBreedChildren: selectedBreedChildren,
-                  selectedBreedingDate: selectedBreedingDate,
-                  selectedDeliveryDate: selectedDeliveryDate,
+                  OviDetails: widget.OviDetails, shouldAddBreedEvent: true,
+                  // breedingNotesController: _BreedingnotesController,
+                  // breedingEventNumberController: _breedingeventnumberController,
+                  // selectedBreedSire: selectedBreedSire,
+                  // selectedBreedDam: selectedBreedDam,
+                  // selectedBreedPartner: selectedBreedPartner,
+                  // selectedBreedChildren: selectedBreedChildren,
+                  // selectedBreedingDate: selectedBreedingDate,
+                  // selectedDeliveryDate: selectedDeliveryDate,
                 ),
               ),
             );

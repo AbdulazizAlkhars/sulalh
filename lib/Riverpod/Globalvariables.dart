@@ -48,9 +48,13 @@ final selectedFiltersProvider = StateProvider<List<String>>((ref) => []);
 final dateOfBirthProvider = StateProvider<String>((ref) => '');
 final breedingEventNumberProvider = StateProvider<String>((ref) => '');
 final breedingSireDetailsProvider = StateProvider<String>((ref) => 'Add');
+final breedingChildrenDetailsProvider = StateProvider<String>((ref) => 'Add');
 final breedingDamDetailsProvider = StateProvider<String>((ref) => 'Add');
 final breedingPartnerDetailsProvider = StateProvider<String>((ref) => 'Add');
 final breedingDateProvider = StateProvider<String>((ref) => '');
+final deliveryDateProvider = StateProvider<String>((ref) => '');
+final breedingnotesProvider = StateProvider<String>((ref) => '');
+final shoudlAddEventProvider = StateProvider<bool>((ref) => false);
 final ovianimalsProvider = StateProvider<List<OviVariables>>((ref) => []);
 final breedingEventsProvider =
     StateProvider<List<BreedingEventVariables>>((ref) => []);

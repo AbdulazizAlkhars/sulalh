@@ -14,6 +14,7 @@ class BreedingEventVariables {
   final String breedingDate;
   final String deliveryDate;
   final String notes;
+  final bool shouldAddEvent;
 
   BreedingEventVariables({
     required this.eventNumber,
@@ -24,31 +25,34 @@ class BreedingEventVariables {
     required this.breedingDate,
     required this.deliveryDate,
     required this.notes,
+    required this.shouldAddEvent,
   });
 }
 
 List<BreedingEventVariables> breedingEvents = [];
 
 class ListOfBreedingEvents extends ConsumerStatefulWidget {
-  final TextEditingController breedingNotesController;
-  final TextEditingController breedingEventNumberController;
-  final String selectedBreedSire;
-  final String selectedBreedDam;
-  final String selectedBreedPartner;
-  final String selectedBreedChildren;
-  final String selectedBreedingDate;
-  final String selectedDeliveryDate;
+  final bool shouldAddBreedEvent;
+  // final TextEditingController breedingNotesController;
+  // final TextEditingController breedingEventNumberController;
+  // final String selectedBreedSire;
+  // final String selectedBreedDam;
+  // final String selectedBreedPartner;
+  // final String selectedBreedChildren;
+  // final String selectedBreedingDate;
+  // final String selectedDeliveryDate;
   final OviVariables OviDetails;
 
   ListOfBreedingEvents({
-    required this.breedingNotesController,
-    required this.breedingEventNumberController,
-    required this.selectedBreedSire,
-    required this.selectedBreedDam,
-    required this.selectedBreedPartner,
-    required this.selectedBreedChildren,
-    required this.selectedBreedingDate,
-    required this.selectedDeliveryDate,
+    required this.shouldAddBreedEvent,
+    // required this.breedingNotesController,
+    // required this.breedingEventNumberController,
+    // required this.selectedBreedSire,
+    // required this.selectedBreedDam,
+    // required this.selectedBreedPartner,
+    // required this.selectedBreedChildren,
+    // required this.selectedBreedingDate,
+    // required this.selectedDeliveryDate,
     required this.OviDetails,
   });
 
@@ -57,34 +61,69 @@ class ListOfBreedingEvents extends ConsumerStatefulWidget {
 }
 
 class _ListOfBreedingEvents extends ConsumerState<ListOfBreedingEvents> {
+  String filterQuery = '';
   @override
   void initState() {
     super.initState();
     // Add the initial breeding event to the list
-    if (widget.breedingEventNumberController.text.isNotEmpty) {
-      addBreedingEvent(widget.breedingEventNumberController.text);
+    if (widget.shouldAddBreedEvent) {
+      addBreedingEvent(ref.read(breedingEventNumberProvider));
     }
   }
 
   void addBreedingEvent(String eventNumber) {
     final breedingEvent = BreedingEventVariables(
       eventNumber: eventNumber,
-      sire: widget.selectedBreedSire,
-      dam: widget.selectedBreedDam,
-      partner: widget.selectedBreedPartner,
-      children: widget.selectedBreedChildren,
-      breedingDate: widget.selectedBreedingDate,
-      deliveryDate: widget.selectedDeliveryDate,
-      notes: widget.breedingNotesController.text,
+      sire: ref.read(breedingSireDetailsProvider),
+      dam: ref.read(breedingDamDetailsProvider),
+      partner: ref.read(breedingDamDetailsProvider),
+      children: ref.read(breedingDamDetailsProvider),
+      breedingDate: ref.read(breedingDamDetailsProvider),
+      deliveryDate: ref.read(breedingDamDetailsProvider),
+      notes: ref.read(breedingDamDetailsProvider),
+      shouldAddEvent: ref.read(shoudlAddEventProvider),
     );
 
     setState(() {
-      breedingEvents.insert(0, breedingEvent);
+      if (ref.read(breedingEventsProvider).isEmpty) {
+        ref.read(breedingEventsProvider).add(breedingEvent);
+      } else {
+        ref.read(breedingEventsProvider).insert(0, breedingEvent);
+      }
+    });
+  }
+
+  void _filterMammals(String query) {
+    setState(() {
+      filterQuery = query;
+      _updateFilteredOviAnimals(query: query);
+    });
+  }
+
+  void _updateFilteredOviAnimals({String? query}) {}
+
+  void _removeSelectedFilter(String filter) {
+    setState(() {
+      ref.read(selectedFiltersProvider).remove(filter);
+      _updateFilteredOviAnimals(); // Update the filtered list after removing a filter
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final filteredOvibreedings =
+        ref.read(breedingEventsProvider).where((event) {
+      final eventNumber = event.eventNumber.toLowerCase();
+
+      final type = event.breedingDate.toLowerCase();
+      final species = event.deliveryDate.toLowerCase();
+
+      // Add more conditions as needed to match your filtering criteria
+      return eventNumber.contains(filterQuery.toLowerCase()) ||
+          type.contains(filterQuery.toLowerCase()) ||
+          species.contains(filterQuery.toLowerCase());
+    }).toList();
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -115,8 +154,8 @@ class _ListOfBreedingEvents extends ConsumerState<ListOfBreedingEvents> {
                 ),
               ).then((_) {
                 // When returning from CreateBreedingEvents, add the new event
-                if (widget.breedingEventNumberController.text.isNotEmpty) {
-                  addBreedingEvent(widget.breedingEventNumberController.text);
+                if (ref.read(breedingEventNumberProvider).isNotEmpty) {
+                  addBreedingEvent(ref.read(breedingEventNumberProvider));
                 }
               });
             },
@@ -142,9 +181,9 @@ class _ListOfBreedingEvents extends ConsumerState<ListOfBreedingEvents> {
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: breedingEvents.length,
+              itemCount: filteredOvibreedings.length,
               itemBuilder: (context, index) {
-                final breedingEvent = breedingEvents[index];
+                final breedingEvent = filteredOvibreedings[index];
 
                 return Column(
                   children: <Widget>[
