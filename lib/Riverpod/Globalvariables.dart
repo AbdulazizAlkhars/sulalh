@@ -71,3 +71,4 @@ final oviparousCountProvider = Provider<int>((ref) {
       .where((animal) => animal.selectedAnimalType.toLowerCase() == 'oviparous')
       .length;
 });
+final listOfBreedingEventsProvider = Provider<List<String>>((ref) => []);

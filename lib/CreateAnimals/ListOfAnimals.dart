@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/AnimalManagement/AnimalFilters.dart';
+import 'package:hathera_demo/Animal_Information/BreedingSection/BreedingEventDetails.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfBreedingEvents.dart';
 import 'package:hathera_demo/Animal_Information/EditAnimalGenInfo.dart';
 import 'package:hathera_demo/Animal_Information/EnlargedAnimalPic.dart';
@@ -35,8 +36,17 @@ class OviVariables {
   final String selectedBreedingStage;
   final String medicalNeeds;
   final bool shouldAddAnimal;
-
-  final String breedingEventNum;
+  final String breedingeventNumber;
+  final String breedsire;
+  final String breeddam;
+  final String breedpartner;
+  final String breedchildren;
+  final String breedingDate;
+  final String breeddeliveryDate;
+  final String breedingnotes;
+  final bool shouldAddEvent;
+  final BreedingDetails breedingDetails;
+  final Map<String, List<BreedingEventVariables>> breedingEvents;
 
   OviVariables({
     required this.selectedFilters,
@@ -59,7 +69,17 @@ class OviVariables {
     required this.selectedBreedingStage,
     required this.shouldAddAnimal,
     required this.medicalNeeds,
-    required this.breedingEventNum,
+    required this.breedingeventNumber,
+    required this.breedsire,
+    required this.breeddam,
+    required this.breedpartner,
+    required this.breedchildren,
+    required this.breedingDate,
+    required this.breeddeliveryDate,
+    required this.breedingnotes,
+    required this.shouldAddEvent,
+    required this.breedingDetails,
+    required this.breedingEvents,
   });
   OviVariables copyWith(
       {List<String>? selectedFilters,
@@ -82,7 +102,17 @@ class OviVariables {
       String? selectedBreedingStage,
       String? medicalNeeds,
       bool? shouldAddAnimal,
-      String? breedingEventNum}) {
+      String? breedingeventNumber,
+      String? breedsire,
+      String? breeddam,
+      String? breedpartner,
+      String? breedchildren,
+      String? breedingDate,
+      String? breeddeliveryDate,
+      String? breedingnotes,
+      bool? shouldAddEvent,
+      Map<String, List<BreedingEventVariables>>? breedingEvents,
+      String? BreedingDetails}) {
     return OviVariables(
       selectedFilters: selectedFilters ?? this.selectedFilters,
       animalName: animalName ?? this.animalName,
@@ -106,9 +136,41 @@ class OviVariables {
           selectedBreedingStage ?? this.selectedBreedingStage,
       medicalNeeds: medicalNeeds ?? this.medicalNeeds,
       shouldAddAnimal: shouldAddAnimal ?? this.shouldAddAnimal,
-      breedingEventNum: breedingEventNum ?? this.breedingEventNum,
+      breedingeventNumber: breedingeventNumber ?? this.breedingeventNumber,
+      breedsire: breedsire ?? this.breedsire,
+      breeddam: breeddam ?? this.breeddam,
+      breedchildren: breedchildren ?? this.breedchildren,
+      breedingDate: breedingDate ?? this.breedingDate,
+      breeddeliveryDate: breeddeliveryDate ?? this.breeddeliveryDate,
+      breedingnotes: breedingnotes ?? this.breedingnotes,
+      breedpartner: breedpartner ?? this.breedpartner,
+      shouldAddEvent: shouldAddEvent ?? this.shouldAddEvent,
+      breedingDetails: breedingDetails,
+      breedingEvents: breedingEvents ?? this.breedingEvents,
     );
   }
+}
+
+class BreedingDetails {
+  final String breedsire;
+  final String breeddam;
+  final String breedpartner;
+  final String breedchildren;
+  final String breedingDate;
+  final String breeddeliveryDate;
+  final String breedingnotes;
+  final bool shouldAddEvent;
+
+  BreedingDetails({
+    required this.breedsire,
+    required this.breeddam,
+    required this.breedpartner,
+    required this.breedchildren,
+    required this.breedingDate,
+    required this.breeddeliveryDate,
+    required this.breedingnotes,
+    required this.shouldAddEvent,
+  });
 }
 
 // ignore: must_be_immutable
@@ -143,13 +205,28 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
 
     // Add the initial breeding event to the list only if shouldAddAnimal is true
     if (widget.shouldAddAnimal) {
-      addOviAnimal(ref.read(animalNameProvider));
+      addOviAnimal(
+        ref.read(animalNameProvider),
+        ref.read(breedingEventNumberProvider),
+      );
     }
   }
 
-  void addOviAnimal(String animalName) {
+  void addOviAnimal(String animalName, String breedingeventNumber) {
+    final breedingDetails = BreedingDetails(
+      breedsire: ref.read(breedingSireDetailsProvider),
+      breeddam: ref.read(breedingDamDetailsProvider),
+      breedpartner: ref.read(breedingDamDetailsProvider),
+      breedchildren: ref.read(breedingChildrenDetailsProvider),
+      breedingDate: ref.read(breedingDateProvider),
+      breeddeliveryDate: ref.read(deliveryDateProvider),
+      breedingnotes: ref.read(breedingnotesProvider),
+      shouldAddEvent: ref.read(shoudlAddEventProvider),
+    );
     final OviDetails = OviVariables(
       animalName: animalName,
+      breedingeventNumber: breedingeventNumber,
+      breedingDetails: breedingDetails,
       medicalNeeds: ref.read(medicalNeedsProvider),
       shouldAddAnimal: ref.read(shoudlAddAnimalProvider),
       selectedBreedingStage: ref.read(selectedBreedingStageProvider),
@@ -169,7 +246,15 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
       selectedOviChips: ref.read(selectedOviChipsProvider),
       selectedOviImage: ref.read(selectedAnimalImageProvider),
       selectedFilters: ref.read(selectedFiltersProvider),
-      breedingEventNum: ref.read(breedingEventNumberProvider),
+      breedsire: ref.read(breedingSireDetailsProvider),
+      breeddam: ref.read(breedingDamDetailsProvider),
+      breedpartner: ref.read(breedingDamDetailsProvider),
+      breedchildren: ref.read(breedingChildrenDetailsProvider),
+      breedingDate: ref.read(breedingDateProvider),
+      breeddeliveryDate: ref.read(deliveryDateProvider),
+      breedingnotes: ref.read(breedingnotesProvider),
+      shouldAddEvent: ref.read(shoudlAddEventProvider),
+      breedingEvents: {animalName: []},
     );
 
     setState(() {
@@ -261,7 +346,10 @@ class _ListOfAnimals extends ConsumerState<ListOfAnimals> {
                 ).then((_) {
                   // When returning from CreateBreedingEvents, add the new event
                   if (ref.read(animalNameProvider).isNotEmpty) {
-                    addOviAnimal(ref.read(animalNameProvider));
+                    addOviAnimal(
+                      ref.read(animalNameProvider),
+                      ref.read(breedingEventNumberProvider),
+                    );
                   }
                 });
               }, // Call the addAnimal function when the button is pressed

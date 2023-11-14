@@ -29,7 +29,7 @@ class BreedingEventVariables {
   });
 }
 
-List<BreedingEventVariables> breedingEvents = [];
+// List<BreedingEventVariables> breedingEvents = [];
 
 class ListOfBreedingEvents extends ConsumerStatefulWidget {
   final bool shouldAddBreedEvent;
@@ -73,14 +73,14 @@ class _ListOfBreedingEvents extends ConsumerState<ListOfBreedingEvents> {
 
   void addBreedingEvent(String eventNumber) {
     final breedingEvent = BreedingEventVariables(
-      eventNumber: eventNumber,
+      eventNumber: ref.read(breedingEventNumberProvider),
       sire: ref.read(breedingSireDetailsProvider),
       dam: ref.read(breedingDamDetailsProvider),
-      partner: ref.read(breedingDamDetailsProvider),
-      children: ref.read(breedingDamDetailsProvider),
-      breedingDate: ref.read(breedingDamDetailsProvider),
-      deliveryDate: ref.read(breedingDamDetailsProvider),
-      notes: ref.read(breedingDamDetailsProvider),
+      partner: ref.read(breedingPartnerDetailsProvider),
+      children: ref.read(breedingChildrenDetailsProvider),
+      breedingDate: ref.read(breedingDateProvider),
+      deliveryDate: ref.read(deliveryDateProvider),
+      notes: ref.read(breedingnotesProvider),
       shouldAddEvent: ref.read(shoudlAddEventProvider),
     );
 
@@ -90,6 +90,27 @@ class _ListOfBreedingEvents extends ConsumerState<ListOfBreedingEvents> {
       } else {
         ref.read(breedingEventsProvider).insert(0, breedingEvent);
       }
+      final animalIndex = ref.read(ovianimalsProvider).indexWhere(
+          (animal) => animal.animalName == widget.OviDetails.animalName);
+
+      if (animalIndex != -1) {
+        ref.read(ovianimalsProvider)[animalIndex] =
+            ref.read(ovianimalsProvider)[animalIndex].copyWith(breedingEvents: {
+          ...ref.read(ovianimalsProvider)[animalIndex].breedingEvents,
+          widget.OviDetails.animalName: [
+            ...ref
+                .read(ovianimalsProvider)[animalIndex]
+                .breedingEvents[widget.OviDetails.animalName]!,
+            breedingEvent
+          ]
+        });
+      }
+    });
+  }
+
+  void _filterBreedingEvents(String query) {
+    setState(() {
+      filterQuery = query;
     });
   }
 
@@ -111,14 +132,27 @@ class _ListOfBreedingEvents extends ConsumerState<ListOfBreedingEvents> {
 
   @override
   Widget build(BuildContext context) {
-    final filteredOvibreedings =
-        ref.read(breedingEventsProvider).where((event) {
-      final eventNumber = event.eventNumber.toLowerCase();
+    final animalIndex = ref.read(ovianimalsProvider).indexWhere(
+        (animal) => animal.animalName == widget.OviDetails.animalName);
 
+    if (animalIndex == -1) {
+      // Animal not found, you can show an error message or handle it accordingly
+      return Center(
+        child: Text('Animal not found.'),
+      );
+    }
+
+    final breedingEvents = ref
+            .read(ovianimalsProvider)[animalIndex]
+            .breedingEvents[widget.OviDetails.animalName] ??
+        [];
+
+    // Filter the breeding events based on the query
+    final filteredBreedingEvents = breedingEvents.where((event) {
+      final eventNumber = event.eventNumber.toLowerCase();
       final type = event.breedingDate.toLowerCase();
       final species = event.deliveryDate.toLowerCase();
 
-      // Add more conditions as needed to match your filtering criteria
       return eventNumber.contains(filterQuery.toLowerCase()) ||
           type.contains(filterQuery.toLowerCase()) ||
           species.contains(filterQuery.toLowerCase());
@@ -178,12 +212,40 @@ class _ListOfBreedingEvents extends ConsumerState<ListOfBreedingEvents> {
           SizedBox(
             height: 25,
           ),
+          // ListView.builder(
+          //   shrinkWrap: true,
+          //   itemCount: filteredOvibreedings.length,
+          //   itemBuilder: (context, index) {
+          //     final breedingEvent = filteredOvibreedings[index];
+
+          //     return Column(
+          //       children: <Widget>[
+          //         ListTile(
+          //           title: Text(breedingEvent.eventNumber),
+          //           trailing: Icon(Icons.arrow_right),
+          //           onTap: () {
+          //             Navigator.of(context).push(
+          //               MaterialPageRoute(
+          //                 builder: (context) => BreedingEventDetails(
+          //                   breedingEvent:
+          //                       breedingEvent, // Pass the selected event
+          //                 ),
+          //               ),
+          //             );
+          //           },
+          //         ),
+          //         Divider(),
+          //       ],
+          //     );
+          //   },
+          // ),
+
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: filteredOvibreedings.length,
+              itemCount: filteredBreedingEvents.length,
               itemBuilder: (context, index) {
-                final breedingEvent = filteredOvibreedings[index];
+                final breedingEvent = filteredBreedingEvents[index];
 
                 return Column(
                   children: <Widget>[
@@ -194,8 +256,7 @@ class _ListOfBreedingEvents extends ConsumerState<ListOfBreedingEvents> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => BreedingEventDetails(
-                              breedingEvent:
-                                  breedingEvent, // Pass the selected event
+                              breedingEvent: breedingEvent,
                             ),
                           ),
                         );
