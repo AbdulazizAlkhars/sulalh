@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:hathera_demo/Animal_Information/BreedingSection/ListOfBreedingEvents.dart';
 
 import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
+import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
+import '../Animal_Information/OviparousGeneralInfo.dart';
 
 final firstNameProvider = StateProvider<String>((ref) => '');
 final lastNameProvider = StateProvider<String>((ref) => '');
@@ -72,3 +74,6 @@ final oviparousCountProvider = Provider<int>((ref) {
       .length;
 });
 final listOfBreedingEventsProvider = Provider<List<String>>((ref) => []);
+
+final vaccineDetailsListProvider =
+    StateProvider<List<VaccineDetails>>((ref) => []);

@@ -48,7 +48,7 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
   List<String> vaccineNames = ["Vaccine 1", "Vaccine 2", "Vaccine 3"];
   List<String> checkUpNames = ["Check Up 1", "Check Up 2", "Check Up 3"];
   List<String> surgeryNames = ["Surgery 1", "Surgery 2", "Surgery 3"];
-  List<VaccineDetails> vaccineDetailsList = [];
+  // List<VaccineDetails> vaccineDetailsList = [];
   List<MedicalCheckupDetails> medicalCheckupDetailsList = [];
   List<SurgeryDetails> surgeryDetailsList = [];
   // String medicalNeeds = '';
@@ -347,6 +347,21 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
     final selectedDate = parseSelectedDate(widget.OviDetails.dateOfBirth);
     double heightMediaQuery = MediaQuery.of(context).size.height / 812;
     double widthMediaQuery = MediaQuery.of(context).size.width / 375;
+    // final vaccineDetailsList = ref.watch(vaccineDetailsListProvider);
+    final animalIndex = ref.read(ovianimalsProvider).indexWhere(
+        (animal) => animal.animalName == widget.OviDetails.animalName);
+
+    if (animalIndex == -1) {
+      // Animal not found, you can show an error message or handle it accordingly
+      return Center(
+        child: Text('Animal not found.'),
+      );
+    }
+
+    final vaccineDetailsList = ref
+            .read(ovianimalsProvider)[animalIndex]
+            .vaccineDetails[widget.OviDetails.animalName] ??
+        [];
 
     return SafeArea(
         child: Scaffold(
@@ -1655,16 +1670,66 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                                       secondDoseDate) {
                                                     // Save vaccine details to the list
                                                     setState(() {
-                                                      vaccineDetailsList.add(
-                                                        VaccineDetails(
-                                                          vaccineName:
-                                                              vaccineName,
-                                                          firstDoseDate:
-                                                              firstDoseDate,
-                                                          secondDoseDate:
-                                                              secondDoseDate,
-                                                        ),
+                                                      // ... (existing code)
+
+                                                      // Get the OviVariables
+                                                      final oviVariables =
+                                                          ref.read(
+                                                              ovianimalsProvider);
+                                                      final animalIndex = ref
+                                                          .read(
+                                                              ovianimalsProvider)
+                                                          .indexWhere((animal) =>
+                                                              animal
+                                                                  .animalName ==
+                                                              widget.OviDetails
+                                                                  .animalName);
+                                                      // Get the current vaccineDetails map for the specific animal
+                                                      final animalVaccineDetails =
+                                                          oviVariables[
+                                                                  animalIndex]
+                                                              .vaccineDetails;
+
+                                                      // Update the vaccineDetails map for that animal with the new vaccine details
+                                                      ref.read(ovianimalsProvider)[
+                                                              animalIndex] =
+                                                          oviVariables[
+                                                                  animalIndex]
+                                                              .copyWith(
+                                                        vaccineDetails: {
+                                                          ...animalVaccineDetails,
+                                                          widget.OviDetails
+                                                              .animalName: [
+                                                            ...animalVaccineDetails[widget
+                                                                    .OviDetails
+                                                                    .animalName] ??
+                                                                [],
+                                                            VaccineDetails(
+                                                              vaccineName:
+                                                                  vaccineName,
+                                                              firstDoseDate:
+                                                                  firstDoseDate,
+                                                              secondDoseDate:
+                                                                  secondDoseDate,
+                                                            ),
+                                                          ],
+                                                        },
                                                       );
+
+                                                      // Add the vaccine details to the vaccineDetailsListProvider if needed
+                                                      ref
+                                                          .read(
+                                                              vaccineDetailsListProvider)
+                                                          .add(
+                                                            VaccineDetails(
+                                                              vaccineName:
+                                                                  vaccineName,
+                                                              firstDoseDate:
+                                                                  firstDoseDate,
+                                                              secondDoseDate:
+                                                                  secondDoseDate,
+                                                            ),
+                                                          );
                                                     });
                                                   },
                                                 );
@@ -1674,6 +1739,91 @@ class _OvigenifnoPage extends ConsumerState<OvigenifnoPage>
                                           child:
                                               const Text('Add Vaccination +'),
                                         ),
+
+                                        // TextButton(
+                                        //   onPressed: () {
+                                        //     // Show the VaccineEntryPage as a modal sheet
+                                        //     showModalBottomSheet(
+                                        //       context: context,
+                                        //       builder: (BuildContext context) {
+                                        //         return VaccineEntryPage(
+                                        //           onSave: (vaccineName,
+                                        //               firstDoseDate,
+                                        //               secondDoseDate) {
+                                        //             // Save vaccine details to the list
+
+                                        //             setState(() {
+                                        //               if (ref
+                                        //                   .read(
+                                        //                       breedingEventsProvider)
+                                        //                   .isEmpty) {
+                                        //                 ref
+                                        //                     .read(
+                                        //                         breedingEventsProvider)
+                                        //                     .add(breedingEvent);
+                                        //               } else {
+                                        //                 ref
+                                        //                     .read(
+                                        //                         breedingEventsProvider)
+                                        //                     .insert(0,
+                                        //                         breedingEvent);
+                                        //               }
+                                        //               final animalIndex = ref
+                                        //                   .read(
+                                        //                       ovianimalsProvider)
+                                        //                   .indexWhere((animal) =>
+                                        //                       animal
+                                        //                           .animalName ==
+                                        //                       widget.OviDetails
+                                        //                           .animalName);
+
+                                        //               if (animalIndex != -1) {
+                                        //                 ref.read(ovianimalsProvider)[
+                                        //                         animalIndex] =
+                                        //                     ref
+                                        //                         .read(ovianimalsProvider)[
+                                        //                             animalIndex]
+                                        //                         .copyWith(
+                                        //                             breedingEvents: {
+                                        //                       ...ref
+                                        //                           .read(ovianimalsProvider)[
+                                        //                               animalIndex]
+                                        //                           .breedingEvents,
+                                        //                       widget.OviDetails
+                                        //                           .animalName: [
+                                        //                         ...ref
+                                        //                                 .read(ovianimalsProvider)[
+                                        //                                     animalIndex]
+                                        //                                 .breedingEvents[
+                                        //                             widget
+                                        //                                 .OviDetails
+                                        //                                 .animalName]!,
+                                        //                         breedingEvent
+                                        //                       ]
+                                        //                     });
+                                        //               }
+                                        //               ref
+                                        //                   .read(
+                                        //                       vaccineDetailsListProvider)
+                                        //                   .add(
+                                        //                     VaccineDetails(
+                                        //                       vaccineName:
+                                        //                           vaccineName,
+                                        //                       firstDoseDate:
+                                        //                           firstDoseDate,
+                                        //                       secondDoseDate:
+                                        //                           secondDoseDate,
+                                        //                     ),
+                                        //                   );
+                                        //             });
+                                        //           },
+                                        //         );
+                                        //       },
+                                        //     );
+                                        //   },
+                                        //   child:
+                                        //       const Text('Add Vaccination +'),
+                                        // ),
                                       ],
                                     ),
                                     Row(
