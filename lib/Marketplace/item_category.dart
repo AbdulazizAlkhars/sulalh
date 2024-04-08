@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 
 import '../Theme/Colors.dart';
 import '../Theme/Fonts.dart';
+import 'filtered_item_catalog.dart';
 
 class PetItemCategories extends StatefulWidget {
   @override
@@ -77,7 +78,7 @@ class _PetItemCategoriesState extends State<PetItemCategories> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Text(
@@ -86,7 +87,7 @@ class _PetItemCategoriesState extends State<PetItemCategories> {
                 color: AppColors.grayscale90,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             Expanded(
@@ -95,27 +96,43 @@ class _PetItemCategoriesState extends State<PetItemCategories> {
                 itemBuilder: (context, index) {
                   final categoryName = categoryIcons.keys.elementAt(index);
                   final iconData = categoryIcons.values.elementAt(index);
-                  return ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: Container(
-                      padding: EdgeInsets.all(
-                          MediaQuery.of(context).size.width * 0.016),
-                      decoration: BoxDecoration(
-                        color: AppColors.grayscale0,
-                        borderRadius: BorderRadius.circular(50),
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const FilteredItemCatalog()),
+                      );
+                    },
+                    child: ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: Container(
+                        padding: EdgeInsets.all(
+                            MediaQuery.of(context).size.width * 0.016),
+                        decoration: BoxDecoration(
+                          color: AppColors.grayscale0,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Icon(iconData,
+                            size: 24, color: AppColors.primary30),
                       ),
-                      child:
-                          Icon(iconData, size: 24, color: AppColors.primary30),
-                    ),
-                    title: Text(
-                      categoryName,
-                      style: AppFonts.body2(
-                        color: AppColors.grayscale90,
+                      title: Text(
+                        categoryName,
+                        style: AppFonts.body2(
+                          color: AppColors.grayscale90,
+                        ),
                       ),
+                      trailing: const Icon(Icons.chevron_right,
+                          color: AppColors.grayscale50), // Right arrow
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const FilteredItemCatalog()),
+                        );
+                      },
                     ),
-                    trailing: Icon(Icons.chevron_right,
-                        color: AppColors.grayscale50), // Right arrow
-                    onTap: () {},
                   );
                 },
               ),

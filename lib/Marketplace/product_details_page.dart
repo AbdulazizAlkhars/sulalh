@@ -6,7 +6,6 @@ import 'package:hathera_demo/Marketplace/chips_widget.dart';
 
 import '../Theme/Colors.dart';
 import '../Theme/Fonts.dart';
-import '../Widgets/TagChips.dart';
 import 'ratings_reviews.dart';
 
 class ProductDetailsPage extends StatefulWidget {

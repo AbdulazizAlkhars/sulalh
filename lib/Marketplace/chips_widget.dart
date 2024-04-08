@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 
-class ChipsWidget extends StatelessWidget {
+import '../Theme/Fonts.dart';
+
+class ChipsWidget extends StatefulWidget {
   final String label;
   final Function()? onTap;
 
@@ -12,22 +14,36 @@ class ChipsWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _ChipsWidgetState createState() => _ChipsWidgetState();
+}
+
+class _ChipsWidgetState extends State<ChipsWidget> {
+  bool isSelected = false;
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        setState(() {
+          isSelected = !isSelected;
+        });
+        if (widget.onTap != null) {
+          widget.onTap!();
+        }
+      },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
-          color: AppColors.grayscale10,
+          color: isSelected ? AppColors.secondary30 : AppColors.grayscale10,
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: 8.0,
+            vertical: .0,
             horizontal: 16.0,
           ),
           child: Text(
-            label,
-            style: const TextStyle(fontSize: 15),
+            widget.label,
+            style: AppFonts.body2(color: AppColors.grayscale100),
           ),
         ),
       ),

@@ -4,7 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import '../Theme/Colors.dart';
 import '../Theme/Fonts.dart';
 import 'Lists.dart';
-import 'category_item_filter.dart';
+import 'item_category.dart';
 import 'community_avatars.dart';
 
 import 'product_details_page.dart';
@@ -191,11 +191,11 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                 crossAxisCount: 2,
                 childAspectRatio: 0.7, // Adjust aspect ratio as needed
               ),
-              itemCount: productList.length,
+              itemCount: mainProductList.length,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
-                final product = productList[index];
+                final product = mainProductList[index];
                 return GestureDetector(
                     onTap: () {
                       Navigator.push(

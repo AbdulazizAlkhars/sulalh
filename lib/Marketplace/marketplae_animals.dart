@@ -216,7 +216,7 @@ class _MarketplaceAnimalState extends State<MarketplaceAnimal> {
                               flex: 1,
                               child: Container(
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(20),
                                     topRight: Radius.circular(20),
                                   ),
@@ -235,22 +235,27 @@ class _MarketplaceAnimalState extends State<MarketplaceAnimal> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      animal.animalName,
-                                      style: AppFonts.caption1(
-                                          color: AppColors.grayscale100),
-                                    ),
-                                    Text(
-                                      animal.animalAge,
-                                      style: AppFonts.caption2(
-                                          color: AppColors.grayscale90),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          animal.animalName,
+                                          style: AppFonts.caption1(
+                                              color: AppColors.grayscale100),
+                                        ),
+                                        const Spacer(),
+                                        Text(
+                                          animal.animalAge,
+                                          style: AppFonts.caption2(
+                                              color: AppColors.grayscale90),
+                                        ),
+                                      ],
                                     ),
                                     Text(
                                       animal.gender,
                                       style: AppFonts.caption2(
                                           color: AppColors.grayscale90),
                                     ),
-                                    SizedBox(height: 10),
+                                    const SizedBox(height: 10),
                                     Row(
                                       children: [
                                         Text(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/Marketplace/marketplace_items.dart';
@@ -7,6 +8,8 @@ import 'package:hathera_demo/Marketplace/marketplae_animals.dart';
 
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
+
+import 'Cart.dart';
 
 // ignore: must_be_immutable
 class Marketplacehomepage extends ConsumerStatefulWidget {
@@ -84,8 +87,12 @@ class _Marketplacehomepage extends ConsumerState<Marketplacehomepage>
                     color: Colors.white,
                     size: 25,
                   )),
-              onPressed:
-                  () {}, // Call the addAnimal function when the button is pressed
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CartPage()),
+                );
+              }, // Call the addAnimal function when the button is pressed
             ),
             const SizedBox(
               width: 10,
@@ -108,7 +115,7 @@ class _Marketplacehomepage extends ConsumerState<Marketplacehomepage>
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  child: const Row(
+                  child: Row(
                     children: [
                       Icon(
                         Icons.location_on_outlined,

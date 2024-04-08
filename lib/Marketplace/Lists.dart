@@ -93,7 +93,68 @@ class ProductDetails {
   });
 }
 
-final List<ProductDetails> productList = [
+final List<ProductDetails> mainProductList = [
+  ProductDetails(
+    imagePath: 'assets/Marketplace/Frame 1 5.png',
+    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
+    discountedPrice: '\$80',
+    actualPrice: '\$100',
+    rating: 4.5,
+  ),
+  ProductDetails(
+    imagePath: 'assets/Marketplace/Frame 1 6.png',
+    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
+    discountedPrice: '\$80',
+    actualPrice: '\$100',
+    rating: 4.5,
+  ),
+  ProductDetails(
+    imagePath: 'assets/Marketplace/Frame 1.png',
+    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
+    discountedPrice: '\$80',
+    actualPrice: '\$100',
+    rating: 4.5,
+  ),
+  ProductDetails(
+    imagePath: 'assets/Marketplace/Frame 1 5.png',
+    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
+    discountedPrice: '\$80',
+    actualPrice: '\$100',
+    rating: 4.5,
+  ),
+  ProductDetails(
+    imagePath: 'assets/Marketplace/Frame 1 6.png',
+    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
+    discountedPrice: '\$80',
+    actualPrice: '\$100',
+    rating: 4.5,
+  ),
+  ProductDetails(
+    imagePath: 'assets/Marketplace/Frame 1.png',
+    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
+    discountedPrice: '\$80',
+    actualPrice: '\$100',
+    rating: 4.5,
+  ),
+  ProductDetails(
+    imagePath: 'assets/Marketplace/Frame 1 5.png',
+    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
+    discountedPrice: '\$80',
+    actualPrice: '\$100',
+    rating: 4.5,
+  ),
+  // Add more ProductDetails objects as needed
+];
+
+List<String> filteredCatalogChipsList = [
+  'Dry Food', 'Wet Food',
+  'Cleaning & Hygiene',
+  'Grooming',
+
+  // Add more chip labels as needed
+];
+
+final List<ProductDetails> filteredProductList = [
   ProductDetails(
     imagePath: 'assets/Marketplace/Frame 1 5.png',
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
