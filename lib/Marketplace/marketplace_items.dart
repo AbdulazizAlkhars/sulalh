@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import '../Theme/Colors.dart';
 import '../Theme/Fonts.dart';
 import 'Lists.dart';
+import 'category_item_filter.dart';
 import 'community_avatars.dart';
 
 import 'product_details_page.dart';
@@ -167,7 +168,13 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                         color: AppColors.primary50,
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PetItemCategories()),
+                          );
+                        },
                         child: Text(
                           'Filters',
                           style: AppFonts.body1(color: AppColors.primary40),

@@ -6,6 +6,8 @@ import 'package:hathera_demo/Marketplace/home_page.dart';
 import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
 import 'package:hathera_demo/localization/localestrings.dart';
 
+import 'Marketplace/ratings_reviews.dart';
+
 void main() {
   runApp(const ProviderScope(child: MyApp()));
 }

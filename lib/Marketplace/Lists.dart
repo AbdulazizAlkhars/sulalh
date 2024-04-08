@@ -232,3 +232,64 @@ final List<AnimalDetails> AnimalList = [
   ),
   // Add more ProductDetails objects as needed
 ];
+
+class Review {
+  final String reviewerName;
+  final int rating;
+  final String reviewText;
+  final DateTime date;
+
+  Review({
+    required this.reviewerName,
+    required this.rating,
+    required this.reviewText,
+    required this.date,
+  });
+}
+
+final List<Review> reviews = [
+  Review(
+    reviewerName: 'John Doe',
+    rating: 3,
+    reviewText:
+        'I highly recommend this shampoo, my horse’s hair is soft and nice.!',
+    date: DateTime.now(),
+  ),
+  Review(
+    reviewerName: 'Alice Smith',
+    rating: 5,
+    reviewText: 'Very satisfied with the purchase.',
+    date: DateTime.now().subtract(Duration(days: 2)),
+  ),
+  Review(
+    reviewerName: 'Alice Smith',
+    rating: 1,
+    reviewText: 'Great shampoo + conditioner',
+    date: DateTime.now().subtract(Duration(days: 2)),
+  ),
+  Review(
+    reviewerName: 'Alice Smith',
+    rating: 2,
+    reviewText: 'Very satisfied with the purchase.',
+    date: DateTime.now().subtract(Duration(days: 2)),
+  ),
+  Review(
+    reviewerName: 'Alice Smith',
+    rating: 2,
+    reviewText: 'Very satisfied with the purchase.',
+    date: DateTime.now().subtract(Duration(days: 2)),
+  ),
+  Review(
+    reviewerName: 'Alice Smith',
+    rating: 2,
+    reviewText: 'Very satisfied with the purchase.',
+    date: DateTime.now().subtract(Duration(days: 2)),
+  ),
+  Review(
+    reviewerName: 'Alice Smith',
+    rating: 2,
+    reviewText: 'Very satisfied with the purchase.',
+    date: DateTime.now().subtract(Duration(days: 2)),
+  ),
+  // Add more reviews as needed
+];

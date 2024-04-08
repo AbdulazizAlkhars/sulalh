@@ -103,7 +103,7 @@ class _AddNewPassword extends State<AddNewPassword> {
                     }
                   : null,
               style: ElevatedButton.styleFrom(
-                primary: _passwordsMatch
+                backgroundColor: _passwordsMatch
                     ? const Color.fromARGB(255, 36, 86, 38)
                     : Colors.grey,
                 padding: const EdgeInsets.symmetric(vertical: 16),

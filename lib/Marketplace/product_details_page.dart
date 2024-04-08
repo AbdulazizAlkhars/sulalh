@@ -1,10 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Marketplace/chips_widget.dart';
 
 import '../Theme/Colors.dart';
 import '../Theme/Fonts.dart';
 import '../Widgets/TagChips.dart';
+import 'ratings_reviews.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final int index;
@@ -17,7 +20,8 @@ class ProductDetailsPage extends StatefulWidget {
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   int _currentIndex = 0;
-
+  bool _showAddToCartButton = true; // Flag to show/hide Add to Cart button
+  int _quantity = 1; // Initialize quantity to 1
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -158,44 +162,54 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
-                    child: Container(
-                      height: 70,
-                      padding: const EdgeInsets.all(8),
-                      // margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                      decoration: BoxDecoration(
-                        color: AppColors.secondary10,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  const Icon(Icons.star,
-                                      color: AppColors.secondary50),
-                                  const SizedBox(width: 5),
-                                  Text(
-                                    '4.5', // Replace with actual ratings
-                                    style: AppFonts.caption2(
-                                        color: AppColors.grayscale90),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                '12 Reviews',
-                                style: AppFonts.body2(
-                                    color: AppColors.grayscale90),
-                              ),
-                            ],
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ReviewsPage(),
                           ),
-                          const Spacer(),
-                          const Icon(
-                            Icons.chevron_right,
-                            color: AppColors.primary20,
-                          ),
-                        ],
+                        );
+                      },
+                      child: Container(
+                        height: 70,
+                        padding: const EdgeInsets.all(8),
+                        // margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                        decoration: BoxDecoration(
+                          color: AppColors.secondary10,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Icon(Icons.star,
+                                        color: AppColors.secondary50),
+                                    const SizedBox(width: 5),
+                                    Text(
+                                      '4.5', // Replace with actual ratings
+                                      style: AppFonts.caption2(
+                                          color: AppColors.grayscale90),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  '12 Reviews',
+                                  style: AppFonts.body2(
+                                      color: AppColors.grayscale90),
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            const Icon(
+                              Icons.chevron_right,
+                              color: AppColors.primary20,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -271,24 +285,102 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          color: Colors.transparent,
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              elevation: 0,
-              backgroundColor: AppColors.primary50,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50),
-              ),
-            ),
-            child: Text(
-              'Add To Cart',
-              style: AppFonts.body1(color: AppColors.grayscale0),
-            ),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            color: Colors.transparent,
+            width: double.infinity,
+            child: _showAddToCartButton
+                ? ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _showAddToCartButton = false; // Hide initial button
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      backgroundColor: AppColors.primary50,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 16, horizontal: 24),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
+                    child: Text(
+                      'Add To Cart',
+                      style: AppFonts.body1(color: AppColors.grayscale0),
+                    ),
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // Handle the action of the additional button
+                          },
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            backgroundColor: AppColors.grayscale10,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 16, horizontal: 24),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
+                          child: Text(
+                            'Added To Cart',
+                            style: AppFonts.body1(color: AppColors.grayscale90),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: AppColors.grayscale10,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.remove),
+                                onPressed: () {
+                                  setState(() {
+                                    if (_quantity > 1) {
+                                      _quantity--; // Decrease quantity by 1
+                                    }
+                                    if (_quantity <= 1) {
+                                      _showAddToCartButton =
+                                          true; // Show initial button
+                                    }
+                                  });
+                                },
+                              ),
+                              Text(
+                                _quantity
+                                    .toString(), // Display the current quantity
+                                style: AppFonts.body1(
+                                    color: AppColors.grayscale90),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.add),
+                                onPressed: () {
+                                  setState(() {
+                                    _quantity++; // Increase quantity by 1
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
           ),
         ),
       ),
