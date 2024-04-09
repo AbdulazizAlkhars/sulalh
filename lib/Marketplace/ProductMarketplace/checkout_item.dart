@@ -8,16 +8,27 @@ import '../Theme/Fonts.dart';
 import 'Lists.dart';
 import 'cart_card_widget.dart';
 import 'checkout_cart_items_widget.dart';
+import 'credit_debit_cards_widget.dart';
 
 class CheckoutPage extends StatefulWidget {
+  final double totalAmount;
+  final double totalDiscount;
+  final double totalGrossAmount;
+
+  const CheckoutPage(
+      {super.key,
+      required this.totalAmount,
+      required this.totalDiscount,
+      required this.totalGrossAmount});
+
   @override
   State<CheckoutPage> createState() => _CheckoutPageState();
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
-  List<CardInfo> saveddCards = [
-    CardInfo('John Doe', '**** **** **** 1234', '2020', '222'),
-    CardInfo('Jane Smith', '**** **** **** 5678', '2121', '222'),
+  List<ATMCardInfo> savedCards = [
+    ATMCardInfo('John Doe', '**** **** **** 1234', '2020', '222'),
+    ATMCardInfo('Jane Smith', '**** **** **** 5678', '2121', '222'),
   ];
 
   List<String> otherPaymentMethods = [
@@ -30,7 +41,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     'assets/PaymentPNGs/GPay.png',
     'assets/PaymentPNGs/ApplePay.png',
   ];
-
+  int selectedIndex = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +79,99 @@ class _CheckoutPageState extends State<CheckoutPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(
+                'Your Order',
+                style: AppFonts.title4(
+                  color: AppColors.grayscale90,
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Items',
+                    style: AppFonts.body2(
+                      color: AppColors.grayscale90,
+                    ),
+                  ),
+                  Spacer(),
+                  Text(
+                    '\$${widget.totalGrossAmount.toStringAsFixed(2)}',
+                    style: AppFonts.body1(
+                      color: AppColors.grayscale90,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Discount',
+                    style: AppFonts.body2(
+                      color: AppColors.grayscale90,
+                    ),
+                  ),
+                  Spacer(),
+                  Text(
+                    '\$${widget.totalDiscount.toStringAsFixed(2)}',
+                    style: AppFonts.body1(
+                      color: AppColors.grayscale90,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Delivery',
+                    style: AppFonts.body2(
+                      color: AppColors.grayscale90,
+                    ),
+                  ),
+                  Spacer(),
+                  Text(
+                    'Free',
+                    style: AppFonts.body1(
+                      color: AppColors.primary20,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Total',
+                    style: AppFonts.headline3(
+                      color: AppColors.grayscale90,
+                    ),
+                  ),
+                  Spacer(),
+                  Text(
+                    '\$${widget.totalAmount.toStringAsFixed(2)}',
+                    style: AppFonts.headline3(
+                      color: AppColors.primary40,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Divider(),
+              SizedBox(
+                height: 20,
+              ),
               Text(
                 'Delivery Address',
                 style: AppFonts.title4(
@@ -114,7 +218,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              SizedBox(
+                height: 20,
+              ),
+              Divider(),
+              SizedBox(
+                height: 20,
+              ),
               Text(
                 'Cart Items',
                 style: AppFonts.title4(
@@ -143,7 +253,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   );
                 },
               ),
-              const SizedBox(height: 20),
+              SizedBox(
+                height: 20,
+              ),
+              Divider(),
+              SizedBox(
+                height: 20,
+              ),
               Text(
                 'Payment Methods',
                 style: AppFonts.title4(
@@ -161,30 +277,34 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: saveddCards.length + 1,
+                itemCount: savedCards.length + 1,
                 itemBuilder: (BuildContext context, int index) {
-                  if (index < saveddCards.length) {
+                  if (index < savedCards.length) {
                     return Dismissible(
-                      key: Key(saveddCards[index].cardHolderName),
-                      onDismissed: (direction) {
-                        setState(() {
-                          saveddCards.removeAt(index);
-                        });
-                      },
-                      background: Container(
-                        color: Colors.red,
-                        alignment: Alignment.centerRight,
-                        padding: const EdgeInsets.only(right: 16),
-                        child: const Icon(
-                          Icons.delete,
-                          color: Colors.white,
+                        key: Key(savedCards[index].cardHolderName),
+                        onDismissed: (direction) {
+                          setState(() {
+                            savedCards.removeAt(index);
+                          });
+                        },
+                        background: Container(
+                          color: Colors.red,
+                          alignment: Alignment.centerRight,
+                          padding: const EdgeInsets.only(right: 16),
+                          child: const Icon(
+                            Icons.delete,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      child: CardWidget(
-                        cardInfo: saveddCards[index],
-                        onSelect: () {},
-                      ),
-                    );
+                        child: CardWidget(
+                          cardInfo: savedCards[index],
+                          isSelected: index == selectedIndex,
+                          onSelect: () {
+                            setState(() {
+                              selectedIndex = index;
+                            });
+                          },
+                        ));
                   } else {
                     return ListTile(
                       contentPadding: EdgeInsets.zero,
@@ -217,11 +337,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 },
               ),
               const SizedBox(height: 16),
-              const Text(
+              Text(
                 'Other Payment Methods:',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                style: AppFonts.headline3(
+                  color: AppColors.grayscale90,
                 ),
               ),
               const SizedBox(height: 8),
@@ -232,17 +351,28 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 itemBuilder: (BuildContext context, int index) {
                   if (index < otherPaymentMethods.length) {
                     return ListTile(
+                      contentPadding: EdgeInsets.zero,
                       leading: SizedBox(
-                        height: 30,
-                        width: 30,
-                        child: Image.asset(paymentMethodIcons[index]),
-                      ),
-                      title: Text(otherPaymentMethods[index]),
-                      trailing: const Text(
-                        '>',
-                        style: TextStyle(
-                          fontSize: 24,
+                        height: 20,
+                        width: 20,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            color: AppColors.grayscale10,
+                          ),
+                          child: Image.asset(paymentMethodIcons[index]),
                         ),
+                      ),
+                      title: Text(
+                        otherPaymentMethods[index],
+                        style: AppFonts.body2(
+                          color: AppColors.grayscale90,
+                        ),
+                      ),
+                      trailing: const Icon(
+                        Icons.chevron_right,
+                        size: 20,
+                        color: AppColors.grayscale50,
                       ),
                       onTap: () {
                         // Handle tapping on other payment methods
@@ -253,41 +383,49 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   }
                 },
               ),
-              const Card(
-                elevation: 2,
-                child: ListTile(
-                  title: Text('Credit Card'),
-                  trailing: Icon(Icons.credit_card),
-                ),
-              ),
-              const Card(
-                elevation: 2,
-                child: ListTile(
-                  title: Text('PayPal'),
-                  trailing: Icon(Icons.payment),
-                ),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  // Implement checkout functionality
-                },
-                child: const Text('Proceed to Payment'),
-              ),
             ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: IntrinsicHeight(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            backgroundColor: AppColors.primary50,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 16, horizontal: 24),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
+                          child: Text(
+                            'Pay',
+                            style: AppFonts.body1(color: AppColors.grayscale0),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),
     );
   }
-}
-
-class CardInfoo {
-  final String cardHolderName;
-  final String expiryDate;
-  final String cardNumber;
-  final String cvcNumber;
-
-  CardInfoo(
-      this.cardHolderName, this.cardNumber, this.cvcNumber, this.expiryDate);
 }

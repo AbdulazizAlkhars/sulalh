@@ -1,4 +1,6 @@
 // ignore: file_names
+import 'credit_debit_cards_widget.dart';
+
 final List<String> animaladvertisements = [
   'assets/ads/Background-image.png',
   'assets/AccountProfile/splashscreenimg.png',
@@ -397,7 +399,7 @@ final List<CartItem> cartItems = [
     productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
     price: 10.0,
     quantity: 1,
-    discountedPrice: 10,
+    discountedPrice: 5,
     imagePath: 'assets/Marketplace/Frame 1 5.png',
   ),
   CartItem(
@@ -407,4 +409,20 @@ final List<CartItem> cartItems = [
     discountedPrice: 10,
     imagePath: 'assets/Marketplace/Frame 1 5.png',
   ),
+];
+
+List<ATMCardInfo> savedCards = [
+  ATMCardInfo('John Doe', '**** **** **** 1234', '2020', '222'),
+  ATMCardInfo('Jane Smith', '**** **** **** 5678', '2121', '222'),
+];
+
+List<String> otherPaymentMethods = [
+  'PayPal',
+  'Google Pay',
+  'Apple Pay',
+];
+List<String> paymentMethodIcons = [
+  'assets/PaymentPNGs/PayPal.png',
+  'assets/PaymentPNGs/GPay.png',
+  'assets/PaymentPNGs/ApplePay.png',
 ];

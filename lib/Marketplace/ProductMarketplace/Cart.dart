@@ -12,32 +12,44 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  double totalAmount = 0;
+  double totalFinalAmount = 0;
+  double totalGrossAmount = 0;
   double totaldiscount = 0;
 
   @override
   void initState() {
     super.initState();
-    calculateTotalAmount();
-    calculatediscount();
+    calculateFinalAmount();
+    calculateAmountWithoutDiscount();
+    calculateDisount();
   }
 
   void _deleteCartItem(CartItem item) {
     setState(() {
       cartItems.remove(item);
-      calculateTotalAmount();
-      calculatediscount();
+      calculateFinalAmount();
+      calculateAmountWithoutDiscount();
+      calculateDisount();
     });
   }
 
-  void calculateTotalAmount() {
-    totalAmount = cartItems.fold(
+  void calculateFinalAmount() {
+    totalFinalAmount = cartItems.fold(
       0,
       (previousValue, item) => previousValue + (item.price * item.quantity),
     );
   }
 
-  void calculatediscount() {
+  void calculateAmountWithoutDiscount() {
+    totalGrossAmount = cartItems.fold(
+      0,
+      (previousValue, item) =>
+          previousValue +
+          (item.price * item.quantity + item.discountedPrice * item.quantity),
+    );
+  }
+
+  void calculateDisount() {
     totaldiscount = cartItems.fold(
       0,
       (previousValue, item) =>
@@ -121,8 +133,8 @@ class _CartPageState extends State<CartPage> {
                     onQuantityChanged: (newQuantity) {
                       setState(() {
                         item.quantity = newQuantity;
-                        calculateTotalAmount();
-                        calculatediscount();
+                        calculateFinalAmount();
+                        calculateAmountWithoutDiscount();
                       });
                     },
                     discountprice: item.discountedPrice,
@@ -147,14 +159,14 @@ class _CartPageState extends State<CartPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '\$${totalAmount.toStringAsFixed(2)}',
+                      '\$${totalFinalAmount.toStringAsFixed(2)}',
                       style: AppFonts.title4(
                         color: AppColors.primary30,
                       ),
                     ),
                     SizedBox(width: 5),
                     Text(
-                      '\$${totaldiscount.toStringAsFixed(2)}',
+                      '\$${totalGrossAmount.toStringAsFixed(2)}',
                       style: TextStyle(
                         fontSize: 16,
                         color: AppColors.grayscale50,
@@ -170,7 +182,12 @@ class _CartPageState extends State<CartPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => CheckoutPage()),
+                              builder: (context) => CheckoutPage(
+                                totalAmount: totalFinalAmount,
+                                totalDiscount: totaldiscount,
+                                totalGrossAmount: totalGrossAmount,
+                              ),
+                            ),
                           );
                         },
                         style: ElevatedButton.styleFrom(

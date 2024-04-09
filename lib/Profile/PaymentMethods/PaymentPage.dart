@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hathera_demo/Profile/PaymentMethods/AddNewCardPage.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 
+import '../../Marketplace/credit_debit_cards_widget.dart';
+
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
 
@@ -26,7 +28,7 @@ class _PaymentPageState extends State<PaymentPage> {
     'assets/PaymentPNGs/GPay.png',
     'assets/PaymentPNGs/ApplePay.png',
   ];
-
+  int selectedIndex = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,26 +69,30 @@ class _PaymentPageState extends State<PaymentPage> {
                 itemBuilder: (BuildContext context, int index) {
                   if (index < savedCards.length) {
                     return Dismissible(
-                      key: Key(savedCards[index].cardHolderName),
-                      onDismissed: (direction) {
-                        setState(() {
-                          savedCards.removeAt(index);
-                        });
-                      },
-                      background: Container(
-                        color: Colors.red,
-                        alignment: Alignment.centerRight,
-                        padding: const EdgeInsets.only(right: 16),
-                        child: const Icon(
-                          Icons.delete,
-                          color: Colors.white,
+                        key: Key(savedCards[index].cardHolderName),
+                        onDismissed: (direction) {
+                          setState(() {
+                            savedCards.removeAt(index);
+                          });
+                        },
+                        background: Container(
+                          color: Colors.red,
+                          alignment: Alignment.centerRight,
+                          padding: const EdgeInsets.only(right: 16),
+                          child: const Icon(
+                            Icons.delete,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      child: CardWidget(
-                        cardInfo: savedCards[index],
-                        onSelect: () {},
-                      ),
-                    );
+                        child: CardWidget(
+                          cardInfo: savedCards[index],
+                          isSelected: index == selectedIndex,
+                          onSelect: () {
+                            setState(() {
+                              selectedIndex = index;
+                            });
+                          },
+                        ));
                   } else {
                     return ListTile(
                       leading: const Icon(Icons.add),
@@ -97,9 +103,7 @@ class _PaymentPageState extends State<PaymentPage> {
                           fontSize: 24,
                         ),
                       ),
-                      onTap: () {
-                        _navigateToAddCard();
-                      },
+                      onTap: () {},
                     );
                   }
                 },
@@ -152,15 +156,16 @@ class _PaymentPageState extends State<PaymentPage> {
     );
   }
 
-  void _navigateToAddCard() async {
-    final newCardInfo = await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const AddCardPage()),
-    );
-    if (newCardInfo != null) {
-      setState(() {
-        savedCards.add(newCardInfo);
-      });
-    }
-  }
+//   void _navigateToAddCard() async {
+//     final newCardInfo = await Navigator.push(
+//       context,
+//       MaterialPageRoute(builder: (context) => const AddCardPage()),
+//     );
+//     if (newCardInfo != null) {
+//       setState(() {
+//         savedCards.add(newCardInfo);
+//       });
+//     }
+//   }
+// }
 }
