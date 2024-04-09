@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 
-import '../Theme/Fonts.dart';
+import '../../../Theme/Fonts.dart';
 
 class ChipsWidget extends StatefulWidget {
   final String label;

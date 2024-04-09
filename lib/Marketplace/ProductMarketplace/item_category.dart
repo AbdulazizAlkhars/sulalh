@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../Theme/Colors.dart';
-import '../Theme/Fonts.dart';
+import '../../Theme/Colors.dart';
+import '../../Theme/Fonts.dart';
 import 'filtered_item_catalog.dart';
 
 class PetItemCategories extends StatefulWidget {

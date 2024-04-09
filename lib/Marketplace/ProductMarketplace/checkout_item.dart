@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/change_address_modal_sheet.dart';
 
-import '../Profile/PaymentMethods/AddNewCardPage.dart';
-import '../Theme/Colors.dart';
-import '../Theme/Fonts.dart';
-import 'Lists.dart';
-import 'cart_card_widget.dart';
-import 'checkout_cart_items_widget.dart';
-import 'credit_debit_cards_widget.dart';
+import '../../Theme/Colors.dart';
+import '../../Theme/Fonts.dart';
+import '../Lists.dart';
+import 'ProductMarketplaceWidgets/checkout_cart_items_widget.dart';
+import 'ProductMarketplaceWidgets/credit_debit_cards_widget.dart';
 
 class CheckoutPage extends StatefulWidget {
   final double totalAmount;
@@ -26,27 +25,13 @@ class CheckoutPage extends StatefulWidget {
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
-  List<ATMCardInfo> savedCards = [
-    ATMCardInfo('John Doe', '**** **** **** 1234', '2020', '222'),
-    ATMCardInfo('Jane Smith', '**** **** **** 5678', '2121', '222'),
-  ];
-
-  List<String> otherPaymentMethods = [
-    'PayPal',
-    'Google Pay',
-    'Apple Pay',
-  ];
-  List<String> paymentMethodIcons = [
-    'assets/PaymentPNGs/PayPal.png',
-    'assets/PaymentPNGs/GPay.png',
-    'assets/PaymentPNGs/ApplePay.png',
-  ];
   int selectedIndex = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        surfaceTintColor: Colors.white,
         centerTitle: true,
         backgroundColor: Colors.white,
         title: Text(
@@ -85,7 +70,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   color: AppColors.grayscale90,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Row(
@@ -96,7 +81,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       color: AppColors.grayscale90,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Text(
                     '\$${widget.totalGrossAmount.toStringAsFixed(2)}',
                     style: AppFonts.body1(
@@ -105,7 +90,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Row(
@@ -116,7 +101,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       color: AppColors.grayscale90,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Text(
                     '\$${widget.totalDiscount.toStringAsFixed(2)}',
                     style: AppFonts.body1(
@@ -125,7 +110,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Row(
@@ -136,7 +121,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       color: AppColors.grayscale90,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Text(
                     'Free',
                     style: AppFonts.body1(
@@ -145,7 +130,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Row(
@@ -156,7 +141,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       color: AppColors.grayscale90,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Text(
                     '\$${widget.totalAmount.toStringAsFixed(2)}',
                     style: AppFonts.headline3(
@@ -165,11 +150,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Divider(),
-              SizedBox(
+              const Divider(),
+              const SizedBox(
                 height: 20,
               ),
               Text(
@@ -199,7 +184,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pop(context); // Close modal
+                        _showChangeAddress(context);
                       },
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
@@ -218,11 +203,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Divider(),
-              SizedBox(
+              const Divider(),
+              const SizedBox(
                 height: 20,
               ),
               Text(
@@ -234,13 +219,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
               const SizedBox(height: 10),
               ListView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: cartItems.length,
                 itemBuilder: (context, index) {
                   final item = cartItems[index];
                   return Padding(
-                    padding:
-                        EdgeInsets.only(bottom: 8.0), // Add space between cards
+                    padding: const EdgeInsets.only(
+                        bottom: 8.0), // Add space between cards
                     child: CheckOutCartCard(
                       imagePath: item.imagePath,
                       productName: item.productName,
@@ -253,11 +238,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   );
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Divider(),
-              SizedBox(
+              const Divider(),
+              const SizedBox(
                 height: 20,
               ),
               Text(
@@ -276,7 +261,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ListView.builder(
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: savedCards.length + 1,
                 itemBuilder: (BuildContext context, int index) {
                   if (index < savedCards.length) {
@@ -346,7 +331,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               const SizedBox(height: 8),
               ListView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: otherPaymentMethods.length + 1,
                 itemBuilder: (BuildContext context, int index) {
                   if (index < otherPaymentMethods.length) {
@@ -428,4 +413,15 @@ class _CheckoutPageState extends State<CheckoutPage> {
       ),
     );
   }
+}
+
+void _showChangeAddress(BuildContext context) {
+  showModalBottomSheet(
+    showDragHandle: true,
+    context: context,
+    backgroundColor: Colors.white,
+    builder: (BuildContext context) {
+      return ChangeAddressModal();
+    },
+  );
 }

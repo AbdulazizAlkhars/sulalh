@@ -1,5 +1,5 @@
 // ignore: file_names
-import 'credit_debit_cards_widget.dart';
+import 'ProductMarketplace/ProductMarketplaceWidgets/credit_debit_cards_widget.dart';
 
 final List<String> animaladvertisements = [
   'assets/ads/Background-image.png',

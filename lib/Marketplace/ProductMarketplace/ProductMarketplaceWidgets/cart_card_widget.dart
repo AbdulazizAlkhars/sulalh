@@ -1,5 +1,6 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
@@ -13,6 +14,7 @@ class CartCard extends StatefulWidget {
   final Function() onDelete; // Add onDelete callback
 
   CartCard({
+    super.key,
     required this.imagePath,
     required this.productName,
     required this.price,
@@ -48,7 +50,7 @@ class _CartCardState extends State<CartCard> {
                     fit: BoxFit.contain,
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   flex: 3,
                   child: Column(
@@ -57,7 +59,7 @@ class _CartCardState extends State<CartCard> {
                     children: [
                       Text(
                         widget.productName,
-                        style: AppFonts.body1(color: AppColors.grayscale100),
+                        style: AppFonts.body2(color: AppColors.grayscale100),
                       ),
                       IntrinsicWidth(
                         child: Container(
@@ -71,7 +73,10 @@ class _CartCardState extends State<CartCard> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               IconButton(
-                                icon: Icon(Icons.remove),
+                                icon: const Icon(
+                                  Icons.remove,
+                                  size: 20,
+                                ),
                                 onPressed: () {
                                   setState(() {
                                     if (widget.quantity > 1) {
@@ -83,11 +88,14 @@ class _CartCardState extends State<CartCard> {
                               ),
                               Text(
                                 widget.quantity.toString(),
-                                style: AppFonts.body1(
+                                style: AppFonts.body2(
                                     color: AppColors.grayscale90),
                               ),
                               IconButton(
-                                icon: Icon(Icons.add),
+                                icon: const Icon(
+                                  Icons.add,
+                                  size: 20,
+                                ),
                                 onPressed: () {
                                   setState(() {
                                     widget.quantity++;
@@ -102,7 +110,7 @@ class _CartCardState extends State<CartCard> {
                     ],
                   ),
                 ),
-                SizedBox(width: 15),
+                const SizedBox(width: 15),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -110,11 +118,11 @@ class _CartCardState extends State<CartCard> {
                       children: [
                         Text(
                           '\$${widget.price * widget.quantity}',
-                          style: AppFonts.headline3(color: AppColors.primary40),
+                          style: AppFonts.headline4(color: AppColors.primary40),
                         ),
                         Text(
                           '\$${widget.discountprice * widget.quantity}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 12,
                             color: AppColors.grayscale50,
                             decoration: TextDecoration.lineThrough,
@@ -131,6 +139,7 @@ class _CartCardState extends State<CartCard> {
                           borderRadius: BorderRadius.circular(50),
                         ),
                         child: const Icon(
+                          size: 20,
                           Icons.delete_outline,
                           color: Colors.black,
                         ),
@@ -157,12 +166,12 @@ class _CartCardState extends State<CartCard> {
       builder: (BuildContext context) {
         return IntrinsicHeight(
           child: ClipRRect(
-            borderRadius: BorderRadius.vertical(
+            borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(16)), // Rounded corners for the top
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
@@ -221,7 +230,7 @@ class _CartCardState extends State<CartCard> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
               ],

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-import '../Theme/Colors.dart';
-import '../Theme/Fonts.dart';
-import 'Lists.dart';
+import '../../Theme/Colors.dart';
+import '../../Theme/Fonts.dart';
+import '../Lists.dart';
 import 'item_category.dart';
-import 'community_avatars.dart';
+import 'ProductMarketplaceWidgets/community_avatars_widget.dart';
 
 import 'product_details_page.dart';
-import 'vendors_avatars.dart';
+import 'vendors_avatars_widget.dart';
 
 class MarketplaceItems extends StatefulWidget {
   const MarketplaceItems({Key? key}) : super(key: key);

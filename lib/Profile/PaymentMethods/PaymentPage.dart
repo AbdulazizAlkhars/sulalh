@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hathera_demo/Profile/PaymentMethods/AddNewCardPage.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 
-import '../../Marketplace/credit_debit_cards_widget.dart';
+import '../../Marketplace/ProductMarketplace/ProductMarketplaceWidgets/credit_debit_cards_widget.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
@@ -13,9 +13,9 @@ class PaymentPage extends StatefulWidget {
 }
 
 class _PaymentPageState extends State<PaymentPage> {
-  List<CardInfo> savedCards = [
-    CardInfo('John Doe', '**** **** **** 1234', '2020', '222'),
-    CardInfo('Jane Smith', '**** **** **** 5678', '2121', '222'),
+  List<ATMCardInfo> savedCards = [
+    ATMCardInfo('John Doe', '**** **** **** 1234', '2020', '222'),
+    ATMCardInfo('Jane Smith', '**** **** **** 5678', '2121', '222'),
   ];
 
   List<String> otherPaymentMethods = [

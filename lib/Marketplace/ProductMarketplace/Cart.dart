@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Marketplace/checkout_item.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/checkout_item.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
-import 'Lists.dart';
-import 'cart_card_widget.dart';
+import '../Lists.dart';
+import 'ProductMarketplaceWidgets/cart_card_widget.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -62,6 +62,7 @@ class _CartPageState extends State<CartPage> {
     return Scaffold(
       backgroundColor: AppColors.grayscale10,
       appBar: AppBar(
+        surfaceTintColor: Colors.white,
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
@@ -124,7 +125,7 @@ class _CartPageState extends State<CartPage> {
                 final item = cartItems[index];
                 return Padding(
                   padding:
-                      EdgeInsets.only(bottom: 8.0), // Add space between cards
+                      EdgeInsets.only(bottom: 5.0), // Add space between cards
                   child: CartCard(
                     imagePath: item.imagePath,
                     productName: item.productName,

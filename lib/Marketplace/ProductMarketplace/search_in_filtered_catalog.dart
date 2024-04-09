@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Marketplace/Lists.dart';
 
-import '../Theme/Colors.dart';
-import '../Theme/Fonts.dart';
-import 'chips_widget.dart';
+import '../../Theme/Colors.dart';
+import '../../Theme/Fonts.dart';
+import 'ProductMarketplaceWidgets/chips_widget.dart';
 import 'product_details_page.dart';
 
 class SearchInFilteredCatalog extends StatefulWidget {

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
-import 'package:hathera_demo/Marketplace/marketplace_items.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/marketplace_items.dart';
 
-import 'package:hathera_demo/Marketplace/marketplae_animals.dart';
+import 'package:hathera_demo/Marketplace/AnimalMarketPlace/marketplace_animals.dart';
 
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
-import 'Cart.dart';
+import 'ProductMarketplace/Cart.dart';
 
 // ignore: must_be_immutable
 class Marketplacehomepage extends ConsumerStatefulWidget {

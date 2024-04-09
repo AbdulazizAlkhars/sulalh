@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../Theme/Colors.dart';
-import '../Theme/Fonts.dart';
+import '../../../Theme/Colors.dart';
+import '../../../Theme/Fonts.dart';
 
 class CardWidget extends StatelessWidget {
-  final CardInfo cardInfo;
+  final ATMCardInfo cardInfo;
   final bool isSelected;
   final Function() onSelect;
 
@@ -145,12 +145,12 @@ CreditCardType detectCCType(String cardNumber) {
   }
 }
 
-class CardInfo {
+class ATMCardInfo {
   final String cardHolderName;
   final String expiryDate;
   final String cardNumber;
   final String cvcNumber;
 
-  CardInfo(
+  ATMCardInfo(
       this.cardHolderName, this.cardNumber, this.cvcNumber, this.expiryDate);
 }

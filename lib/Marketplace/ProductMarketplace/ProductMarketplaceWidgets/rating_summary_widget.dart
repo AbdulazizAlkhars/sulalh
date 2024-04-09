@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../Theme/Colors.dart';
-import '../Theme/Fonts.dart';
-import 'Lists.dart';
+import '../../../Theme/Colors.dart';
+import '../../../Theme/Fonts.dart';
+import '../../Lists.dart';
 
 class RatingSummaryWidget extends StatelessWidget {
   final List<Review> reviews;

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Marketplace/Lists.dart';
 
-import '../Theme/Colors.dart';
-import '../Theme/Fonts.dart';
-import 'chips_widget.dart';
+import '../../Theme/Colors.dart';
+import '../../Theme/Fonts.dart';
+import 'ProductMarketplaceWidgets/chips_widget.dart';
 import 'product_details_page.dart';
-import 'search_in_filtered_catalog.dart';
 
 class FilteredItemCatalog extends StatefulWidget {
   const FilteredItemCatalog({super.key});
@@ -72,7 +70,7 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Text(
@@ -81,7 +79,7 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
                   color: AppColors.grayscale90,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
@@ -109,7 +107,7 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Align(
@@ -130,7 +128,7 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               GridView.builder(
@@ -170,7 +168,7 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
                                   flex: 1,
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
+                                      borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(20),
                                         topRight: Radius.circular(20),
                                       ),
