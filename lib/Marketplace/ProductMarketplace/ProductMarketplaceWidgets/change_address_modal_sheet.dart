@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/AddNewAddressMap.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 
@@ -83,8 +85,11 @@ class _ChangeAddressModalState extends State<ChangeAddressModal> {
                                     color: AppColors.grayscale90),
                               ),
                             ),
-                            Icon(
-                              Icons.more_horiz,
+                            GestureDetector(
+                              onTap: () {},
+                              child: Icon(
+                                Icons.more_horiz,
+                              ),
                             ),
                           ],
                         ),
@@ -94,10 +99,36 @@ class _ChangeAddressModalState extends State<ChangeAddressModal> {
                 ),
               ),
               SizedBox(
-                height: 25,
-              ),
-              const SizedBox(
                 height: 10,
+              ),
+              Container(
+                color: Colors.transparent,
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AddressSelectionPage()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    backgroundColor: AppColors.primary50,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16, horizontal: 24),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                  child: Text(
+                    'Add New Address',
+                    style: AppFonts.body1(color: AppColors.grayscale0),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 25,
               ),
             ],
           ),
