@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 
+import '../../Theme/Colors.dart';
+import '../../Theme/Fonts.dart';
+
 class AddCardPage extends StatefulWidget {
   const AddCardPage({super.key});
 
@@ -239,14 +242,21 @@ class CardWidget extends StatelessWidget {
     }
 
     return Card(
+      color: Colors.white,
       elevation: 0,
       child: ListTile(
+        contentPadding: EdgeInsets.zero,
         leading: SizedBox(
-          height: 30,
-          width: 30,
+          height: 25,
+          width: 25,
           child: Image.asset(cardImagePath),
         ),
-        title: Text(maskedCardNumber),
+        title: Text(
+          maskedCardNumber,
+          style: AppFonts.body2(
+            color: AppColors.grayscale90,
+          ),
+        ),
       ),
     );
   }
@@ -264,7 +274,14 @@ class CardWidget extends StatelessWidget {
     final String visiblePart =
         cardNumber.substring(totalDigits - visibleDigits);
 
-    return "$maskedPart $visiblePart";
+    // Insert space for every four digits
+    final String maskedWithSpaces = maskedPart.splitMapJoin(
+      RegExp(r'.{4}'),
+      onMatch: (m) => '${m.group(0)} ',
+      onNonMatch: (n) => n,
+    );
+
+    return "$maskedWithSpaces$visiblePart";
   }
 }
 

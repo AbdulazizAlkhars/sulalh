@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Marketplace/checkout_item.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
+import 'Lists.dart';
 import 'cart_card_widget.dart';
 
 class CartPage extends StatefulWidget {
@@ -10,44 +12,6 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  final List<CartItem> cartItems = [
-    CartItem(
-      productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
-      price: 25.0,
-      quantity: 2,
-      discountedPrice: 10,
-      imagePath: 'assets/Marketplace/Frame 1 5.png',
-    ),
-    CartItem(
-      productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
-      price: 10.0,
-      quantity: 1,
-      discountedPrice: 10,
-      imagePath: 'assets/Marketplace/Frame 1 5.png',
-    ),
-    CartItem(
-      productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
-      price: 10.0,
-      quantity: 1,
-      discountedPrice: 10,
-      imagePath: 'assets/Marketplace/Frame 1 5.png',
-    ),
-    CartItem(
-      productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
-      price: 10.0,
-      quantity: 1,
-      discountedPrice: 10,
-      imagePath: 'assets/Marketplace/Frame 1 5.png',
-    ),
-    CartItem(
-      productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
-      price: 10.0,
-      quantity: 1,
-      discountedPrice: 10,
-      imagePath: 'assets/Marketplace/Frame 1 5.png',
-    ),
-  ];
-
   double totalAmount = 0;
   double totaldiscount = 0;
 
@@ -56,6 +20,14 @@ class _CartPageState extends State<CartPage> {
     super.initState();
     calculateTotalAmount();
     calculatediscount();
+  }
+
+  void _deleteCartItem(CartItem item) {
+    setState(() {
+      cartItems.remove(item);
+      calculateTotalAmount();
+      calculatediscount();
+    });
   }
 
   void calculateTotalAmount() {
@@ -150,9 +122,11 @@ class _CartPageState extends State<CartPage> {
                       setState(() {
                         item.quantity = newQuantity;
                         calculateTotalAmount();
+                        calculatediscount();
                       });
                     },
                     discountprice: item.discountedPrice,
+                    onDelete: () => _deleteCartItem(item),
                   ),
                 );
               },
@@ -174,7 +148,7 @@ class _CartPageState extends State<CartPage> {
                   children: [
                     Text(
                       '\$${totalAmount.toStringAsFixed(2)}',
-                      style: AppFonts.title3(
+                      style: AppFonts.title4(
                         color: AppColors.primary30,
                       ),
                     ),
@@ -187,15 +161,21 @@ class _CartPageState extends State<CartPage> {
                         decoration: TextDecoration.lineThrough,
                       ),
                     ),
-                    SizedBox(width: 20),
+                    SizedBox(
+                      width: 60,
+                    ),
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {
-                          // Handle the action of the additional button
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CheckoutPage()),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
-                          backgroundColor: AppColors.grayscale10,
+                          backgroundColor: AppColors.primary40,
                           padding: const EdgeInsets.symmetric(
                               vertical: 16, horizontal: 24),
                           shape: RoundedRectangleBorder(
@@ -203,8 +183,8 @@ class _CartPageState extends State<CartPage> {
                           ),
                         ),
                         child: Text(
-                          'Added To Cart',
-                          style: AppFonts.body1(color: AppColors.grayscale90),
+                          'Checkout',
+                          style: AppFonts.body1(color: AppColors.grayscale0),
                         ),
                       ),
                     ),
@@ -217,7 +197,7 @@ class _CartPageState extends State<CartPage> {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 )
               ],
             ),
@@ -226,20 +206,4 @@ class _CartPageState extends State<CartPage> {
       ),
     );
   }
-}
-
-class CartItem {
-  final String productName;
-  final double price;
-  int quantity;
-  final int discountedPrice;
-  final String imagePath;
-
-  CartItem({
-    required this.productName,
-    required this.price,
-    required this.quantity,
-    required this.discountedPrice,
-    required this.imagePath,
-  });
 }

@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
-class CartCard extends StatefulWidget {
+class CheckOutCartCard extends StatefulWidget {
   final String imagePath;
   final String productName;
   final double price;
@@ -12,7 +12,7 @@ class CartCard extends StatefulWidget {
   final Function(int) onQuantityChanged;
   final Function() onDelete; // Add onDelete callback
 
-  CartCard({
+  CheckOutCartCard({
     required this.imagePath,
     required this.productName,
     required this.price,
@@ -22,124 +22,79 @@ class CartCard extends StatefulWidget {
     required this.onDelete, // Accept onDelete callback
   });
   @override
-  State<CartCard> createState() => _CartCardState();
+  State<CheckOutCartCard> createState() => _CheckOutCartCardState();
 }
 
-class _CartCardState extends State<CartCard> {
+class _CheckOutCartCardState extends State<CheckOutCartCard> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12), // Adjust the radius as needed
-      child: SizedBox(
-        height: 130,
-        child: Card(
-          elevation: 0,
-          color: AppColors.grayscale00,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
+      child: IntrinsicHeight(
+        child: SizedBox(
+          child: Card(
+            elevation: 0,
+            color: AppColors.grayscale00,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  flex: 2,
-                  child: Image.asset(
-                    widget.imagePath,
-                    width: 130,
-                    height: 130,
-                    fit: BoxFit.contain,
-                  ),
+                Text(
+                  'Delivery On March 7',
+                  style: AppFonts.headline3(color: AppColors.grayscale90),
                 ),
-                SizedBox(width: 10),
-                Expanded(
-                  flex: 3,
-                  child: Column(
+                SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  '${widget.quantity.toStringAsFixed(0)}\ Item',
+                  style: AppFonts.caption3(color: AppColors.grayscale60),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        widget.productName,
-                        style: AppFonts.body1(color: AppColors.grayscale100),
+                      Expanded(
+                        flex: 0,
+                        child: Image.asset(
+                          widget.imagePath,
+                          width: 80,
+                          height: 80,
+                          fit: BoxFit.contain,
+                        ),
                       ),
-                      IntrinsicWidth(
-                        child: Container(
-                          height: 40,
-                          width: 135,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            color: AppColors.grayscale10,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 3,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              widget.productName,
+                              style: AppFonts.caption2(
+                                  color: AppColors.grayscale100),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(width: 15),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
                             children: [
-                              IconButton(
-                                icon: Icon(Icons.remove),
-                                onPressed: () {
-                                  setState(() {
-                                    if (widget.quantity > 1) {
-                                      widget.quantity--;
-                                      widget.onQuantityChanged(widget.quantity);
-                                    }
-                                  });
-                                },
-                              ),
                               Text(
-                                widget.quantity.toString(),
-                                style: AppFonts.body1(
-                                    color: AppColors.grayscale90),
-                              ),
-                              IconButton(
-                                icon: Icon(Icons.add),
-                                onPressed: () {
-                                  setState(() {
-                                    widget.quantity++;
-                                    widget.onQuantityChanged(widget.quantity);
-                                  });
-                                },
+                                '\$${widget.price * widget.quantity}',
+                                style: AppFonts.headline4(
+                                    color: AppColors.primary40),
                               ),
                             ],
                           ),
-                        ),
+                        ],
                       ),
                     ],
                   ),
-                ),
-                SizedBox(width: 15),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          '\$${widget.price * widget.quantity}',
-                          style: AppFonts.headline3(color: AppColors.primary40),
-                        ),
-                        Text(
-                          '\$${widget.discountprice * widget.quantity}',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: AppColors.grayscale50,
-                            decoration: TextDecoration.lineThrough,
-                          ),
-                        ),
-                      ],
-                    ),
-                    IconButton(
-                      icon: Container(
-                        padding: EdgeInsets.all(
-                            MediaQuery.of(context).size.width * 0.016),
-                        decoration: BoxDecoration(
-                          color: AppColors.grayscale10,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: const Icon(
-                          Icons.delete_outline,
-                          color: Colors.black,
-                        ),
-                      ),
-                      onPressed: () {
-                        _showDeleteConfirmation(context);
-                      },
-                    ),
-                  ],
                 ),
               ],
             ),

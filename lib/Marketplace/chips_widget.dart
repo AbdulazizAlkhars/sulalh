@@ -38,7 +38,7 @@ class _ChipsWidgetState extends State<ChipsWidget> {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: .0,
+            vertical: 8.0,
             horizontal: 16.0,
           ),
           child: Text(

@@ -354,3 +354,57 @@ final List<Review> reviews = [
   ),
   // Add more reviews as needed
 ];
+
+class CartItem {
+  final String productName;
+  final double price;
+  int quantity;
+  final int discountedPrice;
+  final String imagePath;
+
+  CartItem({
+    required this.productName,
+    required this.price,
+    required this.quantity,
+    required this.discountedPrice,
+    required this.imagePath,
+  });
+}
+
+final List<CartItem> cartItems = [
+  CartItem(
+    productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
+    price: 25.0,
+    quantity: 2,
+    discountedPrice: 10,
+    imagePath: 'assets/Marketplace/Frame 1 5.png',
+  ),
+  CartItem(
+    productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
+    price: 10.0,
+    quantity: 1,
+    discountedPrice: 10,
+    imagePath: 'assets/Marketplace/Frame 1 5.png',
+  ),
+  CartItem(
+    productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
+    price: 10.0,
+    quantity: 1,
+    discountedPrice: 10,
+    imagePath: 'assets/Marketplace/Frame 1 5.png',
+  ),
+  CartItem(
+    productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
+    price: 10.0,
+    quantity: 1,
+    discountedPrice: 10,
+    imagePath: 'assets/Marketplace/Frame 1 5.png',
+  ),
+  CartItem(
+    productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
+    price: 10.0,
+    quantity: 1,
+    discountedPrice: 10,
+    imagePath: 'assets/Marketplace/Frame 1 5.png',
+  ),
+];
