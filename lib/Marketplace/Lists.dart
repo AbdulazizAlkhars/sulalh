@@ -432,9 +432,10 @@ List<String> paymentMethodIcons = [
 ];
 
 class MyItemOrder {
-  final String date;
+  final DateTime date;
   final String id;
   final String status;
+  final DateTime deliverydate;
   final int numberOfItems;
   final List<String> itemImages; // Asset paths for item images
 
@@ -442,6 +443,7 @@ class MyItemOrder {
     required this.date,
     required this.id,
     required this.status,
+    required this.deliverydate,
     required this.numberOfItems,
     required this.itemImages,
   });
@@ -449,39 +451,55 @@ class MyItemOrder {
 
 List<MyItemOrder> myitemorders = [
   MyItemOrder(
-    date: '2024-04-12',
+    date: DateTime(2024, 2, 7),
+    deliverydate: DateTime(2024, 2, 15),
     id: '1',
     status: 'Pending',
     numberOfItems: 2,
-    itemImages: ['assets/item1.jpg', 'assets/item2.jpg'],
+    itemImages: [
+      'assets/Marketplace/Frame 1 5.png',
+      'assets/Marketplace/Frame 1 5.png',
+    ],
   ),
   MyItemOrder(
-    date: '2024-04-11',
+    date: DateTime(2024, 2, 7),
+    deliverydate: DateTime(2024, 2, 15),
+    id: '2',
+    status: 'Cancelled',
+    numberOfItems: 1,
+    itemImages: [
+      'assets/Marketplace/Frame 1 5.png',
+    ],
+  ),
+  MyItemOrder(
+    date: DateTime(2024, 2, 7),
+    deliverydate: DateTime(2024, 2, 15),
     id: '2',
     status: 'Delivered',
     numberOfItems: 1,
-    itemImages: ['assets/item3.jpg'],
+    itemImages: [
+      'assets/Marketplace/Frame 1 5.png',
+    ],
   ),
   MyItemOrder(
-    date: '2024-04-11',
+    date: DateTime(2024, 2, 7),
+    deliverydate: DateTime(2024, 2, 15),
     id: '2',
     status: 'Delivered',
     numberOfItems: 1,
-    itemImages: ['assets/item3.jpg'],
+    itemImages: [
+      'assets/Marketplace/Frame 1 5.png',
+    ],
   ),
   MyItemOrder(
-    date: '2024-04-11',
+    date: DateTime(2024, 2, 7),
+    deliverydate: DateTime(2024, 2, 15),
     id: '2',
     status: 'Delivered',
     numberOfItems: 1,
-    itemImages: ['assets/item3.jpg'],
-  ),
-  MyItemOrder(
-    date: '2024-04-11',
-    id: '2',
-    status: 'Delivered',
-    numberOfItems: 1,
-    itemImages: ['assets/item3.jpg'],
+    itemImages: [
+      'assets/Marketplace/Frame 1 5.png',
+    ],
   ),
   // Add more orders as needed
 ];

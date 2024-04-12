@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
-import 'item_orders.dart';
+import 'my_item_orders.dart';
 
 class MyOrdersPage extends StatefulWidget {
   @override
@@ -85,7 +85,6 @@ class _MyOrdersPageState extends State<MyOrdersPage>
       body: TabBarView(
         controller: _tabController,
         children: [
-          // Content for Items tab
           MyItemsOrders(),
           // Content for Animals tab
           Center(child: Text('Animals Content')),

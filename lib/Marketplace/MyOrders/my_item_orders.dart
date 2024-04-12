@@ -20,17 +20,17 @@ class _MyItemsOrdersState extends State<MyItemsOrders> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.grayscale0,
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 15,
-              ),
-              Align(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Align(
                 alignment: Alignment.centerLeft,
                 child: Wrap(
                   direction: Axis.horizontal,
@@ -38,7 +38,7 @@ class _MyItemsOrdersState extends State<MyItemsOrders> {
                   spacing: 8.0,
                   runSpacing: 8.0,
                   children: List.generate(
-                    filteredCatalogChipsList.length,
+                    myitemordersfilter.length,
                     (index) => ChipsWidget(
                       label: myitemordersfilter[index],
                       onTap: () {
@@ -48,26 +48,36 @@ class _MyItemsOrdersState extends State<MyItemsOrders> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 15,
-              ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: myitemorders.length,
-                itemBuilder: (context, index) {
-                  final order = myitemorders[index];
-                  return MyOrderCard(
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            ListView.builder(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: myitemorders.length,
+              itemBuilder: (context, index) {
+                final order = myitemorders[index];
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => myod()),
+                    );
+                  },
+                  child: MyOrderCard(
                     date: order.date,
                     id: order.id,
                     status: order.status,
                     numberOfItems: order.numberOfItems,
                     itemImages: order.itemImages,
-                  );
-                },
-              ),
-            ],
-          ),
+                    deliverydate: order.deliverydate,
+                  ),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
