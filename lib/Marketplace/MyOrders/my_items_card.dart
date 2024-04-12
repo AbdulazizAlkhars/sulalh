@@ -58,13 +58,19 @@ class MyOrderCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 5),
-            Text(
-              'Order ID: $id',
-              style: AppFonts.body2(
-                color: AppColors.grayscale60,
-              ),
+            Row(
+              children: [
+                Text(
+                  'Order ID: $id',
+                  style: AppFonts.body2(
+                    color: AppColors.grayscale60,
+                  ),
+                ),
+                Spacer(),
+                StatusChip(status: status),
+              ],
             ),
-            StatusChip(status: status),
+
             const SizedBox(height: 5),
             Row(
               children: [

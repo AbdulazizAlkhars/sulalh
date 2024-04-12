@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/Marketplace/home_page.dart';
+import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
 
 import 'package:hathera_demo/localization/localestrings.dart';
 
@@ -22,6 +23,6 @@ class MyApp extends StatelessWidget {
         title: 'Sulalh Demo',
         translations: LocalStrings(),
         locale: const Locale('en', 'US'),
-        home: ProfilePage());
+        home: bottomNavigationBarPage());
   }
 }

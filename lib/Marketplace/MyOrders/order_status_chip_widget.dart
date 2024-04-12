@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
-import 'package:intl/intl.dart';
 
 class StatusChip extends StatelessWidget {
   final String status;
@@ -12,7 +11,7 @@ class StatusChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final Map<String, Color> statusColors = {
       'Created': AppColors.secondary30,
-      'Delivered': AppColors.primary10,
+      'Delivered': AppColors.primary20,
       'Cancelled': AppColors.grayscale10,
       // Add more status-color pairs as needed
     };
@@ -20,6 +19,10 @@ class StatusChip extends StatelessWidget {
     // Get the color corresponding to the status
     final Color chipColor =
         statusColors.containsKey(status) ? statusColors[status]! : Colors.grey;
+
+    // Determine font color based on status
+    final Color fontColor =
+        status == 'Delivered' ? Colors.white : AppColors.grayscale90;
 
     return Chip(
       shape: RoundedRectangleBorder(
@@ -34,7 +37,7 @@ class StatusChip extends StatelessWidget {
       label: Text(
         status,
         style: AppFonts.body2(
-          color: AppColors.grayscale90,
+          color: fontColor, // Set font color based on status
         ),
       ),
     );

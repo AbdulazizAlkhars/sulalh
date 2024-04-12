@@ -5,17 +5,18 @@ import '../../../Theme/Colors.dart';
 class TextFieldWidget extends StatelessWidget {
   final String hintText;
   final ValueChanged<String>? onChanged;
+  final int? maxLines;
 
   const TextFieldWidget({
     Key? key,
     required this.hintText,
     this.onChanged,
+    this.maxLines, // Add maxLines parameter
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(50.0), // Adjust border radius here
         border: Border.all(
@@ -28,6 +29,7 @@ class TextFieldWidget extends StatelessWidget {
         child: TextField(
           style: TextStyle(fontSize: 14.0), // Adjust font size here
           onChanged: onChanged,
+          maxLines: maxLines, // Set maxLines property
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: AppFonts.body2(color: AppColors.grayscale50),

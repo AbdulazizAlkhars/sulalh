@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:hathera_demo/Marketplace/Lists.dart';
 
 import '../../Theme/Colors.dart';
-import '../../Theme/Fonts.dart';
-import '../ProductMarketplace/ProductMarketplaceWidgets/checkout_cart_items_widget.dart';
+
 import '../ProductMarketplace/ProductMarketplaceWidgets/chips_widget.dart';
-import '../ProductMarketplace/product_details_page.dart';
 
 import 'my_items_card.dart';
 
 import 'my_order_details.dart';
-import 'my_orders.dart';
 
 class MyItemsOrders extends StatefulWidget {
   const MyItemsOrders({super.key});

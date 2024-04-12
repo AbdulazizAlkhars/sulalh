@@ -459,7 +459,7 @@ List<MyItemOrder> myitemorders = [
     date: DateTime(2024, 2, 7),
     deliverydate: DateTime(2024, 2, 15),
     id: '1',
-    status: 'Created',
+    status: 'Delivered',
     numberOfItems: 2,
     itemImages: [
       'assets/Marketplace/Frame 1 5.png',
@@ -467,7 +467,7 @@ List<MyItemOrder> myitemorders = [
     ],
     itemNames: [
       'EquiGLOSS 2in1 Conditioning Shampoo',
-      'EquiGLOSS 2in1 Conditioning Shampoo',
+      'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     ],
     itemPrice: [
       '120',

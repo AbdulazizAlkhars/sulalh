@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hathera_demo/Marketplace/Lists.dart';
+
+import 'package:hathera_demo/Marketplace/MyOrders/rate_item.dart';
 
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
-import '../ProductMarketplace/ProductMarketplaceWidgets/checkout_cart_items_widget.dart';
-import '../ProductMarketplace/ProductMarketplaceWidgets/chips_widget.dart';
-import '../ProductMarketplace/product_details_page.dart';
-import 'my_items_card.dart';
-import 'my_orders.dart';
+
 import 'order_status_chip_widget.dart';
 import 'package:intl/intl.dart';
 
@@ -316,7 +313,20 @@ class _MyOrderDetailsState extends State<MyOrderDetails> {
                                     color: Colors.transparent,
                                     width: double.infinity,
                                     child: ElevatedButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => RateItemPage(
+                                              itemName: widget.itemNames[index],
+                                              itemImage:
+                                                  widget.itemImages[index],
+                                              itemPrice:
+                                                  widget.itemPrice[index],
+                                            ),
+                                          ),
+                                        );
+                                      },
                                       style: ElevatedButton.styleFrom(
                                         elevation: 0,
                                         backgroundColor: AppColors.grayscale10,
