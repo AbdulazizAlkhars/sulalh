@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:hathera_demo/Marketplace/ProductMarketplace/AddNewAddressMap.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
+import '../add_new_address.dart';
 
 class ChangeAddressModal extends StatefulWidget {
+  const ChangeAddressModal({Key? key}) : super(key: key);
+
   @override
   _ChangeAddressModalState createState() => _ChangeAddressModalState();
 }
@@ -24,7 +25,7 @@ class _ChangeAddressModalState extends State<ChangeAddressModal> {
   Widget build(BuildContext context) {
     return IntrinsicHeight(
       child: ClipRRect(
-        borderRadius: BorderRadius.vertical(
+        borderRadius: const BorderRadius.vertical(
           top: Radius.circular(16),
         ),
         child: Padding(
@@ -40,7 +41,7 @@ class _ChangeAddressModalState extends State<ChangeAddressModal> {
                 style: AppFonts.title4(color: AppColors.grayscale90),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Padding(
@@ -48,57 +49,69 @@ class _ChangeAddressModalState extends State<ChangeAddressModal> {
                 child: Column(
                   children: addresses.map((address) {
                     bool isSelected = selectedAddress == address;
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 8.0,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedAddress = address;
-                          });
-                        },
-                        child: Row(
-                          children: [
-                            GestureDetector(
-                              child: Container(
-                                width: MediaQuery.of(context).size.width *
-                                    0.064, // Adjust the width as needed
-                                height: MediaQuery.of(context).size.width *
-                                    0.064, // Adjust the height as needed
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: isSelected
-                                        ? AppColors.primary20
-                                        : AppColors.grayscale30,
-                                    width: isSelected ? 6.0 : 1.0,
+                    return Dismissible(
+                      key: Key(address),
+                      onDismissed: (direction) {
+                        setState(() {
+                          addresses.remove(address);
+                          if (selectedAddress == address) {
+                            selectedAddress = null;
+                          }
+                        });
+                      },
+                      background: Container(color: Colors.red),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: 8.0,
+                        ),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedAddress = address;
+                            });
+                          },
+                          child: Row(
+                            children: [
+                              GestureDetector(
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width *
+                                      0.064, // Adjust the width as needed
+                                  height: MediaQuery.of(context).size.width *
+                                      0.064, // Adjust the height as needed
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: isSelected
+                                          ? AppColors.primary20
+                                          : AppColors.grayscale30,
+                                      width: isSelected ? 6.0 : 1.0,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            SizedBox(width: 15.0),
-                            Expanded(
-                              child: Text(
-                                address,
-                                style: AppFonts.body2(
-                                    color: AppColors.grayscale90),
+                              const SizedBox(width: 15.0),
+                              Expanded(
+                                child: Text(
+                                  address,
+                                  style: AppFonts.body2(
+                                      color: AppColors.grayscale90),
+                                ),
                               ),
-                            ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: Icon(
-                                Icons.more_horiz,
+                              GestureDetector(
+                                onTap: () {},
+                                child: const Icon(
+                                  Icons.more_horiz,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     );
                   }).toList(),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
@@ -108,8 +121,7 @@ class _ChangeAddressModalState extends State<ChangeAddressModal> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => AddressSelectionPage()),
+                      MaterialPageRoute(builder: (context) => AddNewAddress()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -127,7 +139,7 @@ class _ChangeAddressModalState extends State<ChangeAddressModal> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
             ],
