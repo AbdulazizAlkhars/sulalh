@@ -6,7 +6,10 @@ import '../../Theme/Fonts.dart';
 import '../ProductMarketplace/ProductMarketplaceWidgets/checkout_cart_items_widget.dart';
 import '../ProductMarketplace/ProductMarketplaceWidgets/chips_widget.dart';
 import '../ProductMarketplace/product_details_page.dart';
+
 import 'my_items_card.dart';
+
+import 'my_order_details.dart';
 import 'my_orders.dart';
 
 class MyItemsOrders extends StatefulWidget {
@@ -63,7 +66,16 @@ class _MyItemsOrdersState extends State<MyItemsOrders> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => myod()),
+                      MaterialPageRoute(
+                          builder: (context) => MyOrderDetails(
+                                status: order.status,
+                                itemImages: order.itemImages,
+                                itemNames: order.itemNames,
+                                itemPrice: order.itemPrice,
+                                numberOfItems: order.numberOfItems,
+                                date: order.date,
+                                deliverydate: order.deliverydate,
+                              )),
                     );
                   },
                   child: MyOrderCard(
@@ -73,6 +85,7 @@ class _MyItemsOrdersState extends State<MyItemsOrders> {
                     numberOfItems: order.numberOfItems,
                     itemImages: order.itemImages,
                     deliverydate: order.deliverydate,
+                    itemNames: order.itemNames,
                   ),
                 );
               },

@@ -434,18 +434,23 @@ List<String> paymentMethodIcons = [
 class MyItemOrder {
   final DateTime date;
   final String id;
+
   final String status;
   final DateTime deliverydate;
   final int numberOfItems;
   final List<String> itemImages; // Asset paths for item images
+  final List<String> itemNames; // Names of the items
+  final List<String> itemPrice;
 
   MyItemOrder({
     required this.date,
     required this.id,
+    required this.itemPrice,
     required this.status,
     required this.deliverydate,
     required this.numberOfItems,
     required this.itemImages,
+    required this.itemNames,
   });
 }
 
@@ -454,11 +459,19 @@ List<MyItemOrder> myitemorders = [
     date: DateTime(2024, 2, 7),
     deliverydate: DateTime(2024, 2, 15),
     id: '1',
-    status: 'Pending',
+    status: 'Created',
     numberOfItems: 2,
     itemImages: [
       'assets/Marketplace/Frame 1 5.png',
       'assets/Marketplace/Frame 1 5.png',
+    ],
+    itemNames: [
+      'EquiGLOSS 2in1 Conditioning Shampoo',
+      'EquiGLOSS 2in1 Conditioning Shampoo',
+    ],
+    itemPrice: [
+      '120',
+      '140',
     ],
   ),
   MyItemOrder(
@@ -470,15 +483,11 @@ List<MyItemOrder> myitemorders = [
     itemImages: [
       'assets/Marketplace/Frame 1 5.png',
     ],
-  ),
-  MyItemOrder(
-    date: DateTime(2024, 2, 7),
-    deliverydate: DateTime(2024, 2, 15),
-    id: '2',
-    status: 'Delivered',
-    numberOfItems: 1,
-    itemImages: [
-      'assets/Marketplace/Frame 1 5.png',
+    itemNames: [
+      'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
+    ],
+    itemPrice: [
+      '120',
     ],
   ),
   MyItemOrder(
@@ -490,15 +499,11 @@ List<MyItemOrder> myitemorders = [
     itemImages: [
       'assets/Marketplace/Frame 1 5.png',
     ],
-  ),
-  MyItemOrder(
-    date: DateTime(2024, 2, 7),
-    deliverydate: DateTime(2024, 2, 15),
-    id: '2',
-    status: 'Delivered',
-    numberOfItems: 1,
-    itemImages: [
-      'assets/Marketplace/Frame 1 5.png',
+    itemNames: [
+      'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
+    ],
+    itemPrice: [
+      '120',
     ],
   ),
   // Add more orders as needed

@@ -3,6 +3,8 @@ import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 import 'package:intl/intl.dart';
 
+import 'order_status_chip_widget.dart';
+
 class MyOrderCard extends StatelessWidget {
   final DateTime date;
   final DateTime deliverydate;
@@ -10,6 +12,7 @@ class MyOrderCard extends StatelessWidget {
   final String status;
   final int numberOfItems;
   final List<String> itemImages;
+  final List<String> itemNames;
 
   MyOrderCard({
     required this.date,
@@ -18,23 +21,15 @@ class MyOrderCard extends StatelessWidget {
     required this.status,
     required this.numberOfItems,
     required this.itemImages,
+    required this.itemNames,
   });
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, Color> statusColors = {
-      'Pending': AppColors.secondary30,
-      'Delivered': AppColors.primary10,
-      'Cancelled': AppColors.grayscale10,
-      // Add more status-color pairs as needed
-    };
-
     // Get the color corresponding to the status
-    final Color chipColor =
-        statusColors.containsKey(status) ? statusColors[status]! : Colors.grey;
     final formattedDate = DateFormat('MMMM d, yyyy').format(date);
     String deliveryText = '';
-    if (status == 'Pending') {
+    if (status == 'Created') {
       deliveryText =
           'Delivery On ${DateFormat('MMMM d, yyyy').format(deliverydate)}';
     } else if (status == 'Cancelled') {
@@ -69,24 +64,7 @@ class MyOrderCard extends StatelessWidget {
                 color: AppColors.grayscale60,
               ),
             ),
-            Chip(
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(20), // Adjust the radius as needed
-                side: const BorderSide(
-                    color: Colors.transparent), // Make outline transparent
-              ),
-              backgroundColor: chipColor,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8,
-              ), // Adjust padding as needed
-              label: Text(
-                status,
-                style: AppFonts.body2(
-                  color: AppColors.grayscale90,
-                ),
-              ),
-            ),
+            StatusChip(status: status),
             const SizedBox(height: 5),
             Row(
               children: [
