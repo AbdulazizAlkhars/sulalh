@@ -78,7 +78,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
             },
             child: Container(
               color: AppColors.grayscale20, // Replace with your map widget
-              child: Center(
+              child: const Center(
                 child: Text(
                   'Map Placeholder',
                   style: TextStyle(fontSize: 20),
@@ -92,9 +92,9 @@ class _AddNewAddressState extends State<AddNewAddress> {
             left: 0,
             right: 0,
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               ),
@@ -107,7 +107,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                       height: 15,
                     ),
                     mapTapped
-                        ? SizedBox(
+                        ? const SizedBox(
                             height: 5,
                           )
                         : Column(
@@ -129,7 +129,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                     Icons.directions_car_filled_outlined,
                                     size: 20,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -208,7 +208,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                 Icons.directions_car_filled_outlined,
                                 size: 20,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               Text(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:hathera_demo/Marketplace/MyOrders/my_orders.dart';
 
 import 'package:hathera_demo/Profile/AboutApp/AboutApp.dart';
 import 'package:hathera_demo/Profile/AppSettings/AppSettings.dart';
@@ -394,6 +395,75 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                       ),
                       title: Text(
                         'Subscriptions'.tr,
+                        style: AppFonts.body2(color: AppColors.grayscale90),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SubscriptionPage()),
+                        );
+                      }),
+                  ListTile(
+                      leading: Container(
+                        padding: EdgeInsets.all(6 * widthMediaQuery),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.grayscale0,
+                        ),
+                        child: const Icon(
+                          Icons.shopping_bag_outlined,
+                          color: AppColors.primary30,
+                        ),
+                      ),
+                      title: Text(
+                        'My Orders'.tr,
+                        style: AppFonts.body2(color: AppColors.grayscale90),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MyOrdersPage()),
+                        );
+                      }),
+                  ListTile(
+                      leading: Container(
+                        padding: EdgeInsets.all(6 * widthMediaQuery),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.grayscale0,
+                        ),
+                        child: const Icon(
+                          Icons.attach_money,
+                          color: AppColors.primary30,
+                        ),
+                      ),
+                      title: Text(
+                        'Payment History'.tr,
+                        style: AppFonts.body2(color: AppColors.grayscale90),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SubscriptionPage()),
+                        );
+                      }),
+                  ListTile(
+                      leading: Container(
+                        padding: EdgeInsets.all(6 * widthMediaQuery),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.grayscale0,
+                        ),
+                        child: const Icon(
+                          Icons.breakfast_dining_sharp,
+                          color: AppColors.primary30,
+                        ),
+                      ),
+                      title: Text(
+                        'Animals For Sale'.tr,
                         style: AppFonts.body2(color: AppColors.grayscale90),
                       ),
                       onTap: () {

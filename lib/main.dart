@@ -5,6 +5,8 @@ import 'package:hathera_demo/Marketplace/home_page.dart';
 
 import 'package:hathera_demo/localization/localestrings.dart';
 
+import 'Profile/ProfilePage.dart';
+
 void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -20,6 +22,6 @@ class MyApp extends StatelessWidget {
         title: 'Sulalh Demo',
         translations: LocalStrings(),
         locale: const Locale('en', 'US'),
-        home: Marketplacehomepage());
+        home: ProfilePage());
   }
 }

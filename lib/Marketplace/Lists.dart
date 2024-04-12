@@ -155,7 +155,11 @@ List<String> filteredCatalogChipsList = [
 
   // Add more chip labels as needed
 ];
+List<String> myitemordersfilter = [
+  'January 2024', 'February 2024', 'March 2024', 'April 2024'
 
+  // Add more chip labels as needed
+];
 final List<ProductDetails> filteredProductList = [
   ProductDetails(
     imagePath: 'assets/Marketplace/Frame 1 5.png',
@@ -425,4 +429,59 @@ List<String> paymentMethodIcons = [
   'assets/PaymentPNGs/PayPal.png',
   'assets/PaymentPNGs/GPay.png',
   'assets/PaymentPNGs/ApplePay.png',
+];
+
+class MyItemOrder {
+  final String date;
+  final String id;
+  final String status;
+  final int numberOfItems;
+  final List<String> itemImages; // Asset paths for item images
+
+  MyItemOrder({
+    required this.date,
+    required this.id,
+    required this.status,
+    required this.numberOfItems,
+    required this.itemImages,
+  });
+}
+
+List<MyItemOrder> myitemorders = [
+  MyItemOrder(
+    date: '2024-04-12',
+    id: '1',
+    status: 'Pending',
+    numberOfItems: 2,
+    itemImages: ['assets/item1.jpg', 'assets/item2.jpg'],
+  ),
+  MyItemOrder(
+    date: '2024-04-11',
+    id: '2',
+    status: 'Delivered',
+    numberOfItems: 1,
+    itemImages: ['assets/item3.jpg'],
+  ),
+  MyItemOrder(
+    date: '2024-04-11',
+    id: '2',
+    status: 'Delivered',
+    numberOfItems: 1,
+    itemImages: ['assets/item3.jpg'],
+  ),
+  MyItemOrder(
+    date: '2024-04-11',
+    id: '2',
+    status: 'Delivered',
+    numberOfItems: 1,
+    itemImages: ['assets/item3.jpg'],
+  ),
+  MyItemOrder(
+    date: '2024-04-11',
+    id: '2',
+    status: 'Delivered',
+    numberOfItems: 1,
+    itemImages: ['assets/item3.jpg'],
+  ),
+  // Add more orders as needed
 ];
