@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/item_vendors.dart';
 
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
@@ -94,7 +95,12 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                 Expanded(
                   flex: 0,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ItemVendors()),
+                      );
+                    },
                     child: Text(
                       'View All',
                       style: AppFonts.body1(color: AppColors.primary40),
