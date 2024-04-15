@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
+import '../Lists.dart';
 import 'filtered_item_catalog.dart';
 
 class PetItemCategories extends StatefulWidget {
@@ -11,18 +12,6 @@ class PetItemCategories extends StatefulWidget {
 }
 
 class _PetItemCategoriesState extends State<PetItemCategories> {
-  final Map<String, IconData> categoryIcons = {
-    'Pet Food and Treats': Icons.grass,
-    'Pet Accessories': Icons.spa,
-    'Health and Wellness': Icons.spa,
-    'Cleaning and Hygiene': Icons.cleaning_services,
-    '⁠Travel and Transportation': Icons.local_shipping,
-    'Housing and Habitat': Icons.house,
-    'Identification and Safety': Icons.security,
-    'Speciality Items': Icons.star_border,
-    // Add more categories and their corresponding icons as needed
-  };
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,13 +1,9 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/textfield_widget.dart';
 
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
-import 'checkout_item.dart';
-import 'filtered_item_catalog.dart';
 
 class AddNewAddress extends StatefulWidget {
   @override

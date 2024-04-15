@@ -6,6 +6,7 @@ import '../../Lists.dart';
 import '../product_details_page.dart';
 import '../vendors_avatars_widget.dart';
 import 'vendor_shop_details.dart';
+import 'vendor_shop_items.dart';
 
 class ItemVendors extends StatefulWidget {
   @override
@@ -47,28 +48,47 @@ class _ItemVendorsState extends State<ItemVendors> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
+              SizedBox(height: 20),
               Row(
                 children: [
                   Expanded(
-                    flex: 2,
-                    child: Text('Top Vendors',
-                        style: AppFonts.title4(color: AppColors.grayscale90)),
-                  ),
-                  Expanded(
-                    flex: 0,
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'View All',
-                        style: AppFonts.body1(color: AppColors.primary40),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50.0),
+                        border: Border.all(
+                          color: AppColors.grayscale20,
+                        ), // Outline color
+                        color: Colors.white, // Background color
+                      ),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: "Search",
+                          hintStyle: TextStyle(
+                            color: AppColors.grayscale50,
+                          ), // Change hint text color
+                          prefixIcon:
+                              Icon(Icons.search, color: AppColors.primary30),
+                          suffixIcon: Container(
+                            padding: EdgeInsets.all(
+                                MediaQuery.of(context).size.width * 0.020),
+                            decoration: BoxDecoration(
+                              color: AppColors.grayscale10,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            child: Icon(Icons.filter_list,
+                                color: AppColors.primary30),
+                          ), // Icon at the right side
+                          border: InputBorder.none,
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
+              SizedBox(height: 25),
               GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -107,7 +127,7 @@ class _ItemVendorsState extends State<ItemVendors> {
                                 // Circle avatar for the image
                                 CircleAvatar(
                                   radius:
-                                      MediaQuery.of(context).size.width * 0.15,
+                                      MediaQuery.of(context).size.width * 0.14,
                                   backgroundColor: AppColors.grayscale10,
                                   backgroundImage: AssetImage(
                                     vendor['imageAsset'],
@@ -159,15 +179,22 @@ class _ItemVendorsState extends State<ItemVendors> {
                                 // Elevated button
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 16),
+                                      horizontal: 10, vertical: 2),
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      // Handle button press
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                VendorShopItems(
+                                                  index: index,
+                                                )),
+                                      );
                                     },
                                     style: ElevatedButton.styleFrom(
                                       foregroundColor: AppColors.grayscale0,
                                       backgroundColor: AppColors
-                                          .primary50, // Text color of button
+                                          .primary40, // Text color of button
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(50),
                                       ),

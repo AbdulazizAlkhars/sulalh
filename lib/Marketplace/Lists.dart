@@ -1,4 +1,6 @@
 // ignore: file_names
+import 'package:flutter/material.dart';
+
 import 'ProductMarketplace/ProductMarketplaceWidgets/credit_debit_cards_widget.dart';
 
 final List<String> animaladvertisements = [
@@ -537,4 +539,26 @@ List<MyItemOrder> myitemorders = [
     ],
   ),
   // Add more orders as needed
+];
+
+final Map<String, IconData> categoryIcons = {
+  'Pet Food and Treats': Icons.grass,
+  'Pet Accessories': Icons.spa,
+  'Health and Wellness': Icons.spa,
+  'Cleaning and Hygiene': Icons.cleaning_services,
+  '⁠Travel and Transportation': Icons.local_shipping,
+  'Housing and Habitat': Icons.house,
+  'Identification and Safety': Icons.security,
+  'Speciality Items': Icons.star_border,
+  // Add more categories and their corresponding icons as needed
+};
+final List<String> animalCategoryItems = [
+  'All', 'Cat',
+  'Dog',
+  'Sheep',
+  'Cow',
+  'Horse',
+  'Chicken',
+
+  // Add more categories and their corresponding icons as needed
 ];
