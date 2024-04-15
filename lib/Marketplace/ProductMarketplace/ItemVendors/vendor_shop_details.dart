@@ -54,7 +54,7 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Center(
                 child: CircleAvatar(
                   radius: MediaQuery.of(context).size.width * 0.15,
@@ -64,13 +64,13 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Shop Name
               Center(
                 child: Text(vendor['name'],
                     style: AppFonts.title4(color: AppColors.grayscale90)),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Shop Description (if available)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -176,10 +176,10 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                   ),
                 ],
               ),
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
               Text('Contact Details',
                   style: AppFonts.title5(color: AppColors.grayscale90)),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               Row(
                 children: [
                   if (vendor.containsKey('facebook'))
@@ -187,10 +187,10 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                       'Facebook',
                       style: AppFonts.body2(color: AppColors.grayscale70),
                     ),
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.facebook,
                         color: AppColors.primary30,
                         size: 19,
@@ -203,7 +203,7 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               if (vendor.containsKey('instagram'))
@@ -213,14 +213,14 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                       'Instagram',
                       style: AppFonts.body2(color: AppColors.grayscale70),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Text(
                       vendor['instagram'],
                       style: AppFonts.caption2(color: AppColors.primary30),
                     ),
                   ],
                 ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               if (vendor.containsKey('website'))
@@ -230,10 +230,10 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                       'Website',
                       style: AppFonts.body2(color: AppColors.grayscale70),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.language,
                           color: AppColors.primary30,
                           size: 19,
@@ -246,19 +246,19 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                     ),
                   ],
                 ),
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
               Text('Description',
                   style: AppFonts.title5(color: AppColors.grayscale90)),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               if (vendor.containsKey('description'))
                 Text(
                   vendor['description'],
                   style: AppFonts.body2(color: AppColors.grayscale90),
                 ),
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
               Text('General Information',
                   style: AppFonts.title5(color: AppColors.grayscale90)),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               if (vendor.containsKey('address'))
                 Row(
                   children: [
@@ -266,14 +266,14 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                       'Legal Address',
                       style: AppFonts.body2(color: AppColors.grayscale70),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Text(
                       vendor['address'],
                       style: AppFonts.body2(color: AppColors.grayscale90),
                     ),
                   ],
                 ),
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
             ],
           ),
         ),

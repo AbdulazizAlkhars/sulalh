@@ -553,12 +553,11 @@ final Map<String, IconData> categoryIcons = {
   // Add more categories and their corresponding icons as needed
 };
 final List<String> animalCategoryItems = [
-  'All', 'Cat',
+  'All',
+  'Cat',
   'Dog',
   'Sheep',
   'Cow',
   'Horse',
   'Chicken',
-
-  // Add more categories and their corresponding icons as needed
 ];

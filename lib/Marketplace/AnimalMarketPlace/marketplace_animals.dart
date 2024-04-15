@@ -4,10 +4,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
 import '../Lists.dart';
+import '../ProductMarketplace/ItemVendors/vendor_item_animal_category_widget.dart';
 import '../ProductMarketplace/ProductMarketplaceWidgets/community_avatars_widget.dart';
 
 import '../ProductMarketplace/product_details_page.dart';
 import '../ProductMarketplace/vendors_avatars_widget.dart';
+import 'animal_details_page.dart';
 
 class MarketplaceAnimal extends StatefulWidget {
   const MarketplaceAnimal({Key? key}) : super(key: key);
@@ -160,20 +162,29 @@ class _MarketplaceAnimalState extends State<MarketplaceAnimal> {
                 ),
                 Expanded(
                   flex: 0,
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.filter_list,
-                        color: AppColors.primary50,
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
+                  child: GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                        showDragHandle: true,
+                        backgroundColor: Colors.white,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return VendorAnimalCategory();
+                        },
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.filter_list,
+                          color: AppColors.primary50,
+                        ),
+                        Text(
                           'Filters',
                           style: AppFonts.body1(color: AppColors.primary40),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -194,8 +205,10 @@ class _MarketplaceAnimalState extends State<MarketplaceAnimal> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              ProductDetailsPage(index: index),
+                          builder: (context) => AnimalDetailsPage(
+                            index: index,
+                            animal: animal,
+                          ),
                         ),
                       );
                     },

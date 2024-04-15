@@ -10,6 +10,7 @@ import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
 import 'ProductMarketplace/Cart.dart';
+import 'ProductMarketplace/ProductMarketplaceWidgets/change_address_modal_sheet.dart';
 
 // ignore: must_be_immutable
 class Marketplacehomepage extends ConsumerStatefulWidget {
@@ -115,23 +116,36 @@ class _Marketplacehomepage extends ConsumerState<Marketplacehomepage>
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.location_on_outlined,
-                      color: AppColors.primary50,
-                    ),
-                    SizedBox(width: 8.0),
-                    Expanded(
-                        child: Text(
-                      '10559 RAS AL KHAIMA, RAS AL KHAIMA',
-                      style: TextStyle(fontSize: 14),
-                    )),
-                    Icon(
-                      Icons.keyboard_arrow_down,
-                      color: AppColors.primary50,
-                    ),
-                  ],
+                child: GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      showDragHandle: true,
+                      context: context,
+                      backgroundColor: Colors.white,
+                      builder: (BuildContext context) {
+                        return const ChangeAddressModal();
+                      },
+                    );
+                  },
+                  child: const Row(
+                    children: [
+                      Icon(
+                        Icons.location_on_outlined,
+                        color: AppColors.primary50,
+                      ),
+                      SizedBox(width: 8.0),
+                      // ignore: unnecessary_const
+                      const Expanded(
+                          child: Text(
+                        '10559 RAS AL KHAIMA, RAS AL KHAIMA',
+                        style: TextStyle(fontSize: 14),
+                      )),
+                      Icon(
+                        Icons.keyboard_arrow_down,
+                        color: AppColors.primary50,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -162,6 +176,7 @@ class _Marketplacehomepage extends ConsumerState<Marketplacehomepage>
                 ],
               ),
             ),
+
             Container(
               width: double.infinity,
               margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -173,13 +188,15 @@ class _Marketplacehomepage extends ConsumerState<Marketplacehomepage>
               child: TabBar(
                 controller: _tabController,
                 indicator: BoxDecoration(
-                  color: const Color.fromARGB(255, 36, 86, 38),
-                  borderRadius: BorderRadius.circular(50),
+                  color: AppColors.primary50,
+                  borderRadius: BorderRadius.circular(24),
                 ),
+                dividerColor: Colors.transparent,
                 indicatorSize: TabBarIndicatorSize.tab,
                 indicatorColor: Colors.transparent,
-                labelColor: Colors.white,
-                unselectedLabelColor: Colors.grey,
+                labelColor: AppColors.grayscale0,
+                unselectedLabelColor: AppColors.grayscale60,
+                labelStyle: AppFonts.body2(color: AppColors.grayscale0),
                 tabs: const [
                   Tab(
                     text: 'Animals',
@@ -204,8 +221,8 @@ class _Marketplacehomepage extends ConsumerState<Marketplacehomepage>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  MarketplaceAnimal(),
-                  MarketplaceItems(),
+                  const MarketplaceAnimal(),
+                  const MarketplaceItems(),
                   Container(
                     color: Colors
                         .blue, // Placeholder color for Medical Notes tab view
