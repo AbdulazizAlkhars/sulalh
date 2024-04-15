@@ -5,6 +5,7 @@ import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/item_ven
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
 import '../Lists.dart';
+import 'ItemVendors/vendor_shop_details.dart';
 import 'item_category.dart';
 import 'ProductMarketplaceWidgets/community_avatars_widget.dart';
 
@@ -115,9 +116,19 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
             child: Row(
               children: List.generate(
                 ProductVendorData.length,
-                (index) => AnimalVendorAvatars(
-                  imageAsset: ProductVendorData[index]['imageAsset'],
-                  name: ProductVendorData[index]['name'],
+                (index) => GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => VendorShopDetails(index: index),
+                      ),
+                    );
+                  },
+                  child: AnimalVendorAvatars(
+                    imageAsset: ProductVendorData[index]['imageAsset'],
+                    name: ProductVendorData[index]['name'],
+                  ),
                 ),
               ),
             ),

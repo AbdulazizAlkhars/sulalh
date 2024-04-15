@@ -4,6 +4,7 @@ import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
 import '../ratings_reviews.dart';
+import 'vendor_shop_items.dart';
 
 class VendorShopDetails extends StatefulWidget {
   final int index;
@@ -294,7 +295,15 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                       children: [
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => VendorShopItems(
+                                          index: widget.index,
+                                        )),
+                              );
+                            },
                             style: ElevatedButton.styleFrom(
                               elevation: 0,
                               backgroundColor: AppColors.primary50,

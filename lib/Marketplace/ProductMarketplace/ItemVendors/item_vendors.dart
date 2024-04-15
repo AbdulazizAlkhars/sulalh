@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
-import '../product_details_page.dart';
-import '../vendors_avatars_widget.dart';
+
 import 'vendor_shop_details.dart';
 import 'vendor_shop_items.dart';
 
