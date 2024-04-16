@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:hathera_demo/DriverApp/driver_new_orders.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/marketplace_items.dart';
 
 import 'package:hathera_demo/Marketplace/AnimalMarketPlace/marketplace_animals.dart';
@@ -54,7 +55,7 @@ class _DriverHomePageState extends ConsumerState<DriverHomePage>
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         title: Text(
-          'Marketplace'.tr,
+          'Sulala Orders'.tr,
           style: AppFonts.title3(color: AppColors.grayscale90),
         ),
         actions: [
@@ -110,72 +111,6 @@ class _DriverHomePageState extends ConsumerState<DriverHomePage>
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.029,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: GestureDetector(
-                  onTap: () {
-                    showModalBottomSheet(
-                      showDragHandle: true,
-                      context: context,
-                      backgroundColor: Colors.white,
-                      builder: (BuildContext context) {
-                        return const ChangeAddressModal();
-                      },
-                    );
-                  },
-                  child: const Row(
-                    children: [
-                      Icon(
-                        Icons.location_on_outlined,
-                        color: AppColors.primary50,
-                      ),
-                      SizedBox(width: 8.0),
-                      // ignore: unnecessary_const
-                      const Expanded(
-                          child: Text(
-                        '10559 RAS AL KHAIMA, RAS AL KHAIMA',
-                        style: TextStyle(fontSize: 14),
-                      )),
-                      Icon(
-                        Icons.keyboard_arrow_down,
-                        color: AppColors.primary50,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50.0),
-                        border: Border.all(
-                            color: AppColors.grayscale20), // Outline color
-                        color: Colors.white, // Background color
-                      ),
-                      child: const TextField(
-                        decoration: InputDecoration(
-                          hintText: "Search",
-                          hintStyle: TextStyle(
-                              color: AppColors
-                                  .grayscale50), // Change hint text color
-                          prefixIcon: Icon(Icons.search),
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
 
             Container(
               width: double.infinity,
@@ -199,16 +134,13 @@ class _DriverHomePageState extends ConsumerState<DriverHomePage>
                 labelStyle: AppFonts.body2(color: AppColors.grayscale0),
                 tabs: const [
                   Tab(
-                    text: 'Animals',
+                    text: 'New Orders',
                   ),
                   Tab(
-                    text: 'Items',
+                    text: 'Accepted',
                   ),
                   Tab(
-                    text: 'Services',
-                  ),
-                  Tab(
-                    text: 'Sell',
+                    text: 'Delivered',
                   ),
                 ],
               ),
@@ -221,7 +153,7 @@ class _DriverHomePageState extends ConsumerState<DriverHomePage>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  const MarketplaceAnimal(),
+                  DriverNewOrders(),
                   const MarketplaceItems(),
                   Container(
                     color: Colors
