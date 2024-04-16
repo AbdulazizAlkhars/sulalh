@@ -116,12 +116,14 @@ class ProductDetails {
   final String productName;
   final String discountedPrice;
   final String actualPrice;
+  final String boughtPastMonth;
   final double rating;
 
   ProductDetails({
     required this.imagePath,
     required this.productName,
     required this.discountedPrice,
+    required this.boughtPastMonth,
     required this.actualPrice,
     required this.rating,
   });
@@ -133,21 +135,48 @@ final List<ProductDetails> mainProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     actualPrice: '\$100',
-    rating: 4.5,
+    rating: 4.0,
+    boughtPastMonth: '200',
   ),
   ProductDetails(
     imagePath: 'assets/Marketplace/Frame 1 6.png',
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     actualPrice: '\$100',
-    rating: 4.5,
+    boughtPastMonth: '280',
+    rating: 5.0,
   ),
   ProductDetails(
     imagePath: 'assets/Marketplace/Frame 1.png',
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     actualPrice: '\$100',
-    rating: 4.5,
+    boughtPastMonth: '250',
+    rating: 4.2,
+  ),
+  ProductDetails(
+    imagePath: 'assets/Marketplace/Frame 1 5.png',
+    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
+    discountedPrice: '\$80',
+    actualPrice: '\$100',
+    boughtPastMonth: '260',
+    rating: 4.1,
+  ),
+  ProductDetails(
+    imagePath: 'assets/Marketplace/Frame 1 6.png',
+    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
+    discountedPrice: '\$80',
+    actualPrice: '\$100',
+    rating: 4.4,
+    boughtPastMonth: '290',
+  ),
+  ProductDetails(
+    imagePath: 'assets/Marketplace/Frame 1.png',
+    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
+    discountedPrice: '\$80',
+    actualPrice: '\$100',
+    boughtPastMonth: '275',
+    rating: 4.2,
   ),
   ProductDetails(
     imagePath: 'assets/Marketplace/Frame 1 5.png',
@@ -155,27 +184,7 @@ final List<ProductDetails> mainProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     rating: 4.5,
-  ),
-  ProductDetails(
-    imagePath: 'assets/Marketplace/Frame 1 6.png',
-    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
-    discountedPrice: '\$80',
-    actualPrice: '\$100',
-    rating: 4.5,
-  ),
-  ProductDetails(
-    imagePath: 'assets/Marketplace/Frame 1.png',
-    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
-    discountedPrice: '\$80',
-    actualPrice: '\$100',
-    rating: 4.5,
-  ),
-  ProductDetails(
-    imagePath: 'assets/Marketplace/Frame 1 5.png',
-    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
-    discountedPrice: '\$80',
-    actualPrice: '\$100',
-    rating: 4.5,
+    boughtPastMonth: '275',
   ),
   // Add more ProductDetails objects as needed
 ];
@@ -199,6 +208,7 @@ final List<ProductDetails> filteredProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     rating: 4.5,
+    boughtPastMonth: '200',
   ),
   ProductDetails(
     imagePath: 'assets/Marketplace/Frame 1 6.png',
@@ -206,6 +216,7 @@ final List<ProductDetails> filteredProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     rating: 4.5,
+    boughtPastMonth: '280',
   ),
   ProductDetails(
     imagePath: 'assets/Marketplace/Frame 1.png',
@@ -213,6 +224,7 @@ final List<ProductDetails> filteredProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     rating: 4.5,
+    boughtPastMonth: '250',
   ),
   ProductDetails(
     imagePath: 'assets/Marketplace/Frame 1 5.png',
@@ -220,6 +232,7 @@ final List<ProductDetails> filteredProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     rating: 4.5,
+    boughtPastMonth: '275',
   ),
   ProductDetails(
     imagePath: 'assets/Marketplace/Frame 1 6.png',
@@ -227,6 +240,7 @@ final List<ProductDetails> filteredProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     rating: 4.5,
+    boughtPastMonth: '225',
   ),
   ProductDetails(
     imagePath: 'assets/Marketplace/Frame 1.png',
@@ -234,6 +248,7 @@ final List<ProductDetails> filteredProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     rating: 4.5,
+    boughtPastMonth: '260',
   ),
   ProductDetails(
     imagePath: 'assets/Marketplace/Frame 1 5.png',
@@ -241,6 +256,7 @@ final List<ProductDetails> filteredProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     rating: 4.5,
+    boughtPastMonth: '275',
   ),
   // Add more ProductDetails objects as needed
 ];

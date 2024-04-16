@@ -2,16 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hathera_demo/Marketplace/Lists.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/chips_widget.dart';
 
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
+import 'marketplace_items.dart';
 import 'ratings_reviews.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final int index;
+  final ProductDetails product;
 
-  const ProductDetailsPage({Key? key, required this.index}) : super(key: key);
+  const ProductDetailsPage(
+      {Key? key, required this.product, required this.index})
+      : super(key: key);
 
   @override
   _ProductDetailsPageState createState() => _ProductDetailsPageState();
@@ -26,7 +31,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.white,
+        backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -93,7 +99,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         shape: BoxShape.circle,
                         color: _currentIndex == i
                             ? AppColors.primary50
-                            : AppColors.primary0,
+                            : AppColors.grayscale20,
                       ),
                     ),
                 ],
@@ -104,25 +110,35 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 children: [
                   Flexible(
                     child: Text(
-                      'Milktech Silver Premium Calf & Foal Milk Replacer 20kg ${widget.index}', // Replace with product name
+                      widget.product.productName, // Replace with product name
                       style: AppFonts.title5(color: AppColors.grayscale90),
                       softWrap: true, // Enable text wrapping
                     ),
                   ),
-                  Row(
+                  Column(
                     children: [
-                      Text('\$80', // Replace with actual discounted price
-                          style: AppFonts.title4(color: AppColors.primary40)),
-                      const SizedBox(
-                        width: 3,
+                      Row(
+                        children: [
+                          Text(widget.product.discountedPrice,
+                              style:
+                                  AppFonts.title4(color: AppColors.primary40)),
+                          const SizedBox(
+                            width: 3,
+                          ),
+                          Text(
+                            widget.product.actualPrice,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: AppColors.grayscale50,
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                          ),
+                        ],
                       ),
-                      const Text(
-                        '\$100', // Replace with actual price
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: AppColors.grayscale50,
-                          decoration: TextDecoration.lineThrough,
-                        ),
+                      Text(
+                        '(${calculateDiscountPercentage(widget.product.actualPrice, widget.product.discountedPrice)}%) Off',
+                        style:
+                            AppFonts.headline4(color: AppColors.grayscale100),
                       ),
                     ],
                   ),
@@ -171,43 +187,85 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         );
                       },
                       child: Container(
-                        height: 70,
+                        height: 80,
                         padding: const EdgeInsets.all(8),
                         // margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                         decoration: BoxDecoration(
                           color: AppColors.secondary10,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Row(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    const Icon(Icons.star,
-                                        color: AppColors.secondary50),
-                                    const SizedBox(width: 5),
-                                    Text(
-                                      '4.5', // Replace with actual ratings
-                                      style: AppFonts.caption2(
-                                          color: AppColors.grayscale90),
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                  '12 Reviews',
-                                  style: AppFonts.body2(
-                                      color: AppColors.grayscale90),
-                                ),
-                              ],
-                            ),
-                            const Spacer(),
-                            const Icon(
-                              Icons.chevron_right,
-                              color: AppColors.primary20,
-                            ),
-                          ],
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            widget.product.rating.toString(),
+                                            style: AppFonts.caption1(
+                                              color: AppColors.grayscale90,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 5),
+                                          Row(
+                                            children: List.generate(
+                                              5,
+                                              (index) {
+                                                if (index <
+                                                    widget.product.rating
+                                                        .floor()) {
+                                                  // Full star
+                                                  return const Icon(
+                                                    Icons.star,
+                                                    size: 20,
+                                                    color:
+                                                        AppColors.secondary50,
+                                                  );
+                                                } else if (index <
+                                                    widget.product.rating) {
+                                                  // Half-filled star
+                                                  return const Icon(
+                                                    Icons.star_half,
+                                                    size: 20,
+                                                    color:
+                                                        AppColors.secondary50,
+                                                  );
+                                                } else {
+                                                  // Empty star
+                                                  return const Icon(
+                                                    Icons.star_border,
+                                                    size: 20,
+                                                    color:
+                                                        AppColors.secondary50,
+                                                  );
+                                                }
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    '12 Reviews',
+                                    style: AppFonts.body2(
+                                        color: AppColors.grayscale90),
+                                  ),
+                                ],
+                              ),
+                              const Spacer(),
+                              const Icon(
+                                Icons.chevron_right,
+                                color: AppColors.primary20,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -271,7 +329,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     style: AppFonts.headline2(color: AppColors.grayscale90),
                   ),
                   const SizedBox(height: 12),
-                  Text(
+                  const Text(
                     'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
                     style: TextStyle(
                       fontSize: 16,
@@ -334,7 +392,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
                       Expanded(
@@ -347,7 +405,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               IconButton(
-                                icon: Icon(Icons.remove),
+                                icon: const Icon(Icons.remove),
                                 onPressed: () {
                                   setState(() {
                                     if (_quantity > 1) {
@@ -367,7 +425,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                     color: AppColors.grayscale90),
                               ),
                               IconButton(
-                                icon: Icon(Icons.add),
+                                icon: const Icon(Icons.add),
                                 onPressed: () {
                                   setState(() {
                                     _quantity++; // Increase quantity by 1

@@ -188,8 +188,10 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  ProductDetailsPage(index: index),
+                              builder: (context) => ProductDetailsPage(
+                                index: index,
+                                product: product,
+                              ),
                             ),
                           );
                         },
