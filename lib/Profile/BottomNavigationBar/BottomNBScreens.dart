@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
+import 'package:hathera_demo/DriverApp/driver_homepage.dart';
 import 'package:hathera_demo/HomeScreen/Registered/HomePage.dart';
 import 'package:hathera_demo/Marketplace/home_page.dart';
 import 'package:hathera_demo/Profile/ProfilePage.dart';
@@ -19,6 +20,7 @@ class bottomNavigationBarPageState extends State<bottomNavigationBarPage> {
   int _currentIndex = 0;
 
   final List<Widget> pages = [
+    DriverHomePage(),
     Marketplacehomepage(),
     const ProfilePage(),
   ];

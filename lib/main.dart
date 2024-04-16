@@ -6,7 +6,6 @@ import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
 
 import 'package:hathera_demo/localization/localestrings.dart';
 
-import 'DriverApp/driver_homepage.dart';
 import 'Profile/ProfilePage.dart';
 
 void main() {
@@ -24,6 +23,6 @@ class MyApp extends StatelessWidget {
         title: 'Sulalh Demo',
         translations: LocalStrings(),
         locale: const Locale('en', 'US'),
-        home: DriverHomePage());
+        home: bottomNavigationBarPage());
   }
 }

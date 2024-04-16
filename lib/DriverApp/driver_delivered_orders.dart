@@ -83,7 +83,7 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              final neworder = DriverDeliveredOrdersList[index];
+              final deliveredorder = DriverDeliveredOrdersList[index];
               return GestureDetector(
                 onTap: () {},
                 child: Padding(
@@ -107,13 +107,13 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
                                 Row(
                                   children: [
                                     Text(
-                                      neworder.deliveryslot,
+                                      '\$${deliveredorder.totalpaid.toStringAsFixed(2)}',
                                       style: AppFonts.title4(
                                           color: AppColors.primary50),
                                     ),
                                     Spacer(),
                                     Text(
-                                      neworder.deliverydate,
+                                      deliveredorder.deliverydate,
                                       style: AppFonts.headline4(
                                           color: AppColors.grayscale90),
                                     ),
@@ -137,7 +137,7 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
                                             ),
                                             const SizedBox(width: 5),
                                             Text(
-                                              neworder.customername,
+                                              deliveredorder.customername,
                                               style: AppFonts.headline4(
                                                   color: AppColors.grayscale70),
                                             ),
@@ -146,7 +146,7 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
                                         ),
                                         Spacer(),
                                         DriverOrderStatusChip(
-                                          status: neworder.status,
+                                          status: deliveredorder.status,
                                         )
                                       ],
                                     ),
@@ -161,7 +161,7 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
                                         ),
                                         const SizedBox(width: 5),
                                         Text(
-                                          neworder.customeraddress,
+                                          deliveredorder.customeraddress,
                                           style: AppFonts.headline4(
                                               color: AppColors.grayscale60),
                                         ),
@@ -175,13 +175,13 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
                                 Row(
                                   children: [
                                     Text(
-                                      neworder.shopname,
+                                      deliveredorder.shopname,
                                       style: AppFonts.headline3(
                                           color: AppColors.grayscale90),
                                     ),
                                     Spacer(),
                                     Text(
-                                      neworder.ordernumber,
+                                      deliveredorder.ordernumber,
                                       style: AppFonts.body1(
                                           color: AppColors.grayscale90),
                                     ),

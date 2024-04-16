@@ -123,6 +123,7 @@ final List<DriverAcceptedOrders> DriverAcceptedOrderList = [
 ];
 
 class DriverDeliveredOrders {
+  final int totalpaid;
   final String ordernumber;
   final String deliveryslot;
   final String deliverydate;
@@ -134,6 +135,7 @@ class DriverDeliveredOrders {
 
   DriverDeliveredOrders(
       {required this.ordernumber,
+      required this.totalpaid,
       required this.deliveryslot,
       required this.deliverydate,
       required this.customername,
@@ -152,10 +154,12 @@ final List<DriverDeliveredOrders> DriverDeliveredOrdersList = [
       customeraddress: 'Ardiya',
       status: 'Delivered',
       shopname: 'FarmShop',
-      shopaddress: 'Jabriya'),
+      shopaddress: 'Jabriya',
+      totalpaid: 25),
   DriverDeliveredOrders(
       ordernumber: '#1000002',
       deliveryslot: '11.00 - 12.00',
+      totalpaid: 55,
       deliverydate: '14.04.2024',
       customername: 'Thor',
       status: 'Delivered',
@@ -166,6 +170,7 @@ final List<DriverDeliveredOrders> DriverDeliveredOrdersList = [
       ordernumber: '#1000003',
       deliveryslot: '13.00 - 15.00',
       deliverydate: '14.04.2024',
+      totalpaid: 35,
       customername: 'Steve',
       status: 'Delivered',
       customeraddress: 'Khaitan',
@@ -173,6 +178,7 @@ final List<DriverDeliveredOrders> DriverDeliveredOrdersList = [
       shopaddress: 'Kuwait City'),
   DriverDeliveredOrders(
       ordernumber: '#1000004',
+      totalpaid: 190,
       deliveryslot: '16.00 - 19.00',
       deliverydate: '14.04.2024',
       customername: 'Natasha',

@@ -121,7 +121,7 @@ class _CartCardState extends State<CartCard> {
                           style: AppFonts.headline4(color: AppColors.primary40),
                         ),
                         Text(
-                          '\$${widget.discountprice * widget.quantity}',
+                          '\${widget.discountprice * widget.quantity}',
                           style: const TextStyle(
                             fontSize: 12,
                             color: AppColors.grayscale50,
