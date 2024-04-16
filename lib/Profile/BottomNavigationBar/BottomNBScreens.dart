@@ -19,10 +19,6 @@ class bottomNavigationBarPageState extends State<bottomNavigationBarPage> {
   int _currentIndex = 0;
 
   final List<Widget> pages = [
-    const RegHomePage(),
-    ListOfAnimals(
-      shouldAddAnimal: false,
-    ),
     Marketplacehomepage(),
     const ProfilePage(),
   ];
@@ -41,14 +37,8 @@ class bottomNavigationBarPageState extends State<bottomNavigationBarPage> {
           },
           items: [
             BottomNavigationBarItem(
-              icon: const Icon(
-                Icons.home_outlined,
-              ),
-              label: 'Home'.tr,
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.pets),
-              label: 'Animals'.tr,
+              icon: const Icon(Icons.delivery_dining_sharp),
+              label: 'Drivers App',
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.shopping_basket),
@@ -62,7 +52,6 @@ class bottomNavigationBarPageState extends State<bottomNavigationBarPage> {
           selectedIconTheme: IconThemeData(
               color: AppColors.primary40), // Change selected icon color
           unselectedIconTheme: IconThemeData(color: Colors.grey),
-          unselectedFontSize: 20, // Change unselected icon color
         ),
       ),
     );
