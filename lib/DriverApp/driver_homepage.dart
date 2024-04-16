@@ -12,6 +12,8 @@ import 'package:hathera_demo/Theme/Fonts.dart';
 
 import '../Marketplace/ProductMarketplace/Cart.dart';
 import '../Marketplace/ProductMarketplace/ProductMarketplaceWidgets/change_address_modal_sheet.dart';
+import 'driver_accepted_orders.dart';
+import 'driver_delivered_orders.dart';
 
 // ignore: must_be_immutable
 class DriverHomePage extends ConsumerStatefulWidget {
@@ -85,7 +87,7 @@ class _DriverHomePageState extends ConsumerState<DriverHomePage>
                   color: AppColors.primary50,
                 ),
                 child: const Icon(
-                  Icons.shopping_cart_outlined,
+                  Icons.settings,
                   color: Colors.white,
                   size: 25,
                 )),
@@ -154,15 +156,8 @@ class _DriverHomePageState extends ConsumerState<DriverHomePage>
                 controller: _tabController,
                 children: [
                   DriverNewOrders(),
-                  const MarketplaceItems(),
-                  Container(
-                    color: Colors
-                        .blue, // Placeholder color for Medical Notes tab view
-                  ),
-                  Container(
-                    color: Colors
-                        .red, // Placeholder color for Medical Notes tab view
-                  ),
+                  DriverAcceptedOrders(),
+                  DriverDeliveredOrders(),
                 ],
               ),
             ),

@@ -13,14 +13,14 @@ import '../Marketplace/ProductMarketplace/ProductMarketplaceWidgets/community_av
 import '../Marketplace/ProductMarketplace/marketplace_items.dart';
 import '../Marketplace/ProductMarketplace/vendors_avatars_widget.dart';
 
-class DriverNewOrders extends StatefulWidget {
-  const DriverNewOrders({Key? key}) : super(key: key);
+class DriverAcceptedOrders extends StatefulWidget {
+  const DriverAcceptedOrders({Key? key}) : super(key: key);
 
   @override
-  State<DriverNewOrders> createState() => _DriverNewOrdersState();
+  State<DriverAcceptedOrders> createState() => _DriverAcceptedOrdersState();
 }
 
-class _DriverNewOrdersState extends State<DriverNewOrders> {
+class _DriverAcceptedOrdersState extends State<DriverAcceptedOrders> {
   int _currentIndex = 0;
 
   @override
@@ -38,7 +38,7 @@ class _DriverNewOrdersState extends State<DriverNewOrders> {
               children: [
                 Expanded(
                   flex: 2,
-                  child: Text('New Orders',
+                  child: Text('Accepted Orders',
                       style: AppFonts.title4(color: AppColors.grayscale90)),
                 ),
                 Expanded(
@@ -79,11 +79,11 @@ class _DriverNewOrdersState extends State<DriverNewOrders> {
               crossAxisCount: 1,
               childAspectRatio: 2, // Adjust aspect ratio as needed
             ),
-            itemCount: DriverNewOrderList.length,
+            itemCount: DriverAcceptedOrderList.length,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              final neworder = DriverNewOrderList[index];
+              final neworder = DriverAcceptedOrderList[index];
               return GestureDetector(
                 onTap: () {},
                 child: Padding(
