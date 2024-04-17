@@ -25,7 +25,7 @@ final List<DriverNewOrders> DriverNewOrderList = [
       deliveryslot: '10.00 - 12.00',
       deliverydate: '14.04.2024',
       customername: 'Stark',
-      customeraddress: 'Ardiya',
+      customeraddress: 'Jabriya',
       status: 'Waiting To Accept',
       shopname: 'FarmShop',
       shopaddress: 'Jabriya'),
@@ -44,7 +44,7 @@ final List<DriverNewOrders> DriverNewOrderList = [
       deliverydate: '14.04.2024',
       customername: 'Steve',
       status: 'Waiting To Accept',
-      customeraddress: 'Khaitan',
+      customeraddress: 'Jabriya',
       shopname: 'PetCare',
       shopaddress: 'Kuwait City'),
   DriverNewOrders(
