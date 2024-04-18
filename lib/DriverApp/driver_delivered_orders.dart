@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:hathera_demo/DriverApp/driver_delivered_order_details.dart';
 import 'package:hathera_demo/DriverApp/driver_order_list.dart';
 import 'package:hathera_demo/DriverApp/driver_order_status_chip_widget.dart';
-import 'package:hathera_demo/Marketplace/ProductMarketplace/product_details_page.dart';
 
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
-import '../Marketplace/AnimalMarketPlace/animal_details_page.dart';
-import '../Marketplace/Lists.dart';
+
 import '../Marketplace/ProductMarketplace/ItemVendors/vendor_item_animal_category_widget.dart';
-import '../Marketplace/ProductMarketplace/ProductMarketplaceWidgets/community_avatars_widget.dart';
-import '../Marketplace/ProductMarketplace/marketplace_items.dart';
-import '../Marketplace/ProductMarketplace/vendors_avatars_widget.dart';
 
 class DriverDeliveredOrders extends StatefulWidget {
   const DriverDeliveredOrders({Key? key}) : super(key: key);
@@ -22,15 +17,13 @@ class DriverDeliveredOrders extends StatefulWidget {
 }
 
 class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
-  int _currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Padding(
@@ -51,7 +44,7 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
                         backgroundColor: Colors.white,
                         context: context,
                         builder: (BuildContext context) {
-                          return VendorAnimalCategory();
+                          return const VendorAnimalCategory();
                         },
                       );
                     },
@@ -72,7 +65,7 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           GridView.builder(
@@ -123,7 +116,7 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
                                 Row(
                                   children: [
                                     Text(
-                                      '\$${totalCartSum.toStringAsFixed(2)}',
+                                      '\KWD ${totalCartSum.toStringAsFixed(2)}',
                                       style: AppFonts.title4(
                                           color: paymentStatusColor),
                                     ),
@@ -133,7 +126,7 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
                                       style: AppFonts.caption1(
                                           color: paymentStatusColor),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     Text(
                                       deliveredorder.deliverydate,
                                       style: AppFonts.headline4(
@@ -154,6 +147,7 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             const Icon(
+                                              size: 20,
                                               Icons.person,
                                               color: AppColors.grayscale70,
                                             ),
@@ -166,7 +160,7 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
                                             const SizedBox(width: 3),
                                           ],
                                         ),
-                                        Spacer(),
+                                        const Spacer(),
                                         DriverOrderStatusChip(
                                           status: deliveredorder.status,
                                         )
@@ -178,7 +172,8 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         const Icon(
-                                          Icons.delivery_dining,
+                                          size: 20,
+                                          Icons.location_on_outlined,
                                           color: AppColors.grayscale60,
                                         ),
                                         const SizedBox(width: 5),
@@ -193,7 +188,7 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
                                   ],
                                 ),
                                 const SizedBox(width: 3),
-                                Spacer(),
+                                const Spacer(),
                                 Row(
                                   children: [
                                     Text(
@@ -201,7 +196,7 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
                                       style: AppFonts.headline3(
                                           color: AppColors.grayscale90),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     Text(
                                       deliveredorder.ordernumber,
                                       style: AppFonts.body1(

@@ -69,7 +69,7 @@ class _SwipeToConfirmState extends State<SwipeToConfirm> {
                 ),
                 child: const Center(
                   child: Icon(
-                    Icons.chevron_right,
+                    Icons.delivery_dining,
                     color: Colors.black,
                   ),
                 ),

@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/DriverApp/driver_order_list.dart';
-import 'package:slide_action/slide_action.dart';
 
-import '../Marketplace/Lists.dart';
-import '../Marketplace/ProductMarketplace/ProductMarketplaceWidgets/checkout_cart_items_widget.dart';
 import '../Theme/Colors.dart';
 import '../Theme/Fonts.dart';
-import 'driver_assign_widget.dart';
+
 import 'driver_cart_items_card_widget.dart';
 import 'driver_order_delivery_time_staus_widget.dart';
-import 'driver_order_status_chip_widget.dart'; // Import your order model if needed
 
 class DriverDeliveredOrdersDetails extends StatefulWidget {
   final DriverDeliveredOrders
@@ -44,7 +39,7 @@ class _DriverDeliveredOrdersDetailsState
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          'Order: ${widget.order.ordernumber}',
+          'Order ${widget.order.ordernumber}',
           style: AppFonts.headline3(
             color: AppColors.grayscale90,
           ),
@@ -109,13 +104,13 @@ class _DriverDeliveredOrdersDetailsState
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            'Delivery',
+                            'Delivered',
                             style: AppFonts.title5(
                               color: AppColors.grayscale90,
                             ),
                           ),
                           Text(
-                            'Time: ${widget.order.deliveryslot}',
+                            '${widget.order.deliveryslot}',
                             style: AppFonts.title5(
                               color: AppColors.grayscale70,
                             ),
@@ -132,28 +127,6 @@ class _DriverDeliveredOrdersDetailsState
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            'Remaining Time',
-                            style: AppFonts.title5(
-                              color: AppColors.grayscale90,
-                            ),
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Icon(
-                                Icons.watch_later_outlined,
-                                color: AppColors.grayscale70,
-                              ),
-                              const SizedBox(width: 5),
-                              Text(
-                                '00:10:39',
-                                style: AppFonts.title5(
-                                  color: AppColors.grayscale70,
-                                ),
-                              ),
-                            ],
-                          ),
                           DriverDeliveryTimeStatusChip(
                             status: widget.order.deliverystatus,
                           )

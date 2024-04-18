@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:hathera_demo/DriverApp/driver_customer_support.dart';
 import 'package:hathera_demo/DriverApp/driver_new_orders.dart';
 
 import 'package:hathera_demo/Theme/Colors.dart';
@@ -8,6 +9,7 @@ import 'package:hathera_demo/Theme/Fonts.dart';
 
 import '../Marketplace/ProductMarketplace/Cart.dart';
 import 'driver_accepted_orders.dart';
+import 'driver_accounts_modal.dart';
 import 'driver_delivered_orders.dart';
 
 // ignore: must_be_immutable
@@ -50,6 +52,7 @@ class _DriverHomePageState extends ConsumerState<DriverHomePage>
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.white,
         automaticallyImplyLeading: false,
         title: Text(
           'Sulala Orders'.tr,
@@ -69,8 +72,12 @@ class _DriverHomePageState extends ConsumerState<DriverHomePage>
                   Icons.chat_bubble_outline_outlined,
                   color: Colors.black,
                 )),
-            onPressed:
-                () {}, // Call the addAnimal function when the button is pressed
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ChatPage()),
+              );
+            }, // Call the addAnimal function when the button is pressed
           ),
           IconButton(
             padding: EdgeInsets.zero,
@@ -82,15 +89,12 @@ class _DriverHomePageState extends ConsumerState<DriverHomePage>
                   color: AppColors.primary50,
                 ),
                 child: const Icon(
-                  Icons.settings,
+                  Icons.assignment_ind_outlined,
                   color: Colors.white,
                   size: 25,
                 )),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CartPage()),
-              );
+              _showDriverAccounts(context);
             }, // Call the addAnimal function when the button is pressed
           ),
           const SizedBox(
@@ -149,7 +153,7 @@ class _DriverHomePageState extends ConsumerState<DriverHomePage>
             Expanded(
               child: TabBarView(
                 controller: _tabController,
-                children: [
+                children: const [
                   DriverNewOrders(),
                   DriverAcceptedOrders(),
                   DriverDeliveredOrders(),
@@ -163,4 +167,15 @@ class _DriverHomePageState extends ConsumerState<DriverHomePage>
 
     // Tab Bar
   }
+}
+
+void _showDriverAccounts(BuildContext context) {
+  showModalBottomSheet(
+    showDragHandle: true,
+    context: context,
+    backgroundColor: Colors.white,
+    builder: (BuildContext context) {
+      return DriverAccountsModal();
+    },
+  );
 }

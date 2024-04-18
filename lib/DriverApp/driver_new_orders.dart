@@ -28,7 +28,7 @@ class _DriverNewOrdersState extends State<DriverNewOrders> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Padding(
@@ -49,7 +49,7 @@ class _DriverNewOrdersState extends State<DriverNewOrders> {
                         backgroundColor: Colors.white,
                         context: context,
                         builder: (BuildContext context) {
-                          return VendorAnimalCategory();
+                          return const VendorAnimalCategory();
                         },
                       );
                     },
@@ -70,7 +70,7 @@ class _DriverNewOrdersState extends State<DriverNewOrders> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           GridView.builder(
@@ -118,7 +118,7 @@ class _DriverNewOrdersState extends State<DriverNewOrders> {
                                       style: AppFonts.title4(
                                           color: AppColors.primary50),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     Text(
                                       neworder.deliverydate,
                                       style: AppFonts.headline4(
@@ -139,6 +139,7 @@ class _DriverNewOrdersState extends State<DriverNewOrders> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             const Icon(
+                                              size: 20,
                                               Icons.person,
                                               color: AppColors.grayscale70,
                                             ),
@@ -151,7 +152,7 @@ class _DriverNewOrdersState extends State<DriverNewOrders> {
                                             const SizedBox(width: 3),
                                           ],
                                         ),
-                                        Spacer(),
+                                        const Spacer(),
                                         DriverOrderStatusChip(
                                           status: neworder.status,
                                         )
@@ -163,7 +164,8 @@ class _DriverNewOrdersState extends State<DriverNewOrders> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         const Icon(
-                                          Icons.delivery_dining,
+                                          size: 20,
+                                          Icons.location_on_outlined,
                                           color: AppColors.grayscale60,
                                         ),
                                         const SizedBox(width: 5),
@@ -178,7 +180,7 @@ class _DriverNewOrdersState extends State<DriverNewOrders> {
                                   ],
                                 ),
                                 const SizedBox(width: 3),
-                                Spacer(),
+                                const Spacer(),
                                 Row(
                                   children: [
                                     Text(
@@ -186,7 +188,7 @@ class _DriverNewOrdersState extends State<DriverNewOrders> {
                                       style: AppFonts.headline3(
                                           color: AppColors.grayscale90),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     Text(
                                       neworder.ordernumber,
                                       style: AppFonts.body1(
@@ -240,7 +242,7 @@ class _DriverNewOrdersState extends State<DriverNewOrders> {
                     'Hurray!, You have the following orders in the same area',
                     style: AppFonts.headline3(color: AppColors.grayscale90),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Column(

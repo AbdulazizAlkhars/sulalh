@@ -59,6 +59,7 @@ class _DriverAcceptedOrdersState extends State<DriverAcceptedOrders> {
                       children: [
                         const Icon(
                           Icons.filter_list,
+                          size: 20,
                           color: AppColors.primary50,
                         ),
                         Text(
@@ -141,6 +142,7 @@ class _DriverAcceptedOrdersState extends State<DriverAcceptedOrders> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             const Icon(
+                                              size: 20,
                                               Icons.person,
                                               color: AppColors.grayscale70,
                                             ),
@@ -165,7 +167,8 @@ class _DriverAcceptedOrdersState extends State<DriverAcceptedOrders> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         const Icon(
-                                          Icons.delivery_dining,
+                                          size: 20,
+                                          Icons.location_on_outlined,
                                           color: AppColors.grayscale60,
                                         ),
                                         const SizedBox(width: 5),

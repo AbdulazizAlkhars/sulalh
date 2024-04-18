@@ -21,6 +21,7 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
+        surfaceTintColor: Colors.white,
         title: Text(
           'Pet Food & Treats',
           style: AppFonts.headline3(
