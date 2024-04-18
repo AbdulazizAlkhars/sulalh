@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:hathera_demo/DriverApp/driver_acceptedorder_details.dart';
 import 'package:hathera_demo/DriverApp/driver_order_list.dart';
 import 'package:hathera_demo/DriverApp/driver_order_status_chip_widget.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/product_details_page.dart';
@@ -85,7 +86,15 @@ class _DriverAcceptedOrdersState extends State<DriverAcceptedOrders> {
             itemBuilder: (context, index) {
               final acceptedorder = DriverAcceptedOrderList[index];
               return GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          DriverAcceptedOrderDetails(order: acceptedorder),
+                    ),
+                  );
+                },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(

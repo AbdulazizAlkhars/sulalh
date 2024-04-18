@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:hathera_demo/DriverApp/driver_order_list.dart';
 import 'package:hathera_demo/DriverApp/driver_order_status_chip_widget.dart';
-import 'package:hathera_demo/Marketplace/ProductMarketplace/product_details_page.dart';
 
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
-import '../Marketplace/AnimalMarketPlace/animal_details_page.dart';
-import '../Marketplace/Lists.dart';
+
 import '../Marketplace/ProductMarketplace/ItemVendors/vendor_item_animal_category_widget.dart';
-import '../Marketplace/ProductMarketplace/ProductMarketplaceWidgets/community_avatars_widget.dart';
-import '../Marketplace/ProductMarketplace/marketplace_items.dart';
-import '../Marketplace/ProductMarketplace/vendors_avatars_widget.dart';
+
 import 'driver_neworder_details.dart';
 
 class DriverNewOrders extends StatefulWidget {
@@ -25,7 +21,7 @@ class _DriverNewOrdersState extends State<DriverNewOrders> {
   bool _isDialogShown = false;
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _checkForOrdersWithSameAddress();
     });
     return SingleChildScrollView(

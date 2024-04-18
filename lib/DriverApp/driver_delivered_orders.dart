@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:hathera_demo/DriverApp/driver_delivered_order_details.dart';
 import 'package:hathera_demo/DriverApp/driver_order_list.dart';
 import 'package:hathera_demo/DriverApp/driver_order_status_chip_widget.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/product_details_page.dart';
@@ -84,8 +85,23 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               final deliveredorder = DriverDeliveredOrdersList[index];
+              double totalCartSum = deliveredorder.cartItems.fold(
+                  0,
+                  (prev, cartItem) =>
+                      prev + (cartItem.price * cartItem.quantity));
+              Color paymentStatusColor = deliveredorder.paymentStatus == 'Paid'
+                  ? AppColors.primary30
+                  : AppColors.error100;
               return GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          DriverDeliveredOrdersDetails(order: deliveredorder),
+                    ),
+                  );
+                },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
@@ -107,9 +123,15 @@ class _DriverDeliveredOrdersState extends State<DriverDeliveredOrders> {
                                 Row(
                                   children: [
                                     Text(
-                                      '\$${deliveredorder.totalpaid.toStringAsFixed(2)}',
+                                      '\$${totalCartSum.toStringAsFixed(2)}',
                                       style: AppFonts.title4(
-                                          color: AppColors.primary50),
+                                          color: paymentStatusColor),
+                                    ),
+                                    const SizedBox(width: 5),
+                                    Text(
+                                      deliveredorder.paymentStatus,
+                                      style: AppFonts.caption1(
+                                          color: paymentStatusColor),
                                     ),
                                     Spacer(),
                                     Text(

@@ -1,28 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/DriverApp/driver_order_list.dart';
+import 'package:slide_action/slide_action.dart';
 
+import '../Marketplace/Lists.dart';
+import '../Marketplace/ProductMarketplace/ProductMarketplaceWidgets/checkout_cart_items_widget.dart';
 import '../Theme/Colors.dart';
 import '../Theme/Fonts.dart';
 import 'driver_assign_widget.dart';
 import 'driver_cart_items_card_widget.dart';
 import 'driver_order_delivery_time_staus_widget.dart';
-// Import your order model if needed
+import 'driver_order_status_chip_widget.dart'; // Import your order model if needed
 
-class OrderDetailsPage extends StatelessWidget {
-  final DriverNewOrders
+class DriverDeliveredOrdersDetails extends StatefulWidget {
+  final DriverDeliveredOrders
       order; // Replace 'Order' with your order model if needed
 
-  const OrderDetailsPage({Key? key, required this.order}) : super(key: key);
+  const DriverDeliveredOrdersDetails({Key? key, required this.order})
+      : super(key: key);
 
+  @override
+  State<DriverDeliveredOrdersDetails> createState() =>
+      _DriverDeliveredOrdersDetailsState();
+}
+
+class _DriverDeliveredOrdersDetailsState
+    extends State<DriverDeliveredOrdersDetails> {
   @override
   Widget build(BuildContext context) {
     double totalPrice = 0.0;
 
     // Calculate total price
-    for (final item in order.cartItems) {
+    for (final item in widget.order.cartItems) {
       totalPrice += item.price * item.quantity;
     }
+    Color paymentStatusColor = widget.order.paymentStatus == 'Paid'
+        ? AppColors.primary30
+        : AppColors.error100;
     return Scaffold(
       backgroundColor: AppColors.grayscale00,
       appBar: AppBar(
@@ -30,7 +44,7 @@ class OrderDetailsPage extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          'Order: ${order.ordernumber}',
+          'Order: ${widget.order.ordernumber}',
           style: AppFonts.headline3(
             color: AppColors.grayscale90,
           ),
@@ -70,7 +84,13 @@ class OrderDetailsPage extends StatelessWidget {
                       Text(
                         ' \KWD ${totalPrice.toStringAsFixed(2)}',
                         style: AppFonts.title3(
-                          color: AppColors.grayscale90,
+                          color: paymentStatusColor,
+                        ),
+                      ),
+                      Text(
+                        widget.order.paymentStatus,
+                        style: AppFonts.title4(
+                          color: paymentStatusColor,
                         ),
                       ),
                     ],
@@ -95,13 +115,13 @@ class OrderDetailsPage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Time: ${order.deliveryslot}',
+                            'Time: ${widget.order.deliveryslot}',
                             style: AppFonts.title5(
                               color: AppColors.grayscale70,
                             ),
                           ),
                           Text(
-                            '${order.deliverydate}',
+                            '${widget.order.deliverydate}',
                             style: AppFonts.title5(
                               color: AppColors.grayscale70,
                             ),
@@ -135,7 +155,7 @@ class OrderDetailsPage extends StatelessWidget {
                             ],
                           ),
                           DriverDeliveryTimeStatusChip(
-                            status: order.deliverystatus,
+                            status: widget.order.deliverystatus,
                           )
                         ],
                       ),
@@ -162,7 +182,7 @@ class OrderDetailsPage extends StatelessWidget {
                                   backgroundColor: AppColors.secondary30),
                               const SizedBox(width: 5),
                               Text(
-                                order.customername,
+                                widget.order.customername,
                                 style: AppFonts.headline3(
                                     color: AppColors.grayscale70),
                               ),
@@ -249,7 +269,7 @@ class OrderDetailsPage extends StatelessWidget {
                           ),
                           const SizedBox(width: 5),
                           Text(
-                            order.customeraddress,
+                            widget.order.customeraddress,
                             style: AppFonts.headline4(
                                 color: AppColors.grayscale60),
                           ),
@@ -312,9 +332,9 @@ class OrderDetailsPage extends StatelessWidget {
                       ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: order.cartItems.length,
+                        itemCount: widget.order.cartItems.length,
                         itemBuilder: (context, index) {
-                          final item = order.cartItems[index];
+                          final item = widget.order.cartItems[index];
                           return Padding(
                             padding: const EdgeInsets.only(
                                 bottom: 8.0), // Add space between cards
@@ -347,14 +367,12 @@ class OrderDetailsPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SwipeToConfirm(),
-                const SizedBox(height: 10),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
-                      backgroundColor: AppColors.primary40,
+                      backgroundColor: AppColors.grayscale20,
                       padding: const EdgeInsets.symmetric(
                           vertical: 16, horizontal: 24),
                       shape: RoundedRectangleBorder(
@@ -362,8 +380,8 @@ class OrderDetailsPage extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      'Start Maps',
-                      style: AppFonts.body1(color: AppColors.grayscale0),
+                      'Delivered',
+                      style: AppFonts.body1(color: AppColors.grayscale90),
                     ),
                   ),
                 ),
