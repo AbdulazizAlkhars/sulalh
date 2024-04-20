@@ -4,6 +4,7 @@ import 'package:hathera_demo/Marketplace/Lists.dart';
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
 import 'ProductMarketplaceWidgets/chips_widget.dart';
+import 'ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
 import 'product_details_page.dart';
 
 class FilteredItemCatalog extends StatefulWidget {
@@ -83,30 +84,11 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
               const SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50.0),
-                        border: Border.all(
-                            color: AppColors.grayscale20), // Outline color
-                        color: Colors.white, // Background color
-                      ),
-                      child: const TextField(
-                        decoration: InputDecoration(
-                          hintText: "Search Item",
-                          hintStyle: TextStyle(
-                              color: AppColors
-                                  .grayscale50), // Change hint text color
-                          prefixIcon:
-                              Icon(Icons.search, color: AppColors.primary30),
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              Padding(
+                padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width * 0.01,
+                    right: MediaQuery.of(context).size.width * 0.01),
+                child: SearchableDropdown(),
               ),
               const SizedBox(
                 height: 15,

@@ -28,7 +28,7 @@ class RatingSummaryWidget extends StatelessWidget {
         Row(
           children: [
             Text(
-              'Reviews',
+              'Ratings',
               style: AppFonts.title5(
                 color: AppColors.grayscale90,
               ),

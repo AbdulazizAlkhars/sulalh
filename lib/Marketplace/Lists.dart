@@ -67,7 +67,8 @@ List<Map<String, dynamic>> ProductVendorData = [
     'facebook': 'facebook/farmshop.com',
     'instagram': '@farmshop',
     'website': 'farmshop.com',
-    'address': '4358 Jonathan Street, Denver'
+    'address':
+        '4358 Jonathan Street, Denver4358 Jonathan Street, Denver4358 Jonathan Street, Denver4358 Jonathan Street, Denver'
   },
   {
     'imageAsset': 'assets/Marketplace/Frame 2087325740 3.png',
@@ -558,8 +559,8 @@ List<MyItemOrder> myitemorders = [
 ];
 
 final Map<String, IconData> categoryIcons = {
-  'Pet Food and Treats': Icons.grass,
-  'Pet Accessories': Icons.spa,
+  'Pet Food and Treats': Icons.pets,
+  'Pet Accessories': Icons.pest_control_rodent,
   'Health and Wellness': Icons.spa,
   'Cleaning and Hygiene': Icons.cleaning_services,
   '⁠Travel and Transportation': Icons.local_shipping,
@@ -577,3 +578,74 @@ final List<String> animalCategoryItems = [
   'Horse',
   'Chicken',
 ];
+
+class Suggestions {
+  static const List<String> petProductSuggestions = [
+    'Royal Canin Indoor Dry Cat Food',
+    'Blue Buffalo Life Protection Formula Dry Dog Food',
+    'Hill\'s Science Diet Dry Dog Food',
+    'Purina Pro Plan Savor Dry Dog Food',
+    'Taste of the Wild High Prairie Grain-Free Dry Dog Food',
+    'Merrick Grain-Free Dry Dog Food',
+    'Wellness Complete Health Natural Dry Dog Food',
+    'Natural Balance L.I.D. Limited Ingredient Diets Dry Dog Food',
+    'Instinct Original Grain-Free Dry Dog Food',
+    'Pedigree Adult Dry Dog Food',
+    'Blue Buffalo Wilderness Grain-Free Canned Dog Food',
+    'Merrick Grain-Free Canned Dog Food',
+    'Wellness Complete Health Natural Canned Dog Food',
+    'Hill\'s Science Diet Wet Dog Food',
+    'Rachael Ray Nutrish Natural Wet Cat Food',
+    'Purina Friskies Classic Pate Wet Cat Food',
+    'Fancy Feast Classic Pate Wet Cat Food',
+    'Tiki Cat Grill Grain-Free Canned Cat Food',
+    'Weruva Cats in the Kitchen Grain-Free Canned Cat Food',
+    'Natural Balance L.I.D. Limited Ingredient Diets Canned Cat Food',
+  ];
+}
+
+class CartProvider extends StatefulWidget {
+  final Widget child;
+
+  const CartProvider({Key? key, required this.child}) : super(key: key);
+
+  static _CartProviderState? of(BuildContext context) =>
+      context.findAncestorStateOfType<_CartProviderState>();
+
+  @override
+  _CartProviderState createState() => _CartProviderState();
+}
+
+class _CartProviderState extends State<CartProvider> {
+  bool _isItemAddedToCart = false;
+
+  void toggleItemAddedToCart() {
+    setState(() {
+      _isItemAddedToCart = !_isItemAddedToCart;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _CartState(
+      isItemAddedToCart: _isItemAddedToCart,
+      child: widget.child,
+    );
+  }
+}
+
+class _CartState extends InheritedWidget {
+  final bool isItemAddedToCart;
+
+  const _CartState({
+    required this.isItemAddedToCart,
+    required Widget child,
+    Key? key,
+  }) : super(key: key, child: child);
+
+  static _CartState? of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<_CartState>();
+
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) => true;
+}

@@ -20,8 +20,8 @@ class bottomNavigationBarPageState extends State<bottomNavigationBarPage> {
   int _currentIndex = 0;
 
   final List<Widget> pages = [
+    MarketplaceHomePage(),
     DriverHomePage(),
-    Marketplacehomepage(),
     const ProfilePage(),
   ];
 
@@ -39,12 +39,12 @@ class bottomNavigationBarPageState extends State<bottomNavigationBarPage> {
           },
           items: [
             BottomNavigationBarItem(
-              icon: const Icon(Icons.delivery_dining_sharp),
-              label: 'Drivers App',
-            ),
-            BottomNavigationBarItem(
               icon: const Icon(Icons.shopping_basket),
               label: 'Marketplace',
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.delivery_dining_sharp),
+              label: 'Drivers App',
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.person),

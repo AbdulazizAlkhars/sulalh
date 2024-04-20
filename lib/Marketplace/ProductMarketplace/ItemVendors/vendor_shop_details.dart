@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/widgets.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/rating_summary_widget.dart';
+import 'package:intl/intl.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
@@ -267,13 +270,91 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                       style: AppFonts.body2(color: AppColors.grayscale70),
                     ),
                     const Spacer(),
-                    Text(
-                      vendor['address'],
-                      style: AppFonts.body2(color: AppColors.grayscale90),
+                    Flexible(
+                      child: Text(
+                        vendor['address'],
+                        style: AppFonts.body2(color: AppColors.grayscale90),
+
+                        textAlign: TextAlign.justify, // Center align text
+                      ),
                     ),
                   ],
                 ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 15), const Divider(),
+              const SizedBox(height: 10),
+              RatingSummaryWidget(reviews: reviews),
+
+              Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      'Reviews',
+                      style: AppFonts.title4(color: AppColors.grayscale90),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 0,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ReviewsPage()),
+                        );
+                      },
+                      child: Text(
+                        'View More',
+                        style: AppFonts.body1(color: AppColors.primary40),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  // Build each review item using data from the reviews list
+                  return ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              reviews[index].reviewerName,
+                              style: AppFonts.headline3(
+                                  color: AppColors.grayscale90),
+                            ),
+                            Text(
+                              DateFormat(
+                                'MMM d, yyyy',
+                              ).format(reviews[index].date),
+                              style: AppFonts.caption2(
+                                  color: AppColors.grayscale90),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: List.generate(
+                            reviews[index].rating,
+                            (i) => Icon(Icons.star,
+                                size: 20, color: AppColors.secondary50),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        Text(reviews[index].reviewText),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),

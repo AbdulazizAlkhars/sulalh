@@ -17,7 +17,7 @@ class AnimalVendorAvatars extends StatelessWidget {
       child: Column(
         children: [
           CircleAvatar(
-            radius: 45,
+            radius: 40,
             backgroundImage: AssetImage(imageAsset),
           ),
           SizedBox(height: 12),
@@ -46,7 +46,7 @@ class ProductVendorAvatars extends StatelessWidget {
       child: Column(
         children: [
           CircleAvatar(
-            radius: 45,
+            radius: 35,
             backgroundImage: AssetImage(imageAsset),
           ),
           SizedBox(height: 12),

@@ -25,6 +25,8 @@ class _ReviewsPageState extends State<ReviewsPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
         centerTitle: true,
         title: Text(
           'Reviews',
@@ -53,7 +55,14 @@ class _ReviewsPageState extends State<ReviewsPage> {
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ReviewsPage(),
+                  ),
+                );
+              },
               child: Text(
                 'Add a Review',
                 style: AppFonts.body1(
@@ -65,7 +74,7 @@ class _ReviewsPageState extends State<ReviewsPage> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -73,6 +82,10 @@ class _ReviewsPageState extends State<ReviewsPage> {
               reviews: reviews,
             ),
             SizedBox(height: 20),
+            Text(
+              'Reviews',
+              style: AppFonts.title4(color: AppColors.grayscale90),
+            ),
             Expanded(
               child: ListView.builder(
                 itemCount: reviews.length,
@@ -88,14 +101,14 @@ class _ReviewsPageState extends State<ReviewsPage> {
                           children: [
                             Text(
                               reviews[index].reviewerName,
-                              style: AppFonts.headline3(
+                              style: AppFonts.headline4(
                                   color: AppColors.grayscale90),
                             ),
                             Text(
                               DateFormat(
                                 'MMM d, yyyy',
                               ).format(reviews[index].date),
-                              style: AppFonts.caption2(
+                              style: AppFonts.caption3(
                                   color: AppColors.grayscale90),
                             ),
                           ],
@@ -108,9 +121,12 @@ class _ReviewsPageState extends State<ReviewsPage> {
                           ),
                         ),
                         SizedBox(
-                          height: 12,
+                          height: 8,
                         ),
-                        Text(reviews[index].reviewText),
+                        Text(
+                          reviews[index].reviewText,
+                          style: AppFonts.body2(color: AppColors.grayscale90),
+                        ),
                       ],
                     ),
                   );
@@ -122,10 +138,4 @@ class _ReviewsPageState extends State<ReviewsPage> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: ReviewsPage(),
-  ));
 }
