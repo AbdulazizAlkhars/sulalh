@@ -99,7 +99,7 @@ class _Marketplacehomepage extends ConsumerState<MarketplaceHomePage>
         padding: EdgeInsets.only(
             left: MediaQuery.of(context).size.width * 0.01,
             right: MediaQuery.of(context).size.width * 0.01),
-        child: Column(
+        child: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // SizedBox(
@@ -196,7 +196,7 @@ class _Marketplacehomepage extends ConsumerState<MarketplaceHomePage>
             // Tab Bar View
             // Tab Bar View
             // Tab Bar View
-            Expanded(child: const MarketplaceItems()),
+            Expanded(child: MarketplaceItems()),
             // Expanded(
             //   child: TabBarView(
             //     controller: _tabController,

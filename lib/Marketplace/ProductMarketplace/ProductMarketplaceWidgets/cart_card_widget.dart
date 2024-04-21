@@ -67,7 +67,7 @@ class _CartCardState extends State<CartCard> {
                           width: 135,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            color: AppColors.grayscale10,
+                            color: AppColors.grayscale20,
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -117,14 +117,14 @@ class _CartCardState extends State<CartCard> {
                     Column(
                       children: [
                         Text(
-                          '\$${widget.price * widget.quantity}',
+                          '\KD ${widget.price * widget.quantity}',
                           style: AppFonts.headline4(color: AppColors.primary40),
                         ),
                         Text(
-                          '\${widget.discountprice * widget.quantity}',
+                          '\KD ${widget.discountprice * widget.quantity}',
                           style: const TextStyle(
                             fontSize: 12,
-                            color: AppColors.grayscale50,
+                            color: AppColors.grayscale60,
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),

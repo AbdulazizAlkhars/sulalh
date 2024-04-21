@@ -87,7 +87,7 @@ class _CheckOutCartCardState extends State<CheckOutCartCard> {
                           Column(
                             children: [
                               Text(
-                                '\$${widget.price * widget.quantity}',
+                                '${widget.price * widget.quantity} KD',
                                 style: AppFonts.headline4(
                                     color: AppColors.primary40),
                               ),

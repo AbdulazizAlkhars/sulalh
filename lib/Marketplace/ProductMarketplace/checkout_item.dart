@@ -83,7 +83,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                   const Spacer(),
                   Text(
-                    '\$${widget.totalGrossAmount.toStringAsFixed(2)}',
+                    '${widget.totalGrossAmount.toStringAsFixed(2)} KD',
                     style: AppFonts.body1(
                       color: AppColors.grayscale90,
                     ),
@@ -103,7 +103,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                   const Spacer(),
                   Text(
-                    '\$${widget.totalDiscount.toStringAsFixed(2)}',
+                    '${widget.totalDiscount.toStringAsFixed(2)} KD',
                     style: AppFonts.body1(
                       color: AppColors.grayscale90,
                     ),
@@ -143,7 +143,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                   const Spacer(),
                   Text(
-                    '\$${widget.totalAmount.toStringAsFixed(2)}',
+                    '${widget.totalAmount.toStringAsFixed(2)} KD',
                     style: AppFonts.headline3(
                       color: AppColors.primary40,
                     ),

@@ -118,6 +118,7 @@ class ProductDetails {
   final String discountedPrice;
   final String actualPrice;
   final String boughtPastMonth;
+  final String promotiontag;
   final double rating;
 
   ProductDetails({
@@ -126,6 +127,7 @@ class ProductDetails {
     required this.discountedPrice,
     required this.boughtPastMonth,
     required this.actualPrice,
+    required this.promotiontag,
     required this.rating,
   });
 }
@@ -136,6 +138,7 @@ final List<ProductDetails> mainProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     actualPrice: '\$130',
+    promotiontag: 'Best Seller',
     rating: 4.0,
     boughtPastMonth: '200',
   ),
@@ -145,6 +148,7 @@ final List<ProductDetails> mainProductList = [
     discountedPrice: '\$90',
     actualPrice: '\$160',
     boughtPastMonth: '280',
+    promotiontag: 'Promoted',
     rating: 5.0,
   ),
   ProductDetails(
@@ -154,6 +158,7 @@ final List<ProductDetails> mainProductList = [
     actualPrice: '\$190',
     boughtPastMonth: '250',
     rating: 4.2,
+    promotiontag: 'Promoted',
   ),
   ProductDetails(
     imagePath: 'assets/Marketplace/Frame 1 5.png',
@@ -162,6 +167,7 @@ final List<ProductDetails> mainProductList = [
     actualPrice: '\$250',
     boughtPastMonth: '260',
     rating: 4.1,
+    promotiontag: 'Best Seller',
   ),
   ProductDetails(
     imagePath: 'assets/Marketplace/Frame 1 6.png',
@@ -169,6 +175,7 @@ final List<ProductDetails> mainProductList = [
     discountedPrice: '\$175',
     actualPrice: '\$258',
     rating: 4.4,
+    promotiontag: 'Sale',
     boughtPastMonth: '290',
   ),
   ProductDetails(
@@ -177,6 +184,7 @@ final List<ProductDetails> mainProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     boughtPastMonth: '275',
+    promotiontag: 'Best Seller',
     rating: 4.2,
   ),
   ProductDetails(
@@ -184,6 +192,7 @@ final List<ProductDetails> mainProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     actualPrice: '\$100',
+    promotiontag: 'Sale',
     rating: 4.5,
     boughtPastMonth: '275',
   ),
@@ -209,6 +218,7 @@ final List<ProductDetails> filteredProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     rating: 4.5,
+    promotiontag: 'Best Seller',
     boughtPastMonth: '200',
   ),
   ProductDetails(
@@ -216,6 +226,7 @@ final List<ProductDetails> filteredProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     actualPrice: '\$100',
+    promotiontag: 'Best Seller',
     rating: 4.5,
     boughtPastMonth: '280',
   ),
@@ -224,6 +235,7 @@ final List<ProductDetails> filteredProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     actualPrice: '\$100',
+    promotiontag: 'Best Seller',
     rating: 4.5,
     boughtPastMonth: '250',
   ),
@@ -233,6 +245,7 @@ final List<ProductDetails> filteredProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     rating: 4.5,
+    promotiontag: 'Best Seller',
     boughtPastMonth: '275',
   ),
   ProductDetails(
@@ -242,6 +255,7 @@ final List<ProductDetails> filteredProductList = [
     actualPrice: '\$100',
     rating: 4.5,
     boughtPastMonth: '225',
+    promotiontag: 'Best Seller',
   ),
   ProductDetails(
     imagePath: 'assets/Marketplace/Frame 1.png',
@@ -249,6 +263,7 @@ final List<ProductDetails> filteredProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     rating: 4.5,
+    promotiontag: 'Best Seller',
     boughtPastMonth: '260',
   ),
   ProductDetails(
@@ -258,6 +273,7 @@ final List<ProductDetails> filteredProductList = [
     actualPrice: '\$100',
     rating: 4.5,
     boughtPastMonth: '275',
+    promotiontag: 'Best Seller',
   ),
   // Add more ProductDetails objects as needed
 ];

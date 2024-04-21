@@ -97,12 +97,6 @@ class _ChangeAddressModalState extends State<ChangeAddressModal> {
                                       color: AppColors.grayscale90),
                                 ),
                               ),
-                              GestureDetector(
-                                onTap: () {},
-                                child: const Icon(
-                                  Icons.more_horiz,
-                                ),
-                              ),
                             ],
                           ),
                         ),

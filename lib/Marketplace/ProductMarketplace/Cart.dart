@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/checkout_item.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/product_details_page.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
 import '../Lists.dart';
 import 'ProductMarketplaceWidgets/cart_card_widget.dart';
+import 'ProductMarketplaceWidgets/item_promotional_chips_widget.dart';
+import 'marketplace_items.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -103,7 +106,7 @@ class _CartPageState extends State<CartPage> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   child: Text(
-                    'Items', // Your heading text
+                    'Items In The Cart', // Your heading text
                     style: AppFonts.title5(
                       color: AppColors.grayscale90,
                     ),
@@ -157,26 +160,25 @@ class _CartPageState extends State<CartPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '\$${totalFinalAmount.toStringAsFixed(2)}',
+                      '${totalFinalAmount.toStringAsFixed(2)} KD',
                       style: AppFonts.title4(
                         color: AppColors.primary30,
                       ),
                     ),
                     SizedBox(width: 5),
                     Text(
-                      '\$${totalGrossAmount.toStringAsFixed(2)}',
+                      '${totalGrossAmount.toStringAsFixed(2)} KD',
                       style: TextStyle(
-                        fontSize: 16,
-                        color: AppColors.grayscale50,
+                        fontSize: 14,
+                        color: AppColors.grayscale60,
                         decoration: TextDecoration.lineThrough,
                       ),
                     ),
-                    SizedBox(
-                      width: 60,
-                    ),
+                    SizedBox(width: 5),
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {

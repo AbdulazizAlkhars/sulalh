@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/widgets.dart';
@@ -9,9 +10,10 @@ import '../Lists.dart';
 import 'Cart.dart';
 import 'ItemVendors/vendor_shop_details.dart';
 import 'ProductMarketplaceWidgets/change_address_modal_sheet.dart';
+import 'ProductMarketplaceWidgets/filter_items_widget.dart';
+import 'ProductMarketplaceWidgets/item_promotional_chips_widget.dart';
 import 'ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
 import 'filtered_item_catalog.dart';
-import 'item_category.dart';
 
 import 'product_details_page.dart';
 import 'vendors_avatars_widget.dart';
@@ -194,152 +196,180 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
               ],
             ),
             const SizedBox(height: 13),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Text(
-                      'Category Filters',
-                      style: AppFonts.title4(color: AppColors.grayscale90),
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.grayscale10,
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            'Category Filters',
+                            style:
+                                AppFonts.title4(color: AppColors.grayscale90),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 0,
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ItemVendors()),
+                              );
+                            },
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Swipe',
+                                  style: AppFonts.body1(
+                                      color: AppColors.primary40),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                const Icon(
+                                  Icons.east_sharp,
+                                  color: AppColors.primary40,
+                                  size: 15,
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  Expanded(
-                    flex: 0,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ItemVendors()),
-                        );
-                      },
+                    const SizedBox(height: 13),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
                       child: Row(
-                        children: [
-                          Text(
-                            'Swipe',
-                            style: AppFonts.body1(color: AppColors.primary40),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          const Icon(
-                            Icons.east_sharp,
-                            color: AppColors.primary40,
-                            size: 15,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 13),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: categoryIcons.entries.map((entry) {
-                  final categoryName = entry.key;
-                  final iconData = entry.value;
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const FilteredItemCatalog()),
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 1.0), // Adjust horizontal padding
-                      child: SizedBox(
-                        height: 100,
+                        children: categoryIcons.entries.map((entry) {
+                          final categoryName = entry.key;
+                          final iconData = entry.value;
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const FilteredItemCatalog()),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 1.0), // Adjust horizontal padding
+                              child: SizedBox(
+                                height: 100,
 
-                        width: 100, // Set fixed width for each item
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: AppColors.grayscale10,
-                              radius: 30,
-                              child: Icon(
-                                iconData,
-                                size: 30,
-                                color: AppColors.primary30,
+                                width: 100, // Set fixed width for each item
+                                child: Column(
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: Colors.white,
+                                      radius: 30,
+                                      child: Icon(
+                                        iconData,
+                                        size: 30,
+                                        color: AppColors.primary30,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Flexible(
+                                      child: Text(
+                                        categoryName,
+                                        style: const TextStyle(fontSize: 12),
+
+                                        textAlign: TextAlign
+                                            .center, // Center align text
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                            const SizedBox(height: 8),
-                            Flexible(
-                              child: Text(
-                                categoryName,
-                                style: const TextStyle(fontSize: 12),
-
-                                textAlign:
-                                    TextAlign.center, // Center align text
-                              ),
-                            ),
-                          ],
-                        ),
+                          );
+                        }).toList(),
                       ),
                     ),
-                  );
-                }).toList(),
-              ),
-            ),
-            const SizedBox(height: 13),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Text(
-                      'Top Vendors',
-                      style: AppFonts.title4(color: AppColors.grayscale90),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 0,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ItemVendors()),
-                        );
-                      },
-                      child: Text(
-                        'View All',
-                        style: AppFonts.body1(color: AppColors.primary40),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: List.generate(
-                  ProductVendorData.length,
-                  (index) => GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => VendorShopDetails(index: index),
-                        ),
-                      );
-                    },
-                    child: ProductVendorAvatars(
-                      imageAsset: ProductVendorData[index]['imageAsset'],
-                      name: ProductVendorData[index]['name'],
-                    ),
-                  ),
+                  ],
                 ),
               ),
             ),
+
+            const SizedBox(height: 13),
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.grayscale10,
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            'Top Vendors',
+                            style:
+                                AppFonts.title4(color: AppColors.grayscale90),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 0,
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ItemVendors()),
+                              );
+                            },
+                            child: Text(
+                              'View All',
+                              style: AppFonts.body1(color: AppColors.primary40),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: List.generate(
+                          ProductVendorData.length,
+                          (index) => GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      VendorShopDetails(index: index),
+                                ),
+                              );
+                            },
+                            child: ProductVendorAvatars(
+                              imageAsset: ProductVendorData[index]
+                                  ['imageAsset'],
+                              name: ProductVendorData[index]['name'],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
             // Padding(
             //   padding: const EdgeInsets.all(8.0),
             //   child: Row(
@@ -374,37 +404,50 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
             //     ),
             //   ),
             // ),
+            const SizedBox(
+              height: 15,
+            ),
+            const Divider(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: Text('Catalog',
+                    style: AppFonts.title4(
+                      color: AppColors.grayscale90,
+                    )),
+              ),
+            ),
+
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
                   Expanded(
                     flex: 2,
-                    child: Text('Catalog',
-                        style: AppFonts.title4(color: AppColors.grayscale90)),
+                    child: Text('Pet Food & Treats',
+                        style: AppFonts.title5(color: AppColors.grayscale90)),
                   ),
                   Expanded(
                     flex: 0,
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.filter_list,
-                          color: AppColors.primary50,
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PetItemCategories()),
-                            );
-                          },
-                          child: Text(
+                    child: GestureDetector(
+                      onTap: () {
+                        showFilterBottomSheet(context);
+                      },
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.filter_list,
+                            color: AppColors.primary50,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
                             'Filters',
                             style: AppFonts.body1(color: AppColors.primary40),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -413,7 +456,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
             GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
-                childAspectRatio: 2.7, // Adjust aspect ratio as needed
+                childAspectRatio: 2.2, // Adjust aspect ratio as needed
               ),
               itemCount: mainProductList.length,
               shrinkWrap: true,
@@ -438,27 +481,44 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: AppColors
-                            .grayscale0, // Background color for the container
+                            .grayscale10, // Background color for the container
                       ),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          // Image on the left side
                           Expanded(
-                            flex: 1,
                             child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  bottomLeft: Radius.circular(20),
-                                ),
-                                image: DecorationImage(
-                                  image: AssetImage(product.imagePath),
-                                  fit: BoxFit.cover,
+                              decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20),
+                                    bottomLeft: Radius.circular(20),
+                                  ),
+                                  color: Colors.white),
+                              child: Expanded(
+                                flex: 1,
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(20),
+                                          bottomLeft: Radius.circular(20),
+                                        ),
+                                        image: DecorationImage(
+                                          image: AssetImage(product.imagePath),
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                    ItemPromotionalChipsWidget(
+                                      promotiontag: product.promotiontag,
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
                           ),
+
                           // Details on the right side
                           Expanded(
                             flex: 2,
@@ -467,16 +527,26 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    product.productName,
-                                    style: AppFonts.caption1(
-                                        color: AppColors.grayscale100),
+                                  Row(
+                                    children: [
+                                      // Product name
+                                      Expanded(
+                                        child: Text(
+                                          product.productName,
+                                          style: AppFonts.caption1(
+                                            color: AppColors.grayscale100,
+                                          ),
+                                        ),
+                                      ),
+                                      // List of tags
+                                    ],
                                   ),
                                   const SizedBox(height: 5),
                                   Text(
                                     '${product.boughtPastMonth}+ Bought Past Month',
                                     style: AppFonts.caption2(
-                                        color: AppColors.grayscale90),
+                                      color: AppColors.grayscale90,
+                                    ),
                                   ),
                                   const SizedBox(height: 5),
                                   Row(
@@ -518,21 +588,41 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                                       ),
                                     ],
                                   ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5, vertical: 2),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: AppColors.error20,
+                                    ),
+                                    child: Text(
+                                      'Limited Offer',
+                                      style: AppFonts.caption2(
+                                        color: AppColors.grayscale0,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
                                   Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       Text(
                                         product.discountedPrice,
                                         style: AppFonts.headline3(
-                                            color: AppColors.primary40),
+                                          color: AppColors.primary40,
+                                        ),
                                       ),
                                       const SizedBox(width: 3),
                                       Text(
                                         product.actualPrice,
                                         style: const TextStyle(
-                                          fontSize: 12,
-                                          color: AppColors.grayscale50,
+                                          fontSize: 14,
+                                          color: AppColors.grayscale60,
                                           decoration:
                                               TextDecoration.lineThrough,
                                         ),
@@ -540,9 +630,10 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                                       const SizedBox(width: 3),
                                       const Spacer(),
                                       Text(
-                                        '(${calculateDiscountPercentage(product.actualPrice, product.discountedPrice)}%) Off',
+                                        '(${calculateDiscountPercentage(product.actualPrice, product.discountedPrice)}% Off)',
                                         style: AppFonts.caption1(
-                                            color: AppColors.grayscale100),
+                                          color: AppColors.grayscale90,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -556,7 +647,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                   ),
                 );
               },
-            ),
+            )
           ],
         ),
       ),

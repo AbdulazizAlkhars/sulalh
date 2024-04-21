@@ -24,6 +24,9 @@ class _SearchableDropdownState extends State<SearchableDropdown> {
             color: Colors.white, // Background color
           ),
           child: EasyAutocomplete(
+            inputTextStyle: AppFonts.body2(
+              color: AppColors.grayscale90,
+            ),
             suggestionBackgroundColor: AppColors.grayscale00,
             suggestions: Suggestions.petProductSuggestions,
             onChanged: (value) {}, // Dummy onChanged callback
