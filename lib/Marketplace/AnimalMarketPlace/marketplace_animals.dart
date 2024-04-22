@@ -303,6 +303,120 @@ class _MarketplaceAnimalState extends State<MarketplaceAnimal> {
                         ),
                       ),
                     ));
+              }),
+          GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.7, // Adjust aspect ratio as needed
+              ),
+              itemCount: AnimalList.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                final animal = AnimalList[index];
+                return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AnimalDetailsPage(
+                            index: index,
+                            animal: animal,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 145,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: AppColors
+                              .grayscale10, // Background color for the container
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            // Image at the top of the container
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(20),
+                                    topRight: Radius.circular(20),
+                                  ),
+                                  image: DecorationImage(
+                                    image: AssetImage(animal.imagePath),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            // Content (text) below the image
+                            Expanded(
+                              flex: 0,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          animal.animalName,
+                                          style: AppFonts.caption1(
+                                              color: AppColors.grayscale100),
+                                        ),
+                                        const Spacer(),
+                                        Text(
+                                          animal.animalAge,
+                                          style: AppFonts.caption2(
+                                              color: AppColors.grayscale90),
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      animal.gender,
+                                      style: AppFonts.caption2(
+                                          color: AppColors.grayscale90),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          animal.discountedPrice,
+                                          style: AppFonts.headline3(
+                                              color: AppColors.primary40),
+                                        ),
+                                        const SizedBox(width: 3),
+                                        const Text(
+                                          '\$100',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: AppColors.grayscale50,
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                          ),
+                                        ),
+                                        const Spacer(),
+                                        const Icon(Icons.star,
+                                            color: AppColors.secondary50),
+                                        const SizedBox(width: 5),
+                                        Text(animal.rating.toString(),
+                                            style: AppFonts.caption2(
+                                                color: AppColors.grayscale90)),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ));
               })
         ],
       ),

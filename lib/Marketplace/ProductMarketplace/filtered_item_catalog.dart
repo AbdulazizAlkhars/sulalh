@@ -6,6 +6,7 @@ import '../../Theme/Fonts.dart';
 import 'ProductMarketplaceWidgets/chips_widget.dart';
 import 'ProductMarketplaceWidgets/item_promotional_chips_widget.dart';
 import 'ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
+import 'ProductMarketplaceWidgets/select_your_animal_modal.dart';
 import 'marketplace_items.dart';
 import 'product_details_page.dart';
 
@@ -74,6 +75,62 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 13),
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.grayscale10,
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'My Animal',
+                        style: AppFonts.title5(color: AppColors.grayscale90),
+                      ),
+                      const SizedBox(height: 13),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet(
+                              showDragHandle: true,
+                              context: context,
+                              backgroundColor: Colors.white,
+                              builder: (BuildContext context) {
+                                return const SelectYourAnimalModal();
+                              },
+                            );
+                          },
+                          child: const Row(
+                            children: [
+                              Icon(
+                                Icons.pets_rounded,
+                                color: AppColors.primary50,
+                              ),
+                              SizedBox(width: 8.0),
+                              // ignore: unnecessary_const
+                              const Expanded(
+                                  child: Text(
+                                'Tommy',
+                                style: TextStyle(fontSize: 14),
+                              )),
+                              Icon(
+                                Icons.keyboard_arrow_down,
+                                color: AppColors.primary50,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               const SizedBox(
                 height: 15,
               ),

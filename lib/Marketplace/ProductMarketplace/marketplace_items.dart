@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/item_vendors.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/select_your_animal_modal.dart';
 
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
@@ -194,6 +195,60 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                   }).toList(),
                 ),
               ],
+            ),
+            const SizedBox(height: 13),
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.grayscale10,
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    showDragHandle: true,
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.white,
+                    builder: (BuildContext context) {
+                      return SizedBox(
+                          height: MediaQuery.of(context).size.height *
+                              0.8, // Adjust height as needed
+                          child: const SelectYourAnimalModal());
+                    },
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'My Animal',
+                        style: AppFonts.title5(color: AppColors.grayscale90),
+                      ),
+                      const SizedBox(height: 13),
+                      const Row(
+                        children: [
+                          Icon(
+                            Icons.pets_rounded,
+                            color: AppColors.primary50,
+                          ),
+                          SizedBox(width: 8.0),
+                          // ignore: unnecessary_const
+                          Text(
+                            'Tommy',
+                            style: TextStyle(fontSize: 14),
+                          ),
+                          Icon(
+                            Icons.keyboard_arrow_down,
+                            color: AppColors.primary50,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
             const SizedBox(height: 13),
             Container(
@@ -424,7 +479,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                 children: [
                   Expanded(
                     flex: 2,
-                    child: Text('Pet Food & Treats',
+                    child: Text('Previously Bought',
                         style: AppFonts.title5(color: AppColors.grayscale90)),
                   ),
                   Expanded(
@@ -455,8 +510,8 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
             ),
             GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-                childAspectRatio: 2.2, // Adjust aspect ratio as needed
+                crossAxisCount: 2,
+                childAspectRatio: 0.6, // Adjust aspect ratio as needed
               ),
               itemCount: mainProductList.length,
               shrinkWrap: true,
@@ -475,173 +530,381 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                       ),
                     );
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors
-                            .grayscale10, // Background color for the container
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    bottomLeft: Radius.circular(20),
-                                  ),
-                                  color: Colors.white),
-                              child: Expanded(
-                                flex: 1,
-                                child: Stack(
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(20),
-                                          bottomLeft: Radius.circular(20),
-                                        ),
-                                        image: DecorationImage(
-                                          image: AssetImage(product.imagePath),
-                                          fit: BoxFit.contain,
+                  child: Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: AppColors
+                              .grayscale10, // Background color for the container
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomLeft: Radius.circular(20),
+                                    ),
+                                    color: Colors.white),
+                                child: Expanded(
+                                  flex: 1,
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.only(
+                                            topLeft: Radius.circular(20),
+                                            bottomLeft: Radius.circular(20),
+                                          ),
+                                          image: DecorationImage(
+                                            image:
+                                                AssetImage(product.imagePath),
+                                            fit: BoxFit.contain,
+                                          ),
                                         ),
                                       ),
+                                      ItemPromotionalChipsWidget(
+                                        promotiontag: product.promotiontag,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+
+                            // Details on the right side
+                            Expanded(
+                              flex: 0,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        // Product name
+                                        Flexible(
+                                          child: Text(
+                                            product.productName,
+                                            style: AppFonts.caption1(
+                                              color: AppColors.grayscale100,
+                                            ),
+                                          ),
+                                        ),
+                                        // List of tags
+                                      ],
                                     ),
-                                    ItemPromotionalChipsWidget(
-                                      promotiontag: product.promotiontag,
-                                    )
+                                    const SizedBox(height: 5),
+                                    Text(
+                                      '${product.boughtPastMonth}+ Bought Past Month',
+                                      style: AppFonts.caption2(
+                                        color: AppColors.grayscale90,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Row(
+                                      children: [
+                                        // List of five stars
+                                        Row(
+                                          children: List.generate(
+                                            5,
+                                            (index) {
+                                              if (index <
+                                                  product.rating.floor()) {
+                                                // Full star
+                                                return const Icon(
+                                                  Icons.star,
+                                                  color: AppColors.secondary50,
+                                                );
+                                              } else if (index <
+                                                  product.rating) {
+                                                // Half-filled star
+                                                return const Icon(
+                                                  Icons.star_half,
+                                                  color: AppColors.secondary50,
+                                                );
+                                              } else {
+                                                // Empty star
+                                                return const Icon(
+                                                  Icons.star_border,
+                                                  color: AppColors.secondary50,
+                                                );
+                                              }
+                                            },
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5),
+                                        Text(
+                                          product.rating.toString(),
+                                          style: AppFonts.caption2(
+                                            color: AppColors.grayscale90,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          product.discountedPrice,
+                                          style: AppFonts.headline3(
+                                            color: AppColors.primary40,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 3),
+                                        Text(
+                                          product.actualPrice,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            color: AppColors.grayscale60,
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 3),
+                                        const Spacer(),
+                                        Text(
+                                          '(${calculateDiscountPercentage(product.actualPrice, product.discountedPrice)}% Off)',
+                                          style: AppFonts.caption1(
+                                            color: AppColors.grayscale90,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ),
                             ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+            Divider(),
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Text('Recommended Products',
+                        style: AppFonts.title5(color: AppColors.grayscale90)),
+                  ),
+                  Expanded(
+                    flex: 0,
+                    child: GestureDetector(
+                      onTap: () {
+                        showFilterBottomSheet(context);
+                      },
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.filter_list,
+                            color: AppColors.primary50,
                           ),
-
-                          // Details on the right side
-                          Expanded(
-                            flex: 2,
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            'Filters',
+                            style: AppFonts.body1(color: AppColors.primary40),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.6, // Adjust aspect ratio as needed
+              ),
+              itemCount: mainProductList.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                final product = mainProductList[index];
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductDetailsPage(
+                          index: index,
+                          product: product,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: AppColors
+                              .grayscale10, // Background color for the container
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomLeft: Radius.circular(20),
+                                    ),
+                                    color: Colors.white),
+                                child: Expanded(
+                                  flex: 1,
+                                  child: Stack(
                                     children: [
-                                      // Product name
-                                      Expanded(
-                                        child: Text(
-                                          product.productName,
-                                          style: AppFonts.caption1(
-                                            color: AppColors.grayscale100,
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.only(
+                                            topLeft: Radius.circular(20),
+                                            bottomLeft: Radius.circular(20),
+                                          ),
+                                          image: DecorationImage(
+                                            image:
+                                                AssetImage(product.imagePath),
+                                            fit: BoxFit.contain,
                                           ),
                                         ),
                                       ),
-                                      // List of tags
+                                      ItemPromotionalChipsWidget(
+                                        promotiontag: product.promotiontag,
+                                      )
                                     ],
                                   ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    '${product.boughtPastMonth}+ Bought Past Month',
-                                    style: AppFonts.caption2(
-                                      color: AppColors.grayscale90,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Row(
-                                    children: [
-                                      // List of five stars
-                                      Row(
-                                        children: List.generate(
-                                          5,
-                                          (index) {
-                                            if (index <
-                                                product.rating.floor()) {
-                                              // Full star
-                                              return const Icon(
-                                                Icons.star,
-                                                color: AppColors.secondary50,
-                                              );
-                                            } else if (index < product.rating) {
-                                              // Half-filled star
-                                              return const Icon(
-                                                Icons.star_half,
-                                                color: AppColors.secondary50,
-                                              );
-                                            } else {
-                                              // Empty star
-                                              return const Icon(
-                                                Icons.star_border,
-                                                color: AppColors.secondary50,
-                                              );
-                                            }
-                                          },
-                                        ),
-                                      ),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                        product.rating.toString(),
-                                        style: AppFonts.caption2(
-                                          color: AppColors.grayscale90,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5, vertical: 2),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: AppColors.error20,
-                                    ),
-                                    child: Text(
-                                      'Limited Offer',
-                                      style: AppFonts.caption2(
-                                        color: AppColors.grayscale0,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        product.discountedPrice,
-                                        style: AppFonts.headline3(
-                                          color: AppColors.primary40,
-                                        ),
-                                      ),
-                                      const SizedBox(width: 3),
-                                      Text(
-                                        product.actualPrice,
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                          color: AppColors.grayscale60,
-                                          decoration:
-                                              TextDecoration.lineThrough,
-                                        ),
-                                      ),
-                                      const SizedBox(width: 3),
-                                      const Spacer(),
-                                      Text(
-                                        '(${calculateDiscountPercentage(product.actualPrice, product.discountedPrice)}% Off)',
-                                        style: AppFonts.caption1(
-                                          color: AppColors.grayscale90,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+
+                            // Details on the right side
+                            Expanded(
+                              flex: 0,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        // Product name
+                                        Flexible(
+                                          child: Text(
+                                            product.productName,
+                                            style: AppFonts.caption1(
+                                              color: AppColors.grayscale100,
+                                            ),
+                                          ),
+                                        ),
+                                        // List of tags
+                                      ],
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Text(
+                                      '${product.boughtPastMonth}+ Bought Past Month',
+                                      style: AppFonts.caption2(
+                                        color: AppColors.grayscale90,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Row(
+                                      children: [
+                                        // List of five stars
+                                        Row(
+                                          children: List.generate(
+                                            5,
+                                            (index) {
+                                              if (index <
+                                                  product.rating.floor()) {
+                                                // Full star
+                                                return const Icon(
+                                                  Icons.star,
+                                                  color: AppColors.secondary50,
+                                                );
+                                              } else if (index <
+                                                  product.rating) {
+                                                // Half-filled star
+                                                return const Icon(
+                                                  Icons.star_half,
+                                                  color: AppColors.secondary50,
+                                                );
+                                              } else {
+                                                // Empty star
+                                                return const Icon(
+                                                  Icons.star_border,
+                                                  color: AppColors.secondary50,
+                                                );
+                                              }
+                                            },
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5),
+                                        Text(
+                                          product.rating.toString(),
+                                          style: AppFonts.caption2(
+                                            color: AppColors.grayscale90,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          product.discountedPrice,
+                                          style: AppFonts.headline3(
+                                            color: AppColors.primary40,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 3),
+                                        Text(
+                                          product.actualPrice,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            color: AppColors.grayscale60,
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 3),
+                                        const Spacer(),
+                                        Text(
+                                          '(${calculateDiscountPercentage(product.actualPrice, product.discountedPrice)}% Off)',
+                                          style: AppFonts.caption1(
+                                            color: AppColors.grayscale90,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

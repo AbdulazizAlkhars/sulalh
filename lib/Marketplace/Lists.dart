@@ -665,3 +665,14 @@ class _CartState extends InheritedWidget {
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) => true;
 }
+
+final Map<String, IconData> animalspecies = {
+  'Cats': Icons.pets,
+  'Dogs': Icons.pest_control_rodent,
+  'Birds': Icons.spa,
+  'Chicken': Icons.cleaning_services,
+  'Horses': Icons.local_shipping,
+  'Rabbit': Icons.house,
+
+  // Add more categories and their corresponding icons as needed
+};
