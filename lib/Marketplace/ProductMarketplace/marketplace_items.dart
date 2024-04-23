@@ -43,22 +43,26 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
           style: AppFonts.title3(color: AppColors.grayscale90),
         ),
         actions: [
-          IconButton(
-            padding: EdgeInsets.zero,
-            icon: Container(
-              width: MediaQuery.of(context).size.width * 0.1,
-              height: MediaQuery.of(context).size.width * 0.1,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.grayscale10,
+          Row(
+            children: [
+              IconButton(
+                padding: EdgeInsets.zero,
+                icon: Container(
+                  width: MediaQuery.of(context).size.width * 0.1,
+                  height: MediaQuery.of(context).size.width * 0.1,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.grayscale10,
+                  ),
+                  child: const Icon(
+                    Icons.person_outline_rounded,
+                    color: Colors.black,
+                  ),
+                ),
+                onPressed:
+                    () {}, // Call the addAnimal function when the button is pressed
               ),
-              child: const Icon(
-                Icons.login_outlined,
-                color: Colors.black,
-              ),
-            ),
-            onPressed:
-                () {}, // Call the addAnimal function when the button is pressed
+            ],
           ),
           IconButton(
             padding: EdgeInsets.zero,
@@ -693,6 +697,59 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
             ),
             Divider(),
             const SizedBox(height: 15),
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                CarouselSlider(
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    aspectRatio: 22 / 8,
+                    viewportFraction: 1.0,
+                    onPageChanged: (index, _) {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    },
+                  ),
+                  items: productadvertisements.map((ad) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                          child: ClipRRect(
+                            borderRadius:
+                                BorderRadius.circular(20), // Rounded corners
+                            child: Image.asset(
+                              ad,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }).toList(),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: productadvertisements.asMap().entries.map((entry) {
+                    int index = entry.key;
+                    return Container(
+                      width: 8.0,
+                      height: 8.0,
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 2.0),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: _currentIndex == index
+                            ? AppColors.primary50
+                            : AppColors.grayscale10,
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
