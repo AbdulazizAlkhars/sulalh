@@ -666,13 +666,59 @@ class _CartState extends InheritedWidget {
   bool updateShouldNotify(covariant InheritedWidget oldWidget) => true;
 }
 
-final Map<String, IconData> animalspecies = {
-  'Cats': Icons.pets,
-  'Dogs': Icons.pest_control_rodent,
-  'Birds': Icons.spa,
-  'Chicken': Icons.cleaning_services,
-  'Horses': Icons.local_shipping,
-  'Rabbit': Icons.house,
-
-  // Add more categories and their corresponding icons as needed
-};
+List<Map<String, dynamic>> myAnimals = [
+  {
+    'imageAsset': 'assets/avatars/120px/Cat.png',
+    'name': 'Jack',
+  },
+  {
+    'imageAsset': 'assets/avatars/120px/Chicken.png',
+    'name': 'Sheru',
+  },
+  {
+    'imageAsset': 'assets/avatars/120px/Cow.png',
+    'name': 'Henry',
+  },
+  {
+    'imageAsset': 'assets/avatars/120px/Sheep.png',
+    'name': 'Kong',
+  },
+  {
+    'imageAsset': 'assets/avatars/120px/Duck.png',
+    'name': 'Eve',
+  },
+  {
+    'imageAsset': 'assets/avatars/120px/Horse.png',
+    'name': 'Sumo',
+  },
+];
+List<Map<String, dynamic>> animalSpecies = [
+  {
+    'imageAsset': 'assets/avatars/120px/Cat.png',
+    'name': 'Cat',
+  },
+  {
+    'imageAsset': 'assets/avatars/120px/Dog.png',
+    'name': 'Dog',
+  },
+  {
+    'imageAsset': 'assets/avatars/120px/Cow.png',
+    'name': 'Cow',
+  },
+  {
+    'imageAsset': 'assets/avatars/120px/Horse.png',
+    'name': 'Horse',
+  },
+  {
+    'imageAsset': 'assets/avatars/120px/Sheep.png',
+    'name': 'Sheep',
+  },
+  {
+    'imageAsset': 'assets/avatars/120px/Chicken.png',
+    'name': 'Chicken',
+  },
+  {
+    'imageAsset': 'assets/avatars/120px/Duck.png',
+    'name': 'Duck',
+  },
+];

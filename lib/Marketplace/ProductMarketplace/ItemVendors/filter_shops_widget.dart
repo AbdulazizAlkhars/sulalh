@@ -1,15 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 
 import '../../../Theme/Fonts.dart';
 
-class FilterItemBottomSheet extends StatefulWidget {
+class FilterShopBottomSheet extends StatefulWidget {
   @override
-  _FilterItemBottomSheetState createState() => _FilterItemBottomSheetState();
+  _FilterShopBottomSheetState createState() => _FilterShopBottomSheetState();
 }
 
-class _FilterItemBottomSheetState extends State<FilterItemBottomSheet> {
+class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -52,8 +53,8 @@ class _FilterItemBottomSheetState extends State<FilterItemBottomSheet> {
             ),
             _buildFilterOption(
               context,
-              'Discount',
-              DiscountFilterWidget(),
+              'Location',
+              LocationFilterWidget(),
             ),
             _buildFilterOption(
               context,
@@ -268,65 +269,132 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
   }
 }
 
-class DiscountFilterWidget extends StatefulWidget {
+class LocationFilterWidget extends StatefulWidget {
   @override
-  _DiscountFilterWidgetState createState() => _DiscountFilterWidgetState();
+  _LocationFilterWidgetState createState() => _LocationFilterWidgetState();
 }
 
-class _DiscountFilterWidgetState extends State<DiscountFilterWidget> {
-  List<String> discountOptions = [
-    '10% Off or more',
-    '25% Off or more',
-    '35% Off or more',
-    '50% Off or more',
-    '60% Off or more',
-    '70% Off or more',
+class _LocationFilterWidgetState extends State<LocationFilterWidget> {
+  // Kuwait Governorates
+  List<String> governorates = [
+    'Al Ahmadi',
+    'Hawalli',
+    'Farwaniya',
+    'Al Asimah',
+    'Jahra',
+    'Mubarak Al-Kabeer'
   ];
 
-  List<bool> selectedOptions = List<bool>.filled(6, false);
+  // Cities under each governorate
+  Map<String, List<String>> citiesByGovernorate = {
+    'Al Ahmadi': ['Fahaheel', 'Mangaf', 'Mahboula'],
+    'Hawalli': ['Hawalli', 'Salmiya', 'Bayan'],
+    'Farwaniya': ['Al-Farwaniyah', 'Al-Rai', 'Rabiya'],
+    'Al Asimah': ['Kuwait City', 'Dasma', 'Qortuba'],
+    'Jahra': ['Jahra', 'Naseem', 'Qasr'],
+    'Mubarak Al-Kabeer': ['Al-Abdali', 'Wafra', 'Mutlaa'],
+  };
+
+  // List to track selected governorates
+  List<bool> selectedGovernorates = List<bool>.filled(6, false);
+
+  // Map to track selected cities
+  Map<String, bool> selectedCities = {};
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: List.generate(discountOptions.length, (index) {
-        bool isSelected = selectedOptions[index];
+      children: List.generate(governorates.length, (index) {
+        bool isSelected = selectedGovernorates[index];
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
               onTap: () {
                 setState(() {
-                  selectedOptions[index] = !isSelected;
+                  selectedGovernorates[index] = !isSelected;
                 });
               },
               child: Row(
                 children: [
                   Text(
-                    discountOptions[index],
+                    governorates[index],
                     style: AppFonts.body2(
-                      color: AppColors.grayscale90,
+                      color: isSelected ? AppColors.primary30 : Colors.black,
                     ),
                   ),
                   Spacer(),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.064,
-                    height: MediaQuery.of(context).size.width * 0.064,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: isSelected
-                            ? AppColors.primary20
-                            : AppColors.grayscale30,
-                        width: isSelected ? 6.0 : 1.0,
-                      ),
-                    ),
+                  Icon(
+                    isSelected ? Icons.expand_less : Icons.expand_more,
+                    color: isSelected ? AppColors.primary30 : Colors.black,
                   ),
                 ],
               ),
             ),
+            SizedBox(height: 8), // Add spacing between city rows
+            if (isSelected)
+              Column(
+                children: [
+                  for (int i = 0;
+                      i < citiesByGovernorate[governorates[index]]!.length;
+                      i++)
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                // Toggle city selection
+                                selectedCities[citiesByGovernorate[
+                                        governorates[index]]![i]] =
+                                    !(selectedCities[citiesByGovernorate[
+                                            governorates[index]]![i]] ??
+                                        false);
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                Text(
+                                  citiesByGovernorate[governorates[index]]![i],
+                                  style: AppFonts.body2(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                Spacer(),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.064,
+                                  height:
+                                      MediaQuery.of(context).size.width * 0.064,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: selectedCities[citiesByGovernorate[
+                                                  governorates[index]]![i]] ??
+                                              false
+                                          ? AppColors.primary20
+                                          : AppColors.grayscale30,
+                                      width: selectedCities[citiesByGovernorate[
+                                                  governorates[index]]![i]] ??
+                                              false
+                                          ? 6.0
+                                          : 1.0,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 8), // Add spacing between city rows
+                        ],
+                      ),
+                    ),
+                ],
+              ),
             SizedBox(
-              height: 10, // Adjust the height as needed
+              height: 10,
             ),
           ],
         );
@@ -472,7 +540,7 @@ class _RatingsFilterWidgetState extends State<RatingsFilterWidget> {
   }
 }
 
-void showFilterItemBottomSheet(BuildContext context) {
+void showFilterShopBottomSheet(BuildContext context) {
   showModalBottomSheet(
     backgroundColor: Colors.white,
     showDragHandle: true,
@@ -483,7 +551,7 @@ void showFilterItemBottomSheet(BuildContext context) {
       return Container(
         height:
             MediaQuery.of(context).size.height * 0.8, // Adjust height as needed
-        child: FilterItemBottomSheet(),
+        child: FilterShopBottomSheet(),
       );
     },
   );

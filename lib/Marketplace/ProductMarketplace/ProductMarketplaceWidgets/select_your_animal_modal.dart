@@ -15,55 +15,67 @@ class SelectYourAnimalModal extends StatefulWidget {
 class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
   String? selectedAnimal;
   bool isExpanded = false;
+  late TextEditingController _searchController;
+  List<Map<String, dynamic>> filteredAnimals = [];
+  int selectedIndex = -1;
 
-  List<Map<String, dynamic>> myAnimals = [
-    {
-      'imageAsset': 'assets/avatars/120px/Cat.png',
-      'name': 'Jack',
-    },
-    {
-      'imageAsset': 'assets/avatars/120px/Chicken.png',
-      'name': 'Sheru',
-    },
-    {
-      'imageAsset': 'assets/avatars/120px/Cow.png',
-      'name': 'Henry',
-    },
-    {
-      'imageAsset': 'assets/avatars/120px/Sheep.png',
-      'name': 'Kong',
-    },
-    {
-      'imageAsset': 'assets/avatars/120px/Sheep.png',
-      'name': 'Kong',
-    },
-    {
-      'imageAsset': 'assets/avatars/120px/Sheep.png',
-      'name': 'Kong',
-    },
-    {
-      'imageAsset': 'assets/avatars/120px/Duck.png',
-      'name': 'Eve',
-    },
-    {
-      'imageAsset': 'assets/avatars/120px/Duck.png',
-      'name': 'Eve',
-    },
-    {
-      'imageAsset': 'assets/avatars/120px/Duck.png',
-      'name': 'Eve',
-    },
-  ];
+  @override
+  void initState() {
+    super.initState();
+    filteredAnimals = myAnimals;
+    _searchController = TextEditingController();
+    _searchController.addListener(_onSearchChanged);
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _onSearchChanged() {
+    setState(() {
+      filteredAnimals = myAnimals
+          .where((animal) => animal['name']
+              .toString()
+              .toLowerCase()
+              .contains(_searchController.text.toLowerCase()))
+          .toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> displayedAnimals =
-        isExpanded ? myAnimals : myAnimals.take(5).toList();
+        isExpanded ? filteredAnimals : filteredAnimals.take(5).toList();
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: [
+            // Search Bar
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50.0),
+                border:
+                    Border.all(color: AppColors.grayscale20), // Outline color
+                color: Colors.white, // Background color
+              ),
+              child: TextField(
+                controller: _searchController,
+                decoration: const InputDecoration(
+                  hintText: "Search The Animal",
+                  hintStyle: TextStyle(
+                      color: AppColors.grayscale50), // Change hint text color
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: AppColors.primary40,
+                  ),
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
             const SizedBox(
               height: 10,
             ),
@@ -168,47 +180,60 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: animalspecies.entries.map((entry) {
-                  final categoryName = entry.key;
-                  final iconData = entry.value;
+                children: animalSpecies.asMap().entries.map((entry) {
+                  final int index = entry.key;
+                  final animal = entry.value;
+                  final name = animal['name'];
+                  final imageAsset = animal['imageAsset'];
                   return GestureDetector(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 1.0), // Adjust horizontal padding
-                      child: SizedBox(
-                        height: 100,
-
-                        width: 100, // Set fixed width for each item
-                        child: Column(
-                          children: [
-                            CircleAvatar(
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                    },
+                    child: SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: selectedIndex == index
+                                      ? AppColors.primary20.withOpacity(
+                                          0.5) // Adjust opacity as needed
+                                      : Colors.transparent,
+                                  spreadRadius:
+                                      5, // Adjust spread radius as needed
+                                  blurRadius: 2, // Adjust blur radius as needed
+                                ),
+                              ],
+                            ),
+                            child: CircleAvatar(
                               backgroundColor: Colors.white,
                               radius: 30,
-                              child: Icon(
-                                iconData,
-                                size: 30,
-                                color: AppColors.primary30,
-                              ),
+                              backgroundImage: AssetImage(imageAsset),
                             ),
-                            const SizedBox(height: 8),
-                            Flexible(
-                              child: Text(
-                                categoryName,
-                                style: const TextStyle(fontSize: 12),
-
-                                textAlign:
-                                    TextAlign.center, // Center align text
-                              ),
+                          ),
+                          const SizedBox(height: 8),
+                          Flexible(
+                            child: Text(
+                              name,
+                              style: const TextStyle(fontSize: 12),
+                              textAlign: TextAlign.center,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   );
                 }).toList(),
               ),
             ),
+
             const SizedBox(
               height: 25,
             ),

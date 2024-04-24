@@ -203,7 +203,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
             const SizedBox(height: 13),
             Container(
               decoration: BoxDecoration(
-                color: AppColors.grayscale10,
+                color: AppColors.grayscale0,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: GestureDetector(
@@ -228,14 +228,15 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                     children: [
                       Text(
                         'My Animal',
-                        style: AppFonts.title5(color: AppColors.grayscale90),
+                        style: AppFonts.title4(color: AppColors.grayscale90),
                       ),
                       const SizedBox(height: 13),
-                      const Row(
+                      Row(
                         children: [
-                          Icon(
-                            Icons.pets_rounded,
-                            color: AppColors.primary50,
+                          CircleAvatar(
+                            radius: MediaQuery.of(context).size.width * 0.044,
+                            backgroundImage:
+                                AssetImage('assets/avatars/120px/Dog.png'),
                           ),
                           SizedBox(width: 8.0),
                           // ignore: unnecessary_const
@@ -257,7 +258,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
             const SizedBox(height: 13),
             Container(
               decoration: BoxDecoration(
-                color: AppColors.grayscale10,
+                color: AppColors.grayscale0,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
@@ -272,35 +273,6 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                             'Category Filters',
                             style:
                                 AppFonts.title4(color: AppColors.grayscale90),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 0,
-                          child: TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ItemVendors()),
-                              );
-                            },
-                            child: Row(
-                              children: [
-                                Text(
-                                  'Swipe',
-                                  style: AppFonts.body1(
-                                      color: AppColors.primary40),
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                const Icon(
-                                  Icons.east_sharp,
-                                  color: AppColors.primary40,
-                                  size: 15,
-                                )
-                              ],
-                            ),
                           ),
                         ),
                       ],
@@ -331,7 +303,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                                 child: Column(
                                   children: [
                                     CircleAvatar(
-                                      backgroundColor: Colors.white,
+                                      backgroundColor: AppColors.grayscale00,
                                       radius: 30,
                                       child: Icon(
                                         iconData,
@@ -365,7 +337,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
             const SizedBox(height: 13),
             Container(
               decoration: BoxDecoration(
-                color: AppColors.grayscale10,
+                color: AppColors.grayscale0,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
@@ -490,7 +462,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                     flex: 0,
                     child: GestureDetector(
                       onTap: () {
-                        showFilterBottomSheet(context);
+                        showFilterItemBottomSheet(context);
                       },
                       child: Row(
                         children: [
@@ -550,7 +522,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                               child: Container(
                                 decoration: const BoxDecoration(
                                     borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20),
                                       bottomLeft: Radius.circular(20),
                                     ),
                                     color: Colors.white),
@@ -561,7 +533,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                                       Container(
                                         decoration: BoxDecoration(
                                           borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(20),
+                                            bottomRight: Radius.circular(20),
                                             bottomLeft: Radius.circular(20),
                                           ),
                                           image: DecorationImage(
@@ -763,7 +735,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                     flex: 0,
                     child: GestureDetector(
                       onTap: () {
-                        showFilterBottomSheet(context);
+                        showFilterItemBottomSheet(context);
                       },
                       child: Row(
                         children: [

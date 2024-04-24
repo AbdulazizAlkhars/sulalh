@@ -4,6 +4,7 @@ import 'package:hathera_demo/Marketplace/Lists.dart';
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
 import 'ProductMarketplaceWidgets/chips_widget.dart';
+import 'ProductMarketplaceWidgets/filter_items_widget.dart';
 import 'ProductMarketplaceWidgets/item_promotional_chips_widget.dart';
 import 'ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
 import 'ProductMarketplaceWidgets/select_your_animal_modal.dart';
@@ -64,7 +65,7 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
               ),
             ),
             onPressed: () {
-              Navigator.pop(context);
+              showFilterItemBottomSheet(context);
             },
           ),
         ],
@@ -78,7 +79,7 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
               const SizedBox(height: 13),
               Container(
                 decoration: BoxDecoration(
-                  color: AppColors.grayscale10,
+                  // color: AppColors.grayscale0,
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: GestureDetector(
@@ -96,36 +97,34 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
                       },
                     );
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'My Animal',
-                          style: AppFonts.title5(color: AppColors.grayscale90),
-                        ),
-                        const SizedBox(height: 13),
-                        const Row(
-                          children: [
-                            Icon(
-                              Icons.pets_rounded,
-                              color: AppColors.primary50,
-                            ),
-                            SizedBox(width: 8.0),
-                            // ignore: unnecessary_const
-                            Text(
-                              'Tommy',
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            Icon(
-                              Icons.keyboard_arrow_down,
-                              color: AppColors.primary50,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'My Animal',
+                        style: AppFonts.title5(color: AppColors.grayscale90),
+                      ),
+                      const SizedBox(height: 13),
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            radius: MediaQuery.of(context).size.width * 0.044,
+                            backgroundImage: const AssetImage(
+                                'assets/avatars/120px/Dog.png'),
+                          ),
+                          const SizedBox(width: 8.0),
+                          // ignore: unnecessary_const
+                          const Text(
+                            'Tommy',
+                            style: TextStyle(fontSize: 14),
+                          ),
+                          const Icon(
+                            Icons.keyboard_arrow_down,
+                            color: AppColors.primary50,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),

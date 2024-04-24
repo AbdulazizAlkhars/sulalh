@@ -8,6 +8,8 @@ import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/vendor_i
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../ProductMarketplaceWidgets/chips_widget.dart';
+import '../ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
+import '../ProductMarketplaceWidgets/select_your_animal_modal.dart';
 import '../marketplace_items.dart';
 import '../product_details_page.dart';
 import 'vendor_items_category_widget.dart';
@@ -60,15 +62,66 @@ class _VendorShopItemsState extends State<VendorShopItems> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 15,
+                height: 10,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  // color: AppColors.grayscale0,
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      showDragHandle: true,
+                      context: context,
+                      isScrollControlled: true,
+                      backgroundColor: Colors.white,
+                      builder: (BuildContext context) {
+                        return SizedBox(
+                            height: MediaQuery.of(context).size.height *
+                                0.8, // Adjust height as needed
+                            child: const SelectYourAnimalModal());
+                      },
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'My Animal',
+                        style: AppFonts.title5(color: AppColors.grayscale90),
+                      ),
+                      const SizedBox(height: 13),
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            radius: MediaQuery.of(context).size.width * 0.044,
+                            backgroundImage: const AssetImage(
+                                'assets/avatars/120px/Dog.png'),
+                          ),
+                          const SizedBox(width: 8.0),
+                          // ignore: unnecessary_const
+                          const Text(
+                            'Tommy',
+                            style: TextStyle(fontSize: 14),
+                          ),
+                          const Icon(
+                            Icons.keyboard_arrow_down,
+                            color: AppColors.primary50,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ),
               const SizedBox(
-                height: 10,
+                height: 25,
               ),
               Row(
                 children: [
@@ -78,7 +131,7 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                       color: AppColors.grayscale90,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   GestureDetector(
                     onTap: () {},
                     child: Row(
@@ -98,12 +151,12 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                               backgroundColor: Colors.white,
                               context: context,
                               builder: (BuildContext context) {
-                                return VendorAnimalCategory();
+                                return const VendorItemCategory();
                               },
                             );
                           },
                           child: Text(
-                            'Animal Filter',
+                            'Categories',
                             style: AppFonts.body1(
                               color: AppColors.primary30,
                             ),
@@ -117,45 +170,7 @@ class _VendorShopItemsState extends State<VendorShopItems> {
               const SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50.0),
-                        border: Border.all(
-                            color: AppColors.grayscale20), // Outline color
-                        color: Colors.white, // Background color
-                      ),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          labelStyle:
-                              AppFonts.body2(color: AppColors.grayscale90),
-                          hintText: "Search Item",
-                          hintStyle: TextStyle(color: AppColors.grayscale50),
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                showDragHandle: true,
-                                backgroundColor: Colors.white,
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return VendorItemCategory();
-                                },
-                              );
-                            },
-                            child: Icon(Icons.keyboard_arrow_down_sharp,
-                                color: AppColors.primary30),
-                          ),
-                          prefixIcon:
-                              Icon(Icons.search, color: AppColors.primary30),
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              const SearchableDropdown(),
               const SizedBox(
                 height: 15,
               ),
@@ -259,127 +274,117 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                         ),
                       );
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: AppColors
-                              .grayscale0, // Background color for the container
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            // Image on the left side
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    bottomLeft: Radius.circular(20),
-                                  ),
-                                  image: DecorationImage(
-                                    image: AssetImage(product.imagePath),
-                                    fit: BoxFit.cover,
-                                  ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors
+                            .grayscale0, // Background color for the container
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          // Image on the left side
+                          Expanded(
+                            flex: 1,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  bottomLeft: Radius.circular(20),
+                                ),
+                                image: DecorationImage(
+                                  image: AssetImage(product.imagePath),
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                            // Details on the right side
-                            Expanded(
-                              flex: 2,
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                          ),
+                          // Details on the right side
+                          Expanded(
+                            flex: 2,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  product.productName,
+                                  style: AppFonts.caption1(
+                                      color: AppColors.grayscale100),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  '${product.boughtPastMonth}+ Bought Past Month',
+                                  style: AppFonts.caption2(
+                                      color: AppColors.grayscale90),
+                                ),
+                                const SizedBox(height: 5),
+                                Row(
                                   children: [
-                                    Text(
-                                      product.productName,
-                                      style: AppFonts.caption1(
-                                          color: AppColors.grayscale100),
+                                    // List of five stars
+                                    Row(
+                                      children: List.generate(
+                                        5,
+                                        (index) {
+                                          if (index < product.rating.floor()) {
+                                            // Full star
+                                            return const Icon(
+                                              Icons.star,
+                                              color: AppColors.secondary50,
+                                            );
+                                          } else if (index < product.rating) {
+                                            // Half-filled star
+                                            return const Icon(
+                                              Icons.star_half,
+                                              color: AppColors.secondary50,
+                                            );
+                                          } else {
+                                            // Empty star
+                                            return const Icon(
+                                              Icons.star_border,
+                                              color: AppColors.secondary50,
+                                            );
+                                          }
+                                        },
+                                      ),
                                     ),
-                                    const SizedBox(height: 5),
+                                    const SizedBox(width: 5),
                                     Text(
-                                      '${product.boughtPastMonth}+ Bought Past Month',
+                                      product.rating.toString(),
                                       style: AppFonts.caption2(
-                                          color: AppColors.grayscale90),
-                                    ),
-                                    const SizedBox(height: 5),
-                                    Row(
-                                      children: [
-                                        // List of five stars
-                                        Row(
-                                          children: List.generate(
-                                            5,
-                                            (index) {
-                                              if (index <
-                                                  product.rating.floor()) {
-                                                // Full star
-                                                return Icon(
-                                                  Icons.star,
-                                                  color: AppColors.secondary50,
-                                                );
-                                              } else if (index <
-                                                  product.rating) {
-                                                // Half-filled star
-                                                return Icon(
-                                                  Icons.star_half,
-                                                  color: AppColors.secondary50,
-                                                );
-                                              } else {
-                                                // Empty star
-                                                return Icon(
-                                                  Icons.star_border,
-                                                  color: AppColors.secondary50,
-                                                );
-                                              }
-                                            },
-                                          ),
-                                        ),
-                                        const SizedBox(width: 5),
-                                        Text(
-                                          product.rating.toString(),
-                                          style: AppFonts.caption2(
-                                            color: AppColors.grayscale90,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          product.discountedPrice,
-                                          style: AppFonts.headline3(
-                                              color: AppColors.primary40),
-                                        ),
-                                        const SizedBox(width: 3),
-                                        Text(
-                                          product.actualPrice,
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            color: AppColors.grayscale50,
-                                            decoration:
-                                                TextDecoration.lineThrough,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 3),
-                                        Spacer(),
-                                        Text(
-                                          '(${calculateDiscountPercentage(product.actualPrice, product.discountedPrice)}%) Off',
-                                          style: AppFonts.caption1(
-                                              color: AppColors.grayscale100),
-                                        ),
-                                      ],
+                                        color: AppColors.grayscale90,
+                                      ),
                                     ),
                                   ],
                                 ),
-                              ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      product.discountedPrice,
+                                      style: AppFonts.headline3(
+                                          color: AppColors.primary40),
+                                    ),
+                                    const SizedBox(width: 3),
+                                    Text(
+                                      product.actualPrice,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        color: AppColors.grayscale50,
+                                        decoration: TextDecoration.lineThrough,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 3),
+                                    const Spacer(),
+                                    Text(
+                                      '(${calculateDiscountPercentage(product.actualPrice, product.discountedPrice)}%) Off',
+                                      style: AppFonts.caption1(
+                                          color: AppColors.grayscale100),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   );
