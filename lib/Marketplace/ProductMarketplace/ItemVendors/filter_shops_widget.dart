@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 
 import '../../../Theme/Fonts.dart';
+import '../../Lists.dart';
 
 class FilterShopBottomSheet extends StatefulWidget {
   @override
@@ -39,7 +40,7 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
                     ),
                     child: Text(
                       'Apply Filters',
-                      style: AppFonts.body2(color: AppColors.grayscale00),
+                      style: AppFonts.caption1(color: AppColors.grayscale00),
                     ),
                   ),
                 ),
@@ -48,23 +49,55 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
             SizedBox(height: 20),
             _buildFilterOption(
               context,
-              'Price',
-              PriceFilterWidget(),
+              'Animal',
+              Column(
+                children: [
+                  AnimalFilterWidget(),
+                  Divider(),
+                ],
+              ),
+            ),
+            _buildFilterOption(
+              context,
+              'Shops',
+              Column(
+                children: [
+                  ShopStatusFilterWidget(),
+                  Divider(),
+                ],
+              ),
             ),
             _buildFilterOption(
               context,
               'Location',
-              LocationFilterWidget(),
+              Column(
+                children: [
+                  LocationFilterWidget(),
+                  Divider(),
+                ],
+              ),
             ),
             _buildFilterOption(
               context,
-              'Deals',
-              DealFilterWidget(),
+              'Price',
+              Column(
+                children: [
+                  PriceFilterWidget(),
+                  Divider(),
+                ],
+              ),
             ),
             _buildFilterOption(
               context,
               'Reviews',
-              RatingsFilterWidget(),
+              Column(
+                children: [
+                  RatingsFilterWidget(),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 10,
             ),
             Container(
               color: Colors.transparent,
@@ -110,7 +143,87 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
           ),
         ),
         subContents,
-        Divider(),
+      ],
+    );
+  }
+}
+
+class AnimalFilterWidget extends StatefulWidget {
+  const AnimalFilterWidget({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _AnimalFilterWidgetState createState() => _AnimalFilterWidgetState();
+}
+
+class _AnimalFilterWidgetState extends State<AnimalFilterWidget> {
+  int selectedIndex = -1;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: animalSpecies.asMap().entries.map((entry) {
+              final int index = entry.key;
+              final animal = entry.value;
+              final name = animal['name'];
+              final imageAsset = animal['imageAsset'];
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedIndex = index;
+                  });
+                },
+                child: SizedBox(
+                  height: 100,
+                  width: 100,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: selectedIndex == index
+                                  ? AppColors.primary20.withOpacity(
+                                      0.5) // Adjust opacity as needed
+                                  : Colors.transparent,
+                              spreadRadius: 5, // Adjust spread radius as needed
+                              blurRadius: 2, // Adjust blur radius as needed
+                            ),
+                          ],
+                        ),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.white,
+                          radius: 30,
+                          backgroundImage: AssetImage(imageAsset),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Flexible(
+                        child: Text(
+                          name,
+                          style: const TextStyle(fontSize: 12),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
+        ),
       ],
     );
   }
@@ -125,6 +238,7 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
   double _minPrice = 0;
   double _maxPrice = 50;
   bool _applyPriceFilter = false;
+  int selectedIndex = -1;
 
   final TextEditingController _minPriceController = TextEditingController();
   final TextEditingController _maxPriceController = TextEditingController();
@@ -403,16 +517,16 @@ class _LocationFilterWidgetState extends State<LocationFilterWidget> {
   }
 }
 
-class DealFilterWidget extends StatefulWidget {
+class ShopStatusFilterWidget extends StatefulWidget {
   @override
-  _DealFilterWidgetState createState() => _DealFilterWidgetState();
+  _ShopStatusFilterWidgetState createState() => _ShopStatusFilterWidgetState();
 }
 
-class _DealFilterWidgetState extends State<DealFilterWidget> {
-  List<String> dealOptions = [
-    'Best Seller',
-    'Sale',
-    'Promoted',
+class _ShopStatusFilterWidgetState extends State<ShopStatusFilterWidget> {
+  List<String> shopStatus = [
+    'Top Rated',
+    'Verified',
+    'New',
   ];
 
   List<bool> selecteddealOptions = List<bool>.filled(6, false);
@@ -421,7 +535,7 @@ class _DealFilterWidgetState extends State<DealFilterWidget> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: List.generate(dealOptions.length, (index) {
+      children: List.generate(shopStatus.length, (index) {
         bool isSelected = selecteddealOptions[index];
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -435,7 +549,7 @@ class _DealFilterWidgetState extends State<DealFilterWidget> {
               child: Row(
                 children: [
                   Text(
-                    dealOptions[index],
+                    shopStatus[index],
                     style: AppFonts.body2(
                       color: AppColors.grayscale90,
                     ),
@@ -548,7 +662,7 @@ void showFilterShopBottomSheet(BuildContext context) {
         true, // Set to true to allow the bottom sheet to occupy full screen height
     context: context,
     builder: (BuildContext context) {
-      return Container(
+      return SizedBox(
         height:
             MediaQuery.of(context).size.height * 0.8, // Adjust height as needed
         child: FilterShopBottomSheet(),

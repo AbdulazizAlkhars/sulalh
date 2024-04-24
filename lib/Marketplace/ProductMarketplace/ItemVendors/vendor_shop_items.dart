@@ -7,7 +7,9 @@ import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/vendor_i
 
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
+import '../Cart.dart';
 import '../ProductMarketplaceWidgets/chips_widget.dart';
+import '../ProductMarketplaceWidgets/product_onegrid_widget.dart';
 import '../ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
 import '../ProductMarketplaceWidgets/select_your_animal_modal.dart';
 import '../marketplace_items.dart';
@@ -59,6 +61,32 @@ class _VendorShopItemsState extends State<VendorShopItems> {
             Navigator.pop(context);
           },
         ),
+        actions: [
+          IconButton(
+            padding: EdgeInsets.zero,
+            icon: Container(
+                width: MediaQuery.of(context).size.width * 0.1,
+                height: MediaQuery.of(context).size.width * 0.1,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.primary50,
+                ),
+                child: const Icon(
+                  Icons.shopping_cart_outlined,
+                  color: Colors.white,
+                  size: 25,
+                )),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CartPage()),
+              );
+            }, // Call the addAnimal function when the button is pressed
+          ),
+          const SizedBox(
+            width: 10,
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -121,7 +149,7 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                 ),
               ),
               const SizedBox(
-                height: 25,
+                height: 15,
               ),
               Row(
                 children: [
@@ -252,143 +280,8 @@ class _VendorShopItemsState extends State<VendorShopItems> {
               const SizedBox(
                 height: 15,
               ),
-              GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  childAspectRatio: 2.3, // Adjust aspect ratio as needed
-                ),
-                itemCount: filteredProductList.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  final product = filteredProductList[index];
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ProductDetailsPage(
-                            index: index,
-                            product: product,
-                          ),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors
-                            .grayscale0, // Background color for the container
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          // Image on the left side
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  bottomLeft: Radius.circular(20),
-                                ),
-                                image: DecorationImage(
-                                  image: AssetImage(product.imagePath),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                          // Details on the right side
-                          Expanded(
-                            flex: 2,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  product.productName,
-                                  style: AppFonts.caption1(
-                                      color: AppColors.grayscale100),
-                                ),
-                                const SizedBox(height: 5),
-                                Text(
-                                  '${product.boughtPastMonth}+ Bought Past Month',
-                                  style: AppFonts.caption2(
-                                      color: AppColors.grayscale90),
-                                ),
-                                const SizedBox(height: 5),
-                                Row(
-                                  children: [
-                                    // List of five stars
-                                    Row(
-                                      children: List.generate(
-                                        5,
-                                        (index) {
-                                          if (index < product.rating.floor()) {
-                                            // Full star
-                                            return const Icon(
-                                              Icons.star,
-                                              color: AppColors.secondary50,
-                                            );
-                                          } else if (index < product.rating) {
-                                            // Half-filled star
-                                            return const Icon(
-                                              Icons.star_half,
-                                              color: AppColors.secondary50,
-                                            );
-                                          } else {
-                                            // Empty star
-                                            return const Icon(
-                                              Icons.star_border,
-                                              color: AppColors.secondary50,
-                                            );
-                                          }
-                                        },
-                                      ),
-                                    ),
-                                    const SizedBox(width: 5),
-                                    Text(
-                                      product.rating.toString(),
-                                      style: AppFonts.caption2(
-                                        color: AppColors.grayscale90,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      product.discountedPrice,
-                                      style: AppFonts.headline3(
-                                          color: AppColors.primary40),
-                                    ),
-                                    const SizedBox(width: 3),
-                                    Text(
-                                      product.actualPrice,
-                                      style: const TextStyle(
-                                        fontSize: 12,
-                                        color: AppColors.grayscale50,
-                                        decoration: TextDecoration.lineThrough,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 3),
-                                    const Spacer(),
-                                    Text(
-                                      '(${calculateDiscountPercentage(product.actualPrice, product.discountedPrice)}%) Off',
-                                      style: AppFonts.caption1(
-                                          color: AppColors.grayscale100),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
+              ProductOneGridWidget(
+                mainProductList: mainProductList,
               ),
             ],
           ),

@@ -8,7 +8,7 @@ import '../ProductMarketplace/ItemVendors/vendor_item_animal_category_widget.dar
 import '../ProductMarketplace/ProductMarketplaceWidgets/community_avatars_widget.dart';
 
 import '../ProductMarketplace/product_details_page.dart';
-import '../ProductMarketplace/vendors_avatars_widget.dart';
+import '../ProductMarketplace/ProductMarketplaceWidgets/vendors_avatars_widget.dart';
 import 'animal_details_page.dart';
 
 class MarketplaceAnimal extends StatefulWidget {

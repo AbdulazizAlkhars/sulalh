@@ -62,6 +62,7 @@ List<Map<String, dynamic>> ProductVendorData = [
   {
     'imageAsset': 'assets/Marketplace/Frame 2087325740 2.png',
     'name': 'Farmshop',
+    'shopstatus': 'New',
     'description':
         'Farmshop is a comprehensive store for all your farm animal needs. From high-quality feed to specialized grooming tools, it offers a wide range of products designed to keep your livestock healthy and thriving. The shop prides itself on its knowledgeable staff who are always ready to provide expert advice and excellent customer service.',
     'facebook': 'facebook/farmshop.com',
@@ -73,6 +74,7 @@ List<Map<String, dynamic>> ProductVendorData = [
   {
     'imageAsset': 'assets/Marketplace/Frame 2087325740 3.png',
     'name': 'Top FarmerShop',
+    'shopstatus': 'Verified',
     'description':
         'Farmshop is a comprehensive store for all your farm animal needs. From high-quality feed to specialized grooming tools, it offers a wide range of products designed to keep your livestock healthy and thriving. The shop prides itself on its knowledgeable staff who are always ready to provide expert advice and excellent customer service.',
     'facebook': 'facebook/TopFarmerShop.com',
@@ -83,6 +85,7 @@ List<Map<String, dynamic>> ProductVendorData = [
   {
     'imageAsset': 'assets/Marketplace/Frame 2087325740 4.png',
     'name': 'LovelyCow',
+    'shopstatus': 'Top Rated',
     'description':
         'Farmshop is a comprehensive store for all your farm animal needs. From high-quality feed to specialized grooming tools, it offers a wide range of products designed to keep your livestock healthy and thriving. The shop prides itself on its knowledgeable staff who are always ready to provide expert advice and excellent customer service.',
     'facebook': 'facebook/LovelyCow.com',
@@ -93,6 +96,7 @@ List<Map<String, dynamic>> ProductVendorData = [
   {
     'imageAsset': 'assets/Marketplace/Frame 2087325740.png',
     'name': 'Product For Farmers',
+    'shopstatus': 'Verified',
     'description':
         'Farmshop is a comprehensive store for all your farm animal needs. From high-quality feed to specialized grooming tools, it offers a wide range of products designed to keep your livestock healthy and thriving. The shop prides itself on its knowledgeable staff who are always ready to provide expert advice and excellent customer service.',
     'facebook': 'facebook/ProductForFarmers.com',
@@ -103,6 +107,62 @@ List<Map<String, dynamic>> ProductVendorData = [
   {
     'imageAsset': 'assets/Marketplace/Frame 2087325740.png',
     'name': 'Eve',
+    'description':
+        'Farmshop is a comprehensive store for all your farm animal needs. From high-quality feed to specialized grooming tools, it offers a wide range of products designed to keep your livestock healthy and thriving. The shop prides itself on its knowledgeable staff who are always ready to provide expert advice and excellent customer service.',
+    'facebook': 'facebook/Eve.com',
+    'instagram': '@Eve',
+    'website': 'Eve.com',
+    'address': '4358 Jonathan Street, Denver'
+  },
+  {
+    'imageAsset': 'assets/Marketplace/Frame 2087325740 2.png',
+    'name': 'Farmshop',
+    'shopstatus': 'New',
+    'description':
+        'Farmshop is a comprehensive store for all your farm animal needs. From high-quality feed to specialized grooming tools, it offers a wide range of products designed to keep your livestock healthy and thriving. The shop prides itself on its knowledgeable staff who are always ready to provide expert advice and excellent customer service.',
+    'facebook': 'facebook/farmshop.com',
+    'instagram': '@farmshop',
+    'website': 'farmshop.com',
+    'address':
+        '4358 Jonathan Street, Denver4358 Jonathan Street, Denver4358 Jonathan Street, Denver4358 Jonathan Street, Denver'
+  },
+  {
+    'imageAsset': 'assets/Marketplace/Frame 2087325740 3.png',
+    'name': 'Top FarmerShop',
+    'shopstatus': 'Verified',
+    'description':
+        'Farmshop is a comprehensive store for all your farm animal needs. From high-quality feed to specialized grooming tools, it offers a wide range of products designed to keep your livestock healthy and thriving. The shop prides itself on its knowledgeable staff who are always ready to provide expert advice and excellent customer service.',
+    'facebook': 'facebook/TopFarmerShop.com',
+    'instagram': '@TopFarmerShop',
+    'website': 'TopFarmerShop.com',
+    'address': '4358 Jonathan Street, Denver'
+  },
+  {
+    'imageAsset': 'assets/Marketplace/Frame 2087325740 4.png',
+    'name': 'LovelyCow',
+    'shopstatus': 'Top Rated',
+    'description':
+        'Farmshop is a comprehensive store for all your farm animal needs. From high-quality feed to specialized grooming tools, it offers a wide range of products designed to keep your livestock healthy and thriving. The shop prides itself on its knowledgeable staff who are always ready to provide expert advice and excellent customer service.',
+    'facebook': 'facebook/LovelyCow.com',
+    'instagram': '@LovelyCow',
+    'website': 'LovelyCow.com',
+    'address': '4358 Jonathan Street, Denver'
+  },
+  {
+    'imageAsset': 'assets/Marketplace/Frame 2087325740.png',
+    'name': 'Product For Farmers',
+    'shopstatus': 'Verified',
+    'description':
+        'Farmshop is a comprehensive store for all your farm animal needs. From high-quality feed to specialized grooming tools, it offers a wide range of products designed to keep your livestock healthy and thriving. The shop prides itself on its knowledgeable staff who are always ready to provide expert advice and excellent customer service.',
+    'facebook': 'facebook/ProductForFarmers.com',
+    'instagram': '@ProductForFarmers',
+    'website': 'ProductForFarmers.com',
+    'address': '4358 Jonathan Street, Denver'
+  },
+  {
+    'imageAsset': 'assets/Marketplace/Frame 2087325740.png',
+    'name': 'Eve',
+    'shopstatus': 'Top Rated',
     'description':
         'Farmshop is a comprehensive store for all your farm animal needs. From high-quality feed to specialized grooming tools, it offers a wide range of products designed to keep your livestock healthy and thriving. The shop prides itself on its knowledgeable staff who are always ready to provide expert advice and excellent customer service.',
     'facebook': 'facebook/Eve.com',
@@ -226,7 +286,7 @@ final List<ProductDetails> filteredProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     actualPrice: '\$100',
-    promotiontag: 'Best Seller',
+    promotiontag: 'Sale',
     rating: 4.5,
     boughtPastMonth: '280',
   ),
@@ -235,7 +295,7 @@ final List<ProductDetails> filteredProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     actualPrice: '\$100',
-    promotiontag: 'Best Seller',
+    promotiontag: 'Promoted',
     rating: 4.5,
     boughtPastMonth: '250',
   ),
@@ -245,7 +305,7 @@ final List<ProductDetails> filteredProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     rating: 4.5,
-    promotiontag: 'Best Seller',
+    promotiontag: 'Sale',
     boughtPastMonth: '275',
   ),
   ProductDetails(
@@ -263,7 +323,7 @@ final List<ProductDetails> filteredProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     rating: 4.5,
-    promotiontag: 'Best Seller',
+    promotiontag: 'Promoted',
     boughtPastMonth: '260',
   ),
   ProductDetails(
@@ -273,7 +333,7 @@ final List<ProductDetails> filteredProductList = [
     actualPrice: '\$100',
     rating: 4.5,
     boughtPastMonth: '275',
-    promotiontag: 'Best Seller',
+    promotiontag: 'Promoted',
   ),
   // Add more ProductDetails objects as needed
 ];

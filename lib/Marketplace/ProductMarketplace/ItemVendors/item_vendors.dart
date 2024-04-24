@@ -1,7 +1,10 @@
+// Import necessary packages
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
+import '../Cart.dart';
 import 'filter_shops_widget.dart';
 import 'vendor_shop_details.dart';
 import 'vendor_shop_items.dart';
@@ -13,6 +16,28 @@ class ItemVendors extends StatefulWidget {
 }
 
 class _ItemVendorsState extends State<ItemVendors> {
+  List<Map<String, dynamic>> sortedProductVendorData = [];
+  @override
+  void initState() {
+    super.initState();
+    // Sort vendors by status
+    sortedProductVendorData = List.from(ProductVendorData);
+    sortedProductVendorData.sort((a, b) {
+      if (a['shopstatus'] == 'Top Rated') {
+        return -1;
+      } else if (a['shopstatus'] == 'Verified' &&
+          b['shopstatus'] != 'Top Rated') {
+        return -1;
+      } else if (a['shopstatus'] == 'New' &&
+          b['shopstatus'] != 'Top Rated' &&
+          b['shopstatus'] != 'Verified') {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +69,32 @@ class _ItemVendorsState extends State<ItemVendors> {
             Navigator.pop(context);
           },
         ),
+        actions: [
+          IconButton(
+            padding: EdgeInsets.zero,
+            icon: Container(
+                width: MediaQuery.of(context).size.width * 0.1,
+                height: MediaQuery.of(context).size.width * 0.1,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.primary50,
+                ),
+                child: const Icon(
+                  Icons.shopping_cart_outlined,
+                  color: Colors.white,
+                  size: 20,
+                )),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CartPage()),
+              );
+            }, // Call the addAnimal function when the button is pressed
+          ),
+          const SizedBox(
+            width: 10,
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -75,7 +126,7 @@ class _ItemVendorsState extends State<ItemVendors> {
                               showFilterShopBottomSheet(context);
                             },
                             icon: Icon(Icons.filter_list,
-                                color: AppColors.primary30),
+                                size: 20, color: AppColors.primary30),
                           ),
                           border: InputBorder.none,
                         ),
@@ -85,16 +136,47 @@ class _ItemVendorsState extends State<ItemVendors> {
                 ],
               ),
               const SizedBox(height: 25),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  GestureDetector(
+                    onTap: () {},
+                    child: Icon(Icons.sort_by_alpha,
+                        size: 20, color: AppColors.primary30),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
               GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.75, // Adjust aspect ratio as needed
                 ),
-                itemCount: ProductVendorData.length,
+                itemCount: sortedProductVendorData.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  final vendor = ProductVendorData[index];
+                  final vendor = sortedProductVendorData[index];
+                  Color bannerColor;
+                  Color textColor = AppColors.grayscale100;
+
+                  // Assign banner color based on shop status
+                  switch (vendor['shopstatus']) {
+                    case 'Top Rated':
+                      bannerColor = AppColors.primary30;
+                      textColor = AppColors.grayscale00;
+                      break;
+                    case 'Verified':
+                      bannerColor = Colors.blue.shade700;
+                      textColor = AppColors.grayscale00;
+                      break;
+                    case 'New':
+                      bannerColor = AppColors.secondary30;
+                      break;
+                    default:
+                      bannerColor = Colors.transparent;
+                  }
+
                   return GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -195,17 +277,21 @@ class _ItemVendorsState extends State<ItemVendors> {
                               ],
                             ),
                           ),
-                          CornerBanner(
-                            elevation: 5,
-                            bannerPosition: CornerBannerPosition.topLeft,
-                            bannerColor: AppColors.secondary30,
-                            shadowColor: Colors.black.withOpacity(1),
-                            child: Text(
-                              "New",
-                              style:
-                                  AppFonts.body1(color: AppColors.grayscale100),
+                          if (bannerColor != Colors.transparent)
+                            Positioned(
+                              top: 0,
+                              left: 0,
+                              child: CornerBanner(
+                                elevation: 5,
+                                bannerPosition: CornerBannerPosition.topLeft,
+                                bannerColor: bannerColor,
+                                shadowColor: Colors.black.withOpacity(1),
+                                child: Text(
+                                  vendor['shopstatus'],
+                                  style: AppFonts.caption1(color: textColor),
+                                ),
+                              ),
                             ),
-                          ),
                         ],
                       ),
                     ),

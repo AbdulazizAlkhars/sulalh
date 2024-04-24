@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
+import '../Cart.dart';
 import '../ratings_reviews.dart';
 import 'vendor_shop_items.dart';
 
@@ -50,6 +51,32 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
             Navigator.pop(context);
           },
         ),
+        actions: [
+          IconButton(
+            padding: EdgeInsets.zero,
+            icon: Container(
+                width: MediaQuery.of(context).size.width * 0.1,
+                height: MediaQuery.of(context).size.width * 0.1,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.primary50,
+                ),
+                child: const Icon(
+                  Icons.shopping_cart_outlined,
+                  color: Colors.white,
+                  size: 20,
+                )),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CartPage()),
+              );
+            }, // Call the addAnimal function when the button is pressed
+          ),
+          const SizedBox(
+            width: 10,
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -283,7 +310,6 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
               const SizedBox(height: 15), const Divider(),
               const SizedBox(height: 10),
               RatingSummaryWidget(reviews: reviews),
-
               Row(
                 children: [
                   Expanded(
@@ -313,7 +339,7 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
               ),
               ListView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: 5,
                 itemBuilder: (context, index) {
                   // Build each review item using data from the reviews list
@@ -323,33 +349,40 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
                               reviews[index].reviewerName,
-                              style: AppFonts.headline3(
+                              style: AppFonts.headline4(
                                   color: AppColors.grayscale90),
                             ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Row(
+                              children: List.generate(
+                                reviews[index].rating,
+                                (i) => const Icon(Icons.star,
+                                    size: 20, color: AppColors.secondary50),
+                              ),
+                            ),
+                            const Spacer(),
                             Text(
                               DateFormat(
                                 'MMM d, yyyy',
                               ).format(reviews[index].date),
-                              style: AppFonts.caption2(
+                              style: AppFonts.caption3(
                                   color: AppColors.grayscale90),
                             ),
                           ],
                         ),
-                        Row(
-                          children: List.generate(
-                            reviews[index].rating,
-                            (i) => Icon(Icons.star,
-                                size: 20, color: AppColors.secondary50),
-                          ),
+                        const SizedBox(
+                          height: 8,
                         ),
-                        SizedBox(
-                          height: 12,
+                        Text(
+                          reviews[index].reviewText,
+                          style: AppFonts.body2(color: AppColors.grayscale90),
                         ),
-                        Text(reviews[index].reviewText),
                       ],
                     ),
                   );

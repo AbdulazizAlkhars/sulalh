@@ -12,7 +12,7 @@ import '../Marketplace/Lists.dart';
 import '../Marketplace/ProductMarketplace/ItemVendors/vendor_item_animal_category_widget.dart';
 import '../Marketplace/ProductMarketplace/ProductMarketplaceWidgets/community_avatars_widget.dart';
 import '../Marketplace/ProductMarketplace/marketplace_items.dart';
-import '../Marketplace/ProductMarketplace/vendors_avatars_widget.dart';
+import '../Marketplace/ProductMarketplace/ProductMarketplaceWidgets/vendors_avatars_widget.dart';
 
 class DriverAcceptedOrders extends StatefulWidget {
   const DriverAcceptedOrders({Key? key}) : super(key: key);
