@@ -150,76 +150,80 @@ class _CartPageState extends State<CartPage> {
           ),
         ],
       ),
-      bottomNavigationBar: IntrinsicHeight(
-        child: Container(
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '${totalFinalAmount.toStringAsFixed(2)} KD',
-                      style: AppFonts.title4(
-                        color: AppColors.primary30,
+      bottomNavigationBar: Material(
+        elevation: 10,
+        child: IntrinsicHeight(
+          child: Container(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '${totalFinalAmount.toStringAsFixed(2)} KD',
+                        style: AppFonts.title4(
+                          color: AppColors.primary30,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 5),
-                    Text(
-                      '${totalGrossAmount.toStringAsFixed(2)} KD',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: AppColors.grayscale60,
-                        decoration: TextDecoration.lineThrough,
+                      SizedBox(width: 5),
+                      Text(
+                        '${totalGrossAmount.toStringAsFixed(2)} KD',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: AppColors.grayscale60,
+                          decoration: TextDecoration.lineThrough,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 5),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CheckoutPage(
-                                totalAmount: totalFinalAmount,
-                                totalDiscount: totaldiscount,
-                                totalGrossAmount: totalGrossAmount,
+                      SizedBox(width: 20),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CheckoutPage(
+                                  totalAmount: totalFinalAmount,
+                                  totalDiscount: totaldiscount,
+                                  totalGrossAmount: totalGrossAmount,
+                                ),
                               ),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            backgroundColor: AppColors.primary40,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 16, horizontal: 24),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
                             ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          backgroundColor: AppColors.primary40,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 24),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: Text(
+                            'Checkout',
+                            style: AppFonts.body1(color: AppColors.grayscale0),
                           ),
                         ),
-                        child: Text(
-                          'Checkout',
-                          style: AppFonts.body1(color: AppColors.grayscale0),
-                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Text(
-                  'Total',
-                  style: AppFonts.body1(
-                    color: AppColors.grayscale90,
+                    ],
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                )
-              ],
+                  Text(
+                    'Total',
+                    style: AppFonts.body1(
+                      color: AppColors.grayscale90,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  )
+                ],
+              ),
             ),
           ),
         ),

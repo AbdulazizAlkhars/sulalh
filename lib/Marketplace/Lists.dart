@@ -174,7 +174,9 @@ List<Map<String, dynamic>> ProductVendorData = [
 
 class ProductDetails {
   final String imagePath;
+  final String forwhatspecies;
   final String productName;
+  final String packaging;
   final String discountedPrice;
   final String actualPrice;
   final String boughtPastMonth;
@@ -182,8 +184,10 @@ class ProductDetails {
   final double rating;
 
   ProductDetails({
+    required this.forwhatspecies,
     required this.imagePath,
     required this.productName,
+    required this.packaging,
     required this.discountedPrice,
     required this.boughtPastMonth,
     required this.actualPrice,
@@ -197,7 +201,9 @@ final List<ProductDetails> mainProductList = [
     imagePath: 'assets/Marketplace/Frame 1 5.png',
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
+    packaging: '80g',
     actualPrice: '\$130',
+    forwhatspecies: 'assets/avatars/120px/Cat.png',
     promotiontag: 'Best Seller',
     rating: 4.0,
     boughtPastMonth: '200',
@@ -207,6 +213,8 @@ final List<ProductDetails> mainProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$90',
     actualPrice: '\$160',
+    packaging: '800ML',
+    forwhatspecies: 'assets/avatars/120px/Dog.png',
     boughtPastMonth: '280',
     promotiontag: 'Promoted',
     rating: 5.0,
@@ -216,6 +224,8 @@ final List<ProductDetails> mainProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$100',
     actualPrice: '\$190',
+    packaging: '1Kg',
+    forwhatspecies: 'assets/avatars/120px/Cow.png',
     boughtPastMonth: '250',
     rating: 4.2,
     promotiontag: 'Promoted',
@@ -226,6 +236,8 @@ final List<ProductDetails> mainProductList = [
     discountedPrice: '\$180',
     actualPrice: '\$250',
     boughtPastMonth: '260',
+    packaging: '800ML',
+    forwhatspecies: 'assets/avatars/120px/Duck.png',
     rating: 4.1,
     promotiontag: 'Best Seller',
   ),
@@ -234,6 +246,8 @@ final List<ProductDetails> mainProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$175',
     actualPrice: '\$258',
+    packaging: '800ML',
+    forwhatspecies: 'assets/avatars/120px/Horse.png',
     rating: 4.4,
     promotiontag: 'Sale',
     boughtPastMonth: '290',
@@ -243,7 +257,9 @@ final List<ProductDetails> mainProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     actualPrice: '\$100',
+    packaging: '800ML',
     boughtPastMonth: '275',
+    forwhatspecies: 'assets/avatars/120px/Cat.png',
     promotiontag: 'Best Seller',
     rating: 4.2,
   ),
@@ -252,6 +268,8 @@ final List<ProductDetails> mainProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     actualPrice: '\$100',
+    packaging: '800ML',
+    forwhatspecies: 'assets/avatars/120px/Cat.png',
     promotiontag: 'Sale',
     rating: 4.5,
     boughtPastMonth: '275',
@@ -277,8 +295,10 @@ final List<ProductDetails> filteredProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     actualPrice: '\$100',
+    packaging: '800ML',
     rating: 4.5,
     promotiontag: 'Best Seller',
+    forwhatspecies: 'assets/avatars/120px/Cat.png',
     boughtPastMonth: '200',
   ),
   ProductDetails(
@@ -286,7 +306,9 @@ final List<ProductDetails> filteredProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     actualPrice: '\$100',
+    packaging: '800ML',
     promotiontag: 'Sale',
+    forwhatspecies: 'assets/avatars/120px/Dog.png',
     rating: 4.5,
     boughtPastMonth: '280',
   ),
@@ -295,7 +317,9 @@ final List<ProductDetails> filteredProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     actualPrice: '\$100',
+    packaging: '800ML',
     promotiontag: 'Promoted',
+    forwhatspecies: 'assets/avatars/120px/Horse.png',
     rating: 4.5,
     boughtPastMonth: '250',
   ),
@@ -305,6 +329,8 @@ final List<ProductDetails> filteredProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     rating: 4.5,
+    packaging: '800ML',
+    forwhatspecies: 'assets/avatars/120px/Duck.png',
     promotiontag: 'Sale',
     boughtPastMonth: '275',
   ),
@@ -314,6 +340,8 @@ final List<ProductDetails> filteredProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     rating: 4.5,
+    packaging: '800ML',
+    forwhatspecies: 'assets/avatars/120px/Chicken.png',
     boughtPastMonth: '225',
     promotiontag: 'Best Seller',
   ),
@@ -321,7 +349,9 @@ final List<ProductDetails> filteredProductList = [
     imagePath: 'assets/Marketplace/Frame 1.png',
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
+    forwhatspecies: 'assets/avatars/120px/Cat.png',
     actualPrice: '\$100',
+    packaging: '800ML',
     rating: 4.5,
     promotiontag: 'Promoted',
     boughtPastMonth: '260',
@@ -331,7 +361,9 @@ final List<ProductDetails> filteredProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     actualPrice: '\$100',
+    forwhatspecies: 'assets/avatars/120px/Cat.png',
     rating: 4.5,
+    packaging: '800ML',
     boughtPastMonth: '275',
     promotiontag: 'Promoted',
   ),
@@ -508,27 +540,6 @@ final List<CartItem> cartItems = [
     price: 25.0,
     quantity: 2,
     discountedPrice: 10,
-    imagePath: 'assets/Marketplace/Frame 1 5.png',
-  ),
-  CartItem(
-    productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
-    price: 10.0,
-    quantity: 1,
-    discountedPrice: 10,
-    imagePath: 'assets/Marketplace/Frame 1 5.png',
-  ),
-  CartItem(
-    productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
-    price: 10.0,
-    quantity: 1,
-    discountedPrice: 10,
-    imagePath: 'assets/Marketplace/Frame 1 5.png',
-  ),
-  CartItem(
-    productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
-    price: 10.0,
-    quantity: 1,
-    discountedPrice: 5,
     imagePath: 'assets/Marketplace/Frame 1 5.png',
   ),
   CartItem(
@@ -781,4 +792,10 @@ List<Map<String, dynamic>> animalSpecies = [
     'imageAsset': 'assets/avatars/120px/Duck.png',
     'name': 'Duck',
   },
+];
+
+final List<String> deliverySlots = [
+  '10 AM - 2 PM',
+  '2 PM - 6 PM',
+  '6 PM - 8 PM',
 ];

@@ -79,7 +79,34 @@ class ProductTwoGridsWidget extends StatelessWidget {
                                   ),
                                   ItemPromotionalChipsWidget(
                                     promotiontag: product.promotiontag,
-                                  )
+                                  ),
+                                  Positioned(
+                                    bottom: 5,
+                                    right: 5,
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.white,
+                                      radius: 15,
+                                      backgroundImage:
+                                          AssetImage(product.forwhatspecies),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: 5,
+                                    left: 8,
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 4),
+                                      decoration: BoxDecoration(
+                                        color: AppColors.grayscale00,
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      child: Text(
+                                        product.packaging,
+                                        style: AppFonts.caption1(
+                                            color: AppColors.primary30),
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

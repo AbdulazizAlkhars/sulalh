@@ -8,6 +8,7 @@ import '../../Theme/Fonts.dart';
 import '../Lists.dart';
 import 'ProductMarketplaceWidgets/checkout_cart_items_widget.dart';
 import 'ProductMarketplaceWidgets/credit_debit_cards_widget.dart';
+import 'ProductMarketplaceWidgets/delivery_time_slots_chips_widget.dart';
 
 class CheckoutPage extends StatefulWidget {
   final double totalAmount;
@@ -65,105 +66,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Your Order',
-                style: AppFonts.title4(
-                  color: AppColors.grayscale90,
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Row(
-                children: [
-                  Text(
-                    'Items',
-                    style: AppFonts.body2(
-                      color: AppColors.grayscale90,
-                    ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    '${widget.totalGrossAmount.toStringAsFixed(2)} KD',
-                    style: AppFonts.body1(
-                      color: AppColors.grayscale90,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Row(
-                children: [
-                  Text(
-                    'Discount',
-                    style: AppFonts.body2(
-                      color: AppColors.grayscale90,
-                    ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    '${widget.totalDiscount.toStringAsFixed(2)} KD',
-                    style: AppFonts.body1(
-                      color: AppColors.grayscale90,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Row(
-                children: [
-                  Text(
-                    'Delivery',
-                    style: AppFonts.body2(
-                      color: AppColors.grayscale90,
-                    ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    'Free',
-                    style: AppFonts.body1(
-                      color: AppColors.primary20,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Row(
-                children: [
-                  Text(
-                    'Total',
-                    style: AppFonts.headline3(
-                      color: AppColors.grayscale90,
-                    ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    '${widget.totalAmount.toStringAsFixed(2)} KD',
-                    style: AppFonts.headline3(
-                      color: AppColors.primary40,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Divider(),
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
                 'Delivery Address',
                 style: AppFonts.title4(
                   color: AppColors.grayscale90,
                 ),
               ),
-              const SizedBox(height: 10),
               Column(
                 children: [
                   ListTile(
@@ -204,11 +111,50 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 ],
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               const Divider(),
               const SizedBox(
-                height: 20,
+                height: 10,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Delivery Time',
+                    style: AppFonts.title4(
+                      color: AppColors.grayscale90,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Wrap(
+                      direction: Axis.horizontal,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      spacing: 8.0,
+                      runSpacing: 8.0,
+                      children: List.generate(
+                        deliverySlots.length,
+                        (index) => DeliverySlotChipsWidget(
+                          label: deliverySlots[index],
+                          onTap: () {
+                            // Do something when the chip is tapped
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Divider(),
+              const SizedBox(
+                height: 10,
               ),
               Text(
                 'Cart Items',
@@ -239,11 +185,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 },
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               const Divider(),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Text(
                 'Payment Methods',
@@ -372,41 +318,139 @@ class _CheckoutPageState extends State<CheckoutPage> {
           ),
         ),
       ),
-      bottomNavigationBar: IntrinsicHeight(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            backgroundColor: AppColors.primary50,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 16, horizontal: 24),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                          ),
-                          child: Text(
-                            'Pay',
-                            style: AppFonts.body1(color: AppColors.grayscale0),
-                          ),
-                        ),
-                      ),
-                    ],
+      bottomNavigationBar: Material(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+        elevation: 10,
+        color: AppColors.grayscale00,
+        child: IntrinsicHeight(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Text(
+                  'Your Order',
+                  style: AppFonts.title4(
+                    color: AppColors.grayscale90,
                   ),
-                ],
-              ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Items',
+                      style: AppFonts.body2(
+                        color: AppColors.grayscale90,
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      '${widget.totalGrossAmount.toStringAsFixed(2)} KD',
+                      style: AppFonts.body1(
+                        color: AppColors.grayscale90,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Discount',
+                      style: AppFonts.body2(
+                        color: AppColors.grayscale90,
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      '${widget.totalDiscount.toStringAsFixed(2)} KD',
+                      style: AppFonts.body1(
+                        color: AppColors.grayscale90,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Delivery',
+                      style: AppFonts.body2(
+                        color: AppColors.grayscale90,
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      'Free',
+                      style: AppFonts.body1(
+                        color: AppColors.primary20,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Total',
+                      style: AppFonts.headline3(
+                        color: AppColors.grayscale90,
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      '${widget.totalAmount.toStringAsFixed(2)} KD',
+                      style: AppFonts.headline3(
+                        color: AppColors.primary40,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  backgroundColor: AppColors.primary50,
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 16, horizontal: 24),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                ),
+                                child: Text(
+                                  'Pay',
+                                  style: AppFonts.body1(
+                                      color: AppColors.grayscale0),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

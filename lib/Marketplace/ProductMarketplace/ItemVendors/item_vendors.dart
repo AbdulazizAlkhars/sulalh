@@ -6,6 +6,7 @@ import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
 import '../Cart.dart';
 import 'filter_shops_widget.dart';
+
 import 'vendor_shop_details.dart';
 import 'vendor_shop_items.dart';
 import 'package:super_banners/super_banners.dart';
@@ -132,17 +133,6 @@ class _ItemVendorsState extends State<ItemVendors> {
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 25),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Icon(Icons.sort_by_alpha,
-                        size: 20, color: AppColors.primary30),
                   ),
                 ],
               ),

@@ -33,10 +33,11 @@ class _CheckOutCartCardState extends State<CheckOutCartCard> {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12), // Adjust the radius as needed
       child: IntrinsicHeight(
-        child: SizedBox(
-          child: Card(
-            elevation: 0,
-            color: AppColors.grayscale00,
+        child: Card(
+          elevation: 0,
+          color: AppColors.grayscale0,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

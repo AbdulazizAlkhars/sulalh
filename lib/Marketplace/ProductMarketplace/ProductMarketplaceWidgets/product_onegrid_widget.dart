@@ -78,7 +78,17 @@ class ProductOneGridWidget extends StatelessWidget {
                                 ),
                                 ItemPromotionalChipsWidget(
                                   promotiontag: product.promotiontag,
-                                )
+                                ),
+                                Positioned(
+                                  bottom: 5,
+                                  right: 5,
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    radius: 15,
+                                    backgroundImage:
+                                        AssetImage(product.forwhatspecies),
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -108,11 +118,35 @@ class ProductOneGridWidget extends StatelessWidget {
                                 ],
                               ),
                               const SizedBox(height: 5),
-                              Text(
-                                '${product.boughtPastMonth}+ Bought Past Month',
-                                style: AppFonts.caption2(
-                                  color: AppColors.grayscale90,
-                                ),
+                              Row(
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Icon(
+                                        Icons.scale_outlined,
+                                        color: AppColors.grayscale70,
+                                        size: 20,
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      Text(
+                                        product.packaging,
+                                        style: AppFonts.caption1(
+                                            color: AppColors.primary30),
+                                      ),
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    '${product.boughtPastMonth}+ Bought Past Month',
+                                    style: AppFonts.caption2(
+                                      color: AppColors.grayscale90,
+                                    ),
+                                  ),
+                                ],
                               ),
                               const SizedBox(height: 5),
                               Row(

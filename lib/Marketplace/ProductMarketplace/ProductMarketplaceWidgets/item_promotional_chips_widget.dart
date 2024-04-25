@@ -4,8 +4,9 @@ import 'package:hathera_demo/Theme/Fonts.dart';
 
 class ItemPromotionalChipsWidget extends StatelessWidget {
   final String promotiontag;
+  final TextStyle? textStyle; // Add a new property for text style
 
-  ItemPromotionalChipsWidget({required this.promotiontag});
+  ItemPromotionalChipsWidget({required this.promotiontag, this.textStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,6 @@ class ItemPromotionalChipsWidget extends StatelessWidget {
       'Best Seller': AppColors.primary30,
       'Sale': AppColors.error100,
       'Promoted': AppColors.secondary50,
-
       // Add more status-color pairs as needed
     };
 
@@ -29,14 +29,19 @@ class ItemPromotionalChipsWidget extends StatelessWidget {
             : AppColors.grayscale90;
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
         color: chipColor,
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(50),
       ),
       child: Text(
         promotiontag,
-        style: AppFonts.caption2(color: fontColor),
+        style: textStyle != null
+            ? textStyle!.copyWith(
+                color: fontColor) // Apply custom text style with font color
+            : AppFonts.caption2(
+                color:
+                    fontColor), // Use default text style if custom not provided
       ),
     );
   }

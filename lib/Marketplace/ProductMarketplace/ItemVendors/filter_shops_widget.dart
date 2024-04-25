@@ -59,6 +59,16 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
             ),
             _buildFilterOption(
               context,
+              'Sort By',
+              Column(
+                children: [
+                  ShopSortingFilterWidget(),
+                  Divider(),
+                ],
+              ),
+            ),
+            _buildFilterOption(
+              context,
               'Shops',
               Column(
                 children: [
@@ -550,6 +560,70 @@ class _ShopStatusFilterWidgetState extends State<ShopStatusFilterWidget> {
                 children: [
                   Text(
                     shopStatus[index],
+                    style: AppFonts.body2(
+                      color: AppColors.grayscale90,
+                    ),
+                  ),
+                  Spacer(),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.064,
+                    height: MediaQuery.of(context).size.width * 0.064,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: isSelected
+                            ? AppColors.primary20
+                            : AppColors.grayscale30,
+                        width: isSelected ? 6.0 : 1.0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10, // Adjust the height as needed
+            ),
+          ],
+        );
+      }),
+    );
+  }
+}
+
+class ShopSortingFilterWidget extends StatefulWidget {
+  @override
+  _ShopSortingFilterWidgetState createState() =>
+      _ShopSortingFilterWidgetState();
+}
+
+class _ShopSortingFilterWidgetState extends State<ShopSortingFilterWidget> {
+  List<String> shopSorting = [
+    'Ascending',
+    'Descending',
+  ];
+
+  List<bool> selecteddealOptions = List<bool>.filled(6, false);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: List.generate(shopSorting.length, (index) {
+        bool isSelected = selecteddealOptions[index];
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  selecteddealOptions[index] = !isSelected;
+                });
+              },
+              child: Row(
+                children: [
+                  Text(
+                    shopSorting[index],
                     style: AppFonts.body2(
                       color: AppColors.grayscale90,
                     ),
