@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
@@ -22,7 +24,7 @@ class ProductTwoGridsWidget extends StatelessWidget {
         GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 0.6, // Adjust aspect ratio as needed
+            childAspectRatio: 0.5, // Adjust aspect ratio as needed
           ),
           itemCount: mainProductList.length,
           shrinkWrap: true,
@@ -100,10 +102,34 @@ class ProductTwoGridsWidget extends StatelessWidget {
                                         color: AppColors.grayscale00,
                                         borderRadius: BorderRadius.circular(50),
                                       ),
-                                      child: Text(
-                                        product.packaging,
-                                        style: AppFonts.caption1(
-                                            color: AppColors.primary30),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            product.weightvoulme,
+                                            style: AppFonts.caption1(
+                                                color: AppColors.primary30),
+                                          ),
+                                          Visibility(
+                                            visible:
+                                                product.pcsperpack.isNotEmpty,
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  ' / ',
+                                                  style: AppFonts.caption1(
+                                                      color:
+                                                          AppColors.primary30),
+                                                ),
+                                                Text(
+                                                  product.pcsperpack,
+                                                  style: AppFonts.caption1(
+                                                      color:
+                                                          AppColors.primary30),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -144,40 +170,33 @@ class ProductTwoGridsWidget extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 5),
                                 Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    // List of five stars
-                                    Row(
-                                      children: List.generate(
-                                        5,
-                                        (index) {
-                                          if (index < product.rating.floor()) {
-                                            // Full star
-                                            return const Icon(
-                                              Icons.star,
-                                              color: AppColors.secondary50,
-                                            );
-                                          } else if (index < product.rating) {
-                                            // Half-filled star
-                                            return const Icon(
-                                              Icons.star_half,
-                                              color: AppColors.secondary50,
-                                            );
-                                          } else {
-                                            // Empty star
-                                            return const Icon(
-                                              Icons.star_border,
-                                              color: AppColors.secondary50,
-                                            );
-                                          }
-                                        },
+                                    const Icon(
+                                      Icons.store,
+                                      size: 20,
+                                      color: AppColors.primary20,
+                                    ),
+                                    Flexible(
+                                      child: Text(
+                                        product.shopName,
+                                        style: AppFonts.caption2(
+                                          color: AppColors.grayscale90,
+                                        ),
                                       ),
                                     ),
-                                    const SizedBox(width: 5),
+                                    Spacer(),
                                     Text(
                                       product.rating.toString(),
                                       style: AppFonts.caption2(
                                         color: AppColors.grayscale90,
                                       ),
+                                    ),
+                                    const Icon(
+                                      Icons.star,
+                                      size: 20,
+                                      color: AppColors.secondary50,
                                     ),
                                   ],
                                 ),

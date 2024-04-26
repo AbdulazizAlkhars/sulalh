@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../../../Theme/Colors.dart';
@@ -18,6 +19,8 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
   late TextEditingController _searchController;
   List<Map<String, dynamic>> filteredAnimals = [];
   int selectedIndex = -1;
+  int selectedSpeciesIndex = -1;
+  String selectedBreed = '';
 
   @override
   void initState() {
@@ -54,7 +57,36 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Search Bar
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  'Select Your Animal',
+                  style: AppFonts.title4(color: AppColors.grayscale90),
+                  textAlign: TextAlign.center,
+                ),
+                Spacer(),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    color: AppColors.primary50,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8.0,
+                      horizontal: 16.0,
+                    ),
+                    child: Text(
+                      'Select Animal',
+                      style: AppFonts.body2(color: AppColors.grayscale00),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50.0),
@@ -79,11 +111,6 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
             const SizedBox(
               height: 10,
             ),
-            Text(
-              'Select Your Animal',
-              style: AppFonts.title4(color: AppColors.grayscale90),
-              textAlign: TextAlign.center,
-            ),
             const SizedBox(
               height: 10,
             ),
@@ -92,14 +119,22 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
               style: AppFonts.body2(color: AppColors.grayscale90),
             ),
             const SizedBox(
-              height: 25,
+              height: 15,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Column(
-                    children: displayedAnimals.map((myAnimal) {
+            Container(
+              height: 250,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                border: Border.all(color: AppColors.grayscale20),
+                color: AppColors.grayscale00,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Scrollbar(
+                  child: ListView.builder(
+                    itemCount: displayedAnimals.length,
+                    itemBuilder: (context, index) {
+                      final myAnimal = displayedAnimals[index];
                       bool isSelected = selectedAnimal == myAnimal['name'];
                       return Padding(
                         padding: const EdgeInsets.only(
@@ -115,7 +150,7 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
                             children: [
                               CircleAvatar(
                                 radius:
-                                    MediaQuery.of(context).size.width * 0.064,
+                                    MediaQuery.of(context).size.width * 0.05,
                                 backgroundImage:
                                     AssetImage(myAnimal['imageAsset']),
                               ),
@@ -149,26 +184,15 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
                           ),
                         ),
                       );
-                    }).toList(),
+                    },
                   ),
-                  if (myAnimals.length > 5)
-                    TextButton(
-                      onPressed: () {
-                        setState(() {
-                          isExpanded = !isExpanded;
-                        });
-                      },
-                      child: Text(
-                        isExpanded ? 'Show less' : 'Show all',
-                        style: TextStyle(color: AppColors.primary30),
-                      ),
-                    ),
-                ],
+                ),
               ),
             ),
             const SizedBox(
               height: 10,
             ),
+            Divider(),
             Text(
               'Select By Species',
               style: AppFonts.title4(color: AppColors.grayscale90),
@@ -177,63 +201,100 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
             const SizedBox(
               height: 10,
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: animalSpecies.asMap().entries.map((entry) {
-                  final int index = entry.key;
-                  final animal = entry.value;
-                  final name = animal['name'];
-                  final imageAsset = animal['imageAsset'];
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedIndex = index;
-                      });
-                    },
-                    child: SizedBox(
-                      height: 100,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: animalSpecies.asMap().entries.map((speciesEntry) {
+                      final int speciesIndex = speciesEntry.key;
+                      final species = speciesEntry.value;
+                      final speciesName = species['name'];
+                      final speciesImageAsset = species['imageAsset'];
+
+                      // Retrieve breeds for the current species
+
+                      return Column(
                         children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: selectedIndex == index
-                                      ? AppColors.primary20.withOpacity(
-                                          0.5) // Adjust opacity as needed
-                                      : Colors.transparent,
-                                  spreadRadius:
-                                      5, // Adjust spread radius as needed
-                                  blurRadius: 2, // Adjust blur radius as needed
-                                ),
-                              ],
-                            ),
-                            child: CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 30,
-                              backgroundImage: AssetImage(imageAsset),
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Flexible(
-                            child: Text(
-                              name,
-                              style: const TextStyle(fontSize: 12),
-                              textAlign: TextAlign.center,
+                          // Display species icon and name
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selectedSpeciesIndex = speciesIndex;
+                                selectedBreed =
+                                    ''; // Reset selected breed when changing species
+                              });
+                            },
+                            child: SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: selectedSpeciesIndex ==
+                                                  speciesIndex
+                                              ? AppColors.primary20
+                                                  .withOpacity(0.5)
+                                              : Colors.transparent,
+                                          spreadRadius: 5,
+                                          blurRadius: 2,
+                                        ),
+                                      ],
+                                    ),
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.white,
+                                      radius: 25,
+                                      backgroundImage:
+                                          AssetImage(speciesImageAsset),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Flexible(
+                                    child: Text(
+                                      speciesName,
+                                      style: const TextStyle(fontSize: 12),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Visibility(
+                  visible: selectedSpeciesIndex != -1 &&
+                      animalSpecies.length > selectedSpeciesIndex,
+                  child: Text(
+                    'Select Breed',
+                    style: AppFonts.title5(color: AppColors.grayscale90),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                // Display breeds list below the species row
+                if (selectedSpeciesIndex != -1 &&
+                    animalSpecies.length > selectedSpeciesIndex)
+                  breedsListWidget(speciesBreeds[
+                          animalSpecies[selectedSpeciesIndex]['name']] ??
+                      []),
+                const SizedBox(height: 16),
+                // Display selected breed
+              ],
             ),
-
+            Text(
+              selectedBreed,
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
             const SizedBox(
               height: 25,
             ),
@@ -257,7 +318,7 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
                   ),
                 ),
                 child: Text(
-                  'Add New Animal',
+                  'Select Animal',
                   style: AppFonts.body1(color: AppColors.grayscale0),
                 ),
               ),
@@ -266,6 +327,62 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
               height: 25,
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget breedsListWidget(List<String> breeds) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+        border: Border.all(color: AppColors.grayscale20),
+        color: AppColors.grayscale00,
+      ),
+      height: 200,
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Scrollbar(
+          child: ListView.builder(
+            itemCount: breeds.length,
+            itemBuilder: (context, index) {
+              final breed = breeds[index];
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedBreed = breed;
+                  });
+                },
+                child: SizedBox(
+                  height: 35,
+                  child: Row(
+                    children: [
+                      Text(
+                        breed,
+                        style: AppFonts.body2(
+                          color: AppColors.grayscale90,
+                        ),
+                      ),
+                      Spacer(),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.064,
+                        height: MediaQuery.of(context).size.width * 0.064,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: selectedBreed == breed
+                                ? AppColors.primary20
+                                : AppColors.grayscale30,
+                            width: selectedBreed == breed ? 6.0 : 1.0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Marketplace/Lists.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/vendor_item_animal_category_widget.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/filter_items_widget.dart';
 
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
@@ -12,6 +13,7 @@ import '../ProductMarketplaceWidgets/chips_widget.dart';
 import '../ProductMarketplaceWidgets/product_onegrid_widget.dart';
 import '../ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
 import '../ProductMarketplaceWidgets/select_your_animal_modal.dart';
+import '../filtered_item_catalog.dart';
 import '../marketplace_items.dart';
 import '../product_details_page.dart';
 import 'vendor_items_category_widget.dart';
@@ -26,8 +28,8 @@ class VendorShopItems extends StatefulWidget {
 
 class _VendorShopItemsState extends State<VendorShopItems> {
   String? selectedValue;
-  int _currentIndex = 0;
-
+  String selectedCategoryName = '';
+  int selectedIndex = -1;
   @override
   Widget build(BuildContext context) {
     final vendor = ProductVendorData[widget.index];
@@ -148,18 +150,170 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                   ),
                 ),
               ),
+
               const SizedBox(
                 height: 15,
               ),
-              Row(
+              const SearchableDropdown(),
+              const SizedBox(
+                height: 15,
+              ),
+              Column(
                 children: [
-                  Text(
-                    'Catalog',
-                    style: AppFonts.title5(
-                      color: AppColors.grayscale90,
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Text('Category Filters',
+                            style:
+                                AppFonts.title5(color: AppColors.grayscale90)),
+                      ),
+                    ],
+                  ),
+                  // const SizedBox(height: 13),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: categoryIcons.entries.map((entry) {
+                        final categoryName = entry.key;
+                        final iconData = entry.value;
+                        final index =
+                            categoryIcons.keys.toList().indexOf(categoryName);
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = index;
+                              selectedCategoryName = categoryName;
+                            });
+                          },
+                          child: SizedBox(
+                            height: 120,
+                            width: 100, // Set fixed width for each item
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: selectedIndex == index
+                                            ? AppColors.primary20
+                                                .withOpacity(0.5)
+                                            : Colors.transparent,
+                                        spreadRadius: 5,
+                                        blurRadius: 2,
+                                      ),
+                                    ],
+                                  ),
+                                  child: CircleAvatar(
+                                    backgroundColor: AppColors.grayscale00,
+                                    radius: 30,
+                                    child: Icon(
+                                      iconData,
+                                      size: 30,
+                                      color: AppColors.primary30,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                Flexible(
+                                  child: Text(
+                                    categoryName,
+                                    style: const TextStyle(fontSize: 12),
+
+                                    textAlign:
+                                        TextAlign.center, // Center align text
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }).toList(),
                     ),
                   ),
-                  const Spacer(),
+                ],
+              ),
+              // Stack(
+              //   alignment: Alignment.bottomCenter,
+              //   children: [
+              //     CarouselSlider(
+              //       options: CarouselOptions(
+              //         autoPlay: true,
+              //         aspectRatio: 22 / 8,
+              //         viewportFraction: 1.0,
+              //         onPageChanged: (index, _) {
+              //           setState(() {
+              //             _currentIndex = index;
+              //           });
+              //         },
+              //       ),
+              //       items: productadvertisements.map((ad) {
+              //         return Builder(
+              //           builder: (BuildContext context) {
+              //             return Container(
+              //               width: MediaQuery.of(context).size.width,
+              //               margin: const EdgeInsets.symmetric(horizontal: 5.0),
+              //               child: ClipRRect(
+              //                 borderRadius:
+              //                     BorderRadius.circular(20), // Rounded corners
+              //                 child: Image.asset(
+              //                   ad,
+              //                   fit: BoxFit.cover,
+              //                 ),
+              //               ),
+              //             );
+              //           },
+              //         );
+              //       }).toList(),
+              //     ),
+              //     Row(
+              //       mainAxisAlignment: MainAxisAlignment.center,
+              //       children:
+              //           productadvertisements.asMap().entries.map((entry) {
+              //         int index = entry.key;
+              //         return Container(
+              //           width: 8.0,
+              //           height: 8.0,
+              //           margin: const EdgeInsets.symmetric(
+              //               vertical: 10.0, horizontal: 2.0),
+              //           decoration: BoxDecoration(
+              //             shape: BoxShape.circle,
+              //             color: _currentIndex == index
+              //                 ? AppColors.primary50
+              //                 : AppColors.grayscale10,
+              //           ),
+              //         );
+              //       }).toList(),
+              //     ),
+              //   ],
+              // ),
+
+              Divider(),
+              const SizedBox(
+                height: 5,
+              ),
+              Center(
+                child: Text(
+                  'Catalog',
+                  style: AppFonts.title4(
+                    color: AppColors.grayscale90,
+                  ),
+                ),
+              ),
+
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  selectedCategoryName.isNotEmpty
+                      ? Text(selectedCategoryName,
+                          style: AppFonts.title5(color: AppColors.grayscale90))
+                      : Text('All Products',
+                          style: AppFonts.title5(color: AppColors.grayscale90)),
+                  Spacer(),
                   GestureDetector(
                     onTap: () {},
                     child: Row(
@@ -174,17 +328,10 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            showModalBottomSheet(
-                              showDragHandle: true,
-                              backgroundColor: Colors.white,
-                              context: context,
-                              builder: (BuildContext context) {
-                                return const VendorItemCategory();
-                              },
-                            );
+                            showFilterItemBottomSheet(context);
                           },
                           child: Text(
-                            'Categories',
+                            'Filters',
                             style: AppFonts.body1(
                               color: AppColors.primary30,
                             ),
@@ -192,67 +339,6 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                         ),
                       ],
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const SearchableDropdown(),
-              const SizedBox(
-                height: 15,
-              ),
-              Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  CarouselSlider(
-                    options: CarouselOptions(
-                      autoPlay: true,
-                      aspectRatio: 22 / 8,
-                      viewportFraction: 1.0,
-                      onPageChanged: (index, _) {
-                        setState(() {
-                          _currentIndex = index;
-                        });
-                      },
-                    ),
-                    items: productadvertisements.map((ad) {
-                      return Builder(
-                        builder: (BuildContext context) {
-                          return Container(
-                            width: MediaQuery.of(context).size.width,
-                            margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                            child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.circular(20), // Rounded corners
-                              child: Image.asset(
-                                ad,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    }).toList(),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children:
-                        productadvertisements.asMap().entries.map((entry) {
-                      int index = entry.key;
-                      return Container(
-                        width: 8.0,
-                        height: 8.0,
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 2.0),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: _currentIndex == index
-                              ? AppColors.primary50
-                              : AppColors.grayscale10,
-                        ),
-                      );
-                    }).toList(),
                   ),
                 ],
               ),

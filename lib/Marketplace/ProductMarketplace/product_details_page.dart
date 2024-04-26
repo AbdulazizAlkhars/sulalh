@@ -70,8 +70,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               IconButton(
                 padding: EdgeInsets.zero,
                 icon: Container(
-                  width: MediaQuery.of(context).size.width * 0.1,
-                  height: MediaQuery.of(context).size.width * 0.1,
+                  width: MediaQuery.of(context).size.width * 0.09,
+                  height: MediaQuery.of(context).size.width * 0.09,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: AppColors.grayscale0,
@@ -79,7 +79,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   child: const Icon(
                     Icons.share_outlined,
                     color: AppColors.primary50,
-                    size: 25,
+                    size: 20,
                   ),
                 ),
                 onPressed:
@@ -88,8 +88,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               IconButton(
                 padding: EdgeInsets.zero,
                 icon: Container(
-                  width: MediaQuery.of(context).size.width * 0.1,
-                  height: MediaQuery.of(context).size.width * 0.1,
+                  width: MediaQuery.of(context).size.width * 0.09,
+                  height: MediaQuery.of(context).size.width * 0.09,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: AppColors.primary50,
@@ -97,7 +97,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   child: const Icon(
                     Icons.shopping_cart_outlined,
                     color: Colors.white,
-                    size: 25,
+                    size: 20,
                   ),
                 ),
                 onPressed: () {
@@ -211,17 +211,26 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Icon(
-                        Icons.scale_outlined,
-                        color: AppColors.grayscale70,
-                        size: 20,
-                      ),
-                      const SizedBox(
-                        width: 3,
-                      ),
                       Text(
-                        widget.product.packaging,
+                        widget.product.weightvoulme,
                         style: AppFonts.title5(color: AppColors.primary30),
+                      ),
+                      Visibility(
+                        visible: widget.product.pcsperpack.isNotEmpty,
+                        child: Row(
+                          children: [
+                            Text(
+                              ' / ',
+                              style:
+                                  AppFonts.title5(color: AppColors.primary30),
+                            ),
+                            Text(
+                              widget.product.pcsperpack,
+                              style:
+                                  AppFonts.title5(color: AppColors.primary30),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -394,7 +403,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         color: AppColors.secondary10,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment
                             .center, // Align content vertically at center
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -402,24 +411,24 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              CircleAvatar(
+                              const CircleAvatar(
                                 radius: 20,
                                 backgroundImage: AssetImage(
                                   'assets/Marketplace/Frame 2087325740 5.png',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                   width:
                                       8), // Add spacing between avatar and name
                               Text(
-                                'Farm Shop', // Replace with actual name
-                                style: TextStyle(
+                                widget.product.shopName,
+                                style: const TextStyle(
                                   color: AppColors.grayscale90,
                                   fontSize: 14,
                                 ),
                               ),
-                              Spacer(), // Add spacer to push icon to the right
-                              Icon(
+                              const Spacer(), // Add spacer to push icon to the right
+                              const Icon(
                                 Icons.chevron_right,
                                 color: AppColors.primary20,
                               ),

@@ -52,6 +52,11 @@ class _FilterItemBottomSheetState extends State<FilterItemBottomSheet> {
             ),
             _buildFilterOption(
               context,
+              'Sort',
+              ItemSortingFilterWidget(),
+            ),
+            _buildFilterOption(
+              context,
               'Discount',
               DiscountFilterWidget(),
             ),
@@ -268,6 +273,70 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
   }
 }
 
+class ItemSortingFilterWidget extends StatefulWidget {
+  @override
+  _ItemSortingFilterWidgetState createState() =>
+      _ItemSortingFilterWidgetState();
+}
+
+class _ItemSortingFilterWidgetState extends State<ItemSortingFilterWidget> {
+  List<String> itemSorting = [
+    'Ascending',
+    'Descending',
+  ];
+
+  List<bool> selecteddealOptions = List<bool>.filled(6, false);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: List.generate(itemSorting.length, (index) {
+        bool isSelected = selecteddealOptions[index];
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  selecteddealOptions[index] = !isSelected;
+                });
+              },
+              child: Row(
+                children: [
+                  Text(
+                    itemSorting[index],
+                    style: AppFonts.body2(
+                      color: AppColors.grayscale90,
+                    ),
+                  ),
+                  Spacer(),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.064,
+                    height: MediaQuery.of(context).size.width * 0.064,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: isSelected
+                            ? AppColors.primary20
+                            : AppColors.grayscale30,
+                        width: isSelected ? 6.0 : 1.0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10, // Adjust the height as needed
+            ),
+          ],
+        );
+      }),
+    );
+  }
+}
+
 class DiscountFilterWidget extends StatefulWidget {
   @override
   _DiscountFilterWidgetState createState() => _DiscountFilterWidgetState();
@@ -480,7 +549,7 @@ void showFilterItemBottomSheet(BuildContext context) {
         true, // Set to true to allow the bottom sheet to occupy full screen height
     context: context,
     builder: (BuildContext context) {
-      return Container(
+      return SizedBox(
         height:
             MediaQuery.of(context).size.height * 0.8, // Adjust height as needed
         child: FilterItemBottomSheet(),

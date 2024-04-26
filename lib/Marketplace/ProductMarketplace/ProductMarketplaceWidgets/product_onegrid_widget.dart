@@ -124,16 +124,18 @@ class ProductOneGridWidget extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Icon(
-                                        Icons.scale_outlined,
-                                        color: AppColors.grayscale70,
-                                        size: 20,
-                                      ),
-                                      const SizedBox(
-                                        width: 3,
+                                      Text(
+                                        product.weightvoulme,
+                                        style: AppFonts.caption1(
+                                            color: AppColors.primary30),
                                       ),
                                       Text(
-                                        product.packaging,
+                                        ' / ',
+                                        style: AppFonts.caption1(
+                                            color: AppColors.primary30),
+                                      ),
+                                      Text(
+                                        product.pcsperpack,
                                         style: AppFonts.caption1(
                                             color: AppColors.primary30),
                                       ),
