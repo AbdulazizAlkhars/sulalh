@@ -1,6 +1,7 @@
 // Import necessary packages
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/add_store_modal_sheet.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
@@ -71,6 +72,40 @@ class _ItemVendorsState extends State<ItemVendors> {
           },
         ),
         actions: [
+          Row(
+            children: [
+              IconButton(
+                padding: EdgeInsets.zero,
+                icon: Container(
+                  width: MediaQuery.of(context).size.width * 0.1,
+                  height: MediaQuery.of(context).size.width * 0.1,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.grayscale10,
+                  ),
+                  child: const Icon(
+                    Icons.add_business_outlined,
+                    color: Colors.black,
+                    size: 25,
+                  ),
+                ),
+                onPressed: () {
+                  showModalBottomSheet(
+                    showDragHandle: true,
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.white,
+                    builder: (BuildContext context) {
+                      return SizedBox(
+                          height: MediaQuery.of(context).size.height *
+                              0.9, // Adjust height as needed
+                          child: const AddYourStoreModal());
+                    },
+                  );
+                }, // Call the signin function when the button is pressed
+              ),
+            ],
+          ),
           IconButton(
             padding: EdgeInsets.zero,
             icon: Container(
@@ -101,7 +136,14 @@ class _ItemVendorsState extends State<ItemVendors> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 10),
+              Text(
+                'Have a pet business & want to connect with Sulala?\nPlease click the Add Store button on top',
+                // 'Have A Pet Business & Want To Connect With Sulala?\nPlease Click The Add Store Button On Top',
+                style: AppFonts.body2(color: AppColors.grayscale90),
+              ),
               const SizedBox(height: 20),
               Row(
                 children: [

@@ -12,6 +12,7 @@ import 'Cart.dart';
 import 'ItemVendors/vendor_shop_details.dart';
 import 'ProductMarketplaceWidgets/change_address_modal_sheet.dart';
 import 'ProductMarketplaceWidgets/filter_items_widget.dart';
+import 'ProductMarketplaceWidgets/product_onegrid_widget.dart';
 import 'ProductMarketplaceWidgets/product_twogrids_widget.dart';
 import 'ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
 import 'filtered_item_catalog.dart';
@@ -38,8 +39,8 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
         automaticallyImplyLeading: false,
         surfaceTintColor: Colors.white,
         title: Text(
-          'Sulala Market',
-          style: AppFonts.title3(color: AppColors.grayscale90),
+          'Sulala',
+          style: AppFonts.title2(color: AppColors.grayscale90),
         ),
         actions: [
           Row(
@@ -546,6 +547,9 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                   }).toList(),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 15,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),

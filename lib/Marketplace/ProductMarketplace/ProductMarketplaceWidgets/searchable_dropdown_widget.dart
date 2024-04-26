@@ -32,7 +32,7 @@ class _SearchableDropdownState extends State<SearchableDropdown> {
             onChanged: (value) {}, // Dummy onChanged callback
 
             decoration: const InputDecoration(
-              hintText: "Search",
+              hintText: "Search Anything",
               hintStyle: TextStyle(
                   color: AppColors.grayscale50), // Change hint text color
               prefixIcon: Icon(

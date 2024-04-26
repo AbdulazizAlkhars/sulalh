@@ -5,6 +5,9 @@ import 'package:hathera_demo/Theme/Fonts.dart';
 
 import '../Lists.dart';
 import 'ProductMarketplaceWidgets/cart_card_widget.dart';
+import 'ProductMarketplaceWidgets/filter_items_widget.dart';
+import 'ProductMarketplaceWidgets/product_onegrid_widget.dart';
+import 'ProductMarketplaceWidgets/product_twogrids_widget.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -60,7 +63,7 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.grayscale10,
+      backgroundColor: AppColors.grayscale00,
       appBar: AppBar(
         surfaceTintColor: Colors.white,
         backgroundColor: Colors.white,
@@ -89,43 +92,46 @@ class _CartPageState extends State<CartPage> {
           },
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            color: Colors.white,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    'Items In The Cart', // Your heading text
-                    style: AppFonts.title5(
-                      color: AppColors.grayscale90,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      'Items In The Cart', // Your heading text
+                      style: AppFonts.title5(
+                        color: AppColors.grayscale90,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-              ],
+                  const SizedBox(
+                    height: 10,
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Expanded(
-            child: ListView.builder(
+            const SizedBox(
+              height: 10,
+            ),
+            ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
               itemCount: cartItems.length,
               itemBuilder: (context, index) {
                 final item = cartItems[index];
                 return Padding(
                   padding: const EdgeInsets.only(
-                      bottom: 5.0), // Add space between cards
+                    bottom: 5.0,
+                  ), // Add space between cards
                   child: CartCard(
                     imagePath: item.imagePath,
                     productName: item.productName,
@@ -144,8 +150,49 @@ class _CartPageState extends State<CartPage> {
                 );
               },
             ),
-          ),
-        ],
+            Divider(
+              color: AppColors.grayscale10,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Text('Previously Bought',
+                        style: AppFonts.title5(color: AppColors.grayscale90)),
+                  ),
+                  Expanded(
+                    flex: 0,
+                    child: GestureDetector(
+                      onTap: () {
+                        showFilterItemBottomSheet(context);
+                      },
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.filter_list,
+                            color: AppColors.primary50,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            'Filters',
+                            style: AppFonts.body1(color: AppColors.primary40),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ProductTwoGridsWidget(
+              mainProductList: mainProductList,
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: Material(
         elevation: 10,

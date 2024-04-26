@@ -9,6 +9,7 @@ import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWi
 import 'package:intl/intl.dart';
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
+import 'ProductMarketplaceWidgets/column_product_card_widget.dart';
 import 'ProductMarketplaceWidgets/item_promotional_chips_widget.dart';
 import 'ProductMarketplaceWidgets/rating_summary_widget.dart';
 import 'checkout_item.dart';
@@ -191,6 +192,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 ],
               ),
               const SizedBox(height: 20),
+              Divider(
+                color: AppColors.grayscale10,
+              ),
               // Product details text here...
               Row(
                 children: [
@@ -266,18 +270,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   children: [
                     ChipsWidget(
                       label: 'Horse',
-                      onTap: () {
-                        // Do something when the chip is tapped
-                      },
-                    ),
-                    ChipsWidget(
-                      label: 'Cleaning & Hygiene',
-                      onTap: () {
-                        // Do something when the chip is tapped
-                      },
-                    ),
-                    ChipsWidget(
-                      label: 'Cleaning & Hygiene',
                       onTap: () {
                         // Do something when the chip is tapped
                       },

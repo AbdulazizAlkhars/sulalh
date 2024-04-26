@@ -409,30 +409,8 @@ class LocationFilterWidget extends StatefulWidget {
 }
 
 class _LocationFilterWidgetState extends State<LocationFilterWidget> {
-  // Kuwait Governorates
-  List<String> governorates = [
-    'Al Ahmadi',
-    'Hawalli',
-    'Farwaniya',
-    'Al Asimah',
-    'Jahra',
-    'Mubarak Al-Kabeer'
-  ];
-
-  // Cities under each governorate
-  Map<String, List<String>> citiesByGovernorate = {
-    'Al Ahmadi': ['Fahaheel', 'Mangaf', 'Mahboula'],
-    'Hawalli': ['Hawalli', 'Salmiya', 'Bayan'],
-    'Farwaniya': ['Al-Farwaniyah', 'Al-Rai', 'Rabiya'],
-    'Al Asimah': ['Kuwait City', 'Dasma', 'Qortuba'],
-    'Jahra': ['Jahra', 'Naseem', 'Qasr'],
-    'Mubarak Al-Kabeer': ['Al-Abdali', 'Wafra', 'Mutlaa'],
-  };
-
-  // List to track selected governorates
   List<bool> selectedGovernorates = List<bool>.filled(6, false);
 
-  // Map to track selected cities
   Map<String, bool> selectedCities = {};
 
   @override

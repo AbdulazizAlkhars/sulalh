@@ -36,7 +36,7 @@ class _CartCardState extends State<CartCard> {
         height: 130,
         child: Card(
           elevation: 0,
-          color: AppColors.grayscale00,
+          color: AppColors.grayscale10,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(

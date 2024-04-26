@@ -581,6 +581,34 @@ final List<CartItem> cartItems = [
     discountedPrice: 10,
     imagePath: 'assets/Marketplace/Frame 1 5.png',
   ),
+  CartItem(
+    productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
+    price: 10.0,
+    quantity: 1,
+    discountedPrice: 10,
+    imagePath: 'assets/Marketplace/Frame 1 5.png',
+  ),
+  CartItem(
+    productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
+    price: 10.0,
+    quantity: 1,
+    discountedPrice: 10,
+    imagePath: 'assets/Marketplace/Frame 1 5.png',
+  ),
+  CartItem(
+    productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
+    price: 10.0,
+    quantity: 1,
+    discountedPrice: 10,
+    imagePath: 'assets/Marketplace/Frame 1 5.png',
+  ),
+  CartItem(
+    productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
+    price: 10.0,
+    quantity: 1,
+    discountedPrice: 10,
+    imagePath: 'assets/Marketplace/Frame 1 5.png',
+  ),
 ];
 
 List<ATMCardInfo> savedCards = [
@@ -861,3 +889,19 @@ final List<String> deliverySlots = [
   '2 PM - 6 PM',
   '6 PM - 8 PM',
 ];
+List<String> governorates = [
+  'Al Ahmadi',
+  'Hawalli',
+  'Farwaniya',
+  'Al Asimah',
+  'Jahra',
+  'Mubarak Al-Kabeer'
+];
+Map<String, List<String>> citiesByGovernorate = {
+  'Al Ahmadi': ['Fahaheel', 'Mangaf', 'Mahboula'],
+  'Hawalli': ['Hawalli', 'Salmiya', 'Bayan'],
+  'Farwaniya': ['Al-Farwaniyah', 'Al-Rai', 'Rabiya'],
+  'Al Asimah': ['Kuwait City', 'Dasma', 'Qortuba'],
+  'Jahra': ['Jahra', 'Naseem', 'Qasr'],
+  'Mubarak Al-Kabeer': ['Al-Abdali', 'Wafra', 'Mutlaa'],
+};

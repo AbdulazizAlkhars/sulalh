@@ -67,7 +67,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             children: [
               Text(
                 'Delivery Address',
-                style: AppFonts.title4(
+                style: AppFonts.title5(
                   color: AppColors.grayscale90,
                 ),
               ),
@@ -124,7 +124,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 children: [
                   Text(
                     'Delivery Time',
-                    style: AppFonts.title4(
+                    style: AppFonts.title5(
                       color: AppColors.grayscale90,
                     ),
                   ),
@@ -162,31 +162,39 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ),
               Text(
                 'Cart Items',
-                style: AppFonts.title4(
+                style: AppFonts.title5(
                   color: AppColors.grayscale90,
                 ),
               ),
               const SizedBox(height: 10),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: cartItems.length,
-                itemBuilder: (context, index) {
-                  final item = cartItems[index];
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                        bottom: 8.0), // Add space between cards
-                    child: CheckOutCartCard(
-                      imagePath: item.imagePath,
-                      productName: item.productName,
-                      price: item.price,
-                      quantity: item.quantity,
-                      onQuantityChanged: (newQuantity) {},
-                      discountprice: item.discountedPrice,
-                      onDelete: () => (item),
-                    ),
-                  );
-                },
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.0),
+                  border: Border.all(color: AppColors.grayscale20),
+                  color: AppColors.grayscale00,
+                ),
+                height: 400,
+                child: Scrollbar(
+                  child: ListView.builder(
+                    itemCount: cartItems.length,
+                    itemBuilder: (context, index) {
+                      final item = cartItems[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 8.0), // Add space between cards
+                        child: CheckOutCartCard(
+                          imagePath: item.imagePath,
+                          productName: item.productName,
+                          price: item.price,
+                          quantity: item.quantity,
+                          onQuantityChanged: (newQuantity) {},
+                          discountprice: item.discountedPrice,
+                          onDelete: () => (item),
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 10,
@@ -199,7 +207,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ),
               Text(
                 'Payment Methods',
-                style: AppFonts.title4(
+                style: AppFonts.title5(
                   color: AppColors.grayscale90,
                 ),
               ),
@@ -335,7 +343,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               children: [
                 Text(
                   'Your Order',
-                  style: AppFonts.title4(
+                  style: AppFonts.title5(
                     color: AppColors.grayscale90,
                   ),
                 ),
