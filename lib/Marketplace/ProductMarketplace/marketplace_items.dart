@@ -56,10 +56,11 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                   child: const Icon(
                     Icons.person_outline_rounded,
                     color: Colors.black,
+                    size: 20,
                   ),
                 ),
                 onPressed:
-                    () {}, // Call the addAnimal function when the button is pressed
+                    () {}, // Call the signin function when the button is pressed
               ),
             ],
           ),
@@ -75,7 +76,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                 child: const Icon(
                   Icons.shopping_cart_outlined,
                   color: Colors.white,
-                  size: 25,
+                  size: 20,
                 )),
             onPressed: () {
               Navigator.push(
@@ -437,7 +438,9 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
             const SizedBox(
               height: 15,
             ),
-            const Divider(),
+            Divider(
+              color: AppColors.grayscale10,
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
@@ -486,7 +489,9 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
             ProductTwoGridsWidget(
               mainProductList: mainProductList,
             ),
-            const Divider(),
+            Divider(
+              color: AppColors.grayscale10,
+            ),
             const SizedBox(height: 15),
 
             Stack(

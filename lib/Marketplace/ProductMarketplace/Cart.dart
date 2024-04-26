@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/checkout_item.dart';
-import 'package:hathera_demo/Marketplace/ProductMarketplace/product_details_page.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
 import '../Lists.dart';
 import 'ProductMarketplaceWidgets/cart_card_widget.dart';
-import 'ProductMarketplaceWidgets/item_promotional_chips_widget.dart';
-import 'marketplace_items.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -100,11 +97,11 @@ class _CartPageState extends State<CartPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Text(
                     'Items In The Cart', // Your heading text
                     style: AppFonts.title5(
@@ -112,13 +109,13 @@ class _CartPageState extends State<CartPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Expanded(
@@ -127,8 +124,8 @@ class _CartPageState extends State<CartPage> {
               itemBuilder: (context, index) {
                 final item = cartItems[index];
                 return Padding(
-                  padding:
-                      EdgeInsets.only(bottom: 5.0), // Add space between cards
+                  padding: const EdgeInsets.only(
+                      bottom: 5.0), // Add space between cards
                   child: CartCard(
                     imagePath: item.imagePath,
                     productName: item.productName,
@@ -172,16 +169,16 @@ class _CartPageState extends State<CartPage> {
                           color: AppColors.primary30,
                         ),
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Text(
                         '${totalGrossAmount.toStringAsFixed(2)} KD',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 14,
                           color: AppColors.grayscale60,
                           decoration: TextDecoration.lineThrough,
                         ),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
@@ -219,7 +216,7 @@ class _CartPageState extends State<CartPage> {
                       color: AppColors.grayscale90,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   )
                 ],

@@ -129,6 +129,11 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
   double _minPrice = 0;
   double _maxPrice = 50;
   bool _applyPriceFilter = false;
+  List<String> priceSorting = [
+    'Low To High',
+    'High To Low',
+  ];
+  List<bool> selectedPriceOptions = List<bool>.filled(6, false);
 
   final TextEditingController _minPriceController = TextEditingController();
   final TextEditingController _maxPriceController = TextEditingController();
@@ -145,6 +150,62 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List.generate(priceSorting.length, (index) {
+            bool isSelected = selectedPriceOptions[index];
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      for (int i = 0; i < selectedPriceOptions.length; i++) {
+                        if (i == index) {
+                          selectedPriceOptions[i] =
+                              true; // Set the selected option
+                        } else {
+                          selectedPriceOptions[i] =
+                              false; // Clear other selections
+                        }
+                      }
+                    });
+                  },
+                  child: Row(
+                    children: [
+                      Text(
+                        priceSorting[index],
+                        style: AppFonts.body2(
+                          color: AppColors.grayscale90,
+                        ),
+                      ),
+                      Spacer(),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.064,
+                        height: MediaQuery.of(context).size.width * 0.064,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: isSelected
+                                ? AppColors.primary20
+                                : AppColors.grayscale30,
+                            width: isSelected ? 6.0 : 1.0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+              ],
+            );
+          }),
+        ),
+        SizedBox(
+          height: 10,
+        ),
         Row(
           children: [
             Text(
@@ -285,21 +346,27 @@ class _ItemSortingFilterWidgetState extends State<ItemSortingFilterWidget> {
     'Descending',
   ];
 
-  List<bool> selecteddealOptions = List<bool>.filled(6, false);
+  List<bool> selectedSortOptions = List<bool>.filled(6, false);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(itemSorting.length, (index) {
-        bool isSelected = selecteddealOptions[index];
+        bool isSelected = selectedSortOptions[index];
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
               onTap: () {
                 setState(() {
-                  selecteddealOptions[index] = !isSelected;
+                  for (int i = 0; i < selectedSortOptions.length; i++) {
+                    if (i == index) {
+                      selectedSortOptions[i] = true; // Set the selected option
+                    } else {
+                      selectedSortOptions[i] = false; // Clear other selections
+                    }
+                  }
                 });
               },
               child: Row(
@@ -352,21 +419,29 @@ class _DiscountFilterWidgetState extends State<DiscountFilterWidget> {
     '70% Off or more',
   ];
 
-  List<bool> selectedOptions = List<bool>.filled(6, false);
+  List<bool> selectedDiscountOptions = List<bool>.filled(6, false);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(discountOptions.length, (index) {
-        bool isSelected = selectedOptions[index];
+        bool isSelected = selectedDiscountOptions[index];
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
               onTap: () {
                 setState(() {
-                  selectedOptions[index] = !isSelected;
+                  for (int i = 0; i < selectedDiscountOptions.length; i++) {
+                    if (i == index) {
+                      selectedDiscountOptions[i] =
+                          true; // Set the selected option
+                    } else {
+                      selectedDiscountOptions[i] =
+                          false; // Clear other selections
+                    }
+                  }
                 });
               },
               child: Row(
@@ -430,7 +505,13 @@ class _DealFilterWidgetState extends State<DealFilterWidget> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  selecteddealOptions[index] = !isSelected;
+                  for (int i = 0; i < selecteddealOptions.length; i++) {
+                    if (i == index) {
+                      selecteddealOptions[i] = true; // Set the selected option
+                    } else {
+                      selecteddealOptions[i] = false; // Clear other selections
+                    }
+                  }
                 });
               },
               child: Row(
@@ -474,7 +555,7 @@ class RatingsFilterWidget extends StatefulWidget {
 }
 
 class _RatingsFilterWidgetState extends State<RatingsFilterWidget> {
-  List<bool> selectedOptions = List<bool>.filled(4, false);
+  List<bool> selectedRatingOptions = List<bool>.filled(4, false);
 
   @override
   Widget build(BuildContext context) {
@@ -482,14 +563,22 @@ class _RatingsFilterWidgetState extends State<RatingsFilterWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(4, (index) {
         int starCount = index + 1;
-        bool isSelected = selectedOptions[index];
+        bool isSelected = selectedRatingOptions[index];
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
               onTap: () {
                 setState(() {
-                  selectedOptions[index] = !isSelected;
+                  for (int i = 0; i < selectedRatingOptions.length; i++) {
+                    if (i == index) {
+                      selectedRatingOptions[i] =
+                          true; // Set the selected option
+                    } else {
+                      selectedRatingOptions[i] =
+                          false; // Clear other selections
+                    }
+                  }
                 });
               },
               child: Row(

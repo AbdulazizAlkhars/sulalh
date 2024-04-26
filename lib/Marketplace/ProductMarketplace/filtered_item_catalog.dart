@@ -5,12 +5,9 @@ import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
 import 'ProductMarketplaceWidgets/chips_widget.dart';
 import 'ProductMarketplaceWidgets/filter_items_widget.dart';
-import 'ProductMarketplaceWidgets/item_promotional_chips_widget.dart';
 import 'ProductMarketplaceWidgets/product_onegrid_widget.dart';
 import 'ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
 import 'ProductMarketplaceWidgets/select_your_animal_modal.dart';
-import 'marketplace_items.dart';
-import 'product_details_page.dart';
 
 class FilteredItemCatalog extends StatefulWidget {
   const FilteredItemCatalog({super.key});

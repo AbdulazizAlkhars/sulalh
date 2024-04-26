@@ -52,8 +52,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         leading: IconButton(
           padding: EdgeInsets.zero,
           icon: Container(
-            width: MediaQuery.of(context).size.width * 0.1,
-            height: MediaQuery.of(context).size.width * 0.1,
+            width: MediaQuery.of(context).size.width * 0.09,
+            height: MediaQuery.of(context).size.width * 0.09,
             decoration: BoxDecoration(
               color: AppColors.grayscale10,
               borderRadius: BorderRadius.circular(50),
@@ -454,7 +454,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     style: AppFonts.body2(color: AppColors.grayscale90),
                   ),
                   const SizedBox(height: 10),
-                  const Divider(),
+                  Divider(
+                    color: AppColors.grayscale10,
+                  ),
                   const SizedBox(height: 10),
                   RatingSummaryWidget(reviews: reviews),
                   Row(
@@ -538,7 +540,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   ),
                 ],
               ),
-              const Divider(),
+              Divider(
+                color: AppColors.grayscale10,
+              ),
               Row(
                 children: [
                   Expanded(

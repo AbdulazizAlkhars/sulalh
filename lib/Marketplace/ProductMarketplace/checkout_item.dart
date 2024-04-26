@@ -113,7 +113,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
               const SizedBox(
                 height: 10,
               ),
-              const Divider(),
+              Divider(
+                color: AppColors.grayscale10,
+              ),
               const SizedBox(
                 height: 10,
               ),
@@ -152,7 +154,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
               const SizedBox(
                 height: 10,
               ),
-              const Divider(),
+              Divider(
+                color: AppColors.grayscale10,
+              ),
               const SizedBox(
                 height: 10,
               ),
@@ -187,7 +191,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
               const SizedBox(
                 height: 10,
               ),
-              const Divider(),
+              Divider(
+                color: AppColors.grayscale10,
+              ),
               const SizedBox(
                 height: 10,
               ),

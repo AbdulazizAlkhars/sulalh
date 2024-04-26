@@ -307,7 +307,10 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                     ),
                   ],
                 ),
-              const SizedBox(height: 15), const Divider(),
+              const SizedBox(height: 15),
+              Divider(
+                color: AppColors.grayscale10,
+              ),
               const SizedBox(height: 10),
               RatingSummaryWidget(reviews: reviews),
               Row(

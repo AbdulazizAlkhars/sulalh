@@ -53,7 +53,9 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
               Column(
                 children: [
                   AnimalFilterWidget(),
-                  Divider(),
+                  Divider(
+                    color: AppColors.grayscale10,
+                  ),
                 ],
               ),
             ),
@@ -63,7 +65,9 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
               Column(
                 children: [
                   ShopSortingFilterWidget(),
-                  Divider(),
+                  Divider(
+                    color: AppColors.grayscale10,
+                  ),
                 ],
               ),
             ),
@@ -73,7 +77,9 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
               Column(
                 children: [
                   ShopStatusFilterWidget(),
-                  Divider(),
+                  Divider(
+                    color: AppColors.grayscale10,
+                  ),
                 ],
               ),
             ),
@@ -83,7 +89,9 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
               Column(
                 children: [
                   LocationFilterWidget(),
-                  Divider(),
+                  Divider(
+                    color: AppColors.grayscale10,
+                  ),
                 ],
               ),
             ),
@@ -93,7 +101,9 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
               Column(
                 children: [
                   PriceFilterWidget(),
-                  Divider(),
+                  Divider(
+                    color: AppColors.grayscale10,
+                  ),
                 ],
               ),
             ),

@@ -49,8 +49,6 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> displayedAnimals =
-        isExpanded ? filteredAnimals : filteredAnimals.take(5).toList();
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -132,9 +130,9 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
                 padding: const EdgeInsets.all(8.0),
                 child: Scrollbar(
                   child: ListView.builder(
-                    itemCount: displayedAnimals.length,
+                    itemCount: myAnimals.length,
                     itemBuilder: (context, index) {
-                      final myAnimal = displayedAnimals[index];
+                      final myAnimal = myAnimals[index];
                       bool isSelected = selectedAnimal == myAnimal['name'];
                       return Padding(
                         padding: const EdgeInsets.only(

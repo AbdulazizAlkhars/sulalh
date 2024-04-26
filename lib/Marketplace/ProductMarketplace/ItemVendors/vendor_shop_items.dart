@@ -1,9 +1,7 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Marketplace/Lists.dart';
-import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/vendor_item_animal_category_widget.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/filter_items_widget.dart';
 
 import '../../../Theme/Colors.dart';
@@ -13,10 +11,6 @@ import '../ProductMarketplaceWidgets/chips_widget.dart';
 import '../ProductMarketplaceWidgets/product_onegrid_widget.dart';
 import '../ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
 import '../ProductMarketplaceWidgets/select_your_animal_modal.dart';
-import '../filtered_item_catalog.dart';
-import '../marketplace_items.dart';
-import '../product_details_page.dart';
-import 'vendor_items_category_widget.dart';
 
 class VendorShopItems extends StatefulWidget {
   final int index;
@@ -207,7 +201,7 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                                     ],
                                   ),
                                   child: CircleAvatar(
-                                    backgroundColor: AppColors.grayscale00,
+                                    backgroundColor: AppColors.grayscale0,
                                     radius: 30,
                                     child: Icon(
                                       iconData,
@@ -290,7 +284,9 @@ class _VendorShopItemsState extends State<VendorShopItems> {
               //   ],
               // ),
 
-              Divider(),
+              Divider(
+                color: AppColors.grayscale10,
+              ),
               const SizedBox(
                 height: 5,
               ),

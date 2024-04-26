@@ -29,7 +29,7 @@ List<Map<String, dynamic>> animalVendorData = [
   },
   {
     'imageAsset': 'assets/Marketplace/Frame 2087325740.png',
-    'name': 'Product For \n Farmers',
+    'name': 'Pet Hub',
   },
   {
     'imageAsset': 'assets/Marketplace/Frame 2087325740.png',
@@ -94,14 +94,14 @@ List<Map<String, dynamic>> ProductVendorData = [
     'address': '4358 Jonathan Street, Denver'
   },
   {
-    'imageAsset': 'assets/Marketplace/Frame 2087325740.png',
-    'name': 'Product For Farmers',
+    'imageAsset': 'assets/Marketplace/Frame 2087325740 3.png',
+    'name': 'Pet Hub',
     'shopstatus': 'Verified',
     'description':
         'Farmshop is a comprehensive store for all your farm animal needs. From high-quality feed to specialized grooming tools, it offers a wide range of products designed to keep your livestock healthy and thriving. The shop prides itself on its knowledgeable staff who are always ready to provide expert advice and excellent customer service.',
-    'facebook': 'facebook/ProductForFarmers.com',
-    'instagram': '@ProductForFarmers',
-    'website': 'ProductForFarmers.com',
+    'facebook': 'facebook/PetHub.com',
+    'instagram': '@PetHub',
+    'website': 'PetHub.com',
     'address': '4358 Jonathan Street, Denver'
   },
   {
@@ -793,6 +793,14 @@ List<Map<String, dynamic>> myAnimals = [
   {
     'imageAsset': 'assets/avatars/120px/Horse.png',
     'name': 'Sumo',
+  },
+  {
+    'imageAsset': 'assets/avatars/120px/Duck.png',
+    'name': 'King',
+  },
+  {
+    'imageAsset': 'assets/avatars/120px/Chicken.png',
+    'name': 'Fazzy',
   },
 ];
 List<Map<String, dynamic>> animalSpecies = [
