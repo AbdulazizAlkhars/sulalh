@@ -8,7 +8,9 @@ import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../Cart.dart';
 import '../ProductMarketplaceWidgets/chips_widget.dart';
+import '../ProductMarketplaceWidgets/column_product_card_widget.dart';
 import '../ProductMarketplaceWidgets/product_onegrid_widget.dart';
+import '../ProductMarketplaceWidgets/scrollable_product_cards_widget.dart';
 import '../ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
 import '../ProductMarketplaceWidgets/select_your_animal_modal.dart';
 
@@ -290,14 +292,6 @@ class _VendorShopItemsState extends State<VendorShopItems> {
               const SizedBox(
                 height: 5,
               ),
-              Center(
-                child: Text(
-                  'Catalog',
-                  style: AppFonts.title4(
-                    color: AppColors.grayscale90,
-                  ),
-                ),
-              ),
 
               const SizedBox(
                 height: 10,
@@ -363,7 +357,34 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                 height: 15,
               ),
               ProductOneGridWidget(
-                mainProductList: mainProductList,
+                mainProductList: topProductList,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text('Best Deals',
+                          style: AppFonts.title5(color: AppColors.grayscale90)),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        showFilterItemBottomSheet(context);
+                      },
+                      child: Text(
+                        'See More',
+                        style: AppFonts.body1(color: AppColors.primary40),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ScrollableProductCardsWidget(
+                mainProductList: prevouslyBoughtProductList,
+              ),
+              const SizedBox(
+                height: 15,
               ),
             ],
           ),

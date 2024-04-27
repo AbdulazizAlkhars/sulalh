@@ -9,8 +9,10 @@ import '../Lists.dart';
 import 'Cart.dart';
 import 'ItemVendors/vendor_shop_details.dart';
 import 'ProductMarketplaceWidgets/change_address_modal_sheet.dart';
+import 'ProductMarketplaceWidgets/column_product_card_widget.dart';
 import 'ProductMarketplaceWidgets/filter_items_widget.dart';
 import 'ProductMarketplaceWidgets/product_twogrids_widget.dart';
+import 'ProductMarketplaceWidgets/scrollable_product_cards_widget.dart';
 import 'ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
 import 'filtered_item_catalog.dart';
 
@@ -439,6 +441,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
             const Divider(
               color: AppColors.grayscale10,
             ),
+
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
@@ -448,7 +451,6 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                     )),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -484,8 +486,52 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                 ],
               ),
             ),
+            ScrollableProductCardsWidget(
+              mainProductList: prevouslyBoughtProductList,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            const Divider(
+              color: AppColors.grayscale10,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Text('Top Products',
+                        style: AppFonts.title5(color: AppColors.grayscale90)),
+                  ),
+                  Expanded(
+                    flex: 0,
+                    child: GestureDetector(
+                      onTap: () {
+                        showFilterItemBottomSheet(context);
+                      },
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.filter_list,
+                            color: AppColors.primary50,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            'Filters',
+                            style: AppFonts.body1(color: AppColors.primary40),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             ProductTwoGridsWidget(
-              mainProductList: mainProductList,
+              mainProductList: topProductList,
             ),
             Divider(
               color: AppColors.grayscale10,
@@ -584,7 +630,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
               ),
             ),
             ProductTwoGridsWidget(
-              mainProductList: mainProductList,
+              mainProductList: recommendedProductList,
             ),
           ],
         ),

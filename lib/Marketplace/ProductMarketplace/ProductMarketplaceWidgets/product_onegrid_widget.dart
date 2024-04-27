@@ -5,7 +5,7 @@ import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
 import '../marketplace_items.dart';
 import '../product_details_page.dart';
-import 'horizontal_product_card_widget.dart';
+import 'row_product_card_widget.dart';
 import 'item_promotional_chips_widget.dart';
 
 class ProductOneGridWidget extends StatelessWidget {
@@ -25,11 +25,11 @@ class ProductOneGridWidget extends StatelessWidget {
             crossAxisCount: 1,
             childAspectRatio: 2.5, // Adjust aspect ratio as needed
           ),
-          itemCount: filteredProductList.length,
+          itemCount: topProductList.length,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
-            final product = filteredProductList[index];
+            final product = topProductList[index];
             return GestureDetector(
                 onTap: () {
                   Navigator.push(

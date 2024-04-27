@@ -562,7 +562,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   ),
                 ],
               ),
-              ProductTwoGridsWidget(mainProductList: filteredProductList)
+              ProductTwoGridsWidget(mainProductList: similarProductList)
             ],
           ),
         ),

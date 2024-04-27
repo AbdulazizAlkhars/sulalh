@@ -5,9 +5,11 @@ import 'package:hathera_demo/Theme/Fonts.dart';
 
 import '../Lists.dart';
 import 'ProductMarketplaceWidgets/cart_card_widget.dart';
+import 'ProductMarketplaceWidgets/column_product_card_widget.dart';
 import 'ProductMarketplaceWidgets/filter_items_widget.dart';
 import 'ProductMarketplaceWidgets/product_onegrid_widget.dart';
 import 'ProductMarketplaceWidgets/product_twogrids_widget.dart';
+import 'ProductMarketplaceWidgets/scrollable_product_cards_widget.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -151,7 +153,7 @@ class _CartPageState extends State<CartPage> {
               },
             ),
             Divider(
-              color: AppColors.grayscale10,
+              color: AppColors.grayscale50,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -162,34 +164,37 @@ class _CartPageState extends State<CartPage> {
                     child: Text('Previously Bought',
                         style: AppFonts.title5(color: AppColors.grayscale90)),
                   ),
+                  Text(
+                    'See More',
+                    style: AppFonts.body1(color: AppColors.primary40),
+                  ),
+                ],
+              ),
+            ),
+            ScrollableProductCardsWidget(
+              mainProductList: prevouslyBoughtProductList,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
                   Expanded(
-                    flex: 0,
-                    child: GestureDetector(
-                      onTap: () {
-                        showFilterItemBottomSheet(context);
-                      },
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.filter_list,
-                            color: AppColors.primary50,
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            'Filters',
-                            style: AppFonts.body1(color: AppColors.primary40),
-                          ),
-                        ],
-                      ),
-                    ),
+                    flex: 2,
+                    child: Text('Recommended Products',
+                        style: AppFonts.title5(color: AppColors.grayscale90)),
+                  ),
+                  Text(
+                    'See More',
+                    style: AppFonts.body1(color: AppColors.primary40),
                   ),
                 ],
               ),
             ),
             ProductTwoGridsWidget(
-              mainProductList: mainProductList,
+              mainProductList: prevouslyBoughtProductList,
             ),
           ],
         ),
