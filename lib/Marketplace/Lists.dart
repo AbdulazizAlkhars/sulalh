@@ -298,7 +298,6 @@ final List<ProductDetails> mainProductList = [
 List<String> filteredCatalogChipsList = [
   'Dry Food', 'Wet Food',
   'Cleaning & Hygiene',
-  'Grooming',
 
   // Add more chip labels as needed
 ];

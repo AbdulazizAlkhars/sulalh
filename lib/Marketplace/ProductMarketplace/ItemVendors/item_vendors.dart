@@ -1,7 +1,7 @@
 // Import necessary packages
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/add_store_modal_sheet.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/add_store_modal_sheet.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
@@ -140,11 +140,16 @@ class _ItemVendorsState extends State<ItemVendors> {
             children: [
               const SizedBox(height: 10),
               Text(
-                'Have a pet business & want to connect with Sulala?\nPlease click the Add Store button on top',
-                // 'Have A Pet Business & Want To Connect With Sulala?\nPlease Click The Add Store Button On Top',
-                style: AppFonts.body2(color: AppColors.grayscale90),
+                // 'Have a pet business & want to sell on Sulala?\nPlease click the Add Store button on top',
+                'Have A Pet Business & Want To Sell On Sulala?\nPlease Click The Add Store Button On Top',
+                style: AppFonts.body1(color: AppColors.grayscale90),
               ),
               const SizedBox(height: 20),
+              Text(
+                'List Of Vendors',
+                style: AppFonts.title4(color: AppColors.grayscale90),
+              ),
+              const SizedBox(height: 10),
               Row(
                 children: [
                   Expanded(

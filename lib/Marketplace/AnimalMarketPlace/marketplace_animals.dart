@@ -7,7 +7,6 @@ import '../Lists.dart';
 import '../ProductMarketplace/ItemVendors/vendor_item_animal_category_widget.dart';
 import '../ProductMarketplace/ProductMarketplaceWidgets/community_avatars_widget.dart';
 
-import '../ProductMarketplace/product_details_page.dart';
 import '../ProductMarketplace/ProductMarketplaceWidgets/vendors_avatars_widget.dart';
 import 'animal_details_page.dart';
 
@@ -169,7 +168,7 @@ class _MarketplaceAnimalState extends State<MarketplaceAnimal> {
                         backgroundColor: Colors.white,
                         context: context,
                         builder: (BuildContext context) {
-                          return VendorAnimalCategory();
+                          return const VendorAnimalCategory();
                         },
                       );
                     },

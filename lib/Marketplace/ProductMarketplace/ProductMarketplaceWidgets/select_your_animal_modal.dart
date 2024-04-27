@@ -190,7 +190,9 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
             const SizedBox(
               height: 10,
             ),
-            Divider(),
+            Divider(
+              color: AppColors.grayscale20,
+            ),
             Text(
               'Select By Species',
               style: AppFonts.title4(color: AppColors.grayscale90),
@@ -270,21 +272,49 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Visibility(
-                  visible: selectedSpeciesIndex != -1 &&
-                      animalSpecies.length > selectedSpeciesIndex,
-                  child: Text(
-                    'Select Breed',
-                    style: AppFonts.title5(color: AppColors.grayscale90),
-                  ),
+                Text(
+                  'Select Breed',
+                  style: AppFonts.title5(color: AppColors.grayscale90),
                 ),
                 const SizedBox(height: 16),
                 // Display breeds list below the species row
                 if (selectedSpeciesIndex != -1 &&
                     animalSpecies.length > selectedSpeciesIndex)
-                  breedsListWidget(speciesBreeds[
-                          animalSpecies[selectedSpeciesIndex]['name']] ??
-                      []),
+                  breedsListWidget(
+                    speciesBreeds[animalSpecies[selectedSpeciesIndex]
+                            ['name']] ??
+                        [],
+                  )
+                else
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      border: Border.all(color: AppColors.grayscale20),
+                      color: AppColors.grayscale00,
+                    ),
+                    height: 200,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.pets,
+                          color: AppColors.primary20,
+                          size: 20,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Center(
+                          child: Text(
+                            'Please select a species',
+                            style: AppFonts.headline4(
+                                color: AppColors.grayscale90),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
                 const SizedBox(height: 16),
                 // Display selected breed
               ],

@@ -2,13 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/textfield_suggestion_widget.dart';
-import 'package:hathera_demo/Widgets/PhoneNumTextFieldWidget.dart';
+
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
 import '../add_new_address.dart';
-import 'searchable_dropdown_widget.dart';
-import 'textfield_widget.dart';
 
 class AddYourStoreModal extends StatefulWidget {
   const AddYourStoreModal({Key? key}) : super(key: key);
@@ -60,18 +58,39 @@ class _AddYourStoreModalState extends State<AddYourStoreModal> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
-              child: Text(
-                'Join Sulala To Sell',
-                style: AppFonts.title4(color: AppColors.grayscale90),
-                textAlign: TextAlign.center,
-              ),
+            Row(
+              children: [
+                Center(
+                  child: Text(
+                    'Join Sulala To Sell',
+                    style: AppFonts.title4(color: AppColors.grayscale90),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Spacer(),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    color: AppColors.primary50,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8.0,
+                      horizontal: 16.0,
+                    ),
+                    child: Text(
+                      'Sulala.com',
+                      style: AppFonts.body1(color: AppColors.grayscale00),
+                    ),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(
               height: 25,
             ),
             Text(
-              'To start registering your business with Sulala,\nPlease fill the Application.',
+              'To start registering your business with Sulala,\nPlease fill the application or visit our website',
               style: AppFonts.headline4(color: AppColors.grayscale90),
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.029),

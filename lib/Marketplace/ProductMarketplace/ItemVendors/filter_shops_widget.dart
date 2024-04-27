@@ -46,15 +46,15 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             _buildFilterOption(
               context,
               'Animal',
-              Column(
+              const Column(
                 children: [
                   AnimalFilterWidget(),
                   Divider(
-                    color: AppColors.grayscale10,
+                    color: AppColors.grayscale20,
                   ),
                 ],
               ),
@@ -65,8 +65,8 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
               Column(
                 children: [
                   ShopSortingFilterWidget(),
-                  Divider(
-                    color: AppColors.grayscale10,
+                  const Divider(
+                    color: AppColors.grayscale20,
                   ),
                 ],
               ),
@@ -77,8 +77,8 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
               Column(
                 children: [
                   ShopStatusFilterWidget(),
-                  Divider(
-                    color: AppColors.grayscale10,
+                  const Divider(
+                    color: AppColors.grayscale20,
                   ),
                 ],
               ),
@@ -89,8 +89,8 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
               Column(
                 children: [
                   LocationFilterWidget(),
-                  Divider(
-                    color: AppColors.grayscale10,
+                  const Divider(
+                    color: AppColors.grayscale20,
                   ),
                 ],
               ),
@@ -101,8 +101,8 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
               Column(
                 children: [
                   PriceFilterWidget(),
-                  Divider(
-                    color: AppColors.grayscale10,
+                  const Divider(
+                    color: AppColors.grayscale20,
                   ),
                 ],
               ),
@@ -154,7 +154,7 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: Text(
             title,
             style: AppFonts.title5(
@@ -283,7 +283,7 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
                 color: AppColors.grayscale90,
               ),
             ),
-            Spacer(),
+            const Spacer(),
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -306,7 +306,7 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
             ),
           ],
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -436,7 +436,7 @@ class _LocationFilterWidgetState extends State<LocationFilterWidget> {
                       color: isSelected ? AppColors.primary30 : Colors.black,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Icon(
                     isSelected ? Icons.expand_less : Icons.expand_more,
                     color: isSelected ? AppColors.primary30 : Colors.black,
@@ -444,7 +444,7 @@ class _LocationFilterWidgetState extends State<LocationFilterWidget> {
                 ],
               ),
             ),
-            SizedBox(height: 8), // Add spacing between city rows
+            const SizedBox(height: 8), // Add spacing between city rows
             if (isSelected)
               Column(
                 children: [
@@ -452,7 +452,7 @@ class _LocationFilterWidgetState extends State<LocationFilterWidget> {
                       i < citiesByGovernorate[governorates[index]]!.length;
                       i++)
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Column(
                         children: [
                           GestureDetector(
@@ -474,7 +474,7 @@ class _LocationFilterWidgetState extends State<LocationFilterWidget> {
                                     color: Colors.black,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Container(
                                   width:
                                       MediaQuery.of(context).size.width * 0.064,
@@ -499,13 +499,14 @@ class _LocationFilterWidgetState extends State<LocationFilterWidget> {
                               ],
                             ),
                           ),
-                          SizedBox(height: 8), // Add spacing between city rows
+                          const SizedBox(
+                              height: 8), // Add spacing between city rows
                         ],
                       ),
                     ),
                 ],
               ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
           ],
@@ -552,7 +553,7 @@ class _ShopStatusFilterWidgetState extends State<ShopStatusFilterWidget> {
                       color: AppColors.grayscale90,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.064,
                     height: MediaQuery.of(context).size.width * 0.064,
@@ -569,7 +570,7 @@ class _ShopStatusFilterWidgetState extends State<ShopStatusFilterWidget> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10, // Adjust the height as needed
             ),
           ],
@@ -616,7 +617,7 @@ class _ShopSortingFilterWidgetState extends State<ShopSortingFilterWidget> {
                       color: AppColors.grayscale90,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.064,
                     height: MediaQuery.of(context).size.width * 0.064,
@@ -633,7 +634,7 @@ class _ShopSortingFilterWidgetState extends State<ShopSortingFilterWidget> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10, // Adjust the height as needed
             ),
           ],
@@ -682,14 +683,14 @@ class _RatingsFilterWidgetState extends State<RatingsFilterWidget> {
                       },
                     ),
                   ),
-                  SizedBox(width: 5),
+                  const SizedBox(width: 5),
                   Text(
                     '$starCount stars & above',
                     style: AppFonts.body2(
                       color: AppColors.grayscale90,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.064,
                     height: MediaQuery.of(context).size.width * 0.064,
@@ -706,7 +707,7 @@ class _RatingsFilterWidgetState extends State<RatingsFilterWidget> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
           ],

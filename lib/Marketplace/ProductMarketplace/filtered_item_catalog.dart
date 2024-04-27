@@ -1,8 +1,12 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Marketplace/Lists.dart';
 
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
+import 'Cart.dart';
 import 'ProductMarketplaceWidgets/chips_widget.dart';
 import 'ProductMarketplaceWidgets/filter_items_widget.dart';
 import 'ProductMarketplaceWidgets/product_onegrid_widget.dart';
@@ -17,6 +21,7 @@ class FilteredItemCatalog extends StatefulWidget {
 }
 
 class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,21 +55,26 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
         ),
         actions: [
           IconButton(
+            padding: EdgeInsets.zero,
             icon: Container(
-              padding:
-                  EdgeInsets.all(MediaQuery.of(context).size.width * 0.016),
-              decoration: BoxDecoration(
-                color: AppColors.grayscale10,
-                borderRadius: BorderRadius.circular(50),
+              width: MediaQuery.of(context).size.width * 0.09,
+              height: MediaQuery.of(context).size.width * 0.09,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.primary50,
               ),
               child: const Icon(
-                Icons.filter_list,
-                color: Colors.black,
+                Icons.shopping_cart_outlined,
+                color: Colors.white,
+                size: 20,
               ),
             ),
             onPressed: () {
-              showFilterItemBottomSheet(context);
-            },
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CartPage()),
+              );
+            }, // Call the addAnimal function when the button is pressed
           ),
         ],
       ),
@@ -129,11 +139,37 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
               const SizedBox(
                 height: 15,
               ),
-              Text(
-                'Catalog',
-                style: AppFonts.title5(
-                  color: AppColors.grayscale90,
-                ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Catalog',
+                      style: AppFonts.title5(
+                        color: AppColors.grayscale90,
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      showFilterItemBottomSheet(context);
+                    },
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.filter_list,
+                          color: AppColors.primary50,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          'Filters',
+                          style: AppFonts.body1(color: AppColors.primary40),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 10,
@@ -167,6 +203,115 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
               ),
               const SizedBox(
                 height: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text('Top Products',
+                          style: AppFonts.title5(color: AppColors.grayscale90)),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        showFilterItemBottomSheet(context);
+                      },
+                      child: Text(
+                        'See More',
+                        style: AppFonts.body1(color: AppColors.primary40),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ProductOneGridWidget(
+                mainProductList: mainProductList,
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Divider(
+                color: AppColors.grayscale10,
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  CarouselSlider(
+                    options: CarouselOptions(
+                      autoPlay: true,
+                      aspectRatio: 22 / 8,
+                      viewportFraction: 1.0,
+                      onPageChanged: (index, _) {
+                        setState(() {
+                          _currentIndex = index;
+                        });
+                      },
+                    ),
+                    items: productadvertisements.map((ad) {
+                      return Builder(
+                        builder: (BuildContext context) {
+                          return Container(
+                            width: MediaQuery.of(context).size.width,
+                            margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                            child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.circular(20), // Rounded corners
+                              child: Image.asset(
+                                ad,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    }).toList(),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:
+                        productadvertisements.asMap().entries.map((entry) {
+                      int index = entry.key;
+                      return Container(
+                        width: 8.0,
+                        height: 8.0,
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 2.0),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: _currentIndex == index
+                              ? AppColors.primary50
+                              : AppColors.grayscale10,
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text('Previously Bought',
+                          style: AppFonts.title5(color: AppColors.grayscale90)),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        showFilterItemBottomSheet(context);
+                      },
+                      child: Text(
+                        'See More',
+                        style: AppFonts.body1(color: AppColors.primary40),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               ProductOneGridWidget(
                 mainProductList: mainProductList,

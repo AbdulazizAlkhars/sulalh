@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/item_vendors.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/select_your_animal_modal.dart';
 
@@ -12,7 +10,6 @@ import 'Cart.dart';
 import 'ItemVendors/vendor_shop_details.dart';
 import 'ProductMarketplaceWidgets/change_address_modal_sheet.dart';
 import 'ProductMarketplaceWidgets/filter_items_widget.dart';
-import 'ProductMarketplaceWidgets/product_onegrid_widget.dart';
 import 'ProductMarketplaceWidgets/product_twogrids_widget.dart';
 import 'ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
 import 'filtered_item_catalog.dart';
@@ -439,7 +436,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
             const SizedBox(
               height: 15,
             ),
-            Divider(
+            const Divider(
               color: AppColors.grayscale10,
             ),
             Padding(
