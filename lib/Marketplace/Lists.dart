@@ -1208,3 +1208,90 @@ Map<String, List<String>> citiesByGovernorate = {
   'Jahra': ['Jahra', 'Naseem', 'Qasr'],
   'Mubarak Al-Kabeer': ['Al-Abdali', 'Wafra', 'Mutlaa'],
 };
+
+List<Map<String, dynamic>> petProductBrands = [
+  {
+    'name': 'Acana',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Blue Buffalo',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Canidae',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Diamond Pet Foods',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Earthborn Holistic',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Fromm Family Foods',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Hill\'s Pet Nutrition',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Iams',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Merrick Pet Care',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Natural Balance Pet Foods',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Orijen',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Purina',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Royal Canin',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Stella & Chewy\'s',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Taste of the Wild',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Wellness Pet Food',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'ZiwiPeak',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Artemis Pet Food',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Fussie Cat',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Lotus Pet Foods',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+  {
+    'name': 'Nulo Pet Food',
+    'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
+  },
+];

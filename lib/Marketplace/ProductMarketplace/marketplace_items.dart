@@ -37,9 +37,23 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         surfaceTintColor: Colors.white,
-        title: Text(
-          'Sulala',
-          style: AppFonts.title2(color: AppColors.grayscale90),
+        title: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: MediaQuery.of(context).size.width * 0.047,
+              backgroundImage: const AssetImage(
+                'assets/Marketplace/sulala_only_logo.png',
+              ),
+            ),
+            const SizedBox(
+              width: 2,
+            ),
+            Text(
+              'Sulala',
+              style: AppFonts.title2(color: AppColors.grayscale90),
+            ),
+          ],
         ),
         actions: [
           Row(
@@ -349,7 +363,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                         Expanded(
                           flex: 2,
                           child: Text(
-                            'Top Vendors',
+                            'Top Shops',
                             style:
                                 AppFonts.title4(color: AppColors.grayscale90),
                           ),
@@ -533,7 +547,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
             ProductTwoGridsWidget(
               mainProductList: topProductList,
             ),
-            Divider(
+            const Divider(
               color: AppColors.grayscale10,
             ),
             const SizedBox(height: 15),
@@ -591,7 +605,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Padding(

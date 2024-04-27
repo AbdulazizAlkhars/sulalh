@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Marketplace/Lists.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/brands_modal_sheet_widget.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/filter_items_widget.dart';
 
 import '../../../Theme/Colors.dart';
@@ -154,82 +155,118 @@ class _VendorShopItemsState extends State<VendorShopItems> {
               const SizedBox(
                 height: 15,
               ),
-              Column(
-                children: [
-                  Row(
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.grayscale0,
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
                     children: [
-                      Expanded(
-                        flex: 2,
-                        child: Text('Category Filters',
-                            style:
-                                AppFonts.title5(color: AppColors.grayscale90)),
-                      ),
-                    ],
-                  ),
-                  // const SizedBox(height: 13),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: categoryIcons.entries.map((entry) {
-                        final categoryName = entry.key;
-                        final iconData = entry.value;
-                        final index =
-                            categoryIcons.keys.toList().indexOf(categoryName);
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedIndex = index;
-                              selectedCategoryName = categoryName;
-                            });
-                          },
-                          child: SizedBox(
-                            height: 120,
-                            width: 100, // Set fixed width for each item
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Text('Categories',
+                                style: AppFonts.title5(
+                                    color: AppColors.grayscale90)),
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Row(
                               children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: selectedIndex == index
-                                            ? AppColors.primary20
-                                                .withOpacity(0.5)
-                                            : Colors.transparent,
-                                        spreadRadius: 5,
-                                        blurRadius: 2,
-                                      ),
-                                    ],
-                                  ),
-                                  child: CircleAvatar(
-                                    backgroundColor: AppColors.grayscale0,
-                                    radius: 30,
-                                    child: Icon(
-                                      iconData,
-                                      size: 30,
+                                const Icon(
+                                  Icons.filter_list,
+                                  size: 20,
+                                  color: AppColors.primary30,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    showFilterItemBottomSheet(context);
+                                  },
+                                  child: Text(
+                                    'Filters',
+                                    style: AppFonts.body1(
                                       color: AppColors.primary30,
                                     ),
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                Flexible(
-                                  child: Text(
-                                    categoryName,
-                                    style: const TextStyle(fontSize: 12),
-
-                                    textAlign:
-                                        TextAlign.center, // Center align text
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                        );
-                      }).toList(),
-                    ),
+                        ],
+                      ),
+                      // const SizedBox(height: 13),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: categoryIcons.entries.map((entry) {
+                            final categoryName = entry.key;
+                            final iconData = entry.value;
+                            final index = categoryIcons.keys
+                                .toList()
+                                .indexOf(categoryName);
+                            return GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  selectedIndex = index;
+                                  selectedCategoryName = categoryName;
+                                });
+                              },
+                              child: SizedBox(
+                                height: 120,
+                                width: 100, // Set fixed width for each item
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: selectedIndex == index
+                                                ? AppColors.primary20
+                                                    .withOpacity(0.5)
+                                                : Colors.transparent,
+                                            spreadRadius: 5,
+                                            blurRadius: 2,
+                                          ),
+                                        ],
+                                      ),
+                                      child: CircleAvatar(
+                                        backgroundColor: AppColors.grayscale00,
+                                        radius: 30,
+                                        child: Icon(
+                                          iconData,
+                                          size: 30,
+                                          color: AppColors.primary30,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Flexible(
+                                      child: Text(
+                                        categoryName,
+                                        style: const TextStyle(fontSize: 12),
+
+                                        textAlign: TextAlign
+                                            .center, // Center align text
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
               // Stack(
               //   alignment: Alignment.bottomCenter,
@@ -289,9 +326,6 @@ class _VendorShopItemsState extends State<VendorShopItems> {
               Divider(
                 color: AppColors.grayscale10,
               ),
-              const SizedBox(
-                height: 5,
-              ),
 
               const SizedBox(
                 height: 10,
@@ -304,14 +338,17 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                               style: AppFonts.title5(
                                   color: AppColors.grayscale90)),
                         )
-                      : Text('All Products For Tommy',
-                          style: AppFonts.title5(color: AppColors.grayscale90)),
+                      : Expanded(
+                          child: Text('All Products For Tommy',
+                              style: AppFonts.title5(
+                                  color: AppColors.grayscale90)),
+                        ),
                   GestureDetector(
                     onTap: () {},
                     child: Row(
                       children: [
                         const Icon(
-                          Icons.filter_list,
+                          Icons.filter_vintage_outlined,
                           size: 20,
                           color: AppColors.primary30,
                         ),
@@ -320,10 +357,21 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            showFilterItemBottomSheet(context);
+                            showModalBottomSheet(
+                              showDragHandle: true,
+                              context: context,
+                              isScrollControlled: true,
+                              backgroundColor: Colors.white,
+                              builder: (BuildContext context) {
+                                return SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.8, // Adjust height as needed
+                                    child: const BrandsModal());
+                              },
+                            );
                           },
                           child: Text(
-                            'Filters',
+                            'Brands',
                             style: AppFonts.body1(
                               color: AppColors.primary30,
                             ),
@@ -361,7 +409,13 @@ class _VendorShopItemsState extends State<VendorShopItems> {
               ProductOneGridWidget(
                 mainProductList: topProductList,
               ),
+              Divider(
+                color: AppColors.grayscale10,
+              ),
 
+              const SizedBox(
+                height: 10,
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(

@@ -1,6 +1,7 @@
 // Import necessary packages
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/add_store_modal_sheet.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
@@ -142,12 +143,29 @@ class _ItemVendorsState extends State<ItemVendors> {
               Text(
                 // 'Have a pet business & want to sell on Sulala?\nPlease click the Add Store button on top',
                 'Have A Pet Business & Want To Sell On Sulala?\nPlease Click The Add Store Button On Top',
-                style: AppFonts.body1(color: AppColors.grayscale90),
+                style: AppFonts.body2(color: AppColors.grayscale90),
               ),
-              const SizedBox(height: 20),
-              Text(
-                'List Of Vendors',
-                style: AppFonts.title4(color: AppColors.grayscale90),
+              const SizedBox(height: 10),
+              const Divider(
+                color: AppColors.grayscale10,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'List Of Shops',
+                      style: AppFonts.title4(color: AppColors.grayscale90),
+                    ),
+                  ),
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    icon: Icon(Icons.filter_list,
+                        size: 20, color: AppColors.primary30),
+                    onPressed: () {
+                      showFilterShopBottomSheet(context);
+                    }, // Call the signin function when the button is pressed
+                  ),
+                ],
               ),
               const SizedBox(height: 10),
               Row(
@@ -169,13 +187,6 @@ class _ItemVendorsState extends State<ItemVendors> {
                           ),
                           prefixIcon:
                               Icon(Icons.search, color: AppColors.primary30),
-                          suffixIcon: IconButton(
-                            onPressed: () {
-                              showFilterShopBottomSheet(context);
-                            },
-                            icon: Icon(Icons.filter_list,
-                                size: 20, color: AppColors.primary30),
-                          ),
                           border: InputBorder.none,
                         ),
                       ),
