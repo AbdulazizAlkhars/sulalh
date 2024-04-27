@@ -299,11 +299,13 @@ class _VendorShopItemsState extends State<VendorShopItems> {
               Row(
                 children: [
                   selectedCategoryName.isNotEmpty
-                      ? Text(selectedCategoryName,
-                          style: AppFonts.title5(color: AppColors.grayscale90))
-                      : Text('All Products',
+                      ? Expanded(
+                          child: Text('$selectedCategoryName For Tommy ',
+                              style: AppFonts.title5(
+                                  color: AppColors.grayscale90)),
+                        )
+                      : Text('All Products For Tommy',
                           style: AppFonts.title5(color: AppColors.grayscale90)),
-                  Spacer(),
                   GestureDetector(
                     onTap: () {},
                     child: Row(
@@ -365,7 +367,7 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: Text('Best Deals',
+                      child: Text('Best Deals For Tommy ',
                           style: AppFonts.title5(color: AppColors.grayscale90)),
                     ),
                     GestureDetector(

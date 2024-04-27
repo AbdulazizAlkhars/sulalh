@@ -457,7 +457,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                 children: [
                   Expanded(
                     flex: 2,
-                    child: Text('Previously Bought',
+                    child: Text('Previously Bought For Tommy',
                         style: AppFonts.title5(color: AppColors.grayscale90)),
                   ),
                   Expanded(
@@ -501,7 +501,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                 children: [
                   Expanded(
                     flex: 2,
-                    child: Text('Top Products',
+                    child: Text('Top Products For Tommy',
                         style: AppFonts.title5(color: AppColors.grayscale90)),
                   ),
                   Expanded(
@@ -600,7 +600,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                 children: [
                   Expanded(
                     flex: 2,
-                    child: Text('Recommended Products',
+                    child: Text('Recommended For Tommy',
                         style: AppFonts.title5(color: AppColors.grayscale90)),
                   ),
                   Expanded(

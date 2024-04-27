@@ -164,8 +164,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     ),
                   ),
                   Positioned(
-                    top: 5,
-                    right: 5,
+                    bottom: 5,
+                    left: 5,
                     child: Text(
                       '(${calculateDiscountPercentage(widget.product.actualPrice, widget.product.discountedPrice)}%) Off',
                       style: AppFonts.headline4(color: AppColors.grayscale100),
@@ -437,15 +437,24 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    'Benefits', // Replace with actual name
+                    style: AppFonts.headline2(color: AppColors.grayscale90),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    widget.product.benefits,
+                    style: AppFonts.body2(color: AppColors.grayscale90),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
                     'Description', // Replace with actual name
                     style: AppFonts.headline2(color: AppColors.grayscale90),
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+                    widget.product.description,
                     style: AppFonts.body2(color: AppColors.grayscale90),
                   ),
-                  const SizedBox(height: 10),
                   Divider(
                     color: AppColors.grayscale10,
                   ),
@@ -540,7 +549,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   Expanded(
                     flex: 2,
                     child: Text(
-                      'Similar Products',
+                      'Similar Products For Tommy ',
                       style: AppFonts.title4(color: AppColors.grayscale90),
                     ),
                   ),
@@ -627,7 +636,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
-                    backgroundColor: AppColors.secondary30,
+                    backgroundColor: AppColors.secondary50,
                     padding: const EdgeInsets.symmetric(
                         vertical: 16, horizontal: 24),
                     shape: RoundedRectangleBorder(

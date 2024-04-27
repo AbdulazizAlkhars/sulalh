@@ -211,7 +211,7 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: Text('Top Products',
+                      child: Text('Top Product For Tommy',
                           style: AppFonts.title5(color: AppColors.grayscale90)),
                     ),
                     GestureDetector(
@@ -300,7 +300,7 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: Text('Best Deals',
+                      child: Text('Best Deals For Tommy',
                           style: AppFonts.title5(color: AppColors.grayscale90)),
                     ),
                     GestureDetector(
@@ -326,7 +326,7 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: Text('Recommended Products',
+                      child: Text('Recommended For Tommy',
                           style: AppFonts.title5(color: AppColors.grayscale90)),
                     ),
                     GestureDetector(

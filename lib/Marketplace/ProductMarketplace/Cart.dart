@@ -161,7 +161,7 @@ class _CartPageState extends State<CartPage> {
                 children: [
                   Expanded(
                     flex: 2,
-                    child: Text('Previously Bought',
+                    child: Text('Previously Bought\nFor Tommy',
                         style: AppFonts.title5(color: AppColors.grayscale90)),
                   ),
                   Text(
@@ -183,7 +183,7 @@ class _CartPageState extends State<CartPage> {
                 children: [
                   Expanded(
                     flex: 2,
-                    child: Text('Recommended Products',
+                    child: Text('Recommended Products\nFor Tommy',
                         style: AppFonts.title5(color: AppColors.grayscale90)),
                   ),
                   Text(

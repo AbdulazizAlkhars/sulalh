@@ -178,6 +178,8 @@ class ProductDetails {
   final String productName;
   final String weightvoulme;
   final String pcsperpack;
+  final String description;
+  final String benefits;
   final String shopName;
   final String discountedPrice;
   final String actualPrice;
@@ -190,7 +192,9 @@ class ProductDetails {
     required this.imagePath,
     required this.productName,
     required this.weightvoulme,
+    required this.description,
     required this.pcsperpack,
+    required this.benefits,
     required this.shopName,
     required this.discountedPrice,
     required this.boughtPastMonth,
@@ -206,6 +210,10 @@ final List<ProductDetails> topProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     weightvoulme: '80g',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     pcsperpack: '6Pc',
     shopName: 'Pet Hub',
     actualPrice: '\$130',
@@ -220,6 +228,10 @@ final List<ProductDetails> topProductList = [
     discountedPrice: '\$90',
     actualPrice: '\$160',
     weightvoulme: '800ML',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     pcsperpack: '6Pc',
     shopName: 'Pet Club',
     forwhatspecies: 'assets/avatars/120px/Dog.png',
@@ -232,6 +244,10 @@ final List<ProductDetails> topProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$100',
     actualPrice: '\$190',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     weightvoulme: '1Kg',
     shopName: 'Pet Club',
     pcsperpack: '6Pc',
@@ -245,6 +261,10 @@ final List<ProductDetails> topProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$180',
     actualPrice: '\$250',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     boughtPastMonth: '260',
     weightvoulme: '800ML',
     shopName: 'Pet Club',
@@ -259,6 +279,10 @@ final List<ProductDetails> topProductList = [
     discountedPrice: '\$175',
     actualPrice: '\$258',
     weightvoulme: '800ML',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     shopName: 'Pet Club',
     pcsperpack: '6Pc',
     forwhatspecies: 'assets/avatars/120px/Horse.png',
@@ -274,6 +298,10 @@ final List<ProductDetails> topProductList = [
     shopName: 'Pet Club',
     pcsperpack: '6Pc',
     weightvoulme: '800ML',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     boughtPastMonth: '275',
     forwhatspecies: 'assets/avatars/120px/Cat.png',
     promotiontag: 'Best Seller',
@@ -285,6 +313,10 @@ final List<ProductDetails> topProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     weightvoulme: '800ML',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     pcsperpack: '6Pc',
     shopName: 'Pet Club',
     forwhatspecies: 'assets/avatars/120px/Cat.png',
@@ -314,6 +346,10 @@ final List<ProductDetails> prevouslyBoughtProductList = [
     actualPrice: '\$100',
     weightvoulme: '800ML',
     shopName: 'Pet Club',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     pcsperpack: '6Pc',
     rating: 4.5,
     promotiontag: 'Best Seller',
@@ -327,6 +363,10 @@ final List<ProductDetails> prevouslyBoughtProductList = [
     pcsperpack: '6Pc',
     actualPrice: '\$100',
     weightvoulme: '800ML',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     shopName: 'Pet Club',
     promotiontag: 'Sale',
     forwhatspecies: 'assets/avatars/120px/Dog.png',
@@ -341,6 +381,10 @@ final List<ProductDetails> prevouslyBoughtProductList = [
     actualPrice: '\$100',
     shopName: 'Pet Club',
     weightvoulme: '800ML',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     promotiontag: 'Promoted',
     forwhatspecies: 'assets/avatars/120px/Horse.png',
     rating: 4.5,
@@ -353,6 +397,10 @@ final List<ProductDetails> prevouslyBoughtProductList = [
     actualPrice: '\$100',
     shopName: 'Pet Club',
     pcsperpack: '6Pc',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     rating: 4.5,
     weightvoulme: '800ML',
     forwhatspecies: 'assets/avatars/120px/Duck.png',
@@ -367,6 +415,10 @@ final List<ProductDetails> prevouslyBoughtProductList = [
     rating: 4.5,
     pcsperpack: '6Pc',
     shopName: 'Pet Club',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     weightvoulme: '800ML',
     forwhatspecies: 'assets/avatars/120px/Chicken.png',
     boughtPastMonth: '225',
@@ -383,6 +435,10 @@ final List<ProductDetails> prevouslyBoughtProductList = [
     rating: 4.5,
     shopName: 'Pet Club',
     promotiontag: 'Promoted',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     boughtPastMonth: '260',
   ),
   ProductDetails(
@@ -396,6 +452,10 @@ final List<ProductDetails> prevouslyBoughtProductList = [
     shopName: 'Pet Club',
     weightvoulme: '800ML',
     boughtPastMonth: '275',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     promotiontag: 'Promoted',
   ),
   // Add more ProductDetails objects as needed
@@ -405,6 +465,10 @@ final List<ProductDetails> recommendedProductList = [
     imagePath: 'assets/Marketplace/Frame 1 5.png',
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     actualPrice: '\$100',
     weightvoulme: '800ML',
     shopName: 'Pet Club',
@@ -420,6 +484,10 @@ final List<ProductDetails> recommendedProductList = [
     discountedPrice: '\$80',
     pcsperpack: '6Pc',
     actualPrice: '\$100',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     weightvoulme: '800ML',
     shopName: 'Pet Club',
     promotiontag: 'Sale',
@@ -433,6 +501,10 @@ final List<ProductDetails> recommendedProductList = [
     discountedPrice: '\$80',
     pcsperpack: '6Pc',
     actualPrice: '\$100',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     shopName: 'Pet Club',
     weightvoulme: '800ML',
     promotiontag: 'Promoted',
@@ -446,6 +518,10 @@ final List<ProductDetails> recommendedProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     shopName: 'Pet Club',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     pcsperpack: '6Pc',
     rating: 4.5,
     weightvoulme: '800ML',
@@ -459,6 +535,10 @@ final List<ProductDetails> recommendedProductList = [
     discountedPrice: '\$80',
     actualPrice: '\$100',
     rating: 4.5,
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     pcsperpack: '6Pc',
     shopName: 'Pet Club',
     weightvoulme: '800ML',
@@ -476,6 +556,10 @@ final List<ProductDetails> recommendedProductList = [
     weightvoulme: '800ML',
     rating: 4.5,
     shopName: 'Pet Club',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     promotiontag: 'Promoted',
     boughtPastMonth: '260',
   ),
@@ -488,6 +572,10 @@ final List<ProductDetails> recommendedProductList = [
     rating: 4.5,
     pcsperpack: '6pc',
     shopName: 'Pet Club',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     weightvoulme: '800ML',
     boughtPastMonth: '275',
     promotiontag: 'Promoted',
@@ -502,6 +590,10 @@ final List<ProductDetails> similarProductList = [
     actualPrice: '\$100',
     weightvoulme: '800ML',
     shopName: 'Pet Club',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     pcsperpack: '6Pc',
     rating: 4.5,
     promotiontag: 'Best Seller',
@@ -513,6 +605,10 @@ final List<ProductDetails> similarProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     pcsperpack: '6Pc',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     actualPrice: '\$100',
     weightvoulme: '800ML',
     shopName: 'Pet Club',
@@ -528,6 +624,10 @@ final List<ProductDetails> similarProductList = [
     pcsperpack: '6Pc',
     actualPrice: '\$100',
     shopName: 'Pet Club',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     weightvoulme: '800ML',
     promotiontag: 'Promoted',
     forwhatspecies: 'assets/avatars/120px/Horse.png',
@@ -542,6 +642,10 @@ final List<ProductDetails> similarProductList = [
     shopName: 'Pet Club',
     pcsperpack: '6Pc',
     rating: 4.5,
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     weightvoulme: '800ML',
     forwhatspecies: 'assets/avatars/120px/Duck.png',
     promotiontag: 'Sale',
@@ -552,6 +656,10 @@ final List<ProductDetails> similarProductList = [
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$80',
     actualPrice: '\$100',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     rating: 4.5,
     pcsperpack: '6Pc',
     shopName: 'Pet Club',
@@ -567,6 +675,10 @@ final List<ProductDetails> similarProductList = [
     forwhatspecies: 'assets/avatars/120px/Cat.png',
     actualPrice: '\$100',
     pcsperpack: '6Pc',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     weightvoulme: '800ML',
     rating: 4.5,
     shopName: 'Pet Club',
@@ -582,6 +694,10 @@ final List<ProductDetails> similarProductList = [
     rating: 4.5,
     pcsperpack: '6pc',
     shopName: 'Pet Club',
+    description:
+        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
+    benefits:
+        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
     weightvoulme: '800ML',
     boughtPastMonth: '275',
     promotiontag: 'Promoted',
