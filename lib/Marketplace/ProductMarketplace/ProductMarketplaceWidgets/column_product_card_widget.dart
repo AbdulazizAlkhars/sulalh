@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Marketplace/Lists.dart';
 
 import '../../../Theme/Colors.dart';
@@ -18,6 +20,7 @@ class ColumnProductCard extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Container(
           decoration: BoxDecoration(
+            border: Border.all(color: AppColors.grayscale10),
             borderRadius: BorderRadius.circular(20),
             color: AppColors.grayscale10, // Background color for the container
           ),
@@ -27,10 +30,7 @@ class ColumnProductCard extends StatelessWidget {
               Expanded(
                 child: Container(
                   decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(20),
-                      bottomLeft: Radius.circular(20),
-                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
                     color: Colors.white,
                   ),
                   child: Expanded(
@@ -39,18 +39,18 @@ class ColumnProductCard extends StatelessWidget {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(
-                              bottomRight: Radius.circular(20),
-                              bottomLeft: Radius.circular(20),
-                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
                             image: DecorationImage(
                               image: AssetImage(product.imagePath),
                               fit: BoxFit.contain,
                             ),
                           ),
                         ),
-                        ItemPromotionalChipsWidget(
-                          promotiontag: product.promotiontag,
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ItemPromotionalChipsWidget(
+                            promotiontag: product.promotiontag,
+                          ),
                         ),
                         Positioned(
                           bottom: 5,
@@ -186,6 +186,35 @@ class ColumnProductCard extends StatelessWidget {
                                 AppFonts.caption1(color: AppColors.grayscale90),
                           ),
                         ],
+                      ),
+                      const SizedBox(height: 10),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  color: AppColors.primary30,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 8.0,
+                                    horizontal: 16.0,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Add To Cart',
+                                      style: AppFonts.body2(
+                                          color: AppColors.grayscale00),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

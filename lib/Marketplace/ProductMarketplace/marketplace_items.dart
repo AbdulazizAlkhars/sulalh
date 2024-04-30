@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/item_vendors.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/select_your_animal_modal.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
 import '../Lists.dart';
@@ -295,16 +295,22 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
-                        children: categoryIcons.entries.map((entry) {
+                        children: categoryDetails.entries.map((entry) {
                           final categoryName = entry.key;
-                          final iconData = entry.value;
+                          final iconData = entry.value[
+                              'icon']; // Adjusted to access the icon data from the new structure
                           return GestureDetector(
                             onTap: () {
+                              // Pass the subcategories to the next page using a constructor
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        const FilteredItemCatalog()),
+                                  builder: (context) => FilteredItemCatalog(
+                                    categoryName: categoryName,
+                                    subcategories: entry.value[
+                                        'subcategories'], // Pass the subcategories to the next screen
+                                  ),
+                                ),
                               );
                             },
                             child: Padding(

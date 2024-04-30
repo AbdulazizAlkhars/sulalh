@@ -23,7 +23,7 @@ class ProductOneGridWidget extends StatelessWidget {
         GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 1,
-            childAspectRatio: 2.5, // Adjust aspect ratio as needed
+            childAspectRatio: 2.3, // Adjust aspect ratio as needed
           ),
           itemCount: topProductList.length,
           shrinkWrap: true,

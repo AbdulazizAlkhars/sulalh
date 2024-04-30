@@ -16,7 +16,10 @@ import 'ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
 import 'ProductMarketplaceWidgets/select_your_animal_modal.dart';
 
 class FilteredItemCatalog extends StatefulWidget {
-  const FilteredItemCatalog({super.key});
+  final List<String> subcategories;
+  final String categoryName;
+  const FilteredItemCatalog(
+      {super.key, required this.categoryName, required this.subcategories});
 
   @override
   State<FilteredItemCatalog> createState() => _FilteredItemCatalogState();
@@ -24,6 +27,8 @@ class FilteredItemCatalog extends StatefulWidget {
 
 class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
   int _currentIndex = 0;
+  String selectedCategoryName = '';
+  int selectedIndex = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -180,25 +185,30 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
                 padding: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width * 0.01,
                     right: MediaQuery.of(context).size.width * 0.01),
-                child: SearchableDropdown(),
+                child: const SearchableDropdown(),
               ),
               const SizedBox(
                 height: 15,
               ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Wrap(
-                  direction: Axis.horizontal,
-                  crossAxisAlignment: WrapCrossAlignment.start,
-                  spacing: 8.0,
-                  runSpacing: 8.0,
-                  children: List.generate(
-                    filteredCatalogChipsList.length,
-                    (index) => ChipsWidget(
-                      label: filteredCatalogChipsList[index],
-                      onTap: () {
-                        // Do something when the chip is tapped
-                      },
+              Scrollbar(
+                thickness: BorderSide.strokeAlignInside,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Wrap(
+                    direction: Axis.horizontal,
+                    crossAxisAlignment: WrapCrossAlignment.start,
+                    spacing: 8.0,
+                    runSpacing: 8.0,
+                    children: List.generate(
+                      widget.subcategories.length,
+                      (index) => ChipsWidget(
+                        label: widget.subcategories[index],
+                        onTap: () {
+                          // Add action for each chip tap here, if needed
+                          debugPrint(
+                              'Tapped on ${widget.subcategories[index]}');
+                        },
+                      ),
                     ),
                   ),
                 ),

@@ -80,8 +80,7 @@ class ProductCardHorizontal extends StatelessWidget {
                       Expanded(
                         child: Text(
                           product.productName,
-                          style:
-                              AppFonts.caption1(color: AppColors.grayscale100),
+                          style: AppFonts.body1(color: AppColors.grayscale100),
                         ),
                       ),
                       const SizedBox(height: 5),

@@ -1,5 +1,6 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'ProductMarketplace/ProductMarketplaceWidgets/credit_debit_cards_widget.dart';
 
@@ -1009,11 +1010,11 @@ List<MyItemOrder> myitemorders = [
 ];
 
 final Map<String, IconData> categoryIcons = {
-  'Food and Treats': Icons.pets,
-  'Pet Accessories': Icons.pest_control_rodent,
-  'Health and Wellness': Icons.spa,
+  'Food and Treats': FontAwesomeIcons.bowlRice,
+  'Toys': Icons.pest_control_rodent,
+  'Health and Wellness': FontAwesomeIcons.prescriptionBottleMedical,
   'Cleaning and Hygiene': Icons.cleaning_services,
-  '⁠Travel and Transportation': Icons.local_shipping,
+  '⁠Travel and Transportation': FontAwesomeIcons.car,
   'Housing and Habitat': Icons.house,
   'Identification and Safety': Icons.security,
   'Speciality Items': Icons.star_border,
@@ -1295,3 +1296,95 @@ List<Map<String, dynamic>> petProductBrands = [
     'imageAsset': 'assets/Marketplace/sulala_white_logo.png',
   },
 ];
+
+final Map<String, Map<String, dynamic>> categoryDetails = {
+  'Food and Treats': {
+    'icon': FontAwesomeIcons.bowlRice,
+    'subcategories': [
+      'Dry Food',
+      'Wet Food',
+      'Bird Seeds',
+      'Fish Food',
+      'Organic Pet Food',
+      'Others'
+    ]
+  },
+  'Toys': {
+    'icon': Icons.pest_control_rodent,
+    'subcategories': [
+      'Chew Toys',
+      'Interactive Toys',
+      'Balls',
+      'Plush Toys',
+      'Puzzle Toys',
+      'Others'
+    ]
+  },
+  'Health and Wellness': {
+    'icon': FontAwesomeIcons.prescriptionBottleMedical,
+    'subcategories': [
+      'Medications',
+      'Supplements',
+      'First Aid',
+      'Vet Visits',
+      'Dental Care',
+      'Others'
+    ]
+  },
+  'Cleaning and Hygiene': {
+    'icon': Icons.cleaning_services,
+    'subcategories': [
+      'Disinfectants',
+      'Grooming Tools',
+      'Waste Management',
+      'Shampoos',
+      'Deodorizers',
+      'Others'
+    ]
+  },
+  'Travel and Transportation': {
+    'icon': FontAwesomeIcons.car,
+    'subcategories': [
+      'Carriers',
+      'Travel Kits',
+      'Safety Gear',
+      'Portable Water Bowls',
+      'Travel Beds',
+      'Others'
+    ]
+  },
+  'Housing and Habitat': {
+    'icon': Icons.house,
+    'subcategories': [
+      'Kennels',
+      'Aquariums',
+      'Cages',
+      'Bedding',
+      'Terrariums',
+      'Others'
+    ]
+  },
+  'Identification and Safety': {
+    'icon': Icons.security,
+    'subcategories': [
+      'Collars',
+      'Tags',
+      'GPS Trackers',
+      'Leashes',
+      'Safety Vests',
+      'Others'
+    ]
+  },
+  'Speciality Items': {
+    'icon': Icons.star_border,
+    'subcategories': [
+      'Custom Outfits',
+      'Unique Toys',
+      'Personalized Accessories',
+      'Seasonal Gifts',
+      'Special Diet Foods',
+      'Others'
+    ]
+  },
+  // Add more categories and subcategories as needed
+};

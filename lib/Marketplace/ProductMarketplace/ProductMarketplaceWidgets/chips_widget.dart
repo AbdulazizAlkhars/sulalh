@@ -22,30 +22,45 @@ class _ChipsWidgetState extends State<ChipsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          isSelected = !isSelected;
-        });
-        if (widget.onTap != null) {
-          widget.onTap!();
-        }
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.0),
-          color: isSelected ? AppColors.secondary30 : AppColors.grayscale10,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 8.0,
-            horizontal: 16.0,
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                isSelected = !isSelected;
+              });
+              if (widget.onTap != null) {
+                widget.onTap!();
+              }
+            },
+            child: SizedBox(
+              child: Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: isSelected
+                          ? AppColors.secondary30
+                          : AppColors.grayscale10,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8.0,
+                        horizontal: 16.0,
+                      ),
+                      child: Text(
+                        widget.label,
+                        style: AppFonts.body2(color: AppColors.grayscale100),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-          child: Text(
-            widget.label,
-            style: AppFonts.body2(color: AppColors.grayscale100),
-          ),
-        ),
+        ],
       ),
     );
   }
