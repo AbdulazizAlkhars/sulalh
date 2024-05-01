@@ -33,7 +33,7 @@ class ProductCardHorizontal extends StatelessWidget {
                       topLeft: Radius.circular(20),
                       bottomLeft: Radius.circular(20),
                     ),
-                    color: Colors.white,
+                    color: AppColors.grayscale00,
                   ),
                   child: Expanded(
                     flex: 0,
@@ -161,6 +161,9 @@ class ProductCardHorizontal extends StatelessWidget {
                                 AppFonts.caption2(color: AppColors.grayscale90),
                           ),
                         ],
+                      ),
+                      SizedBox(
+                        height: 5,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,

@@ -97,7 +97,7 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
                 decoration: const InputDecoration(
                   hintText: "Search The Animal",
                   hintStyle: TextStyle(
-                      color: AppColors.grayscale50), // Change hint text color
+                      color: AppColors.grayscale30), // Change hint text color
                   prefixIcon: Icon(
                     Icons.search,
                     color: AppColors.primary40,
@@ -107,17 +107,19 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
               ),
             ),
             const SizedBox(
-              height: 10,
-            ),
-            const SizedBox(
-              height: 10,
+              height: 15,
             ),
             Text(
-              'When you select your animal, all the products will be filtered based on your animal details!!',
+              'List Of Your Animals',
+              style: AppFonts.title5(color: AppColors.grayscale90),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              'When you select animal from your list, all the products will be filtered based on your animal details!!',
               style: AppFonts.body2(color: AppColors.grayscale90),
             ),
             const SizedBox(
-              height: 15,
+              height: 10,
             ),
             Container(
               height: 250,
@@ -195,8 +197,12 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
             ),
             Text(
               'Select By Species',
-              style: AppFonts.title4(color: AppColors.grayscale90),
+              style: AppFonts.title5(color: AppColors.grayscale90),
               textAlign: TextAlign.center,
+            ),
+            Text(
+              'If you do not have list of your animals, select by species of the animal to filter all the items based on the species!!',
+              style: AppFonts.body2(color: AppColors.grayscale90),
             ),
             const SizedBox(
               height: 10,

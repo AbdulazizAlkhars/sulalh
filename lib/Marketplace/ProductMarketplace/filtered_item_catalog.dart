@@ -94,7 +94,7 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
               const SizedBox(height: 13),
               Container(
                 decoration: BoxDecoration(
-                  // color: AppColors.grayscale0,
+                  color: AppColors.grayscale00,
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: GestureDetector(
@@ -123,15 +123,15 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
                       Row(
                         children: [
                           CircleAvatar(
-                            radius: MediaQuery.of(context).size.width * 0.044,
+                            radius: MediaQuery.of(context).size.width * 0.040,
                             backgroundImage: const AssetImage(
                                 'assets/avatars/120px/Dog.png'),
                           ),
                           const SizedBox(width: 8.0),
                           // ignore: unnecessary_const
-                          const Text(
+                          Text(
                             'Tommy',
-                            style: TextStyle(fontSize: 14),
+                            style: AppFonts.body1(color: AppColors.grayscale90),
                           ),
                           const Icon(
                             Icons.keyboard_arrow_down,
@@ -144,77 +144,40 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
                 ),
               ),
               const SizedBox(
-                height: 15,
+                height: 10,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      'Catalog',
-                      style: AppFonts.title5(
-                        color: AppColors.grayscale90,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      showFilterItemBottomSheet(context);
-                    },
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.filter_list,
-                          color: AppColors.primary50,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          'Filters',
-                          style: AppFonts.body1(color: AppColors.primary40),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+              const SearchableDropdown(),
               const SizedBox(
                 height: 10,
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.width * 0.01,
-                    right: MediaQuery.of(context).size.width * 0.01),
-                child: const SearchableDropdown(),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
               Scrollbar(
                 thickness: BorderSide.strokeAlignInside,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Wrap(
-                    direction: Axis.horizontal,
-                    crossAxisAlignment: WrapCrossAlignment.start,
-                    spacing: 8.0,
-                    runSpacing: 8.0,
-                    children: List.generate(
-                      widget.subcategories.length,
-                      (index) => ChipsWidget(
-                        label: widget.subcategories[index],
-                        onTap: () {
-                          // Add action for each chip tap here, if needed
-                          debugPrint(
-                              'Tapped on ${widget.subcategories[index]}');
-                        },
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Wrap(
+                      direction: Axis.horizontal,
+                      crossAxisAlignment: WrapCrossAlignment.start,
+                      spacing: 8.0,
+                      runSpacing: 8.0,
+                      children: List.generate(
+                        widget.subcategories.length,
+                        (index) => ChipsWidget(
+                          label: widget.subcategories[index],
+                          onTap: () {
+                            // Add action for each chip tap here, if needed
+                            debugPrint(
+                                'Tapped on ${widget.subcategories[index]}');
+                          },
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
               const SizedBox(
-                height: 15,
+                height: 5,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -228,9 +191,21 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
                       onTap: () {
                         showFilterItemBottomSheet(context);
                       },
-                      child: Text(
-                        'See More',
-                        style: AppFonts.body1(color: AppColors.primary40),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.filter_list,
+                            size: 20,
+                            color: AppColors.primary50,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            'Filters',
+                            style: AppFonts.body1(color: AppColors.primary40),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -327,35 +302,6 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
               ),
               ScrollableProductCardsWidget(
                 mainProductList: prevouslyBoughtProductList,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text('Recommended For Tommy',
-                          style: AppFonts.title5(color: AppColors.grayscale90)),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        showFilterItemBottomSheet(context);
-                      },
-                      child: Text(
-                        'See More',
-                        style: AppFonts.body1(color: AppColors.primary40),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ProductOneGridWidget(
-                mainProductList: topProductList,
-              ),
-              const SizedBox(
-                height: 15,
               ),
             ],
           ),

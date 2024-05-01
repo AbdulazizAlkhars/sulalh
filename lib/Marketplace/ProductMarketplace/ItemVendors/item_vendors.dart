@@ -149,23 +149,10 @@ class _ItemVendorsState extends State<ItemVendors> {
               const Divider(
                 color: AppColors.grayscale10,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      'List Of Shops',
-                      style: AppFonts.title4(color: AppColors.grayscale90),
-                    ),
-                  ),
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    icon: Icon(Icons.filter_list,
-                        size: 20, color: AppColors.primary30),
-                    onPressed: () {
-                      showFilterShopBottomSheet(context);
-                    }, // Call the signin function when the button is pressed
-                  ),
-                ],
+              const SizedBox(height: 10),
+              Text(
+                'List Of Shops',
+                style: AppFonts.title5(color: AppColors.grayscale90),
               ),
               const SizedBox(height: 10),
               Row(
@@ -185,6 +172,12 @@ class _ItemVendorsState extends State<ItemVendors> {
                           hintStyle: TextStyle(
                             color: AppColors.grayscale50,
                           ),
+                          suffixIcon: GestureDetector(
+                              onTap: () {
+                                showFilterShopBottomSheet(context);
+                              },
+                              child: Icon(Icons.filter_list,
+                                  size: 20, color: AppColors.primary30)),
                           prefixIcon:
                               Icon(Icons.search, color: AppColors.primary30),
                           border: InputBorder.none,

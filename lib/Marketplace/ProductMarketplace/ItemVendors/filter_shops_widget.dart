@@ -524,9 +524,15 @@ class ShopStatusFilterWidget extends StatefulWidget {
 class _ShopStatusFilterWidgetState extends State<ShopStatusFilterWidget> {
   List<String> shopStatus = [
     'Top Rated',
-    'Verified',
+    'Growing',
     'New',
   ];
+
+  // Define rating thresholds for each shop status
+  Map<String, double> ratingThresholds = {
+    'Top Rated': 4.0,
+    'Growing': 3.0,
+  };
 
   List<bool> selecteddealOptions = List<bool>.filled(6, false);
 
@@ -536,8 +542,13 @@ class _ShopStatusFilterWidgetState extends State<ShopStatusFilterWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(shopStatus.length, (index) {
         bool isSelected = selecteddealOptions[index];
+        String status = shopStatus[index];
+        double threshold =
+            ratingThresholds[status] ?? 0.0; // Get threshold for status
+        bool isNew = status == 'New';
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GestureDetector(
               onTap: () {
@@ -548,11 +559,30 @@ class _ShopStatusFilterWidgetState extends State<ShopStatusFilterWidget> {
               child: Row(
                 children: [
                   Text(
-                    shopStatus[index],
+                    status,
                     style: AppFonts.body2(
                       color: AppColors.grayscale90,
                     ),
                   ),
+                  if (!isNew) // Render "Above" text if not new
+                    Text(
+                      ' Above',
+                      style: AppFonts.body2(
+                        color: AppColors.grayscale90,
+                      ),
+                    ),
+                  if (!isNew) // Render rating threshold if not new
+                    Text(
+                      ' ${threshold.toStringAsFixed(1)} Stars',
+                      style: AppFonts.body2(
+                        color: AppColors.grayscale90,
+                      ),
+                    ),
+                  if (!isNew) // Render star icon if not new
+                    Icon(
+                      Icons.star,
+                      color: AppColors.secondary60,
+                    ),
                   const Spacer(),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.064,

@@ -44,10 +44,43 @@ class ProductVendorAvatars extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CircleAvatar(
-            radius: 35,
-            backgroundImage: AssetImage(imageAsset),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              CircleAvatar(
+                radius: 40,
+                backgroundImage: AssetImage(imageAsset),
+              ),
+              Positioned(
+                bottom: 0,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.star,
+                        size: 18,
+                        color: AppColors.secondary50,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        '4.9',
+                        style: AppFonts.caption2(color: AppColors.grayscale90),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
           SizedBox(height: 12),
           Text(

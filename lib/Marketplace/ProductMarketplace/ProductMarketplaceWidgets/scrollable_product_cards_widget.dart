@@ -14,38 +14,41 @@ class ScrollableProductCardsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
-        border: Border.all(color: AppColors.grayscale20),
-        color: AppColors.grayscale00,
-      ),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: mainProductList.asMap().entries.map((entry) {
-            final int index = entry.key;
-            final ProductDetails product = entry.value;
+    return Scrollbar(
+      thickness: 2,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          border: Border.all(color: AppColors.grayscale20),
+          color: AppColors.grayscale00,
+        ),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: mainProductList.asMap().entries.map((entry) {
+              final int index = entry.key;
+              final ProductDetails product = entry.value;
 
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProductDetailsPage(
-                      index: index,
-                      product: product,
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductDetailsPage(
+                        index: index,
+                        product: product,
+                      ),
                     ),
-                  ),
-                );
-              },
-              child: Container(
-                height: 400,
-                width: 200,
-                child: ColumnProductCard(product: product),
-              ),
-            );
-          }).toList(),
+                  );
+                },
+                child: SizedBox(
+                  height: 400,
+                  width: 200,
+                  child: ColumnProductCard(product: product),
+                ),
+              );
+            }).toList(),
+          ),
         ),
       ),
     );

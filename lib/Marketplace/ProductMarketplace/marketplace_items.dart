@@ -38,6 +38,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
         automaticallyImplyLeading: false,
         surfaceTintColor: Colors.white,
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
@@ -109,7 +110,60 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 15), // Add spacing between the boxes
-
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.grayscale00,
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    showDragHandle: true,
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.white,
+                    builder: (BuildContext context) {
+                      return SizedBox(
+                          height: MediaQuery.of(context).size.height *
+                              0.8, // Adjust height as needed
+                          child: const SelectYourAnimalModal());
+                    },
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'My Animal',
+                        style: AppFonts.title5(color: AppColors.grayscale90),
+                      ),
+                      const SizedBox(height: 13),
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            radius: MediaQuery.of(context).size.width * 0.040,
+                            backgroundImage: const AssetImage(
+                                'assets/avatars/120px/Dog.png'),
+                          ),
+                          const SizedBox(width: 8.0),
+                          // ignore: unnecessary_const
+                          Text(
+                            'Tommy',
+                            style: AppFonts.body1(color: AppColors.grayscale90),
+                          ),
+                          const Icon(
+                            Icons.keyboard_arrow_down,
+                            color: AppColors.primary50,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
@@ -137,7 +191,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                       // ignore: unnecessary_const
                       const Expanded(
                           child: Text(
-                        '10559 RAS AL KHAIMA, RAS AL KHAIMA',
+                        'Shuwaikh, P O Box: 66116 Bayan, 43752',
                         style: TextStyle(fontSize: 14),
                       )),
                       Icon(
@@ -215,64 +269,10 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
               ],
             ),
             const SizedBox(height: 13),
+
             Container(
               decoration: BoxDecoration(
-                color: AppColors.grayscale0,
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: GestureDetector(
-                onTap: () {
-                  showModalBottomSheet(
-                    showDragHandle: true,
-                    context: context,
-                    isScrollControlled: true,
-                    backgroundColor: Colors.white,
-                    builder: (BuildContext context) {
-                      return SizedBox(
-                          height: MediaQuery.of(context).size.height *
-                              0.8, // Adjust height as needed
-                          child: const SelectYourAnimalModal());
-                    },
-                  );
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'My Animal',
-                        style: AppFonts.title4(color: AppColors.grayscale90),
-                      ),
-                      const SizedBox(height: 13),
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            radius: MediaQuery.of(context).size.width * 0.044,
-                            backgroundImage: const AssetImage(
-                                'assets/avatars/120px/Dog.png'),
-                          ),
-                          const SizedBox(width: 8.0),
-                          // ignore: unnecessary_const
-                          const Text(
-                            'Tommy',
-                            style: TextStyle(fontSize: 14),
-                          ),
-                          const Icon(
-                            Icons.keyboard_arrow_down,
-                            color: AppColors.primary50,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 13),
-            Container(
-              decoration: BoxDecoration(
-                color: AppColors.grayscale0,
+                color: AppColors.grayscale00,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
@@ -318,16 +318,15 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                                   horizontal: 1.0), // Adjust horizontal padding
                               child: SizedBox(
                                 height: 100,
-
-                                width: 100, // Set fixed width for each item
+                                width: 75,
                                 child: Column(
                                   children: [
                                     CircleAvatar(
-                                      backgroundColor: AppColors.grayscale00,
+                                      backgroundColor: AppColors.grayscale10,
                                       radius: 30,
                                       child: Icon(
                                         iconData,
-                                        size: 30,
+                                        size: 25,
                                         color: AppColors.primary30,
                                       ),
                                     ),
@@ -357,7 +356,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
             const SizedBox(height: 13),
             Container(
               decoration: BoxDecoration(
-                color: AppColors.grayscale0,
+                color: AppColors.grayscale00,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
@@ -455,9 +454,9 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
             //     ),
             //   ),
             // ),
-            const SizedBox(
-              height: 15,
-            ),
+            // const SizedBox(
+            //   height: 15,
+            // ),
             const Divider(
               color: AppColors.grayscale10,
             ),
@@ -486,20 +485,9 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                       onTap: () {
                         showFilterItemBottomSheet(context);
                       },
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.filter_list,
-                            color: AppColors.primary50,
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            'Filters',
-                            style: AppFonts.body1(color: AppColors.primary40),
-                          ),
-                        ],
+                      child: Text(
+                        'See More',
+                        style: AppFonts.body1(color: AppColors.primary40),
                       ),
                     ),
                   ),
@@ -557,101 +545,6 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
               color: AppColors.grayscale10,
             ),
             const SizedBox(height: 15),
-
-            Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                CarouselSlider(
-                  options: CarouselOptions(
-                    autoPlay: true,
-                    aspectRatio: 22 / 8,
-                    viewportFraction: 1.0,
-                    onPageChanged: (index, _) {
-                      setState(() {
-                        _currentIndex = index;
-                      });
-                    },
-                  ),
-                  items: productadvertisements.map((ad) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return Container(
-                          width: MediaQuery.of(context).size.width,
-                          margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                          child: ClipRRect(
-                            borderRadius:
-                                BorderRadius.circular(20), // Rounded corners
-                            child: Image.asset(
-                              ad,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  }).toList(),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: productadvertisements.asMap().entries.map((entry) {
-                    int index = entry.key;
-                    return Container(
-                      width: 8.0,
-                      height: 8.0,
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 2.0),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: _currentIndex == index
-                            ? AppColors.primary50
-                            : AppColors.grayscale10,
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Text('Recommended For Tommy',
-                        style: AppFonts.title5(color: AppColors.grayscale90)),
-                  ),
-                  Expanded(
-                    flex: 0,
-                    child: GestureDetector(
-                      onTap: () {
-                        showFilterItemBottomSheet(context);
-                      },
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.filter_list,
-                            color: AppColors.primary50,
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            'Filters',
-                            style: AppFonts.body1(color: AppColors.primary40),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ProductTwoGridsWidget(
-              mainProductList: recommendedProductList,
-            ),
           ],
         ),
       ),
