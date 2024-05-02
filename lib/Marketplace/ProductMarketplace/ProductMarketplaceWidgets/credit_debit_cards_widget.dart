@@ -36,36 +36,53 @@ class CardWidget extends StatelessWidget {
     }
 
     return Card(
-      color: Colors.white,
-      elevation: 0,
-      child: ListTile(
-        contentPadding: EdgeInsets.zero,
-        leading: SizedBox(
-          height: 25,
-          width: 25,
-          child: Image.asset(cardImagePath),
-        ),
-        title: Text(
-          maskedCardNumber,
-          style: AppFonts.body2(
-            color: AppColors.grayscale90,
-          ),
-        ),
-        trailing: GestureDetector(
-          onTap: onSelect,
-          child: Container(
-            width: MediaQuery.of(context).size.width * 0.064,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: isSelected ? AppColors.primary20 : AppColors.grayscale30,
-                width: isSelected ? 6.0 : 1.0,
+        color: Colors.white,
+        elevation: 0,
+        child: Column(
+          children: [
+            Column(children: [
+              GestureDetector(
+                onTap: () {},
+                child: Row(
+                  children: [
+                    SizedBox(
+                      height: 25,
+                      width: 25,
+                      child: Image.asset(cardImagePath),
+                    ),
+                    const SizedBox(width: 15.0),
+                    Expanded(
+                      child: Text(
+                        maskedCardNumber,
+                        style: AppFonts.body2(color: AppColors.grayscale90),
+                      ),
+                    ),
+                    GestureDetector(
+                      child: Container(
+                        width: MediaQuery.of(context).size.width *
+                            0.064, // Adjust the width as needed
+                        height: MediaQuery.of(context).size.width *
+                            0.064, // Adjust the height as needed
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: isSelected
+                                ? AppColors.primary20
+                                : AppColors.grayscale30,
+                            width: isSelected ? 6.0 : 1.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ),
-        ),
-      ),
-    );
+              SizedBox(
+                height: 15,
+              )
+            ]),
+          ],
+        ));
   }
 }
 

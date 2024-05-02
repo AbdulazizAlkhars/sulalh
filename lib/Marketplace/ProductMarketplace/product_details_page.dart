@@ -115,464 +115,470 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            children: [
-              Stack(
-                children: [
-                  CarouselSlider(
-                    options: CarouselOptions(
-                      aspectRatio: 12 / 9,
-                      viewportFraction: 1.0, // Occupies entire viewport
-                      onPageChanged: (index, _) {
-                        setState(() {
-                          _currentIndex = index;
-                        });
-                      },
-                    ),
-                    items: [
-                      'assets/Marketplace/Frame 1.png',
-                      'assets/Marketplace/Frame 1.png',
-                      'assets/Marketplace/Frame 1.png'
-                    ].map((item) {
-                      return Builder(
-                        builder: (BuildContext context) {
-                          return Image.asset(
-                            item,
-                            fit: BoxFit.cover,
-                          );
-                        },
-                      );
-                    }).toList(),
-                  ),
-                  Positioned(
-                    top: 5,
-                    left: 60,
-                    child: ItemPromotionalChipsWidget(
-                        promotiontag: widget.product.promotiontag,
-                        textStyle: AppFonts.body2(color: AppColors.error100)),
-                  ),
-                  Positioned(
-                    bottom: 5,
-                    right: 5,
-                    child: CircleAvatar(
-                      radius: 25,
-                      backgroundImage:
-                          AssetImage(widget.product.forwhatspecies),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 5,
-                    left: 5,
-                    child: Text(
-                      '(${calculateDiscountPercentage(widget.product.actualPrice, widget.product.discountedPrice)}%) Off',
-                      style: AppFonts.headline4(color: AppColors.grayscale100),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  for (int i = 0; i < 3; i++)
-                    Container(
-                      width: 8.0,
-                      height: 8.0,
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 2.0),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: _currentIndex == i
-                            ? AppColors.primary50
-                            : AppColors.grayscale20,
-                      ),
-                    ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Divider(
-                color: AppColors.grayscale10,
-              ),
-              // Product details text here...
-              Row(
-                children: [
-                  Flexible(
-                    flex: 1,
-                    child: Text(
-                      widget.product.productName, // Replace with product name
-                      style: AppFonts.title5(color: AppColors.grayscale90),
-                      softWrap: true, // Enable text wrapping
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        widget.product.weightvoulme,
-                        style: AppFonts.title5(color: AppColors.primary30),
-                      ),
-                      Visibility(
-                        visible: widget.product.pcsperpack.isNotEmpty,
-                        child: Row(
-                          children: [
-                            Text(
-                              ' / ',
-                              style:
-                                  AppFonts.title5(color: AppColors.primary30),
-                            ),
-                            Text(
-                              widget.product.pcsperpack,
-                              style:
-                                  AppFonts.title5(color: AppColors.primary30),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(widget.product.discountedPrice,
-                          style: AppFonts.title4(color: AppColors.primary40)),
-                      const SizedBox(
-                        width: 3,
-                      ),
-                      Text(
-                        widget.product.actualPrice,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: AppColors.grayscale50,
-                          decoration: TextDecoration.lineThrough,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 10),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Wrap(
-                  crossAxisAlignment: WrapCrossAlignment
-                      .start, // Align chips at the start of the horizontal axis
-                  spacing: 8.0,
-                  runSpacing: 8.0,
+      body: Scrollbar(
+        radius: Radius.circular(20),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              children: [
+                Stack(
                   children: [
-                    ChipsWidget(
-                      label: 'Horse',
-                      onTap: () {
-                        // Do something when the chip is tapped
-                      },
+                    CarouselSlider(
+                      options: CarouselOptions(
+                        aspectRatio: 12 / 9,
+                        viewportFraction: 1.0, // Occupies entire viewport
+                        onPageChanged: (index, _) {
+                          setState(() {
+                            _currentIndex = index;
+                          });
+                        },
+                      ),
+                      items: [
+                        'assets/Marketplace/Frame 1.png',
+                        'assets/Marketplace/Frame 1.png',
+                        'assets/Marketplace/Frame 1.png'
+                      ].map((item) {
+                        return Builder(
+                          builder: (BuildContext context) {
+                            return Image.asset(
+                              item,
+                              fit: BoxFit.cover,
+                            );
+                          },
+                        );
+                      }).toList(),
                     ),
-                    ChipsWidget(
-                      label: 'Cleaning & Hygiene',
-                      onTap: () {
-                        // Do something when the chip is tapped
-                      },
+                    Positioned(
+                      top: 5,
+                      left: 60,
+                      child: ItemPromotionalChipsWidget(
+                          promotiontag: widget.product.promotiontag,
+                          textStyle: AppFonts.body2(color: AppColors.error100)),
                     ),
-
-                    // Add more chips as needed
+                    Positioned(
+                      bottom: 5,
+                      right: 5,
+                      child: CircleAvatar(
+                        radius: 25,
+                        backgroundImage:
+                            AssetImage(widget.product.forwhatspecies),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 5,
+                      left: 5,
+                      child: Text(
+                        '(${calculateDiscountPercentage(widget.product.actualPrice, widget.product.discountedPrice)}%) Off',
+                        style:
+                            AppFonts.headline4(color: AppColors.grayscale100),
+                      ),
+                    ),
                   ],
                 ),
-              ),
-
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ReviewsPage(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    for (int i = 0; i < 3; i++)
+                      Container(
+                        width: 8.0,
+                        height: 8.0,
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 2.0),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: _currentIndex == i
+                              ? AppColors.primary50
+                              : AppColors.grayscale20,
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Divider(
+                  color: AppColors.grayscale10,
+                ),
+                // Product details text here...
+                Row(
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: Text(
+                        widget.product.productName, // Replace with product name
+                        style: AppFonts.title5(color: AppColors.grayscale90),
+                        softWrap: true, // Enable text wrapping
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          widget.product.weightvoulme,
+                          style: AppFonts.title5(color: AppColors.primary30),
+                        ),
+                        Visibility(
+                          visible: widget.product.pcsperpack.isNotEmpty,
+                          child: Row(
+                            children: [
+                              Text(
+                                ' / ',
+                                style:
+                                    AppFonts.title5(color: AppColors.primary30),
+                              ),
+                              Text(
+                                widget.product.pcsperpack,
+                                style:
+                                    AppFonts.title5(color: AppColors.primary30),
+                              ),
+                            ],
                           ),
-                        );
-                      },
+                        ),
+                      ],
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(widget.product.discountedPrice,
+                            style: AppFonts.title4(color: AppColors.primary40)),
+                        const SizedBox(
+                          width: 3,
+                        ),
+                        Text(
+                          widget.product.actualPrice,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: AppColors.grayscale50,
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 10),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Wrap(
+                    crossAxisAlignment: WrapCrossAlignment
+                        .start, // Align chips at the start of the horizontal axis
+                    spacing: 8.0,
+                    runSpacing: 8.0,
+                    children: [
+                      ChipsWidget(
+                        label: 'Horse',
+                        onTap: () {
+                          // Do something when the chip is tapped
+                        },
+                      ),
+                      ChipsWidget(
+                        label: 'Cleaning & Hygiene',
+                        onTap: () {
+                          // Do something when the chip is tapped
+                        },
+                      ),
+
+                      // Add more chips as needed
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ReviewsPage(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          height: 80,
+                          padding: const EdgeInsets.all(8),
+                          // margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                          decoration: BoxDecoration(
+                            color: AppColors.secondary10,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              widget.product.rating.toString(),
+                                              style: AppFonts.caption1(
+                                                color: AppColors.grayscale90,
+                                              ),
+                                            ),
+                                            const SizedBox(width: 5),
+                                            Row(
+                                              children: List.generate(
+                                                5,
+                                                (index) {
+                                                  if (index <
+                                                      widget.product.rating
+                                                          .floor()) {
+                                                    // Full star
+                                                    return const Icon(
+                                                      Icons.star,
+                                                      size: 20,
+                                                      color:
+                                                          AppColors.secondary50,
+                                                    );
+                                                  } else if (index <
+                                                      widget.product.rating) {
+                                                    // Half-filled star
+                                                    return const Icon(
+                                                      Icons.star_half,
+                                                      size: 20,
+                                                      color:
+                                                          AppColors.secondary50,
+                                                    );
+                                                  } else {
+                                                    // Empty star
+                                                    return const Icon(
+                                                      Icons.star_border,
+                                                      size: 20,
+                                                      color:
+                                                          AppColors.secondary50,
+                                                    );
+                                                  }
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      '12 Reviews',
+                                      style: AppFonts.body2(
+                                          color: AppColors.grayscale90),
+                                    ),
+                                  ],
+                                ),
+                                const Spacer(),
+                                const Icon(
+                                  Icons.chevron_right,
+                                  color: AppColors.primary20,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
                       child: Container(
                         height: 80,
                         padding: const EdgeInsets.all(8),
-                        // margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                         decoration: BoxDecoration(
                           color: AppColors.secondary10,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            widget.product.rating.toString(),
-                                            style: AppFonts.caption1(
-                                              color: AppColors.grayscale90,
-                                            ),
-                                          ),
-                                          const SizedBox(width: 5),
-                                          Row(
-                                            children: List.generate(
-                                              5,
-                                              (index) {
-                                                if (index <
-                                                    widget.product.rating
-                                                        .floor()) {
-                                                  // Full star
-                                                  return const Icon(
-                                                    Icons.star,
-                                                    size: 20,
-                                                    color:
-                                                        AppColors.secondary50,
-                                                  );
-                                                } else if (index <
-                                                    widget.product.rating) {
-                                                  // Half-filled star
-                                                  return const Icon(
-                                                    Icons.star_half,
-                                                    size: 20,
-                                                    color:
-                                                        AppColors.secondary50,
-                                                  );
-                                                } else {
-                                                  // Empty star
-                                                  return const Icon(
-                                                    Icons.star_border,
-                                                    size: 20,
-                                                    color:
-                                                        AppColors.secondary50,
-                                                  );
-                                                }
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment
+                              .center, // Align content vertically at center
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const CircleAvatar(
+                                  radius: 20,
+                                  backgroundImage: AssetImage(
+                                    'assets/Marketplace/Frame 2087325740 5.png',
                                   ),
+                                ),
+                                const SizedBox(
+                                    width:
+                                        8), // Add spacing between avatar and name
+                                Text(
+                                  widget.product.shopName,
+                                  style: const TextStyle(
+                                    color: AppColors.grayscale90,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                const Spacer(), // Add spacer to push icon to the right
+                                const Icon(
+                                  Icons.chevron_right,
+                                  color: AppColors.primary20,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Benefits', // Replace with actual name
+                      style: AppFonts.headline2(color: AppColors.grayscale90),
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      widget.product.benefits,
+                      style: AppFonts.body2(color: AppColors.grayscale90),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'Description', // Replace with actual name
+                      style: AppFonts.headline2(color: AppColors.grayscale90),
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      widget.product.description,
+                      style: AppFonts.body2(color: AppColors.grayscale90),
+                    ),
+                    Divider(
+                      color: AppColors.grayscale10,
+                    ),
+                    const SizedBox(height: 10),
+                    RatingSummaryWidget(reviews: reviews),
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            'Reviews',
+                            style:
+                                AppFonts.title4(color: AppColors.grayscale90),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 0,
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ReviewsPage()),
+                              );
+                            },
+                            child: Text(
+                              'View More',
+                              style: AppFonts.body1(color: AppColors.primary40),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 5,
+                      itemBuilder: (context, index) {
+                        // Build each review item using data from the reviews list
+                        return ListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
                                   Text(
-                                    '12 Reviews',
-                                    style: AppFonts.body2(
+                                    reviews[index].reviewerName,
+                                    style: AppFonts.headline4(
+                                        color: AppColors.grayscale90),
+                                  ),
+                                  const SizedBox(
+                                    width: 8,
+                                  ),
+                                  Row(
+                                    children: List.generate(
+                                      reviews[index].rating,
+                                      (i) => const Icon(Icons.star,
+                                          size: 20,
+                                          color: AppColors.secondary50),
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    DateFormat(
+                                      'MMM d, yyyy',
+                                    ).format(reviews[index].date),
+                                    style: AppFonts.caption3(
                                         color: AppColors.grayscale90),
                                   ),
                                 ],
                               ),
-                              const Spacer(),
-                              const Icon(
-                                Icons.chevron_right,
-                                color: AppColors.primary20,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 80,
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: AppColors.secondary10,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment
-                            .center, // Align content vertically at center
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const CircleAvatar(
-                                radius: 20,
-                                backgroundImage: AssetImage(
-                                  'assets/Marketplace/Frame 2087325740 5.png',
-                                ),
-                              ),
                               const SizedBox(
-                                  width:
-                                      8), // Add spacing between avatar and name
-                              Text(
-                                widget.product.shopName,
-                                style: const TextStyle(
-                                  color: AppColors.grayscale90,
-                                  fontSize: 14,
-                                ),
+                                height: 8,
                               ),
-                              const Spacer(), // Add spacer to push icon to the right
-                              const Icon(
-                                Icons.chevron_right,
-                                color: AppColors.primary20,
+                              Text(
+                                reviews[index].reviewText,
+                                style: AppFonts.body2(
+                                    color: AppColors.grayscale90),
                               ),
                             ],
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Benefits', // Replace with actual name
-                    style: AppFonts.headline2(color: AppColors.grayscale90),
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    widget.product.benefits,
-                    style: AppFonts.body2(color: AppColors.grayscale90),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    'Description', // Replace with actual name
-                    style: AppFonts.headline2(color: AppColors.grayscale90),
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    widget.product.description,
-                    style: AppFonts.body2(color: AppColors.grayscale90),
-                  ),
-                  Divider(
-                    color: AppColors.grayscale10,
-                  ),
-                  const SizedBox(height: 10),
-                  RatingSummaryWidget(reviews: reviews),
-                  Row(
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Text(
-                          'Reviews',
-                          style: AppFonts.title4(color: AppColors.grayscale90),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 0,
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ReviewsPage()),
-                            );
-                          },
-                          child: Text(
-                            'View More',
-                            style: AppFonts.body1(color: AppColors.primary40),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      // Build each review item using data from the reviews list
-                      return ListTile(
-                        contentPadding: EdgeInsets.zero,
-                        title: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  reviews[index].reviewerName,
-                                  style: AppFonts.headline4(
-                                      color: AppColors.grayscale90),
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Row(
-                                  children: List.generate(
-                                    reviews[index].rating,
-                                    (i) => const Icon(Icons.star,
-                                        size: 20, color: AppColors.secondary50),
-                                  ),
-                                ),
-                                const Spacer(),
-                                Text(
-                                  DateFormat(
-                                    'MMM d, yyyy',
-                                  ).format(reviews[index].date),
-                                  style: AppFonts.caption3(
-                                      color: AppColors.grayscale90),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Text(
-                              reviews[index].reviewText,
-                              style:
-                                  AppFonts.body2(color: AppColors.grayscale90),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
-              Divider(
-                color: AppColors.grayscale10,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Text(
-                      'Similar Products For Tommy ',
-                      style: AppFonts.title4(color: AppColors.grayscale90),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 0,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ReviewsPage()),
                         );
                       },
+                    ),
+                  ],
+                ),
+                Divider(
+                  color: AppColors.grayscale10,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 2,
                       child: Text(
-                        'View More',
-                        style: AppFonts.body1(color: AppColors.primary40),
+                        'Similar Products For Tommy ',
+                        style: AppFonts.title4(color: AppColors.grayscale90),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              ProductTwoGridsWidget(mainProductList: similarProductList)
-            ],
+                    Expanded(
+                      flex: 0,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ReviewsPage()),
+                          );
+                        },
+                        child: Text(
+                          'View More',
+                          style: AppFonts.body1(color: AppColors.primary40),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                ProductTwoGridsWidget(mainProductList: similarProductList)
+              ],
+            ),
           ),
         ),
       ),

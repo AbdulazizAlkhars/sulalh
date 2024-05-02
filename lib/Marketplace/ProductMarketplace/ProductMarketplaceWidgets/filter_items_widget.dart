@@ -44,7 +44,7 @@ class _FilterItemBottomSheetState extends State<FilterItemBottomSheet> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             _buildFilterOption(
               context,
               'Price',
@@ -105,7 +105,7 @@ class _FilterItemBottomSheetState extends State<FilterItemBottomSheet> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: Text(
             title,
             style: AppFonts.title5(
@@ -114,7 +114,7 @@ class _FilterItemBottomSheetState extends State<FilterItemBottomSheet> {
           ),
         ),
         subContents,
-        Divider(),
+        const Divider(),
       ],
     );
   }
@@ -179,7 +179,7 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
                           color: AppColors.grayscale90,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Container(
                         width: MediaQuery.of(context).size.width * 0.064,
                         height: MediaQuery.of(context).size.width * 0.064,
@@ -196,14 +196,14 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
               ],
             );
           }),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Row(
@@ -214,7 +214,7 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
                 color: AppColors.grayscale90,
               ),
             ),
-            Spacer(),
+            const Spacer(),
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -237,7 +237,7 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
             ),
           ],
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -377,7 +377,7 @@ class _ItemSortingFilterWidgetState extends State<ItemSortingFilterWidget> {
                       color: AppColors.grayscale90,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.064,
                     height: MediaQuery.of(context).size.width * 0.064,
@@ -394,7 +394,7 @@ class _ItemSortingFilterWidgetState extends State<ItemSortingFilterWidget> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10, // Adjust the height as needed
             ),
           ],
@@ -452,7 +452,7 @@ class _DiscountFilterWidgetState extends State<DiscountFilterWidget> {
                       color: AppColors.grayscale90,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.064,
                     height: MediaQuery.of(context).size.width * 0.064,
@@ -469,7 +469,7 @@ class _DiscountFilterWidgetState extends State<DiscountFilterWidget> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10, // Adjust the height as needed
             ),
           ],
@@ -522,7 +522,7 @@ class _DealFilterWidgetState extends State<DealFilterWidget> {
                       color: AppColors.grayscale90,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.064,
                     height: MediaQuery.of(context).size.width * 0.064,
@@ -539,7 +539,7 @@ class _DealFilterWidgetState extends State<DealFilterWidget> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10, // Adjust the height as needed
             ),
           ],
@@ -596,14 +596,14 @@ class _RatingsFilterWidgetState extends State<RatingsFilterWidget> {
                       },
                     ),
                   ),
-                  SizedBox(width: 5),
+                  const SizedBox(width: 5),
                   Text(
                     '$starCount stars & above',
                     style: AppFonts.body2(
                       color: AppColors.grayscale90,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.064,
                     height: MediaQuery.of(context).size.width * 0.064,
@@ -620,7 +620,7 @@ class _RatingsFilterWidgetState extends State<RatingsFilterWidget> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
           ],

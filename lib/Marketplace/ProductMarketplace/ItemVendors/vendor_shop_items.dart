@@ -210,20 +210,7 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                                 ),
                                 GestureDetector(
                                   onTap: () {
-                                    showModalBottomSheet(
-                                      showDragHandle: true,
-                                      context: context,
-                                      isScrollControlled: true,
-                                      backgroundColor: Colors.white,
-                                      builder: (BuildContext context) {
-                                        return SizedBox(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.8, // Adjust height as needed
-                                            child: const BrandsModal());
-                                      },
-                                    );
+                                    showFilterItemBottomSheet(context);
                                   },
                                   child: Text(
                                     'Filters',
@@ -327,7 +314,20 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                                   color: AppColors.grayscale90)),
                         ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      showModalBottomSheet(
+                        showDragHandle: true,
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.white,
+                        builder: (BuildContext context) {
+                          return SizedBox(
+                              height: MediaQuery.of(context).size.height *
+                                  0.8, // Adjust height as needed
+                              child: const BrandsModal());
+                        },
+                      );
+                    },
                     child: Row(
                       children: [
                         const Icon(

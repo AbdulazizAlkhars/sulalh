@@ -94,118 +94,102 @@ class _CartPageState extends State<CartPage> {
           },
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      'Items In The Cart', // Your heading text
-                      style: AppFonts.title5(
-                        color: AppColors.grayscale90,
+      body: Scrollbar(
+        radius: Radius.circular(20),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                color: Colors.white,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Text(
+                        'Items In The Cart', // Your heading text
+                        style: AppFonts.title5(
+                          color: AppColors.grayscale90,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                ],
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: cartItems.length,
-              itemBuilder: (context, index) {
-                final item = cartItems[index];
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 5.0,
-                  ), // Add space between cards
-                  child: CartCard(
-                    imagePath: item.imagePath,
-                    productName: item.productName,
-                    price: item.price,
-                    quantity: item.quantity,
-                    onQuantityChanged: (newQuantity) {
-                      setState(() {
-                        item.quantity = newQuantity;
-                        calculateFinalAmount();
-                        calculateAmountWithoutDiscount();
-                      });
-                    },
-                    discountprice: item.discountedPrice,
-                    onDelete: () => _deleteCartItem(item),
-                  ),
-                );
-              },
-            ),
-            Divider(
-              color: AppColors.grayscale50,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Text('Previously Bought\nFor Tommy',
-                        style: AppFonts.title5(color: AppColors.grayscale90)),
-                  ),
-                  Text(
-                    'See More',
-                    style: AppFonts.body1(color: AppColors.primary40),
-                  ),
-                ],
+              const SizedBox(
+                height: 10,
               ),
-            ),
-            ScrollableProductCardsWidget(
-              mainProductList: prevouslyBoughtProductList,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Text('Recommended Products\nFor Tommy',
-                        style: AppFonts.title5(color: AppColors.grayscale90)),
-                  ),
-                  Text(
-                    'See More',
-                    style: AppFonts.body1(color: AppColors.primary40),
-                  ),
-                ],
+              ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: cartItems.length,
+                itemBuilder: (context, index) {
+                  final item = cartItems[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 5.0,
+                    ), // Add space between cards
+                    child: CartCard(
+                      imagePath: item.imagePath,
+                      productName: item.productName,
+                      price: item.price,
+                      quantity: item.quantity,
+                      onQuantityChanged: (newQuantity) {
+                        setState(() {
+                          item.quantity = newQuantity;
+                          calculateFinalAmount();
+                          calculateAmountWithoutDiscount();
+                        });
+                      },
+                      discountprice: item.discountedPrice,
+                      onDelete: () => _deleteCartItem(item),
+                    ),
+                  );
+                },
               ),
-            ),
-            ProductTwoGridsWidget(
-              mainProductList: prevouslyBoughtProductList,
-            ),
-          ],
+              Divider(
+                color: AppColors.grayscale20,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Text('Previously Bought For Tommy',
+                          style: AppFonts.title5(color: AppColors.grayscale90)),
+                    ),
+                    Text(
+                      'See More',
+                      style: AppFonts.body1(color: AppColors.primary40),
+                    ),
+                  ],
+                ),
+              ),
+              ScrollableProductCardsWidget(
+                mainProductList: prevouslyBoughtProductList,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Material(
-        elevation: 10,
+        elevation: 2,
         child: IntrinsicHeight(
           child: Container(
             color: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
@@ -215,11 +199,22 @@ class _CartPageState extends State<CartPage> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        '${totalFinalAmount.toStringAsFixed(2)} KD',
-                        style: AppFonts.title4(
-                          color: AppColors.primary30,
-                        ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Total',
+                            style: AppFonts.body1(
+                              color: AppColors.grayscale90,
+                            ),
+                          ),
+                          Text(
+                            '${totalFinalAmount.toStringAsFixed(2)} KD',
+                            style: AppFonts.title4(
+                              color: AppColors.primary30,
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(width: 5),
                       Text(
@@ -262,15 +257,6 @@ class _CartPageState extends State<CartPage> {
                       ),
                     ],
                   ),
-                  Text(
-                    'Total',
-                    style: AppFonts.body1(
-                      color: AppColors.grayscale90,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  )
                 ],
               ),
             ),

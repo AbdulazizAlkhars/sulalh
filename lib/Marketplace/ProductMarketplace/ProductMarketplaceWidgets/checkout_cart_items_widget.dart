@@ -34,8 +34,8 @@ class _CheckOutCartCardState extends State<CheckOutCartCard> {
       borderRadius: BorderRadius.circular(12), // Adjust the radius as needed
       child: IntrinsicHeight(
         child: Card(
-          elevation: 0.5,
-          color: AppColors.grayscale00,
+          elevation: 0.2,
+          color: AppColors.grayscale0,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
