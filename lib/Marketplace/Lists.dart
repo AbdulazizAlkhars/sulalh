@@ -207,91 +207,6 @@ class ProductDetails {
 
 final List<ProductDetails> topProductList = [
   ProductDetails(
-    imagePath: 'assets/Marketplace/Frame 1 5.png',
-    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
-    discountedPrice: '\$80',
-    actualPrice: '\$100',
-    shopName: 'Pet Club',
-    pcsperpack: '6Pc',
-    rating: 4.5,
-    description:
-        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
-    benefits:
-        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
-    weightvoulme: '800ML',
-    forwhatspecies: 'assets/avatars/120px/Duck.png',
-    promotiontag: 'Sale',
-    boughtPastMonth: '275',
-  ),
-  ProductDetails(
-    imagePath: 'assets/Marketplace/Frame 1 6.png',
-    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
-    discountedPrice: '\$80',
-    actualPrice: '\$100',
-    description:
-        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
-    benefits:
-        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
-    rating: 4.5,
-    pcsperpack: '6Pc',
-    shopName: 'Pet Club',
-    weightvoulme: '800ML',
-    forwhatspecies: 'assets/avatars/120px/Chicken.png',
-    boughtPastMonth: '225',
-    promotiontag: 'Best Seller',
-  ),
-  ProductDetails(
-    imagePath: 'assets/Marketplace/Frame 1.png',
-    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
-    discountedPrice: '\$80',
-    forwhatspecies: 'assets/avatars/120px/Cat.png',
-    actualPrice: '\$100',
-    pcsperpack: '6Pc',
-    description:
-        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
-    benefits:
-        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
-    weightvoulme: '800ML',
-    rating: 4.5,
-    shopName: 'Pet Club',
-    promotiontag: 'Promoted',
-    boughtPastMonth: '260',
-  ),
-  ProductDetails(
-    imagePath: 'assets/Marketplace/Frame 1 5.png',
-    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
-    discountedPrice: '\$80',
-    actualPrice: '\$100',
-    forwhatspecies: 'assets/avatars/120px/Cat.png',
-    rating: 4.5,
-    pcsperpack: '6pc',
-    shopName: 'Pet Club',
-    description:
-        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
-    benefits:
-        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
-    weightvoulme: '800ML',
-    boughtPastMonth: '275',
-    promotiontag: 'Promoted',
-  ),
-  ProductDetails(
-    imagePath: 'assets/Marketplace/Frame 1 5.png',
-    productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
-    discountedPrice: '\$80',
-    weightvoulme: '80g',
-    description:
-        'Sulphate free, soap free and pH balanced \nContains pro-vitamins and vegetable derived conditioning agents \nMoisturising and soothing with oat extract and aloe vera \nPleasantly smelling – contains lavender oil',
-    benefits:
-        "Packed with essential vitamins, minerals, and protein sources, our pet food promotes overall health, vitality, and a shiny coat, ensuring your pet thrives from the inside out. With every bite, you're providing your beloved pet with the nourishment they deserve for a vibrant and active lifestyle.",
-    pcsperpack: '6Pc',
-    shopName: 'Pet Hub',
-    actualPrice: '\$130',
-    forwhatspecies: 'assets/avatars/120px/Cat.png',
-    promotiontag: 'Best Seller',
-    rating: 4.0,
-    boughtPastMonth: '200',
-  ),
-  ProductDetails(
     imagePath: 'assets/Marketplace/Frame 1 6.png',
     productName: 'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     discountedPrice: '\$90',
@@ -2001,3 +1916,11 @@ final Map<String, Map<String, dynamic>> categoryDetails = {
   },
   // Add more categories and subcategories as needed
 };
+
+final List<Map<String, String>> packages = [
+  {'packageAmount': '180', 'packageName': "Tommy's Food Package"},
+  {'packageAmount': '85', 'packageName': "Medicines Package For Lucy"},
+  {'packageAmount': '145', 'packageName': "Beds Package"},
+  {'packageAmount': '120', 'packageName': "Food Package For Monty"},
+  // Add more package data as needed
+];

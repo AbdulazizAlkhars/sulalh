@@ -3,23 +3,24 @@ import 'package:hathera_demo/Marketplace/ProductMarketplace/checkout_item.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
-import '../Lists.dart';
+import '../../Lists.dart';
+import 'cart_card_widget.dart';
+import 'save_package_modal.dart';
+import 'scrollable_product_cards_widget.dart';
+import 'your_packages.dart';
 
-import 'ProductMarketplaceWidgets/cart_card_widget.dart';
-import 'ProductMarketplaceWidgets/column_product_card_widget.dart';
-import 'ProductMarketplaceWidgets/filter_items_widget.dart';
-import 'ProductMarketplaceWidgets/product_onegrid_widget.dart';
-import 'ProductMarketplaceWidgets/product_twogrids_widget.dart';
-import 'ProductMarketplaceWidgets/save_package_modal.dart';
-import 'ProductMarketplaceWidgets/scrollable_product_cards_widget.dart';
-import 'ProductMarketplaceWidgets/your_packages.dart';
+class PackageDetails extends StatefulWidget {
+  final String packageName;
+  final String packageAmount;
 
-class CartPage extends StatefulWidget {
+  const PackageDetails(
+      {super.key, required this.packageName, required this.packageAmount});
+
   @override
-  State<CartPage> createState() => _CartPageState();
+  State<PackageDetails> createState() => _PackageDetailsState();
 }
 
-class _CartPageState extends State<CartPage> {
+class _PackageDetailsState extends State<PackageDetails> {
   double totalFinalAmount = 0;
   double totalGrossAmount = 0;
   double totaldiscount = 0;
@@ -74,7 +75,7 @@ class _CartPageState extends State<CartPage> {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          'Cart',
+          widget.packageName,
           style: AppFonts.headline3(
             color: AppColors.grayscale90,
           ),
@@ -113,45 +114,11 @@ class _CartPageState extends State<CartPage> {
                       const SizedBox(
                         height: 20,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Items In The Cart', // Your heading text
-                            style: AppFonts.title5(
-                              color: AppColors.grayscale90,
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              color: AppColors.primary30,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 8.0,
-                                horizontal: 16.0,
-                              ),
-                              child: InkWell(
-                                onTap: () {
-                                  showModalBottomSheet(
-                                    showDragHandle: true,
-                                    context: context,
-                                    backgroundColor: Colors.white,
-                                    builder: (BuildContext context) {
-                                      return const SavePackageModal();
-                                    },
-                                  );
-                                },
-                                child: Text(
-                                  'Save Package',
-                                  style: AppFonts.body1(
-                                      color: AppColors.grayscale00),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                      Text(
+                        'Items In The Package', // Your heading text
+                        style: AppFonts.title5(
+                          color: AppColors.grayscale90,
+                        ),
                       ),
                       const SizedBox(
                         height: 10,
@@ -190,46 +157,6 @@ class _CartPageState extends State<CartPage> {
                     );
                   },
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Divider(
-                  color: AppColors.grayscale20,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text('Re-Order Your Packages',
-                    style: AppFonts.title5(color: AppColors.grayscale90)),
-                PackageListWidget(packages: packages),
-                Divider(
-                  color: AppColors.grayscale20,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: Text('Previously Bought For Tommy',
-                          style: AppFonts.title5(color: AppColors.grayscale90)),
-                    ),
-                    Text(
-                      'See More',
-                      style: AppFonts.body1(color: AppColors.primary40),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                ScrollableProductCardsWidget(
-                  mainProductList: prevouslyBoughtProductList,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
               ],
             ),
           ),
@@ -261,21 +188,12 @@ class _CartPageState extends State<CartPage> {
                             ),
                           ),
                           Text(
-                            '${totalFinalAmount.toStringAsFixed(2)} KD',
+                            '${widget.packageAmount} KD',
                             style: AppFonts.title4(
                               color: AppColors.primary30,
                             ),
                           ),
                         ],
-                      ),
-                      const SizedBox(width: 5),
-                      Text(
-                        '${totalGrossAmount.toStringAsFixed(2)} KD',
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: AppColors.grayscale60,
-                          decoration: TextDecoration.lineThrough,
-                        ),
                       ),
                       const SizedBox(width: 20),
                       Expanded(

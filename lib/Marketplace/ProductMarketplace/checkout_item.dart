@@ -294,7 +294,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         },
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
-                          backgroundColor: AppColors.secondary20,
+                          backgroundColor: AppColors.grayscale10,
                           padding: const EdgeInsets.symmetric(
                               vertical: 14, horizontal: 24),
                           shape: RoundedRectangleBorder(
@@ -419,26 +419,29 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     color: AppColors.grayscale00,
                   ),
                   height: 400,
-                  child: Scrollbar(
-                    radius: const Radius.circular(20),
-                    child: ListView.builder(
-                      itemCount: cartItems.length,
-                      itemBuilder: (context, index) {
-                        final item = cartItems[index];
-                        return Padding(
-                          padding: const EdgeInsets.only(
-                              bottom: 8.0), // Add space between cards
-                          child: CheckOutCartCard(
-                            imagePath: item.imagePath,
-                            productName: item.productName,
-                            price: item.price,
-                            quantity: item.quantity,
-                            onQuantityChanged: (newQuantity) {},
-                            discountprice: item.discountedPrice,
-                            onDelete: () => (item),
-                          ),
-                        );
-                      },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Scrollbar(
+                      radius: const Radius.circular(20),
+                      child: ListView.builder(
+                        itemCount: cartItems.length,
+                        itemBuilder: (context, index) {
+                          final item = cartItems[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                                bottom: 8.0), // Add space between cards
+                            child: CheckOutCartCard(
+                              imagePath: item.imagePath,
+                              productName: item.productName,
+                              price: item.price,
+                              quantity: item.quantity,
+                              onQuantityChanged: (newQuantity) {},
+                              discountprice: item.discountedPrice,
+                              onDelete: () => (item),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),

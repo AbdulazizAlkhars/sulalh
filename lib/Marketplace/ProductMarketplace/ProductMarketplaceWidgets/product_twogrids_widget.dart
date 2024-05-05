@@ -1,13 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import '../../../Theme/Colors.dart';
-import '../../../Theme/Fonts.dart';
+
 import '../../Lists.dart';
-import '../marketplace_items.dart';
 import '../product_details_page.dart';
 import 'column_product_card_widget.dart';
-import 'item_promotional_chips_widget.dart';
 
 class ProductTwoGridsWidget extends StatelessWidget {
   final List<ProductDetails>

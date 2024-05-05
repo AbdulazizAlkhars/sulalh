@@ -30,12 +30,13 @@ class CheckOutCartCard extends StatefulWidget {
 class _CheckOutCartCardState extends State<CheckOutCartCard> {
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12), // Adjust the radius as needed
-      child: IntrinsicHeight(
-        child: Card(
-          elevation: 0.2,
-          color: AppColors.grayscale0,
+    return Material(
+      elevation: 1.5,
+      color: AppColors.grayscale00,
+      borderRadius: BorderRadius.circular(12),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12), // Adjust the radius as needed
+        child: IntrinsicHeight(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
