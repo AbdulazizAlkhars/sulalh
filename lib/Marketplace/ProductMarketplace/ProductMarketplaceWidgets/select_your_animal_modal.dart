@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
-import '../add_new_address.dart';
+import '../ProductMarketPlacePages/add_new_address.dart';
 
 class SelectYourAnimalModal extends StatefulWidget {
   const SelectYourAnimalModal({Key? key}) : super(key: key);
@@ -258,7 +258,7 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
                                         ],
                                       ),
                                       child: CircleAvatar(
-                                        backgroundColor: Colors.white,
+                                        backgroundColor: AppColors.grayscale10,
                                         radius: 25,
                                         backgroundImage:
                                             AssetImage(speciesImageAsset),

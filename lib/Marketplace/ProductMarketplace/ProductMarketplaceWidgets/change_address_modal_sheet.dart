@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
-import '../add_new_address.dart';
+import '../ProductMarketPlacePages/add_new_address.dart';
 
 class ChangeAddressModal extends StatefulWidget {
   const ChangeAddressModal({Key? key}) : super(key: key);

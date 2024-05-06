@@ -6,7 +6,7 @@ import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/add_stor
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
-import '../Cart.dart';
+import '../ProductMarketPlacePages/Cart.dart';
 import 'filter_shops_widget.dart';
 
 import 'vendor_shop_details.dart';

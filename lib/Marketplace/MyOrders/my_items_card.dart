@@ -39,82 +39,88 @@ class MyOrderCard extends StatelessWidget {
       deliveryText =
           'Order Delivered On ${DateFormat('MMMM d, yyyy').format(deliverydate)}';
     }
-    return Card(
-      color: Colors.white,
-      elevation: 0,
-      child: ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 16),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  'Order Created On $formattedDate',
-                  style: AppFonts.title5(
-                    color: AppColors.grayscale90,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 5),
-            Row(
-              children: [
-                Text(
-                  'Order ID: $id',
-                  style: AppFonts.body2(
-                    color: AppColors.grayscale60,
-                  ),
-                ),
-                Spacer(),
-                StatusChip(status: status),
-              ],
-            ),
-
-            const SizedBox(height: 5),
-            Row(
-              children: [
-                Text(
-                  deliveryText,
-                  style: AppFonts.body2(
-                    color: AppColors.grayscale60,
-                  ),
-                ),
-                Spacer(),
-                const Icon(
-                  Icons.chevron_right,
-                  color: AppColors.primary40,
-                ),
-              ],
-            ), // Show delivery date text based on status
-            const SizedBox(height: 5),
-            Text(
-              '$numberOfItems Items',
-              style: AppFonts.caption2(
-                color: AppColors.grayscale60,
-              ),
-            ),
-
-            const SizedBox(height: 5),
-          ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          border: Border.all(color: AppColors.grayscale20),
+          color: AppColors.grayscale00,
         ),
-        subtitle: SizedBox(
-          height: 100,
-          child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemCount: itemImages.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(right: 5),
-                child: Image.asset(
-                  itemImages[index],
-                  width: 80,
-                  height: 80,
-                  fit: BoxFit.cover,
+        child: ListTile(
+          contentPadding: EdgeInsets.symmetric(horizontal: 16),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    'Order Created On $formattedDate',
+                    style: AppFonts.title5(
+                      color: AppColors.grayscale90,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 5),
+              Row(
+                children: [
+                  Text(
+                    'Order ID: $id',
+                    style: AppFonts.body2(
+                      color: AppColors.grayscale60,
+                    ),
+                  ),
+                  Spacer(),
+                  StatusChip(status: status),
+                ],
+              ),
+
+              const SizedBox(height: 5),
+              Row(
+                children: [
+                  Text(
+                    deliveryText,
+                    style: AppFonts.body2(
+                      color: AppColors.grayscale60,
+                    ),
+                  ),
+                  Spacer(),
+                  const Icon(
+                    Icons.chevron_right,
+                    color: AppColors.primary40,
+                  ),
+                ],
+              ), // Show delivery date text based on status
+              const SizedBox(height: 5),
+              Text(
+                '$numberOfItems Items',
+                style: AppFonts.caption2(
+                  color: AppColors.grayscale60,
                 ),
-              );
-            },
+              ),
+
+              const SizedBox(height: 5),
+            ],
+          ),
+          subtitle: SizedBox(
+            height: 100,
+            child: ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: itemImages.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(right: 5),
+                  child: Image.asset(
+                    itemImages[index],
+                    width: 80,
+                    height: 80,
+                    fit: BoxFit.cover,
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),

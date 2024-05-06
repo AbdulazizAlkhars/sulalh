@@ -6,7 +6,7 @@ import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWi
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
-import '../add_new_address.dart';
+import '../ProductMarketPlacePages/add_new_address.dart';
 
 class AddYourStoreModal extends StatefulWidget {
   const AddYourStoreModal({Key? key}) : super(key: key);

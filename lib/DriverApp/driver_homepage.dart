@@ -7,7 +7,6 @@ import 'package:hathera_demo/DriverApp/DriverNewOrders/driver_new_orders.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
-import '../Marketplace/ProductMarketplace/Cart.dart';
 import 'DriverAcceptedOrders/driver_accepted_orders.dart';
 import 'DriverAppWidgets/driver_accounts_modal.dart';
 import 'DriverDeliveredOrders/driver_delivered_orders.dart';

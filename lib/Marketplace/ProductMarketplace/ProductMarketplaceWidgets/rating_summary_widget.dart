@@ -33,7 +33,7 @@ class RatingSummaryWidget extends StatelessWidget {
                 color: AppColors.grayscale90,
               ),
             ),
-            const SizedBox(width: 10),
+            const SizedBox(width: 8),
             Text(
               '($totalReviews)',
               style: AppFonts.title5(

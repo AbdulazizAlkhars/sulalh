@@ -2,22 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/item_vendors.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/select_your_animal_modal.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../Theme/Colors.dart';
-import '../../Theme/Fonts.dart';
-import '../Lists.dart';
+import '../../../Theme/Colors.dart';
+import '../../../Theme/Fonts.dart';
+import '../../Lists.dart';
 import 'Cart.dart';
-import 'ItemVendors/vendor_shop_details.dart';
-import 'ProductMarketplaceWidgets/brands_modal_sheet_widget.dart';
-import 'ProductMarketplaceWidgets/change_address_modal_sheet.dart';
-import 'ProductMarketplaceWidgets/column_product_card_widget.dart';
-import 'ProductMarketplaceWidgets/filter_items_widget.dart';
-import 'ProductMarketplaceWidgets/product_twogrids_widget.dart';
-import 'ProductMarketplaceWidgets/scrollable_product_cards_widget.dart';
-import 'ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
-import 'filtered_item_catalog.dart';
+import '../ItemVendors/vendor_shop_details.dart';
+import '../ProductMarketplaceWidgets/brands_modal_sheet_widget.dart';
+import '../ProductMarketplaceWidgets/change_address_modal_sheet.dart';
+import '../ProductMarketplaceWidgets/filter_items_widget.dart';
+import '../ProductMarketplaceWidgets/product_twogrids_widget.dart';
+import '../ProductMarketplaceWidgets/scrollable_product_cards_widget.dart';
+import '../ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
+import 'category_item_catalog.dart';
 
-import 'ProductMarketplaceWidgets/vendors_avatars_widget.dart';
+import '../ProductMarketplaceWidgets/vendors_avatars_widget.dart';
 
 class MarketplaceItems extends StatefulWidget {
   const MarketplaceItems({Key? key}) : super(key: key);

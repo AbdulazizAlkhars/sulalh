@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:easy_autocomplete/easy_autocomplete.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
-import '../../Lists.dart';
 
 class SuggestableTextField extends StatefulWidget {
   final String hintText;

@@ -4,13 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/change_address_modal_sheet.dart';
-import 'package:flutter/cupertino.dart';
-import '../../Theme/Colors.dart';
-import '../../Theme/Fonts.dart';
-import '../Lists.dart';
-import 'ProductMarketplaceWidgets/checkout_cart_items_widget.dart';
-import 'ProductMarketplaceWidgets/credit_debit_cards_widget.dart';
-import 'ProductMarketplaceWidgets/delivery_time_slots_chips_widget.dart';
+import '../../../Theme/Colors.dart';
+import '../../../Theme/Fonts.dart';
+import '../../Lists.dart';
+import '../ProductMarketplaceWidgets/checkout_cart_items_widget.dart';
+import '../ProductMarketplaceWidgets/credit_debit_cards_widget.dart';
+import '../ProductMarketplaceWidgets/delivery_time_slots_chips_widget.dart';
 import 'package:intl/intl.dart';
 
 class CheckoutPage extends StatefulWidget {
@@ -105,7 +104,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                     ? AppColors.primary30
                                     : Colors.transparent,
                               ),
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   vertical: 12, horizontal: 12),
                               child: Text(dateString,
                                   style: AppFonts.headline4(
@@ -160,7 +159,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
         ),
       ),
       body: Scrollbar(
-        radius: Radius.circular(20),
+        radius: const Radius.circular(20),
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -258,7 +257,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                Divider(
+                const Divider(
                   color: AppColors.grayscale10,
                 ),
                 const SizedBox(
@@ -312,7 +311,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                Divider(
+                const Divider(
                   color: AppColors.grayscale10,
                 ),
                 const SizedBox(
@@ -354,9 +353,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                         selectedDate.month ==
                                             DateTime.now().month &&
                                         selectedDate.day == DateTime.now().day
-                                    ? 'Today, ${DateFormat('MMM d').format(selectedDate!)}'
+                                    ? 'Today, ${DateFormat('MMM d').format(selectedDate)}'
                                     : DateFormat('EEEE, MMM d')
-                                        .format(selectedDate!),
+                                        .format(selectedDate),
                                 style: AppFonts.body2(
                                     color: AppColors.grayscale100),
                               ),
@@ -401,7 +400,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     ),
                   ],
                 ),
-                Divider(
+                const Divider(
                   color: AppColors.grayscale10,
                 ),
                 const SizedBox(
@@ -450,7 +449,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                Divider(
+                const Divider(
                   color: AppColors.grayscale10,
                 ),
                 const SizedBox(
@@ -479,7 +478,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     maxLines: 3,
                     decoration: InputDecoration(
                       hintText: 'Enter Special Instructions',
-                      contentPadding: EdgeInsets.all(8),
+                      contentPadding: const EdgeInsets.all(8),
                       hintStyle: AppFonts.body2(color: AppColors.grayscale50),
                       border: InputBorder.none,
                     ),
@@ -488,7 +487,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                Divider(
+                const Divider(
                   color: AppColors.grayscale10,
                 ),
                 const SizedBox(
@@ -507,7 +506,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     color: AppColors.grayscale90,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 ListView.builder(
@@ -703,7 +702,7 @@ void _showChangeAddress(BuildContext context) {
     context: context,
     backgroundColor: Colors.white,
     builder: (BuildContext context) {
-      return ChangeAddressModal();
+      return const ChangeAddressModal();
     },
   );
 }

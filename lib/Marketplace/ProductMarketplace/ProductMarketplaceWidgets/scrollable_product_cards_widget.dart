@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hathera_demo/Marketplace/Lists.dart';
 import '../../../Theme/Colors.dart';
-import '../product_details_page.dart';
+import '../ProductMarketPlacePages/product_details_page.dart';
 import 'column_product_card_widget.dart';
 
 class ScrollableProductCardsWidget extends StatelessWidget {

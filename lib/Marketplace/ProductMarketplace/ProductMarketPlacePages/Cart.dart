@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Marketplace/ProductMarketplace/checkout_item.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketPlacePages/checkout_item.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
-import '../Lists.dart';
+import '../../Lists.dart';
 
-import 'ProductMarketplaceWidgets/cart_card_widget.dart';
-import 'ProductMarketplaceWidgets/column_product_card_widget.dart';
-import 'ProductMarketplaceWidgets/filter_items_widget.dart';
-import 'ProductMarketplaceWidgets/product_onegrid_widget.dart';
-import 'ProductMarketplaceWidgets/product_twogrids_widget.dart';
-import 'ProductMarketplaceWidgets/save_package_modal.dart';
-import 'ProductMarketplaceWidgets/scrollable_product_cards_widget.dart';
-import 'ProductMarketplaceWidgets/your_packages.dart';
+import '../ProductMarketplaceWidgets/cart_card_widget.dart';
+
+import '../ProductMarketplaceWidgets/save_package_modal.dart';
+import '../ProductMarketplaceWidgets/scrollable_product_cards_widget.dart';
+import '../ProductMarketplaceWidgets/your_packages.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -98,7 +95,7 @@ class _CartPageState extends State<CartPage> {
         ),
       ),
       body: Scrollbar(
-        radius: Radius.circular(20),
+        radius: const Radius.circular(20),
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -163,7 +160,7 @@ class _CartPageState extends State<CartPage> {
                   height: 10,
                 ),
                 ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: cartItems.length,
                   itemBuilder: (context, index) {
@@ -193,7 +190,7 @@ class _CartPageState extends State<CartPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                Divider(
+                const Divider(
                   color: AppColors.grayscale20,
                 ),
                 const SizedBox(
@@ -202,7 +199,7 @@ class _CartPageState extends State<CartPage> {
                 Text('Re-Order Your Packages',
                     style: AppFonts.title5(color: AppColors.grayscale90)),
                 PackageListWidget(packages: packages),
-                Divider(
+                const Divider(
                   color: AppColors.grayscale20,
                 ),
                 const SizedBox(

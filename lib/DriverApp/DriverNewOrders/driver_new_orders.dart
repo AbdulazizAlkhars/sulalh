@@ -6,8 +6,6 @@ import 'package:hathera_demo/DriverApp/DriverAppWidgets/driver_order_status_chip
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 
-import '../../Marketplace/ProductMarketplace/ItemVendors/vendor_item_animal_category_widget.dart';
-
 import '../DriverAppWidgets/new_orders_filter_modal.dart';
 import 'driver_neworder_details.dart';
 
@@ -26,7 +24,7 @@ class _DriverNewOrdersState extends State<DriverNewOrders> {
       _checkForOrdersWithSameAddress();
     });
     return Scrollbar(
-      radius: Radius.circular(20),
+      radius: const Radius.circular(20),
       thickness: 3,
       child: SingleChildScrollView(
         child: Column(
@@ -58,7 +56,7 @@ class _DriverNewOrdersState extends State<DriverNewOrders> {
                             return SizedBox(
                               height: MediaQuery.of(context).size.height *
                                   0.8, // Adjust height as needed
-                              child: FilterNewOrdersModal(
+                              child: const FilterNewOrdersModal(
                                 showPaymentStatusFilter: false,
                               ),
                             );

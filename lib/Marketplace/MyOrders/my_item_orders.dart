@@ -30,20 +30,23 @@ class _MyItemsOrdersState extends State<MyItemsOrders> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Wrap(
-                  direction: Axis.horizontal,
-                  crossAxisAlignment: WrapCrossAlignment.start,
-                  spacing: 8.0,
-                  runSpacing: 8.0,
-                  children: List.generate(
-                    myitemordersfilter.length,
-                    (index) => ChipsWidget(
-                      label: myitemordersfilter[index],
-                      onTap: () {
-                        // Do something when the chip is tapped
-                      },
+              child: Scrollbar(
+                thickness: BorderSide.strokeAlignInside,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Wrap(
+                    direction: Axis.horizontal,
+                    crossAxisAlignment: WrapCrossAlignment.start,
+                    spacing: 8.0,
+                    runSpacing: 8.0,
+                    children: List.generate(
+                      myitemordersfilter.length,
+                      (index) => ChipsWidget(
+                        label: myitemordersfilter[index],
+                        onTap: () {
+                          // Do something when the chip is tapped
+                        },
+                      ),
                     ),
                   ),
                 ),

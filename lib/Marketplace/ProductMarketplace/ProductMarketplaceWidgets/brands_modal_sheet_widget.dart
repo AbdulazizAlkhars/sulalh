@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
-import '../add_new_address.dart';
 
 class BrandsModal extends StatefulWidget {
   const BrandsModal({Key? key}) : super(key: key);
@@ -63,7 +62,7 @@ class _BrandsModalState extends State<BrandsModal> {
                   style: AppFonts.title4(color: AppColors.grayscale90),
                   textAlign: TextAlign.center,
                 ),
-                Spacer(),
+                const Spacer(),
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.0),
@@ -183,7 +182,7 @@ class _BrandsModalState extends State<BrandsModal> {
             const SizedBox(
               height: 10,
             ),
-            Divider(
+            const Divider(
               color: AppColors.grayscale20,
             ),
             const SizedBox(

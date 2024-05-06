@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:hathera_demo/Marketplace/ProductMarketplace/marketplace_items.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketPlacePages/marketplace_items.dart';
 
 // ignore: must_be_immutable
 class MarketplaceHomePage extends ConsumerStatefulWidget {

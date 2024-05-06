@@ -41,9 +41,10 @@ class _ChipsWidgetState extends State<ChipsWidget> {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
+                      border: Border.all(color: AppColors.grayscale20),
                       color: isSelected
                           ? AppColors.secondary30
-                          : AppColors.grayscale10,
+                          : AppColors.grayscale00,
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/package_details_page.dart';
 
 import '../../../Theme/Colors.dart';
@@ -17,8 +18,9 @@ class PackageContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 40,
       decoration: BoxDecoration(
-        color: AppColors.grayscale00,
+        color: AppColors.grayscale0,
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: GestureDetector(
@@ -38,11 +40,12 @@ class PackageContainer extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                packageName,
-                style: AppFonts.body1(color: AppColors.grayscale90),
+              Expanded(
+                child: Text(
+                  packageName,
+                  style: AppFonts.body1(color: AppColors.grayscale90),
+                ),
               ),
-              const SizedBox(height: 13),
               Row(
                 children: [
                   Text(
@@ -78,9 +81,61 @@ class PackageListWidget extends StatelessWidget {
         final package = packages[index];
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: PackageContainer(
-            packageName: package['packageName']!,
-            packageAmount: package['packageAmount']!,
+          child: Dismissible(
+            key: Key(package['packageName']!), // Unique key for each item
+            direction: DismissDirection.endToStart,
+            background: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: AppColors.error100),
+              alignment: Alignment.centerRight,
+              padding: EdgeInsets.only(right: 16.0),
+              child: Icon(
+                Icons.delete,
+                color: Colors.white,
+              ),
+            ),
+            confirmDismiss: (direction) async {
+              // Show confirmation dialog
+              return await showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    surfaceTintColor: Colors.white,
+                    backgroundColor: AppColors.grayscale00,
+                    title: Text(
+                      "Delete The Package?",
+                      style: AppFonts.headline2(color: AppColors.primary40),
+                    ),
+                    content: Text(
+                      "Are you sure you want to delete this package?",
+                      style: AppFonts.body2(color: AppColors.grayscale100),
+                    ),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(false),
+                        child: Text(
+                          "Cancel",
+                          style: AppFonts.body1(color: AppColors.grayscale100),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(true),
+                        child: Text(
+                          "Delete",
+                          style: AppFonts.body1(color: AppColors.error100),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+
+            child: PackageContainer(
+              packageName: package['packageName']!,
+              packageAmount: package['packageAmount']!,
+            ),
           ),
         );
       },

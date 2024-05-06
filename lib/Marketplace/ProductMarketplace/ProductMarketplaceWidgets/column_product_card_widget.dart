@@ -5,7 +5,7 @@ import 'package:hathera_demo/Marketplace/Lists.dart';
 
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
-import '../marketplace_items.dart';
+import '../ProductMarketPlacePages/marketplace_items.dart';
 import 'item_promotional_chips_widget.dart';
 
 class ColumnProductCard extends StatelessWidget {

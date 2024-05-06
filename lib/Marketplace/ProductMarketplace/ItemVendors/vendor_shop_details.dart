@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/rate_the_shop.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/rating_summary_widget.dart';
 import 'package:intl/intl.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
-import '../Cart.dart';
-import '../ratings_reviews.dart';
+
+import '../ProductMarketPlacePages/ratings_reviews.dart';
 import 'vendor_shop_items.dart';
 
 class VendorShopDetails extends StatefulWidget {
@@ -52,30 +53,33 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
           },
         ),
         actions: [
-          IconButton(
-            padding: EdgeInsets.zero,
-            icon: Container(
-                width: MediaQuery.of(context).size.width * 0.1,
-                height: MediaQuery.of(context).size.width * 0.1,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.primary50,
-                ),
-                child: const Icon(
-                  Icons.shopping_cart_outlined,
-                  color: Colors.white,
-                  size: 20,
-                )),
+          TextButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CartPage()),
+              showModalBottomSheet(
+                backgroundColor: AppColors.grayscale00,
+                showDragHandle: true,
+                isScrollControlled:
+                    true, // Set to true to allow the bottom sheet to occupy full screen height
+                context: context,
+                builder: (BuildContext context) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height *
+                        0.8, // Adjust height as needed
+                    child: RateTheShop(
+                      shopName: vendor['name'], // Pass shop name
+                      shopImage: vendor['imageAsset'], // Pass shop image
+                    ),
+                  );
+                },
               );
-            }, // Call the addAnimal function when the button is pressed
+            },
+            child: Text(
+              'Add a Review',
+              style: AppFonts.body1(
+                color: AppColors.primary50,
+              ),
+            ),
           ),
-          const SizedBox(
-            width: 10,
-          )
         ],
       ),
       body: Scrollbar(
@@ -127,20 +131,23 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Row(
                                     children: [
-                                      const Icon(Icons.star,
-                                          color: AppColors.secondary50),
-                                      const SizedBox(width: 5),
                                       Text(
                                         '4.5', // Replace with actual ratings
-                                        style: AppFonts.caption2(
+                                        style: AppFonts.body2(
                                             color: AppColors.grayscale90),
                                       ),
+                                      const SizedBox(width: 5),
+                                      const Icon(Icons.star,
+                                          size: 20,
+                                          color: AppColors.secondary50),
                                     ],
                                   ),
                                   Text(
@@ -178,26 +185,30 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Row(
                                     children: [
                                       const Icon(Icons.shopping_bag,
+                                          size: 20,
                                           color: AppColors.secondary50),
                                       const SizedBox(width: 5),
                                       Text(
                                         '1000+', // Replace with actual ratings
-                                        style: AppFonts.caption2(
+                                        style: AppFonts.body2(
+                                            color: AppColors.grayscale90),
+                                      ),
+                                      const SizedBox(width: 5),
+                                      Text(
+                                        'Orders',
+                                        style: AppFonts.body2(
                                             color: AppColors.grayscale90),
                                       ),
                                     ],
-                                  ),
-                                  Text(
-                                    'Orders',
-                                    style: AppFonts.body2(
-                                        color: AppColors.grayscale90),
                                   ),
                                 ],
                               ),
@@ -399,53 +410,50 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
           ),
         ),
       ),
-      bottomNavigationBar: Material(
-        elevation: 4, // Adjust the elevation value as needed
-        child: IntrinsicHeight(
+      bottomNavigationBar: IntrinsicHeight(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12.0),
+            border: Border.all(color: AppColors.grayscale20),
+            color: AppColors.grayscale00,
+          ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => VendorShopItems(
-                                          index: widget.index,
-                                        )),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              elevation: 0,
-                              backgroundColor: AppColors.primary50,
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 16, horizontal: 24),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                            ),
-                            child: Text(
-                              'Shop',
-                              style:
-                                  AppFonts.body1(color: AppColors.grayscale0),
-                            ),
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => VendorShopItems(
+                                      index: widget.index,
+                                    )),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          backgroundColor: AppColors.primary50,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 16, horizontal: 24),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
                           ),
                         ),
-                      ],
+                        child: Text(
+                          'Shop',
+                          style: AppFonts.body1(color: AppColors.grayscale0),
+                        ),
+                      ),
                     ),
                   ],
                 ),
-              ),
+              ],
             ),
           ),
         ),

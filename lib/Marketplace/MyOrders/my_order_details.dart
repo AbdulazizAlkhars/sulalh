@@ -198,6 +198,9 @@ class _MyOrderDetailsState extends State<MyOrderDetails> {
               const SizedBox(
                 height: 15,
               ),
+              const Divider(
+                color: AppColors.grayscale10,
+              ),
               Row(
                 children: [
                   Text(
@@ -231,6 +234,9 @@ class _MyOrderDetailsState extends State<MyOrderDetails> {
               const SizedBox(
                 height: 15,
               ),
+              const Divider(
+                color: AppColors.grayscale10,
+              ),
               Text(
                 'Items',
                 style: AppFonts.title4(
@@ -259,99 +265,127 @@ class _MyOrderDetailsState extends State<MyOrderDetails> {
                 ],
               ),
               const SizedBox(
-                height: 5,
+                height: 15,
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: widget.itemImages.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Image.asset(
-                              widget.itemImages[index],
-                              width: 80,
-                              height: 80,
-                              fit: BoxFit.cover,
-                            ),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    widget.itemNames[index],
-                                    style: AppFonts.body2(
-                                      color: AppColors.grayscale90,
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.0),
+                  border: Border.all(color: AppColors.grayscale20),
+                  color: AppColors.grayscale00,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: widget.itemImages.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            color: AppColors.grayscale0,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                      widget.itemImages[index],
+                                      width: 80,
+                                      height: 80,
+                                      fit: BoxFit.cover,
                                     ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Text(
-                                    '\$${widget.itemPrice[index]}',
-                                    style: AppFonts.headline4(
-                                      color: AppColors.grayscale90,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        if (widget.status ==
-                            'Delivered') // Show button if status is 'Created'
-                          Container(
-                            color: Colors.white,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    color: Colors.transparent,
-                                    width: double.infinity,
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => RateItemPage(
-                                              itemName: widget.itemNames[index],
-                                              itemImage:
-                                                  widget.itemImages[index],
-                                              itemPrice:
-                                                  widget.itemPrice[index],
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            widget.itemNames[index],
+                                            style: AppFonts.body2(
+                                              color: AppColors.grayscale90,
                                             ),
                                           ),
-                                        );
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        elevation: 0,
-                                        backgroundColor: AppColors.grayscale10,
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 16, horizontal: 24),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                        ),
+                                          const SizedBox(height: 10),
+                                          Text(
+                                            '\$${widget.itemPrice[index]}',
+                                            style: AppFonts.headline4(
+                                              color: AppColors.grayscale90,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      child: Text(
-                                        'Rate This Item',
-                                        style: AppFonts.body1(
-                                            color: AppColors.grayscale90),
+                                    ),
+                                  ],
+                                ),
+                                if (widget.status ==
+                                    'Delivered') // Show button if status is 'Created'
+                                  Container(
+                                    color: Colors.white,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            color: Colors.transparent,
+                                            width: double.infinity,
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        RateItemPage(
+                                                      itemName: widget
+                                                          .itemNames[index],
+                                                      itemImage: widget
+                                                          .itemImages[index],
+                                                      itemPrice: widget
+                                                          .itemPrice[index],
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    AppColors.grayscale10,
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 16,
+                                                        horizontal: 24),
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(50),
+                                                ),
+                                              ),
+                                              child: Text(
+                                                'Rate This Item',
+                                                style: AppFonts.body1(
+                                                    color:
+                                                        AppColors.grayscale90),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
+                              ],
                             ),
                           ),
-                      ],
-                    ),
-                  );
-                },
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 20,
@@ -361,40 +395,19 @@ class _MyOrderDetailsState extends State<MyOrderDetails> {
         ),
       ),
       bottomNavigationBar: IntrinsicHeight(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (widget.status == 'Delivered' ||
-                      widget.status == 'Cancelled')
-                    Container(
-                      color: Colors.transparent,
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          backgroundColor: AppColors.grayscale10,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 24),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                        ),
-                        child: Text(
-                          'Re Order',
-                          style: AppFonts.body1(color: AppColors.grayscale90),
-                        ),
-                      ),
-                    ),
-                  const SizedBox(
-                    height: 15,
-                  ),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12.0),
+            border: Border.all(color: AppColors.grayscale20),
+            color: AppColors.grayscale00,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (widget.status == 'Delivered' ||
+                    widget.status == 'Cancelled')
                   Container(
                     color: Colors.transparent,
                     width: double.infinity,
@@ -410,38 +423,60 @@ class _MyOrderDetailsState extends State<MyOrderDetails> {
                         ),
                       ),
                       child: Text(
-                        'Contact Support',
+                        'Re Order',
                         style: AppFonts.body1(color: AppColors.grayscale90),
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  if (widget.status != 'Delivered' &&
-                      widget.status != 'Cancelled')
-                    Container(
-                      color: Colors.transparent,
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          backgroundColor: AppColors.grayscale10,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 24),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                        ),
-                        child: Text(
-                          'Cancel',
-                          style: AppFonts.body1(color: AppColors.error100),
-                        ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  color: Colors.transparent,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      backgroundColor: AppColors.grayscale10,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 16, horizontal: 24),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
                       ),
                     ),
-                ],
-              ),
+                    child: Text(
+                      'Contact Support',
+                      style: AppFonts.body1(color: AppColors.grayscale90),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                if (widget.status != 'Delivered' &&
+                    widget.status != 'Cancelled')
+                  Container(
+                    color: Colors.transparent,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        backgroundColor: AppColors.grayscale10,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 16, horizontal: 24),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                      child: Text(
+                        'Cancel',
+                        style: AppFonts.body1(color: AppColors.error100),
+                      ),
+                    ),
+                  ),
+              ],
             ),
           ),
         ),

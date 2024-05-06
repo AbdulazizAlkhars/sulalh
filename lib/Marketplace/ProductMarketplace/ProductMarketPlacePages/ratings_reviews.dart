@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 import 'package:intl/intl.dart';
 
-import '../../Theme/Colors.dart';
-import '../Lists.dart';
-import 'ProductMarketplaceWidgets/rating_summary_widget.dart';
+import '../../../Theme/Colors.dart';
+import '../../Lists.dart';
+import '../ProductMarketplaceWidgets/rating_summary_widget.dart';
 
 // ReviewsPage widget
 class ReviewsPage extends StatefulWidget {

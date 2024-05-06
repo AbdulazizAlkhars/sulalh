@@ -7,7 +7,7 @@ import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWi
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
 import '../Lists.dart';
-import '../ProductMarketplace/ratings_reviews.dart';
+import '../ProductMarketplace/ProductMarketPlacePages/ratings_reviews.dart';
 
 class AnimalDetailsPage extends StatefulWidget {
   final int index;

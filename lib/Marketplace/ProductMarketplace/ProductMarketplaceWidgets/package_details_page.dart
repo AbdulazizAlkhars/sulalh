@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Marketplace/ProductMarketplace/checkout_item.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketPlacePages/checkout_item.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
 import '../../Lists.dart';
 import 'cart_card_widget.dart';
-import 'save_package_modal.dart';
-import 'scrollable_product_cards_widget.dart';
-import 'your_packages.dart';
 
 class PackageDetails extends StatefulWidget {
   final String packageName;

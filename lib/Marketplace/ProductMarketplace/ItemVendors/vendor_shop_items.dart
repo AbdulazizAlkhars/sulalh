@@ -3,16 +3,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hathera_demo/Marketplace/Lists.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/brands_modal_sheet_widget.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/filter_items_widget.dart';
 
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
-import '../Cart.dart';
+import '../ProductMarketPlacePages/Cart.dart';
 import '../ProductMarketplaceWidgets/chips_widget.dart';
-import '../ProductMarketplaceWidgets/column_product_card_widget.dart';
 import '../ProductMarketplaceWidgets/product_onegrid_widget.dart';
 import '../ProductMarketplaceWidgets/scrollable_product_cards_widget.dart';
 import '../ProductMarketplaceWidgets/searchable_dropdown_widget.dart';

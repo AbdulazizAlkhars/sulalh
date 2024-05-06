@@ -1,7 +1,7 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:intl/intl.dart';
 import 'ProductMarketplace/ProductMarketplaceWidgets/credit_debit_cards_widget.dart';
 
 final List<String> animaladvertisements = [
@@ -318,9 +318,9 @@ List<String> filteredCatalogChipsList = [
   // Add more chip labels as needed
 ];
 List<String> myitemordersfilter = [
-  'January 2024', 'February 2024', 'March 2024', 'April 2024'
-
-  // Add more chip labels as needed
+  'All', // Add 'All' as the first item
+  for (int i = 0; i < 5; i++)
+    DateFormat.yMMMM().format(DateTime.now().subtract(Duration(days: 30 * i)))
 ];
 final List<ProductDetails> prevouslyBoughtProductList = [
   ProductDetails(
@@ -821,19 +821,28 @@ List<MyItemOrder> myitemorders = [
     date: DateTime(2024, 2, 7),
     deliverydate: DateTime(2024, 2, 15),
     id: '1',
-    status: 'Delivered',
-    numberOfItems: 2,
+    status: 'Created',
+    numberOfItems: 5,
     itemImages: [
+      'assets/Marketplace/Frame 1 5.png',
+      'assets/Marketplace/Frame 1 5.png',
+      'assets/Marketplace/Frame 1 5.png',
       'assets/Marketplace/Frame 1 5.png',
       'assets/Marketplace/Frame 1 5.png',
     ],
     itemNames: [
       'EquiGLOSS 2in1 Conditioning Shampoo',
+      'EquiGLOSS 2in1 Conditioning Shampoo',
+      'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
+      'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
       'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
     ],
     itemPrice: [
       '120',
       '140',
+      '120',
+      '140',
+      '120',
     ],
   ),
   MyItemOrder(

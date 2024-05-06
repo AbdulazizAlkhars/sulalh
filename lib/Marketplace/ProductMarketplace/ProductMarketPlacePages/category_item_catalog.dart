@@ -4,16 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hathera_demo/Marketplace/Lists.dart';
 
-import '../../Theme/Colors.dart';
-import '../../Theme/Fonts.dart';
+import '../../../Theme/Colors.dart';
+import '../../../Theme/Fonts.dart';
 import 'Cart.dart';
-import 'ProductMarketplaceWidgets/chips_widget.dart';
-import 'ProductMarketplaceWidgets/column_product_card_widget.dart';
-import 'ProductMarketplaceWidgets/filter_items_widget.dart';
-import 'ProductMarketplaceWidgets/product_onegrid_widget.dart';
-import 'ProductMarketplaceWidgets/scrollable_product_cards_widget.dart';
-import 'ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
-import 'ProductMarketplaceWidgets/select_your_animal_modal.dart';
+import '../ProductMarketplaceWidgets/chips_widget.dart';
+import '../ProductMarketplaceWidgets/filter_items_widget.dart';
+import '../ProductMarketplaceWidgets/product_onegrid_widget.dart';
+import '../ProductMarketplaceWidgets/scrollable_product_cards_widget.dart';
+import '../ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
+import '../ProductMarketplaceWidgets/select_your_animal_modal.dart';
 
 class FilteredItemCatalog extends StatefulWidget {
   final List<String> subcategories;

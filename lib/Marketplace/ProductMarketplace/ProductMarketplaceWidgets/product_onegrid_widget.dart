@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/column_product_card_widget.dart';
-import '../../../Theme/Colors.dart';
-import '../../../Theme/Fonts.dart';
+
 import '../../Lists.dart';
-import '../marketplace_items.dart';
-import '../product_details_page.dart';
+import '../ProductMarketPlacePages/product_details_page.dart';
 import 'row_product_card_widget.dart';
-import 'item_promotional_chips_widget.dart';
 
 class ProductOneGridWidget extends StatelessWidget {
   final List<ProductDetails>
