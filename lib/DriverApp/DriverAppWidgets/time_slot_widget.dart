@@ -3,22 +3,21 @@ import 'package:hathera_demo/Theme/Colors.dart';
 
 import '../../../Theme/Fonts.dart';
 
-class DeliverySlotChipsWidget extends StatefulWidget {
+class TimeSlotChipsWidget extends StatefulWidget {
   final String label;
   final Function()? onTap;
 
-  const DeliverySlotChipsWidget({
+  const TimeSlotChipsWidget({
     Key? key,
     required this.label,
     this.onTap,
   }) : super(key: key);
 
   @override
-  _DeliverySlotChipsWidgetState createState() =>
-      _DeliverySlotChipsWidgetState();
+  _TimeSlotChipsWidgetState createState() => _TimeSlotChipsWidgetState();
 }
 
-class _DeliverySlotChipsWidgetState extends State<DeliverySlotChipsWidget> {
+class _TimeSlotChipsWidgetState extends State<TimeSlotChipsWidget> {
   bool isSelected = false;
 
   @override
@@ -35,7 +34,7 @@ class _DeliverySlotChipsWidgetState extends State<DeliverySlotChipsWidget> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
-          border: Border.all(color: AppColors.grayscale10),
+          border: Border.all(color: AppColors.grayscale20),
           color: isSelected ? AppColors.secondary30 : AppColors.grayscale00,
         ),
         child: Padding(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:slide_action/slide_action.dart';
 
-import '../Theme/Fonts.dart';
+import '../../Theme/Fonts.dart';
 
 class SwipeToConfirm extends StatefulWidget {
   const SwipeToConfirm({
@@ -24,9 +24,9 @@ class _SwipeToConfirmState extends State<SwipeToConfirm> {
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                 elevation: 0,
-                backgroundColor: AppColors.secondary50,
+                backgroundColor: AppColors.grayscale20,
                 padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50),
                 ),
@@ -39,7 +39,7 @@ class _SwipeToConfirmState extends State<SwipeToConfirm> {
           )
         : SlideAction(
             thumbHitTestBehavior: HitTestBehavior.translucent,
-            trackHeight: 55,
+            trackHeight: 65,
             trackBuilder: (context, state) {
               return Container(
                 decoration: BoxDecoration(
@@ -62,7 +62,7 @@ class _SwipeToConfirmState extends State<SwipeToConfirm> {
             },
             thumbBuilder: (context, state) {
               return Container(
-                margin: const EdgeInsets.all(4),
+                margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: AppColors.grayscale0,
                   borderRadius: BorderRadius.circular(50),

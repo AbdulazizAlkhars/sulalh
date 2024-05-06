@@ -239,7 +239,11 @@ class _CartPageState extends State<CartPage> {
         elevation: 2,
         child: IntrinsicHeight(
           child: Container(
-            color: Colors.white,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12.0),
+              border: Border.all(color: AppColors.grayscale20),
+              color: AppColors.grayscale00,
+            ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               child: Column(

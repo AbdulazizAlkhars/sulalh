@@ -340,8 +340,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         Center(
                           child: Container(
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.0),
-                                color: AppColors.secondary30),
+                              borderRadius: BorderRadius.circular(20.0),
+                              border: Border.all(color: AppColors.grayscale10),
+                              color: AppColors.secondary30,
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                 vertical: 8.0,
@@ -629,7 +631,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
         elevation: 10,
         child: IntrinsicHeight(
           child: Container(
-            color: Colors.white,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12.0),
+              border: Border.all(color: AppColors.grayscale20),
+              color: AppColors.grayscale00,
+            ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               child: Column(

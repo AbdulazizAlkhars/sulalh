@@ -43,6 +43,27 @@ final List<DriverNewOrders> DriverNewOrderList = [
         discountedPrice: 10,
         imagePath: 'assets/Marketplace/Frame 1 5.png',
       ),
+      DriverCartItem(
+        productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
+        price: 25.0,
+        quantity: 2,
+        discountedPrice: 10,
+        imagePath: 'assets/Marketplace/Frame 1 5.png',
+      ),
+      DriverCartItem(
+        productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
+        price: 25.0,
+        quantity: 2,
+        discountedPrice: 10,
+        imagePath: 'assets/Marketplace/Frame 1 5.png',
+      ),
+      DriverCartItem(
+        productName: 'EquiGLOSS 2in1 Conditioning Shampoo',
+        price: 25.0,
+        quantity: 2,
+        discountedPrice: 10,
+        imagePath: 'assets/Marketplace/Frame 1 5.png',
+      ),
       // Add more cart items as needed
     ],
   ),
@@ -521,4 +542,26 @@ final List<DriverCartItem> drivercartItems = [
     discountedPrice: 10,
     imagePath: 'assets/Marketplace/Frame 1 5.png',
   ),
+];
+
+List<String> states = [
+  'Al Ahmadi',
+  'Hawalli',
+  'Farwaniya',
+  'Al Asimah',
+  'Jahra',
+  'Mubarak Al-Kabeer'
+];
+Map<String, List<String>> cities = {
+  'Al Ahmadi': ['Fahaheel', 'Mangaf', 'Mahboula'],
+  'Hawalli': ['Hawalli', 'Salmiya', 'Bayan'],
+  'Farwaniya': ['Al-Farwaniyah', 'Al-Rai', 'Rabiya'],
+  'Al Asimah': ['Kuwait City', 'Dasma', 'Qortuba'],
+  'Jahra': ['Jahra', 'Naseem', 'Qasr'],
+  'Mubarak Al-Kabeer': ['Al-Abdali', 'Wafra', 'Mutlaa'],
+};
+final List<String> timeSlots = [
+  '10 AM - 2 PM',
+  '2 PM - 6 PM',
+  '6 PM - 8 PM',
 ];

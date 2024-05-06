@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/DriverApp/driver_customer_support.dart';
-import 'package:hathera_demo/DriverApp/driver_new_orders.dart';
+import 'package:hathera_demo/DriverApp/DriverNewOrders/driver_new_orders.dart';
 
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
 import '../Marketplace/ProductMarketplace/Cart.dart';
-import 'driver_accepted_orders.dart';
-import 'driver_accounts_modal.dart';
-import 'driver_delivered_orders.dart';
+import 'DriverAcceptedOrders/driver_accepted_orders.dart';
+import 'DriverAppWidgets/driver_accounts_modal.dart';
+import 'DriverDeliveredOrders/driver_delivered_orders.dart';
 
 // ignore: must_be_immutable
 class DriverHomePage extends ConsumerStatefulWidget {
