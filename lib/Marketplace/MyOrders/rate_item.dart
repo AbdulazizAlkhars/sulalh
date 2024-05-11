@@ -5,7 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../../Theme/Colors.dart';
 import '../../Theme/Fonts.dart';
-import '../ProductMarketplace/ProductMarketplaceWidgets/textfield_widget.dart';
+import '../ProductMarketplace/ProductMarketPlaceWidgets/textfield_widget.dart';
 
 class RateItemPage extends StatefulWidget {
   final String itemName;

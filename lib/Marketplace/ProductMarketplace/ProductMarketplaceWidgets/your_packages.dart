@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/package_details_page.dart';
+import 'package:get/get.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketPlaceWidgets/package_details_page.dart';
 
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
@@ -104,26 +105,27 @@ class PackageListWidget extends StatelessWidget {
                     surfaceTintColor: Colors.white,
                     backgroundColor: AppColors.grayscale00,
                     title: Text(
-                      "Delete The Package?",
+                      "Delete The Package?".tr,
                       style: AppFonts.headline2(color: AppColors.primary40),
                     ),
                     content: Text(
-                      "Are you sure you want to delete this package?",
+                      "Are you sure you want to delete this package?".tr,
                       style: AppFonts.body2(color: AppColors.grayscale100),
                     ),
                     actions: <Widget>[
                       TextButton(
                         onPressed: () => Navigator.of(context).pop(false),
                         child: Text(
-                          "Cancel",
+                          "Cancel".tr,
                           style: AppFonts.body1(color: AppColors.grayscale100),
                         ),
                       ),
                       TextButton(
                         onPressed: () => Navigator.of(context).pop(true),
                         child: Text(
-                          "Delete",
-                          style: AppFonts.body1(color: AppColors.error100),
+                          "Delete".tr,
+                          style: AppFonts.body1(
+                              color: const Color.fromARGB(255, 255, 62, 44)),
                         ),
                       ),
                     ],

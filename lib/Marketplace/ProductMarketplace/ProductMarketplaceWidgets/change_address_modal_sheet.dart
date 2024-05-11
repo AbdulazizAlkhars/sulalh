@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../ProductMarketPlacePages/add_new_address.dart';
@@ -37,7 +38,7 @@ class _ChangeAddressModalState extends State<ChangeAddressModal> {
                 height: 10,
               ),
               Text(
-                'Change Address',
+                'Change Address'.tr,
                 style: AppFonts.title4(color: AppColors.grayscale90),
                 textAlign: TextAlign.center,
               ),
@@ -128,7 +129,7 @@ class _ChangeAddressModalState extends State<ChangeAddressModal> {
                     ),
                   ),
                   child: Text(
-                    'Add New Address',
+                    'Add New Address'.tr,
                     style: AppFonts.body1(color: AppColors.grayscale0),
                   ),
                 ),

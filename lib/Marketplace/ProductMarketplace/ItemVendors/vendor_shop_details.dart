@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/rate_the_shop.dart';
-import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/rating_summary_widget.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketPlaceWidgets/rating_summary_widget.dart';
 import 'package:intl/intl.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
@@ -34,7 +35,7 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
         centerTitle: true,
         automaticallyImplyLeading: false,
         title: Text(
-          'Vendor Information',
+          'Vendor Information'.tr,
           style: AppFonts.headline3(color: AppColors.grayscale90),
         ),
         leading: IconButton(
@@ -74,7 +75,7 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
               );
             },
             child: Text(
-              'Add a Review',
+              'Add a Review'.tr,
               style: AppFonts.body1(
                 color: AppColors.primary50,
               ),
@@ -151,7 +152,7 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                                     ],
                                   ),
                                   Text(
-                                    '12 Reviews',
+                                    '12' + 'Reviews'.tr,
                                     style: AppFonts.body2(
                                         color: AppColors.grayscale90),
                                   ),
@@ -204,7 +205,7 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                                       ),
                                       const SizedBox(width: 5),
                                       Text(
-                                        'Orders',
+                                        'Orders'.tr,
                                         style: AppFonts.body2(
                                             color: AppColors.grayscale90),
                                       ),
@@ -220,14 +221,14 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                   ],
                 ),
                 const SizedBox(height: 25),
-                Text('Contact Details',
+                Text('Contact Details'.tr,
                     style: AppFonts.title5(color: AppColors.grayscale90)),
                 const SizedBox(height: 15),
                 Row(
                   children: [
                     if (vendor.containsKey('facebook'))
                       Text(
-                        'Facebook',
+                        'Facebook'.tr,
                         style: AppFonts.body2(color: AppColors.grayscale70),
                       ),
                     const Spacer(),
@@ -253,7 +254,7 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                   Row(
                     children: [
                       Text(
-                        'Instagram',
+                        'Instagram'.tr,
                         style: AppFonts.body2(color: AppColors.grayscale70),
                       ),
                       const Spacer(),
@@ -270,7 +271,7 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                   Row(
                     children: [
                       Text(
-                        'Website',
+                        'Website'.tr,
                         style: AppFonts.body2(color: AppColors.grayscale70),
                       ),
                       const Spacer(),
@@ -291,7 +292,7 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                     ],
                   ),
                 const SizedBox(height: 25),
-                Text('Description',
+                Text('Description'.tr,
                     style: AppFonts.title5(color: AppColors.grayscale90)),
                 const SizedBox(height: 15),
                 if (vendor.containsKey('description'))
@@ -300,14 +301,14 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                     style: AppFonts.body2(color: AppColors.grayscale90),
                   ),
                 const SizedBox(height: 25),
-                Text('General Information',
+                Text('General Information'.tr,
                     style: AppFonts.title5(color: AppColors.grayscale90)),
                 const SizedBox(height: 15),
                 if (vendor.containsKey('address'))
                   Row(
                     children: [
                       Text(
-                        'Legal Address',
+                        'Legal Address'.tr,
                         style: AppFonts.body2(color: AppColors.grayscale70),
                       ),
                       const Spacer(),
@@ -332,7 +333,7 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                     Expanded(
                       flex: 2,
                       child: Text(
-                        'Reviews',
+                        'Reviews'.tr,
                         style: AppFonts.title4(color: AppColors.grayscale90),
                       ),
                     ),
@@ -347,7 +348,7 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                           );
                         },
                         child: Text(
-                          'View More',
+                          'View More'.tr,
                           style: AppFonts.body1(color: AppColors.primary40),
                         ),
                       ),
@@ -446,7 +447,7 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                           ),
                         ),
                         child: Text(
-                          'Shop',
+                          'View Products'.tr,
                           style: AppFonts.body1(color: AppColors.grayscale0),
                         ),
                       ),

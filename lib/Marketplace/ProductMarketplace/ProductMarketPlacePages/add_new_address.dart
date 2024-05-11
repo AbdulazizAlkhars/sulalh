@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/textfield_widget.dart';
+import 'package:get/get.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketPlaceWidgets/textfield_widget.dart';
 
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
@@ -21,7 +22,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          'Select Address',
+          'Select Address'.tr,
           style: AppFonts.headline3(
             color: AppColors.grayscale90,
           ),
@@ -129,7 +130,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                     width: 5,
                                   ),
                                   Text(
-                                    'Delivery On March, 8',
+                                    'Delivery On'.tr + 'March, 8',
                                     style: AppFonts.body2(
                                       color: AppColors.grayscale90,
                                     ),
@@ -144,7 +145,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Address',
+                            'Address'.tr,
                             style: AppFonts.caption2(
                               color: AppColors.grayscale90,
                             ),
@@ -153,7 +154,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                             height: 5,
                           ),
                           TextFieldWidget(
-                            hintText: 'Enter Address',
+                            hintText: 'Enter Address'.tr,
                             onChanged: (value) {
                               // Handle search query change
                             },
@@ -162,7 +163,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                             height: 10,
                           ),
                           Text(
-                            'Apartment, Suite etc.,',
+                            'Apartment, Suite etc.,'.tr,
                             style: AppFonts.caption2(
                               color: AppColors.grayscale90,
                             ),
@@ -171,7 +172,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                             height: 5,
                           ),
                           TextFieldWidget(
-                            hintText: 'Enter Apartment, Suite etc.,',
+                            hintText: 'Enter Apartment, Suite etc.,'.tr,
                             onChanged: (value) {
                               // Handle search query change
                             },
@@ -180,7 +181,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                             height: 10,
                           ),
                           Text(
-                            'Additional Information',
+                            'Additional Information'.tr,
                             style: AppFonts.caption2(
                               color: AppColors.grayscale90,
                             ),
@@ -189,7 +190,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                             height: 5,
                           ),
                           TextFieldWidget(
-                            hintText: 'Enter Additional Information',
+                            hintText: 'Enter Additional Information'.tr,
                             onChanged: (value) {
                               // Handle search query change
                             },
@@ -208,7 +209,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
                                 width: 5,
                               ),
                               Text(
-                                'Delivery On March, 8',
+                                'Delivery On'.tr + 'March, 8',
                                 style: AppFonts.body2(
                                   color: AppColors.grayscale90,
                                 ),
@@ -237,7 +238,9 @@ class _AddNewAddressState extends State<AddNewAddress> {
                           padding: const EdgeInsets.symmetric(
                               vertical: 16, horizontal: 24),
                           child: Text(
-                            mapTapped ? 'Confirm Address' : 'Verify Address',
+                            mapTapped
+                                ? 'Confirm Address'.tr
+                                : 'Verify Address'.tr,
                             style: AppFonts.body1(color: AppColors.grayscale0),
                           ),
                         ),

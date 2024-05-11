@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_autocomplete/easy_autocomplete.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
@@ -34,8 +35,8 @@ class _SearchableDropdownState extends State<SearchableDropdown> {
                   suggestionBackgroundColor: AppColors.grayscale00,
                   suggestions: Suggestions.petProductSuggestions,
                   onChanged: (value) {}, // Dummy onChanged callback
-                  decoration: const InputDecoration(
-                    hintText: "Search Anything",
+                  decoration: InputDecoration(
+                    hintText: "Search Anything".tr,
                     hintStyle: TextStyle(
                         color: AppColors.grayscale50), // Change hint text color
                     prefixIcon: Icon(

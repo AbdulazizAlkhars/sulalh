@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 
 import '../../../Theme/Fonts.dart';
@@ -44,6 +45,7 @@ class _DeliverySlotChipsWidgetState extends State<DeliverySlotChipsWidget> {
             horizontal: 16.0,
           ),
           child: Text(
+            textDirection: TextDirection.ltr,
             widget.label,
             style: AppFonts.body2(color: AppColors.grayscale100),
           ),

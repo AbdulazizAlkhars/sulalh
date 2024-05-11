@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/add_store_modal_sheet.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
@@ -50,7 +51,7 @@ class _ItemVendorsState extends State<ItemVendors> {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          'Vendors',
+          'Vendors'.tr,
           style: AppFonts.headline3(
             color: AppColors.grayscale90,
           ),
@@ -142,7 +143,8 @@ class _ItemVendorsState extends State<ItemVendors> {
               const SizedBox(height: 10),
               Text(
                 // 'Have a pet business & want to sell on Sulala?\nPlease click the Add Store button on top',
-                'Have A Pet Business & Want To Sell On Sulala?\nPlease Click The Add Store Button On Top',
+                'Have A Pet Business & Want To Sell On Sulala?\nPlease Click The Add Store Button On Top'
+                    .tr,
                 style: AppFonts.body2(color: AppColors.grayscale90),
               ),
               const SizedBox(height: 10),
@@ -151,7 +153,7 @@ class _ItemVendorsState extends State<ItemVendors> {
               ),
               const SizedBox(height: 10),
               Text(
-                'List Of Shops',
+                'List Of Shops'.tr,
                 style: AppFonts.title5(color: AppColors.grayscale90),
               ),
               const SizedBox(height: 10),
@@ -168,7 +170,7 @@ class _ItemVendorsState extends State<ItemVendors> {
                       ),
                       child: TextField(
                         decoration: InputDecoration(
-                          hintText: "Search",
+                          hintText: "Search".tr,
                           hintStyle: TextStyle(
                             color: AppColors.grayscale50,
                           ),
@@ -312,7 +314,11 @@ class _ItemVendorsState extends State<ItemVendors> {
                                         borderRadius: BorderRadius.circular(50),
                                       ),
                                     ),
-                                    child: const Text('View Shop'),
+                                    child: Text(
+                                      'View Shop'.tr,
+                                      style: AppFonts.body1(
+                                          color: AppColors.grayscale00),
+                                    ),
                                   ),
                                 ),
                               ],

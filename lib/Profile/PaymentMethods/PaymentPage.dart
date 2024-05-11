@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hathera_demo/Profile/PaymentMethods/AddNewCardPage.dart';
 import 'package:hathera_demo/Widgets/Button.dart';
 
-import '../../Marketplace/ProductMarketplace/ProductMarketplaceWidgets/credit_debit_cards_widget.dart';
+import '../../Marketplace/ProductMarketplace/ProductMarketPlaceWidgets/credit_debit_cards_widget.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 
 import '../../../Theme/Fonts.dart';
@@ -22,7 +23,7 @@ class _FilterItemBottomSheetState extends State<FilterItemBottomSheet> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Filters',
+                  'Filters'.tr,
                   style: AppFonts.title3(color: AppColors.grayscale90),
                   textAlign: TextAlign.center,
                 ),
@@ -37,7 +38,7 @@ class _FilterItemBottomSheetState extends State<FilterItemBottomSheet> {
                       horizontal: 16.0,
                     ),
                     child: Text(
-                      'Apply Filters',
+                      'Apply Filters'.tr,
                       style: AppFonts.body2(color: AppColors.grayscale00),
                     ),
                   ),
@@ -47,12 +48,12 @@ class _FilterItemBottomSheetState extends State<FilterItemBottomSheet> {
             const SizedBox(height: 20),
             _buildFilterOption(
               context,
-              'Price',
+              'Price'.tr,
               PriceFilterWidget(),
             ),
             _buildFilterOption(
               context,
-              'Sort',
+              'Sort By'.tr,
               ItemSortingFilterWidget(),
             ),
             _buildFilterOption(
@@ -67,7 +68,7 @@ class _FilterItemBottomSheetState extends State<FilterItemBottomSheet> {
             ),
             _buildFilterOption(
               context,
-              'Reviews',
+              'Reviews'.tr,
               RatingsFilterWidget(),
             ),
             Container(
@@ -85,7 +86,7 @@ class _FilterItemBottomSheetState extends State<FilterItemBottomSheet> {
                   ),
                 ),
                 child: Text(
-                  'Apply Filters',
+                  'Apply Filters'.tr,
                   style: AppFonts.body1(color: AppColors.grayscale0),
                 ),
               ),
@@ -174,7 +175,7 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
                   child: Row(
                     children: [
                       Text(
-                        priceSorting[index],
+                        priceSorting[index].tr,
                         style: AppFonts.body2(
                           color: AppColors.grayscale90,
                         ),
@@ -209,7 +210,7 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
         Row(
           children: [
             Text(
-              'Price Range',
+              'Price Range'.tr,
               style: AppFonts.headline4(
                 color: AppColors.grayscale90,
               ),
@@ -257,8 +258,8 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
                   child: TextFormField(
                     controller: _minPriceController,
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      labelText: "Min Price",
+                    decoration: InputDecoration(
+                      labelText: "Min Price".tr,
                       hintStyle: TextStyle(
                           color:
                               AppColors.grayscale50), // Change hint text color
@@ -290,8 +291,8 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
                   child: TextFormField(
                     controller: _maxPriceController,
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      labelText: "Max Price",
+                    decoration: InputDecoration(
+                      labelText: "Max Price".tr,
                       hintStyle: TextStyle(
                           color:
                               AppColors.grayscale50), // Change hint text color
@@ -372,7 +373,7 @@ class _ItemSortingFilterWidgetState extends State<ItemSortingFilterWidget> {
               child: Row(
                 children: [
                   Text(
-                    itemSorting[index],
+                    itemSorting[index].tr,
                     style: AppFonts.body2(
                       color: AppColors.grayscale90,
                     ),
@@ -447,7 +448,7 @@ class _DiscountFilterWidgetState extends State<DiscountFilterWidget> {
               child: Row(
                 children: [
                   Text(
-                    discountOptions[index],
+                    discountOptions[index].tr,
                     style: AppFonts.body2(
                       color: AppColors.grayscale90,
                     ),
@@ -517,7 +518,7 @@ class _DealFilterWidgetState extends State<DealFilterWidget> {
               child: Row(
                 children: [
                   Text(
-                    dealOptions[index],
+                    dealOptions[index].tr,
                     style: AppFonts.body2(
                       color: AppColors.grayscale90,
                     ),
@@ -598,7 +599,7 @@ class _RatingsFilterWidgetState extends State<RatingsFilterWidget> {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    '$starCount stars & above',
+                    '$starCount ' + 'stars & above'.tr,
                     style: AppFonts.body2(
                       color: AppColors.grayscale90,
                     ),

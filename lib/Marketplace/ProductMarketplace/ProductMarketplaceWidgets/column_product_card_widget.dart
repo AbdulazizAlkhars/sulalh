@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Marketplace/Lists.dart';
 
 import '../../../Theme/Colors.dart';
@@ -128,7 +129,7 @@ class ColumnProductCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        '${product.boughtPastMonth}+ Bought Past Month',
+                        '${product.boughtPastMonth} ' + 'Bought Past Month'.tr,
                         style: AppFonts.caption2(color: AppColors.grayscale90),
                       ),
                       const SizedBox(height: 5),
@@ -181,7 +182,9 @@ class ColumnProductCard extends StatelessWidget {
                           const SizedBox(width: 3),
                           const Spacer(),
                           Text(
-                            '(${calculateDiscountPercentage(product.actualPrice, product.discountedPrice)}% Off)',
+                            '(${calculateDiscountPercentage(product.actualPrice, product.discountedPrice)}' +
+                                '% Off'.tr +
+                                ')',
                             style:
                                 AppFonts.caption1(color: AppColors.grayscale90),
                           ),
@@ -205,7 +208,7 @@ class ColumnProductCard extends StatelessWidget {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      'Add To Cart',
+                                      'Add To Cart'.tr,
                                       style: AppFonts.body2(
                                           color: AppColors.grayscale00),
                                     ),

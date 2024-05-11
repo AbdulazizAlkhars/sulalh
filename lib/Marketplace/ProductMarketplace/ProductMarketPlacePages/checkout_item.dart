@@ -3,13 +3,14 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/change_address_modal_sheet.dart';
+import 'package:get/get.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketPlaceWidgets/change_address_modal_sheet.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
-import '../ProductMarketplaceWidgets/checkout_cart_items_widget.dart';
-import '../ProductMarketplaceWidgets/credit_debit_cards_widget.dart';
-import '../ProductMarketplaceWidgets/delivery_time_slots_chips_widget.dart';
+import '../ProductMarketPlaceWidgets/checkout_cart_items_widget.dart';
+import '../ProductMarketPlaceWidgets/credit_debit_cards_widget.dart';
+import '../ProductMarketPlaceWidgets/delivery_time_slots_chips_widget.dart';
 import 'package:intl/intl.dart';
 
 class CheckoutPage extends StatefulWidget {
@@ -47,7 +48,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Select Delivery Date',
+                  'Select Delivery Date'.tr,
                   style: AppFonts.title4(color: AppColors.grayscale90),
                   textAlign: TextAlign.center,
                 ),
@@ -55,7 +56,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   height: 5,
                 ),
                 Text(
-                  'You can select any day within the next 5 days for your delivery.',
+                  'You can select any day within the next 5 days for your delivery.'
+                      .tr,
                   style: AppFonts.body2(color: AppColors.grayscale90),
                 ),
                 const SizedBox(
@@ -135,7 +137,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
         centerTitle: true,
         backgroundColor: Colors.white,
         title: Text(
-          'Checkout',
+          'Checkout'.tr,
           style: AppFonts.headline3(
             color: AppColors.grayscale90,
           ),
@@ -168,7 +170,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               children: [
                 Center(
                   child: Text(
-                    'Your Order',
+                    'Your Order'.tr,
                     style: AppFonts.title5(
                       color: AppColors.grayscale90,
                     ),
@@ -180,14 +182,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 Row(
                   children: [
                     Text(
-                      'Items',
+                      'Items'.tr,
                       style: AppFonts.body2(
                         color: AppColors.grayscale90,
                       ),
                     ),
                     const Spacer(),
                     Text(
-                      '${widget.totalGrossAmount.toStringAsFixed(2)} KD',
+                      '${widget.totalGrossAmount.toStringAsFixed(2)}' + 'KD'.tr,
                       style: AppFonts.body1(
                         color: AppColors.grayscale90,
                       ),
@@ -200,14 +202,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 Row(
                   children: [
                     Text(
-                      'Discount',
+                      'Discount'.tr,
                       style: AppFonts.body2(
                         color: AppColors.grayscale90,
                       ),
                     ),
                     const Spacer(),
                     Text(
-                      '${widget.totalDiscount.toStringAsFixed(2)} KD',
+                      '${widget.totalDiscount.toStringAsFixed(2)}' + 'KD'.tr,
                       style: AppFonts.body1(
                         color: AppColors.grayscale90,
                       ),
@@ -220,14 +222,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 Row(
                   children: [
                     Text(
-                      'Delivery',
+                      'Delivery'.tr,
                       style: AppFonts.body2(
                         color: AppColors.grayscale90,
                       ),
                     ),
                     const Spacer(),
                     Text(
-                      'Free',
+                      'Free'.tr,
                       style: AppFonts.body1(
                         color: AppColors.primary20,
                       ),
@@ -240,14 +242,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 Row(
                   children: [
                     Text(
-                      'Total',
+                      'Total'.tr,
                       style: AppFonts.headline3(
                         color: AppColors.grayscale90,
                       ),
                     ),
                     const Spacer(),
                     Text(
-                      '${widget.totalAmount.toStringAsFixed(2)} KD',
+                      '${widget.totalAmount.toStringAsFixed(2)}' + 'KD'.tr,
                       style: AppFonts.headline3(
                         color: AppColors.primary40,
                       ),
@@ -264,7 +266,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   height: 10,
                 ),
                 Text(
-                  'Delivery Address',
+                  'Delivery Address'.tr,
                   style: AppFonts.title5(
                     color: AppColors.grayscale90,
                   ),
@@ -301,7 +303,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           ),
                         ),
                         child: Text(
-                          'Change Address',
+                          'Change Address'.tr,
                           style: AppFonts.body1(color: AppColors.grayscale90),
                         ),
                       ),
@@ -323,7 +325,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     Row(
                       children: [
                         Text(
-                          'Schedule The Delivery',
+                          'Schedule The Delivery'.tr,
                           style: AppFonts.title5(
                             color: AppColors.grayscale90,
                           ),
@@ -353,7 +355,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                         selectedDate.month ==
                                             DateTime.now().month &&
                                         selectedDate.day == DateTime.now().day
-                                    ? 'Today, ${DateFormat('MMM d').format(selectedDate)}'
+                                    ? 'Today,'.tr +
+                                        ' ${DateFormat('MMM d').format(selectedDate)}'
                                     : DateFormat('EEEE, MMM d')
                                         .format(selectedDate),
                                 style: AppFonts.body2(
@@ -407,7 +410,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   height: 10,
                 ),
                 Text(
-                  'Cart Items',
+                  'Cart Items'.tr,
                   style: AppFonts.title5(
                     color: AppColors.grayscale90,
                   ),
@@ -417,7 +420,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.0),
                     border: Border.all(color: AppColors.grayscale20),
-                    color: AppColors.grayscale00,
+                    color: AppColors.grayscale10,
                   ),
                   height: 400,
                   child: Padding(
@@ -456,7 +459,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   height: 10,
                 ),
                 Text(
-                  'Special Instruction (Optional)',
+                  'Special Instruction (Optional)'.tr,
                   style: AppFonts.title5(
                     color: AppColors.grayscale90,
                   ),
@@ -477,7 +480,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     // style: TextStyle(fontSize: 14.0), // Adjust font size here
                     maxLines: 3,
                     decoration: InputDecoration(
-                      hintText: 'Enter Special Instructions',
+                      hintText: 'Enter Special Instructions'.tr,
                       contentPadding: const EdgeInsets.all(8),
                       hintStyle: AppFonts.body2(color: AppColors.grayscale50),
                       border: InputBorder.none,
@@ -494,14 +497,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   height: 10,
                 ),
                 Text(
-                  'Payment Methods',
+                  'Payment Methods'.tr,
                   style: AppFonts.title5(
                     color: AppColors.grayscale90,
                   ),
                 ),
                 const SizedBox(height: 15),
                 Text(
-                  'Credit Cards & Debit Cards',
+                  'Credit Cards & Debit Cards'.tr,
                   style: AppFonts.headline4(
                     color: AppColors.grayscale90,
                   ),
@@ -558,7 +561,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               color: AppColors.primary30,
                             )),
                         title: Text(
-                          'Add New Card',
+                          'Add New Card'.tr,
                           style: AppFonts.body2(
                             color: AppColors.grayscale90,
                           ),
@@ -575,7 +578,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  'Other Payment Methods:',
+                  'Other Payment Methods:'.tr,
                   style: AppFonts.headline3(
                     color: AppColors.grayscale90,
                   ),
@@ -649,13 +652,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       Column(
                         children: [
                           Text(
-                            'Total',
+                            'Total'.tr,
                             style: AppFonts.body1(
                               color: AppColors.grayscale90,
                             ),
                           ),
                           Text(
-                            '${widget.totalAmount.toStringAsFixed(2)} KD',
+                            '${widget.totalAmount.toStringAsFixed(2)}' +
+                                'KD'.tr,
                             style: AppFonts.title4(
                               color: AppColors.primary30,
                             ),
@@ -676,7 +680,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             ),
                           ),
                           child: Text(
-                            'Pay',
+                            'Pay'.tr,
                             style: AppFonts.body1(color: AppColors.grayscale0),
                           ),
                         ),

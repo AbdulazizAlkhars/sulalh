@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
@@ -30,133 +31,128 @@ class CartCard extends StatefulWidget {
 class _CartCardState extends State<CartCard> {
   @override
   Widget build(BuildContext context) {
-    return Material(
-      borderRadius: BorderRadius.circular(12),
-      elevation: 2,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12), // Adjust the radius as needed
-        child: SizedBox(
-          height: 130,
-          child: Container(
-            color: AppColors.grayscale00,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Image.asset(
-                      widget.imagePath,
-                      width: 130,
-                      height: 130,
-                      fit: BoxFit.contain,
+    return SizedBox(
+      height: 130,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.0),
+          border: Border.all(color: AppColors.grayscale30),
+          color: AppColors.grayscale00,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Image.asset(
+                  widget.imagePath,
+                  width: 130,
+                  height: 130,
+                  fit: BoxFit.contain,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                flex: 3,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      widget.productName,
+                      style: AppFonts.body2(color: AppColors.grayscale100),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    flex: 3,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          widget.productName,
-                          style: AppFonts.body2(color: AppColors.grayscale100),
+                    IntrinsicWidth(
+                      child: Container(
+                        height: 40,
+                        width: 135,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: AppColors.grayscale20,
                         ),
-                        IntrinsicWidth(
-                          child: Container(
-                            height: 40,
-                            width: 135,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: AppColors.grayscale20,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            IconButton(
+                              icon: const Icon(
+                                Icons.remove,
+                                size: 20,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  if (widget.quantity > 1) {
+                                    widget.quantity--;
+                                    widget.onQuantityChanged(widget.quantity);
+                                  }
+                                });
+                              },
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.remove,
-                                    size: 20,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      if (widget.quantity > 1) {
-                                        widget.quantity--;
-                                        widget
-                                            .onQuantityChanged(widget.quantity);
-                                      }
-                                    });
-                                  },
-                                ),
-                                Text(
-                                  widget.quantity.toString(),
-                                  style: AppFonts.body2(
-                                      color: AppColors.grayscale90),
-                                ),
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.add,
-                                    size: 20,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      widget.quantity++;
-                                      widget.onQuantityChanged(widget.quantity);
-                                    });
-                                  },
-                                ),
-                              ],
+                            Text(
+                              widget.quantity.toString(),
+                              style:
+                                  AppFonts.body2(color: AppColors.grayscale90),
                             ),
-                          ),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.add,
+                                size: 20,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  widget.quantity++;
+                                  widget.onQuantityChanged(widget.quantity);
+                                });
+                              },
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 15),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            '\KD ${widget.price * widget.quantity}',
-                            style:
-                                AppFonts.headline4(color: AppColors.primary40),
-                          ),
-                          Text(
-                            '\KD ${widget.discountprice * widget.quantity}',
-                            style: const TextStyle(
-                              fontSize: 12,
-                              color: AppColors.grayscale60,
-                              decoration: TextDecoration.lineThrough,
-                            ),
-                          ),
-                        ],
                       ),
-                      IconButton(
-                        icon: Container(
-                          padding: EdgeInsets.all(
-                              MediaQuery.of(context).size.width * 0.016),
-                          decoration: BoxDecoration(
-                            color: AppColors.grayscale10,
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: const Icon(
-                            size: 20,
-                            Icons.delete_outline,
-                            color: Colors.black,
-                          ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 15),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                        'KD'.tr + '${widget.price * widget.quantity}',
+                        style: AppFonts.headline4(color: AppColors.primary40),
+                      ),
+                      Text(
+                        'KD'.tr + '${widget.discountprice * widget.quantity}',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: AppColors.grayscale60,
+                          decoration: TextDecoration.lineThrough,
                         ),
-                        onPressed: () {
-                          _showDeleteConfirmation(context);
-                        },
                       ),
                     ],
                   ),
+                  IconButton(
+                    icon: Container(
+                      padding: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.016),
+                      decoration: BoxDecoration(
+                        color: AppColors.grayscale10,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: const Icon(
+                        size: 20,
+                        Icons.delete_outline,
+                        color: Colors.black,
+                      ),
+                    ),
+                    onPressed: () {
+                      _showDeleteConfirmation(context);
+                    },
+                  ),
                 ],
               ),
-            ),
+            ],
           ),
         ),
       ),

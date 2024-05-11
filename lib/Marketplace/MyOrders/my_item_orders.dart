@@ -3,7 +3,7 @@ import 'package:hathera_demo/Marketplace/Lists.dart';
 
 import '../../Theme/Colors.dart';
 
-import '../ProductMarketplace/ProductMarketplaceWidgets/chips_widget.dart';
+import '../ProductMarketplace/ProductMarketPlaceWidgets/chips_widget.dart';
 
 import 'my_items_card.dart';
 

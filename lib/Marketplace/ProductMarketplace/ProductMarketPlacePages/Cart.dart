@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketPlacePages/checkout_item.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
 import '../../Lists.dart';
 
-import '../ProductMarketplaceWidgets/cart_card_widget.dart';
+import '../ProductMarketPlaceWidgets/cart_card_widget.dart';
 
-import '../ProductMarketplaceWidgets/save_package_modal.dart';
-import '../ProductMarketplaceWidgets/scrollable_product_cards_widget.dart';
-import '../ProductMarketplaceWidgets/your_packages.dart';
+import '../ProductMarketPlaceWidgets/save_package_modal.dart';
+import '../ProductMarketPlaceWidgets/scrollable_product_cards_widget.dart';
+import '../ProductMarketPlaceWidgets/your_packages.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -71,7 +72,7 @@ class _CartPageState extends State<CartPage> {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          'Cart',
+          'Cart'.tr,
           style: AppFonts.headline3(
             color: AppColors.grayscale90,
           ),
@@ -114,7 +115,7 @@ class _CartPageState extends State<CartPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Items In The Cart', // Your heading text
+                            'Items In The Cart'.tr,
                             style: AppFonts.title5(
                               color: AppColors.grayscale90,
                             ),
@@ -141,7 +142,7 @@ class _CartPageState extends State<CartPage> {
                                   );
                                 },
                                 child: Text(
-                                  'Save Package',
+                                  'Save Package'.tr,
                                   style: AppFonts.body1(
                                       color: AppColors.grayscale00),
                                 ),
@@ -196,7 +197,7 @@ class _CartPageState extends State<CartPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                Text('Re-Order Your Packages',
+                Text('Re-Order Your Packages'.tr,
                     style: AppFonts.title5(color: AppColors.grayscale90)),
                 PackageListWidget(packages: packages),
                 const Divider(
@@ -209,11 +210,11 @@ class _CartPageState extends State<CartPage> {
                   children: [
                     Expanded(
                       flex: 2,
-                      child: Text('Previously Bought For Tommy',
+                      child: Text('Previously Bought For'.tr + 'Tommy',
                           style: AppFonts.title5(color: AppColors.grayscale90)),
                     ),
                     Text(
-                      'See More',
+                      'See More'.tr,
                       style: AppFonts.body1(color: AppColors.primary40),
                     ),
                   ],
@@ -256,13 +257,13 @@ class _CartPageState extends State<CartPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Total',
+                            'Total'.tr,
                             style: AppFonts.body1(
                               color: AppColors.grayscale90,
                             ),
                           ),
                           Text(
-                            '${totalFinalAmount.toStringAsFixed(2)} KD',
+                            '${totalFinalAmount.toStringAsFixed(2)}' + 'KD'.tr,
                             style: AppFonts.title4(
                               color: AppColors.primary30,
                             ),
@@ -271,7 +272,7 @@ class _CartPageState extends State<CartPage> {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        '${totalGrossAmount.toStringAsFixed(2)} KD',
+                        '${totalGrossAmount.toStringAsFixed(2)}' + 'KD'.tr,
                         style: const TextStyle(
                           fontSize: 14,
                           color: AppColors.grayscale60,
@@ -303,7 +304,7 @@ class _CartPageState extends State<CartPage> {
                             ),
                           ),
                           child: Text(
-                            'Checkout',
+                            'Checkout'.tr,
                             style: AppFonts.body1(color: AppColors.grayscale0),
                           ),
                         ),

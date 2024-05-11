@@ -3,18 +3,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Marketplace/Lists.dart';
-import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/brands_modal_sheet_widget.dart';
-import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/filter_items_widget.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketPlaceWidgets/brands_modal_sheet_widget.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketPlaceWidgets/filter_items_widget.dart';
 
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../ProductMarketPlacePages/Cart.dart';
-import '../ProductMarketplaceWidgets/chips_widget.dart';
-import '../ProductMarketplaceWidgets/product_onegrid_widget.dart';
-import '../ProductMarketplaceWidgets/scrollable_product_cards_widget.dart';
-import '../ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
-import '../ProductMarketplaceWidgets/select_your_animal_modal.dart';
+import '../ProductMarketPlaceWidgets/chips_widget.dart';
+import '../ProductMarketPlaceWidgets/product_onegrid_widget.dart';
+import '../ProductMarketPlaceWidgets/scrollable_product_cards_widget.dart';
+import '../ProductMarketPlaceWidgets/searchable_dropdown_widget.dart';
+import '../ProductMarketPlaceWidgets/select_your_animal_modal.dart';
 
 class VendorShopItems extends StatefulWidget {
   final int index;
@@ -141,7 +142,7 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'My Animal',
+                        'My Animal'.tr,
                         style: AppFonts.title5(color: AppColors.grayscale90),
                       ),
                       const SizedBox(height: 13),
@@ -188,7 +189,7 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                         children: [
                           Expanded(
                             flex: 2,
-                            child: Text('Categories',
+                            child: Text('Categories'.tr,
                                 style: AppFonts.title5(
                                     color: AppColors.grayscale90)),
                           ),
@@ -211,7 +212,7 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                                     showFilterItemBottomSheet(context);
                                   },
                                   child: Text(
-                                    'Filters',
+                                    'Filters'.tr,
                                     style: AppFonts.body1(
                                       color: AppColors.primary30,
                                     ),
@@ -274,7 +275,7 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                                     const SizedBox(height: 8),
                                     Flexible(
                                       child: Text(
-                                        categoryName,
+                                        categoryName.tr,
                                         style: const TextStyle(fontSize: 12),
 
                                         textAlign: TextAlign
@@ -302,12 +303,13 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                 children: [
                   selectedCategoryName.isNotEmpty
                       ? Expanded(
-                          child: Text('$selectedCategoryName For Tommy ',
+                          child: Text(
+                              '$selectedCategoryName'.tr + 'For'.tr + ' Tommy ',
                               style: AppFonts.title5(
                                   color: AppColors.grayscale90)),
                         )
                       : Expanded(
-                          child: Text('All Products For Tommy',
+                          child: Text('All Products For'.tr + ' Tommy',
                               style: AppFonts.title5(
                                   color: AppColors.grayscale90)),
                         ),
@@ -352,7 +354,7 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                             );
                           },
                           child: Text(
-                            'Brands',
+                            'Brands'.tr,
                             style: AppFonts.body1(
                               color: AppColors.primary30,
                             ),
@@ -382,7 +384,7 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                             ? widget.subcategories!.length
                             : 0,
                         (index) => ChipsWidget(
-                          label: widget.subcategories![index],
+                          label: widget.subcategories![index].tr,
                           onTap: () {},
                         ),
                       ),
@@ -407,7 +409,7 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: Text('Best Deals For Tommy ',
+                      child: Text('Best Deals For'.tr + 'Tommy ',
                           style: AppFonts.title5(color: AppColors.grayscale90)),
                     ),
                     GestureDetector(
@@ -415,7 +417,7 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                         showFilterItemBottomSheet(context);
                       },
                       child: Text(
-                        'See More',
+                        'See More'.tr,
                         style: AppFonts.body1(color: AppColors.primary40),
                       ),
                     ),

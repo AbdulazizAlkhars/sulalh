@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
@@ -35,7 +36,7 @@ class ItemPromotionalChipsWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(50),
       ),
       child: Text(
-        promotiontag,
+        promotiontag.tr,
         style: textStyle != null
             ? textStyle!.copyWith(
                 color: fontColor) // Apply custom text style with font color

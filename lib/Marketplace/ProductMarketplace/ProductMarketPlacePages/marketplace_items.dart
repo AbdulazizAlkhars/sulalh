@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ItemVendors/item_vendors.dart';
-import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/select_your_animal_modal.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketPlaceWidgets/select_your_animal_modal.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
 import 'Cart.dart';
 import '../ItemVendors/vendor_shop_details.dart';
-import '../ProductMarketplaceWidgets/brands_modal_sheet_widget.dart';
-import '../ProductMarketplaceWidgets/change_address_modal_sheet.dart';
-import '../ProductMarketplaceWidgets/filter_items_widget.dart';
-import '../ProductMarketplaceWidgets/product_twogrids_widget.dart';
-import '../ProductMarketplaceWidgets/scrollable_product_cards_widget.dart';
-import '../ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
+import '../ProductMarketPlaceWidgets/brands_modal_sheet_widget.dart';
+import '../ProductMarketPlaceWidgets/change_address_modal_sheet.dart';
+import '../ProductMarketPlaceWidgets/filter_items_widget.dart';
+import '../ProductMarketPlaceWidgets/product_twogrids_widget.dart';
+import '../ProductMarketPlaceWidgets/scrollable_product_cards_widget.dart';
+import '../ProductMarketPlaceWidgets/searchable_dropdown_widget.dart';
 import 'category_item_catalog.dart';
 
-import '../ProductMarketplaceWidgets/vendors_avatars_widget.dart';
+import '../ProductMarketPlaceWidgets/vendors_avatars_widget.dart';
 
 class MarketplaceItems extends StatefulWidget {
   const MarketplaceItems({Key? key}) : super(key: key);
@@ -50,7 +52,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
               width: 2,
             ),
             Text(
-              'Sulala',
+              'Sulala'.tr,
               style: AppFonts.title2(color: AppColors.grayscale90),
             ),
           ],
@@ -138,7 +140,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'My Animal',
+                          'My Animal'.tr,
                           style: AppFonts.title5(color: AppColors.grayscale90),
                         ),
                         const SizedBox(height: 13),
@@ -288,7 +290,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                           Expanded(
                             flex: 2,
                             child: Text(
-                              'Category Filters',
+                              'Category Filters'.tr,
                               style:
                                   AppFonts.title4(color: AppColors.grayscale90),
                             ),
@@ -321,7 +323,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                                   );
                                 },
                                 child: Text(
-                                  'Brands',
+                                  'Brands'.tr,
                                   style: AppFonts.body1(
                                     color: AppColors.primary30,
                                   ),
@@ -374,7 +376,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                                       const SizedBox(height: 8),
                                       Flexible(
                                         child: Text(
-                                          categoryName,
+                                          categoryName.tr,
                                           style: const TextStyle(fontSize: 12),
 
                                           textAlign: TextAlign
@@ -409,7 +411,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                           Expanded(
                             flex: 2,
                             child: Text(
-                              'Top Shops',
+                              'Top Shops'.tr,
                               style:
                                   AppFonts.title4(color: AppColors.grayscale90),
                             ),
@@ -425,7 +427,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                                 );
                               },
                               child: Text(
-                                'View All',
+                                'View All'.tr,
                                 style:
                                     AppFonts.body1(color: AppColors.primary40),
                               ),
@@ -506,7 +508,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
-                  child: Text('Catalog',
+                  child: Text('Catalog'.tr,
                       style: AppFonts.title4(
                         color: AppColors.grayscale90,
                       )),
@@ -517,20 +519,16 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                 child: Row(
                   children: [
                     Expanded(
-                      flex: 2,
-                      child: Text('Previously Bought For Tommy',
+                      child: Text('Previously Bought For'.tr + ' Tommy',
                           style: AppFonts.title5(color: AppColors.grayscale90)),
                     ),
-                    Expanded(
-                      flex: 0,
-                      child: GestureDetector(
-                        onTap: () {
-                          showFilterItemBottomSheet(context);
-                        },
-                        child: Text(
-                          'See More',
-                          style: AppFonts.body1(color: AppColors.primary40),
-                        ),
+                    GestureDetector(
+                      onTap: () {
+                        showFilterItemBottomSheet(context);
+                      },
+                      child: Text(
+                        'See More'.tr,
+                        style: AppFonts.body1(color: AppColors.primary40),
                       ),
                     ),
                   ],
@@ -550,31 +548,32 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                 child: Row(
                   children: [
                     Expanded(
-                      flex: 2,
-                      child: Text('Top Products For Tommy',
-                          style: AppFonts.title5(color: AppColors.grayscale90)),
+                      child: Row(
+                        children: [
+                          Text('Top Products For'.tr + ' Tommy',
+                              style: AppFonts.title5(
+                                  color: AppColors.grayscale90)),
+                        ],
+                      ),
                     ),
-                    Expanded(
-                      flex: 0,
-                      child: GestureDetector(
-                        onTap: () {
-                          showFilterItemBottomSheet(context);
-                        },
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.filter_list,
-                              color: AppColors.primary50,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              'Filters',
-                              style: AppFonts.body1(color: AppColors.primary40),
-                            ),
-                          ],
-                        ),
+                    GestureDetector(
+                      onTap: () {
+                        showFilterItemBottomSheet(context);
+                      },
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.filter_list,
+                            color: AppColors.primary50,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            'Filters'.tr,
+                            style: AppFonts.body1(color: AppColors.primary40),
+                          ),
+                        ],
                       ),
                     ),
                   ],

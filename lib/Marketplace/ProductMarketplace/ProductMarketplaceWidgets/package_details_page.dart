@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketPlacePages/checkout_item.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
@@ -112,7 +113,7 @@ class _PackageDetailsState extends State<PackageDetails> {
                         height: 20,
                       ),
                       Text(
-                        'Items In The Package', // Your heading text
+                        'Items In The Package'.tr, // Your heading text
                         style: AppFonts.title5(
                           color: AppColors.grayscale90,
                         ),
@@ -179,13 +180,13 @@ class _PackageDetailsState extends State<PackageDetails> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Total',
+                            'Total'.tr,
                             style: AppFonts.body1(
                               color: AppColors.grayscale90,
                             ),
                           ),
                           Text(
-                            '${widget.packageAmount} KD',
+                            '${widget.packageAmount}' + 'KD'.tr,
                             style: AppFonts.title4(
                               color: AppColors.primary30,
                             ),
@@ -217,7 +218,7 @@ class _PackageDetailsState extends State<PackageDetails> {
                             ),
                           ),
                           child: Text(
-                            'Checkout',
+                            'Checkout'.tr,
                             style: AppFonts.body1(color: AppColors.grayscale0),
                           ),
                         ),

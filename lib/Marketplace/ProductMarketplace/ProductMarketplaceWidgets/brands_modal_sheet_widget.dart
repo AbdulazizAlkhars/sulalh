@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
@@ -58,7 +59,7 @@ class _BrandsModalState extends State<BrandsModal> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  'Choose A Brand',
+                  'Choose A Brand'.tr,
                   style: AppFonts.title4(color: AppColors.grayscale90),
                   textAlign: TextAlign.center,
                 ),
@@ -74,7 +75,7 @@ class _BrandsModalState extends State<BrandsModal> {
                       horizontal: 16.0,
                     ),
                     child: Text(
-                      'Select Brand',
+                      'Select Brand'.tr,
                       style: AppFonts.body1(color: AppColors.grayscale00),
                     ),
                   ),
@@ -93,8 +94,8 @@ class _BrandsModalState extends State<BrandsModal> {
               ),
               child: TextField(
                 controller: _searchController,
-                decoration: const InputDecoration(
-                  hintText: "Search The Brand",
+                decoration: InputDecoration(
+                  hintText: "Search The Brand".tr,
                   hintStyle: TextStyle(
                       color: AppColors.grayscale50), // Change hint text color
                   prefixIcon: Icon(
@@ -205,7 +206,7 @@ class _BrandsModalState extends State<BrandsModal> {
                   ),
                 ),
                 child: Text(
-                  'Select Brand',
+                  'Select Brand'.tr,
                   style: AppFonts.body1(color: AppColors.grayscale0),
                 ),
               ),

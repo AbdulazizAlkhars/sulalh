@@ -2,17 +2,18 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Marketplace/Lists.dart';
 
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import 'Cart.dart';
-import '../ProductMarketplaceWidgets/chips_widget.dart';
-import '../ProductMarketplaceWidgets/filter_items_widget.dart';
-import '../ProductMarketplaceWidgets/product_onegrid_widget.dart';
-import '../ProductMarketplaceWidgets/scrollable_product_cards_widget.dart';
-import '../ProductMarketplaceWidgets/searchable_dropdown_widget.dart';
-import '../ProductMarketplaceWidgets/select_your_animal_modal.dart';
+import '../ProductMarketPlaceWidgets/chips_widget.dart';
+import '../ProductMarketPlaceWidgets/filter_items_widget.dart';
+import '../ProductMarketPlaceWidgets/product_onegrid_widget.dart';
+import '../ProductMarketPlaceWidgets/scrollable_product_cards_widget.dart';
+import '../ProductMarketPlaceWidgets/searchable_dropdown_widget.dart';
+import '../ProductMarketPlaceWidgets/select_your_animal_modal.dart';
 
 class FilteredItemCatalog extends StatefulWidget {
   final List<String> subcategories;
@@ -166,7 +167,7 @@ class _FilteredItemCatalogState extends State<FilteredItemCatalog> {
                         children: List.generate(
                           widget.subcategories.length,
                           (index) => ChipsWidget(
-                            label: widget.subcategories[index],
+                            label: widget.subcategories[index].tr,
                             onTap: () {
                               // Add action for each chip tap here, if needed
                               debugPrint(

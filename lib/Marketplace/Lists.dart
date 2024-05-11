@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'ProductMarketplace/ProductMarketplaceWidgets/credit_debit_cards_widget.dart';
+import 'ProductMarketplace/ProductMarketPlaceWidgets/credit_debit_cards_widget.dart';
 
 final List<String> animaladvertisements = [
   'assets/ads/Background-image.png',

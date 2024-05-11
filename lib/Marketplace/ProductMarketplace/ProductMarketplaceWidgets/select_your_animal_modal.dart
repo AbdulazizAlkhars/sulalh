@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../../Lists.dart';
@@ -61,7 +62,7 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    'Select Your Animal',
+                    'Select Your Animal'.tr,
                     style: AppFonts.title4(color: AppColors.grayscale90),
                     textAlign: TextAlign.center,
                   ),
@@ -77,8 +78,8 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
                         horizontal: 16.0,
                       ),
                       child: Text(
-                        'Select Animal',
-                        style: AppFonts.body2(color: AppColors.grayscale00),
+                        'Select Animal'.tr,
+                        style: AppFonts.body1(color: AppColors.grayscale00),
                       ),
                     ),
                   ),
@@ -96,8 +97,8 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
                 ),
                 child: TextField(
                   controller: _searchController,
-                  decoration: const InputDecoration(
-                    hintText: "Search The Animal",
+                  decoration: InputDecoration(
+                    hintText: "Search The Animal".tr,
                     hintStyle: TextStyle(
                         color: AppColors.grayscale30), // Change hint text color
                     prefixIcon: Icon(
@@ -112,19 +113,19 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
                 height: 15,
               ),
               Text(
-                'List Of Your Animals',
+                'List Of Your Animals'.tr,
                 style: AppFonts.title5(color: AppColors.grayscale90),
-                textAlign: TextAlign.center,
               ),
               Text(
-                'When you select animal from your list, all the products will be filtered based on your animal details!!',
+                'When you select animal from your list, all the products will be filtered based on your animal details!!'
+                    .tr,
                 style: AppFonts.body2(color: AppColors.grayscale90),
               ),
               const SizedBox(
                 height: 10,
               ),
               Container(
-                height: 250,
+                height: myAnimals.length <= 2 ? 125 : 250,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
                   border: Border.all(color: AppColors.grayscale20),
@@ -133,78 +134,146 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Scrollbar(
-                    radius: Radius.circular(20),
-                    child: ListView.builder(
-                      itemCount: myAnimals.length,
-                      itemBuilder: (context, index) {
-                        final myAnimal = myAnimals[index];
-                        bool isSelected = selectedAnimal == myAnimal['name'];
-                        return Padding(
-                          padding: const EdgeInsets.only(
-                            bottom: 8.0,
-                          ),
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selectedAnimal = myAnimal['name'];
-                              });
-                            },
-                            child: Row(
-                              children: [
-                                CircleAvatar(
-                                  radius:
-                                      MediaQuery.of(context).size.width * 0.05,
-                                  backgroundImage:
-                                      AssetImage(myAnimal['imageAsset']),
+                    radius: const Radius.circular(20),
+                    child: myAnimals.isNotEmpty
+                        ? Column(
+                            children: [
+                              Expanded(
+                                child: ListView.builder(
+                                  itemCount: myAnimals.length,
+                                  itemBuilder: (context, index) {
+                                    final myAnimal = myAnimals[index];
+                                    bool isSelected =
+                                        selectedAnimal == myAnimal['name'];
+                                    return Padding(
+                                      padding: const EdgeInsets.only(
+                                        bottom: 8.0,
+                                      ),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            selectedAnimal = myAnimal['name'];
+                                          });
+                                        },
+                                        child: Row(
+                                          children: [
+                                            CircleAvatar(
+                                              radius: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.05,
+                                              backgroundImage: AssetImage(
+                                                  myAnimal['imageAsset']),
+                                            ),
+                                            const SizedBox(width: 15.0),
+                                            Expanded(
+                                              child: Text(
+                                                myAnimal['name'],
+                                                style: AppFonts.body2(
+                                                  color: AppColors.grayscale90,
+                                                ),
+                                              ),
+                                            ),
+                                            GestureDetector(
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.064, // Adjust the width as needed
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.064, // Adjust the height as needed
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(
+                                                    color: isSelected
+                                                        ? AppColors.primary20
+                                                        : AppColors.grayscale30,
+                                                    width:
+                                                        isSelected ? 6.0 : 1.0,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
-                                const SizedBox(width: 15.0),
-                                Expanded(
-                                  child: Text(
-                                    myAnimal['name'],
-                                    style: AppFonts.body2(
-                                      color: AppColors.grayscale90,
-                                    ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 0.0,
+                                  horizontal: 16.0,
+                                ),
+                                child: Text(
+                                  'Add Your Animal'.tr,
+                                  style: AppFonts.body1(
+                                    color: AppColors.primary50,
                                   ),
                                 ),
-                                GestureDetector(
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.064, // Adjust the width as needed
-                                    height: MediaQuery.of(context).size.width *
-                                        0.064, // Adjust the height as needed
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                        color: isSelected
-                                            ? AppColors.primary20
-                                            : AppColors.grayscale30,
-                                        width: isSelected ? 6.0 : 1.0,
+                              ),
+                            ],
+                          )
+                        : Center(
+                            heightFactor: 1,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'No Animals Found In Your List'.tr,
+                                  style: AppFonts.headline3(
+                                      color: AppColors.grayscale90),
+                                ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.01,
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    color: AppColors.primary30,
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 8.0,
+                                      horizontal: 16.0,
+                                    ),
+                                    child: Text(
+                                      'Add Your Animal'.tr,
+                                      style: AppFonts.body1(
+                                        color: AppColors.grayscale00,
                                       ),
                                     ),
                                   ),
                                 ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.01,
+                                ),
                               ],
                             ),
                           ),
-                        );
-                      },
-                    ),
                   ),
                 ),
               ),
               const SizedBox(
                 height: 10,
               ),
-              Divider(
+              const Divider(
                 color: AppColors.grayscale20,
               ),
               Text(
-                'Select By Species',
+                'Select By Species'.tr,
                 style: AppFonts.title5(color: AppColors.grayscale90),
                 textAlign: TextAlign.center,
               ),
               Text(
-                'If you do not have list of your animals, select by species of the animal to filter all the items based on the species!!',
+                'If you do not have list of your animals, select by species of the animal to filter all the items based on the species!!'
+                    .tr,
                 style: AppFonts.body2(color: AppColors.grayscale90),
               ),
               const SizedBox(
@@ -238,7 +307,7 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
                               },
                               child: SizedBox(
                                 height: 100,
-                                width: 100,
+                                width: 70,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -283,7 +352,7 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Select Breed',
+                    'Select Breed'.tr,
                     style: AppFonts.title5(color: AppColors.grayscale90),
                   ),
                   const SizedBox(height: 16),
@@ -316,7 +385,7 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
                           ),
                           Center(
                             child: Text(
-                              'Please select a species',
+                              'Please select a species'.tr,
                               style: AppFonts.headline4(
                                   color: AppColors.grayscale90),
                             ),
@@ -356,7 +425,7 @@ class _SelectYourAnimalModalState extends State<SelectYourAnimalModal> {
                     ),
                   ),
                   child: Text(
-                    'Select Animal',
+                    'Select Animal'.tr,
                     style: AppFonts.body1(color: AppColors.grayscale0),
                   ),
                 ),

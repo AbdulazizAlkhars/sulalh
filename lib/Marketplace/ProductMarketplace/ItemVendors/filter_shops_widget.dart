@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 
 import '../../../Theme/Fonts.dart';
@@ -24,7 +25,7 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Filters',
+                  'Filters'.tr,
                   style: AppFonts.title3(color: AppColors.grayscale90),
                   textAlign: TextAlign.center,
                 ),
@@ -39,7 +40,7 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
                       horizontal: 16.0,
                     ),
                     child: Text(
-                      'Apply Filters',
+                      'Apply Filters'.tr,
                       style: AppFonts.caption1(color: AppColors.grayscale00),
                     ),
                   ),
@@ -49,7 +50,7 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
             const SizedBox(height: 20),
             _buildFilterOption(
               context,
-              'Animal',
+              'Animal'.tr,
               const Column(
                 children: [
                   AnimalFilterWidget(),
@@ -61,7 +62,7 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
             ),
             _buildFilterOption(
               context,
-              'Sort By',
+              'Sort By'.tr,
               Column(
                 children: [
                   ShopSortingFilterWidget(),
@@ -73,7 +74,7 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
             ),
             _buildFilterOption(
               context,
-              'Shops',
+              'Shops'.tr,
               Column(
                 children: [
                   ShopStatusFilterWidget(),
@@ -85,7 +86,7 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
             ),
             _buildFilterOption(
               context,
-              'Location',
+              'Location'.tr,
               Column(
                 children: [
                   LocationFilterWidget(),
@@ -97,22 +98,13 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
             ),
             _buildFilterOption(
               context,
-              'Price',
+              'Price'.tr,
               Column(
                 children: [
                   PriceFilterWidget(),
                   const Divider(
                     color: AppColors.grayscale20,
                   ),
-                ],
-              ),
-            ),
-            _buildFilterOption(
-              context,
-              'Reviews',
-              Column(
-                children: [
-                  RatingsFilterWidget(),
                 ],
               ),
             ),
@@ -134,7 +126,7 @@ class _FilterShopBottomSheetState extends State<FilterShopBottomSheet> {
                   ),
                 ),
                 child: Text(
-                  'Apply Filters',
+                  'Apply Filters'.tr,
                   style: AppFonts.body1(color: AppColors.grayscale0),
                 ),
               ),
@@ -278,7 +270,7 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
         Row(
           children: [
             Text(
-              'Price Range',
+              'Price Range'.tr,
               style: AppFonts.headline4(
                 color: AppColors.grayscale90,
               ),
@@ -326,8 +318,8 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
                   child: TextFormField(
                     controller: _minPriceController,
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      labelText: "Min Price",
+                    decoration: InputDecoration(
+                      labelText: "Min Price".tr,
                       hintStyle: TextStyle(
                           color:
                               AppColors.grayscale50), // Change hint text color
@@ -359,8 +351,8 @@ class _PriceFilterWidgetState extends State<PriceFilterWidget> {
                   child: TextFormField(
                     controller: _maxPriceController,
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      labelText: "Max Price",
+                    decoration: InputDecoration(
+                      labelText: "Max Price".tr,
                       hintStyle: TextStyle(
                           color:
                               AppColors.grayscale50), // Change hint text color
@@ -431,7 +423,7 @@ class _LocationFilterWidgetState extends State<LocationFilterWidget> {
               child: Row(
                 children: [
                   Text(
-                    governorates[index],
+                    governorates[index].tr,
                     style: AppFonts.body2(
                       color: isSelected ? AppColors.primary30 : Colors.black,
                     ),
@@ -469,7 +461,8 @@ class _LocationFilterWidgetState extends State<LocationFilterWidget> {
                             child: Row(
                               children: [
                                 Text(
-                                  citiesByGovernorate[governorates[index]]![i],
+                                  citiesByGovernorate[governorates[index]]![i]
+                                      .tr,
                                   style: AppFonts.body2(
                                     color: Colors.black,
                                   ),
@@ -524,14 +517,14 @@ class ShopStatusFilterWidget extends StatefulWidget {
 class _ShopStatusFilterWidgetState extends State<ShopStatusFilterWidget> {
   List<String> shopStatus = [
     'Top Rated',
-    'Growing',
+    'Verified',
     'New',
   ];
 
   // Define rating thresholds for each shop status
   Map<String, double> ratingThresholds = {
     'Top Rated': 4.0,
-    'Growing': 3.0,
+    'Verified': 3.0,
   };
 
   List<bool> selecteddealOptions = List<bool>.filled(6, false);
@@ -559,21 +552,21 @@ class _ShopStatusFilterWidgetState extends State<ShopStatusFilterWidget> {
               child: Row(
                 children: [
                   Text(
-                    status,
+                    status.tr,
                     style: AppFonts.body2(
                       color: AppColors.grayscale90,
                     ),
                   ),
                   if (!isNew) // Render "Above" text if not new
                     Text(
-                      ' Above',
+                      'Above'.tr,
                       style: AppFonts.body2(
                         color: AppColors.grayscale90,
                       ),
                     ),
                   if (!isNew) // Render rating threshold if not new
                     Text(
-                      ' ${threshold.toStringAsFixed(1)} Stars',
+                      ' ${threshold.toStringAsFixed(1)} ' + 'Stars'.tr,
                       style: AppFonts.body2(
                         color: AppColors.grayscale90,
                       ),
@@ -642,7 +635,7 @@ class _ShopSortingFilterWidgetState extends State<ShopSortingFilterWidget> {
               child: Row(
                 children: [
                   Text(
-                    shopSorting[index],
+                    shopSorting[index].tr,
                     style: AppFonts.body2(
                       color: AppColors.grayscale90,
                     ),
@@ -674,78 +667,78 @@ class _ShopSortingFilterWidgetState extends State<ShopSortingFilterWidget> {
   }
 }
 
-class RatingsFilterWidget extends StatefulWidget {
-  @override
-  _RatingsFilterWidgetState createState() => _RatingsFilterWidgetState();
-}
+// class RatingsFilterWidget extends StatefulWidget {
+//   @override
+//   _RatingsFilterWidgetState createState() => _RatingsFilterWidgetState();
+// }
 
-class _RatingsFilterWidgetState extends State<RatingsFilterWidget> {
-  List<bool> selectedOptions = List<bool>.filled(4, false);
+// class _RatingsFilterWidgetState extends State<RatingsFilterWidget> {
+//   List<bool> selectedOptions = List<bool>.filled(4, false);
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: List.generate(4, (index) {
-        int starCount = index + 1;
-        bool isSelected = selectedOptions[index];
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedOptions[index] = !isSelected;
-                });
-              },
-              child: Row(
-                children: [
-                  Row(
-                    children: List.generate(
-                      5,
-                      (starIndex) {
-                        return Icon(
-                          starIndex < starCount
-                              ? Icons.star
-                              : Icons.star_border,
-                          color: AppColors.secondary60,
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    '$starCount stars & above',
-                    style: AppFonts.body2(
-                      color: AppColors.grayscale90,
-                    ),
-                  ),
-                  const Spacer(),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.064,
-                    height: MediaQuery.of(context).size.width * 0.064,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: isSelected
-                            ? AppColors.primary20
-                            : AppColors.grayscale30,
-                        width: isSelected ? 6.0 : 1.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-          ],
-        );
-      }).reversed.toList(),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: List.generate(4, (index) {
+//         int starCount = index + 1;
+//         bool isSelected = selectedOptions[index];
+//         return Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             GestureDetector(
+//               onTap: () {
+//                 setState(() {
+//                   selectedOptions[index] = !isSelected;
+//                 });
+//               },
+//               child: Row(
+//                 children: [
+//                   Row(
+//                     children: List.generate(
+//                       5,
+//                       (starIndex) {
+//                         return Icon(
+//                           starIndex < starCount
+//                               ? Icons.star
+//                               : Icons.star_border,
+//                           color: AppColors.secondary60,
+//                         );
+//                       },
+//                     ),
+//                   ),
+//                   const SizedBox(width: 5),
+//                   Text(
+//                     '$starCount stars & above',
+//                     style: AppFonts.body2(
+//                       color: AppColors.grayscale90,
+//                     ),
+//                   ),
+//                   const Spacer(),
+//                   Container(
+//                     width: MediaQuery.of(context).size.width * 0.064,
+//                     height: MediaQuery.of(context).size.width * 0.064,
+//                     decoration: BoxDecoration(
+//                       shape: BoxShape.circle,
+//                       border: Border.all(
+//                         color: isSelected
+//                             ? AppColors.primary20
+//                             : AppColors.grayscale30,
+//                         width: isSelected ? 6.0 : 1.0,
+//                       ),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             const SizedBox(
+//               height: 10,
+//             ),
+//           ],
+//         );
+//       }).reversed.toList(),
+//     );
+//   }
+// }
 
 void showFilterShopBottomSheet(BuildContext context) {
   showModalBottomSheet(
