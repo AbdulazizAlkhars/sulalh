@@ -5,6 +5,8 @@ import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketPlaceWi
 
 import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
+import '../../Lists.dart';
+import '../ProductMarketplaceWidgets/textfield_suggestion_widget.dart';
 
 class AddNewAddress extends StatefulWidget {
   @override
@@ -17,6 +19,7 @@ class _AddNewAddressState extends State<AddNewAddress> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -64,194 +67,153 @@ class _AddNewAddressState extends State<AddNewAddress> {
           ),
         ],
       ),
-      body: Stack(
-        children: [
-          // Map widget or placeholder goes here
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                mapTapped = !mapTapped;
-              });
-            },
-            child: Container(
-              color: AppColors.grayscale20, // Replace with your map widget
-              child: const Center(
-                child: Text(
-                  'Map Placeholder',
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-            ),
+      body: Container(
+        color: AppColors.grayscale0, // Replace with your map widget
+        child: const Center(
+          child: Text(
+            'Map Placeholder',
+            style: TextStyle(fontSize: 20),
           ),
-          // Modal sheet always open below the map
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    mapTapped
-                        ? const SizedBox(
-                            height: 5,
-                          )
-                        : Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Abu Dhabi, Al Dhiba St, Villa 19',
-                                style: AppFonts.headline3(
-                                  color: AppColors.grayscale90,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    color: Colors.black,
-                                    Icons.directions_car_filled_outlined,
-                                    size: 20,
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    'Delivery On'.tr + 'March, 8',
-                                    style: AppFonts.body2(
-                                      color: AppColors.grayscale90,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                    if (mapTapped) ...[
-                      // Show text fields when map is tapped
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Address'.tr,
-                            style: AppFonts.caption2(
-                              color: AppColors.grayscale90,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          TextFieldWidget(
-                            hintText: 'Enter Address'.tr,
-                            onChanged: (value) {
-                              // Handle search query change
-                            },
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'Apartment, Suite etc.,'.tr,
-                            style: AppFonts.caption2(
-                              color: AppColors.grayscale90,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          TextFieldWidget(
-                            hintText: 'Enter Apartment, Suite etc.,'.tr,
-                            onChanged: (value) {
-                              // Handle search query change
-                            },
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'Additional Information'.tr,
-                            style: AppFonts.caption2(
-                              color: AppColors.grayscale90,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          TextFieldWidget(
-                            hintText: 'Enter Additional Information'.tr,
-                            onChanged: (value) {
-                              // Handle search query change
-                            },
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Row(
-                            children: [
-                              const Icon(
-                                color: Colors.black,
-                                Icons.directions_car_filled_outlined,
-                                size: 20,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                'Delivery On'.tr + 'March, 8',
-                                style: AppFonts.body2(
-                                  color: AppColors.grayscale90,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+        ),
+      ),
+      bottomNavigationBar: Material(
+        elevation: 2,
+        child: IntrinsicHeight(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12.0),
+              border: Border.all(color: AppColors.grayscale20),
+              color: AppColors.grayscale00,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Name Your Address'.tr,
+                        style: AppFonts.caption2(
+                          color: AppColors.grayscale90,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      TextFieldWidget(
+                        hintText: 'Enter Name Of Your Address'.tr,
+                        onChanged: (value) {
+                          // Handle search query change
+                        },
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "Name Of Your Area",
+                        style: AppFonts.caption2(
+                          color: AppColors.grayscale90,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      SuggestableTextField(
+                        hintText: 'Enter Area',
+                        suggestions: citiesByGovernorate.values
+                            .expand((cities) => cities)
+                            .toList(),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Block & Street'.tr,
+                        style: AppFonts.caption2(
+                          color: AppColors.grayscale90,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      TextFieldWidget(
+                        hintText: 'Enter Block & Street'.tr,
+                        onChanged: (value) {
+                          // Handle search query change
+                        },
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Building/Apartment, Floor etc.,'.tr,
+                        style: AppFonts.caption2(
+                          color: AppColors.grayscale90,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      TextFieldWidget(
+                        hintText: 'Enter Building/Apartment, Floor etc.,'.tr,
+                        onChanged: (value) {
+                          // Handle search query change
+                        },
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Additional Information'.tr,
+                        style: AppFonts.caption2(
+                          color: AppColors.grayscale90,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      TextFieldWidget(
+                        hintText: 'Enter Additional Information'.tr,
+                        onChanged: (value) {
+                          // Handle search query change
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
                       ),
                     ],
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary50,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primary50,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 24),
-                          child: Text(
-                            mapTapped
-                                ? 'Confirm Address'.tr
-                                : 'Verify Address'.tr,
-                            style: AppFonts.body1(color: AppColors.grayscale0),
-                          ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 16, horizontal: 24),
+                        child: Text(
+                          'Confirm Address'.tr,
+                          style: AppFonts.body1(color: AppColors.grayscale0),
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }

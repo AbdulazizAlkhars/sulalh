@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Sulalh Demo',
         translations: LocalStrings(),
-        locale: const Locale('ar', 'SA'),
+        locale: const Locale('en', 'US'),
         home: bottomNavigationBarPage());
   }
 }
