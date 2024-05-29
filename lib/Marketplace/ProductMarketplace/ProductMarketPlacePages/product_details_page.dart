@@ -11,6 +11,7 @@ import '../../../Theme/Colors.dart';
 import '../../../Theme/Fonts.dart';
 import '../ProductMarketPlaceWidgets/item_promotional_chips_widget.dart';
 import '../ProductMarketPlaceWidgets/rating_summary_widget.dart';
+import '../ProductMarketplaceWidgets/auto_delivery_widget.dart';
 import 'checkout_item.dart';
 import 'marketplace_items.dart';
 import 'ratings_reviews.dart';
@@ -34,7 +35,16 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   int _currentIndex = 0;
 // Flag to show/hide Add to Cart button
   int _quantity = 1; // Initialize quantity to 1
+  bool isSelected = false;
+  String selectedPeriod = "Select Period";
 
+  // List of months
+  final List<String> autoDeliveryPeriod = [
+    '15 Days',
+    '1 Month',
+    '2 Months',
+    '3 Months',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -260,8 +270,170 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     ),
                   ],
                 ),
-
+                Divider(
+                  color: AppColors.grayscale10,
+                ),
+                AutoDeliveryWidget(),
                 const SizedBox(height: 10),
+                Divider(
+                  color: AppColors.grayscale10,
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ReviewsPage(),
+                            ),
+                          );
+                        },
+                        child: Material(
+                          elevation: 2,
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            height: 80,
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: AppColors.secondary10,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                widget.product.rating
+                                                    .toString(),
+                                                style: AppFonts.caption1(
+                                                  color: AppColors.grayscale90,
+                                                ),
+                                              ),
+                                              const SizedBox(width: 5),
+                                              Row(
+                                                children: List.generate(
+                                                  5,
+                                                  (index) {
+                                                    if (index <
+                                                        widget.product.rating
+                                                            .floor()) {
+                                                      // Full star
+                                                      return const Icon(
+                                                        Icons.star,
+                                                        size: 20,
+                                                        color: AppColors
+                                                            .secondary50,
+                                                      );
+                                                    } else if (index <
+                                                        widget.product.rating) {
+                                                      // Half-filled star
+                                                      return const Icon(
+                                                        Icons.star_half,
+                                                        size: 20,
+                                                        color: AppColors
+                                                            .secondary50,
+                                                      );
+                                                    } else {
+                                                      // Empty star
+                                                      return const Icon(
+                                                        Icons.star_border,
+                                                        size: 20,
+                                                        color: AppColors
+                                                            .secondary50,
+                                                      );
+                                                    }
+                                                  },
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      Text(
+                                        '12 Reviews',
+                                        style: AppFonts.body2(
+                                            color: AppColors.grayscale90),
+                                      ),
+                                    ],
+                                  ),
+                                  const Spacer(),
+                                  const Icon(
+                                    Icons.chevron_right,
+                                    color: AppColors.primary20,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Material(
+                        elevation: 2,
+                        borderRadius: BorderRadius.circular(10),
+                        child: Container(
+                          height: 80,
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: AppColors.secondary10,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment
+                                .center, // Align content vertically at center
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const CircleAvatar(
+                                    radius: 20,
+                                    backgroundImage: AssetImage(
+                                      'assets/Marketplace/Frame 2087325740 5.png',
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                      width:
+                                          8), // Add spacing between avatar and name
+                                  Text(
+                                    widget.product.shopName,
+                                    style: const TextStyle(
+                                      color: AppColors.grayscale90,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  const Spacer(), // Add spacer to push icon to the right
+                                  const Icon(
+                                    Icons.chevron_right,
+                                    color: AppColors.primary20,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 15),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Wrap(
@@ -286,153 +458,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       // Add more chips as needed
                     ],
                   ),
-                ),
-
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ReviewsPage(),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          height: 80,
-                          padding: const EdgeInsets.all(8),
-                          // margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                          decoration: BoxDecoration(
-                            color: AppColors.secondary10,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              widget.product.rating.toString(),
-                                              style: AppFonts.caption1(
-                                                color: AppColors.grayscale90,
-                                              ),
-                                            ),
-                                            const SizedBox(width: 5),
-                                            Row(
-                                              children: List.generate(
-                                                5,
-                                                (index) {
-                                                  if (index <
-                                                      widget.product.rating
-                                                          .floor()) {
-                                                    // Full star
-                                                    return const Icon(
-                                                      Icons.star,
-                                                      size: 20,
-                                                      color:
-                                                          AppColors.secondary50,
-                                                    );
-                                                  } else if (index <
-                                                      widget.product.rating) {
-                                                    // Half-filled star
-                                                    return const Icon(
-                                                      Icons.star_half,
-                                                      size: 20,
-                                                      color:
-                                                          AppColors.secondary50,
-                                                    );
-                                                  } else {
-                                                    // Empty star
-                                                    return const Icon(
-                                                      Icons.star_border,
-                                                      size: 20,
-                                                      color:
-                                                          AppColors.secondary50,
-                                                    );
-                                                  }
-                                                },
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    Text(
-                                      '12 Reviews',
-                                      style: AppFonts.body2(
-                                          color: AppColors.grayscale90),
-                                    ),
-                                  ],
-                                ),
-                                const Spacer(),
-                                const Icon(
-                                  Icons.chevron_right,
-                                  color: AppColors.primary20,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: 80,
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: AppColors.secondary10,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment
-                              .center, // Align content vertically at center
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const CircleAvatar(
-                                  radius: 20,
-                                  backgroundImage: AssetImage(
-                                    'assets/Marketplace/Frame 2087325740 5.png',
-                                  ),
-                                ),
-                                const SizedBox(
-                                    width:
-                                        8), // Add spacing between avatar and name
-                                Text(
-                                  widget.product.shopName,
-                                  style: const TextStyle(
-                                    color: AppColors.grayscale90,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                                const Spacer(), // Add spacer to push icon to the right
-                                const Icon(
-                                  Icons.chevron_right,
-                                  color: AppColors.primary20,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
                 const SizedBox(height: 20),
                 Column(
@@ -554,7 +579,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       flex: 2,
                       child: Text(
                         'Similar Products For Tommy ',
-                        style: AppFonts.title4(color: AppColors.grayscale90),
+                        style: AppFonts.title5(color: AppColors.grayscale90),
                       ),
                     ),
                     Expanded(
@@ -582,48 +607,52 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         ),
       ),
       floatingActionButton: IntrinsicWidth(
-        child: Container(
-          height: 40,
-          width: 135,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-            color: AppColors.grayscale20,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.remove,
-                  size: 20,
+        child: Material(
+          elevation: 3,
+          borderRadius: BorderRadius.circular(50),
+          child: Container(
+            height: 40,
+            width: 135,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              color: AppColors.grayscale0,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.remove,
+                    size: 20,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      if (_quantity > 1) {
+                        _quantity--; // Decrease quantity by 1
+                      }
+                      if (_quantity <= 1) {
+                        // Show initial button
+                      }
+                    });
+                  },
                 ),
-                onPressed: () {
-                  setState(() {
-                    if (_quantity > 1) {
-                      _quantity--; // Decrease quantity by 1
-                    }
-                    if (_quantity <= 1) {
-// Show initial button
-                    }
-                  });
-                },
-              ),
-              Text(
-                _quantity.toString(),
-                style: AppFonts.body1(color: AppColors.grayscale90),
-              ),
-              IconButton(
-                icon: const Icon(
-                  Icons.add,
-                  size: 20,
+                Text(
+                  _quantity.toString(),
+                  style: AppFonts.body1(color: AppColors.grayscale90),
                 ),
-                onPressed: () {
-                  setState(() {
-                    _quantity++;
-                  });
-                },
-              ),
-            ],
+                IconButton(
+                  icon: const Icon(
+                    Icons.add,
+                    size: 20,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _quantity++;
+                    });
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

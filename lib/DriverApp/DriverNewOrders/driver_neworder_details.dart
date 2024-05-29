@@ -372,7 +372,7 @@ class OrderDetailsPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SwipeToConfirm(),
+                AssignDriverSwiper(),
                 SizedBox(height: 10),
               ],
             ),

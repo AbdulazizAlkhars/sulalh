@@ -4,16 +4,16 @@ import 'package:slide_action/slide_action.dart';
 
 import '../../Theme/Fonts.dart';
 
-class AssignDriverSwiper extends StatefulWidget {
-  const AssignDriverSwiper({
+class OrderDeliveredSwiper extends StatefulWidget {
+  const OrderDeliveredSwiper({
     Key? key,
   }) : super(key: key);
 
   @override
-  _AssignDriverSwiperState createState() => _AssignDriverSwiperState();
+  _OrderDeliveredSwiperState createState() => _OrderDeliveredSwiperState();
 }
 
-class _AssignDriverSwiperState extends State<AssignDriverSwiper> {
+class _OrderDeliveredSwiperState extends State<OrderDeliveredSwiper> {
   bool _swipeCompleted = false;
 
   @override

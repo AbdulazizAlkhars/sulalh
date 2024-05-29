@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketPlacePages/checkout_item.dart';
+import 'package:hathera_demo/Marketplace/ProductMarketplace/ProductMarketplaceWidgets/auto_delivery_widget.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
@@ -104,25 +105,23 @@ class _PackageDetailsState extends State<PackageDetails> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  color: Colors.white,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const SizedBox(
-                        height: 20,
+                AutoDeliveryWidget(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Items In The Package'.tr, // Your heading text
+                      style: AppFonts.title5(
+                        color: AppColors.grayscale90,
                       ),
-                      Text(
-                        'Items In The Package'.tr, // Your heading text
-                        style: AppFonts.title5(
-                          color: AppColors.grayscale90,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
                 ),
                 const SizedBox(
                   height: 10,

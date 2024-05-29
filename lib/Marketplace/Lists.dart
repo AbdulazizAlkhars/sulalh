@@ -1933,3 +1933,9 @@ final List<Map<String, String>> packages = [
   {'packageAmount': '120', 'packageName': "Food Package For Monty"},
   // Add more package data as needed
 ];
+final List<String> autoDeliveryPeriod = [
+  "1 Week",
+  "2 Weeks",
+  "1 Month",
+  "3 Months",
+];

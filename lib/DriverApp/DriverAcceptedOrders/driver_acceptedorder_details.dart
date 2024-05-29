@@ -392,7 +392,7 @@ class _DriverAcceptedOrderDetailsState
                       ),
                     ),
                     child: Text(
-                      'Assigned To Me',
+                      'Delivered',
                       style: AppFonts.body1(color: AppColors.grayscale90),
                     ),
                   ),
