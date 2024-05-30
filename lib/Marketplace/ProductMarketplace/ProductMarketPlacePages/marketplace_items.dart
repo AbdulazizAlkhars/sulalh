@@ -290,7 +290,7 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                           Expanded(
                             flex: 2,
                             child: Text(
-                              'Category Filters'.tr,
+                              'Categories'.tr,
                               style:
                                   AppFonts.title4(color: AppColors.grayscale90),
                             ),
@@ -364,13 +364,18 @@ class _MarketplaceItemsState extends State<MarketplaceItems> {
                                   width: 75,
                                   child: Column(
                                     children: [
-                                      CircleAvatar(
-                                        backgroundColor: AppColors.grayscale10,
-                                        radius: 30,
-                                        child: Icon(
-                                          iconData,
-                                          size: 25,
-                                          color: AppColors.primary30,
+                                      Material(
+                                        elevation: 2,
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        child: CircleAvatar(
+                                          backgroundColor: AppColors.grayscale0,
+                                          radius: 30,
+                                          child: Icon(
+                                            iconData,
+                                            size: 25,
+                                            color: AppColors.primary30,
+                                          ),
                                         ),
                                       ),
                                       const SizedBox(height: 8),

@@ -270,14 +270,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     ),
                   ],
                 ),
-                Divider(
-                  color: AppColors.grayscale10,
-                ),
-                AutoDeliveryWidget(),
                 const SizedBox(height: 10),
-                Divider(
-                  color: AppColors.grayscale10,
-                ),
+                AutoDeliveryWidget(),
+
                 const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -18,6 +18,9 @@ import 'package:hathera_demo/Riverpod/Globalvariables.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:hathera_demo/Theme/Fonts.dart';
 
+import '../Marketplace/AutoDeliveryItems/auto_delivery_items.dart';
+import '../Marketplace/AutoDeliveryItems/auto_delivery_page.dart';
+
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({super.key});
 
@@ -402,6 +405,29 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const SubscriptionPage()),
+                        );
+                      }),
+                  ListTile(
+                      leading: Container(
+                        padding: EdgeInsets.all(6 * widthMediaQuery),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.grayscale0,
+                        ),
+                        child: const Icon(
+                          Icons.repeat,
+                          color: AppColors.primary30,
+                        ),
+                      ),
+                      title: Text(
+                        'Auto Delivery Items'.tr,
+                        style: AppFonts.body2(color: AppColors.grayscale90),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AutoDeliveryPage()),
                         );
                       }),
                   ListTile(

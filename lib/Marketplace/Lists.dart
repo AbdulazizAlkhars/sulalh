@@ -1939,3 +1939,64 @@ final List<String> autoDeliveryPeriod = [
   "1 Month",
   "3 Months",
 ];
+
+class AutoDeliveryOrder {
+  final DateTime date;
+  final String id;
+
+  final DateTime nextdeliverydate;
+  final int numberOfItems;
+  final List<String> autoDeliveryItemImages; // Asset paths for item images
+  final List<String> autoDeliveryItemNames; // Names of the items
+  final String itemPrice;
+
+  AutoDeliveryOrder({
+    required this.date,
+    required this.id,
+    required this.itemPrice,
+    required this.nextdeliverydate,
+    required this.numberOfItems,
+    required this.autoDeliveryItemImages,
+    required this.autoDeliveryItemNames,
+  });
+}
+
+List<AutoDeliveryOrder> autoDeliveryOrder = [
+  AutoDeliveryOrder(
+      date: DateTime(2024, 2, 7),
+      nextdeliverydate: DateTime(2024, 2, 15),
+      id: '1',
+      numberOfItems: 1,
+      autoDeliveryItemImages: [
+        'assets/Marketplace/Frame 1 5.png',
+      ],
+      autoDeliveryItemNames: [
+        'EquiGLOSS 2in1 Conditioning Shampoo',
+      ],
+      itemPrice: '120'),
+  AutoDeliveryOrder(
+      date: DateTime(2024, 2, 7),
+      nextdeliverydate: DateTime(2024, 2, 15),
+      id: '2',
+      numberOfItems: 1,
+      autoDeliveryItemImages: [
+        'assets/Marketplace/Frame 1 5.png',
+      ],
+      autoDeliveryItemNames: [
+        'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
+      ],
+      itemPrice: '120'),
+  AutoDeliveryOrder(
+      date: DateTime(2024, 2, 7),
+      nextdeliverydate: DateTime(2024, 2, 15),
+      id: '2',
+      numberOfItems: 1,
+      autoDeliveryItemImages: [
+        'assets/Marketplace/Frame 1 5.png',
+      ],
+      autoDeliveryItemNames: [
+        'Milktech Silver Premium Calf & Foal Milk Replacer 20kg',
+      ],
+      itemPrice: '120'),
+  // Add more orders as needed
+];

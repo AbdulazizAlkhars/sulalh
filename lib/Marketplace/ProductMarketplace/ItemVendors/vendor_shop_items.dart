@@ -262,13 +262,18 @@ class _VendorShopItemsState extends State<VendorShopItems> {
                                           ),
                                         ],
                                       ),
-                                      child: CircleAvatar(
-                                        backgroundColor: AppColors.grayscale0,
-                                        radius: 30,
-                                        child: Icon(
-                                          iconData,
-                                          size: 30,
-                                          color: AppColors.primary30,
+                                      child: Material(
+                                        elevation: 2,
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        child: CircleAvatar(
+                                          backgroundColor: AppColors.grayscale0,
+                                          radius: 30,
+                                          child: Icon(
+                                            iconData,
+                                            size: 30,
+                                            color: AppColors.primary30,
+                                          ),
                                         ),
                                       ),
                                     ),

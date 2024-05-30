@@ -122,43 +122,47 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                             ),
                           );
                         },
-                        child: Container(
-                          height: 70,
-                          padding: const EdgeInsets.all(8),
-                          // margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                          decoration: BoxDecoration(
-                            color: AppColors.secondary10,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '4.5', // Replace with actual ratings
-                                        style: AppFonts.body2(
-                                            color: AppColors.grayscale90),
-                                      ),
-                                      const SizedBox(width: 5),
-                                      const Icon(Icons.star,
-                                          size: 20,
-                                          color: AppColors.secondary50),
-                                    ],
-                                  ),
-                                  Text(
-                                    '12' + 'Reviews'.tr,
-                                    style: AppFonts.body2(
-                                        color: AppColors.grayscale90),
-                                  ),
-                                ],
-                              ),
-                            ],
+                        child: Material(
+                          elevation: 2,
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            height: 70,
+                            padding: const EdgeInsets.all(8),
+                            // margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                            decoration: BoxDecoration(
+                              color: AppColors.secondary10,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '4.5', // Replace with actual ratings
+                                          style: AppFonts.body2(
+                                              color: AppColors.grayscale90),
+                                        ),
+                                        const SizedBox(width: 5),
+                                        const Icon(Icons.star,
+                                            size: 20,
+                                            color: AppColors.secondary50),
+                                      ],
+                                    ),
+                                    Text(
+                                      '12' + 'Reviews'.tr,
+                                      style: AppFonts.body2(
+                                          color: AppColors.grayscale90),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -176,44 +180,48 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                             ),
                           );
                         },
-                        child: Container(
-                          height: 70,
-                          padding: const EdgeInsets.all(8),
-                          // margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                          decoration: BoxDecoration(
-                            color: AppColors.secondary10,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    children: [
-                                      const Icon(Icons.shopping_bag,
-                                          size: 20,
-                                          color: AppColors.secondary50),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                        '1000+', // Replace with actual ratings
-                                        style: AppFonts.body2(
-                                            color: AppColors.grayscale90),
-                                      ),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                        'Orders'.tr,
-                                        style: AppFonts.body2(
-                                            color: AppColors.grayscale90),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
+                        child: Material(
+                          elevation: 2,
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            height: 70,
+                            padding: const EdgeInsets.all(8),
+                            // margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                            decoration: BoxDecoration(
+                              color: AppColors.secondary10,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        const Icon(Icons.shopping_bag,
+                                            size: 20,
+                                            color: AppColors.secondary50),
+                                        const SizedBox(width: 5),
+                                        Text(
+                                          '1000+', // Replace with actual ratings
+                                          style: AppFonts.body2(
+                                              color: AppColors.grayscale90),
+                                        ),
+                                        const SizedBox(width: 5),
+                                        Text(
+                                          'Orders'.tr,
+                                          style: AppFonts.body2(
+                                              color: AppColors.grayscale90),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -221,8 +229,12 @@ class _VendorShopDetailsState extends State<VendorShopDetails> {
                   ],
                 ),
                 const SizedBox(height: 25),
-                Text('Contact Details'.tr,
-                    style: AppFonts.title5(color: AppColors.grayscale90)),
+                Column(
+                  children: [
+                    Text('Contact Details'.tr,
+                        style: AppFonts.title5(color: AppColors.grayscale90)),
+                  ],
+                ),
                 const SizedBox(height: 15),
                 Row(
                   children: [
