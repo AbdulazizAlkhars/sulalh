@@ -98,6 +98,7 @@ flutter:
     - assets/PaymentPNGs/
     - assets/AccountProfile/
     - assets/FAQs/
+    - assets/fetus/
     - assets/Staff Images/
     - assets/SignUp/
     - assets/icons/flags/

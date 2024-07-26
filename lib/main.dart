@@ -5,6 +5,8 @@ import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
 
 import 'package:hathera_demo/localization/localestrings.dart';
 
+import 'FetusInfo/mammals_lits.dart';
+
 void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -20,6 +22,6 @@ class MyApp extends StatelessWidget {
         title: 'Sulalh Demo',
         translations: LocalStrings(),
         locale: const Locale('en', 'US'),
-        home: bottomNavigationBarPage());
+        home: MammalsListPage());
   }
 }
