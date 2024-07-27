@@ -5,6 +5,7 @@ import 'package:hathera_demo/Theme/Fonts.dart';
 import 'package:intl/intl.dart';
 
 import 'data.dart';
+import 'gestationbar_widget.dart';
 
 class PregnancyDetails {
   final String animalName;
@@ -18,11 +19,17 @@ class PregnancyDetails {
   });
 }
 
-class PregnancyDetailPage extends StatelessWidget {
+class PregnancyDetailPage extends StatefulWidget {
   final PregnancyDetails details;
 
   PregnancyDetailPage({required this.details});
 
+  @override
+  State<PregnancyDetailPage> createState() => _PregnancyDetailPageState();
+}
+
+class _PregnancyDetailPageState extends State<PregnancyDetailPage> {
+  bool delivered = false;
   String getDailyInfo(String species, int day, String type) {
     return dailyData[species]?[day]?[type] ??
         '$species $type info for day $day not available';
@@ -35,18 +42,20 @@ class PregnancyDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final int daysPregnant =
-        DateTime.now().difference(details.breedingDate).inDays;
-
+        DateTime.now().difference(widget.details.breedingDate).inDays;
+    final int weeksPregnant = (daysPregnant / 7).floor();
+    final bool isInLastWeek =
+        (catGestationPeriod - daysPregnant) <= lastWeekThreshold;
     return Scaffold(
       backgroundColor: AppColors.grayscale00,
       extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
-        title: Text(
-          'Mom & Baby Today',
-          style: AppFonts.headline3(color: AppColors.grayscale100),
-        ),
+        // title: Text(
+        //   'Mom & Baby Today',
+        //   style: AppFonts.headline3(color: AppColors.grayscale100),
+        // ),
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: true,
       ),
@@ -58,7 +67,7 @@ class PregnancyDetailPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
+                      color: Colors.black.withOpacity(0.2),
                       spreadRadius: 3,
                       blurRadius: 3,
                       offset: Offset(-3, 3),
@@ -70,7 +79,7 @@ class PregnancyDetailPage extends StatelessWidget {
                   ),
                 ),
                 child: Image.asset(
-                  getDailyImage(details.animalSpecies, daysPregnant),
+                  getDailyImage(widget.details.animalSpecies, daysPregnant),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -85,14 +94,14 @@ class PregnancyDetailPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Mum ${details.animalName}',
+                          'Mum ${widget.details.animalName}',
                           style: AppFonts.title4(color: AppColors.grayscale100),
                         ),
                         Spacer(),
                         Icon(
                           Icons.av_timer,
                           size: 20,
-                          color: AppColors.primary40,
+                          color: AppColors.primary30,
                         ),
                         SizedBox(
                           width: 3,
@@ -104,79 +113,67 @@ class PregnancyDetailPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Text(
-                      '${details.animalSpecies}',
-                      style: AppFonts.headline4(color: AppColors.grayscale100),
+                    Row(
+                      children: [
+                        Text(
+                          '${widget.details.animalSpecies}',
+                          style:
+                              AppFonts.headline4(color: AppColors.grayscale100),
+                        ),
+                        Spacer(),
+                        Icon(
+                          Icons.calendar_month_outlined,
+                          size: 20,
+                          color: AppColors.primary30,
+                        ),
+                        Text(
+                          'Week $weeksPregnant ',
+                          style:
+                              AppFonts.headline4(color: AppColors.grayscale100),
+                        ),
+                      ],
+                    ),
+                    PregnancyProgressBar(
+                      daysPregnant: daysPregnant,
+                      isDelivered: delivered,
+                      onDeliveredChanged: (bool value) {
+                        setState(() {
+                          delivered = value;
+                        });
+                      },
                     ),
                     SizedBox(height: 10),
                     Divider(),
                     SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [AppColors.primary50, AppColors.primary20],
-                          begin: Alignment.centerRight,
-                          end: Alignment.centerLeft,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Today',
+                          style: AppFonts.title4(color: AppColors.grayscale100),
                         ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.5),
-                            spreadRadius: 3,
-                            blurRadius: 3,
-                            offset: Offset(-3, 3),
-                          ),
-                        ],
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                          bottomLeft: Radius.circular(40),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Center(
-                                  child: Text(
-                                    "Mother's Health",
-                                    style: AppFonts.title4(
-                                        color: AppColors.grayscale00),
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.medical_services_outlined,
-                                  size: 20,
-                                  color: AppColors.grayscale00,
-                                ),
-                              ],
-                            ),
-                            Text(
-                              getDailyInfo(details.animalSpecies, daysPregnant,
-                                  'health'),
-                              style: AppFonts.headline4(
-                                  color: AppColors.grayscale00),
-                              textAlign: TextAlign.justify,
-                            ),
-                          ],
-                        ),
-                      ),
+                        Icon(
+                          Icons.lightbulb,
+                          color: AppColors.secondary60,
+                        )
+                      ],
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [AppColors.primary50, AppColors.primary20],
+                          colors: [AppColors.primary10, AppColors.primary20],
                           begin: Alignment.centerLeft,
                           end: Alignment.centerRight,
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.5),
+                            color: Colors.black.withOpacity(0.3),
                             spreadRadius: 3,
                             blurRadius: 3,
                             offset: Offset(3, 3),
@@ -191,27 +188,16 @@ class PregnancyDetailPage extends StatelessWidget {
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Fetus's Condition",
-                                  style: AppFonts.title4(
-                                      color: AppColors.grayscale00),
-                                ),
-                                Icon(
-                                  Icons.child_care_rounded,
-                                  size: 20,
-                                  color: AppColors.grayscale00,
-                                ),
-                              ],
+                            Text(
+                              "Fetus's Condition",
+                              style: AppFonts.title4(
+                                  color: AppColors.grayscale100),
                             ),
                             Text(
-                              getDailyInfo(details.animalSpecies, daysPregnant,
-                                  'fetushealth'),
+                              getDailyInfo(widget.details.animalSpecies,
+                                  daysPregnant, 'fetushealth'),
                               style: AppFonts.headline4(
-                                  color: AppColors.grayscale00),
+                                  color: AppColors.grayscale100),
                               textAlign: TextAlign.justify,
                             ),
                           ],
@@ -222,13 +208,13 @@ class PregnancyDetailPage extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [AppColors.primary50, AppColors.primary20],
+                          colors: [AppColors.primary10, AppColors.primary20],
                           begin: Alignment.centerRight,
                           end: Alignment.centerLeft,
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.5),
+                            color: Colors.black.withOpacity(0.3),
                             spreadRadius: 3,
                             blurRadius: 3,
                             offset: Offset(-3, 3),
@@ -237,6 +223,50 @@ class PregnancyDetailPage extends StatelessWidget {
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(40),
                           bottomLeft: Radius.circular(40),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          children: [
+                            Center(
+                              child: Text(
+                                "Mother's Health",
+                                style: AppFonts.title4(
+                                    color: AppColors.grayscale100),
+                              ),
+                            ),
+                            Text(
+                              getDailyInfo(widget.details.animalSpecies,
+                                  daysPregnant, 'health'),
+                              style: AppFonts.headline4(
+                                  color: AppColors.grayscale100),
+                              textAlign: TextAlign.justify,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: 20),
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [AppColors.primary10, AppColors.primary20],
+                          begin: Alignment.centerRight,
+                          end: Alignment.centerLeft,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.3),
+                            spreadRadius: 3,
+                            blurRadius: 3,
+                            offset: Offset(-3, 3),
+                          ),
+                        ],
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(40),
+                          bottomRight: Radius.circular(40),
                         ),
                       ),
                       child: Padding(
@@ -247,14 +277,15 @@ class PregnancyDetailPage extends StatelessWidget {
                               child: Text(
                                 "Mother's Behavior",
                                 style: AppFonts.title4(
-                                    color: AppColors.grayscale00),
+                                  color: AppColors.grayscale100,
+                                ),
                               ),
                             ),
                             Text(
-                              getDailyInfo(details.animalSpecies, daysPregnant,
-                                  'behavior'),
+                              getDailyInfo(widget.details.animalSpecies,
+                                  daysPregnant, 'behavior'),
                               style: AppFonts.headline4(
-                                  color: AppColors.grayscale00),
+                                  color: AppColors.grayscale100),
                               textAlign: TextAlign.justify,
                             ),
                           ],
@@ -265,21 +296,21 @@ class PregnancyDetailPage extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [AppColors.primary50, AppColors.primary20],
+                          colors: [AppColors.primary10, AppColors.primary20],
                           begin: Alignment.centerLeft,
                           end: Alignment.centerRight,
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.5),
+                            color: Colors.black.withOpacity(0.3),
                             spreadRadius: 2,
                             blurRadius: 2,
                             offset: Offset(3, 3),
                           ),
                         ],
                         borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(40),
-                          bottomRight: Radius.circular(40),
+                          topLeft: Radius.circular(40),
+                          bottomLeft: Radius.circular(40),
                         ),
                       ),
                       child: Padding(
@@ -290,14 +321,14 @@ class PregnancyDetailPage extends StatelessWidget {
                               child: Text(
                                 'Tips for Today',
                                 style: AppFonts.title4(
-                                    color: AppColors.grayscale00),
+                                    color: AppColors.grayscale100),
                               ),
                             ),
                             Text(
-                              getDailyInfo(
-                                  details.animalSpecies, daysPregnant, 'tips'),
+                              getDailyInfo(widget.details.animalSpecies,
+                                  daysPregnant, 'tips'),
                               style: AppFonts.headline4(
-                                  color: AppColors.grayscale00),
+                                  color: AppColors.grayscale100),
                               textAlign: TextAlign.justify,
                             ),
                           ],
@@ -347,54 +378,4 @@ class PregnancyDetailPage extends StatelessWidget {
       ),
     );
   }
-
-//   Widget _buildCard({
-//     required String title,
-//     required String content,
-//     required Color color,
-//   }) {
-//     return Card(
-//       shape: RoundedRectangleBorder(
-//         borderRadius: BorderRadius.circular(10),
-//       ),
-//       elevation: 1,
-//       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-//       color: color,
-//       child: SingleChildScrollView(
-//         child: Padding(
-//           padding: EdgeInsets.all(8),
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Center(
-//                 child: Text(
-//                   title,
-//                   style: AppFonts.title4(color: AppColors.grayscale100),
-//                 ),
-//               ),
-//               SizedBox(height: 10),
-//               Text(
-//                 content,
-//                 style: AppFonts.headline4(color: AppColors.grayscale80),
-//                 textAlign: TextAlign.justify,
-//               ),
-//               SizedBox(height: 20),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 crossAxisAlignment: CrossAxisAlignment.center,
-//                 children: [
-//                   Text(
-//                     'Swipe to see more',
-//                     style: AppFonts.body1(color: AppColors.primary30),
-//                   ),
-//                   Icon(Icons.chevron_right, color: AppColors.primary30),
-//                 ],
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
 }

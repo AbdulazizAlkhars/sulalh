@@ -16,12 +16,12 @@ class _MammalsListPageState extends State<MammalsListPage> {
     PregnancyDetails(
       animalName: 'Suhail',
       animalSpecies: 'Cat',
-      breedingDate: DateTime.now().subtract(Duration(days: 1)),
+      breedingDate: DateTime.now().subtract(Duration(days: 58)),
     ),
     PregnancyDetails(
       animalName: 'Azam',
       animalSpecies: 'Dog',
-      breedingDate: DateTime.now().subtract(Duration(days: 50)),
+      breedingDate: DateTime.now().subtract(Duration(days: 1)),
     ),
   ];
 
@@ -274,11 +274,28 @@ class _MammalsListPageState extends State<MammalsListPage> {
       appBar: AppBar(
         backgroundColor: AppColors.grayscale00,
         surfaceTintColor: AppColors.grayscale00,
-        title: Text('Pregnant Mammals'),
+        title: Text(
+          'Pregnant Mammals',
+          style: AppFonts.title4(color: AppColors.grayscale100),
+        ),
         actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: _showAddPregnancyDetailsModalSheet,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.1,
+              height: MediaQuery.of(context).size.width * 0.1,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.primary50,
+              ),
+              child: IconButton(
+                icon: Icon(
+                  Icons.add,
+                  color: AppColors.grayscale00,
+                ),
+                onPressed: _showAddPregnancyDetailsModalSheet,
+              ),
+            ),
           ),
         ],
       ),
@@ -287,10 +304,18 @@ class _MammalsListPageState extends State<MammalsListPage> {
         itemBuilder: (context, index) {
           final details = pregnancyDetailsList[index];
           return ListTile(
-            title: Text(details.animalName),
-            subtitle: Text(details.animalSpecies),
-            trailing:
-                Text(DateFormat('yyyy-MM-dd').format(details.breedingDate)),
+            title: Text(
+              details.animalName,
+              style: AppFonts.title5(color: AppColors.grayscale100),
+            ),
+            subtitle: Text(
+              details.animalSpecies,
+              style: AppFonts.headline4(color: AppColors.grayscale100),
+            ),
+            trailing: Text(
+              DateFormat('dd/MM/yyyy').format(details.breedingDate),
+              style: AppFonts.body1(color: AppColors.primary40),
+            ),
             onTap: () {
               Navigator.push(
                 context,
