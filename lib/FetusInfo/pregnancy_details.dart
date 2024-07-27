@@ -50,262 +50,296 @@ class PregnancyDetailPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: true,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Image.asset(
-              getDailyImage(details.animalSpecies, daysPregnant),
-              fit: BoxFit.contain,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 15),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Mum ${details.animalName}',
-                        style: AppFonts.title4(color: AppColors.grayscale100),
-                      ),
-                      Spacer(),
-                      Icon(
-                        Icons.av_timer,
-                        size: 20,
-                        color: AppColors.primary40,
-                      ),
-                      SizedBox(
-                        width: 3,
-                      ),
-                      Text(
-                        'Day $daysPregnant Pregnant',
-                        style:
-                            AppFonts.headline4(color: AppColors.grayscale100),
-                      ),
-                    ],
-                  ),
-                  Text(
-                    '${details.animalSpecies}',
-                    style: AppFonts.headline4(color: AppColors.grayscale100),
-                  ),
-                  SizedBox(height: 10),
-                  Divider(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Material(
-                    elevation: 1,
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: AppColors.grayscale00,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Center(
-                                child: Text(
-                                  "Mother's Health",
-                                  style: AppFonts.title4(
-                                      color: AppColors.primary40),
-                                ),
-                              ),
-                              Icon(
-                                Icons.medical_services_outlined,
-                                size: 20,
-                                color: AppColors.primary40,
-                              ),
-                            ],
-                          ),
-                          Text(
-                            getDailyInfo(
-                                details.animalSpecies, daysPregnant, 'health'),
-                            style: AppFonts.headline4(
-                                color: AppColors.grayscale80),
-                            textAlign: TextAlign.justify,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Material(
-                    elevation: 1,
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: AppColors.grayscale00,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Fetus's Condition",
-                                style:
-                                    AppFonts.title4(color: AppColors.primary40),
-                              ),
-                              Icon(
-                                Icons.child_care_rounded,
-                                size: 20,
-                                color: AppColors.primary40,
-                              ),
-                            ],
-                          ),
-                          Text(
-                            getDailyInfo(details.animalSpecies, daysPregnant,
-                                'fetushealth'),
-                            style: AppFonts.headline4(
-                                color: AppColors.grayscale80),
-                            textAlign: TextAlign.justify,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Material(
-                    elevation: 1,
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: AppColors.grayscale00,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Center(
-                            child: Text(
-                              "Mother's Behavior",
-                              style:
-                                  AppFonts.title4(color: AppColors.primary40),
-                            ),
-                          ),
-                          Text(
-                            getDailyInfo(details.animalSpecies, daysPregnant,
-                                'behavior'),
-                            style: AppFonts.headline4(
-                                color: AppColors.grayscale80),
-                            textAlign: TextAlign.justify,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Material(
-                    elevation: 1,
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: AppColors.grayscale00,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Center(
-                            child: Text(
-                              'Tips for Today',
-                              style:
-                                  AppFonts.title4(color: AppColors.primary40),
-                            ),
-                          ),
-                          Text(
-                            getDailyInfo(
-                                details.animalSpecies, daysPregnant, 'tips'),
-                            style: AppFonts.headline4(
-                                color: AppColors.grayscale80),
-                            textAlign: TextAlign.justify,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      border: Border.all(color: AppColors.grayscale20),
-                      color: AppColors.grayscale00,
-                    ),
-                    height: 260,
-                    child: PageView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        _buildCard(
-                            title: "Mother's Health",
-                            content: getDailyInfo(
-                                details.animalSpecies, daysPregnant, 'health'),
-                            color: AppColors.grayscale10),
-                        _buildCard(
-                            title: "Fetus's Condition",
-                            content: getDailyInfo(details.animalSpecies,
-                                daysPregnant, 'fetushealth'),
-                            color: AppColors.grayscale10),
-                        _buildCard(
-                            title: "Mother's Behavior",
-                            content: getDailyInfo(details.animalSpecies,
-                                daysPregnant, 'behavior'),
-                            color: AppColors.grayscale10),
-                        _buildCard(
-                            title: 'Tips for Day $daysPregnant',
-                            content: getDailyInfo(
-                                details.animalSpecies, daysPregnant, 'tips'),
-                            color: AppColors.grayscale10),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCard({
-    required String title,
-    required String content,
-    required Color color,
-  }) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      elevation: 1,
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      color: color,
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(8),
+      body: Scrollbar(
+        child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Text(
-                  title,
-                  style: AppFonts.title4(color: AppColors.grayscale100),
+              Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.5),
+                      spreadRadius: 3,
+                      blurRadius: 3,
+                      offset: Offset(-3, 3),
+                    ),
+                  ],
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(0),
+                    bottomLeft: Radius.circular(0),
+                  ),
+                ),
+                child: Image.asset(
+                  getDailyImage(details.animalSpecies, daysPregnant),
+                  fit: BoxFit.fill,
                 ),
               ),
-              SizedBox(height: 10),
-              Text(
-                content,
-                style: AppFonts.headline4(color: AppColors.grayscale80),
-                textAlign: TextAlign.justify,
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Swipe to see more',
-                    style: AppFonts.body1(color: AppColors.primary30),
-                  ),
-                  Icon(Icons.chevron_right, color: AppColors.primary30),
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Mum ${details.animalName}',
+                          style: AppFonts.title4(color: AppColors.grayscale100),
+                        ),
+                        Spacer(),
+                        Icon(
+                          Icons.av_timer,
+                          size: 20,
+                          color: AppColors.primary40,
+                        ),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        Text(
+                          'Day $daysPregnant Pregnant',
+                          style:
+                              AppFonts.headline4(color: AppColors.grayscale100),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      '${details.animalSpecies}',
+                      style: AppFonts.headline4(color: AppColors.grayscale100),
+                    ),
+                    SizedBox(height: 10),
+                    Divider(),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [AppColors.primary50, AppColors.primary20],
+                          begin: Alignment.centerRight,
+                          end: Alignment.centerLeft,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.5),
+                            spreadRadius: 3,
+                            blurRadius: 3,
+                            offset: Offset(-3, 3),
+                          ),
+                        ],
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(40),
+                          bottomLeft: Radius.circular(40),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Center(
+                                  child: Text(
+                                    "Mother's Health",
+                                    style: AppFonts.title4(
+                                        color: AppColors.grayscale00),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.medical_services_outlined,
+                                  size: 20,
+                                  color: AppColors.grayscale00,
+                                ),
+                              ],
+                            ),
+                            Text(
+                              getDailyInfo(details.animalSpecies, daysPregnant,
+                                  'health'),
+                              style: AppFonts.headline4(
+                                  color: AppColors.grayscale00),
+                              textAlign: TextAlign.justify,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [AppColors.primary50, AppColors.primary20],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.5),
+                            spreadRadius: 3,
+                            blurRadius: 3,
+                            offset: Offset(3, 3),
+                          ),
+                        ],
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(40),
+                          bottomRight: Radius.circular(40),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Fetus's Condition",
+                                  style: AppFonts.title4(
+                                      color: AppColors.grayscale00),
+                                ),
+                                Icon(
+                                  Icons.child_care_rounded,
+                                  size: 20,
+                                  color: AppColors.grayscale00,
+                                ),
+                              ],
+                            ),
+                            Text(
+                              getDailyInfo(details.animalSpecies, daysPregnant,
+                                  'fetushealth'),
+                              style: AppFonts.headline4(
+                                  color: AppColors.grayscale00),
+                              textAlign: TextAlign.justify,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [AppColors.primary50, AppColors.primary20],
+                          begin: Alignment.centerRight,
+                          end: Alignment.centerLeft,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.5),
+                            spreadRadius: 3,
+                            blurRadius: 3,
+                            offset: Offset(-3, 3),
+                          ),
+                        ],
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(40),
+                          bottomLeft: Radius.circular(40),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          children: [
+                            Center(
+                              child: Text(
+                                "Mother's Behavior",
+                                style: AppFonts.title4(
+                                    color: AppColors.grayscale00),
+                              ),
+                            ),
+                            Text(
+                              getDailyInfo(details.animalSpecies, daysPregnant,
+                                  'behavior'),
+                              style: AppFonts.headline4(
+                                  color: AppColors.grayscale00),
+                              textAlign: TextAlign.justify,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [AppColors.primary50, AppColors.primary20],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 2,
+                            offset: Offset(3, 3),
+                          ),
+                        ],
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(40),
+                          bottomRight: Radius.circular(40),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          children: [
+                            Center(
+                              child: Text(
+                                'Tips for Today',
+                                style: AppFonts.title4(
+                                    color: AppColors.grayscale00),
+                              ),
+                            ),
+                            Text(
+                              getDailyInfo(
+                                  details.animalSpecies, daysPregnant, 'tips'),
+                              style: AppFonts.headline4(
+                                  color: AppColors.grayscale00),
+                              textAlign: TextAlign.justify,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    // Container(
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(20.0),
+                    //     border: Border.all(color: AppColors.grayscale20),
+                    //     color: AppColors.grayscale00,
+                    //   ),
+                    //   height: 260,
+                    //   child: PageView(
+                    //     scrollDirection: Axis.horizontal,
+                    //     children: [
+                    //       _buildCard(
+                    //           title: "Mother's Health",
+                    //           content: getDailyInfo(
+                    //               details.animalSpecies, daysPregnant, 'health'),
+                    //           color: AppColors.grayscale10),
+                    //       _buildCard(
+                    //           title: "Fetus's Condition",
+                    //           content: getDailyInfo(details.animalSpecies,
+                    //               daysPregnant, 'fetushealth'),
+                    //           color: AppColors.grayscale10),
+                    //       _buildCard(
+                    //           title: "Mother's Behavior",
+                    //           content: getDailyInfo(details.animalSpecies,
+                    //               daysPregnant, 'behavior'),
+                    //           color: AppColors.grayscale10),
+                    //       _buildCard(
+                    //           title: 'Tips for Day $daysPregnant',
+                    //           content: getDailyInfo(
+                    //               details.animalSpecies, daysPregnant, 'tips'),
+                    //           color: AppColors.grayscale10),
+                    //     ],
+                    //   ),
+                    // ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -313,4 +347,54 @@ class PregnancyDetailPage extends StatelessWidget {
       ),
     );
   }
+
+//   Widget _buildCard({
+//     required String title,
+//     required String content,
+//     required Color color,
+//   }) {
+//     return Card(
+//       shape: RoundedRectangleBorder(
+//         borderRadius: BorderRadius.circular(10),
+//       ),
+//       elevation: 1,
+//       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+//       color: color,
+//       child: SingleChildScrollView(
+//         child: Padding(
+//           padding: EdgeInsets.all(8),
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Center(
+//                 child: Text(
+//                   title,
+//                   style: AppFonts.title4(color: AppColors.grayscale100),
+//                 ),
+//               ),
+//               SizedBox(height: 10),
+//               Text(
+//                 content,
+//                 style: AppFonts.headline4(color: AppColors.grayscale80),
+//                 textAlign: TextAlign.justify,
+//               ),
+//               SizedBox(height: 20),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 crossAxisAlignment: CrossAxisAlignment.center,
+//                 children: [
+//                   Text(
+//                     'Swipe to see more',
+//                     style: AppFonts.body1(color: AppColors.primary30),
+//                   ),
+//                   Icon(Icons.chevron_right, color: AppColors.primary30),
+//                 ],
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 }
