@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:hathera_demo/HomeScreen/Registered/HomePage.dart';
 import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
 
 import 'package:hathera_demo/localization/localestrings.dart';
+import 'package:hathera_demo/newfeatures/feedpage.dart';
 
 import 'FetusInfo/mammals_lits.dart';
+import 'newfeatures/upload_images.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -22,6 +25,6 @@ class MyApp extends StatelessWidget {
         title: 'Sulalh Demo',
         translations: LocalStrings(),
         locale: const Locale('en', 'US'),
-        home: MammalsListPage());
+        home: bottomNavigationBarPage());
   }
 }

@@ -66,6 +66,7 @@ dependencies:
   flutter_dropdown_search: ^0.0.4
   super_banners: ^0.0.1
   font_awesome_flutter: ^10.7.0
+  timeago: ^3.7.0
 
   
  

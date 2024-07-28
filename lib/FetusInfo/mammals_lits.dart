@@ -16,7 +16,7 @@ class _MammalsListPageState extends State<MammalsListPage> {
     PregnancyDetails(
       animalName: 'Suhail',
       animalSpecies: 'Cat',
-      breedingDate: DateTime.now().subtract(Duration(days: 58)),
+      breedingDate: DateTime.now().subtract(Duration(days: 8)),
     ),
     PregnancyDetails(
       animalName: 'Azam',

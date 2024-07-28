@@ -44,8 +44,6 @@ class _PregnancyDetailPageState extends State<PregnancyDetailPage> {
     final int daysPregnant =
         DateTime.now().difference(widget.details.breedingDate).inDays;
     final int weeksPregnant = (daysPregnant / 7).floor();
-    final bool isInLastWeek =
-        (catGestationPeriod - daysPregnant) <= lastWeekThreshold;
     return Scaffold(
       backgroundColor: AppColors.grayscale00,
       extendBodyBehindAppBar: true,
@@ -167,14 +165,17 @@ class _PregnancyDetailPageState extends State<PregnancyDetailPage> {
                     Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [AppColors.primary10, AppColors.primary20],
+                          colors: [
+                            AppColors.secondary30,
+                            AppColors.secondary60
+                          ],
                           begin: Alignment.centerLeft,
                           end: Alignment.centerRight,
                         ),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withOpacity(0.3),
-                            spreadRadius: 3,
+                            spreadRadius: 2,
                             blurRadius: 3,
                             offset: Offset(3, 3),
                           ),
@@ -215,8 +216,8 @@ class _PregnancyDetailPageState extends State<PregnancyDetailPage> {
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withOpacity(0.3),
-                            spreadRadius: 3,
-                            blurRadius: 3,
+                            spreadRadius: 2,
+                            blurRadius: 2,
                             offset: Offset(-3, 3),
                           ),
                         ],
@@ -252,7 +253,10 @@ class _PregnancyDetailPageState extends State<PregnancyDetailPage> {
                     Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [AppColors.primary10, AppColors.primary20],
+                          colors: [
+                            AppColors.secondary30,
+                            AppColors.secondary60
+                          ],
                           begin: Alignment.centerRight,
                           end: Alignment.centerLeft,
                         ),
@@ -296,7 +300,7 @@ class _PregnancyDetailPageState extends State<PregnancyDetailPage> {
                     Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [AppColors.primary10, AppColors.primary20],
+                          colors: [AppColors.primary20, AppColors.primary10],
                           begin: Alignment.centerLeft,
                           end: Alignment.centerRight,
                         ),
