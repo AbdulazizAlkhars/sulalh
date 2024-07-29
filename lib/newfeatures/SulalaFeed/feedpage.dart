@@ -142,35 +142,38 @@ class _FeedPageState extends State<FeedPage> {
                   ),
                 ),
                 SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    final comment = _commentController.text.trim();
-                    if (comment.isNotEmpty) {
-                      setState(() {
-                        if (_comments[imagePath] == null) {
-                          _comments[imagePath] = [];
-                        }
-                        _comments[imagePath]!.add({
-                          'text': comment,
-                          'timestamp': DateTime.now(),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      final comment = _commentController.text.trim();
+                      if (comment.isNotEmpty) {
+                        setState(() {
+                          if (_comments[imagePath] == null) {
+                            _comments[imagePath] = [];
+                          }
+                          _comments[imagePath]!.add({
+                            'text': comment,
+                            'timestamp': DateTime.now(),
+                          });
                         });
-                      });
-                      Navigator.of(context).pop(); // Close the modal
-                      _showAddCommentModal(
-                          imagePath); // Reopen to refresh comments
-                    }
-                  },
-                  child: Text(
-                    'Post Comment',
-                    style: AppFonts.body1(color: AppColors.grayscale00),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    backgroundColor: AppColors.primary30,
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
+                        Navigator.of(context).pop(); // Close the modal
+                        _showAddCommentModal(
+                            imagePath); // Reopen to refresh comments
+                      }
+                    },
+                    child: Text(
+                      'Post Comment',
+                      style: AppFonts.body1(color: AppColors.grayscale00),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      backgroundColor: AppColors.primary30,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 20),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
                     ),
                   ),
                 ),
