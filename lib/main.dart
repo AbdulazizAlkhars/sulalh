@@ -5,10 +5,10 @@ import 'package:hathera_demo/HomeScreen/Registered/HomePage.dart';
 import 'package:hathera_demo/Profile/BottomNavigationBar/BottomNBScreens.dart';
 
 import 'package:hathera_demo/localization/localestrings.dart';
-import 'package:hathera_demo/newfeatures/feedpage.dart';
+import 'package:hathera_demo/newfeatures/SulalaFeed/feedpage.dart';
 
-import 'FetusInfo/mammals_lits.dart';
-import 'newfeatures/upload_images.dart';
+import 'newfeatures/Fetus/mammals_lits.dart';
+import 'newfeatures/SulalaFeed/add_images_modal_widget.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));

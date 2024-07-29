@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 
-import '../Theme/Colors.dart';
-import '../Theme/Fonts.dart';
+import '../../Theme/Colors.dart';
+import '../../Theme/Fonts.dart';
 
 class ImageDetailPage extends StatelessWidget {
   final String imagePath;

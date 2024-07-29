@@ -2,9 +2,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../Theme/Colors.dart';
-import '../Theme/Fonts.dart';
-import 'caption_page.dart';
+import '../../Theme/Colors.dart';
+import '../../Theme/Fonts.dart';
+import 'add_caption.dart';
 import 'image_detail_page.dart';
 
 class AddPhotosModalWidget extends StatefulWidget {

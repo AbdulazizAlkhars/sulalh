@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../Theme/Colors.dart';
-import '../Theme/Fonts.dart';
+import '../../Theme/Colors.dart';
+import '../../Theme/Fonts.dart';
 
 // Assuming a typical gestation period for a cat is 65 days
 const int catGestationPeriod = 65;

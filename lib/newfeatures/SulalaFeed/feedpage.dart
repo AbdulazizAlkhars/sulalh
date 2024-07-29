@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:hathera_demo/newfeatures/upload_images.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:hathera_demo/newfeatures/SulalaFeed/breeding_request_modal_widget.dart';
+import 'package:hathera_demo/newfeatures/SulalaFeed/add_images_modal_widget.dart';
 
-import '../Theme/Colors.dart';
-import '../Theme/Fonts.dart';
+import '../../Theme/Colors.dart';
+import '../../Theme/Fonts.dart';
 
 class FeedPage extends StatefulWidget {
   @override
@@ -23,7 +25,7 @@ class _FeedPageState extends State<FeedPage> {
       backgroundColor: AppColors.grayscale00,
       context: context,
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           height: MediaQuery.of(context).size.height * 0.7,
           child: AddPhotosModalWidget(
             imagePaths: _imagePaths,
@@ -84,10 +86,24 @@ class _FeedPageState extends State<FeedPage> {
     );
   }
 
+  void _showBreedingRequestModal(String imagePath) {
+    showModalBottomSheet(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      backgroundColor: AppColors.grayscale00,
+      builder: (BuildContext context) {
+        return SingleChildScrollView(
+            child: BreedingRequestModal(imagePath: imagePath));
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.grayscale0,
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -234,7 +250,8 @@ class _FeedPageState extends State<FeedPage> {
                                   width: 4,
                                 ),
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () =>
+                                      _showBreedingRequestModal(imagePath),
                                   style: ElevatedButton.styleFrom(
                                     elevation: 0,
                                     backgroundColor: AppColors.primary30,

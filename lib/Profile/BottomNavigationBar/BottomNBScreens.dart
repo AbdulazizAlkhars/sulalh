@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 
 import 'package:hathera_demo/CreateAnimals/ListOfAnimals.dart';
 import 'package:hathera_demo/DriverApp/driver_homepage.dart';
-import 'package:hathera_demo/FetusInfo/mammals_lits.dart';
+import 'package:hathera_demo/newfeatures/Fetus/mammals_lits.dart';
 import 'package:hathera_demo/HomeScreen/Registered/HomePage.dart';
 import 'package:hathera_demo/Marketplace/home_page.dart';
 import 'package:hathera_demo/Profile/ProfilePage.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
-import 'package:hathera_demo/newfeatures/feedpage.dart';
+import 'package:hathera_demo/newfeatures/SulalaFeed/feedpage.dart';
 
 class bottomNavigationBarPage extends StatefulWidget {
   const bottomNavigationBarPage({super.key});

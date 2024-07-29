@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 
-import '../Theme/Colors.dart';
-import '../Theme/Fonts.dart';
+import '../../Theme/Colors.dart';
+import '../../Theme/Fonts.dart';
 
 class CaptionEntryPage extends StatefulWidget {
   final String imagePath;
@@ -61,7 +61,9 @@ class _CaptionEntryPageState extends State<CaptionEntryPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.file(File(widget.imagePath)),
+              ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.file(File(widget.imagePath))),
               SizedBox(height: 16),
               Text(
                 'Enter Caption',

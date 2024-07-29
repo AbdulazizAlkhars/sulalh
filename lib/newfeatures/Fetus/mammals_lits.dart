@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hathera_demo/Theme/Colors.dart';
 import 'package:intl/intl.dart';
 
-import '../Theme/Fonts.dart';
+import '../../Theme/Fonts.dart';
 import 'data.dart';
 import 'pregnancy_details.dart';
 
