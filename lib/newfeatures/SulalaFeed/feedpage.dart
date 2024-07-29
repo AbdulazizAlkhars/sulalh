@@ -17,6 +17,7 @@ class _FeedPageState extends State<FeedPage> {
   final Map<String, int> _likes = {};
   final Map<String, String> _captions = {}; // Add this map for captions
   final Map<String, bool> _liked = {};
+  final Map<String, List<Map<String, dynamic>>> _comments = {};
 
   void _showImageGridBottomSheet() {
     showModalBottomSheet(
@@ -51,6 +52,149 @@ class _FeedPageState extends State<FeedPage> {
         );
       },
     );
+  }
+
+  void _showAddCommentModal(String imagePath) {
+    final TextEditingController _commentController = TextEditingController();
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      backgroundColor: AppColors.grayscale00,
+      builder: (BuildContext context) {
+        final comments = _comments[imagePath] ?? [];
+        return SizedBox(
+          height: MediaQuery.of(context).size.height * 0.7,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Comments',
+                  style: AppFonts.title4(color: AppColors.grayscale90),
+                ),
+                Divider(),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: comments.length,
+                    itemBuilder: (context, index) {
+                      final comment = comments[index];
+                      final commentText = comment['text'];
+                      final timestamp = comment['timestamp'] as DateTime;
+                      final timeAgo = _formatTimeAgo(timestamp);
+
+                      return ListTile(
+                        contentPadding: EdgeInsets.zero,
+                        leading: CircleAvatar(
+                          radius: MediaQuery.of(context).size.width * 0.05,
+                          backgroundColor: AppColors.primary20,
+                        ),
+                        title: Text(
+                          'Tommy',
+                          style: AppFonts.body1(
+                            color: AppColors.grayscale90,
+                          ),
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              commentText,
+                              style:
+                                  AppFonts.body2(color: AppColors.grayscale90),
+                              overflow: TextOverflow.visible,
+                              softWrap: true,
+                            ),
+                            Text(
+                              timeAgo,
+                              style: AppFonts.caption2(
+                                  color: AppColors.grayscale50),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: 10),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50.0),
+                    border: Border.all(
+                      color: AppColors.grayscale20,
+                    ),
+                    color: Colors.white,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: TextField(
+                      style: TextStyle(fontSize: 14.0),
+                      controller: _commentController,
+                      decoration: InputDecoration(
+                        hintText: 'Write Comment',
+                        hintStyle: AppFonts.body2(color: AppColors.grayscale50),
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    final comment = _commentController.text.trim();
+                    if (comment.isNotEmpty) {
+                      setState(() {
+                        if (_comments[imagePath] == null) {
+                          _comments[imagePath] = [];
+                        }
+                        _comments[imagePath]!.add({
+                          'text': comment,
+                          'timestamp': DateTime.now(),
+                        });
+                      });
+                      Navigator.of(context).pop(); // Close the modal
+                      _showAddCommentModal(
+                          imagePath); // Reopen to refresh comments
+                    }
+                  },
+                  child: Text(
+                    'Post Comment',
+                    style: AppFonts.body1(color: AppColors.grayscale00),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    backgroundColor: AppColors.primary30,
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  String _formatTimeAgo(DateTime timestamp) {
+    final now = DateTime.now();
+    final difference = now.difference(timestamp);
+
+    if (difference.inMinutes < 1) {
+      return 'just now';
+    } else if (difference.inMinutes < 60) {
+      return '${difference.inMinutes} min ago';
+    } else if (difference.inHours < 24) {
+      return '${difference.inHours} h ago';
+    } else {
+      return '${difference.inDays} d ago';
+    }
   }
 
   void _toggleLike(String path) {
@@ -140,6 +284,8 @@ class _FeedPageState extends State<FeedPage> {
                       itemCount: _imagePaths.length,
                       itemBuilder: (context, index) {
                         final imagePath = _imagePaths[index];
+                        final comments = _comments[imagePath] ?? [];
+
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -168,26 +314,21 @@ class _FeedPageState extends State<FeedPage> {
                                 ),
                               ],
                             ),
-                            SizedBox(
-                              height: 8,
-                            ),
+                            SizedBox(height: 8),
                             // Image section
                             GestureDetector(
                               onLongPress: () =>
                                   _showFullScreenImage(imagePath),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(
-                                    10.0), // Adjust the radius as needed
+                                borderRadius: BorderRadius.circular(10.0),
                                 child: Image.file(
                                   File(imagePath),
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-
-                            // Spacer to handle dynamic spacing
-                            const SizedBox(
-                                height: 8.0), // Space between image and caption
+                            // Spacer
+                            SizedBox(height: 8.0),
                             // Like and caption row
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -204,9 +345,7 @@ class _FeedPageState extends State<FeedPage> {
                                     size: 20,
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 5,
-                                ),
+                                SizedBox(width: 5),
                                 Text(
                                   '${_likes[imagePath] ?? 0} Likes',
                                   style: AppFonts.body1(
@@ -218,37 +357,51 @@ class _FeedPageState extends State<FeedPage> {
                             // Flexible caption section
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                // Column to align "Owned" and caption properly
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      // Label "Owned"
                                       Text(
                                         'Suhail',
                                         style: AppFonts.body1(
                                           color: AppColors.grayscale100,
                                         ),
                                       ),
-                                      // Caption Text with dynamic wrapping
                                       Text(
                                         _captions[imagePath] ?? '',
                                         style: AppFonts.body2(
                                           color: AppColors.grayscale90,
                                         ),
-                                        overflow: TextOverflow
-                                            .visible, // Ensure text wraps
+                                        overflow: TextOverflow.visible,
                                         softWrap: true,
                                       ),
+                                      comments.isEmpty
+                                          ? InkWell(
+                                              onTap: () => _showAddCommentModal(
+                                                  imagePath),
+                                              child: Text(
+                                                'Add Comment..',
+                                                style: AppFonts.caption2(
+                                                  color: AppColors.primary50,
+                                                ),
+                                              ),
+                                            )
+                                          : InkWell(
+                                              onTap: () => _showAddCommentModal(
+                                                  imagePath),
+                                              child: Text(
+                                                'View ${comments.length} comment${comments.length > 1 ? 's' : ''}',
+                                                style: AppFonts.caption2(
+                                                  color: AppColors.primary50,
+                                                ),
+                                              ),
+                                            ),
                                     ],
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 4,
-                                ),
+                                SizedBox(width: 4),
                                 ElevatedButton(
                                   onPressed: () =>
                                       _showBreedingRequestModal(imagePath),
@@ -269,7 +422,7 @@ class _FeedPageState extends State<FeedPage> {
                                 ),
                               ],
                             ),
-                            Divider()
+                            Divider(),
                           ],
                         );
                       },
