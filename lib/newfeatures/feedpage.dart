@@ -27,11 +27,12 @@ class _FeedPageState extends State<FeedPage> {
           height: MediaQuery.of(context).size.height * 0.7,
           child: AddPhotosModalWidget(
             imagePaths: _imagePaths,
-            captions: _captions, // Pass captions map
+            captions: _captions,
+            likes: _likes, // Pass likes map
             onImageAdded: (path, caption) {
               setState(() {
                 _imagePaths.add(path);
-                _captions[path] = caption; // Update captions map
+                _captions[path] = caption;
                 _likes[path] = 0;
                 _liked[path] = false;
               });
@@ -39,7 +40,7 @@ class _FeedPageState extends State<FeedPage> {
             onImageDeleted: (path) {
               setState(() {
                 _imagePaths.remove(path);
-                _captions.remove(path); // Remove from captions map
+                _captions.remove(path);
                 _likes.remove(path);
                 _liked.remove(path);
               });
@@ -65,12 +66,17 @@ class _FeedPageState extends State<FeedPage> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return Dialog(
-          backgroundColor: Colors.black,
-          child: InteractiveViewer(
-            child: Image.file(
-              File(imagePath),
-              fit: BoxFit.cover,
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Dialog(
+            backgroundColor: Colors.black,
+            child: InteractiveViewer(
+              maxScale: 5.0,
+              minScale: 0.4,
+              child: Image.file(
+                File(imagePath),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         );
@@ -155,15 +161,10 @@ class _FeedPageState extends State<FeedPage> {
                                   _showFullScreenImage(imagePath),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(
-                                    16.0), // Adjust the radius as needed
-                                child: Container(
-                                  width: double.infinity, // Full width
-                                  height: MediaQuery.of(context).size.height *
-                                      0.4, // Adjust height
-                                  child: Image.file(
-                                    File(imagePath),
-                                    fit: BoxFit.cover,
-                                  ),
+                                    10.0), // Adjust the radius as needed
+                                child: Image.file(
+                                  File(imagePath),
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
@@ -191,7 +192,7 @@ class _FeedPageState extends State<FeedPage> {
                                   width: 5,
                                 ),
                                 Text(
-                                  '${_likes[imagePath] ?? 0}',
+                                  '${_likes[imagePath] ?? 0} Likes',
                                   style: AppFonts.body1(
                                     color: AppColors.grayscale90,
                                   ),
@@ -213,7 +214,7 @@ class _FeedPageState extends State<FeedPage> {
                                       Text(
                                         'Suhail',
                                         style: AppFonts.body1(
-                                          color: AppColors.grayscale90,
+                                          color: AppColors.grayscale100,
                                         ),
                                       ),
                                       // Caption Text with dynamic wrapping

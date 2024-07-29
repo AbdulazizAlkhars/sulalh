@@ -10,7 +10,10 @@ class ImageDetailPage extends StatelessWidget {
   final void Function() onDelete;
 
   ImageDetailPage(
-      {required this.imagePath, required this.caption, required this.onDelete});
+      {required this.imagePath,
+      required this.caption,
+      required this.onDelete,
+      required int likeCount});
 
   @override
   Widget build(BuildContext context) {
@@ -105,15 +108,23 @@ class ImageDetailPage extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.file(File(imagePath)),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.file(
+                File(imagePath),
+                fit: BoxFit.cover,
+              ),
+            ),
             SizedBox(height: 16),
             Text(
               caption,
-              style: TextStyle(fontSize: 16, color: Colors.black),
+              style: AppFonts.body1(color: AppColors.grayscale100),
             ),
           ],
         ),

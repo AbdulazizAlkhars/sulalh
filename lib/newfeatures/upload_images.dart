@@ -9,13 +9,15 @@ import 'image_detail_page.dart';
 
 class AddPhotosModalWidget extends StatefulWidget {
   final List<String> imagePaths;
-  final Map<String, String> captions; // Use Map for captions
-  final Function(String, String) onImageAdded; // Updated callback
+  final Map<String, String> captions;
+  final Map<String, int> likes; // Add this map for likes
+  final Function(String, String) onImageAdded;
   final Function(String) onImageDeleted;
 
   AddPhotosModalWidget({
     required this.imagePaths,
     required this.captions,
+    required this.likes, // Add likes map
     required this.onImageAdded,
     required this.onImageDeleted,
   });
@@ -92,6 +94,7 @@ class _AddPhotosModalWidgetState extends State<AddPhotosModalWidget> {
             widget.onImageDeleted(imagePath);
             Navigator.of(context).pop();
           },
+          likeCount: widget.likes[imagePath] ?? 0, // Pass like count
         ),
       ),
     );
@@ -131,6 +134,11 @@ class _AddPhotosModalWidgetState extends State<AddPhotosModalWidget> {
               style: AppFonts.title4(color: AppColors.grayscale100),
             ),
           ),
+          SizedBox(height: 10),
+          Text(
+            '${widget.imagePaths.length} Pictures',
+            style: AppFonts.body1(color: AppColors.grayscale90),
+          ),
           Divider(),
           SizedBox(height: 20),
           widget.imagePaths.isNotEmpty
@@ -148,9 +156,42 @@ class _AddPhotosModalWidgetState extends State<AddPhotosModalWidget> {
                       return GestureDetector(
                         onTap: () => _viewImage(imagePath),
                         onLongPress: () => _showDeleteOptions(index),
-                        child: Image.file(
-                          File(imagePath),
-                          fit: BoxFit.cover,
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              width: 160,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10.0),
+                                child: Image.file(
+                                  File(imagePath),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 8,
+                              left: 8,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.pets,
+                                    color: AppColors.secondary50,
+                                    size: 15,
+                                  ),
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  Text(
+                                    '${widget.likes[imagePath] ?? 0}',
+                                    style:
+                                        AppFonts.caption1(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       );
                     },
@@ -175,7 +216,7 @@ class _AddPhotosModalWidgetState extends State<AddPhotosModalWidget> {
             style: ElevatedButton.styleFrom(
               elevation: 0,
               backgroundColor: AppColors.primary30,
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50),
               ),
